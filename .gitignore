@@ -1,0 +1,15 @@
+# Strict allowlist: ignore everything by default, then un-ignore only the
+# files we want backed up to the programs-meta repo.
+#
+# Per-app git repos under this folder (e.g. School Scrips/Macro App/.git,
+# electron-toolbar/.git) are unaffected — git treats their .git directories
+# as boundary stops and never tracks anything inside them.
+
+# Ignore every top-level entry
+/*
+
+# Un-ignore the meta files we care about
+!/CLAUDE.md
+!/cursor-patterns/
+!/.gitignore
+node_modules
