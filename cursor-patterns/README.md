@@ -45,8 +45,14 @@ needed. You don't read these front-to-back — you jump in when relevant.
 
 - **Claude Code:** Auto-loads `C:\Users\chase\Documents\Programs\CLAUDE.md`,
   which points here.
-- **Cursor:** User Rule (Settings → Rules → User Rules) tells the AI to read
-  `CODING_STANDARDS.md` before writing code.
+- **Cursor (Programs workspace):** `.cursor/rules/00-programs-entrypoint.mdc`
+  (`alwaysApply: true`) — entrypoint + index of every file in this folder.
+  File-specific rules: `10-file-size-before-edit.mdc`, `20-modal-pattern.mdc`.
+- **Cursor (User Rules):** Settings → Rules → User Rules still supplements
+  accessibility and session protocol; canonical code standards remain
+  `CODING_STANDARDS.md`.
+- **Per-app:** `[app]/.cursor/rules/` and `[app]/CLAUDE.md` when working inside
+  an app (e.g. Macro App: `macro-modals.mdc`, `embedded-browser-modals.mdc`).
 
 ---
 

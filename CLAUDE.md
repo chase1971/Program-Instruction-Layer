@@ -27,6 +27,19 @@ That file is the canonical source of truth for:
 
 ---
 
+## Cursor rules (this workspace)
+
+Cursor loads **`.cursor/rules/*.mdc`** automatically:
+
+- `00-programs-entrypoint.mdc` — always on; index of `cursor-patterns/` + hard rules
+- `10-file-size-before-edit.mdc` — when editing `.ts` / `.tsx` / `.py` / `.css`
+- `20-modal-pattern.mdc` — when editing modal files
+
+Per-app rules live in `[app]/.cursor/rules/` (e.g. Macro App modal + browser rules).
+Full index: `cursor-patterns/README.md` § How AI Sessions Find This.
+
+---
+
 ## Ask Before You Assume
 
 Chase prefers you to ask ONE focused clarifying question before starting work
