@@ -88,11 +88,13 @@ If you only remember these 8 things, you'll already be ahead:
    utility, service, IPC channel, log helper, state store, partition,
    registry, or any system another part of the code might already do: search
    the codebase (and sister apps) for what it would replace. If something
-   exists, extend it. If you add a new one anyway, your response MUST name
-   what you chose not to reuse and why. Parallel mechanisms are the #1 way
-   this tree accumulates duplicate solutions and inconsistent patterns —
-   they look like "I solved the task" but read later as "nothing fits
-   together anymore."
+   exists, extend it. **If you would create a second implementation of an
+   existing concept, STOP and surface it for a decision** — do not proceed
+   on your own judgment. Parallel mechanisms are the #1 way this tree
+   accumulates duplicate solutions and inconsistent patterns — they look
+   like "I solved the task" but read later as "nothing fits together
+   anymore." Naming what you chose not to reuse after the fact is not a
+   substitute for asking before you build it.
 
 8. **Document the lesson when you finish a focused refactor or hotfix.**
    When a session retires multiple band-aids, fixes a class of bugs, or

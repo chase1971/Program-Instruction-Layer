@@ -535,6 +535,30 @@ useEffect(() => {
 
 ---
 
+## Modals and dialogs
+
+### No overlay / backdrop dismiss (hard rule)
+
+**Never** attach `onClick={onClose}` (or `onCancel`, etc.) to a modal overlay/backdrop. The user closes modals only through explicit buttons: OK, Cancel, Close, Done.
+
+Dwell-mouse and head-mouse users cannot keep the cursor perfectly still. A wobble onto the dimmed backdrop must not cancel Setup courses, clear-courses wizards, or any multi-step flow.
+
+```tsx
+// ✅ Overlay is inert — matches ModalContainer.tsx
+<div className="courses-modal-overlay" role="presentation">
+  <div className="courses-modal" role="dialog" aria-modal="true" …>
+    <button type="button" onClick={onClose}>Close</button>
+  </div>
+</div>
+
+// ❌ Accidental dismiss
+<div className="courses-modal-overlay" onClick={onClose}>
+```
+
+Full pattern: `cursor-patterns/modal-pattern.md` § No overlay / backdrop dismiss.
+
+---
+
 ## Related Patterns
 
 - [Hover-to-Lock Drag](./hover-to-lock-drag.md) - Drag with hover-based activation

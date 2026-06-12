@@ -34,16 +34,22 @@
 - Always use `max-h-[85vh]` to prevent modals from exceeding viewport height
 - Use `overflow-y-auto` on content area for scrolling
 
-### No overlay / backdrop dismiss
+### No overlay / backdrop dismiss (hard rule)
 
-**Do not** close modals when the user clicks outside the dialog (overlay/backdrop). The user must use an explicit control: OK, Cancel, Close, Done, etc.
+**Never** close a modal when the user clicks outside the dialog (overlay/backdrop). Do not use `onClick={onClose}`, `onClick={onCancel}`, or conditional overlay handlers. The user must use an explicit control: OK, Cancel, Close, Done, etc.
 
-This is required for dwell-mouse and head-mouse users — accidental cursor movement must not dismiss important alerts.
+This is required for dwell-mouse and head-mouse users — accidental cursor movement must not dismiss wizards or half-finished setup flows.
 
 ```tsx
-// ✅ CORRECT — overlay has no onClick
-<div className="courses-modal-overlay" role="dialog" aria-modal="true">
-  <div className="courses-modal" onClick={(event) => event.stopPropagation()}>
+// ✅ CORRECT — overlay is inert; dialog lives on the inner panel
+<div className="courses-modal-overlay" role="presentation">
+  <div
+    className="courses-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Setup courses"
+    onClick={(event) => event.stopPropagation()}
+  >
     {/* content */}
     <button type="button" onClick={onClose}>OK</button>
   </div>
@@ -51,7 +57,12 @@ This is required for dwell-mouse and head-mouse users — accidental cursor move
 
 // ❌ WRONG — clicking outside closes the modal
 <div className="courses-modal-overlay" onClick={onClose}>
+
+// ❌ WRONG — "smart" dismiss only when idle (still fires on dwell-mouse accidents)
+<div className="courses-modal-overlay" onClick={() => { if (canDismiss) onClose(); }}>
 ```
+
+Prefer **`ModalContainer`** in Macro App — it already follows this rule.
 
 ### ❌ Common Mistakes
 
