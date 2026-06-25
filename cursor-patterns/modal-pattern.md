@@ -32,7 +32,33 @@
 
 **Height:**
 - Always use `max-h-[85vh]` to prevent modals from exceeding viewport height
-- Use `overflow-y-auto` on content area for scrolling
+- Use `overflow-y-auto` on content area as a **safety net** — not as the normal scrolling experience
+
+### Aim for NO scrolling (design to fit)
+
+**A scrollbar is a smell, not a solution.** The default goal is a modal whose content fits
+in the viewport with everything visible at once. `max-h-[85vh]` + `overflow-y-auto` stay in
+place so controls can never leave the screen, but you should design so they rarely trigger.
+
+This matters extra for dwell-mouse / head-mouse users: scrolling inside a modal is a slow,
+error-prone interaction. Showing everything at once is far more accessible.
+
+When a modal is too tall, fix it in this order:
+
+1. **Cut padding and gaps.** Tighten section margins, list `gap`, and row padding. Most
+   "too long" modals are mostly whitespace.
+2. **Shrink elements.** Smaller font sizes, shorter inputs, single-line rows instead of
+   stacked label-above-input.
+3. **Drop redundant text.** Remove restating helper copy, captions that duplicate the
+   control, and hints the user already sees in the field.
+4. **Split into columns.** Dense lists (categories, settings, per-item rows) belong in a
+   multi-column grid, not one tall single column. A wider modal (`max-w-lg`/fixed width with
+   a documented reason) with 2–3 columns usually beats a scrolling `max-w-md`.
+5. Only after the above, accept scrolling for genuinely unbounded content (long logs, large
+   variable-length lists) — and prefer `ViewportScrollFrame` for those.
+
+Exemplar (Macro App): `CategoryWeightsModal.tsx` — one column per gradebook, compact
+single-line rows, trimmed spacing so all categories show without a scrollbar.
 
 ### No overlay / backdrop dismiss (hard rule)
 
