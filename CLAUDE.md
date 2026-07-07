@@ -198,6 +198,9 @@ log. Three variants supported: `educational-math`, `functional-tool`,
 
 ## Apps in This Tree
 
+**Full index (paths, aliases, legacy folders, sister apps):**
+**`APP_LOCATIONS.md`** — read this before searching folders for an app name.
+
 - `School Scrips/` — React/Vite/Tailwind educational math apps (Calendar 2.0,
   factoring-app, logic-app, Matrix app, Probability App, transformations-app,
   makeup-exam-standalone, D2L-Assignment-Platform, etc.)
