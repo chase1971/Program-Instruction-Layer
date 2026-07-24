@@ -141,14 +141,8 @@ but the file-size, App.tsx, and modal rules always apply.
 When the user says "end of session protocol", "wrap the session", "end the
 session", "we're done for now", or similar, do these in order:
 
-1. **Verify state.** If renderer code was changed in this session, run
- `npm test` in `renderer/` and report results before logging. If Python
- automation code was changed, run `pytest modules/d2l/tests` (and any
- other relevant test dirs) and report results. If a build/dev server is
- involved, ask: "Want me to run the build to confirm it still works before
- logging?" (Run only if user says yes.)
-2. **Check git status** (if a git repo). Briefly list what's untracked or modified.
-3. **Append an entry** to the app's `docs/sessions/SESSIONS.md`. Use this format,
+1. **Check git status** (if a git repo). Briefly list what's untracked or modified.
+2. **Append an entry** to the app's `docs/sessions/SESSIONS.md`. Use this format,
    with the newest entry at the top:
 
 ```
@@ -165,17 +159,20 @@ session", "we're done for now", or similar, do these in order:
 **Next session:** [the concrete next action]
 ```
 
-4. **Leave TODO comments in the code** if work stopped mid-edit. A comment in
+3. **Leave TODO comments in the code** if work stopped mid-edit. A comment in
    the actual file beats a description in SESSIONS.md — the next agent will
    see it when they open the file.
-5. **Commit and push to GitHub** in the active app's git repo. Invoking
-   end-of-session counts as explicit permission to commit. Follow the git safety
-   protocol in user rules: parallel `git status` / `git diff` / `git log`,
-   draft a message from the session work, stage relevant files only (never
-   `.env`, credentials, or local backups unless the user asked), commit, then
-   `git push` if a remote exists. Skip commit if there are no changes; ask once
-   if the repo would need a large first commit of previously untracked files.
-6. **Report back** to the user: one short line summarizing what was logged,
+4. **Commit and push to GitHub** — follow the multi-repo scan in
+   `.cursor/rules/40-multi-repo-git-push.mdc` (all dirty repos under Programs,
+   not just the active app). Invoking end-of-session counts as explicit
+   permission to commit. Follow the git safety protocol in user rules: parallel
+   `git status` / `git diff` / `git log`, draft a message from the session work,
+   stage relevant files only (never `.env`, credentials, or local backups unless
+   the user asked), commit, then `git push` if a remote exists. Skip commit if
+   there are no changes; ask once if the repo would need a large first commit of
+   previously untracked files. **Do not run npm test, pytest, builds, or other
+   smoke/verification steps** unless Chase explicitly asks.
+5. **Report back** to the user: one short line summarizing what was logged,
    commit hash/message (or "nothing to commit"), push result, and anything
    broken/unfinished.
 
