@@ -23,11 +23,8 @@ needed. You don't read these front-to-back — you jump in when relevant.
 
 | File | When to read |
 |---|---|
-| [file-size-enforcement.md](./file-size-enforcement.md) | Full reference for the 800-line rule and extraction triggers |
-| [FILE_SIZE_QUICK_REFERENCE.md](./FILE_SIZE_QUICK_REFERENCE.md) | One-page cheat sheet for size limits |
 | [react-patterns.md](./react-patterns.md) | Building hooks, services, components, state extraction |
-| [modal-pattern.md](./modal-pattern.md) | Building any modal/dialog/wizard (`max-w-md`!) |
-| [modal-scrolling-fix.md](./modal-scrolling-fix.md) | When modal content needs to scroll properly |
+| [modal-pattern.md](./modal-pattern.md) | Building any modal/dialog/wizard (`max-w-md`!); includes portal scroll fix |
 | [file-headers.md](./file-headers.md) | Standardized header format for new files |
 | [refactoring-checklist.md](./refactoring-checklist.md) | When the user says "refactor", "clean up", or "make it 9/10" |
 | [anti-patterns.md](./anti-patterns.md) | Common mistakes catalog |
@@ -35,19 +32,22 @@ needed. You don't read these front-to-back — you jump in when relevant.
 | [electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md) | **Required** for every Electron shell: Display button, per-monitor scale, exemplar Calendar 2.0 |
 | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) | `.bat` one-liners, no visible cmd, Node spawn from Electron |
 | `School Scrips/App Dashboard/docs/LAUNCHER.md` | apps.json registry, ports, Toolbar Shift+F5 |
-| [logging-standards.md](./logging-standards.md) | Logging conventions and levels |
-| [animation-frame-debug-tool.md](./animation-frame-debug-tool.md) | React dev tool for pixel-perfect overlay debugging |
-| [add-a-line-change-a-sign.md](./add-a-line-change-a-sign.md) | Educational math animation pattern (negatives, subtraction) |
+
+**Archived** (superseded or stale — see `Archived markdowns/cursor-patterns/`):
+`file-size-enforcement.md`, `FILE_SIZE_QUICK_REFERENCE.md` (lint + pre-commit),
+`logging-standards.md`, `animation-frame-debug-tool.md`, `add-a-line-change-a-sign.md`,
+`modal-scrolling-fix.md` (merged into `modal-pattern.md`).
 
 ---
 
 ## How AI Sessions Find This
 
-- **Claude Code:** Auto-loads `C:\Users\chase\Documents\Programs\CLAUDE.md`,
-  which points here.
+- **Claude Code:** Auto-loads `CLAUDE.md` (imports `@AGENTS.md` at Programs root).
+  App folders have their own `CLAUDE.md` index.
 - **Cursor (Programs workspace):** `.cursor/rules/00-programs-entrypoint.mdc`
-  (`alwaysApply: true`) — entrypoint + index of every file in this folder.
+  (`alwaysApply: true`) — entrypoint + index. Capture ladder in `AGENTS.md`.
   File-specific rules: `10-file-size-before-edit.mdc`, `20-modal-pattern.mdc`.
+  Per-app glob contracts: `[app]/.cursor/rules/*.mdc`.
 - **Cursor (User Rules):** Settings → Rules → User Rules still supplements
   accessibility and session protocol; canonical code standards remain
   `CODING_STANDARDS.md`.

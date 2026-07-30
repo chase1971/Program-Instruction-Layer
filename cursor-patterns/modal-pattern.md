@@ -454,4 +454,41 @@ and copy an exemplar (`GradesBackupModal.tsx`, `GradebookHistoryModal.tsx`).
 
 ---
 
-**Last Updated:** 2026-01-12
+**Last Updated:** 2026-07-29
+
+---
+
+## When scrolling is unavoidable (Electron / portal modals)
+
+**Symptom:** Modal overflows the viewport but no scrollbar appears.
+
+**Cause:** Tailwind height utilities (`h-[540px]`, `max-h-[85vh]`) are unreliable in React portals — JIT may skip them, or `electron.css` / global styles override them.
+
+**Fix:** Use **inline styles** for critical height constraints on the modal shell:
+
+```tsx
+<div
+  className="rounded-lg border shadow-xl flex flex-col"
+  style={{
+    width: '800px',
+    height: '540px',
+    maxHeight: '85vh',
+  }}
+>
+  <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 overflow-y-auto p-4">
+      {/* scrollable content */}
+    </div>
+  </div>
+</div>
+```
+
+Rules:
+- Parent of scroll area: `flex-1 overflow-hidden`
+- Scroll child: `flex-1 overflow-y-auto`
+- Do **not** rely on Tailwind alone for `height` / `maxHeight` in portaled modals
+- Prefer designing modals to fit without scrolling (see "Aim for NO scrolling" above)
+
+Two-panel layout (sidebar + scroll): fixed-width sidebar (`flex-shrink-0`), right panel uses the same `overflow-hidden` / `overflow-y-auto` pair.
+
+Test with 50+ items when scroll behavior matters.
