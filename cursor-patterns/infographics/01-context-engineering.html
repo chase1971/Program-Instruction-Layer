@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programs — The Context Engineering System</title>
+<title>Context Engineering — Teaching an AI Assistant Your Rules</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6fb; color: #1c2433; line-height: 1.6; font-size: 17px; }
@@ -53,121 +53,118 @@
 <div class="wrap">
 
   <div class="hero">
-    <div class="kicker">Programs · Context engineering</div>
-    <h1>The Context Engineering System</h1>
-    <p>Every app here is built with an AI assistant. This is the system that tells that assistant how <b>I</b> build things — so I stop repeating myself, and so features built months apart still look like the same app.</p>
+    <div class="kicker">Working with AI assistants</div>
+    <h1>Context Engineering</h1>
+    <p>A method for teaching an AI coding assistant the rules of a project — so the same instructions don't have to be repeated every session, and work produced months apart still looks like it belongs together.</p>
   </div>
 
   <div class="why">
-    <strong>The whole idea in one sentence:</strong> anything I'd otherwise have to say out loud every session should live in a file the assistant reads automatically.
+    <strong>The whole idea in one sentence:</strong> anything that would otherwise be said out loud at the start of every session should live in a file the assistant reads automatically.
   </div>
 
-  <h2>What it's for</h2>
-  <p class="h2sub">I drive every app with a head-mounted mouse and a dwell click. That one fact creates a dozen requirements that aren't obvious from looking at the code — and an assistant that doesn't know them will confidently build something I can't use.</p>
+  <h2>The problem it solves</h2>
+  <p class="h2sub">An assistant can read every line of a codebase and still miss the things that matter most — because the most important constraints usually aren't visible in the code at all.</p>
 
   <div class="idea">
-    <b>Buttons can't be hover-only.</b>
-    I can't reliably hover something without also clicking it. Anything that only appears on hover is invisible to me in practice.
+    <b>Requirements that live outside the code.</b>
+    Accessibility needs, performance budgets, compliance rules, hardware limits. Nothing in the source says a constraint exists, so a reasonable-looking change can quietly violate it.
   </div>
   <div class="idea">
-    <b>Modals can't close when you click outside them.</b>
-    My cursor drifts. A dialog that closes on a stray click will destroy half-finished work.
+    <b>Conventions that only matter in aggregate.</b>
+    Any single choice is defensible on its own. It's the fifth slightly-different version of the same component that becomes the problem — and that's invisible from inside any one file.
   </div>
   <div class="idea">
-    <b>Timers need generous thresholds.</b>
-    The cursor wobbles a few pixels even when I'm holding still. Anything tighter than about 12 pixels will never trigger.
+    <b>Fixes that look like clutter.</b>
+    Hard-won solutions often read as redundant code. Without a record of what they prevent, they get "cleaned up," and the original bug comes back.
   </div>
 
-  <p style="margin-top:22px">None of that is guessable. Written down once, it applies forever. That's the entire value proposition.</p>
+  <p style="margin-top:22px">None of these are guessable from context. Written down once, they apply indefinitely. That's the entire value proposition.</p>
 
-  <h2>How it's built — three layers</h2>
-  <p class="h2sub">Everything lives in one of three places, and which place you choose decides whether the rule actually fires.</p>
+  <h2>How it's structured — three layers</h2>
+  <p class="h2sub">Guidance lives in one of three places, and the choice of layer determines whether a rule actually reaches the assistant at the moment it's needed.</p>
 
   <div class="layers">
-    <h3>From always-loaded to read-if-asked</h3>
-    <div class="sub">Higher means more reliable. Lower means more detail.</div>
+    <h3>From always-loaded to read-only-if-asked</h3>
+    <div class="sub">Higher is more reliable. Lower holds more detail.</div>
     <div class="stack">
-      <div class="lyr y1">🔒 Always on — <code>AGENTS.md</code> at the root<span class="small">Loaded in every session, everywhere in the tree. The rules I break most often, and the shortest possible version of each. Kept deliberately small, because everything here competes for attention.</span></div>
-      <div class="lyr y2">🎯 Scoped rules — one folder per app<span class="small">Loaded only when a matching file is open. A rule about modals appears when I'm editing a modal and stays silent otherwise. <b>This is where most rules should live.</b></span></div>
-      <div class="lyr y3">📄 Reference docs — read when relevant<span class="small">Deep background, full explanations, pattern libraries. Only read if something above points at them — so anything down here that isn't linked is effectively invisible.</span></div>
+      <div class="lyr y1">🔒 Always on — one file at the project root<span class="small">Loaded in every session. Holds only the rules broken most often, in the shortest form that works. Kept deliberately small, because everything here competes for attention with everything else.</span></div>
+      <div class="lyr y2">🎯 Scoped rules — attached to file patterns<span class="small">Loaded only when a matching file is open. A rule about database queries appears while editing a query and stays silent otherwise. <b>Most rules belong here.</b></span></div>
+      <div class="lyr y3">📄 Reference docs — read when relevant<span class="small">Deep background and full explanations. Only reached if something above points at them — so anything down here that isn't linked is effectively invisible.</span></div>
     </div>
   </div>
 
   <div class="callout">
-    <strong>The one thing that goes wrong most:</strong> good documentation that nothing links to. Sixteen well-written pattern docs sat unreferenced for months — not wrong, just unreachable. Writing more wouldn't have helped. One index file did.
+    <strong>The most common failure by far:</strong> well-written documentation that nothing links to. It isn't wrong — it's unreachable, which produces exactly the same result as not existing. Writing more rarely fixes this. Adding an index does.
   </div>
 
-  <h2>What makes a rule actually work</h2>
-  <p class="h2sub">Rules that get followed all look the same. Rules that get ignored are usually missing one of these.</p>
+  <h2>What separates a rule that works from one that gets ignored</h2>
+  <p class="h2sub">Rules that hold up all share the same four parts. Rules that quietly stop being followed are usually missing one of them.</p>
 
   <div class="steps">
-    <div class="step"><b>Say why.</b> "I use a head-mouse with a dwell click." A rule without a reason reads like a preference — and preferences get overridden.</div>
-    <div class="step"><b>Name the exact thing to reuse.</b> Not "use a hook" — <i>this</i> one, at <i>this</i> path. Vagueness is what produces a second copy of something that already existed.</div>
-    <div class="step"><b>Point at a real file to copy.</b> A working example beats a description. Descriptions drift out of date quietly; a file path breaks loudly.</div>
-    <div class="step"><b>Say what breaks if it's ignored.</b> This is what stops a future session from deleting something that looks unnecessary but isn't.</div>
+    <div class="step"><b>State the reason.</b> A rule without a justification reads as a preference — and preferences get overridden the moment they're inconvenient.</div>
+    <div class="step"><b>Name the exact thing to reuse.</b> "Use the existing helper" is not actionable. Naming the specific one, at its specific location, is. Vagueness is what produces the duplicate.</div>
+    <div class="step"><b>Point at a working example.</b> A real file beats a description of one. Descriptions drift out of date silently; a reference to something that moved breaks visibly.</div>
+    <div class="step"><b>Say what breaks without it.</b> This is what stops a future session from removing something that looks unnecessary but is load-bearing.</div>
   </div>
 
   <div class="callout">
-    <strong>Same rule for numbers.</strong> Never leave a bare value like <code>450</code> in the code. Give it a name and a comment saying what it's compensating for. Bare numbers get "tidied up" by the next assistant, and then the bug comes back.
+    <strong>The same principle applies to constants.</strong> A bare number in the code carries no argument for its own existence, so it gets adjusted or removed during cleanup. Give it a name and a comment explaining what it compensates for, and it survives.
   </div>
 
-  <h2>Keeping it maintained</h2>
-  <p class="h2sub">Two habits and one command. That's the whole maintenance story.</p>
+  <h2>Keeping it healthy</h2>
+  <p class="h2sub">Two habits and one automated check. That is the entire maintenance burden.</p>
 
   <div class="steps">
-    <div class="step"><b>When I notice something, say it immediately.</b> Not "I'll write that down later" — later never comes, and the reason gets forgotten even if the rule doesn't.</div>
-    <div class="step"><b>When a correction repeats, move it up a layer.</b> Saying the same thing twice means it's sitting too low to fire. The fix isn't rewording it — it's promoting it.</div>
-    <div class="step"><b>Run the health check when docs move.</b> <code>node scripts/check-docs.js</code> — finds broken links, unreachable docs, duplicate copies, and rules that aren't indexed anywhere.</div>
+    <div class="step"><b>Record it at the moment it's noticed.</b> Deferring means it doesn't get written down — and even when it does, the reasoning behind it has already been lost.</div>
+    <div class="step"><b>When a correction repeats, move it up a layer.</b> Having to give the same instruction twice means it's filed too low to fire. The fix is promotion, not rewording.</div>
+    <div class="step"><b>Check reachability whenever docs move.</b> An automated pass for broken links, unreferenced files, duplicated content, and rules missing from an index catches decay long before anyone notices it by hand.</div>
   </div>
 
-  <h2>Adding something — just say it</h2>
-  <p class="h2sub">I don't write these files. I say one sentence and the assistant decides where it belongs, writes it properly, and deletes whatever weaker version it replaces.</p>
+  <h2>Adding something new</h2>
+  <p class="h2sub">The person with the knowledge shouldn't have to decide where it belongs or write the file. They state it in one sentence; the assistant handles placement, wording, and cleanup of whatever it replaces.</p>
 
-  <div class="say">remember: never use pointerleave to cancel a dwell — wobble fires it constantly</div>
+  <div class="say">remember: always validate input at the boundary, never inside the handler</div>
 
   <div class="tablewrap">
   <table>
-    <tr><th>What I say</th><th>When</th><th>What happens</th></tr>
-    <tr><td><b>"remember: …"</b><br><span style="color:#5a6a85;font-size:14px">or "always…" / "never…"</span></td><td>The moment I notice something</td><td>Gets written into the right layer and indexed so it's reachable</td></tr>
-    <tr><td><b>"that was the third time"</b><br><span style="color:#5a6a85;font-size:14px">or "I've told you this before"</span></td><td>A correction repeating</td><td>Forces it <b>up</b> a layer — repetition proves the current spot isn't working</td></tr>
-    <tr><td><b>"end of session"</b></td><td>Wrapping up</td><td>Logs what happened, commits, pushes</td></tr>
+    <tr><th>Trigger</th><th>When</th><th>What should happen</th></tr>
+    <tr><td><b>"remember: …"</b><br><span style="color:#5a6a85;font-size:14px">or "always…" / "never…"</span></td><td>The moment something is noticed</td><td>Written into the appropriate layer and indexed so it's reachable</td></tr>
+    <tr><td><b>"that's the third time"</b><br><span style="color:#5a6a85;font-size:14px">or "I've mentioned this before"</span></td><td>A correction repeating</td><td>Forced <b>up</b> a layer — repetition proves the current placement isn't working</td></tr>
+    <tr><td><b>"end of session"</b></td><td>Wrapping up</td><td>Progress logged, work committed</td></tr>
   </table>
   </div>
 
-  <p style="margin-top:22px">The middle row matters most. Repeating myself isn't a nuisance to tolerate — it's <b>evidence</b> that a rule is filed too low to fire, and the signal to promote it.</p>
+  <p style="margin-top:22px">The middle row carries the most weight. A repeated correction isn't an annoyance to absorb — it's <b>evidence</b> that a rule sits too low in the structure to fire, and the clearest signal available that it should be promoted.</p>
 
   <div class="callout">
-    <strong>What's not worth capturing:</strong> one-off instructions ("make this button blue"), anything the code already shows, and vague preferences with no failure attached. If I can't say what goes wrong without it, it isn't a rule yet.
+    <strong>What isn't worth capturing:</strong> one-off task instructions, anything already evident from the code itself, and preferences with no stated failure mode. If the consequence of ignoring it can't be named, it isn't a rule yet — it's an opinion.
   </div>
 
-  <h2>Starting a new app</h2>
-  <p class="h2sub">One sentence connects a brand-new folder to everything above. The recipe asks three questions, then builds the whole scaffold.</p>
-
-  <div class="say">Initialize a new app called [name]</div>
+  <h2>Connecting a new project</h2>
+  <p class="h2sub">A new codebase starts with none of this. A single scaffolding step wires it into everything above, and skipping that step is why a project drifts out of the system months later.</p>
 
   <div class="steps">
-    <div class="step"><b>It asks three things.</b> The name and one-line purpose, which kind of app it is, and where to put it. Nothing gets created until I confirm.</div>
-    <div class="step"><b>It picks a variant.</b> A teaching/math app, a utility tool, or a desktop overlay. The variant decides the folder structure and the starting configuration.</div>
-    <div class="step"><b>It scaffolds the connection points.</b> An orientation file so the assistant knows what the app is, a guidelines file for app-specific quirks, a session log, and the config that hooks into the shared standards.</div>
-    <div class="step"><b>Then I register it.</b> Add it to the app index so its name resolves later, and to the launcher registry if it needs a shortcut. Skipping this is why an app becomes hard to find months later.</div>
+    <div class="step"><b>Confirm the essentials first.</b> What it is in one line, which category it falls into, and where it lives. Nothing gets generated until that's agreed — the wrong scaffold is more expensive than none.</div>
+    <div class="step"><b>Generate from a template, not from scratch.</b> The category determines the structure and starting configuration, so equivalent projects stay genuinely equivalent instead of merely similar.</div>
+    <div class="step"><b>Create the orientation file.</b> Not the rules themselves — an index. What this project is, which rules apply and when, and where the reference examples are.</div>
+    <div class="step"><b>Register it where things get looked up.</b> Add it to whatever index resolves project names and locations. Skipping this is the single most common reason something becomes hard to find later.</div>
   </div>
 
   <div class="callout">
-    <strong>Why the orientation file is the important one.</strong> It's not the rules themselves — it's the <i>index</i>: what this app is, which rules apply and when, where the good examples are. Without it, an app's scoped rules are invisible to half my tooling. It's the single file that connects a new app to the whole system.
+    <strong>Why the orientation file matters most.</strong> Tooling differs in what it loads automatically — one assistant may pick up scoped rule files on its own while another never does. The orientation index is what makes a project's rules discoverable regardless, which is what actually connects it to the wider system.
   </div>
 
-  <h2>If you remember five things</h2>
+  <h2>Five things worth remembering</h2>
   <div class="steps">
-    <div class="step"><b>One source of truth per idea.</b> Four versions of the same setting is a bug. One version with documented exceptions is a system.</div>
-    <div class="step"><b>Point at real code, not descriptions.</b> Examples stay accurate as things move. Prose quietly stops being true.</div>
-    <div class="step"><b>Always write down the reason.</b> The reason is what survives the next session — it's what separates a constraint from a preference.</div>
+    <div class="step"><b>One source of truth per concept.</b> Four versions of the same setting is a defect. One version with documented exceptions is a system.</div>
+    <div class="step"><b>Reference real code, not descriptions of it.</b> Examples stay accurate as things move. Prose quietly stops being true and gives no indication that it has.</div>
+    <div class="step"><b>Always record the reason.</b> The reason is what survives into the next session — it's what distinguishes a constraint from a preference.</div>
     <div class="step"><b>Put the rule where the work happens.</b> Scoped to the files it governs: silent when irrelevant, unmissable when it isn't.</div>
-    <div class="step"><b>If it must never break, automate it.</b> A check that blocks the mistake beats a paragraph asking nicely.</div>
+    <div class="step"><b>If it must never break, automate it.</b> A check that blocks the mistake outperforms a paragraph asking politely.</div>
   </div>
 
   <footer>
-    Lives in <code>cursor-patterns/infographics/</code> in the Programs root repo. &nbsp;·&nbsp;
-    The files behind this page: <code>AGENTS.md</code> (the always-on layer and the capture ladder), <code>cursor-patterns/INIT_NEW_APP.md</code> (the new-app recipe), <code>APP_LOCATIONS.md</code> (name resolution), <code>scripts/check-docs.js</code> (the health check), <code>.claude/skills/capture/</code> (the "remember:" flow).
+    A general method for structuring project guidance so an AI coding assistant applies it consistently — independent of any particular language, framework, or tool.
   </footer>
 </div>
 </body>
