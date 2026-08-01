@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session scorecards — running log</title>
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface2: #243044;
+      --text: #e8eef4; --muted: #9db0c4; --accent: #5eb8ff; --accent2: #7ee787;
+      --warn: #f0b429; --danger: #ff7b72; --border: #3d5166;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 17px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+    h1 { font-size: 1.85rem; margin: 0 0 0.35rem; }
+    .subtitle { color: var(--muted); margin-bottom: 1rem; }
+    abbr.tip { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; border: none; }
+    .legend, .file-details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 1rem; }
+    .legend summary, .file-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .legend ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; }
+    .legend li { margin: 0.35rem 0; }
+    .summary-bar {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;
+      padding: 0.85rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .summary-bar dt { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); }
+    .summary-bar dd { margin: 0.15rem 0 0; font-size: 1.15rem; font-weight: 700; }
+    .day-block { margin: 1.75rem 0; }
+    .day-title { font-size: 1.2rem; color: var(--accent); margin: 0 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+    .day-sessions { display: flex; flex-direction: column; gap: 0.85rem; }
+    .session-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; border-left: 4px solid var(--accent2); }
+    .session-card.in-progress { border-left-color: var(--accent); border-style: dashed; opacity: 0.95; }
+    .session-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .pills { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
+    .time { font-weight: 700; margin-right: 0.35rem; }
+    .model { color: var(--muted); font-size: 0.9rem; }
+    .summary-human { margin: 0.35rem 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.35rem 0; }
+    .metric-grid.counts { opacity: 0.95; }
+    @media (max-width: 700px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+    .metric { background: #151c26; border-radius: 8px; padding: 0.45rem 0.55rem; }
+    .metric-warn { border: 1px solid var(--warn); }
+    .metric dt { font-size: 0.68rem; text-transform: uppercase; color: var(--muted); margin: 0; letter-spacing: 0.03em; }
+    .metric dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.05rem; }
+    .pill { display: inline-block; padding: 0.2em 0.55em; border-radius: 999px; font-size: 0.72rem; font-weight: 700; cursor: help; }
+    .p0 { background: #1e3350; color: var(--accent); }
+    .p1 { background: #264032; color: var(--accent2); }
+    .p2 { background: #4a3818; color: var(--warn); }
+    .p3 { background: #3d2020; color: var(--danger); }
+    .note-box, .capture-box { margin-top: 0.55rem; padding: 0.55rem 0.7rem; border-radius: 8px; font-size: 0.92rem; }
+    .note-box { background: #2a2a18; border: 1px solid var(--warn); }
+    .capture-box { background: #1a2a22; border: 1px solid var(--accent2); }
+    .red-flags { color: var(--danger); font-size: 0.9rem; margin: 0.45rem 0 0; }
+    .next { color: var(--muted); font-size: 0.9rem; margin: 0.45rem 0 0; }
+    .file-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 0.5rem; }
+    @media (max-width: 700px) { .file-grid { grid-template-columns: 1fr; } }
+    .file-group h4 { margin: 0 0 0.25rem; font-size: 0.85rem; color: var(--accent); }
+    .file-group ul { margin: 0; padding-left: 1rem; font-size: 0.8rem; color: var(--muted); }
+    .file-group li { margin: 0.15rem 0; word-break: break-all; }
+    .empty { color: var(--muted); padding: 2rem; text-align: center; }
+    .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
+    .footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Session scorecards</h1>
+    <p class="subtitle">Hover underlined labels for definitions. Grouped by day — data in <code>session-scorecards.jsonl</code>.</p>
+    <details class="legend">
+    <summary>What do these numbers mean? (hover any label on a card too)</summary>
+    <ul><li><strong>Your messages:</strong> How many messages you sent in this chat. Rough proxy for how long the session ran.</li><li><strong>Searches:</strong> How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.</li><li><strong>Docs/rules read:</strong> Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.</li><li><strong>Low confidence counts:</strong> The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.</li><li><strong>Chat was summarized:</strong> Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
+  </details>
+    <div class="summary-bar">
+      <div><dt>Total sessions</dt><dd>2</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">6:26 PM · Saturday, Aug 1, 2026</dd></div>
+    </div>
+    
+    <section class="day-block">
+      <h2 class="day-title">Saturday, Aug 1, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">6:26 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">A long architecture session in Claude Code: harvested Pearson question IDs for seven homeworks and turned the flow into a reusable script plus recipe docs, then spent most of the session on the instruction layer itself — fixing a root .gitignore that silently made tree-wide Grep return nothing, collapsing six copies of the dwell timing down to one, teaching check-docs.js to flag bare timing values, and adding a doc-vs-code phase to the audit. Also built a working Electron drag-handle reference overlay to test whether the docs were sufficient to build from, and wrote a peer-review summary of the whole setup as HTML, an artifact link, and a PDF.</p>
+    <div class="metric-grid">
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>46</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>0</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>4</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.">Docs/rules read</abbr></dt><dd>none</dd></div>
+    </div>
+    <div class="metric-grid counts">
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Doc files read</abbr></dt><dd>0</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code files read</abbr></dt><dd>0</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files changed.">Doc files edited</abbr></dt><dd>0</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files changed.">Code files edited</abbr></dt><dd>0</dd></div>
+    </div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> No bumps were logged during this session, so all counts are reconstructed at the end and are rough — treat them as order-of-magnitude only. Notably: 4 corrections, all caught by Chase pushing back rather than by any check. I twice asserted tool behavior (Grep/Glob honoring .gitignore; check-file-size.js not being wired up) without testing it, and both were wrong. Also found docs/ and scripts/ at the Programs root were entirely outside git, so the audit doc, the check-docs robot, and the session scorecard system itself existed on one machine only.
+    </div><div class="capture-box">
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Never assert what a tool ignores, skips, or loads without testing it in this repo first — extension-based assumptions about .gitignore, .ignore, and .mdc loading were wrong three times in one session. Verify, then claim.
+    </div>
+    <p class="next"><strong>Next time:</strong> Split electron-toolbar's ghost-drag into overlay-drag-constants.js + overlay-ghost-drag.js and migrate one window-manager as a trial. Then decide the sync story for the 788 vendored files in Macro App (ExcelWorkspace.tsx is 2,140 vs 1,865 lines across two trees).</p>
+    
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">5:05 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        <span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
+      </div>
+      <div class="model">Composer (session default)</div>
+    </header>
+    <p class="summary-human">We spent most of this session learning the capture ladder — what each rung means, when to use it, and how docs vs rules work. We also built the instruction-layer audit doc, the session scorecard pipeline, and ran the first end-of-session wrap as a test.</p>
+    <div class="metric-grid">
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>35</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>12</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>0</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.">Docs/rules read</abbr></dt><dd>SESSION_SCORECARD.md, capture-costs HTML, html-infographic rule, AGENTS end-of-session</dd></div>
+    </div>
+    <div class="metric-grid counts">
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Doc files read</abbr></dt><dd>4</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code files read</abbr></dt><dd>2</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files changed.">Doc files edited</abbr></dt><dd>6</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files changed.">Code files edited</abbr></dt><dd>1</dd></div>
+    </div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> This was a long Q&amp;A chat that got summarized partway through, so search/read counts for the first hour are probably lower than reality.
+    </div><div class="capture-box">
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When you rename docs/ to agent-docs, update paths in the append script and docs server. Optional: add scripts/ and docs/ to the Programs meta git allowlist so scorecards sync across machines.
+    </div>
+    <p class="next"><strong>Next time:</strong> Rename docs to agent-docs; keep logging scorecards to build your normal baseline.</p>
+    <details class="file-details">
+          <summary>File breakdown (hover labels for definitions)</summary>
+          <div class="file-grid">
+            <div class="file-group">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Docs read</abbr> (4)</h4>
+    <ul><li><code>docs/SESSION_SCORECARD.md</code></li><li><code>docs/context-engineering-capture-costs.html</code></li><li><code>AGENTS.md</code></li><li><code>.cursor/rules/html-infographic-delivery.mdc</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr> (2)</h4>
+    <ul><li><code>scripts/check-docs.js</code></li><li><code>scripts/append-session-scorecard.js</code></li></ul>
+  </div>
+            
+            <div class="file-group">
+    <h4><abbr class="tip" title="Document/instruction files changed.">Docs edited</abbr> (6)</h4>
+    <ul><li><code>docs/SESSION_SCORECARD.md</code></li><li><code>docs/context-engineering-capture-costs.html</code></li><li><code>docs/INSTRUCTION_LAYER_AUDIT.md</code></li><li><code>AGENTS.md</code></li><li><code>docs/session-scorecards-log.html</code></li><li><code>.cursor/rules/html-infographic-delivery.mdc</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Source code files changed.">Code edited</abbr> (1)</h4>
+    <ul><li><code>scripts/append-session-scorecard.js</code></li></ul>
+  </div>
+            
+          </div>
+        </details>
+  </article></div>
+    </section>
+    <p class="footer">Generated by <code>scripts/append-session-scorecard.js</code> ·
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">Capture ladder</a></p>
+  </div>
+</body>
+</html>

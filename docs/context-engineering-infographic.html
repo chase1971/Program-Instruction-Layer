@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — Context Engineering Map</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e8eef4;
+      --muted: #9db0c4;
+      --accent: #5eb8ff;
+      --accent2: #7ee787;
+      --warn: #f0b429;
+      --danger: #ff7b72;
+      --purple: #d2a8ff;
+      --border: #3d5166;
+      --always: #1f3d2e;
+      --glob: #1a2f4a;
+      --doc: #2d2a1f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 18px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.35rem;
+      letter-spacing: -0.02em;
+    }
+    .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; }
+    h2 {
+      font-size: 1.35rem;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--accent);
+    }
+    h3 { font-size: 1.1rem; margin: 1.25rem 0 0.5rem; color: var(--accent2); }
+    p { margin: 0.6rem 0; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      margin: 1rem 0;
+    }
+    .card.highlight { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(94,184,255,0.15); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+    .layer-stack { display: flex; flex-direction: column; gap: 0.5rem; margin: 1rem 0; }
+    .layer {
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      border-left: 5px solid;
+      font-size: 0.95rem;
+    }
+    .layer strong { display: block; font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .l1 { background: #2a1f3d; border-color: var(--purple); }
+    .l2 { background: #1f2a3d; border-color: var(--accent); }
+    .l3 { background: var(--always); border-color: var(--accent2); }
+    .l4 { background: var(--glob); border-color: var(--accent); }
+    .l5 { background: var(--doc); border-color: var(--warn); }
+    .l6 { background: #2a2220; border-color: var(--danger); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.75rem 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    code, .mono {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.88em;
+      background: var(--surface2);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.15em 0.55em;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+    .tag-always { background: #264032; color: var(--accent2); }
+    .tag-glob { background: #1e3350; color: var(--accent); }
+    .tag-app { background: #3d2a50; color: var(--purple); }
+    .tag-frozen { background: #3d3030; color: var(--muted); }
+    .ladder { counter-reset: rung; list-style: none; padding: 0; margin: 0; }
+    .ladder li {
+      counter-increment: rung;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .ladder li::before {
+      content: counter(rung);
+      position: absolute;
+      left: 0.85rem;
+      top: 0.75rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ladder li:first-child { border-color: var(--accent2); }
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .flow span {
+      background: var(--surface2);
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .flow .arrow { background: none; border: none; color: var(--muted); padding: 0 0.2rem; }
+    .meter {
+      height: 12px;
+      background: var(--surface2);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+    .meter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--warn));
+      border-radius: 6px;
+    }
+    .phrase {
+      background: var(--surface2);
+      border-left: 4px solid var(--accent2);
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .footer { margin-top: 3rem; color: var(--muted); font-size: 0.9rem; }
+    ul.compact { margin: 0.4rem 0; padding-left: 1.25rem; }
+    ul.compact li { margin: 0.25rem 0; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0.6rem 1.1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .nav a:hover { border-color: var(--accent); background: var(--surface2); }
+    .nav a.active {
+      border-color: var(--accent2);
+      background: #1a3d28;
+      color: var(--accent2);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Context engineering pages">
+      <a href="http://127.0.0.1:8765/context-engineering-infographic.html" class="active">Page 1 — Context map</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-ladder.html">Page 2 — Capture ladder scenarios</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">Page 3 — Cost &amp; capacity</a>
+    </nav>
+
+    <h1>Context Engineering Map</h1>
+    <p class="subtitle">Programs workspace — how AI agents get instructions, learn, and stay maintainable<br>
+    Generated 2026-08-01 · <strong>Open (pick one):</strong><br>
+    • Toolbar Launcher Panel → tile <strong>🗺️ Context Map</strong> (one click, opens in browser)<br>
+    • Chat link (when docs server running): <a href="http://127.0.0.1:8765/context-engineering-infographic.html">http://127.0.0.1:8765/context-engineering-infographic.html</a><br>
+    • Start server once: <code>node scripts/serve-programs-docs.js</code> — then chat http links work<br>
+    • Cursor file paths with <code>C:\...</code> break (%5C bug) — do not use</p>
+
+    <!-- WHAT IS MDC -->
+    <h2>What is <code>.mdc</code>?</h2>
+    <div class="card highlight">
+      <p><strong>MDC = Markdown Cursor rule file.</strong> A small contract with YAML frontmatter at the top (<code>description</code>, <code>globs</code>, <code>alwaysApply</code>) plus markdown rules below.</p>
+      <table>
+        <tr><th>Mode</th><th>When it loads</th><th>Token impact</th></tr>
+        <tr>
+          <td><span class="tag tag-always">alwaysApply: true</span></td>
+          <td>Every chat in this workspace</td>
+          <td>Always on — keep <strong>short</strong> (~200 lines total budget across all always-on rules)</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-glob">alwaysApply: false + globs</span></td>
+          <td>When you edit matching files (e.g. <code>*.tsx</code>, <code>modules/pearson/**</code>)</td>
+          <td>Only when relevant — preferred for most patterns</td>
+        </tr>
+      </table>
+      <p><strong>Claude Code does not auto-load <code>.mdc</code>.</strong> App <code>CLAUDE.md</code> indexes which rules exist. Root <code>CLAUDE.md</code> is a 6-line pointer → <code>AGENTS.md</code> (single source of truth).</p>
+    </div>
+
+    <!-- LAYER STACK -->
+    <h2>Instruction layers (strongest → read-on-demand)</h2>
+    <div class="layer-stack">
+      <div class="layer l1"><strong>1 · Code / lint / tests</strong> Cannot misuse — ESLint, file-size check, typed APIs. Hardest for AI to ignore.</div>
+      <div class="layer l2"><strong>2 · Capture skill</strong> <code>.claude/skills/capture/SKILL.md</code> — runs when you say trigger phrases; picks the rung and writes the rule.</div>
+      <div class="layer l3"><strong>3 · Always-on <code>.mdc</code></strong> 9 rules at Programs root (~292 lines). Entrypoint, git sync, no GUI without permission, PowerShell, frozen apps…</div>
+      <div class="layer l4"><strong>4 · Glob-scoped <code>.mdc</code></strong> 30+ app rules — modals, dwell, Pearson, D2L, Studio canvas… fire when matching files are open.</div>
+      <div class="layer l5"><strong>5 · On-demand docs</strong> <code>cursor-patterns/</code>, <code>docs/*_INTEGRATION.md</code>, task indexes — read when task matches, not every turn.</div>
+      <div class="layer l6"><strong>6 · Chat memory</strong> Does not persist. Never rely on “we talked about it last week.”</div>
+    </div>
+
+    <!-- CAPTURE LADDER -->
+    <h2>Capture ladder — where new knowledge goes</h2>
+    <p>When you teach something durable, agents push it <strong>as high as it will go</strong> and <strong>delete weaker copies</strong>.</p>
+    <ol class="ladder">
+      <li><strong>Structurally impossible</strong> — one owner, API that can’t be misused</li>
+      <li><strong>Lint or test</strong> — violation fails CI</li>
+      <li><strong>Glob <code>.mdc</code> contract</strong> — default for most UI/code patterns</li>
+      <li><strong>Always-on rule</strong> — only if short and universal; budget ~200 lines total</li>
+      <li><strong>On-demand doc</strong> — deep dives, task recipes (Pearson browser, blank iframe…)</li>
+    </ol>
+
+    <!-- CHASE PHRASES -->
+    <h2>Your phrases — automatic vs failsafe</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Usually automatic (no keyword needed)</h3>
+        <ul class="compact">
+          <li>Glob rules when editing matching files</li>
+          <li><strong>Grep before adding</strong> (AGENTS.md rule #7)</li>
+          <li>End-of-session protocol → git, SESSIONS.md</li>
+          <li>Pearson: update doc after new browser flow (rule)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Failsafe — say when it must stick</h3>
+        <div class="phrase"><strong>“Capture that: …”</strong> — durable rule; runs capture skill</div>
+        <div class="phrase"><strong>“Remember: …”</strong> — same</div>
+        <div class="phrase"><strong>“That was the third time” / “again”</strong> — graduate rule up one rung</div>
+        <div class="phrase"><strong>“Capture that in the Pearson doc”</strong> — workflow recipe, not global rule</div>
+        <div class="phrase"><strong>Verbose is fine:</strong> “As you work, document new Pearson navigation in the proper doc”</div>
+      </div>
+    </div>
+
+    <!-- CHASE VOCABULARY -->
+    <h2>Chase vocabulary (your dialect)</h2>
+    <div class="card">
+      <p>Generic English ≠ your implementation. Example: <strong>“drag handle”</strong> → must map to <code>cursor-patterns/dwell-and-head-mouse.md</code> + exemplar (<code>useDwellAttachDrag</code>, toolbar overlay), not generic HTML drag.</p>
+      <p><strong>First time an agent guesses wrong:</strong> capture once — map phrase → doc → exemplar file. After that, grep + rule/doc handle it.</p>
+      <p>AI does <em>not</em> auto-register keywords globally unless something is <strong>written to the repo</strong>.</p>
+    </div>
+
+    <!-- PEARSON LEARNING MODEL -->
+    <h2>Task-shaped docs (Pearson example)</h2>
+    <div class="flow">
+      <span>You: “Pull up 3.4 homework”</span>
+      <span class="arrow">→</span>
+      <span>Read Task Index only</span>
+      <span class="arrow">→</span>
+      <span>Read one recipe (~40 lines)</span>
+      <span class="arrow">→</span>
+      <span>Execute via CDP / MCP macro-app</span>
+    </div>
+    <p>Doc: <code>School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md</code> · Rule: <code>pearson-browser-automation.mdc</code> · CDP: port <strong>9224</strong> · MCP server: <strong>macro-app</strong></p>
+    <p>New flow not in index? Explore once → add recipe before session ends. Whole doc budget ~500 lines; then split by topic.</p>
+
+    <!-- ALWAYS ON RULES -->
+    <h2>Programs root — always-on rules (every session)</h2>
+    <table>
+      <tr><th>File</th><th>~Lines</th><th>Purpose</th></tr>
+      <tr><td><code>00-programs-entrypoint.mdc</code></td><td>42</td><td>What to read first; 8 hard rules; deep-dive index</td></tr>
+      <tr><td><code>05-never-display-without-permission.mdc</code></td><td>45</td><td>No GUI launches without your OK (head-mouse safety)</td></tr>
+      <tr><td><code>10-file-size-before-edit.mdc</code></td><td>15</td><td>800-line cap; glob on code files</td></tr>
+      <tr><td><code>20-modal-pattern.mdc</code></td><td>18</td><td>max-w-md, no backdrop dismiss</td></tr>
+      <tr><td><code>25-dwell-accessibility.mdc</code></td><td>59</td><td>Head-mouse, dwell, drag — grep before 5th mechanism</td></tr>
+      <tr><td><code>30-powershell-shell-commands.mdc</code></td><td>25</td><td>No <code>&&</code> in PowerShell</td></tr>
+      <tr><td><code>40-multi-repo-git-push.mdc</code></td><td>39</td><td>Pull at start, commit/push at end</td></tr>
+      <tr><td><code>45-frozen-apps.mdc</code></td><td>19</td><td>Calendar 2.0 off-limits unless you unfreeze</td></tr>
+      <tr><td><code>50-electron-toolbar-launcher-panel.mdc</code></td><td>30</td><td>Toolbar launcher panel patterns</td></tr>
+    </table>
+    <p>Total ~292 lines loaded every session. Target budget ~200 — trimmed 2026-08-01 (entrypoint + git rule); re-count with line counts on disk.</p>
+    <div class="meter" title="Always-on budget (~200 target)"><div class="meter-fill" style="width: 75%;"></div></div>
+
+    <!-- GLOB RULES BY APP -->
+    <h2>Glob-scoped rules by app (when files match)</h2>
+    <table>
+      <tr><th>App / area</th><th>Rules</th></tr>
+      <tr>
+        <td><strong>Macro App</strong></td>
+        <td>embedded-browser-modals, snapshot-modal-order, macro-modals, assignment-assistant-freeze, d2l-grades-automation, d2l-course-builder-automation, macro-ci, pearson-session-contract, <strong>pearson-browser-automation</strong>, …</td>
+      </tr>
+      <tr>
+        <td><strong>Math App Studio</strong></td>
+        <td>studio-dwell-mechanics, studio-canvas-move-resize, animation-*, canvas-info-block, tutorial-flash-vocabulary, …</td>
+      </tr>
+      <tr>
+        <td><strong>electron-toolbar</strong></td>
+        <td>launcher-panel-target</td>
+      </tr>
+      <tr>
+        <td><strong>Monitor Configuration App</strong></td>
+        <td>display-identity, display-safety, win32-quirks, tkinter-dpi</td>
+      </tr>
+      <tr>
+        <td><strong>Video Player</strong></td>
+        <td>vlc-embed-contract</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-frozen">frozen</span> Calendar 2.0</td>
+        <td>3 rules — skip unless you explicitly unfreeze</td>
+      </tr>
+      <tr>
+        <td>Other</td>
+        <td>canvas-kit, spire-overlay, sts2-dwell-targeting</td>
+      </tr>
+    </table>
+    <p><strong>39 <code>.mdc</code> files</strong> total in Programs tree (excluding frozen app from routine work).</p>
+
+    <!-- SELF POLICING -->
+    <h2>Self-policing — the system watches itself</h2>
+    <div class="card highlight">
+      <p>Run: <code>node scripts/check-docs.js</code> (add <code>--strict</code> to fail on any issue)<br>
+      <strong>End-of-session protocol step 5</strong> — agents run this automatically when you wrap a session.</p>
+      <table>
+        <tr><th>Check</th><th>What it catches</th></tr>
+        <tr><td>Dead links</td><td>Docs pointing at moved/deleted files</td></tr>
+        <tr><td>Orphans</td><td>Docs nothing links to (invisible knowledge)</td></tr>
+        <tr><td>Duplicates</td><td>Two copies of the same truth — they drift apart</td></tr>
+        <tr><td>Unindexed rules</td><td><code>.mdc</code> not listed in any CLAUDE.md / AGENTS.md — invisible to Claude Code</td></tr>
+      </table>
+      <p>Latest run snapshot: <strong>15 dead links · 3 duplicate sets · 6 unindexed rules · 89 orphans</strong> — advisory unless <code>--strict</code>.</p>
+    </div>
+
+    <!-- AVOID OVERLOAD -->
+    <h2>Avoiding rule overload</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Do</h3>
+        <ul class="compact">
+          <li>Prefer <strong>glob rules</strong> over always-on</li>
+          <li>Prefer <strong>task indexes</strong> over encyclopedias</li>
+          <li><strong>Graduate up</strong> the ladder; delete lower copy</li>
+          <li>Point rules at <strong>one exemplar file</strong> to copy</li>
+          <li>Capture Chase-isms <strong>once</strong>, then reuse</li>
+          <li>Run <code>check-docs.js</code> when adding/moving docs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Don’t</h3>
+        <ul class="compact">
+          <li>Add always-on rules for app-specific stuff</li>
+          <li>Map every button on Pearson (task recipes only)</li>
+          <li>Duplicate AGENTS.md prose in app rules</li>
+          <li>Assume chat memory persists</li>
+          <li>Create a new hook without grepping first</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- YOUR WORKFLOW -->
+    <h2>Consistent workflow for you</h2>
+    <div class="flow">
+      <span>Start session</span>
+      <span class="arrow">→</span>
+      <span>Agent pulls git (rule 40)</span>
+      <span class="arrow">→</span>
+      <span>You ask in plain English</span>
+      <span class="arrow">→</span>
+      <span>Agent reads index / greps / glob rules</span>
+      <span class="arrow">→</span>
+      <span>Work</span>
+      <span class="arrow">→</span>
+      <span>“Capture that” if new</span>
+      <span class="arrow">→</span>
+      <span>End-of-session protocol</span>
+    </div>
+
+    <h2>Key files quick reference</h2>
+    <table>
+      <tr><th>File</th><th>Role</th></tr>
+      <tr><td><code>AGENTS.md</code></td><td>Master instructions (Codex + Cursor baseline)</td></tr>
+      <tr><td><code>.cursor/rules/html-infographic-delivery.mdc</code></td><td>Infographics → http://127.0.0.1:8765/ (never C:\ chat links)</td></tr>
+      <tr><td><code>CLAUDE.md</code> (root)</td><td>Pointer → AGENTS.md for Claude Code</td></tr>
+      <tr><td><code>APP_LOCATIONS.md</code></td><td>Where every app lives</td></tr>
+      <tr><td><code>cursor-patterns/CODING_STANDARDS.md</code></td><td>Canonical coding rules</td></tr>
+      <tr><td><code>.cursor/rules/*.mdc</code></td><td>Cursor rule contracts</td></tr>
+      <tr><td><code>.claude/skills/capture/SKILL.md</code></td><td>Capture skill workflow</td></tr>
+      <tr><td><code>scripts/check-docs.js</code></td><td>Instruction layer health check</td></tr>
+      <tr><td><code>.cursor/mcp.json</code></td><td>MCP: agent-browser (9227), macro-app (9224)</td></tr>
+    </table>
+
+    <p class="footer">This infographic summarizes the Programs instruction layer. It is not loaded by agents automatically — it is for you. When rules change, re-run check-docs and refresh this file if needed.<br>
+    <a href="http://127.0.0.1:8765/context-engineering-capture-ladder.html">Page 2 — Capture ladder scenarios</a> ·
+    <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">Page 3 — Cost &amp; capacity</a></p>
+  </div>
+</body>
+</html>

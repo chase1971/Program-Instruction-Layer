@@ -17,6 +17,17 @@
 !/.cursor/
 !/.gitignore
 !/.ignore
+
+# Instruction-layer tooling and docs at the Programs root. Without these the
+# audit doc, the check-docs robot, and the session scorecard log live on one
+# machine only — they never reach the laptop and are not backed up.
+!/docs/
+!/scripts/
+
+# …but not the scorecard's transient running tally (rewritten constantly).
+/docs/.session-scorecard-running.json
+/docs/.scorecard-bump.json
+/docs/.scorecard-final.json
 node_modules
 
 # Local Netlify folder

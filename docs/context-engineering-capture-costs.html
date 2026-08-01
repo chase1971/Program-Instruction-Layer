@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capture Ladder — Cost &amp; How to Say It</title>
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface2: #243044;
+      --text: #e8eef4; --muted: #9db0c4; --accent: #5eb8ff; --accent2: #7ee787;
+      --warn: #f0b429; --danger: #ff7b72; --purple: #d2a8ff; --border: #3d5166;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 18px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+    .nav { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 1.5rem; }
+    .nav a {
+      display: inline-flex; align-items: center; min-height: 48px; padding: 0.6rem 1rem;
+      border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      border: 2px solid var(--border); background: var(--surface); color: var(--text);
+    }
+    .nav a:hover { border-color: var(--accent); background: var(--surface2); }
+    .nav a.active { border-color: var(--accent2); background: #1a3d28; color: var(--accent2); }
+    h1 { font-size: 2rem; margin: 0 0 0.35rem; }
+    .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.25rem; }
+    h2 { font-size: 1.35rem; margin: 0; color: var(--text); }
+    .rung-wrap {
+      border-radius: 12px; margin: 1.75rem 0; overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .rung-top {
+      padding: 1rem 1.15rem; background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .rung-top p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.95rem; }
+    .r1 { border-left: 5px solid var(--purple); }
+    .r2 { border-left: 5px solid var(--accent); }
+    .r3 { border-left: 5px solid var(--accent2); }
+    .r4 { border-left: 5px solid var(--accent); }
+    .r5 { border-left: 5px solid var(--warn); }
+    .rung-body { padding: 1rem 1.15rem 1.15rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 0.75rem 0; }
+    th, td { text-align: left; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+    .col-you th:nth-child(1) { color: var(--accent2); width: 30%; }
+    .col-you th:nth-child(2) { color: var(--warn); width: 32%; }
+    .col-you th:nth-child(3) { color: var(--accent); width: 38%; }
+    .cost-box {
+      background: #151c26; border-radius: 10px; padding: 0.9rem 1rem;
+      margin-top: 0.75rem; font-size: 0.92rem; border: 1px solid var(--border);
+    }
+    .cost-box h3 { margin: 0 0 0.5rem; font-size: 0.95rem; color: var(--accent); }
+    .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.25rem; }
+    @media (max-width: 700px) { .cost-grid { grid-template-columns: 1fr; } }
+    .cost-grid dt { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.35rem; }
+    .cost-grid dd { margin: 0.15rem 0 0; }
+    .pill { display: inline-block; padding: 0.15em 0.55em; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
+    .p0 { background: #1e3350; color: var(--accent); }
+    .p1 { background: #264032; color: var(--accent2); }
+    .p2 { background: #4a3818; color: var(--warn); }
+    .p3 { background: #3d2020; color: var(--danger); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.15rem; margin: 1rem 0; }
+    .card.note { border-color: var(--accent2); }
+    .footer { margin-top: 2rem; color: var(--muted); font-size: 0.88rem; }
+    .footer a { color: var(--accent); }
+    ul.compact { margin: 0.35rem 0; padding-left: 1.25rem; }
+    ul.compact li { margin: 0.2rem 0; }
+    .guide-box {
+      background: #151c26; border-radius: 10px; padding: 0.9rem 1rem;
+      margin: 0.75rem 0; font-size: 0.92rem; border: 1px solid var(--border);
+    }
+    .guide-box h3 { margin: 0 0 0.5rem; font-size: 0.95rem; }
+    .guide-good h3 { color: var(--accent2); }
+    .guide-bad h3 { color: var(--warn); }
+    .guide-bad .rephrase { color: var(--accent2); margin-top: 0.35rem; display: block; }
+    .guide-bad td:first-child { color: var(--danger); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Context engineering pages">
+      <a href="http://127.0.0.1:8765/context-engineering-infographic.html">Page 1 — Context map</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-ladder.html">Page 2 — Scenarios</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html" class="active">Page 3 — Cost &amp; how to say it</a>
+    </nav>
+
+    <h1>Capture Ladder — Quick Reference</h1>
+    <p class="subtitle">Each rung: what you say · what it means · what happens · cost &amp; limits. Token numbers are <strong>rough guesses</strong> (~15–25 tokens per line of rule text).</p>
+
+    <div class="card note">
+      <strong>Two kinds of cost — don’t mix them up.</strong>
+      <table class="col-you" style="margin:0.5rem 0 0">
+        <tr><th>Kind</th><th>What it means</th><th>Who feels it</th></tr>
+        <tr>
+          <td><strong>Token cost</strong></td>
+          <td>Rule/doc text loaded into every chat (rung 4 worst; rung 5 only when opened)</td>
+          <td>Every future session — context gets crowded, agent skims</td>
+        </tr>
+        <tr>
+          <td><strong>Work cost</strong></td>
+          <td>Wrong rung → agent builds the wrong thing, or you maintain code/hooks that don’t solve the problem</td>
+          <td><strong>This session</strong> — and every time someone touches that code later</td>
+        </tr>
+      </table>
+      <p style="margin:0.65rem 0 0"><strong>“Zero token cost” on rung 1–2 only means the second row isn’t a per-chat tax.</strong> It does <em>not</em> mean “put anything here for free.” Wrong rung still burns your session and adds complexity.</p>
+      <ul class="compact" style="margin-top:0.5rem">
+        <li><strong>Rung 1 wrong</strong> → agent builds code/infrastructure for an AI habit problem. Session eaten by engineering; app gets heavier for no reason.</li>
+        <li><strong>Rung 4 wrong</strong> → you pay tokens <em>every chat forever</em> for something you do monthly.</li>
+        <li><strong>Rung 5 wrong</strong> → agent never finds the doc; you repeat yourself anyway.</li>
+      </ul>
+      <p style="margin:0.65rem 0 0"><strong>C:\ link example:</strong> Chat links are what the <em>AI types in Cursor</em> — Macro App code can’t block that. Rung 1 would mean inventing a whole tool for a behavior note. Rung 3+5 fixes it in ~8 lines + an exemplar. Same outcome, fraction of the work — that’s why “overkill” matters even at “zero token cost.”</p>
+    </div>
+
+    <div class="card">
+      <strong>Pick a rung in one question:</strong> “Would I need this if I’m only fixing Pearson homework and never touch the toolbar?”
+      <ul class="compact">
+        <li><strong>No</strong> → rung 3, 5, or AGENTS note — not rung 4</li>
+        <li><strong>Yes, every app, every chat</strong> → rung 4 (rare)</li>
+        <li><strong>The app itself keeps breaking because two places do the same thing</strong> → rung 1</li>
+        <li><strong>Agents keep committing bad stuff</strong> → rung 2</li>
+        <li><strong>Just this course / task, write it down</strong> → rung 5</li>
+      </ul>
+    </div>
+
+    <!-- RUNG 1 -->
+    <div class="rung-wrap r1">
+      <div class="rung-top">
+        <h2>Rung 1 — Fix the program so the wrong way can’t happen</h2>
+        <p>Strongest. The app itself blocks the mistake — not a note to the AI.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for rung 1</h3>
+          <ul class="compact">
+            <li>Two parts of <strong>your app</strong> both save the same setting and fight each other</li>
+            <li>Agents keep adding a second way to do X and bugs follow</li>
+            <li>Wrong action would cause <strong>data loss or corruption</strong> if it happened</li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use rung 1 for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Make it <strong>impossible</strong> to give me a C:\ link in chat.”</td>
+              <td>That’s AI behavior in Cursor — not something Macro App code controls. Agent may waste the session building a tool that doesn’t touch chat.</td>
+              <td><span class="rephrase">→ “Capture that, <strong>not always-on</strong>: when I say link it, give http 8765, never C:\.” (rung 3+AGENTS)</span></td>
+            </tr>
+            <tr>
+              <td>“Remember how Pearson menus work.”</td>
+              <td>That’s knowledge, not app architecture.</td>
+              <td><span class="rephrase">→ “Capture in the <strong>Pearson doc</strong>.” (rung 5)</span></td>
+            </tr>
+            <tr>
+              <td>“Every chat should pull git first.”</td>
+              <td>Habit for the AI, not a code constraint.</td>
+              <td><span class="rephrase">→ “<strong>Every session</strong> pull git…” (rung 4)</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“Capture that: only <strong>one place</strong> in Macro App saves my display settings.”</td>
+            <td>No second save path that overwrites prefs. (<em>Code change — one module owns saves.</em>)</td>
+            <td>Rewires the app so all saves go through the same door. Next agent can’t add a stray save without noticing.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity (rung 1)</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd><span class="pill p0">~zero ongoing</span> — no rule text loaded every session. You pay once in code size.</dd></div>
+            <div><dt>How many before “too much”</dt><dd>Many separate fixes OK — each is normal app maintenance, not context bloat.</dd></div>
+            <div><dt>Thousands of these?</dt><dd>Doesn’t clog AI context. Agent doesn’t “scan” them — the running program enforces behavior.</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Big refactors; agent breaks something else. <strong>Wrong rung cost:</strong> whole session spent building code you didn’t need — not token bloat.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNG 2 -->
+    <div class="rung-wrap r2">
+      <div class="rung-top">
+        <h2>Rung 2 — Automatic gatekeeper when pushing to GitHub</h2>
+        <p>Robot check on commit/push — rejects bad changes before they stick.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for rung 2</h3>
+          <ul class="compact">
+            <li>Same mistake keeps getting <strong>committed to GitHub</strong> (huge files, broken doc links)</li>
+            <li>You want a robot “stop sign” at push time — not another reminder in chat</li>
+            <li>The violation is checkable in files (“over 800 lines”, “dead link in docs”)</li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use rung 2 for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Block C:\ links <strong>in chat</strong> on commit.”</td>
+              <td>Chat isn’t committed unless you save it. Hook won’t catch live conversation.</td>
+              <td><span class="rephrase">→ AGENTS note: “link it = http 8765” (rung 3/AGENTS)</span></td>
+            </tr>
+            <tr>
+              <td>“Never launch Macro App without asking.”</td>
+              <td>Can’t auto-detect “agent launched GUI” in a file diff.</td>
+              <td><span class="rephrase">→ “Every session never open windows…” (rung 4)</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“Capture that: <strong>block the commit</strong> if a file is over 800 lines.”</td>
+            <td>Pre-commit / CI check, not a chat reminder. (<em>check-file-size.js</em>)</td>
+            <td>Adds automatic checker; push stops and explains why until fixed.</td>
+          </tr>
+          <tr>
+            <td>“When we wrap session, <strong>fail</strong> if instruction docs have broken links.”</td>
+            <td>Strict check-docs on end-of-session. (<em>check-docs.js --strict</em>)</td>
+            <td>Push blocked until dead links fixed or you override.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity (rung 2)</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd><span class="pill p0">~zero per chat</span> — runs at commit time, not in every conversation.</dd></div>
+            <div><dt>How many before “too much”</dt><dd>Many checks OK if they’re fast. Too many slow hooks = annoying waits on every push.</dd></div>
+            <div><dt>Thousands of checks?</dt><dd>Still no chat scan. CI gets slow — that’s the limit, not AI confusion.</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Agent never commits → check never runs. <strong>Wrong rung cost:</strong> you thought you were protected but nothing actually gates the behavior.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNG 3 -->
+    <div class="rung-wrap r3">
+      <div class="rung-top">
+        <h2>Rung 3 — Reminder when working in that app (Macro App, Pearson, HTML…)</h2>
+        <p>Not every chat — only when files for that app are in play, or you ask.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for rung 3</h3>
+          <ul class="compact">
+            <li>Rule is for <strong>one app or area</strong> (Macro App Pearson, HTML pages, modals)</li>
+            <li>You do it sometimes — not every task across all apps</li>
+            <li>You said <strong>“not always-on”</strong> or mean to</li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use rung 3 for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Every chat: pull git first.”</td>
+              <td>Applies to D2L, toolbar, Pearson — everything.</td>
+              <td><span class="rephrase">→ “Every session pull git…” (rung 4)</span></td>
+            </tr>
+            <tr>
+              <td>“Write a 200-line Pearson encyclopedia.”</td>
+              <td>Big reference belongs in a doc, not a rule file.</td>
+              <td><span class="rephrase">→ “Capture in <strong>Pearson doc</strong>, task index only in rule.” (rung 5 + thin rung 3)</span></td>
+            </tr>
+            <tr>
+              <td>“Only one module may save settings.”</td>
+              <td>That’s app code, not an AI reminder.</td>
+              <td><span class="rephrase">→ “Only one place in Macro App saves…” (rung 1)</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“Capture that, <strong>not always-on</strong>: in Macro App Pearson, read the browser doc first.”</td>
+            <td>App rule file for Pearson folders. (<em>pearson-browser-automation.mdc</em>)</td>
+            <td>Writes ~40-line rule. Pearson work → agent sees it. D2L/toolbar work → zero cost.</td>
+          </tr>
+          <tr>
+            <td>“HTML link rule — <strong>don’t</strong> put it in always-on.”</td>
+            <td>Remember delivery (8765 http) without taxing every chat. (<em>html-infographic-delivery.mdc</em>)</td>
+            <td>Glob rule + short AGENTS note. New chat + “link it” → agent knows pattern.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity (rung 3)</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd><span class="pill p1">~750–1,250 per rule</span> when it loads — only when matching files or agent reads it.</dd></div>
+            <div><dt>How many before “too much”</dt><dd><strong>Many files on disk OK.</strong> Problem = <strong>overlap</strong>: 5+ rules all firing on the same file at once (~4k–6k tokens dumped together).</dd></div>
+            <div><dt>Thousands on disk?</dt><dd><strong>AI does NOT scan all of them.</strong> Cursor injects only rules whose file pattern matches what you’re editing. 1,000 Pearson-only rules don’t load during toolbar work.</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Contradictory rules on same glob; agent skims long stack. Chat-only task (no file open) → rule might not auto-load. <strong>Wrong rung cost:</strong> token overlap if you duplicated rung 4 content here.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNG 4 -->
+    <div class="rung-wrap r4">
+      <div class="rung-top">
+        <h2>Rung 4 — Every new chat must know this</h2>
+        <p>Always-on rules. Small sacred list — git sync, no surprise windows, PowerShell, etc.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for rung 4</h3>
+          <ul class="compact">
+            <li>Applies to <strong>every task</strong> — git sync, don’t hijack my screens, PowerShell quirks</li>
+            <li>High pain if missed once (conflict, focus stolen, broken terminal commands)</li>
+            <li>Short — a few sentences, not a manual</li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use rung 4 for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Make a rule for HTML links.”</td>
+              <td>You use HTML occasionally; burns always-on slot every chat forever.</td>
+              <td><span class="rephrase">→ “HTML rule, <strong>not always-on</strong>” (rung 3) + “link it like exam2-review-map” (rung 5)</span></td>
+            </tr>
+            <tr>
+              <td>“Remember all Pearson click paths.”</td>
+              <td>Pearson-only — huge if always-on.</td>
+              <td><span class="rephrase">→ Pearson doc + rung 3 when in Macro App</span></td>
+            </tr>
+            <tr>
+              <td>“Document how exam2-review-map layout works.”</td>
+              <td>That’s a page to copy, not universal law.</td>
+              <td><span class="rephrase">→ Keep exam2-review-map as exemplar (rung 5)</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“<strong>Every session</strong>: pull git before we start, push when we’re done.”</td>
+            <td>Universal two-machine sync. (<em>40-multi-repo-git-push.mdc</em>)</td>
+            <td>Always-on ~23 lines — every agent gets git habit.</td>
+          </tr>
+          <tr>
+            <td>“Remember: <strong>never open a window</strong> on my screen without asking.”</td>
+            <td>Head-mouse safety. (<em>05-never-display-without-permission.mdc</em>)</td>
+            <td>Always-on ~45 lines — no surprise GUI tests.</td>
+          </tr>
+          <tr>
+            <td>“Make a rule for HTML links” <em>(no “not always-on”)</em></td>
+            <td>You wanted middle ground — agent may wrongly put it here.</td>
+            <td><strong>Say “not always-on”</strong> → rung 3 instead. HTML was demoted from here 2026-08-01.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity (rung 4)</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd><span class="pill p3">~600–1,000 per rule, every chat</span>. Yours now: <strong>~127 lines ≈ 2k–3.2k tokens</strong> before you type anything.</dd></div>
+            <div><dt>How many before “too much”</dt><dd>Budget <strong>~200 lines total</strong> (~5–8 rules). At ~300 lines agents start <strong>skimming</strong> — rules present but not followed reliably.</dd></div>
+            <div><dt>Thousands always-on?</dt><dd><strong>Never.</strong> All load every chat — context fills before your task. Model quotes rules, misses nuance, feels “heavy.”</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Duplicate guidance in AGENTS + always-on + docs (pay 3×, they disagree). Simple questions get slow. You lose headroom for actual work.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUNG 5 -->
+    <div class="rung-wrap r5">
+      <div class="rung-top">
+        <h2>Rung 5 — Write it down or copy a page</h2>
+        <p>Pearson recipes, HTML pages like exam2-review-map. Cheap storage — read when needed.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for rung 5</h3>
+          <ul class="compact">
+            <li>Procedure for <strong>one program/task</strong> (Pearson harvest, homework comparison HTML)</li>
+            <li>You’ll say “like exam2-review-map” or “what’s in the Pearson doc”</li>
+            <li>Course may end — easy to delete or ignore later</li>
+            <li><strong>Default when unsure</strong> — cheaper than rung 4</li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use rung 5 for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Write in a doc: never use && in PowerShell.”</td>
+              <td>Agents forget to open doc; needs every-session injection.</td>
+              <td><span class="rephrase">→ “Every session PowerShell rule.” (rung 4 — already done)</span></td>
+            </tr>
+            <tr>
+              <td>“Doc only: don’t launch GUI without asking.”</td>
+              <td>Safety-critical — doc alone isn’t reliable enough.</td>
+              <td><span class="rephrase">→ Always-on no-GUI rule (rung 4 — already done)</span></td>
+            </tr>
+            <tr>
+              <td>“Put in a doc: only one code path for saves.”</td>
+              <td>Doc doesn’t stop code — need actual fix.</td>
+              <td><span class="rephrase">→ Rung 1 code change</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“Capture that in the <strong>Pearson doc</strong> — how to harvest question IDs.”</td>
+            <td>Recipe in Macro App docs. (<em>PEARSON_BROWSER_AUTOMATION.md</em>)</td>
+            <td>Task Index row + steps. Next time agent reads ~40 lines, runs script.</td>
+          </tr>
+          <tr>
+            <td>“<strong>Link it like exam2-review-map.</strong>”</td>
+            <td>This task: copy that page’s layout + http delivery.</td>
+            <td>Opens exemplar (~300 lines ≈ 2k–4k tokens <strong>once</strong>), builds new page, gives 8765 link.</td>
+          </tr>
+          <tr>
+            <td>“Document Pearson as you go — don’t leave it in chat only.”</td>
+            <td>Session habit + doc update (no “capture” keyword needed).</td>
+            <td>Updates doc before session ends. Same as capture for that flow.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity (rung 5)</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd><span class="pill p1">~0 until read</span> then ~400–4k per doc/page opened. Not loaded every session.</dd></div>
+            <div><dt>How many before “too much”</dt><dd><strong>Unlimited files on disk.</strong> Limit is <strong>orphans</strong> — docs nothing points to = agent never finds them (0% reliability).</dd></div>
+            <div><dt>Thousands of docs?</dt><dd><strong>No full scan.</strong> Agent greps or follows Task Index / “like exam2-review-map.” Risk: wrong doc picked if names overlap; not “read all 1000.”</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Agent doesn’t know doc exists; reinvents from scratch. Stale doc after Pearson edited. Huge encyclopedia nobody indexes.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENTS PARALLEL -->
+    <div class="rung-wrap" style="border-left:5px solid var(--muted)">
+      <div class="rung-top">
+        <h2>Parallel — AGENTS.md short note (not a rung number)</h2>
+        <p>~8 lines in the master AGENTS file — loads every chat like a mini always-on, but cheaper than a whole rule file.</p>
+      </div>
+      <div class="rung-body">
+        <div class="guide-box guide-good">
+          <h3>Good for AGENTS note</h3>
+          <ul class="compact">
+            <li>One sentence the agent needs in <strong>chat-only</strong> tasks (no file open → rung 3 glob might not load)</li>
+            <li>Pointer to an exemplar or doc (“link it like exam2-review-map”)</li>
+            <li>You said <strong>“AGENTS note only, not always-on”</strong></li>
+          </ul>
+        </div>
+        <div class="guide-box guide-bad">
+          <h3>Don’t use AGENTS for</h3>
+          <table class="col-you" style="margin:0.5rem 0 0">
+            <tr><th>Don’t say</th><th>Why not</th><th>Say this instead</th></tr>
+            <tr>
+              <td>“Put the whole Pearson procedure in AGENTS.”</td>
+              <td>AGENTS loads every chat — you’d pay 4k+ tokens for course-specific steps forever.</td>
+              <td><span class="rephrase">→ Pearson doc (rung 5) + one-line pointer in AGENTS</span></td>
+            </tr>
+            <tr>
+              <td>“Add another always-on rule but put it in AGENTS instead.”</td>
+              <td>AGENTS <em>is</em> always-on — same slot problem as rung 4, often worse (whole file loads).</td>
+              <td><span class="rephrase">→ Rung 3 glob if app-specific; rung 4 only if truly universal and short</span></td>
+            </tr>
+          </table>
+        </div>
+        <table class="col-you">
+          <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+          <tr>
+            <td>“Capture that — <strong>AGENTS note only, not always-on</strong>: when I say link it, use http 8765.”</td>
+            <td>Cross-chat memory without burning a rung-4 slot.</td>
+            <td>Adds ~8 lines to AGENTS.md. Every new chat sees “link it” → http pattern.</td>
+          </tr>
+        </table>
+        <div class="cost-box">
+          <h3>Cost &amp; capacity</h3>
+          <div class="cost-grid">
+            <div><dt>Chat token cost</dt><dd>Whole AGENTS.md ~370 lines ≈ <strong>4k–8k every chat</strong>. Each pointer you add ≈ +120–200 tokens.</dd></div>
+            <div><dt>How many pointers</dt><dd>Many short pointers OK. At ~500+ total lines AGENTS becomes noise — pointers get lost in prose.</dd></div>
+            <div><dt>Watch this</dt><dd>Often bigger cost than all always-on .mdc combined. Trim to index + pointers; move recipes to rung 5 docs.</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card note">
+      <strong>Periodic cleanup (rung 5 — not every chat)</strong>
+      <ul class="compact">
+        <li><strong>Robot</strong> (any time): end-of-session <code>node scripts/check-docs.js</code> — dead links, orphans, identical dupes</li>
+        <li><strong>AI judgment</strong> (every few months): describe it — e.g. <strong>“find the instruction layer audit doc and run it”</strong> (rung 5; lives in <code>Programs/docs/</code>)</li>
+        <li><strong>Session metrics</strong> — running HTML log (Chase only): <code>http://127.0.0.1:8765/session-scorecards-log.html</code> — agents append via script, never read</li>
+        <li>Robot cannot catch contradictory overlay/modal/HTML guidance — that’s the audit doc’s job</li>
+      </ul>
+    </div>
+
+    <!-- MOVE UP DOWN -->
+    <h2 style="margin-top:2rem;font-size:1.25rem;color:var(--accent);border-bottom:2px solid var(--border);padding-bottom:0.4rem">Move up, move down, or just do it now</h2>
+    <table class="col-you">
+      <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
+      <tr><td>“Capture that…” / “Remember…”</td><td>Make it stick in the repo.</td><td>Picks rung (your “not always-on” hint wins).</td></tr>
+      <tr><td>“That was the <strong>third time</strong>” / “again”</td><td>Current level failed.</td><td>Moves up one rung.</td></tr>
+      <tr><td>“<strong>Not always-on</strong>” / “don’t use my limited always-on room”</td><td>Cap at 3 or 5.</td><td>No alwaysApply: true.</td></tr>
+      <tr><td>“<strong>Take it off always-on</strong>”</td><td>Too expensive every chat.</td><td>Demote to glob + AGENTS + exemplar.</td></tr>
+      <tr><td>“<strong>Link it</strong>” (no capture)</td><td>Do it now using what’s already saved.</td><td>Follows AGENTS + exemplar; no new rule.</td></tr>
+      <tr><td>“<strong>Run the instruction layer audit</strong>”</td><td>Periodic doc/rule cleanup — duplicates &amp; contradictions.</td><td>Reads <code>INSTRUCTION_LAYER_AUDIT.md</code>; robot pass first, then report.</td></tr>
+    </table>
+
+    <div class="card">
+      <strong>Fill-in templates</strong>
+      <ul class="compact">
+        <li>Rung 3: “Capture that, <strong>not always-on</strong>: when I’m in [Macro App / Pearson / HTML], …”</li>
+        <li>Rung 4: “Capture that — <strong>every new chat</strong> needs to know: …”</li>
+        <li>Rung 5: “Capture in the <strong>[Pearson] doc</strong>” or “like <strong>exam2-review-map</strong>”</li>
+      </ul>
+    </div>
+
+    <p class="footer">
+      Page 3 of 3 ·
+      <a href="http://127.0.0.1:8765/context-engineering-capture-ladder.html">Page 2</a> ·
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">http://127.0.0.1:8765/context-engineering-capture-costs.html</a>
+    </p>
+  </div>
+</body>
+</html>

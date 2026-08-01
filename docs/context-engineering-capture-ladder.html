@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capture Ladder — Scenarios</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e8eef4;
+      --muted: #9db0c4;
+      --accent: #5eb8ff;
+      --accent2: #7ee787;
+      --warn: #f0b429;
+      --danger: #ff7b72;
+      --purple: #d2a8ff;
+      --border: #3d5166;
+      --r1: #2a1f3d;
+      --r2: #1f2a3d;
+      --r3: #1f3d2e;
+      --r4: #1a2f4a;
+      --r5: #2d2a1f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 18px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0.6rem 1.1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .nav a:hover { border-color: var(--accent); background: var(--surface2); }
+    .nav a.active {
+      border-color: var(--accent2);
+      background: #1a3d28;
+      color: var(--accent2);
+    }
+
+    h1 { font-size: 2rem; margin: 0 0 0.35rem; }
+    .subtitle { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.5rem; }
+    h2 {
+      font-size: 1.35rem;
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--accent);
+    }
+    h3 { font-size: 1.05rem; margin: 0 0 0.4rem; color: var(--accent2); }
+
+    .ladder-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin: 1.25rem 0;
+    }
+    .rung {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      border-left: 5px solid;
+      font-size: 0.95rem;
+    }
+    .rung-num {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+    .r1 { background: var(--r1); border-color: var(--purple); }
+    .r1 .rung-num { background: var(--purple); color: var(--bg); }
+    .r2 { background: var(--r2); border-color: var(--accent); }
+    .r2 .rung-num { background: var(--accent); color: var(--bg); }
+    .r3 { background: var(--r3); border-color: var(--accent2); }
+    .r3 .rung-num { background: var(--accent2); color: var(--bg); }
+    .r4 { background: var(--r4); border-color: var(--accent); }
+    .r4 .rung-num { background: var(--accent); color: var(--bg); }
+    .r5 { background: var(--r5); border-color: var(--warn); }
+    .r5 .rung-num { background: var(--warn); color: var(--bg); }
+
+    .flow-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+      font-size: 0.92rem;
+    }
+    .flow-steps span {
+      background: var(--surface2);
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .flow-steps .arr { background: none; border: none; color: var(--muted); }
+
+    .scenario {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+    .scenario-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.1rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .scenario-head h3 { flex: 1; margin: 0; color: var(--text); font-size: 1.1rem; }
+    .badge-rung {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25em 0.65em;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .br1 { background: #3d2a50; color: var(--purple); }
+    .br2 { background: #1e3350; color: var(--accent); }
+    .br3 { background: #264032; color: var(--accent2); }
+    .br4 { background: #1e3350; color: var(--accent); }
+    .br5 { background: #4a3818; color: var(--warn); }
+    .scenario-body { padding: 1rem 1.15rem; font-size: 0.95rem; }
+    .scenario-body p { margin: 0.45rem 0; }
+    .label { color: var(--muted); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.65rem; }
+    .quote {
+      border-left: 4px solid var(--accent2);
+      padding: 0.5rem 0.85rem;
+      margin: 0.4rem 0;
+      background: #151c26;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .bad {
+      border-left-color: var(--danger);
+      color: #ffc9c5;
+    }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.88em;
+      background: var(--surface2);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .decision {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .decision ol { margin: 0.5rem 0; padding-left: 1.4rem; }
+    .decision li { margin: 0.35rem 0; }
+
+    .footer { margin-top: 2.5rem; color: var(--muted); font-size: 0.9rem; }
+    .footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Context engineering pages">
+      <a href="http://127.0.0.1:8765/context-engineering-infographic.html">Page 1 — Context map</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-ladder.html" class="active">Page 2 — Capture ladder scenarios</a>
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">Page 3 — Cost &amp; capacity</a>
+    </nav>
+
+    <h1>Capture Ladder — Scenarios</h1>
+    <p class="subtitle">
+      When something should stick, agents push knowledge <strong>up</strong> the ladder and
+      <strong>delete weaker copies</strong>. Real examples from your Programs setup.
+    </p>
+
+    <!-- THE LADDER -->
+    <h2>The five rungs (strongest first)</h2>
+    <div class="ladder-bar">
+      <div class="rung r1"><span class="rung-num">1</span><span><strong>Structurally impossible</strong> — one owner, API that can't be misused</span></div>
+      <div class="rung r2"><span class="rung-num">2</span><span><strong>Lint or test</strong> — violation fails CI / pre-commit</span></div>
+      <div class="rung r3"><span class="rung-num">3</span><span><strong>Glob <code>.mdc</code></strong> — fires when matching files are open (default for UI/code patterns)</span></div>
+      <div class="rung r4"><span class="rung-num">4</span><span><strong>Always-on rule</strong> — every session; ~200-line budget total</span></div>
+      <div class="rung r5"><span class="rung-num">5</span><span><strong>On-demand doc / exemplar</strong> — task recipes, HTML templates, deep dives</span></div>
+    </div>
+
+    <!-- CAPTURE FLOW -->
+    <h2>Capture flow (when you say a trigger phrase)</h2>
+    <div class="flow-box">
+      <p><strong>Triggers:</strong> “capture that”, “remember:”, “make sure you always/never…”, “that was the third time” / “again” (forces <em>graduate up one rung</em>)</p>
+      <p>Runs <code>.claude/skills/capture/SKILL.md</code> — you don't pick the file or rung.</p>
+      <div class="flow-steps">
+        <span>You say one sentence</span>
+        <span class="arr">→</span>
+        <span>Agent greps — already exists?</span>
+        <span class="arr">→</span>
+        <span>Pick highest rung that fits</span>
+        <span class="arr">→</span>
+        <span>Write rule/doc/code</span>
+        <span class="arr">→</span>
+        <span>Delete lower duplicate</span>
+        <span class="arr">→</span>
+        <span>Index in CLAUDE.md / AGENTS.md</span>
+      </div>
+    </div>
+
+    <!-- DECISION TREE -->
+    <h2>Quick decision — which rung?</h2>
+    <div class="decision">
+      <ol>
+        <li><strong>One-off task?</strong> (“fix this typo”) → don't capture</li>
+        <li><strong>Only one app / file type?</strong> → Rung <strong>3</strong> glob <code>.mdc</code> (or Rung <strong>5</strong> task doc if it's a procedure)</li>
+        <li><strong>Every session, every app, short?</strong> → Rung <strong>4</strong> always-on (sparingly)</li>
+        <li><strong>Machine can detect violations?</strong> → Rung <strong>2</strong> lint/test</li>
+        <li><strong>About who owns a mechanism?</strong> → Rung <strong>1</strong> code shape</li>
+        <li><strong>Visual layout you'll repeat a few times?</strong> → Rung <strong>5</strong> exemplar HTML — <em>not</em> a new always-on rule yet</li>
+        <li><strong>Said it three times and agents still miss?</strong> → Graduate <strong>up one rung</strong></li>
+      </ol>
+    </div>
+
+    <!-- SCENARIOS BY RUNG -->
+    <h2>Scenario walkthroughs</h2>
+
+    <!-- RUNG 1 -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>Only one module may touch localStorage</h3>
+        <span class="badge-rung br1">Rung 1</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>Three different hooks were writing <code>localStorage</code> keys — prefs got overwritten unpredictably.</p>
+        <p class="label">Capture choice</p>
+        <p>Route all persistence through <code>usePersistedState.ts</code> — other files literally can't import a second path without it being obvious.</p>
+        <p class="label">Why not rung 5?</p>
+        <p>A doc saying “use usePersistedState” still gets ignored. Ownership in code is the fix.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 2 -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>800-line file cap keeps getting violated</h3>
+        <span class="badge-rung br2">Rung 2</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>Agents add to already-huge files because nothing stops them at commit time.</p>
+        <p class="label">Capture choice</p>
+        <p><code>scripts/check-file-size.js</code> + pre-commit hook + glob rule <code>10-file-size-before-edit.mdc</code> pointing at it.</p>
+        <p class="label">Graduate path</p>
+        <p>If agents bypass hook → make CI fail too. Doc-only reminder stays deleted once lint owns it.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 3 pearson -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>Drive Pearson in Macro App — browser automation</h3>
+        <span class="badge-rung br3">Rung 3 + 5</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>First session: agent explored Pearson blindly, burned tokens, no repeatability.</p>
+        <p class="label">Capture choice</p>
+        <p><strong>Rung 5:</strong> <code>PEARSON_BROWSER_AUTOMATION.md</code> — Task Index + recipes (~40 lines each).<br>
+        <strong>Rung 3:</strong> <code>pearson-browser-automation.mdc</code> globs <code>modules/pearson/**</code> — “read Task Index first.”</p>
+        <p class="label">Next session flow</p>
+        <div class="flow-steps">
+          <span>You: “harvest question IDs”</span>
+          <span class="arr">→</span>
+          <span>Glob rule fires</span>
+          <span class="arr">→</span>
+          <span>Read index row only</span>
+          <span class="arr">→</span>
+          <span>Run <code>pearson_question_details.py</code></span>
+        </div>
+        <p class="label">Why not always-on?</p>
+        <p>Pearson isn't every task — glob + doc is enough until agents keep missing without it.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 3 dwell -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>Head-mouse / dwell — every hover needs a click path</h3>
+        <span class="badge-rung br3">Rung 3</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>Agents add hover-only UI; dwell fires at 250ms and clicks the wrong thing.</p>
+        <p class="label">Capture choice</p>
+        <p><code>25-dwell-accessibility.mdc</code> on <code>*.tsx</code> + deep dive <code>dwell-and-head-mouse.md</code> (rung 5 pointer only in AGENTS.md).</p>
+        <p class="label">Graduate example</p>
+        <p class="quote bad">Bad: same 250ms / 12px / pointerleave copied in AGENTS.md AND .mdc AND doc — three copies drift.<br>
+        Good: .mdc owns numbers; AGENTS.md one-line pointer; doc for edge cases.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 4 html -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>Clickable HTML links in chat — never <code>C:\...</code> paths</h3>
+        <span class="badge-rung br3">Rung 3 + 5</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>Chat links to Windows paths break (%5C). Batch files require folder navigation you won't do.</p>
+        <p class="label">Capture choice</p>
+        <p><strong>Rung 3:</strong> <code>html-infographic-delivery.mdc</code> — glob on <code>docs/**/*.html</code>; loads when editing HTML or when you ask.<br>
+        <strong>Rung 5:</strong> Exemplars <code>exam2-review-map.html</code>, <code>context-engineering-infographic.html</code>.<br>
+        <strong>AGENTS.md</strong> — short trigger pointer (~8 lines), not always-on.</p>
+        <p class="label">Why NOT rung 4 (always-on)?</p>
+        <p class="quote">You rarely need HTML delivery — when you do, say “link it like exam2-review-map.” Always-on budget (~200 lines) is for git, safety, PowerShell — things every session needs.</p>
+        <p class="label">Was always-on briefly — demoted 2026-08-01</p>
+        <p>Saved ~45 lines of every-session cost. Same workflow when you ask; exemplar + prompt instead of permanent slot.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 4 powershell -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>PowerShell <code>&&</code> keeps failing in agent commands</h3>
+        <span class="badge-rung br4">Rung 4</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p class="quote">“again” — models default to bash chaining; your shell is PowerShell 5.x.</p>
+        <p class="label">Capture choice</p>
+        <p><code>30-powershell-shell-commands.mdc</code> always-on — separate Shell calls or <code>;</code>, never <code>&&</code>.</p>
+        <p class="label">Repetition → graduate</p>
+        <p>Third time you said it → proven too low as a doc note → promoted to always-on.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 5 comparison -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>Homework vs Exam 2 Review — HTML comparison</h3>
+        <span class="badge-rung br5">Rung 5 (exemplar)</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">What happened</p>
+        <p>You loved the two-column layout: homework sections left, review filtered right, green = match.</p>
+        <p class="label">Capture choice (now)</p>
+        <p><strong>Exemplar:</strong> <code>docs/exam2-review-map.html</code> — the HTML <em>is</em> the spec.<br>
+        Delivery still uses rung 4 HTML rule (http link).</p>
+        <p class="label">What we did NOT do (on purpose)</p>
+        <p class="quote bad">New always-on “comparison HTML rule” — would bloat every session for a Pearson-only pattern you might finish in a month.</p>
+        <p class="label">If you do this 3+ times and agents wander</p>
+        <p>Then graduate: one line in <code>html-infographic-delivery.mdc</code> (“comparison → copy exam2-review-map structure”) or a Pearson task-index row — still not always-on.</p>
+      </div>
+    </div>
+
+    <!-- RUNG 5 inventory -->
+    <div class="scenario">
+      <div class="scenario-head">
+        <h3>“What's in homework 3.4?” — data vs procedure</h3>
+        <span class="badge-rung br5">Rung 5</span>
+      </div>
+      <div class="scenario-body">
+        <p class="label">Two files, two jobs</p>
+        <p><strong>Procedure:</strong> <code>PEARSON_BROWSER_AUTOMATION.md</code> — how to harvest.<br>
+        <strong>Data:</strong> <code>PEARSON_QUESTION_INVENTORY.md</code> — question IDs snapshot.</p>
+        <p class="label">Flow</p>
+        <div class="flow-steps">
+          <span>“What's in 3.4?”</span>
+          <span class="arr">→</span>
+          <span>Read inventory (data)</span>
+          <span class="arr">→</span>
+          <span>Done — no browser</span>
+        </div>
+        <div class="flow-steps" style="margin-top:0.5rem">
+          <span>“List IDs fresh”</span>
+          <span class="arr">→</span>
+          <span>Read recipe (procedure)</span>
+          <span class="arr">→</span>
+          <span>Run script</span>
+          <span class="arr">→</span>
+          <span>Update inventory</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DON'T CAPTURE -->
+    <h2>When NOT to capture</h2>
+    <div class="grid2">
+      <div class="scenario">
+        <div class="scenario-head"><h3>Don't capture</h3></div>
+        <div class="scenario-body">
+          <ul style="margin:0;padding-left:1.2rem">
+            <li>One-off typo or single-session tweak</li>
+            <li>“Use blue for this button” (unless it's a design system rule)</li>
+            <li>Anything already in code/git history</li>
+            <li>Vague preference with no failure mode</li>
+            <li>Task-specific rule you'll delete when course ends</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-head"><h3>Verbose still works (no keyword)</h3></div>
+        <div class="scenario-body">
+          <div class="quote">“As you figure out Pearson, write it in the proper doc before we end.”</div>
+          <p>Same outcome as “capture that in the Pearson doc” — workflow instruction for this session + doc update. Capture skill is the <strong>failsafe</strong> when it must become durable infrastructure.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOAT -->
+    <h2>Rule bloat — what actually costs you</h2>
+    <div class="flow-box">
+      <div class="grid2">
+        <div>
+          <h3 style="color:var(--danger)">Costs every session</h3>
+          <ul style="margin:0;padding-left:1.2rem;font-size:0.95rem">
+            <li><code>alwaysApply: true</code> rules</li>
+            <li><code>AGENTS.md</code> (large baseline)</li>
+            <li>Duplicate prose in 3 places</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:var(--accent2)">Cheap until needed</h3>
+          <ul style="margin:0;padding-left:1.2rem;font-size:0.95rem">
+            <li>1000 glob <code>.mdc</code> files on disk</li>
+            <li>Exemplar HTML files</li>
+            <li>Task docs + inventories</li>
+            <li>Rules with narrow globs</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:0.75rem;color:var(--muted);font-size:0.92rem">Agents don't scan all <code>.mdc</code> files every turn — Cursor injects always-on + matching globs. Bloat = too many always-on + overlapping globs + no exemplar to grep toward.</p>
+    </div>
+
+    <p class="footer">
+      Page 2 of 3 ·
+      <a href="http://127.0.0.1:8765/context-engineering-infographic.html">Page 1</a> ·
+      <a href="http://127.0.0.1:8765/context-engineering-capture-costs.html">Page 3 — Cost &amp; capacity</a>
+    </p>
+  </div>
+</body>
+</html>

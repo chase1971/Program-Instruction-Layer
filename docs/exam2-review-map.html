@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam 2 Review vs Homework</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e8eef4;
+      --muted: #9db0c4;
+      --accent: #5eb8ff;
+      --accent2: #7ee787;
+      --warn: #f0b429;
+      --purple: #d2a8ff;
+      --border: #3d5166;
+      --match-bg: #1a3d28;
+      --match-border: #7ee787;
+      --hw-only-bg: #1a2332;
+      --review-only-bg: #3d2f1a;
+      --review-only-border: #f0b429;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      font-size: 18px;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    h1 { font-size: 1.85rem; margin: 0 0 0.3rem; }
+    .subtitle { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+    .swatch {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 4px;
+      border: 2px solid;
+      flex-shrink: 0;
+    }
+    .swatch-match { background: var(--match-bg); border-color: var(--match-border); }
+    .swatch-hw { background: var(--hw-only-bg); border-color: var(--border); }
+    .swatch-review { background: var(--review-only-bg); border-color: var(--review-only-border); }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .columns { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .panel-head {
+      padding: 0.85rem 1rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .panel-head span { color: var(--muted); font-weight: 400; font-size: 0.9rem; }
+
+    .summary-bar {
+      padding: 0.65rem 1rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: #151c26;
+    }
+    .summary-bar strong { color: var(--text); }
+
+    /* Accordion — big click targets for dwell */
+    .section-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      width: 100%;
+      min-height: 52px;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .section-btn:hover { background: var(--surface2); }
+    .section-btn.active {
+      background: #1e3350;
+      border-left: 4px solid var(--accent);
+      padding-left: calc(1rem - 4px);
+    }
+    .section-btn .chev {
+      color: var(--muted);
+      font-size: 0.85rem;
+      width: 1.2rem;
+      flex-shrink: 0;
+    }
+    .section-btn .label { flex: 1; font-weight: 600; }
+    .section-btn .counts {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .section-btn.no-hw { opacity: 0.85; }
+
+    .section-body {
+      display: none;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      background: #151c26;
+    }
+    .section-body.open { display: block; }
+
+    .q-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      min-height: 44px;
+      padding: 0.55rem 1rem 0.55rem 1.5rem;
+      border-bottom: 1px solid rgba(61, 81, 102, 0.4);
+      font-size: 0.95rem;
+    }
+    .q-row:last-child { border-bottom: none; }
+    .qid {
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+      color: var(--purple);
+      min-width: 5.5rem;
+      flex-shrink: 0;
+    }
+    .q-note { color: var(--muted); font-size: 0.88rem; flex: 1; }
+
+    .q-row.match {
+      background: var(--match-bg);
+      border-left: 4px solid var(--match-border);
+      padding-left: calc(1.5rem - 4px);
+    }
+    .q-row.match .qid { color: var(--accent2); }
+    .q-row.hw-only { background: transparent; }
+    .q-row.review-only {
+      background: var(--review-only-bg);
+      border-left: 4px solid var(--review-only-border);
+      padding-left: calc(1rem - 4px);
+    }
+    .q-row.review-only .qid { color: var(--warn); }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.15em 0.5em;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .badge-match { background: #264032; color: var(--accent2); }
+    .badge-hw { background: #243044; color: var(--muted); }
+    .badge-review { background: #4a3818; color: var(--warn); }
+
+    .empty-msg {
+      padding: 1.5rem 1rem;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .right-placeholder {
+      padding: 2rem 1rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Exam 2 Review vs Homework</h1>
+    <p class="subtitle">Click a homework section on the left — the right shows matching Exam 2 Review questions for that section number.</p>
+
+    <div class="legend">
+      <div class="legend-item"><span class="swatch swatch-match"></span> Same ID on homework &amp; review</div>
+      <div class="legend-item"><span class="swatch swatch-hw"></span> Homework only (not on review)</div>
+      <div class="legend-item"><span class="swatch swatch-review"></span> Review only (not on this homework)</div>
+    </div>
+
+    <div class="columns">
+      <div class="panel" id="left-panel">
+        <div class="panel-head">Homework <span>— click section to expand</span></div>
+        <div id="homework-sections"></div>
+      </div>
+
+      <div class="panel" id="right-panel">
+        <div class="panel-head">Exam 2 Review <span>— filtered by section</span></div>
+        <div id="review-summary" class="summary-bar">Select a section on the left.</div>
+        <div id="review-list"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="http://127.0.0.1:8765/exam2-review-map.html">http://127.0.0.1:8765/exam2-review-map.html</a>
+      · 3.7 uses <strong>Copy</strong> assignment · captured 2026-08-01
+    </div>
+  </div>
+
+  <script>
+    const REVIEW = [
+      { order: 1,  questionId: "3.1.15", objective: "Use limit definitions to find equations of tangent lines." },
+      { order: 2,  questionId: "3.2.36", objective: "Find derivatives of functions using limits." },
+      { order: 3,  questionId: "3.2.37", objective: "Find derivatives of functions using limits." },
+      { order: 4,  questionId: "3.2.39", objective: "Find derivatives of functions using limits." },
+      { order: 5,  questionId: "3.3.63", objective: "Use derivatives to find slope locations and equations of tangent lines." },
+      { order: 6,  questionId: "3.4.20", objective: "Find derivatives of products and quotients of functions involving exponentials." },
+      { order: 7,  questionId: "3.4.22", objective: "Find derivatives of products and quotients of algebraic expressions." },
+      { order: 8,  questionId: "3.4.25", objective: "Find derivatives of products and quotients of functions involving exponentials." },
+      { order: 9,  questionId: "3.5.25", objective: "Find derivatives of products, quotients, and powers of functions with trigonometric expressions." },
+      { order: 10, questionId: "3.5.29", objective: "Find derivatives of products, quotients, and powers of functions with trigonometric expressions." },
+      { order: 11, questionId: "3.5.59", objective: "Find higher order derivatives of functions involving trigonometric expressions." },
+      { order: 12, questionId: "3.6.25", objective: "Solve applications involving position, velocity, and acceleration functions." },
+      { order: 13, questionId: "3.6.29", objective: "Find average and marginal cost and profit functions." },
+      { order: 14, questionId: "3.7.23", objective: "Identify inner functions and outer functions for composite functions, and then apply the chain rule." },
+      { order: 15, questionId: "3.7.28", objective: "Find derivatives of basic functions using the chain rule." },
+      { order: 16, questionId: "3.7.29", objective: "Find derivatives of basic functions using the chain rule." },
+      { order: 17, questionId: "3.8.17", objective: "Use implicit differentiation to find slopes of curves at given points." },
+      { order: 18, questionId: "3.8.47", objective: "Answer questions involving tangent lines using implicit differentiation." },
+      { order: 19, questionId: "3.9.16", objective: "Find derivatives involving logarithms and exponentials." },
+      { order: 20, questionId: "3.9.36", objective: "Find derivatives using logarithmic differentiation." },
+      { order: 21, questionId: "3.9.75", objective: "Find derivatives using logarithmic differentiation." },
+      { order: 22, questionId: "3.10.13", objective: "Find derivatives of functions involving inverse trigonometric functions." },
+      { order: 23, questionId: "3.10.36", objective: "Find derivatives of functions involving inverse trigonometric functions." },
+      { order: 24, questionId: "3.10.52", objective: "Find derivatives of functions and inverse functions at a point." },
+      { order: 25, questionId: "3.11.41", objective: "Solve applications involving related rates." },
+    ];
+
+    const HOMEWORK = [
+      {
+        id: "3.3",
+        label: "3.3 Rules of Differentiation",
+        section: "3.3",
+        ids: ["3.3.19","3.3.21","3.3.22","3.3.23","3.3.27","3.3.28","3.3.29","3.3.31","3.3.33","3.3.35","3.3.47","3.3.51","3.3.49","3.3.53","3.3.68","3.3.71","3.3.72","3.3.44"],
+      },
+      {
+        id: "3.4",
+        label: "3.4 The Product and Quotient Rules",
+        section: "3.4",
+        ids: ["3.4.10","3.4.11","3.4.19","3.4.20","3.4.21","3.4.22","3.4.24","3.4.25","3.4.29","3.4.30","3.4.37","3.4.39","3.4.40","3.4.41","3.4.43","3.4.73"],
+      },
+      {
+        id: "3.5",
+        label: "3.5 Derivatives of Trig Functions",
+        section: "3.5",
+        ids: ["3.5.23","3.5.24","3.5.29","3.5.31","3.5.41","3.5.43","3.5.44","3.5.46","3.7.44","3.7.46","3.7.49","3.7.55","3.5.57","3.5.61"],
+      },
+      {
+        id: "3.6",
+        label: "3.6 Derivatives as Rates of Change",
+        section: "3.6",
+        ids: ["3.6.3","3.6.6","3.6.15","3.6.18","3.6.25","3.6.28-T","3.6.29","3.6.32","3.6.36","3.6.43"],
+      },
+      {
+        id: "3.7",
+        label: "3.7 The Chain Rule (Copy)",
+        section: "3.7",
+        ids: ["3.7.15","3.7.20","3.7.27","3.7.28","3.7.29","3.7.31","3.7.45","3.7.59","3.7.63","3.7.68"],
+      },
+      {
+        id: "3.9",
+        label: "3.9 Log and Exp Functions",
+        section: "3.9",
+        ids: ["3.9.15","3.9.16","3.9.17","3.9.23","3.9.25","3.9.31","3.9.39","3.9.43","3.9.63","3.9.67","3.7.48","3.7.53","3.7.58","3.7.66","3.7.70"],
+      },
+      {
+        id: "3.10",
+        label: "3.10 Inverse Trig Functions",
+        section: "3.10",
+        ids: ["3.10.3","3.10.13","3.10.14","3.10.15","3.10.18","3.10.19","3.10.21","3.10.23","3.10.29","3.10.30","3.10.32","3.10.33","3.10.36","3.10.47","3.10.52","3.10.53","3.10.57"],
+      },
+      // Review-only sections — no homework harvest, but review has questions
+      { id: "3.1", label: "3.1 Introducing the Derivative", section: "3.1", ids: [], noHw: true },
+      { id: "3.2", label: "3.2 Limits → Derivative", section: "3.2", ids: [], noHw: true },
+      { id: "3.8", label: "3.8 Implicit Differentiation", section: "3.8", ids: [], noHw: true },
+      { id: "3.11", label: "3.11 Related Rates", section: "3.11", ids: [], noHw: true },
+    ];
+
+    let selectedId = "3.4";
+
+    function reviewForSection(section) {
+      return REVIEW.filter(r => r.questionId.startsWith(section + "."));
+    }
+
+    function computeComparison(hw) {
+      const reviewRows = reviewForSection(hw.section);
+      const hwSet = new Set(hw.ids);
+      const reviewSet = new Set(reviewRows.map(r => r.questionId));
+      const matched = hw.ids.filter(id => reviewSet.has(id));
+      const hwOnly = hw.ids.filter(id => !reviewSet.has(id));
+      const reviewOnly = reviewRows.filter(r => !hwSet.has(r.questionId));
+      return { reviewRows, matched, hwOnly, reviewOnly, hwSet, reviewSet };
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+
+    function renderLeft() {
+      const root = document.getElementById("homework-sections");
+      root.innerHTML = "";
+      for (const hw of HOMEWORK) {
+        const cmp = computeComparison(hw);
+        const isActive = hw.id === selectedId;
+        const wrap = document.createElement("div");
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "section-btn" + (isActive ? " active" : "") + (hw.noHw ? " no-hw" : "");
+        btn.innerHTML =
+          '<span class="chev">' + (isActive ? "▼" : "▶") + '</span>' +
+          '<span class="label">' + esc(hw.label) + '</span>' +
+          '<span class="counts">' +
+            (hw.noHw ? "review only" : hw.ids.length + " hw · " + cmp.matched.length + " match") +
+          '</span>';
+        btn.addEventListener("click", () => {
+          selectedId = hw.id;
+          renderAll();
+        });
+
+        const body = document.createElement("div");
+        body.className = "section-body" + (isActive ? " open" : "");
+
+        if (hw.noHw) {
+          body.innerHTML = '<div class="empty-msg">No homework captured for this section.</div>';
+        } else if (!isActive) {
+          body.innerHTML = "";
+        } else {
+          for (const id of hw.ids) {
+            const isMatch = cmp.reviewSet.has(id);
+            const row = document.createElement("div");
+            row.className = "q-row " + (isMatch ? "match" : "hw-only");
+            row.innerHTML =
+              '<span class="qid">' + esc(id) + '</span>' +
+              '<span class="q-note">' + (isMatch ? "Also on Exam 2 Review" : "Homework only") + '</span>' +
+              '<span class="badge ' + (isMatch ? "badge-match" : "badge-hw") + '">' +
+                (isMatch ? "match" : "hw only") + '</span>';
+            body.appendChild(row);
+          }
+        }
+
+        wrap.appendChild(btn);
+        wrap.appendChild(body);
+        root.appendChild(wrap);
+      }
+    }
+
+    function renderRight() {
+      const hw = HOMEWORK.find(h => h.id === selectedId);
+      if (!hw) return;
+
+      const cmp = computeComparison(hw);
+      const summary = document.getElementById("review-summary");
+      summary.innerHTML =
+        '<strong>Section ' + esc(hw.section) + '</strong> — ' +
+        '<span style="color:var(--accent2)">' + cmp.matched.length + ' matched</span> · ' +
+        cmp.hwOnly.length + ' homework only · ' +
+        '<span style="color:var(--warn)">' + cmp.reviewOnly.length + ' review only</span>';
+
+      const list = document.getElementById("review-list");
+      list.innerHTML = "";
+
+      if (cmp.reviewRows.length === 0) {
+        list.innerHTML = '<div class="empty-msg">No Exam 2 Review questions for section ' + esc(hw.section) + '.</div>';
+        return;
+      }
+
+      // Matched first, then review-only — same visual order helps scanning
+      const ordered = [
+        ...cmp.reviewRows.filter(r => cmp.hwSet.has(r.questionId)),
+        ...cmp.reviewOnly,
+      ];
+
+      for (const r of ordered) {
+        const isMatch = cmp.hwSet.has(r.questionId);
+        const row = document.createElement("div");
+        row.className = "q-row " + (isMatch ? "match" : "review-only");
+        row.innerHTML =
+          '<span class="qid">' + esc(r.questionId) + '</span>' +
+          '<span class="q-note">' + esc(r.objective) + '</span>' +
+          '<span class="badge ' + (isMatch ? "badge-match" : "badge-review") + '">' +
+            (isMatch ? "match" : "review only") + '</span>';
+        list.appendChild(row);
+      }
+    }
+
+    function renderAll() {
+      renderLeft();
+      renderRight();
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>

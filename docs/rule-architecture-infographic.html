@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Guidance Architecture — How It Works</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --panel-alt: #243044;
+      --text: #e8edf4;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-dim: #0ea5e9;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --purple: #a78bfa;
+      --border: #334155;
+      --radius: 14px;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 18px;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    header h1 {
+      font-size: clamp(1.75rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    header .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    header .date {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2 .num {
+      background: var(--accent-dim);
+      color: #0f1419;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.25rem 0 0.6rem;
+      color: var(--text);
+    }
+
+    p, li { color: var(--muted); }
+    p { margin-bottom: 0.75rem; }
+    strong { color: var(--text); font-weight: 600; }
+
+    /* Big stat cards */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat .before { color: var(--red); font-size: 2rem; font-weight: 800; }
+    .stat .after { color: var(--green); font-size: 2rem; font-weight: 800; }
+    .stat .arrow { color: var(--muted); font-size: 1.25rem; margin: 0.25rem 0; }
+    .stat .label { font-size: 0.9rem; color: var(--muted); margin-top: 0.35rem; }
+
+    /* Ladder */
+    .ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .rung {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      border-left: 5px solid var(--level-color, var(--accent));
+    }
+
+    .rung .level {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--level-color, var(--accent));
+      text-align: center;
+    }
+
+    .rung .title { font-weight: 600; color: var(--text); font-size: 1rem; }
+    .rung .desc { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; }
+    .rung .fires { font-size: 0.85rem; color: var(--green); white-space: nowrap; }
+
+    .rung[data-level="1"] { --level-color: #34d399; }
+    .rung[data-level="2"] { --level-color: #38bdf8; }
+    .rung[data-level="3"] { --level-color: #a78bfa; }
+    .rung[data-level="4"] { --level-color: #fbbf24; }
+    .rung[data-level="5"] { --level-color: #64748b; }
+
+    .ladder-note {
+      background: var(--panel-alt);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border: 1px dashed var(--amber);
+      font-size: 0.95rem;
+    }
+
+    .ladder-note strong { color: var(--amber); }
+
+    /* Tool matrix */
+    .matrix {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--panel-alt);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    td { background: var(--panel); }
+    .yes { color: var(--green); font-weight: 700; }
+    .no { color: var(--red); font-weight: 700; }
+    .partial { color: var(--amber); font-weight: 700; }
+
+    /* Flow diagram */
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 1.25rem 0;
+    }
+
+    .flow-box {
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+    }
+
+    .flow-box.highlight {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #1a2332 0%, #1e3a5f 100%);
+    }
+
+    .flow-box .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag-always { background: #422006; color: var(--amber); }
+    .tag-glob { background: #1e3a5f; color: var(--accent); }
+    .tag-claude { background: #312e81; color: var(--purple); }
+    .tag-lint { background: #064e3b; color: var(--green); }
+
+    .flow-arrow {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.5rem;
+      padding: 0.35rem 0;
+      line-height: 1;
+    }
+
+    /* App cards */
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .app-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+
+    .app-card h4 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .app-card ul {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .app-card li {
+      padding: 0.3rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .app-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Mental model */
+    .analogy {
+      background: linear-gradient(135deg, #1a2332 0%, #2d1f4e 100%);
+      border: 1px solid var(--purple);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .analogy p { color: var(--text); font-size: 1.05rem; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer code {
+      background: var(--panel);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    @media (min-width: 700px) {
+      .flow-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .flow-row .flow-arrow { transform: rotate(-90deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <h1>AI Guidance Architecture</h1>
+      <p class="subtitle">
+        How Chase's coding rules got consolidated — and why the AI actually follows them now.
+      </p>
+      <p class="date">July 2026 consolidation</p>
+    </header>
+
+    <!-- 1. THE PROBLEM -->
+    <section>
+      <h2><span class="num">1</span> What was wrong</h2>
+      <p>
+        Every AI session in Macro App was loading <strong>hundreds of lines of instructions</strong>
+        before you even opened a file. Much of it duplicated, stale, or about topics you weren't touching.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <div class="before">~940</div>
+          <div class="arrow">↓</div>
+          <div class="after">~450</div>
+          <div class="label">Always-on context in Macro App sessions</div>
+        </div>
+        <div class="stat">
+          <div class="before">218</div>
+          <div class="arrow">↓</div>
+          <div class="after">5</div>
+          <div class="label">Duplicate CLAUDE.md lines (now imports AGENTS.md)</div>
+        </div>
+        <div class="stat">
+          <div class="before">263</div>
+          <div class="arrow">↓</div>
+          <div class="after">0</div>
+          <div class="label">Macro App always-on .mdc rules</div>
+        </div>
+      </div>
+      <div class="analogy">
+        <p>
+          <strong>Think of it like this:</strong> The AI had a 940-page employee handbook memorized
+          on day one — including the chapter on monitor drivers while you were fixing Pearson cookies.
+          Most mistakes weren't ignorance; they were <em>signal buried in noise</em>.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. TWO TOOLS -->
+    <section>
+      <h2><span class="num">2</span> Two tools, two loaders</h2>
+      <p>You use <strong>Cursor</strong> mainly and <strong>Claude Code</strong> sometimes. They don't read the same files.</p>
+      <div class="matrix">
+        <table>
+          <thead>
+            <tr>
+              <th>File type</th>
+              <th>Cursor</th>
+              <th>Claude Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>AGENTS.md</code> (Programs root)</td>
+              <td class="yes">Yes</td>
+              <td class="no">No — unless imported</td>
+            </tr>
+            <tr>
+              <td><code>CLAUDE.md</code> (Programs root)</td>
+              <td class="yes">Yes</td>
+              <td class="yes">Yes</td>
+            </tr>
+            <tr>
+              <td><code>.cursor/rules/*.mdc</code></td>
+              <td class="yes">Yes (glob-scoped)</td>
+              <td class="no">Never</td>
+            </tr>
+            <tr>
+              <td>App <code>CLAUDE.md</code></td>
+              <td class="partial">Sometimes</td>
+              <td class="yes">Yes</td>
+            </tr>
+            <tr>
+              <td>ESLint / pre-commit hooks</td>
+              <td class="yes">Always (on save/commit)</td>
+              <td class="yes">Always (on save/commit)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Fix at root:</strong> <code>CLAUDE.md</code> is now just <code>@AGENTS.md</code> — one copy of the rules, both tools see it.
+        Each app's <code>CLAUDE.md</code> stays as a <strong>short index</strong> naming its rules (Claude Code can't see .mdc files).
+      </p>
+    </section>
+
+    <!-- 3. CAPTURE LADDER -->
+    <section>
+      <h2><span class="num">3</span> The capture ladder</h2>
+      <p>
+        When something breaks and we fix it, the lesson gets pushed <strong>as high as it can go</strong>.
+        Higher = more reliable. Prose at the bottom; code enforcement at the top.
+      </p>
+      <div class="ladder">
+        <div class="rung" data-level="1">
+          <div class="level">1</div>
+          <div>
+            <div class="title">Make it structurally impossible</div>
+            <div class="desc">Code shape, single owner, API that can't be misused</div>
+          </div>
+          <div class="fires">100% fires</div>
+        </div>
+        <div class="rung" data-level="2">
+          <div class="level">2</div>
+          <div>
+            <div class="title">Lint rule or test</div>
+            <div class="desc">ESLint <code>max-lines</code>, <code>no-restricted-syntax</code>, pre-commit <code>check-file-size.js</code></div>
+          </div>
+          <div class="fires">100% fires</div>
+        </div>
+        <div class="rung" data-level="3">
+          <div class="level">3</div>
+          <div>
+            <div class="title">Glob-scoped <code>.mdc</code> contract</div>
+            <div class="desc">Anti-improvisation rules — only load when you open matching files</div>
+          </div>
+          <div class="fires">When file open</div>
+        </div>
+        <div class="rung" data-level="4">
+          <div class="level">4</div>
+          <div>
+            <div class="title">Always-on rule</div>
+            <div class="desc">Safety rails that must apply every session (~200 line budget total)</div>
+          </div>
+          <div class="fires">Every turn</div>
+        </div>
+        <div class="rung" data-level="5">
+          <div class="level">5</div>
+          <div>
+            <div class="title">On-demand doc</div>
+            <div class="desc"><code>docs/*_INTEGRATION.md</code>, <code>cursor-patterns/</code> — read when relevant</div>
+          </div>
+          <div class="fires">If remembered</div>
+        </div>
+      </div>
+      <div class="ladder-note">
+        <strong>Golden rule:</strong> When a lesson moves up the ladder, delete the lower copy.
+        That's how <code>persisted-state.mdc</code> and 600+ lines of file-size docs survived as ghosts — prose never got removed after lint shipped.
+      </div>
+    </section>
+
+    <!-- 4. HOW A SESSION WORKS -->
+    <section>
+      <h2><span class="num">4</span> What loads when you work</h2>
+      <div class="flow">
+        <div class="flow-box highlight">
+          <span class="tag tag-always">Always on</span>
+          <strong>~204 lines</strong> — entrypoint, never-launch-GUI, PowerShell, multi-repo git
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <span class="tag tag-claude">Root docs</span>
+          <strong>AGENTS.md</strong> (238 lines) + <strong>CLAUDE.md</strong> (5 lines, imports AGENTS)
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <span class="tag tag-glob">When you open a file</span>
+          Glob rules attach — e.g. open <code>embedded-session.js</code> → Pearson cookie contract loads
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <span class="tag tag-lint">On save / commit</span>
+          ESLint squiggles, file-size gate, secret scanner — no AI attention needed
+        </div>
+      </div>
+      <p>
+        Working in Macro App on Pearson? You get always-on safety + AGENTS.md + Pearson session contract + embedded-browser rules — not the entire D2L grades automation manual.
+      </p>
+    </section>
+
+    <!-- 5. WHAT CHANGED -->
+    <section>
+      <h2><span class="num">5</span> What we changed</h2>
+      <div class="apps">
+        <div class="app-card">
+          <h4>Programs root</h4>
+          <ul>
+            <li>CLAUDE.md → <code>@AGENTS.md</code> import</li>
+            <li>Capture ladder added to AGENTS.md</li>
+            <li>Rule 50 scoped to electron-toolbar only</li>
+            <li>Rule 40 includes exam_history.jsonl in commits</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h4>Macro App</h4>
+          <ul>
+            <li>3 always-on rules → glob-scoped (grades, course builder, CI)</li>
+            <li>Deleted broken persisted-state.mdc</li>
+            <li>New: snapshot-modal, AA-freeze, pearson-session contracts</li>
+            <li>CLAUDE.md → index table (Studio style)</li>
+            <li>electron-app max-lines + cookie startup warnings</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h4>Monitor Configuration App</h4>
+          <ul>
+            <li>339-line CLAUDE.md → 50-line index</li>
+            <li>4 new contracts (identity, safety, Win32, DPI)</li>
+            <li>scripts/check-file-size.py added</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h4>Video Player</h4>
+          <ul>
+            <li>vlc-embed-contract.mdc (PID matching, VlcStage owner)</li>
+            <li>CLAUDE.md trimmed to index</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h4>cursor-patterns</h4>
+          <ul>
+            <li>5 stale docs archived (not deleted)</li>
+            <li>modal-scrolling merged into modal-pattern</li>
+            <li>CODING_STANDARDS.md kept as reference index</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h4>Exemplar: Math App Studio</h4>
+          <ul>
+            <li>9 glob-scoped rules, zero always-on</li>
+            <li>CLAUDE.md is a table of rules + when they apply</li>
+            <li>Template for every other app</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MENTAL MODEL -->
+    <section>
+      <h2><span class="num">6</span> One sentence to remember</h2>
+      <div class="analogy">
+        <p style="font-size: 1.2rem; text-align: center;">
+          <strong>Enforce in code first.</strong><br />
+          Contract in globs second.<br />
+          Always-on only for safety.<br />
+          Docs are the backup — not the primary brain.
+        </p>
+      </div>
+      <h3>Starting a new app?</h3>
+      <p>
+        Say "initialize a new app" → scaffold gets AGENTS.md pattern, app CLAUDE.md index, and glob rules as you define vocabulary (scroll bars, dwell, modals).
+        Copy Math App Studio's shape, not its content.
+      </p>
+      <h3>Fixed a nasty bug?</h3>
+      <p>
+        Walk the capture ladder. Pearson cookies went to Level 1 (code invariant) + Level 3 (pearson-session-contract.mdc) + startup warning log.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Open this file anytime:
+        <code>Programs/docs/rule-architecture-infographic.html</code>
+      </p>
+      <p style="margin-top: 0.5rem;">Plan: <code>.cursor/plans/rule_architecture_consolidation_9d4f59bf.plan.md</code></p>
+    </footer>
+
+  </div>
+</body>
+</html>
