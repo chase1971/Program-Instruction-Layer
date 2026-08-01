@@ -582,9 +582,16 @@ Full pattern: `cursor-patterns/modal-pattern.md` § No overlay / backdrop dismis
 
 ## Related Patterns
 
-- [Hover-to-Lock Drag](./hover-to-lock-drag.md) - Drag with hover-based activation
-- [Dwell Activation](./dwell-activation.md) - Button activation by hover duration
-- [Toggle Pattern](./toggle-pattern.md) - Proper state management for toggles
+**Source of truth for dwell timing and the cross-layer coupling:**
+- [Dwell & Head-Mouse](./dwell-and-head-mouse.md)
+
+**Interaction patterns** — these live in the toolbar repo, not here
+(`electron-toolbar/electron-app/patterns/`, indexed by its `README.md`):
+- [Hover-to-Lock Drag](../electron-toolbar/electron-app/patterns/hover-to-lock-drag.md) — drag with hover-based activation
+- [Dwell Activation](../electron-toolbar/electron-app/patterns/dwell-activation.md) — button activation by hover duration
+- [Dwell Click](../electron-toolbar/electron-app/patterns/dwell-click.md) · [Dwell Drag](../electron-toolbar/electron-app/patterns/dwell-drag.md) · [Dwell Countdown](../electron-toolbar/electron-app/patterns/dwell-countdown.md)
+- [Toggle Pattern](../electron-toolbar/electron-app/patterns/toggle-pattern.md) — state management for toggles
+- [Mouse Hover Detection](../electron-toolbar/electron-app/patterns/mouse-hover-detection.md) — polling vs event detection
 
 ---
 
