@@ -207,9 +207,10 @@
     <strong>The general lesson.</strong> Guidance is only as good as the assistant's ability to act on it. A rule that says "look before you build" is worthless if looking returns nothing — so the retrieval path deserves the same scrutiny as the rules themselves, and should be tested rather than trusted.
   </div>
 
-  <h2>Five things worth remembering</h2>
+  <h2>Six things worth remembering</h2>
   <div class="steps">
     <div class="step"><b>One source of truth per concept.</b> Four versions of the same setting is a defect. One version with documented exceptions is a system.</div>
+    <div class="step"><b>Test that the assistant can find things.</b> Every other rule assumes retrieval works. Verify it directly — a silent failure here undoes all of them at once.</div>
     <div class="step"><b>Reference real code, not descriptions of it.</b> Examples stay accurate as things move. Prose quietly stops being true and gives no indication that it has.</div>
     <div class="step"><b>Always record the reason.</b> The reason is what survives into the next session — it's what distinguishes a constraint from a preference.</div>
     <div class="step"><b>Put the rule where the work happens.</b> Scoped to the files it governs: silent when irrelevant, unmissable when it isn't.</div>
