@@ -1,8 +1,29 @@
 # Accessibility Patterns
 
-> **Purpose:** Patterns for making applications accessible to users with diverse interaction methods
+> **Purpose:** React-side patterns for dwell-mouse interaction, keyboard navigation, and screen readers.
 >
-> **Focus:** Dwell-mouse (hover-based) interaction, keyboard navigation, and screen readers
+> ## ⚠️ Timing values in this file are illustrative, not shipped
+>
+> The 500 ms figures below match **no running implementation**. For real timing —
+> and for the fact that the toolbar fires an OS-level click at **250 ms** on top of
+> whatever your component does — read:
+>
+> ### → **`cursor-patterns/dwell-and-head-mouse.md`** (source of truth)
+>
+> ## The `useDrawerHover` hook below does not exist
+>
+> It is reference code, never implemented. **Do not import it.** Before building a
+> hover/dwell interaction, use an existing mechanism:
+>
+> | You need… | Use | Exemplar |
+> |---|---|---|
+> | Latch-to-drag (move/resize) | `useDwellRectEdit`, `useDwellAttachDrag` | Math App Studio |
+> | Shared latch geometry / hit-test | `utils/dwellStationary.ts` | Math App Studio |
+> | Delayed tooltip | `useGradebookDelayedHover` | Macro App gradebook |
+> | Overlay region hover (vanilla JS) | `createOverlayHoverPoll` | electron-toolbar |
+>
+> **The exemplar rule to model new app rules on:**
+> `School Scrips/Math App Studio/.cursor/rules/studio-dwell-mechanics.mdc`
 
 ---
 
