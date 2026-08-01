@@ -4,9 +4,9 @@
 >
 > ## ⚠️ Timing values in this file are illustrative, not shipped
 >
-> The 500 ms figures below match **no running implementation**. For real timing —
-> and for the fact that the toolbar fires an OS-level click at **250 ms** on top of
-> whatever your component does — read:
+> The timing figures below match **no running implementation**. For real timing —
+> and for the fact that the toolbar fires an OS-level click on top of whatever
+> your component does — read:
 >
 > ### → **`cursor-patterns/dwell-and-head-mouse.md`** (source of truth)
 >
