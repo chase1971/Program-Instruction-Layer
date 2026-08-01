@@ -171,6 +171,26 @@ but the file-size, App.tsx, and modal rules always apply.
 
 ---
 
+## Session scorecard — bump as you go (cheap, every chat)
+
+After each **completed deliverable** (“here’s the fix”, “done”, “linked”, a refactor **phase**
+finished — not after every grep/shell call), append to the running tally:
+
+1. Read **`docs/SESSION_SCORECARD.md`** § bump (procedure only — **never** read
+   `session-scorecards-log.html`).
+2. Run `node scripts/append-session-scorecard.js --bump-file <delta.json>` with **this chunk’s**
+   greps, files read/edited, docs/rules opened.
+
+Counts live on disk in `docs/.session-scorecard-running.json` — **safe if the chat summarizes
+mid-session.** Chase can say **“log the task”** if you finished a chunk but didn’t bump.
+
+**Refactors:** bump after each **logical chunk** (e.g. one module extracted, one hook split) —
+not every tool use. Many bumps OK; each is ~50–150 tokens.
+
+At **wrap/end-of-session**, **finalize** (below) — do not re-guess totals from memory if bumps exist.
+
+---
+
 ## End-of-Session Protocol
 
 When the user says "end of session protocol", "wrap the session", "end the
@@ -178,8 +198,8 @@ session", "we're done for now", or similar, do these in order:
 
 1. **Check git status** (if a git repo). Briefly list what's untracked or modified.
 2. **Session scorecard (report only)** — read `docs/SESSION_SCORECARD.md` (not the HTML log).
-   Build JSON from this chat; append with
-   `node scripts/append-session-scorecard.js --file <temp.json>`.
+   **Finalize** the running tally: `node scripts/append-session-scorecard.js --finalize-file <meta.json>`
+   (uses counts logged after each task via `--bump-file`). If no bumps happened, finalize still works from best-effort recall.
    **Never read** `docs/session-scorecards-log.html`. Give Chase
    `http://127.0.0.1:8765/session-scorecards-log.html`. No fixes after scorecard unless Chase asks.
    Pairing: step 6 below is the **robot** pass; this step is the **AI** pass.
