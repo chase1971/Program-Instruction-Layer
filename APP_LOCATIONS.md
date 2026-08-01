@@ -33,7 +33,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Seating Chart** | `School Scrips\Seating-Chart` | chase1971/Seating-Chart | Electron; reads Macro rosters |
 | **Electron toolbar**, toolbar | `electron-toolbar` | chase1971/electron-toolbar | Python + Electron overlay; dwell-mouse host. **"Put in electron toolbar" = Launcher Panel grid (📚), not App Dashboard, not main strip buttons** — see `.cursor/rules/50-electron-toolbar-launcher-panel.mdc` |
 | **Video Player**, video player | `Video Player` | *(local git)* | **`C:\Users\chase\Documents\Programs\Video Player\`** — Electron + embedded VLC; random episode picker + resume. **Not inside electron-toolbar** — toolbar only launches it (`Shift+F19`, Launcher Panel tile `video-player` → `Video Player\launch.bat`). Data: `%APPDATA%\video-player\data\`. Docs: `Video Player\CLAUDE.md`, `docs\VLC_EMBEDDING.md`. |
-| **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
+| **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. **Cursor MCP:** `Programs/.cursor/mcp.json` → server `agent-browser` (Playwright MCP + CDP). Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
 | **Hearthstone Overlay 3.0**, HS Overlay 3.0, go face, hearthstone overlay | `Hearthstone Overlay 3.0` | *(local)* | **`C:\Users\chase\Documents\Programs\Hearthstone Overlay 3.0\`** — Electron + Python log service. Launch: `launch.bat` or toolbar Launcher Panel tile **`hearthstone-overlay-3`**. Go Face / combat robot: `electron/play-actions.js`, `electron/robot-worker.js`, `electron/go-face-window.js`. Session log: `docs/sessions/SESSIONS.md`. Daily driver (2.0 is legacy Tk overlay). |
 | **CourseAgent** | `CourseAgent` | ccarlozzi/CourseAgent | |
 | **Programs patterns / standards** | `cursor-patterns\` | *(Programs root repo)* | `CODING_STANDARDS.md` lives here |
@@ -90,6 +90,7 @@ All superseded copies below live under **`Deprecated apps\`** (safe to delete th
 | `spire-overlay` | chase1971/spire-overlay | Slay the Spire overlay |
 | `sts2-dwell-targeting` | chase1971/Dwell-Targeting | STS2 dwell targeting |
 | `Video Player` | *(local git)* | See **Quick lookup** — not in App Dashboard; toolbar Launcher Panel + Shift+F19 |
+| `Agent Browser` | *(local)* | See **Quick lookup** — personal Electron + embedded Chromium; CDP **9227**; toolbar Launcher Panel + Shift+F20; not in App Dashboard |
 | `poe-stats-overlay` | | Path of Exile overlay |
 | `Monitor Configuration App` | | Display/monitor tooling |
 | `generic scripts` | | One-off scripts |

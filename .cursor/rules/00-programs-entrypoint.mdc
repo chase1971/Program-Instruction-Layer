@@ -1,0 +1,29 @@
+---
+description: Programs tree AI entrypoint — read before any code change
+alwaysApply: true
+---
+
+# Programs AI entrypoint
+
+Workspace root: `C:\Users\chase\Documents\Programs\`
+
+## Required reads (in order)
+
+1. **`CLAUDE.md`** → `AGENTS.md` — ask-before-assume, end-of-session, capture triggers
+2. **`APP_LOCATIONS.md`** — where every app lives; read before searching the tree
+3. **`cursor-patterns/CODING_STANDARDS.md`** — before writing or editing code
+4. App **`CLAUDE.md`** + **`guidelines/Guidelines.md`** when inside a specific app
+
+**Deep dives / on-demand docs:** `cursor-patterns/README.md`, app `docs/*_INTEGRATION.md`, glob `.mdc` rules (dwell, modals, Pearson browser). **Clickable HTML:** `AGENTS.md` § HTML pages + exemplar `docs/exam2-review-map.html`.
+
+## Hard rules (top violations — full list in `AGENTS.md`)
+
+1. File size cap **800** — extract before 700 (`10-file-size-before-edit.mdc`)
+2. **Grep before adding** hooks/services/IPC — no parallel mechanisms
+3. Modals **`max-w-md`**, **no backdrop dismiss** (`20-modal-pattern.mdc`)
+4. **Dwell/head-mouse:** click path for every hover; every hover becomes a click (`25-dwell-accessibility.mdc`)
+5. **Frozen apps:** Calendar 2.0 off-limits unless Chase names it (`45-frozen-apps.mdc`)
+
+## Ask before you assume
+
+One focused question when scope, pattern choice, or interpretation is unclear.

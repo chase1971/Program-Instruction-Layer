@@ -1,0 +1,31 @@
+---
+description: Windows PowerShell shell syntax — no && chaining; use ; or parallel tool calls
+alwaysApply: true
+---
+
+# Windows PowerShell Shell Commands
+
+Chase's shell is **Windows PowerShell 5.x** (not PowerShell 7+). Models default to **bash / PS7** syntax — **`&&` and `||` are invalid here** and fail with "The token '&&' is not a valid statement separator." This rule must stay always-on; agents do not reliably learn from one correction.
+
+## Never
+
+```powershell
+cd "C:\...\Programs" && git status && git diff
+```
+
+## Do instead
+
+**Preferred:** parallel Shell calls with `working_directory` (no inline `cd`):
+
+```
+git status    # working_directory: C:\Users\chase\Documents\Programs
+git diff --stat
+```
+
+**One invocation:** semicolon only — `Set-Location "..."; git status; git diff`
+
+**Run B only if A succeeded:** separate tool calls; check exit code — no `&&`.
+
+## Also
+
+- No `curl` — use `Invoke-WebRequest -Uri "..." -UseBasicParsing`

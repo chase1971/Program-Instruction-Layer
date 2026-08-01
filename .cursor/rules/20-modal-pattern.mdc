@@ -1,0 +1,23 @@
+---
+description: Modal/dialog/wizard shell — max-w-md and shared patterns
+globs:
+  - "**/*Modal*.{ts,tsx}"
+  - "**/*modal*.{ts,tsx,css}"
+  - "**/modals/**"
+alwaysApply: false
+---
+
+# Modal pattern
+
+Read **`cursor-patterns/modal-pattern.md`** before building or redesigning modals.
+
+- Default width: **448px** (`max-w-md`) — never `max-w-3xl`+ without documented reason
+- `max-h-[85vh]` + `overflow-y-auto` on content (safety net only — see next rule)
+- **Aim for NO scrollbar.** Design the modal to fit its content in the viewport without scrolling. Trim padding/gaps, shrink fonts/inputs, drop redundant helper text, and **split dense lists into multiple columns** before you let it scroll. Keep `max-h-[85vh]`/`overflow-y-auto` as a fallback so controls never leave the screen — but the common case should show everything at once.
+- **Never dismiss on overlay/backdrop click** — no `onClick={onClose}` on `.courses-modal-overlay`. Required for dwell-mouse; user must use an explicit Cancel / OK / Close button.
+- Primary action **above** Cancel in stacked footers (`d2l-picker-actions` column)
+- Scroll lists: prefer **`ViewportScrollFrame`** (side rail, shows only when overflow)
+
+**App-specific:** read that app's `guidelines/Guidelines.md` § Modals and copy an exemplar modal in that app before inventing markup.
+
+**Macro App:** `renderer/src/styles/modals.css`, `guidelines/Guidelines.md` § Modals, `docs/EMBEDDED_BROWSER_AND_MODALS.md` if over embedded browser.

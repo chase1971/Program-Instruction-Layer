@@ -1,0 +1,46 @@
+---
+description: Head-mouse / dwell accessibility — hover, click targets, drag. Every UI file.
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*overlay*.html"
+  - "**/*overlay*.js"
+  - "**/*drag*.js"
+  - "**/*dwell*.js"
+alwaysApply: false
+---
+
+# Dwell & head-mouse accessibility
+
+Chase drives every app with a **gyro head-mounted mouse + dwell click**. There is
+no "just click it" fallback and no "hold perfectly still" either.
+
+## 🔴 Read this before writing hover / dwell / drag code
+
+**`cursor-patterns/dwell-and-head-mouse.md`**
+
+That file is the **single source of truth**. It holds every timing value, the four
+existing implementations and why they legitimately differ, the "grep before you
+build" index, the non-negotiable behaviors, and the anti-patterns.
+
+**This rule deliberately contains no numbers.** Timings and thresholds live in
+that one file so they cannot drift out of sync across copies. If you need a
+value, open it — do not guess, and do not copy a number from any other doc.
+
+## The two rules that subsume the rest
+
+1. **Every hover affordance must also have a click path.** Chase cannot rely on
+   precise hover.
+2. **Assume every hovered element gets clicked.** The toolbar fires a real
+   OS-level click on whatever the cursor rests on. Design so that click is
+   harmless, or is the intended action.
+
+## Before you build anything hover/dwell/drag-shaped
+
+Several implementations already exist (hooks, latch utilities, overlay poll
+hubs). Adding another is a **stop-and-surface**, not a judgment call — see
+§ *Grep before you build* in the source-of-truth file for the index of what to
+reuse and its exemplar consumer.
+
+Exemplar rule to copy the *shape* of:
+`School Scrips/Math App Studio/.cursor/rules/studio-dwell-mechanics.mdc`

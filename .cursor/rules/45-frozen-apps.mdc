@@ -1,0 +1,28 @@
+---
+description: Frozen apps — skip git scans, exploration, and edits unless Chase explicitly names the app
+alwaysApply: true
+---
+
+# Frozen apps
+
+Chase has **detached** from active work on these apps. Treat them as off-limits for routine AI sessions.
+
+| App | Folder | Since |
+|-----|--------|-------|
+| **Calendar 2.0** | `School Scrips/Calendar 2.0` | 2026-07-29 |
+
+## Do not (for frozen apps)
+
+- Include in start/end **multi-repo git scans** (no pull, commit, push, or "dirty repo" reports)
+- Grep, explore, or `Glob` the folder unless Chase **explicitly** named the app in this session
+- Propose fixes, refactors, or session work inside the frozen tree
+- Pair-check frozen repos when a sister app changes (e.g. do **not** auto-check Calendar 2.0 when Macro App changes)
+
+## Still OK
+
+- **Read-only exemplar** for patterns in *other* apps (e.g. copy Display scaling approach into a new Electron app — do not edit Calendar 2.0)
+- Work in **Macro App** on calendar *integration* when Chase asks about Macro App and names the symptom — edit Macro App / `calendar-vendor/`, not Calendar 2.0 unless he unfreezes
+
+## Unfreeze
+
+Only when Chase explicitly says "work on Calendar 2.0", "unfreeze calendar", or similar. Read `School Scrips/Calendar 2.0/FROZEN.md` first.

@@ -1,0 +1,33 @@
+﻿---
+description: Sync every git repo under Programs — pull at the start of a session, commit and push at the end. Not just the active app.
+alwaysApply: true
+---
+
+# Multi-repo Git — pull at start, commit and push at end
+
+Chase uses **sibling repos** under `C:\Users\chase\Documents\Programs\` (not a monorepo). **Pull before you start, push before you stop** — agent drives this; Chase cannot rely on remembering.
+
+**Full repo index, sister-app pairs, skip lists:** `AGENTS.md` § End-of-Session + multi-repo table in user rules.
+
+## Start of session — pull first
+
+Trigger: first substantive request, or "what's the state", "where did we leave off", "I'm on my laptop/PC", "let's start", "pull". **Before any code changes.**
+
+1. Scan git repos under Programs (`School Scrips/*`, Programs root). `git status --short` + `git fetch` each. **Skip frozen apps** (`45-frozen-apps.mdc` — Calendar 2.0).
+2. Clean + behind → `git pull --ff-only`. Report updates.
+3. Dirty + remote ahead → **STOP** — surface local vs incoming (two-machine collision).
+4. Merge conflict → **STOP** — never auto-resolve. Per-machine styling in committed source → ask Chase (likely belongs in AppData profile, not source).
+5. Summary: pulled / current / needs attention.
+
+## Commit / push / "put on GitHub" / end-of-session
+
+Also: Cursor Automation, nightly backup. **No npm test / pytest / builds** unless Chase asks — sync only.
+
+1. Same multi-repo scan; skip frozen apps.
+2. Commit + push **every dirty repo** with meaningful changes — not only the active app. One repo per commit.
+3. Sister pair when either changed: Macro App ↔ assignment-assistant-engine.
+4. Skip unless asked: `.env`, credentials, `config/d2l-courses.json` backups, Calendar `server-port.json`.
+5. **Do include:** `Macro App/modules/makeup-exam/exam_history.jsonl` (tracked sync log).
+6. Summary table: repo, commit, push result, skipped.
+
+Run commit/push scan **before** `SESSIONS.md` on end-of-session.

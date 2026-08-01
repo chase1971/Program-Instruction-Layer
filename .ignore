@@ -1,0 +1,10 @@
+# Search visibility (ripgrep). Takes precedence over .gitignore.
+# Re-include active app trees that root .gitignore hides via /*
+!School Scrips/
+!electron-toolbar/
+!Agent Browser/
+!Video Player/
+
+# Keep these OUT of search
+Deprecated apps/
+School Scrips/Calendar 2.0/

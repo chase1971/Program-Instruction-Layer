@@ -10,8 +10,13 @@
 
 # Un-ignore the meta files we care about
 !/CLAUDE.md
+!/AGENTS.md
+!/APP_LOCATIONS.md
+!/HOW_TO_INTERACT_WITH_AI.md
 !/cursor-patterns/
+!/.cursor/
 !/.gitignore
+!/.ignore
 node_modules
 
 # Local Netlify folder
