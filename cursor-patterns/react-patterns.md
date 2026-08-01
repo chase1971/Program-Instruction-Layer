@@ -606,7 +606,7 @@ describe('dataService', () => {
 ## Related Patterns
 
 - [File Headers](./file-headers.md) - Standardized documentation
-- [Coding Standards](./coding-standards.md) - General code quality
+- [Coding Standards](./CODING_STANDARDS.md) - General code quality
 - [Refactoring Checklist](./refactoring-checklist.md) - When to refactor
 - [Modal Pattern](./modal-pattern.md) - Modal/dialog sizing and structure
 

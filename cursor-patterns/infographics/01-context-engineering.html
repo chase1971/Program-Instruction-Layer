@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programs — Context Engineering: How the AI Knows the Rules</title>
+<title>Programs — The Context Engineering System</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6fb; color: #1c2433; line-height: 1.6; font-size: 17px; }
@@ -14,63 +14,35 @@
   .hero p { font-size: 19px; max-width: 46em; opacity: .95; }
   .why { background: #fffbea; border: 2px solid #f5d96b; border-radius: 16px; padding: 22px 26px; margin: 26px 0 40px; }
   .why strong { color: #8a6d00; }
-  h2 { font-size: 26px; margin: 56px 0 8px; color: #14203a; }
+  h2 { font-size: 27px; margin: 58px 0 8px; color: #14203a; }
   .h2sub { color: #5a6a85; margin-bottom: 24px; max-width: 50em; }
   code { font-family: Consolas, monospace; font-size: .92em; background: #eef2f9; padding: 2px 7px; border-radius: 6px; border: 1px solid #d7dfec; }
 
-  /* ladder illustration */
-  .ladder { background: #14203a; border-radius: 20px; padding: 30px; }
-  .ladder h3 { color: #fff; margin-bottom: 6px; font-size: 19px; }
-  .ladder .sub { color: #9fb0cc; font-size: 15px; margin-bottom: 22px; }
-  .rungs { display: flex; flex-direction: column; gap: 10px; }
-  .rung { border-radius: 12px; padding: 16px 20px; font-size: 16px; font-weight: 600; display: flex; align-items: flex-start; gap: 14px; }
-  .rung .lv { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
-  .rung .small { display: block; font-weight: 400; font-size: 14px; margin-top: 3px; opacity: .9; }
-  .r1 { background: #6d28d9; color: #fff; border: 3px solid #a78bfa; }
-  .r2 { background: #4c1d95; color: #e9e2ff; border: 2px solid #7c5ce0; }
-  .r3 { background: #2a3c60; color: #cfe0ff; border: 2px solid #5a739f; }
-  .r4 { background: #22314f; color: #b9c8e4; border: 2px solid #43578a; }
-  .r5 { background: #1c2842; color: #91a4c4; border: 2px dashed #3a4b73; }
-  .ladder .note { color: #9fb0cc; font-size: 14.5px; margin-top: 18px; }
+  .idea { background: #fff; border: 3px solid #dbe3f0; border-left: 8px solid #6d28d9; border-radius: 16px; padding: 26px 30px; margin: 20px 0; }
+  .idea b { font-size: 19px; display: block; margin-bottom: 6px; color: #14203a; }
 
-  /* load path */
-  .path { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-  .hop { background: #fff; border: 2px solid #dbe3f0; border-left: 7px solid #6d28d9; border-radius: 14px; padding: 18px 22px; }
-  .hop b { display: block; margin-bottom: 3px; font-size: 16.5px; }
-  .hop .d { font-size: 15px; color: #5a6a85; }
-  .hop .auto { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 9px; border-radius: 6px; margin-left: 8px; vertical-align: 2px; }
-  .a-yes { background: #dcfce7; color: #15803d; border: 1px solid #86dfa5; }
-  .a-no  { background: #fee2e2; color: #b42318; border: 1px solid #f0a8a8; }
-
-  /* wrong vs right */
-  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 800px) { .vs { grid-template-columns: 1fr; } }
-  .col { border-radius: 18px; border: 3px solid; padding: 24px; }
-  .col h3 { font-size: 21px; margin-bottom: 14px; }
-  .col-wrong { background: #fdeaea; border-color: #eba7a7; } .col-wrong h3 { color: #b42318; }
-  .col-right { background: #e9f9ee; border-color: #93dcaa; } .col-right h3 { color: #15803d; }
-  .frame { background: #fff; border: 2px solid rgba(0,0,0,.12); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; font-size: 15px; }
-  .frame b { display: block; margin-bottom: 2px; }
-  .res-bad { color: #b42318; font-weight: 700; }
-  .res-good { color: #15803d; font-weight: 700; }
+  /* three layers */
+  .layers { background: #14203a; border-radius: 20px; padding: 30px; }
+  .layers h3 { color: #fff; margin-bottom: 6px; font-size: 19px; }
+  .layers .sub { color: #9fb0cc; font-size: 15px; margin-bottom: 22px; }
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .lyr { border-radius: 12px; padding: 18px 22px; font-size: 16px; font-weight: 600; }
+  .lyr .small { display: block; font-weight: 400; font-size: 14.5px; margin-top: 4px; opacity: .9; }
+  .y1 { background: #6d28d9; color: #fff; border: 3px solid #a78bfa; }
+  .y2 { background: #2a3c60; color: #cfe0ff; border: 2px solid #5a739f; }
+  .y3 { background: #1c2842; color: #9fb0cc; border: 2px dashed #3a4b73; }
 
   .steps { counter-reset: step; margin-top: 8px; }
   .step { background: #fff; border: 2px solid #dbe3f0; border-radius: 16px; padding: 20px 22px 20px 74px; margin-bottom: 14px; position: relative; }
   .step::before { counter-increment: step; content: counter(step); position: absolute; left: 18px; top: 18px; width: 40px; height: 40px; border-radius: 50%; background: #6d28d9; color: #fff; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; }
+
+  .say { background: #1e1b3a; color: #e9e2ff; border-radius: 14px; padding: 18px 22px; font-family: Consolas, monospace; font-size: 16px; margin: 14px 0; border-left: 6px solid #a78bfa; }
 
   table { width: 100%; border-collapse: collapse; background: #fff; border: 2px solid #dbe3f0; }
   th { background: #14203a; color: #fff; text-align: left; padding: 14px 16px; font-size: 15px; }
   td { padding: 14px 16px; border-top: 1px solid #e4eaf4; font-size: 15.5px; vertical-align: top; }
   tr:nth-child(even) td { background: #f8fafd; }
   .tablewrap { overflow-x: auto; border-radius: 14px; }
-  .num { font-variant-numeric: tabular-nums; font-weight: 700; }
-
-  details { background: #fff; border: 2px solid #dbe3f0; border-radius: 14px; margin-bottom: 12px; }
-  summary { cursor: pointer; padding: 18px 22px; font-weight: 700; font-size: 17px; color: #14203a; list-style: none; display: flex; align-items: center; gap: 12px; min-height: 56px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: '+'; font-size: 24px; font-weight: 800; color: #6d28d9; width: 28px; }
-  details[open] summary::before { content: '–'; }
-  details .body { padding: 0 22px 20px 62px; color: #33415c; font-size: 16px; }
 
   .callout { background: #eef2ff; border: 2px solid #c7d2fe; border-radius: 16px; padding: 22px 26px; margin: 26px 0; }
   .callout strong { color: #4338ca; }
@@ -82,176 +54,120 @@
 
   <div class="hero">
     <div class="kicker">Programs · Context engineering</div>
-    <h1>How the AI Knows the Rules</h1>
-    <p>Every app in this tree is built with an AI assistant. This is the system that tells that assistant how <b>you</b> build things — so you stop re-explaining the same requirements every session, and so two features built six months apart still look like the same app.</p>
+    <h1>The Context Engineering System</h1>
+    <p>Every app here is built with an AI assistant. This is the system that tells that assistant how <b>I</b> build things — so I stop repeating myself, and so features built months apart still look like the same app.</p>
   </div>
 
   <div class="why">
-    <strong>Why this matters:</strong> the expensive failure isn't the AI writing bad code — it's the AI writing <i>reasonable</i> code that ignores a constraint you never wrote down. A button that only responds to hover. A modal that closes when the cursor drifts. A fifth copy of a mechanism that already existed four times. Every one of those is a missing sentence in a file, not a missing instruction in a chat.
+    <strong>The whole idea in one sentence:</strong> anything I'd otherwise have to say out loud every session should live in a file the assistant reads automatically.
   </div>
 
-  <h2>The problem this solves</h2>
-  <p class="h2sub">You drive every app with a gyro head-mounted mouse and a dwell click. That single fact generates a dozen non-obvious code requirements — and an AI that doesn't know it will confidently build something you can't use.</p>
+  <h2>What it's for</h2>
+  <p class="h2sub">I drive every app with a head-mounted mouse and a dwell click. That one fact creates a dozen requirements that aren't obvious from looking at the code — and an assistant that doesn't know them will confidently build something I can't use.</p>
 
-  <div class="vs">
-    <div class="col col-wrong">
-      <h3>✗ Without a context layer</h3>
-      <div class="frame"><b>Every session starts cold</b> You re-explain the head mouse, the dwell click, the 12px threshold, the no-backdrop-dismiss rule.</div>
-      <div class="frame"><b>You forget one</b> <span class="res-bad">The AI builds a hover-only tooltip. It's invisible to you in practice.</span></div>
-      <div class="frame"><b>Drift compounds</b> <span class="res-bad">Four hover mechanisms, four different timings, none aware of the others.</span></div>
-    </div>
-    <div class="col col-right">
-      <h3>✓ With one</h3>
-      <div class="frame"><b>The constraint lives in a file</b> The AI reads it before it writes the first line.</div>
-      <div class="frame"><b>You say four words</b> <span class="res-good">“Make it dwell-friendly” resolves to one hook, one timing file, one exemplar.</span></div>
-      <div class="frame"><b>Rules that must never break get teeth</b> <span class="res-good">A lint rule or a commit hook enforces it, so it can't quietly rot.</span></div>
-    </div>
+  <div class="idea">
+    <b>Buttons can't be hover-only.</b>
+    I can't reliably hover something without also clicking it. Anything that only appears on hover is invisible to me in practice.
+  </div>
+  <div class="idea">
+    <b>Modals can't close when you click outside them.</b>
+    My cursor drifts. A dialog that closes on a stray click will destroy half-finished work.
+  </div>
+  <div class="idea">
+    <b>Timers need generous thresholds.</b>
+    The cursor wobbles a few pixels even when I'm holding still. Anything tighter than about 12 pixels will never trigger.
   </div>
 
-  <h2>The capture ladder — push every lesson as high as it will go</h2>
-  <p class="h2sub">When a bug gets fixed or a correction repeats, it should end up on the highest rung it can reach. Higher rungs fire automatically and can't be skipped; lower rungs rely on someone choosing to read them. <b>Graduating to a higher rung means deleting the lower copy</b> — prose that a lint rule already enforces is just noise.</p>
+  <p style="margin-top:22px">None of that is guessable. Written down once, it applies forever. That's the entire value proposition.</p>
 
-  <div class="ladder">
-    <h3>Five rungs, strongest first</h3>
-    <div class="sub">Ask of any rule: what's the highest rung this could live on?</div>
-    <div class="rungs">
-      <div class="rung r1"><span class="lv">1</span><div>Make it structurally impossible<span class="small">One owner, or an API that can't be misused. Example: only <code>usePersistedState.ts</code> may touch <code>localStorage</code> — everything else is a lint error. The rule can't be forgotten because the shape of the code won't allow it.</span></div></div>
-      <div class="rung r2"><span class="lv">2</span><div>A lint rule or a test<span class="small">Fires on every save or every commit. Example: files warn at 700 lines and are blocked at 800.</span></div></div>
-      <div class="rung r3"><span class="lv">3</span><div>A glob-scoped contract<span class="small">A rule file that loads only when you open matching files. Costs nothing when irrelevant, always present when it matters. This is the sweet spot for most patterns.</span></div></div>
-      <div class="rung r4"><span class="lv">4</span><div>An always-on rule<span class="small">Loaded every session, so it competes for attention with everything else. Keep the total budget small — roughly 200 lines across all of them.</span></div></div>
-      <div class="rung r5"><span class="lv">5</span><div>An on-demand document<span class="small">Read only when someone decides it's relevant — which is a judgment call, and therefore the rung where knowledge quietly dies. Fine for deep background; wrong for a rule that must always fire.</span></div></div>
-    </div>
-    <div class="note">The trap: writing a beautiful 578-line document (rung 5) for your most important constraint, and a one-line lint rule (rung 2) for a minor one. Importance should decide the rung — not how much you enjoyed writing it.</div>
-  </div>
+  <h2>How it's built — three layers</h2>
+  <p class="h2sub">Everything lives in one of three places, and which place you choose decides whether the rule actually fires.</p>
 
-  <h2>How a rule actually reaches the AI</h2>
-  <p class="h2sub">Four hops, from “always loaded” down to “only if someone opens it.” The critical detail is that <b>the two assistants don't load the same things</b>.</p>
-
-  <div class="path">
-    <div class="hop">
-      <b>1 · Root <code>AGENTS.md</code> <span class="auto a-yes">auto-loaded</span></b>
-      <div class="d">The entry point for every session anywhere in the tree. Holds the most-violated rules, the ask-before-you-assume posture, the dwell summary, and the end-of-session protocol. <code>CLAUDE.md</code> is a one-line stub that imports it, so both assistants get the same baseline.</div>
-    </div>
-    <div class="hop">
-      <b>2 · App <code>CLAUDE.md</code> <span class="auto a-yes">read on entry</span></b>
-      <div class="d">One per app. Not the rules themselves — an <i>index</i>: what this app is, which rule files exist and when they apply, which docs to read for which topic, where the exemplars are.</div>
-    </div>
-    <div class="hop">
-      <b>3 · Glob-scoped <code>.mdc</code> rules <span class="auto a-yes">Cursor</span> <span class="auto a-no">Claude Code</span></b>
-      <div class="d">The workhorses. Cursor loads them automatically when a matching file is open. <b>Claude Code does not</b> — which is exactly why hop 2 exists. If an app has rule files but no <code>CLAUDE.md</code> indexing them, they are invisible to half your tooling.</div>
-    </div>
-    <div class="hop">
-      <b>4 · On-demand docs <span class="auto a-no">only when asked</span></b>
-      <div class="d">Deep background — architecture notes, integration write-ups, pattern libraries. Reachable only if something above points at them. An unreferenced document is functionally deleted.</div>
+  <div class="layers">
+    <h3>From always-loaded to read-if-asked</h3>
+    <div class="sub">Higher means more reliable. Lower means more detail.</div>
+    <div class="stack">
+      <div class="lyr y1">🔒 Always on — <code>AGENTS.md</code> at the root<span class="small">Loaded in every session, everywhere in the tree. The rules I break most often, and the shortest possible version of each. Kept deliberately small, because everything here competes for attention.</span></div>
+      <div class="lyr y2">🎯 Scoped rules — one folder per app<span class="small">Loaded only when a matching file is open. A rule about modals appears when I'm editing a modal and stays silent otherwise. <b>This is where most rules should live.</b></span></div>
+      <div class="lyr y3">📄 Reference docs — read when relevant<span class="small">Deep background, full explanations, pattern libraries. Only read if something above points at them — so anything down here that isn't linked is effectively invisible.</span></div>
     </div>
   </div>
 
   <div class="callout">
-    <strong>The single most common failure in this system:</strong> good documentation that nothing links to. Sixteen well-written interaction patterns sat in the toolbar repo for months, reachable from no index, read by nobody. The fix wasn't writing more — it was writing one index file.
+    <strong>The one thing that goes wrong most:</strong> good documentation that nothing links to. Sixteen well-written pattern docs sat unreferenced for months — not wrong, just unreachable. Writing more wouldn't have helped. One index file did.
   </div>
 
-  <h2>What a good rule file contains</h2>
-  <p class="h2sub">The exemplar in this tree is <code>studio-dwell-mechanics.mdc</code>. Every rule worth writing has these five ingredients — miss any one and the rule gets ignored, misapplied, or “cleaned up” by the next session.</p>
+  <h2>What makes a rule actually work</h2>
+  <p class="h2sub">Rules that get followed all look the same. Rules that get ignored are usually missing one of these.</p>
 
   <div class="steps">
-    <div class="step"><b>Why it exists, in one sentence.</b> “Chase uses a gyro head-mouse + dwell click.” A rule without a reason reads like a preference, and preferences get overridden.</div>
-    <div class="step"><b>The single implementation, named.</b> Not “use a hook” — <i>this</i> hook, at <i>this</i> path. Ambiguity is what produces the second copy.</div>
-    <div class="step"><b>An exemplar file to copy.</b> Pointing at real working code beats describing it. Prose drifts from the codebase; a file path doesn't.</div>
-    <div class="step"><b>Non-negotiables, each with the bug it prevents.</b> “Leave handlers are no-ops <i>because</i> wobble fires them constantly.” This is what stops a future session from deleting code that looks redundant.</div>
-    <div class="step"><b>An anti-pattern list.</b> The failure modes stated as failures. “Tight 2px thresholds — never latch for a head-mouse.”</div>
+    <div class="step"><b>Say why.</b> "I use a head-mouse with a dwell click." A rule without a reason reads like a preference — and preferences get overridden.</div>
+    <div class="step"><b>Name the exact thing to reuse.</b> Not "use a hook" — <i>this</i> one, at <i>this</i> path. Vagueness is what produces a second copy of something that already existed.</div>
+    <div class="step"><b>Point at a real file to copy.</b> A working example beats a description. Descriptions drift out of date quietly; a file path breaks loudly.</div>
+    <div class="step"><b>Say what breaks if it's ignored.</b> This is what stops a future session from deleting something that looks unnecessary but isn't.</div>
   </div>
 
   <div class="callout">
-    <strong>Same principle, applied to numbers:</strong> never write a bare constant. <code>JIGGLE_MODE1_TO_PAUSE_MAX_NET_DISPLACEMENT = 40</code> survives because the comment above it explains that head-mouse navigation oscillates. A bare <code>40</code> gets “simplified” by the next agent, and the bug comes back.
+    <strong>Same rule for numbers.</strong> Never leave a bare value like <code>450</code> in the code. Give it a name and a comment saying what it's compensating for. Bare numbers get "tidied up" by the next assistant, and then the bug comes back.
   </div>
 
-  <h2>Case study: four answers to “how long is a dwell?”</h2>
-  <p class="h2sub">The clearest example of what happens without a source of truth. Four independent implementations grew up in four repos — each one reasonable on its own, none aware of the others.</p>
+  <h2>Keeping it maintained</h2>
+  <p class="h2sub">Two habits and one command. That's the whole maintenance story.</p>
 
-  <div class="tablewrap">
-  <table>
-    <tr><th>Where</th><th>What it does</th><th>Fires at</th><th>Move threshold</th></tr>
-    <tr><td><b>electron-toolbar</b><br><span style="color:#5a6a85;font-size:14px">the OS-level dwell click</span></td><td>Replaces every physical click, all day</td><td class="num">250 ms</td><td class="num">15 px</td></tr>
-    <tr><td><b>Math App Studio</b><br><span style="color:#5a6a85;font-size:14px">in-app latch-to-drag</span></td><td>Hover a handle to attach it to the cursor</td><td class="num">450 ms</td><td class="num">12 px</td></tr>
-    <tr><td><b>Macro App</b><br><span style="color:#5a6a85;font-size:14px">tooltips</span></td><td>Shows information after a pause</td><td class="num">1000 ms</td><td>—</td></tr>
-    <tr><td><b>A pattern document</b><br><span style="color:#5a6a85;font-size:14px">prose only</span></td><td>Describes a hook that was never built</td><td class="num">500 ms</td><td>—</td></tr>
-  </table>
-  </div>
-
-  <p style="margin-top:22px">Three of those four differences are <b>legitimate</b> — and that's the point. The system click must be fast because it replaces every click you make. The drag latch is deliberately <i>slower</i> than the system click so a normal click isn't mistaken for a drag. A tooltip should be slow because it means “I paused to read.” The fourth is simply wrong: numbers written to illustrate an example, never measured, sitting in a document where they look authoritative.</p>
-
-  <div class="callout">
-    <strong>The finding nobody had written down:</strong> those two layers run <i>at the same time, on the same cursor</i>. When you rest on a drag handle, the toolbar fires a real click at 250 ms — <b>200 ms before</b> the in-app latch arms. No document in either repo mentioned that the other system was running. That gap, not any single number, was the actual defect.
-  </div>
-
-  <h2>Enforcement: rules with teeth</h2>
-  <p class="h2sub">A rule nobody can violate beats a rule everybody agrees with. But enforcement added carelessly locks you out of your own repo — so it arrives in tiers, with an escape hatch for what's already broken.</p>
-
-  <div class="tablewrap">
-  <table>
-    <tr><th>Tier</th><th>What it does</th><th>When it fires</th></tr>
-    <tr><td><b>Editor warning</b></td><td>Advisory squiggle at 700 lines</td><td>As you type — informational, never blocks</td></tr>
-    <tr><td><b>Commit block</b></td><td>Refuses the commit past 800 lines</td><td>On <code>git commit</code> — the real gate</td></tr>
-    <tr><td><b>Grandfathering</b></td><td>Files <i>already</i> over the cap warn instead of failing</td><td>Automatically, by comparing against the last commit</td></tr>
-  </table>
-  </div>
-
-  <p style="margin-top:22px">That third row is what makes the second row survivable. A repo with a 2,157-line file can't adopt a hard 800-line cap on day one — every commit would fail and the hook would be deleted within a week. Instead, existing offenders are recorded and warn; only <b>new</b> files and files that <b>newly cross</b> the line are blocked. The cap holds the line without demanding a refactor you didn't schedule.</p>
-
-  <h2>The machinery, in detail</h2>
-
-  <details>
-    <summary>Why every app is its own repo — and what that costs</summary>
-    <div class="body">Each app is an independent repository, not a monorepo. That keeps them separately cloneable and separately versioned, but it means shared tooling has to be <b>copied</b> into each one rather than referenced from a parent folder — a hook that reaches outside its own repo breaks the moment that repo is cloned on its own. Duplicating a build script across independent repos is acceptable; duplicating an <i>app concept</i> is the thing to avoid.</div>
-  </details>
-
-  <details>
-    <summary>“Grep before you build” — the rule that prevents the fifth copy</summary>
-    <div class="body">Before creating any new hook, service, logger, registry, or state store, search for what it would replace — including in sister apps. If something exists, extend it. If you'd be creating a second implementation of an existing concept, <b>stop and ask</b> rather than deciding alone. Parallel mechanisms are the main way a tree like this accumulates inconsistency: each one looks like “I solved the task” and reads later as “nothing fits together.”</div>
-  </details>
-
-  <details>
-    <summary>Why documents get tombstones instead of deletions</summary>
-    <div class="body">When a document is superseded, it's replaced with a few lines pointing at the live version — “content merged into X; do not maintain this file.” A deleted file leaves a dangling link; a tombstone redirects. The same applies to docs describing something that was never built: they get a banner saying so, because a plausible-looking design sketch is more dangerous than a missing file.</div>
-  </details>
-
-  <details>
-    <summary>The index that resolves app names</summary>
-    <div class="body">A dedicated file maps every name you might say — nicknames, legacy folder names, deprecated duplicates — to a canonical path. Without it an assistant searches the filesystem and finds three folders with similar names, one of which is a frozen copy. With it, the lookup is a table read.</div>
-  </details>
-
-  <details>
-    <summary>Frozen apps</summary>
-    <div class="body">An app can be explicitly detached: no routine scans, no edits, no git sync until it's unfrozen. This is recorded in both an always-on rule and a marker file in the app itself, so an assistant hits the signal from either direction. Frozen apps stay readable as reference exemplars — they just don't get touched.</div>
-  </details>
-
-  <h2>Symptom → cause decoder</h2>
-  <div class="tablewrap">
-  <table>
-    <tr><th>Symptom</th><th>Actual cause</th></tr>
-    <tr><td>The AI ignores a rule you definitely wrote</td><td>It's on rung 5 (a document nothing links to), or in a <code>.mdc</code> file with no <code>CLAUDE.md</code> indexing it</td></tr>
-    <tr><td>Two features that should match don't</td><td>No named exemplar — each session invented its own version from prose</td></tr>
-    <tr><td>A constant gets “cleaned up” and a bug returns</td><td>The number had no comment explaining what it compensates for</td></tr>
-    <tr><td>The same correction, session after session</td><td>The lesson never graduated above rung 5. Move it to a glob-scoped rule or a lint rule</td></tr>
-    <tr><td>A fifth copy of an existing mechanism appears</td><td>“Grep before you build” wasn't reachable from the file being edited</td></tr>
-    <tr><td>Documentation describes code that doesn't exist</td><td>A design sketch was written in the present tense and never marked as unbuilt</td></tr>
-    <tr><td>Rules exist but never fire in one of the two assistants</td><td><code>.mdc</code> files are Cursor-only — Claude Code needs the app's <code>CLAUDE.md</code> index</td></tr>
-  </table>
-  </div>
-
-  <h2>The shape of the whole thing</h2>
-  <p class="h2sub">Five ideas carry the entire system. Everything else is application.</p>
   <div class="steps">
-    <div class="step"><b>One source of truth per concept.</b> Four timing tables is a bug. One table with four documented exceptions is a system.</div>
-    <div class="step"><b>Point at code, not prose.</b> An exemplar file path stays accurate as the codebase moves. A described pattern drifts the day after it's written.</div>
-    <div class="step"><b>Record the reason, not just the rule.</b> The reason is what survives contact with the next session — it's the difference between a constraint and a preference.</div>
-    <div class="step"><b>Put the rule where the work happens.</b> Scoped to the files it governs, so it costs nothing when irrelevant and is unmissable when it isn't.</div>
-    <div class="step"><b>Give the important ones teeth.</b> If it must never break, a lint rule or a commit hook — not a paragraph.</div>
+    <div class="step"><b>When I notice something, say it immediately.</b> Not "I'll write that down later" — later never comes, and the reason gets forgotten even if the rule doesn't.</div>
+    <div class="step"><b>When a correction repeats, move it up a layer.</b> Saying the same thing twice means it's sitting too low to fire. The fix isn't rewording it — it's promoting it.</div>
+    <div class="step"><b>Run the health check when docs move.</b> <code>node scripts/check-docs.js</code> — finds broken links, unreachable docs, duplicate copies, and rules that aren't indexed anywhere.</div>
+  </div>
+
+  <h2>Adding something — just say it</h2>
+  <p class="h2sub">I don't write these files. I say one sentence and the assistant decides where it belongs, writes it properly, and deletes whatever weaker version it replaces.</p>
+
+  <div class="say">remember: never use pointerleave to cancel a dwell — wobble fires it constantly</div>
+
+  <div class="tablewrap">
+  <table>
+    <tr><th>What I say</th><th>When</th><th>What happens</th></tr>
+    <tr><td><b>"remember: …"</b><br><span style="color:#5a6a85;font-size:14px">or "always…" / "never…"</span></td><td>The moment I notice something</td><td>Gets written into the right layer and indexed so it's reachable</td></tr>
+    <tr><td><b>"that was the third time"</b><br><span style="color:#5a6a85;font-size:14px">or "I've told you this before"</span></td><td>A correction repeating</td><td>Forces it <b>up</b> a layer — repetition proves the current spot isn't working</td></tr>
+    <tr><td><b>"end of session"</b></td><td>Wrapping up</td><td>Logs what happened, commits, pushes</td></tr>
+  </table>
+  </div>
+
+  <p style="margin-top:22px">The middle row matters most. Repeating myself isn't a nuisance to tolerate — it's <b>evidence</b> that a rule is filed too low to fire, and the signal to promote it.</p>
+
+  <div class="callout">
+    <strong>What's not worth capturing:</strong> one-off instructions ("make this button blue"), anything the code already shows, and vague preferences with no failure attached. If I can't say what goes wrong without it, it isn't a rule yet.
+  </div>
+
+  <h2>Starting a new app</h2>
+  <p class="h2sub">One sentence connects a brand-new folder to everything above. The recipe asks three questions, then builds the whole scaffold.</p>
+
+  <div class="say">Initialize a new app called [name]</div>
+
+  <div class="steps">
+    <div class="step"><b>It asks three things.</b> The name and one-line purpose, which kind of app it is, and where to put it. Nothing gets created until I confirm.</div>
+    <div class="step"><b>It picks a variant.</b> A teaching/math app, a utility tool, or a desktop overlay. The variant decides the folder structure and the starting configuration.</div>
+    <div class="step"><b>It scaffolds the connection points.</b> An orientation file so the assistant knows what the app is, a guidelines file for app-specific quirks, a session log, and the config that hooks into the shared standards.</div>
+    <div class="step"><b>Then I register it.</b> Add it to the app index so its name resolves later, and to the launcher registry if it needs a shortcut. Skipping this is why an app becomes hard to find months later.</div>
+  </div>
+
+  <div class="callout">
+    <strong>Why the orientation file is the important one.</strong> It's not the rules themselves — it's the <i>index</i>: what this app is, which rules apply and when, where the good examples are. Without it, an app's scoped rules are invisible to half my tooling. It's the single file that connects a new app to the whole system.
+  </div>
+
+  <h2>If you remember five things</h2>
+  <div class="steps">
+    <div class="step"><b>One source of truth per idea.</b> Four versions of the same setting is a bug. One version with documented exceptions is a system.</div>
+    <div class="step"><b>Point at real code, not descriptions.</b> Examples stay accurate as things move. Prose quietly stops being true.</div>
+    <div class="step"><b>Always write down the reason.</b> The reason is what survives the next session — it's what separates a constraint from a preference.</div>
+    <div class="step"><b>Put the rule where the work happens.</b> Scoped to the files it governs: silent when irrelevant, unmissable when it isn't.</div>
+    <div class="step"><b>If it must never break, automate it.</b> A check that blocks the mistake beats a paragraph asking nicely.</div>
   </div>
 
   <footer>
     Lives in <code>cursor-patterns/infographics/</code> in the Programs root repo. &nbsp;·&nbsp;
-    Sources of truth this page is distilled from: <code>AGENTS.md</code> (capture ladder, most-violated rules), <code>cursor-patterns/dwell-and-head-mouse.md</code> (timing + the cross-layer coupling), <code>APP_LOCATIONS.md</code> (name resolution), <code>School Scrips/Math App Studio/.cursor/rules/studio-dwell-mechanics.mdc</code> (the exemplar rule), <code>electron-toolbar/modules/dwell/backend/dwell_constants.py</code> (the exemplar constants file).
+    The files behind this page: <code>AGENTS.md</code> (the always-on layer and the capture ladder), <code>cursor-patterns/INIT_NEW_APP.md</code> (the new-app recipe), <code>APP_LOCATIONS.md</code> (name resolution), <code>scripts/check-docs.js</code> (the health check), <code>.claude/skills/capture/</code> (the "remember:" flow).
   </footer>
 </div>
 </body>

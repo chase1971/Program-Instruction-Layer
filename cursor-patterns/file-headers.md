@@ -392,7 +392,7 @@ When creating a file header, ensure you have:
 ## Related Patterns
 
 - [Refactoring Checklist](./refactoring-checklist.md) - Phase 1 includes file header requirements
-- [Coding Standards](./coding-standards.md) - Overall code quality guidelines
+- [Coding Standards](./CODING_STANDARDS.md) - Overall code quality guidelines
 - [Anti-Patterns](./anti-patterns.md) - What NOT to do
 
 ---
