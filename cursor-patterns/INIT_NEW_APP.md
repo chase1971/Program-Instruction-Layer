@@ -61,6 +61,22 @@ If the app includes an **Electron** desktop shell (`electron/main.js` or `electr
 
 Skip this step only if Chase explicitly says the app is not Electron or opts out of Display scaling.
 
+### Step 4c: Embedded browser — pin Electron to Macro App (REQUIRED)
+
+If the new app embeds a native browser (`WebContentsView`, Macro-style bounds IPC, CDP
+remote debugging for automation), **before** writing `package.json` or `browser-view.js`:
+
+1. Read **`School Scrips/Macro App/package.json`** → copy the **`electron`** devDependency version (currently **`^42.2.0`**).
+2. Put **that same version** in the new app’s `package.json`. Do **not** copy Electron from Video Player, Calendar 2.0, or electron-toolbar — those apps use **28.x** and do not use `WebContentsView`.
+3. Exemplar for browser code: **`School Scrips/Macro App/electron-app/`** (not Video Player).
+4. In the new app’s `CLAUDE.md`, state the pinned Electron version and that embedded-browser apps must stay aligned with Macro App’s generation.
+
+**Why:** `WebContentsView`, `contentView.addChildView`, and `navigationHistory` require **Electron 30+**. Mixing Macro browser code with Electron 28 crashes at runtime (`navigationHistory` undefined, `setBounds is not a function`).
+
+**Programs reality:** Electron versions are **not** unified repo-wide (28 / 33 / 42 coexist). Only apps that **share Macro’s embedded browser** must match Macro’s pin. Simple shells without embedded browser may stay on an older sister app’s version until a deliberate upgrade.
+
+Skip this step only if the app has no embedded browser.
+
 ### Step 5: Install Dependencies (ASK FIRST)
 
 Don't run `npm install` automatically. Ask:
@@ -76,6 +92,7 @@ Tell Chase:
 - Where the AI orientation is (`[app]/CLAUDE.md`)
 - Reminder: master coding standards at `cursor-patterns/CODING_STANDARDS.md`
 - If Electron: confirm Display scaling (Step 4b) was included or deferred with Chase’s OK
+- If embedded browser: confirm Electron version matches Macro App (Step 4c)
 
 ---
 
@@ -820,3 +837,4 @@ Append session entries to: [app-name]/docs/sessions/SESSIONS.md
 - **If the user names a variant you don't recognize**, default to asking what stack they want and adapt one of the three above.
 - **Educational-math apps should reference sister apps in their CLAUDE.md.** That's how Chase keeps them consistent.
 - **Functional-tool variant has the most uncertainty.** Always confirm the stack before scaffolding.
+- **Embedded browser in a new Electron app:** Step 4c — pin `electron` to Macro App’s version; never mix Macro `WebContentsView` code with Video Player / Calendar 2.0’s Electron 28 scaffold.

@@ -210,6 +210,9 @@ Snapshot freeze is fine for **non-scaling** shells or modals where scale cannot 
 - [ ] `initPerMonitorDisplayZoom()` listens for display-changed + resize/focus
 
 ### Phase 4 — Embedded browser (if applicable)
+
+**Electron version (check first):** Read `School Scrips/Macro App/package.json` and use the same **`electron`** version in the new app. Macro’s `WebContentsView` / bounds / `navigationHistory` patterns require that generation (42.x today). Older apps (Video Player, Calendar 2.0, toolbar) still on Electron 28 are valid for **non-embedded** shells only — do not copy their `package.json` Electron pin when copying Macro browser code.
+- [ ] `package.json` `electron` matches Macro App (Step 4c in `INIT_NEW_APP.md`)
 - [ ] `freezeForModal` defaults to **no snapshot** (`snapshot` opt-in only)
 - [ ] Display modal uses `freezeForModal({ snapshot: false })`
 - [ ] All other modals over the browser use `{ snapshot: false }` while Display scaling is enabled
