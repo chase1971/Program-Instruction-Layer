@@ -163,6 +163,50 @@
     <strong>Why the orientation file matters most.</strong> Tooling differs in what it loads automatically — one assistant may pick up scoped rule files on its own while another never does. The orientation index is what makes a project's rules discoverable regardless, which is what actually connects it to the wider system.
   </div>
 
+  <h2>Where the cost actually is</h2>
+  <p class="h2sub">Most effort to reduce an assistant's running cost gets aimed at the instruction files — which is almost always the wrong target. Measuring first gives a very different answer.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">2–3%</div><div class="lbl">Share of the context window used by always-loaded rules — and it's cached after the first message, so it's paid roughly <b>once</b>, not per step.</div></div>
+    <div class="stat"><div class="num">~10×</div><div class="lbl">Reduction when a task that was <em>figured out</em> the first time becomes a script that's simply <em>run</em> the next time.</div></div>
+    <div class="stat"><div class="num">zero</div><div class="lbl">Tool calls needed when the answer was written down after the first run. Nothing beats not having to look.</div></div>
+    <div class="stat"><div class="num">~2,000</div><div class="lbl">Tokens burned by a single broad search that returns build output and dependency folders alongside real source.</div></div>
+  </div>
+  <p class="caveat">Figures from one measured project, not universal constants — but the ranking they imply has held up consistently.</p>
+
+  <div class="idea">
+    <b>The expensive part is what gets written, not what gets read.</b>
+    Text the assistant produces is billed at a premium and is never cached. A session that generates nine throwaway scripts to figure something out costs far more than one that runs a saved script — the difference is mostly authorship, not reading.
+  </div>
+  <div class="idea">
+    <b>Repeated context is nearly free; fresh results are not.</b>
+    The conversation so far is cached and re-read cheaply. Each <em>new</em> tool result enters at full price. This inverts a common instinct: one long focused session is usually cheaper than several short ones, because restarting throws the cache away and pays for the setup again.
+  </div>
+
+  <div class="callout">
+    <strong>The practical consequence.</strong> Trimming rule files is visible, satisfying, and worth very little. Converting a solved problem into a script, and its answer into a written record, is worth an order of magnitude more. Optimize what recurs, not what's merely large.
+  </div>
+
+  <h2>When the tooling quietly lies</h2>
+  <p class="h2sub">Every layer above assumes the assistant can find what already exists. That assumption is worth testing, because when it fails it fails silently — and silence is indistinguishable from a correct answer.</p>
+
+  <div class="warn">
+    <strong>The most dangerous result is an empty one.</strong> A configuration meant to limit which files got <em>backed up</em> also determined which files could be <em>searched</em>. A search across the whole project returned no matches — not because nothing matched, but because everything had been filtered out before the search began. The assistant had no way to tell those apart.
+  </div>
+
+  <p>The damage isn't the wasted search. It's what a confident "nothing found" leads to next: the rule that matters most — <b>check whether this already exists before building it</b> — inverts into permission to build a second copy. Duplicate implementations are the expensive failure this whole system exists to prevent, and a broken search manufactures them.</p>
+
+  <div class="steps">
+    <div class="step"><b>Treat "no results" as a claim, not a fact.</b> Before concluding something doesn't exist, confirm the search can see anything at all — search for something known to be present. An empty result should trigger a check of the filter first.</div>
+    <div class="step"><b>Verify what each tool actually skips.</b> Tools that look interchangeable often aren't: some honor ignore files, some honor a different set, some honor none. This is worth testing directly rather than assuming, because every assumption here is invisible until it's wrong.</div>
+    <div class="step"><b>Keep exclusions separate from other configuration.</b> When one file controls both what's stored and what's visible, a reasonable change to one silently breaks the other. Search visibility deserves its own explicit, commented configuration.</div>
+    <div class="step"><b>Exclude by structure, not by request.</b> A note asking the assistant to avoid a folder depends on it being read and followed every time. A filter that removes the folder from results cannot be forgotten. Prefer the mechanism over the reminder.</div>
+  </div>
+
+  <div class="callout">
+    <strong>The general lesson.</strong> Guidance is only as good as the assistant's ability to act on it. A rule that says "look before you build" is worthless if looking returns nothing — so the retrieval path deserves the same scrutiny as the rules themselves, and should be tested rather than trusted.
+  </div>
+
   <h2>Five things worth remembering</h2>
   <div class="steps">
     <div class="step"><b>One source of truth per concept.</b> Four versions of the same setting is a defect. One version with documented exceptions is a system.</div>
