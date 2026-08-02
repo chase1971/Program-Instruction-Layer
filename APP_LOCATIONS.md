@@ -118,7 +118,8 @@ Use when you need exact launch paths or proxy ports, not just “which folder is
 
 Each app above with a GitHub row is its **own git repo** (sibling repos, not a monorepo).
 Committing Macro App does **not** commit sibling repos (e.g. frozen Calendar 2.0).
-Programs root (`C:\Users\chase\Documents\Programs\.git`) holds `cursor-patterns`, `.cursor/rules`, and this file.
+Programs root (`C:\Users\chase\Documents\Programs\.git`) — **`chase1971/Program-Instruction-Layer`**
+(instruction layer: `AGENTS.md`, `HOW_TO_INTERACT_WITH_AI.md`, `cursor-patterns/`, `.cursor/rules/` — not app source).
 
 ---
 
