@@ -181,7 +181,8 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | `<app>/CLAUDE.md` | Per-app index — what it is, which rules apply, on-demand docs |
 | `<app>/docs/*_INTEGRATION.md` | Subsystem deep-dives — mental model, symptom→fix, what burned us |
 | `<app>/docs/sessions/SESSIONS.md` | Session log |
-| `agent docs/INSTRUCTION_LAYER_AUDIT.md` | The periodic audit (rung 5, on demand) |
+| `agent docs/INSTRUCTION_LAYER_AUDIT.md` | Workspace-wide periodic audit (rung 5, on demand) |
+| `agent docs/APP_CONFORMANCE_PASS.md` | Bring **one app** up to the current standard |
 | `agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md` | Outward-facing summary for other developers |
 | `scripts/check-docs.js` | The robot |
 
@@ -193,7 +194,8 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 |---|---|
 | A rule remembered | "remember: …" — invokes `capture` |
 | A rule that keeps getting missed | "that's the third time" — forces it up a rung |
-| Periodic instruction cleanup | "run the audit doc" |
+| Periodic instruction cleanup (whole tree) | "run the audit doc" |
+| Modernize one app's agent docs | "run the conformance pass on `<app>`" |
 | Session wrap-up | "end of session protocol" — logs, commits, pushes all dirty repos |
 | State on resuming | "where did we leave off" |
 | A new app | "initialize a new app" — follows `cursor-patterns/INIT_NEW_APP.md` |

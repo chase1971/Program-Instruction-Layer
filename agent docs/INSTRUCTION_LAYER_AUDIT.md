@@ -1,7 +1,7 @@
 # Instruction layer audit
 
 > **Rung 5 — on demand only.** Not in AGENTS, not always-on.  
-> **Where:** `Programs/docs/INSTRUCTION_LAYER_AUDIT.md` (whole workspace — rules, docs, pointers — not one app).  
+> **Where:** `Programs/agent docs/INSTRUCTION_LAYER_AUDIT.md` (whole workspace — rules, docs, pointers — **not one app**; for a single app see `APP_CONFORMANCE_PASS.md`).  
 > **Find it:** grep “instruction layer audit” or “duplicate contradictions audit” when Chase asks to run the periodic doc cleanup.  
 > **Trigger examples:** “Run the audit doc” / “find the doc that cleans up duplicate or contradictory rules and docs” / “periodic instruction cleanup”
 
