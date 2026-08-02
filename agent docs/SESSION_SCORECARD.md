@@ -27,8 +27,8 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 | `--bump-file` after tasks | Read `session-scorecards-log.html` |
 | `--finalize-file` at wrap | Re-count from memory if running file exists |
 
-**Scratch pad:** `docs/.session-scorecard-running.json` (auto)  
-**Archive:** `docs/session-scorecards.jsonl`  
+**Scratch pad:** `agent docs/.session-scorecard-running.json` (auto)  
+**Archive:** `agent docs/session-scorecards.jsonl`  
 **View:** regenerated HTML
 
 ---
@@ -38,19 +38,19 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 When you finish a chunk of work and report to Chase, run:
 
 ```powershell
-node scripts/append-session-scorecard.js --bump-file docs/.scorecard-bump.json
+node scripts/append-session-scorecard.js --bump-file agent docs/.scorecard-bump.json
 ```
 
-**`docs/.scorecard-bump.json`** example — only **this task**, not the whole session:
+**`agent docs/.scorecard-bump.json`** example — only **this task**, not the whole session:
 
 ```json
 {
   "chunkNote": "Built scorecard HTML layout and hover tooltips",
   "addGreps": 2,
   "addTurns": 0,
-  "filesRead": ["docs/SESSION_SCORECARD.md"],
-  "filesEdited": ["scripts/append-session-scorecard.js", "docs/session-scorecards-log.html"],
-  "docsRulesOpened": ["docs/SESSION_SCORECARD.md"]
+  "filesRead": ["agent docs/SESSION_SCORECARD.md"],
+  "filesEdited": ["scripts/append-session-scorecard.js", "agent docs/session-scorecards-log.html"],
+  "docsRulesOpened": ["agent docs/SESSION_SCORECARD.md"]
 }
 ```
 
@@ -65,7 +65,7 @@ HTML shows a dashed **“Current session (live tally)”** card at the top while
 ## End of session (finalize)
 
 ```powershell
-node scripts/append-session-scorecard.js --finalize-file docs/.scorecard-final.json
+node scripts/append-session-scorecard.js --finalize-file agent docs/.scorecard-final.json
 ```
 
 ```json
@@ -102,3 +102,23 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 ---
 
 *Updated: 2026-08-01 — running tally*
+
+---
+
+## `bumped` — derived, never self-reported
+
+`finalize` sets `bumped: true` only if a running tally file existed, i.e. bumps
+were actually logged. The agent cannot claim it.
+
+| `bumped` | `confidence` | What it means |
+|---|---|---|
+| `true` | `high` | Counts accumulated on disk as the work happened — trustworthy |
+| `false` | `low` | Counts reconstructed from memory at the end — order-of-magnitude only |
+
+This separates **"the chat was summarized"** from **"the agent forgot to bump."**
+Those are different failures: the first is a tool limit, the second means the
+always-on bump rule is not being followed. A recurring
+**"Not bumped — counts reconstructed"** pill in the HTML log is the signal to fix
+the rule, not the numbers.
+
+Explicitly passing `confidence` in the finalize JSON still overrides the default.

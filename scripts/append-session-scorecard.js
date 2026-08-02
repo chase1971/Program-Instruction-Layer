@@ -9,9 +9,12 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DATA = path.join(ROOT, 'docs', 'session-scorecards.jsonl');
-const HTML = path.join(ROOT, 'docs', 'session-scorecards-log.html');
-const RUNNING = path.join(ROOT, 'docs', '.session-scorecard-running.json');
+// Folder was renamed docs/ -> "agent docs/" on 2026-08-01. Kept as one constant so
+// the next rename is a single edit. Note the space — quote it in any shell command.
+const DOCS_DIR = 'agent docs';
+const DATA = path.join(ROOT, DOCS_DIR, 'session-scorecards.jsonl');
+const HTML = path.join(ROOT, DOCS_DIR, 'session-scorecards-log.html');
+const RUNNING = path.join(ROOT, DOCS_DIR, '.session-scorecard-running.json');
 
 const DOC_EXT = new Set(['.md', '.mdc', '.html', '.json', '.jsonl', '.txt']);
 const CODE_EXT = new Set([
@@ -32,6 +35,7 @@ const TIPS = {
   outcome: 'Done = finished the goal. Partial = some progress. Abandoned = stopped early.',
   lowConfidence: 'The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.',
   summarized: 'Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.',
+  notBumped: 'The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.',
   worthNoting: 'Something unusual about this session worth a glance — not necessarily a problem.',
   captureSuggest: 'The agent\'s idea for a future rule or doc. Not a list of what you already asked to build unless you did.',
 };
@@ -213,6 +217,7 @@ function sessionCard(e, inProgress) {
         ${typePill}${outPill}
         ${confLow ? pill('Low confidence counts', 'p2', TIPS.lowConfidence) : ''}
         ${e.summarized && !inProgress ? pill('Chat was summarized', 'p2', TIPS.summarized) : ''}
+        ${e.bumped === false && !inProgress ? pill('Not bumped — counts reconstructed', 'p2', TIPS.notBumped) : ''}
         ${inProgress ? pill('Live tally', 'p1', 'Updated after each completed task — survives summarize.') : ''}
       </div>
       <div class="model">${esc(e.model || '—')}</div>
@@ -472,7 +477,11 @@ function finalizeRunning(meta) {
     summaryHuman: meta.summaryHuman || base.summaryHuman,
     outcome: meta.outcome || 'Done',
     summarized: !!meta.summarized,
-    confidence: meta.confidence || (meta.summarized ? 'low' : 'high'),
+    // Derived, never self-reported: a running file only exists if bumps were logged.
+    // Separates "the chat was summarized" from "the agent forgot to bump" — different
+    // failures, different fixes. Counts reconstructed at the end are guesses.
+    bumped: !!r,
+    confidence: meta.confidence || (r ? 'high' : 'low'),
     turns: base.turns + Number(meta.addTurns || 0),
     greps: base.greps,
     corrections: base.corrections + Number(meta.addCorrections || 0),

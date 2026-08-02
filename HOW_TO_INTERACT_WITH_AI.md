@@ -5,7 +5,7 @@
 >
 > **For me:** so I don't have to remember how this works.
 > **For AI:** read this before changing anything about the instruction layer.
-> **For someone else:** send them `docs/AGENT_SETUP_FOR_PEER_REVIEW.md` instead —
+> **For someone else:** send them `agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md` instead —
 > this file is internal detail, that one is the outward-facing summary.
 >
 > **Last updated:** 2026-08-01 — rewritten from scratch.
@@ -80,7 +80,7 @@ anywhere · **bare timing values in rule files**.
 Bare-value check has an escape hatch for durations that genuinely *are* the content:
 `<!-- value-ok: reason -->` on the line.
 
-**Tier 2 — the audit.** `docs/INSTRUCTION_LAYER_AUDIT.md`
+**Tier 2 — the audit.** `agent docs/INSTRUCTION_LAYER_AUDIT.md`
 AI judgment, I trigger it every few months. Catches what a script can't: same topic
 in two homes, contradictory guidance, rules on the wrong rung, and — **§ 2g, highest
 yield** — documentation that contradicts the code it describes.
@@ -181,8 +181,8 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | `<app>/CLAUDE.md` | Per-app index — what it is, which rules apply, on-demand docs |
 | `<app>/docs/*_INTEGRATION.md` | Subsystem deep-dives — mental model, symptom→fix, what burned us |
 | `<app>/docs/sessions/SESSIONS.md` | Session log |
-| `docs/INSTRUCTION_LAYER_AUDIT.md` | The periodic audit (rung 5, on demand) |
-| `docs/AGENT_SETUP_FOR_PEER_REVIEW.md` | Outward-facing summary for other developers |
+| `agent docs/INSTRUCTION_LAYER_AUDIT.md` | The periodic audit (rung 5, on demand) |
+| `agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md` | Outward-facing summary for other developers |
 | `scripts/check-docs.js` | The robot |
 
 ---
