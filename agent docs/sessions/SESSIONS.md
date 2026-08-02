@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-02 — exam2-review-map: full homework harvest + Exam 2 Review
+
+**Files changed:** `agent docs/exam2-review-map.html` (~721 lines), `School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md`
+
+**What worked:** Pearson print harvest (Macro App MCP, no snapshots) for homework 3.6–3.10 and Exam 2 Review. Trimmed map to homework 3.3–3.10 only; updated REVIEW to edited 18-question list; added six review-only PROBLEMS (3.3.63, 3.5.25, 3.5.59, 3.7.23, 3.9.36, 3.9.75); right-panel hover tooltips; tooltip wrap fix for long equations.
+
+**Current state:** Green — map complete for current review/homework set.
+
+**File size flag:** None
+
+**Next session:** Serve at `http://127.0.0.1:8765/exam2-review-map.html`; optional fix for parameterized IDs showing homework vs review instance text.
+
 ## 2026-08-02 — exam2-review-map: 3.4/3.5 problem text + collapsible sections
 
 **Files changed:** `agent docs/exam2-review-map.html` (~660 lines)

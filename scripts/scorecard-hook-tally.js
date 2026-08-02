@@ -19,6 +19,28 @@ const SEARCH_TOOLS = new Set(['Grep', 'Glob', 'WebSearch']);
 const READ_TOOLS = new Set(['Read']);
 const EDIT_TOOLS = new Set(['Write', 'StrReplace', 'Delete', 'EditNotebook']);
 const SHELL_TOOLS = new Set(['Shell']);
+const AGENT_TOOLS = new Set(['Task', 'GetMcpTools', 'WebFetch', 'FetchMcpResource', 'CallMcpTool']);
+
+function bumpToolCount(running, key) {
+  if (!key) {
+    return;
+  }
+  if (!running.toolsUsedCounts) {
+    running.toolsUsedCounts = {};
+  }
+  running.toolsUsedCounts[key] = (running.toolsUsedCounts[key] || 0) + 1;
+}
+
+function mcpToolKey(toolInput) {
+  const args = toolInput.arguments || toolInput;
+  const inner = args.toolName || toolInput.toolName || '';
+  if (!inner) {
+    return null;
+  }
+  let server = args.server || toolInput.server || 'mcp';
+  server = String(server).replace(/^project-0-Programs-/, '');
+  return `${server}:${inner}`;
+}
 
 function mergeUnique(list, add) {
   const set = new Set(list || []);
@@ -44,6 +66,8 @@ function emptyRunning() {
     filesReadList: [],
     filesEditedList: [],
     taskLog: [],
+    toolsUsedCounts: {},
+    browserSnapshots: 0,
     hookTally: false,
     agentBumped: false,
   };
@@ -172,6 +196,16 @@ function recordToolUse(payload) {
         running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
       }
     }
+  } else if (toolName === 'CallMcpTool') {
+    const key = mcpToolKey(toolInput);
+    if (key) {
+      bumpToolCount(running, key);
+      if (key.endsWith(':browser_snapshot')) {
+        running.browserSnapshots = (running.browserSnapshots || 0) + 1;
+      }
+    }
+  } else if (AGENT_TOOLS.has(toolName)) {
+    bumpToolCount(running, toolName);
   } else {
     return;
   }

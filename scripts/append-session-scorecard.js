@@ -34,6 +34,8 @@ const TIPS = {
   codeRead: 'Source code files read (.ts, .js, .py, etc.).',
   docsEdited: 'Document/instruction files changed.',
   codeEdited: 'Source code files changed.',
+  toolsUsed: 'Non-read/edit agent tools (MCP browser, Task, WebFetch, etc.). Snapshots counted separately.',
+  browserSnapshots: 'Explicit browser_snapshot MCP calls — high count usually means exploratory automation.',
   sessionType: 'Category for comparing similar sessions: Pearson, coding, Q&A, mixed, etc.',
   outcome: 'Done = finished the goal. Partial = some progress. Abandoned = stopped early.',
   lowConfidence: 'The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.',
@@ -57,17 +59,144 @@ function fileLabel(filePath) {
   return path.basename(String(filePath || '').replace(/\\/g, '/')) || String(filePath || '');
 }
 
-function formatPathList(list) {
-  if (!list || !list.length) return 'none';
-  return list.map((f) => fileLabel(f)).join(', ');
+
+function dedupePaths(list) {
+  const seen = new Set();
+  const out = [];
+  for (const raw of list || []) {
+    const p = String(raw || '').replace(/\\/g, '/');
+    if (!p || seen.has(p)) continue;
+    seen.add(p);
+    out.push(p);
+  }
+  return out;
 }
 
-function mdcPathsFromEntry(e, filesRead) {
-  if (Array.isArray(e.mdcReadsList) && e.mdcReadsList.length) {
-    return e.mdcReadsList;
+/** AGENTS.md / CLAUDE.md — show which app or Programs root. */
+function agentMarkdownLabel(filePath) {
+  const norm = String(filePath || '').replace(/\\/g, '/');
+  const base = path.basename(norm).toLowerCase();
+  if (base === 'agents.md' || base === 'claude.md') {
+    const kind = base === 'agents.md' ? 'AGENTS.md' : 'CLAUDE.md';
+    if (norm.includes('School Scrips/Macro App/')) return `${kind} — Macro App`;
+    const appMatch = norm.match(/School Scrips\/([^/]+)/);
+    if (appMatch) return `${kind} — ${appMatch[1]}`;
+    if (norm.includes('/Programs/') || norm.startsWith('AGENTS.md') || norm.endsWith('/AGENTS.md')) {
+      return `${kind} — Programs root`;
+    }
+    return `${kind} — ${path.dirname(norm).split('/').slice(-2).join('/') || 'tree'}`;
   }
-  return (filesRead || []).filter((f) => String(f).toLowerCase().endsWith('.mdc'));
+  return fileLabel(norm);
 }
+
+function markdownSortRank(filePath) {
+  const norm = String(filePath || '').replace(/\\/g, '/').toLowerCase();
+  if (norm.endsWith('.mdc')) return 0;
+  if (norm.endsWith('/agents.md')) return 1;
+  if (norm.endsWith('/claude.md')) return 2;
+  return 3;
+}
+
+function sortMarkdownPaths(list) {
+  return dedupePaths(list).sort((a, b) => {
+    const ra = markdownSortRank(a);
+    const rb = markdownSortRank(b);
+    if (ra !== rb) return ra - rb;
+    return agentMarkdownLabel(a).localeCompare(agentMarkdownLabel(b));
+  });
+}
+
+function toolDisplayLabel(key) {
+  const s = String(key || '');
+  const idx = s.indexOf(':');
+  if (idx === -1) return s;
+  const server = s.slice(0, idx).replace(/^project-0-Programs-/, '');
+  return `${server}:${s.slice(idx + 1)}`;
+}
+
+function pathListHtml(paths, labelFn) {
+  if (!paths.length) return '';
+  return `<ul class="path-list">${paths.map((p) => {
+    const isMdc = String(p).toLowerCase().endsWith('.mdc');
+    return `<li><code class="${isMdc ? 'path-mdc' : ''}" title="${esc(p)}">${esc(labelFn(p))}</code></li>`;
+  }).join('')}</ul>`;
+}
+
+function activityChip(label, count) {
+  if (!count) return '';
+  return `<span class="activity-chip">${esc(label)} (${count})</span>`;
+}
+
+function activityCategoryBlock(title, paths, tipText, labelFn) {
+  if (!paths.length) return '';
+  return `<div class="path-section">
+    <h4>${tip(title, tipText)} (${paths.length})</h4>
+    ${pathListHtml(paths, labelFn)}
+  </div>`;
+}
+
+function toolsSectionBody(e) {
+  const counts = e.toolsUsedCounts && typeof e.toolsUsedCounts === 'object' ? e.toolsUsedCounts : {};
+  const entries = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const snaps = Number(e.browserSnapshots) || 0;
+  if (!entries.length && !snaps) return '';
+
+  let html = `<div class="path-section path-section-tools">
+    <h4>${tip('Tools used', TIPS.toolsUsed)}${snaps ? ` · ${esc(String(snaps))} ${tip('snapshots', TIPS.browserSnapshots)}` : ''}</h4>`;
+  if (entries.length) {
+    html += `<ul class="path-list path-list-tools">${entries.map(([key, n]) => {
+      const isSnap = key.endsWith(':browser_snapshot');
+      const cls = isSnap ? 'path-snapshot' : '';
+      const suffix = n > 1 ? ` × ${n}` : '';
+      return `<li><code class="${cls}" title="${esc(key)}">${esc(toolDisplayLabel(key))}${suffix}</code></li>`;
+    }).join('')}</ul>`;
+  } else if (snaps) {
+    html += `<p class="muted-inline">${snaps} browser snapshot(s) — detail not in tool counts (pre-hook session).</p>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function toolsChipCount(e) {
+  const counts = e.toolsUsedCounts && typeof e.toolsUsedCounts === 'object' ? e.toolsUsedCounts : {};
+  const uses = Object.values(counts).reduce((sum, n) => sum + n, 0);
+  const snaps = Number(e.browserSnapshots) || 0;
+  return uses + snaps;
+}
+
+function activityBreakdown(e, readSplit, editSplit, docsRulesList) {
+  const markdownRead = sortMarkdownPaths([...docsRulesList, ...readSplit.doc]);
+  const codeRead = dedupePaths(readSplit.code).sort((a, b) => fileLabel(a).localeCompare(fileLabel(b)));
+  const markdownEdited = sortMarkdownPaths(editSplit.doc);
+  const codeEdited = dedupePaths(editSplit.code);
+
+  const chips = [
+    activityChip('Tools', toolsChipCount(e)),
+    activityChip('Markdowns read', markdownRead.length) || `<span class="activity-chip">Markdowns read (0)</span>`,
+    activityChip('Code read', codeRead.length) || `<span class="activity-chip">Code read (0)</span>`,
+    activityChip('Markdowns edited', markdownEdited.length),
+    activityChip('Code edited', codeEdited.length),
+  ].filter(Boolean);
+
+  const body = [
+    toolsSectionBody(e),
+    activityCategoryBlock('Markdowns read', markdownRead, TIPS.docsRead, agentMarkdownLabel),
+    activityCategoryBlock('Code read', codeRead, TIPS.codeRead, fileLabel),
+    activityCategoryBlock('Markdowns edited', markdownEdited, TIPS.docsEdited, agentMarkdownLabel),
+    activityCategoryBlock('Code edited', codeEdited, TIPS.codeEdited, fileLabel),
+  ].filter(Boolean).join('');
+
+  if (!chips.length && !body) return '';
+
+  return `<details class="activity-details">
+    <summary class="activity-summary">
+      <span class="activity-summary-label">Activity</span>
+      <span class="activity-chips">${chips.join('')}</span>
+    </summary>
+    <div class="activity-body">${body}</div>
+  </details>`;
+}
+
 
 function readMdcLifetimeStats() {
   if (!fs.existsSync(MDC_STATS)) return [];
@@ -208,31 +337,12 @@ function normalizeDocsRulesOpened(val) {
   return [];
 }
 
-function metricCellPaths(label, paths, warn, tipText) {
-  const list = paths || [];
-  const display = list.length ? formatPathList(list) : 'none';
-  const cls = warn ? ' metric-warn' : '';
-  const dt = tipText
-    ? `<abbr class="tip" title="${esc(tipText)}">${esc(label)}</abbr>`
-    : esc(label);
-  const titleAttr = list.length ? ` title="${esc(list.join(' · '))}"` : '';
-  return `<div class="metric${cls}"><dt>${dt}</dt><dd${titleAttr}>${esc(display)}</dd></div>`;
-}
-
 function metricCell(label, value, warn, tipText) {
   const cls = warn ? ' metric-warn' : '';
   const dt = tipText
     ? `<abbr class="tip" title="${esc(tipText)}">${esc(label)}</abbr>`
     : esc(label);
   return `<div class="metric${cls}"><dt>${dt}</dt><dd>${esc(value)}</dd></div>`;
-}
-
-function fileListBlock(title, files, tipText) {
-  if (!files.length) return '';
-  return `<div class="file-group">
-    <h4>${tip(title, tipText)} (${files.length})</h4>
-    <ul>${files.map((f) => `<li><code title="${esc(f)}">${esc(fileLabel(f))}</code></li>`).join('')}</ul>
-  </div>`;
 }
 
 function sessionCard(e, inProgress) {
@@ -249,8 +359,8 @@ function sessionCard(e, inProgress) {
   const editSplit = splitFiles(filesEdited);
 
   const docsRulesList = normalizeDocsRulesOpened(e.docsRulesOpened || e.docsRules);
-  const mdcReads = mdcPathsFromEntry(e, filesRead);
   const summary = e.summaryHuman || e.goal || '—';
+  const browserSnapshots = Number(e.browserSnapshots) || 0;
 
   let worthNoting = '';
   if (e.worthNoting || e.spike) {
@@ -265,20 +375,7 @@ function sessionCard(e, inProgress) {
     </div>`;
   }
 
-  const fileDetails =
-    filesRead.length || filesEdited.length
-      ? `<details class="file-details">
-          <summary>File breakdown (hover labels for definitions)</summary>
-          <div class="file-grid">
-            ${fileListBlock('Docs read', readSplit.doc, TIPS.docsRead)}
-            ${fileListBlock('Code read', readSplit.code, TIPS.codeRead)}
-            ${fileListBlock('Other read', readSplit.other, 'Other paths opened')}
-            ${fileListBlock('Docs edited', editSplit.doc, TIPS.docsEdited)}
-            ${fileListBlock('Code edited', editSplit.code, TIPS.codeEdited)}
-            ${fileListBlock('Other edited', editSplit.other, 'Other paths changed')}
-          </div>
-        </details>`
-      : '';
+  const activityBlock = activityBreakdown(e, readSplit, editSplit, docsRulesList);
 
   const typePill = pill(sessionTypeLabel(e.sessionType), 'p0', TIPS.sessionType);
   const outPill = inProgress
@@ -301,23 +398,16 @@ function sessionCard(e, inProgress) {
       <div class="model">${esc(e.model || '—')}</div>
     </header>
     <p class="summary-human">${esc(summary)}</p>
-    <div class="metric-grid">
+    <div class="metric-grid metric-grid-core">
       ${metricCell('Your messages', e.turns ?? '—', turns >= 20, TIPS.turns)}
       ${metricCell('Searches', e.greps ?? '—', grepWarn, TIPS.greps)}
       ${metricCell('You corrected me', e.corrections ?? '—', corrWarn, TIPS.corrections)}
-      ${metricCellPaths('Docs/rules read', docsRulesList, !docsRulesList.length, TIPS.docsRulesOpened)}
-      ${metricCellPaths('MDC read (tool)', mdcReads, !mdcReads.length, TIPS.mdcReadViaTool)}
+      ${browserSnapshots ? metricCell('Browser snapshots', browserSnapshots, browserSnapshots >= 3, TIPS.browserSnapshots) : ''}
     </div>
-    <div class="metric-grid counts">
-      ${metricCell('Doc files read', readSplit.doc.length, false, TIPS.docsRead)}
-      ${metricCell('Code files read', readSplit.code.length, false, TIPS.codeRead)}
-      ${metricCell('Doc files edited', editSplit.doc.length, false, TIPS.docsEdited)}
-      ${metricCell('Code files edited', editSplit.code.length, false, TIPS.codeEdited)}
-    </div>
+    ${activityBlock}
     ${e.redFlags ? `<p class="red-flags"><strong>Red flags:</strong> ${esc(e.redFlags)}</p>` : ''}
     ${worthNoting}${captureBlock}
     ${e.nextSession ? `<p class="next"><strong>Next time:</strong> ${esc(e.nextSession)}</p>` : ''}
-    ${fileDetails}
   </article>`;
 }
 
@@ -326,8 +416,9 @@ function legendHtml() {
     ['Your messages', TIPS.turns],
     ['Searches', TIPS.greps],
     ['You corrected me', TIPS.corrections],
-    ['Docs/rules read', TIPS.docsRulesOpened],
-    ['MDC read (tool)', TIPS.mdcReadViaTool],
+    ['Browser snapshots', TIPS.browserSnapshots],
+    ['Tools used', TIPS.toolsUsed],
+    ['Markdowns read', TIPS.docsRead],
     ['Low confidence counts', TIPS.lowConfidence],
     ['Chat was summarized', TIPS.summarized],
     ['Agent suggests capturing', TIPS.captureSuggest],
@@ -389,8 +480,17 @@ function buildHtml(entries, running) {
     h1 { font-size: 1.85rem; margin: 0 0 0.35rem; }
     .subtitle { color: var(--muted); margin-bottom: 1rem; }
     abbr.tip { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; border: none; }
-    .legend, .file-details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 1rem; }
-    .legend summary, .file-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .legend, .file-details, .activity-details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 0.65rem; }
+    .legend summary, .file-details summary, .activity-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .activity-summary { flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: center; list-style: none; }
+    .activity-summary::-webkit-details-marker { display: none; }
+    .activity-summary-label { color: var(--text); flex-shrink: 0; }
+    .activity-chips { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; align-items: center; }
+    .activity-chip {
+      display: inline-block; padding: 0.2em 0.55em; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 600; background: #1e3350; color: var(--accent);
+      border: 1px solid rgba(94, 184, 255, 0.35);
+    }
     .legend ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; }
     .legend li { margin: 0.35rem 0; }
     .muted-inline { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
@@ -414,8 +514,8 @@ function buildHtml(entries, running) {
     .model { color: var(--muted); font-size: 0.9rem; }
     .summary-human { margin: 0.35rem 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
     .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.35rem 0; }
-    .metric-grid.counts { opacity: 0.95; }
-    @media (max-width: 700px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
+    .metric-grid-core { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 700px) { .metric-grid, .metric-grid-core { grid-template-columns: repeat(2, 1fr); } }
     .metric { background: #151c26; border-radius: 8px; padding: 0.45rem 0.55rem; }
     .metric-warn { border: 1px solid var(--warn); }
     .metric dt { font-size: 0.68rem; text-transform: uppercase; color: var(--muted); margin: 0; letter-spacing: 0.03em; }
@@ -430,11 +530,15 @@ function buildHtml(entries, running) {
     .capture-box { background: #1a2a22; border: 1px solid var(--accent2); }
     .red-flags { color: var(--danger); font-size: 0.9rem; margin: 0.45rem 0 0; }
     .next { color: var(--muted); font-size: 0.9rem; margin: 0.45rem 0 0; }
-    .file-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 0.5rem; }
-    @media (max-width: 700px) { .file-grid { grid-template-columns: 1fr; } }
-    .file-group h4 { margin: 0 0 0.25rem; font-size: 0.85rem; color: var(--accent); }
-    .file-group ul { margin: 0; padding-left: 1rem; font-size: 0.8rem; color: var(--muted); }
-    .file-group li { margin: 0.15rem 0; word-break: break-all; }
+    .activity-body { margin-top: 0.35rem; }
+    .path-section { margin: 0.5rem 0 0.65rem; padding-top: 0.35rem; border-top: 1px solid rgba(61, 81, 102, 0.45); }
+    .path-section:first-child { border-top: none; padding-top: 0; }
+    .path-section h4 { margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+    .path-list { margin: 0; padding: 0; list-style: none; font-size: 0.82rem; color: var(--muted); }
+    .path-list li { margin: 0.2rem 0; min-height: 1.35rem; display: flex; align-items: baseline; }
+    .path-list code { font-family: Consolas, "Courier New", monospace; font-size: 0.88rem; color: var(--text); word-break: break-all; }
+    .path-list code.path-mdc { color: var(--warn); font-weight: 600; }
+    .path-list code.path-snapshot { color: var(--accent); }
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
     .footer a { color: var(--accent); }
@@ -502,6 +606,8 @@ function emptyRunning() {
     mdcReadsList: [],
     filesReadList: [],
     filesEditedList: [],
+    toolsUsedCounts: {},
+    browserSnapshots: 0,
     taskLog: [],
     hookTally: false,
     agentBumped: false,
@@ -524,6 +630,8 @@ function runningToDisplayEntry(r) {
     mdcReadsList: r.mdcReadsList || [],
     filesReadList: r.filesReadList,
     filesEditedList: r.filesEditedList,
+    toolsUsedCounts: r.toolsUsedCounts || {},
+    browserSnapshots: r.browserSnapshots || 0,
     worthNoting: [
       r.taskLog?.length
         ? `Tasks logged so far: ${r.taskLog.length} (last: ${r.taskLog[r.taskLog.length - 1].note || '—'})`
@@ -599,6 +707,8 @@ function finalizeRunning(meta) {
     filesReadList: base.filesReadList,
     filesEditedList: base.filesEditedList,
     mdcReadsList: base.mdcReadsList || [],
+    toolsUsedCounts: base.toolsUsedCounts || {},
+    browserSnapshots: base.browserSnapshots || 0,
     worthNoting: meta.worthNoting || '',
     captureCandidate: meta.captureCandidate || '',
     nextSession: meta.nextSession || '',

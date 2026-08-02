@@ -42,8 +42,10 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 | `Grep`, `Glob`, `WebSearch`, `Shell` | +1 search |
 | `Read` | file read (+ docs/rules if path matches; **`.mdc` → `mdcReadsList` + lifetime stats**) |
 | `Write`, `StrReplace`, `Delete`, `EditNotebook` | file edited |
+| `CallMcpTool` | tool count (`server:toolName`); `browser_snapshot` also increments snapshot total |
+| `Task`, `GetMcpTools`, `WebFetch`, `FetchMcpResource` | tool count |
 
-Sets `hookTally: true` on the running object. Finalize shows a **Hook tallied** pill; `confidence` is **medium** when hooks ran but the agent never bumped.
+HTML groups **Tools**, **Markdowns** (`.mdc` first, then AGENTS/CLAUDE with app label), and **Code** in collapsible vertical lists (5 shown, expand for rest). **Your messages** still needs `addTurns` on finalize — hooks do not count chat turns.
 
 **Hooks do not replace bumps** — they miss task boundaries (`chunkNote`), turns, corrections, and anything run outside Cursor tools (e.g. manual `ilspycmd` in an external terminal).
 
@@ -116,7 +118,8 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 | **`addGreps` / bump** | Searches **this chunk** |
 | **`docsRulesOpened`** | Instruction files **read** (.md, .mdc) — not created. HTML shows **filename only**; hover for full path. |
 | **`mdcReadsList`** | Subset: `.mdc` files opened via **Read tool**. Lifetime totals in `agent docs/mdc-read-stats.json` + HTML panel. **Does not** count Cursor auto-injecting glob rules when a matching file is open. |
-| **`filesRead` / `filesEdited`** | Paths; HTML splits doc vs code |
+| **`filesRead` / `filesEdited`** | Paths; HTML splits into Tools / Markdowns / Code sections |
+| **`toolsUsedCounts`** | MCP and other agent tools (from hook); snapshots also in `browserSnapshots` |
 
 ---
 
