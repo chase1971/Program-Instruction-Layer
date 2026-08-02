@@ -40,7 +40,7 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 | Tool | Count |
 |------|--------|
 | `Grep`, `Glob`, `WebSearch`, `Shell` | +1 search |
-| `Read` | file read (+ docs/rules if path matches) |
+| `Read` | file read (+ docs/rules if path matches; **`.mdc` → `mdcReadsList` + lifetime stats**) |
 | `Write`, `StrReplace`, `Delete`, `EditNotebook` | file edited |
 
 Sets `hookTally: true` on the running object. Finalize shows a **Hook tallied** pill; `confidence` is **medium** when hooks ran but the agent never bumped.
@@ -114,12 +114,13 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 |-------|---------|
 | **`summaryHuman`** | 1–2 fluid sentences (finalize only) |
 | **`addGreps` / bump** | Searches **this chunk** |
-| **`docsRulesOpened`** | Instruction files **read** (.md, .mdc) — not created |
+| **`docsRulesOpened`** | Instruction files **read** (.md, .mdc) — not created. HTML shows **filename only**; hover for full path. |
+| **`mdcReadsList`** | Subset: `.mdc` files opened via **Read tool**. Lifetime totals in `agent docs/mdc-read-stats.json` + HTML panel. **Does not** count Cursor auto-injecting glob rules when a matching file is open. |
 | **`filesRead` / `filesEdited`** | Paths; HTML splits doc vs code |
 
 ---
 
-*Updated: 2026-08-02 — hook auto-tally*
+*Updated: 2026-08-02 — hook auto-tally; MDC Read tracking + basename display*
 
 ---
 

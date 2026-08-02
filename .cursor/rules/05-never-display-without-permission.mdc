@@ -1,6 +1,6 @@
 ---
-description: Never run anything that puts pixels on Chase's screens, or changes his display config, without explicit per-run permission
-alwaysApply: true
+description: Never run anything that puts pixels on Chase's screens, or changes his display config, without explicit per-run permission. Detail behind AGENTS.md § Never put anything on Chase's screen.
+alwaysApply: false
 ---
 
 # Never put anything on Chase's screen without asking

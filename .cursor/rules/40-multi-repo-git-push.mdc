@@ -1,6 +1,6 @@
 ﻿---
-description: Sync every git repo under Programs — pull at the start of a session, commit and push at the end. Not just the active app.
-alwaysApply: true
+description: Sync every git repo under Programs — pull at the start of a session, commit and push at the end. Not just the active app. Summary lives in AGENTS.md § Git.
+alwaysApply: false
 ---
 
 # Multi-repo Git — pull at start, commit and push at end

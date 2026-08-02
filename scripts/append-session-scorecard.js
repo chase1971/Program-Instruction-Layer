@@ -15,6 +15,7 @@ const DOCS_DIR = 'agent docs';
 const DATA = path.join(ROOT, DOCS_DIR, 'session-scorecards.jsonl');
 const HTML = path.join(ROOT, DOCS_DIR, 'session-scorecards-log.html');
 const RUNNING = path.join(ROOT, DOCS_DIR, '.session-scorecard-running.json');
+const MDC_STATS = path.join(ROOT, DOCS_DIR, 'mdc-read-stats.json');
 
 const DOC_EXT = new Set(['.md', '.mdc', '.html', '.json', '.jsonl', '.txt']);
 const CODE_EXT = new Set([
@@ -26,7 +27,9 @@ const TIPS = {
   turns: 'How many messages you sent in this chat. Rough proxy for how long the session ran.',
   greps: 'How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.',
   corrections: 'Times you pushed back: "no", "wrong", "again", "third time". High means the agent drifted or misunderstood.',
-  docsRulesOpened: 'Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.',
+  docsRulesOpened: 'Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Names only in the card — hover for full path.',
+  mdcReadViaTool: 'Times the agent used Read on a .mdc file. Does NOT include Cursor auto-injecting rules when a matching file is open.',
+  mdcLifetime: 'Lifetime total across sessions — Read tool on .mdc only. Auto-injected rules are invisible to this log.',
   docsRead: 'Document/instruction files read (.md, .mdc, .html, etc.).',
   codeRead: 'Source code files read (.ts, .js, .py, etc.).',
   docsEdited: 'Document/instruction files changed.',
@@ -47,6 +50,60 @@ function esc(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+/** Display name in HTML lists — basename only; full path in title tooltip. */
+function fileLabel(filePath) {
+  return path.basename(String(filePath || '').replace(/\\/g, '/')) || String(filePath || '');
+}
+
+function formatPathList(list) {
+  if (!list || !list.length) return 'none';
+  return list.map((f) => fileLabel(f)).join(', ');
+}
+
+function mdcPathsFromEntry(e, filesRead) {
+  if (Array.isArray(e.mdcReadsList) && e.mdcReadsList.length) {
+    return e.mdcReadsList;
+  }
+  return (filesRead || []).filter((f) => String(f).toLowerCase().endsWith('.mdc'));
+}
+
+function readMdcLifetimeStats() {
+  if (!fs.existsSync(MDC_STATS)) return [];
+  try {
+    const raw = JSON.parse(fs.readFileSync(MDC_STATS, 'utf8'));
+    return Object.entries(raw)
+      .map(([name, row]) => ({ name, count: row.count || 0, last: row.last || null }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  } catch {
+    return [];
+  }
+}
+
+function mdcLifetimeBlock() {
+  const rows = readMdcLifetimeStats();
+  if (!rows.length) {
+    return `<details class="legend">
+      <summary>${tip('MDC lifetime (Read tool)', TIPS.mdcLifetime)} — no .mdc reads logged yet</summary>
+      <p class="muted-inline">When Cursor <strong>auto-injects</strong> a glob rule because a file is open, that does not appear here — only explicit agent <code>Read</code> on a <code>.mdc</code> file.</p>
+    </details>`;
+  }
+  const top = rows.slice(0, 12);
+  const rest = rows.length - top.length;
+  return `<details class="legend">
+    <summary>${tip('MDC lifetime (Read tool)', TIPS.mdcLifetime)} — ${rows.length} rule file(s) opened via Read</summary>
+    <p class="muted-inline">Auto-injected glob rules (file open, no Read) are <strong>not</strong> counted. Low numbers here do not mean a rule is useless.</p>
+    <table class="mdc-table">
+      <thead><tr><th>Rule file</th><th>Reads</th><th>Last</th></tr></thead>
+      <tbody>${top.map((r) => `<tr>
+        <td><code>${esc(r.name)}</code></td>
+        <td>${r.count}</td>
+        <td>${r.last ? esc(timeShort(r.last)) : '—'}</td>
+      </tr>`).join('')}</tbody>
+    </table>
+    ${rest > 0 ? `<p class="muted-inline">+ ${rest} more in <code>agent docs/mdc-read-stats.json</code></p>` : ''}
+  </details>`;
 }
 
 function readEntries() {
@@ -142,6 +199,26 @@ function outcomeLabel(o) {
   return map[String(o || '').toLowerCase()] || o || '—';
 }
 
+function normalizeDocsRulesOpened(val) {
+  if (Array.isArray(val)) return val;
+  if (!val || val === 'none') return [];
+  if (typeof val === 'string') {
+    return val.split(',').map((s) => s.trim()).filter(Boolean);
+  }
+  return [];
+}
+
+function metricCellPaths(label, paths, warn, tipText) {
+  const list = paths || [];
+  const display = list.length ? formatPathList(list) : 'none';
+  const cls = warn ? ' metric-warn' : '';
+  const dt = tipText
+    ? `<abbr class="tip" title="${esc(tipText)}">${esc(label)}</abbr>`
+    : esc(label);
+  const titleAttr = list.length ? ` title="${esc(list.join(' · '))}"` : '';
+  return `<div class="metric${cls}"><dt>${dt}</dt><dd${titleAttr}>${esc(display)}</dd></div>`;
+}
+
 function metricCell(label, value, warn, tipText) {
   const cls = warn ? ' metric-warn' : '';
   const dt = tipText
@@ -154,7 +231,7 @@ function fileListBlock(title, files, tipText) {
   if (!files.length) return '';
   return `<div class="file-group">
     <h4>${tip(title, tipText)} (${files.length})</h4>
-    <ul>${files.map((f) => `<li><code>${esc(f)}</code></li>`).join('')}</ul>
+    <ul>${files.map((f) => `<li><code title="${esc(f)}">${esc(fileLabel(f))}</code></li>`).join('')}</ul>
   </div>`;
 }
 
@@ -171,9 +248,8 @@ function sessionCard(e, inProgress) {
   const readSplit = splitFiles(filesRead);
   const editSplit = splitFiles(filesEdited);
 
-  const docsRules = Array.isArray(e.docsRulesOpened)
-    ? (e.docsRulesOpened.length ? e.docsRulesOpened.join(', ') : 'none')
-    : (e.docsRulesOpened || e.docsRules || 'none');
+  const docsRulesList = normalizeDocsRulesOpened(e.docsRulesOpened || e.docsRules);
+  const mdcReads = mdcPathsFromEntry(e, filesRead);
   const summary = e.summaryHuman || e.goal || '—';
 
   let worthNoting = '';
@@ -229,7 +305,8 @@ function sessionCard(e, inProgress) {
       ${metricCell('Your messages', e.turns ?? '—', turns >= 20, TIPS.turns)}
       ${metricCell('Searches', e.greps ?? '—', grepWarn, TIPS.greps)}
       ${metricCell('You corrected me', e.corrections ?? '—', corrWarn, TIPS.corrections)}
-      ${metricCell('Docs/rules read', docsRules === 'none' ? 'none' : docsRules, docsRules === 'none', TIPS.docsRulesOpened)}
+      ${metricCellPaths('Docs/rules read', docsRulesList, !docsRulesList.length, TIPS.docsRulesOpened)}
+      ${metricCellPaths('MDC read (tool)', mdcReads, !mdcReads.length, TIPS.mdcReadViaTool)}
     </div>
     <div class="metric-grid counts">
       ${metricCell('Doc files read', readSplit.doc.length, false, TIPS.docsRead)}
@@ -250,6 +327,7 @@ function legendHtml() {
     ['Searches', TIPS.greps],
     ['You corrected me', TIPS.corrections],
     ['Docs/rules read', TIPS.docsRulesOpened],
+    ['MDC read (tool)', TIPS.mdcReadViaTool],
     ['Low confidence counts', TIPS.lowConfidence],
     ['Chat was summarized', TIPS.summarized],
     ['Agent suggests capturing', TIPS.captureSuggest],
@@ -315,6 +393,10 @@ function buildHtml(entries, running) {
     .legend summary, .file-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
     .legend ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; }
     .legend li { margin: 0.35rem 0; }
+    .muted-inline { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
+    .mdc-table { width: 100%; border-collapse: collapse; margin-top: 0.65rem; font-size: 0.9rem; }
+    .mdc-table th, .mdc-table td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
+    .mdc-table th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
     .summary-bar {
       display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;
       padding: 0.85rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
@@ -363,6 +445,7 @@ function buildHtml(entries, running) {
     <h1>Session scorecards</h1>
     <p class="subtitle">Hover underlined labels for definitions. Grouped by day — data in <code>session-scorecards.jsonl</code>.</p>
     ${legendHtml()}
+    ${mdcLifetimeBlock()}
     <div class="summary-bar">
       <div><dt>Total sessions</dt><dd>${total}</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">${esc(last)}</dd></div>
@@ -416,6 +499,7 @@ function emptyRunning() {
     greps: 0,
     corrections: 0,
     docsRulesOpened: [],
+    mdcReadsList: [],
     filesReadList: [],
     filesEditedList: [],
     taskLog: [],
@@ -437,6 +521,7 @@ function runningToDisplayEntry(r) {
     greps: r.greps,
     corrections: r.corrections,
     docsRulesOpened: r.docsRulesOpened,
+    mdcReadsList: r.mdcReadsList || [],
     filesReadList: r.filesReadList,
     filesEditedList: r.filesEditedList,
     worthNoting: [
@@ -462,6 +547,7 @@ function bumpRunning(delta) {
   r.filesReadList = mergeUnique(r.filesReadList, delta.filesRead);
   r.filesEditedList = mergeUnique(r.filesEditedList, delta.filesEdited);
   r.docsRulesOpened = mergeUnique(r.docsRulesOpened, delta.docsRulesOpened);
+  r.mdcReadsList = mergeUnique(r.mdcReadsList, delta.mdcReadsList);
   if (delta.chunkNote) {
     if (!r.taskLog) r.taskLog = [];
     r.taskLog.push({
@@ -509,11 +595,10 @@ function finalizeRunning(meta) {
     turns: base.turns + Number(meta.addTurns || 0),
     greps: base.greps,
     corrections: base.corrections + Number(meta.addCorrections || 0),
-    docsRulesOpened: base.docsRulesOpened.length
-      ? base.docsRulesOpened.join(', ')
-      : 'none',
+    docsRulesOpened: base.docsRulesOpened.length ? base.docsRulesOpened : 'none',
     filesReadList: base.filesReadList,
     filesEditedList: base.filesEditedList,
+    mdcReadsList: base.mdcReadsList || [],
     worthNoting: meta.worthNoting || '',
     captureCandidate: meta.captureCandidate || '',
     nextSession: meta.nextSession || '',

@@ -12,6 +12,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
+const MDC_STATS = path.join(ROOT, 'agent docs', 'mdc-read-stats.json');
 
 const DOC_EXT = new Set(['.md', '.mdc', '.html', '.json', '.jsonl', '.txt']);
 const SEARCH_TOOLS = new Set(['Grep', 'Glob', 'WebSearch']);
@@ -39,6 +40,7 @@ function emptyRunning() {
     greps: 0,
     corrections: 0,
     docsRulesOpened: [],
+    mdcReadsList: [],
     filesReadList: [],
     filesEditedList: [],
     taskLog: [],
@@ -91,6 +93,39 @@ function isDocRulePath(filePath) {
   );
 }
 
+function isMdcPath(filePath) {
+  const normalized = normalizePath(filePath);
+  if (!normalized) {
+    return false;
+  }
+  return path.extname(normalized.toLowerCase()) === '.mdc';
+}
+
+function mdcLabel(filePath) {
+  return path.basename(String(filePath || '').replace(/\\/g, '/'));
+}
+
+function bumpLifetimeMdcStats(filePath) {
+  if (!isMdcPath(filePath)) {
+    return;
+  }
+  const key = mdcLabel(filePath);
+  let stats = {};
+  if (fs.existsSync(MDC_STATS)) {
+    try {
+      stats = JSON.parse(fs.readFileSync(MDC_STATS, 'utf8'));
+    } catch {
+      stats = {};
+    }
+  }
+  const row = stats[key] || { count: 0, last: null, lastPath: null };
+  row.count += 1;
+  row.last = new Date().toISOString();
+  row.lastPath = normalizePath(filePath);
+  stats[key] = row;
+  fs.writeFileSync(MDC_STATS, JSON.stringify(stats, null, 2), 'utf8');
+}
+
 function pickPath(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') {
     return null;
@@ -123,6 +158,10 @@ function recordToolUse(payload) {
       running.filesReadList = mergeUnique(running.filesReadList, [filePath]);
       if (isDocRulePath(filePath)) {
         running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
+      }
+      if (isMdcPath(filePath)) {
+        running.mdcReadsList = mergeUnique(running.mdcReadsList, [filePath]);
+        bumpLifetimeMdcStats(filePath);
       }
     }
   } else if (EDIT_TOOLS.has(toolName)) {

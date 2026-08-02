@@ -1,6 +1,8 @@
 ---
-description: Frozen apps — skip git scans, exploration, and edits unless Chase explicitly names the app
-alwaysApply: true
+description: Frozen apps — skip git scans, exploration, and edits unless Chase explicitly names the app. Summary lives in AGENTS.md § Apps in this tree.
+globs:
+  - "School Scrips/Calendar 2.0/**"
+alwaysApply: false
 ---
 
 # Frozen apps

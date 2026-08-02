@@ -1,6 +1,10 @@
 ---
-description: Windows PowerShell shell syntax — no && chaining; use ; or parallel tool calls
-alwaysApply: true
+description: Windows PowerShell shell syntax — no && chaining; use ; or parallel tool calls. Summary lives in AGENTS.md § Windows PowerShell.
+globs:
+  - "**/*.ps1"
+  - "**/*.bat"
+  - "**/*.cmd"
+alwaysApply: false
 ---
 
 # Windows PowerShell Shell Commands
