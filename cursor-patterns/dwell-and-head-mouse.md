@@ -121,6 +121,12 @@ These each exist because a specific bug bit. Do not "clean them up".
 
 - **Leave handlers are no-ops on dwell surfaces.** Wobble fires `pointerleave`
   constantly. A **poll loop** owns hit-testing (`isPointerOverRect`).
+  > ⚠️ **Unresolved (2026-08-01):** the toolbar's own overlays **do** cancel the
+  > arming timer when the cursor leaves the handle — the shipped code contradicts
+  > this rule. It has not caused a reported problem, so it may be that the gyro
+  > settles inside the handle in practice. **If a drag handle ever feels like it
+  > "won't catch," this rule is right and the code is wrong** — and every overlay
+  > in `electron-toolbar/electron-app/src/window-managers/` shares the behavior.
 - **Re-arm requires a physical exit.** After release, the same handle must not
   re-arm until the cursor actually leaves it (`needsExitHandleRef` in the Studio),
   or it instantly re-latches.
