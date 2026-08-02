@@ -21,6 +21,8 @@
       --hw-only-bg: #1a2332;
       --review-only-bg: #3d2f1a;
       --review-only-border: #f0b429;
+      --added-bg: #1a2a3d;
+      --added-border: #5eb8ff;
     }
     * { box-sizing: border-box; }
     body {
@@ -57,6 +59,7 @@
     .swatch-match { background: var(--match-bg); border-color: var(--match-border); }
     .swatch-hw { background: var(--hw-only-bg); border-color: var(--border); }
     .swatch-review { background: var(--review-only-bg); border-color: var(--review-only-border); }
+    .swatch-added { background: var(--added-bg); border-color: var(--added-border); }
 
     .columns {
       display: grid;
@@ -72,6 +75,7 @@
       border-radius: 12px;
       overflow: hidden;
     }
+    #left-panel { overflow: visible; }
     .panel-head {
       padding: 0.85rem 1rem;
       background: var(--surface2);
@@ -159,6 +163,12 @@
       padding-left: calc(1.5rem - 4px);
     }
     .q-row.match .qid { color: var(--accent2); }
+    .q-row.added-planned {
+      background: var(--added-bg);
+      border-left: 4px solid var(--added-border);
+      padding-left: calc(1.5rem - 4px);
+    }
+    .q-row.added-planned .qid { color: var(--accent); }
     .q-row.hw-only { background: transparent; }
     .q-row.review-only {
       background: var(--review-only-bg);
@@ -179,6 +189,32 @@
     .badge-match { background: #264032; color: var(--accent2); }
     .badge-hw { background: #243044; color: var(--muted); }
     .badge-review { background: #4a3818; color: var(--warn); }
+    .badge-added { background: #1e3350; color: var(--accent); }
+
+    .btn-add-review {
+      min-height: 44px;
+      min-width: 7.5rem;
+      padding: 0.35rem 0.65rem;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: rgba(94, 184, 255, 0.12);
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .btn-add-review:hover,
+    .btn-add-review:focus-visible {
+      background: rgba(94, 184, 255, 0.22);
+    }
+    .btn-add-review.is-added {
+      border-color: var(--accent2);
+      background: rgba(126, 231, 135, 0.14);
+      color: var(--accent2);
+    }
 
     .empty-msg {
       padding: 1.5rem 1rem;
@@ -201,6 +237,64 @@
       font-size: 0.88rem;
     }
     .footer a { color: var(--accent); }
+
+    .legend-item .swatch-problem { background: #2a2248; border-color: var(--purple); }
+
+    .qid-wrap {
+      position: relative;
+      flex-shrink: 0;
+      min-width: 5.5rem;
+    }
+    .qid-wrap.has-problem .qid {
+      border-bottom: 1px dotted rgba(210, 168, 255, 0.55);
+      cursor: help;
+    }
+    .qid-wrap.has-problem:hover .qid,
+    .qid-wrap.has-problem:focus-within .qid {
+      color: var(--accent);
+      background: rgba(94, 184, 255, 0.1);
+      border-radius: 4px;
+    }
+    .q-row.match .qid-wrap.has-problem:hover .qid,
+    .q-row.match .qid-wrap.has-problem:focus-within .qid {
+      color: var(--accent2);
+      background: rgba(126, 231, 135, 0.12);
+    }
+    .problem-tip {
+      display: none;
+      position: absolute;
+      left: calc(100% + 0.65rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      width: max-content;
+      max-width: 260px;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--purple);
+      border-radius: 8px;
+      background: #15101f;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      line-height: 1.35;
+    }
+    .qid-wrap.has-problem:hover .problem-tip,
+    .qid-wrap.has-problem:focus-within .problem-tip {
+      display: block;
+    }
+    .problem-tip .tip-expr {
+      display: block;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .problem-tip .tip-prompt {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -212,11 +306,13 @@
       <div class="legend-item"><span class="swatch swatch-match"></span> Same ID on homework &amp; review</div>
       <div class="legend-item"><span class="swatch swatch-hw"></span> Homework only (not on review)</div>
       <div class="legend-item"><span class="swatch swatch-review"></span> Review only (not on this homework)</div>
+      <div class="legend-item"><span class="swatch swatch-problem"></span> Hover question ID — quick problem preview</div>
+      <div class="legend-item"><span class="swatch swatch-added"></span> Marked to add to Exam 2 Review (saved in browser)</div>
     </div>
 
     <div class="columns">
       <div class="panel" id="left-panel">
-        <div class="panel-head">Homework <span>— click section to expand</span></div>
+        <div class="panel-head">Homework <span>— click section to expand or collapse</span></div>
         <div id="homework-sections"></div>
       </div>
 
@@ -229,7 +325,7 @@
 
     <div class="footer">
       <a href="http://127.0.0.1:8765/exam2-review-map.html">http://127.0.0.1:8765/exam2-review-map.html</a>
-      · 3.7 uses <strong>Copy</strong> assignment · captured 2026-08-01
+      · 3.7 uses <strong>Copy</strong> assignment · captured 2026-08-01 · problem text 2026-08-02
     </div>
   </div>
 
@@ -312,7 +408,80 @@
       { id: "3.11", label: "3.11 Related Rates", section: "3.11", ids: [], noHw: true },
     ];
 
-    let selectedId = "3.4";
+    let selectedId = "3.3";
+    const ADDED_STORAGE_KEY = "exam2-review-map-added";
+    let addedToReview = new Set(JSON.parse(localStorage.getItem(ADDED_STORAGE_KEY) || "[]"));
+
+    function saveAddedToReview() {
+      localStorage.setItem(ADDED_STORAGE_KEY, JSON.stringify([...addedToReview]));
+    }
+
+    function toggleAddToReview(id) {
+      if (addedToReview.has(id)) addedToReview.delete(id);
+      else addedToReview.add(id);
+      saveAddedToReview();
+      renderAll();
+    }
+
+    function isOnReview(id, reviewSet) {
+      return reviewSet.has(id) || addedToReview.has(id);
+    }
+
+    function isPlannedAdd(id, reviewSet) {
+      return addedToReview.has(id) && !reviewSet.has(id);
+    }
+
+    // Pearson print harvest — keyed by question ID (3.3–3.5 homework, 2026-08-02)
+    const PROBLEMS = {
+      "3.3.19": { prompt: "Find the derivative of the following function.", expr: "y = x¹¹" },
+      "3.3.21": { prompt: "Find the derivative of the following function.", expr: "f(x) = 4" },
+      "3.3.22": { prompt: "Find the derivative of the following function.", expr: "g(x) = e¹⁵" },
+      "3.3.23": { prompt: "Find the derivative of the following function.", expr: "f(x) = 5x³" },
+      "3.3.27": { prompt: "Find the derivative of the following function.", expr: "p(x) = 6x" },
+      "3.3.28": { prompt: "Find the derivative of the following function.", expr: "g(t) = 8√t" },
+      "3.3.29": { prompt: "Find the derivative of the following function.", expr: "g(t) = 30t²" },
+      "3.3.31": { prompt: "Find the derivative of the following function.", expr: "f(x) = 3x⁹ + 2x" },
+      "3.3.33": { prompt: "Find the derivative of the following function.", expr: "f(x) = 7x³ − 39x + e³" },
+      "3.3.35": { prompt: "Find the derivative of the following function.", expr: "g(w) = 9w⁴ + 5w² + 12w" },
+      "3.3.47": { prompt: "Find the derivative by first expanding.", expr: "f(x) = (2x + 1)(5x² + 8)" },
+      "3.3.51": { prompt: "Find the derivative by first expanding.", expr: "h(x) = (x³ + 5)²" },
+      "3.3.49": { prompt: "Find the derivative by first simplifying.", expr: "f(w) = (8w⁶ − 5w²) / (7w²)" },
+      "3.3.53": { prompt: "Find the derivative by first simplifying.", expr: "y = (x − 22) / (√x − √22)" },
+      "3.3.68": { prompt: "Find f′(x), f″(x), and f⁽³⁾(x).", expr: "f(x) = 8x³ + 5x² + 4x" },
+      "3.3.71": { prompt: "Find f′(x), f″(x), and f⁽³⁾(x).", expr: "f(x) = (x² − 3x − 40) / (x + 5)" },
+      "3.3.72": { prompt: "Find f′(x), f″(x), and f⁽³⁾(x).", expr: "f(x) = 2eˣ" },
+      "3.3.44": { prompt: "Cell culture growth rate on [0, 7].", expr: "p(t) = 1300eᵗ" },
+      "3.4.10": { prompt: "Find the derivative two ways: Product Rule and by expanding first.", expr: "h(z) = (z³ − 5z² + 4z)(z − 6)" },
+      "3.4.11": { prompt: "Find the derivative two ways: Quotient Rule and by simplifying first.", expr: "h(w) = (w⁴ − w)/w" },
+      "3.4.19": { prompt: "Find the derivative of the following function.", expr: "f(x) = 5x³(2x² − 1)" },
+      "3.4.20": { prompt: "Compute the derivative of the following function.", expr: "f(x) = 9x − 13xeˣ" },
+      "3.4.21": { prompt: "Find the derivative of the following function.", expr: "f(x) = 3x/(x + 2)" },
+      "3.4.22": { prompt: "Find the derivative of the following function.", expr: "f(x) = (x³ − 3x² + x)/(x − 6)" },
+      "3.4.24": { prompt: "Find the derivative of the following function.", expr: "g(x) = eˣ(7x² + 11x + 8)" },
+      "3.4.25": { prompt: "Find the derivative of the following function.", expr: "f(x) = 8eˣ/(eˣ + 3)" },
+      "3.4.29": { prompt: "Find the derivative of the following function.", expr: "y = (4t − 1)(3t − 5)⁻¹" },
+      "3.4.30": { prompt: "Find the derivative of the following function.", expr: "h(x) = (8x² + 3)/(x² + 1)" },
+      "3.4.37": { prompt: "Find the derivative of the following function.", expr: "g(x) = eˣ/(3x² + 5)" },
+      "3.4.39": { prompt: "Find the derivative of the following function.", expr: "y = 50x⁻⁵" },
+      "3.4.40": { prompt: "Find the derivative of the following function.", expr: "y = 10/x³" },
+      "3.4.41": { prompt: "Find the derivative of the following function.", expr: "g(x) = 3x³ + 7/x²" },
+      "3.4.43": { prompt: "Find the derivative of the following function.", expr: "g(x) = (x⁶ + 2x² + 3)/x⁶" },
+      "3.4.73": { prompt: "Find f′(x) and f″(x).", expr: "f(x) = (x² − 5x)/(x + 1)" },
+      "3.5.23": { prompt: "Find the derivative of the following function.", expr: "y = 8 sin x + 7 cos x" },
+      "3.5.24": { prompt: "Find the derivative of the following function.", expr: "y = −4x² + 5 cos x" },
+      "3.5.29": { prompt: "Find dy/dx for the following function.", expr: "y = 9 cos x / (9 − 4 cos x)" },
+      "3.5.31": { prompt: "Find dy/dx for the following function.", expr: "y = 12 sin x cos x" },
+      "3.5.41": { prompt: "Find dy/dx for the following function.", expr: "y = (5 − cos x)/(5 + cos x)" },
+      "3.5.43": { prompt: "Find the derivative of the following function.", expr: "y = 2 sec x + 5 csc x" },
+      "3.5.44": { prompt: "Find the derivative of the following function.", expr: "y = cos x cot x" },
+      "3.5.46": { prompt: "Find the derivative of the following function.", expr: "y = cos w / (1 + cos w)" },
+      "3.7.44": { prompt: "Calculate the derivative of the following function.", expr: "y = cos(8 sin x)" },
+      "3.7.46": { prompt: "Calculate the derivative of the following function.", expr: "y = (cos x + 4 sin x)⁸" },
+      "3.7.49": { prompt: "Calculate the derivative of the following function.", expr: "y = √(2 + tan² x)" },
+      "3.7.55": { prompt: "Calculate the derivative of the following function.", expr: "y = cos⁴(sin(6x))" },
+      "3.5.57": { prompt: "Find y″.", expr: "y = 3x sin x" },
+      "3.5.61": { prompt: "Find y″ for the following function.", expr: "y = 8 tan x" },
+    };
 
     function reviewForSection(section) {
       return REVIEW.filter(r => r.questionId.startsWith(section + "."));
@@ -323,9 +492,10 @@
       const hwSet = new Set(hw.ids);
       const reviewSet = new Set(reviewRows.map(r => r.questionId));
       const matched = hw.ids.filter(id => reviewSet.has(id));
-      const hwOnly = hw.ids.filter(id => !reviewSet.has(id));
-      const reviewOnly = reviewRows.filter(r => !hwSet.has(r.questionId));
-      return { reviewRows, matched, hwOnly, reviewOnly, hwSet, reviewSet };
+      const planned = hw.ids.filter(id => isPlannedAdd(id, reviewSet));
+      const hwOnly = hw.ids.filter(id => !isOnReview(id, reviewSet));
+      const reviewOnly = reviewRows.filter(r => !hwSet.has(r.questionId) && !addedToReview.has(r.questionId));
+      return { reviewRows, matched, planned, hwOnly, reviewOnly, hwSet, reviewSet };
     }
 
     function esc(s) {
@@ -347,10 +517,11 @@
           '<span class="chev">' + (isActive ? "▼" : "▶") + '</span>' +
           '<span class="label">' + esc(hw.label) + '</span>' +
           '<span class="counts">' +
-            (hw.noHw ? "review only" : hw.ids.length + " hw · " + cmp.matched.length + " match") +
+            (hw.noHw ? "review only" : hw.ids.length + " hw · " + cmp.matched.length + " match" +
+              (cmp.planned.length ? " · " + cmp.planned.length + " planned" : "")) +
           '</span>';
         btn.addEventListener("click", () => {
-          selectedId = hw.id;
+          selectedId = selectedId === hw.id ? null : hw.id;
           renderAll();
         });
 
@@ -363,14 +534,59 @@
           body.innerHTML = "";
         } else {
           for (const id of hw.ids) {
-            const isMatch = cmp.reviewSet.has(id);
+            const nativeMatch = cmp.reviewSet.has(id);
+            const planned = isPlannedAdd(id, cmp.reviewSet);
+            const isMatch = nativeMatch;
+            const problem = PROBLEMS[id];
             const row = document.createElement("div");
-            row.className = "q-row " + (isMatch ? "match" : "hw-only");
-            row.innerHTML =
-              '<span class="qid">' + esc(id) + '</span>' +
-              '<span class="q-note">' + (isMatch ? "Also on Exam 2 Review" : "Homework only") + '</span>' +
-              '<span class="badge ' + (isMatch ? "badge-match" : "badge-hw") + '">' +
-                (isMatch ? "match" : "hw only") + '</span>';
+            row.className = "q-row " +
+              (nativeMatch ? "match" : planned ? "added-planned" : "hw-only");
+
+            if (problem) {
+              const qWrap = document.createElement("span");
+              qWrap.className = "qid-wrap has-problem";
+              qWrap.tabIndex = 0;
+              qWrap.innerHTML =
+                '<span class="qid">' + esc(id) + '</span>' +
+                '<span class="problem-tip" role="tooltip">' +
+                  '<span class="tip-expr">' + esc(problem.expr) + '</span>' +
+                  (problem.prompt ? '<span class="tip-prompt">' + esc(problem.prompt) + '</span>' : '') +
+                '</span>';
+              row.appendChild(qWrap);
+            } else {
+              const qid = document.createElement("span");
+              qid.className = "qid";
+              qid.textContent = id;
+              row.appendChild(qid);
+            }
+
+            const note = document.createElement("span");
+            note.className = "q-note";
+            note.textContent = nativeMatch
+              ? "Also on Exam 2 Review"
+              : planned
+                ? "Marked to add to review"
+                : "Homework only";
+            row.appendChild(note);
+
+            if (!nativeMatch) {
+              const addBtn = document.createElement("button");
+              addBtn.type = "button";
+              addBtn.className = "btn-add-review" + (planned ? " is-added" : "");
+              addBtn.textContent = planned ? "Added ✓" : "Add to Review";
+              addBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleAddToReview(id);
+              });
+              row.appendChild(addBtn);
+            }
+
+            const badge = document.createElement("span");
+            badge.className = "badge " +
+              (nativeMatch ? "badge-match" : planned ? "badge-added" : "badge-hw");
+            badge.textContent = nativeMatch ? "match" : planned ? "planned" : "hw only";
+            row.appendChild(badge);
+
             body.appendChild(row);
           }
         }
@@ -383,39 +599,55 @@
 
     function renderRight() {
       const hw = HOMEWORK.find(h => h.id === selectedId);
-      if (!hw) return;
+      if (!hw) {
+        document.getElementById("review-summary").textContent = "Select a section on the left.";
+        document.getElementById("review-list").innerHTML = "";
+        return;
+      }
 
       const cmp = computeComparison(hw);
       const summary = document.getElementById("review-summary");
       summary.innerHTML =
         '<strong>Section ' + esc(hw.section) + '</strong> — ' +
-        '<span style="color:var(--accent2)">' + cmp.matched.length + ' matched</span> · ' +
-        cmp.hwOnly.length + ' homework only · ' +
+        '<span style="color:var(--accent2)">' + cmp.matched.length + ' matched</span>' +
+        (cmp.planned.length ? ' · <span style="color:var(--accent)">' + cmp.planned.length + ' planned</span>' : '') +
+        ' · ' + cmp.hwOnly.length + ' homework only · ' +
         '<span style="color:var(--warn)">' + cmp.reviewOnly.length + ' review only</span>';
 
       const list = document.getElementById("review-list");
       list.innerHTML = "";
 
-      if (cmp.reviewRows.length === 0) {
+      const plannedRows = cmp.planned.map(id => ({
+        questionId: id,
+        objective: PROBLEMS[id]
+          ? PROBLEMS[id].expr + " — " + PROBLEMS[id].prompt
+          : "Homework question (marked to add)",
+        planned: true,
+      }));
+
+      const allRows = [
+        ...cmp.reviewRows.filter(r => cmp.hwSet.has(r.questionId)),
+        ...plannedRows,
+        ...cmp.reviewOnly,
+      ];
+
+      if (allRows.length === 0) {
         list.innerHTML = '<div class="empty-msg">No Exam 2 Review questions for section ' + esc(hw.section) + '.</div>';
         return;
       }
 
-      // Matched first, then review-only — same visual order helps scanning
-      const ordered = [
-        ...cmp.reviewRows.filter(r => cmp.hwSet.has(r.questionId)),
-        ...cmp.reviewOnly,
-      ];
-
-      for (const r of ordered) {
-        const isMatch = cmp.hwSet.has(r.questionId);
+      for (const r of allRows) {
+        const isNativeMatch = cmp.hwSet.has(r.questionId) && cmp.reviewSet.has(r.questionId);
+        const isPlanned = !!r.planned;
         const row = document.createElement("div");
-        row.className = "q-row " + (isMatch ? "match" : "review-only");
+        row.className = "q-row " +
+          (isNativeMatch ? "match" : isPlanned ? "added-planned" : "review-only");
         row.innerHTML =
           '<span class="qid">' + esc(r.questionId) + '</span>' +
           '<span class="q-note">' + esc(r.objective) + '</span>' +
-          '<span class="badge ' + (isMatch ? "badge-match" : "badge-review") + '">' +
-            (isMatch ? "match" : "review only") + '</span>';
+          '<span class="badge ' +
+            (isNativeMatch ? "badge-match" : isPlanned ? "badge-added" : "badge-review") + '">' +
+            (isNativeMatch ? "match" : isPlanned ? "planned" : "review only") + '</span>';
         list.appendChild(row);
       }
     }

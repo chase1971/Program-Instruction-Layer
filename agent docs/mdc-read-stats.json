@@ -1,0 +1,67 @@
+{
+  "05-never-display-without-permission.mdc": {
+    "count": 2,
+    "last": "2026-08-02T19:26:52.379Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/.cursor/rules/05-never-display-without-permission.mdc"
+  },
+  "30-powershell-shell-commands.mdc": {
+    "count": 2,
+    "last": "2026-08-02T19:26:54.707Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/.cursor/rules/30-powershell-shell-commands.mdc"
+  },
+  "45-frozen-apps.mdc": {
+    "count": 3,
+    "last": "2026-08-02T19:26:58.541Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/.cursor/rules/45-frozen-apps.mdc"
+  },
+  "40-multi-repo-git-push.mdc": {
+    "count": 3,
+    "last": "2026-08-02T19:26:56.588Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/.cursor/rules/40-multi-repo-git-push.mdc"
+  },
+  "00-programs-entrypoint.mdc": {
+    "count": 2,
+    "last": "2026-08-02T19:26:50.060Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/.cursor/rules/00-programs-entrypoint.mdc"
+  },
+  "snapshot-modal-order.mdc": {
+    "count": 2,
+    "last": "2026-08-02T20:02:28.018Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/snapshot-modal-order.mdc"
+  },
+  "embedded-browser-modals.mdc": {
+    "count": 2,
+    "last": "2026-08-02T20:02:27.562Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/embedded-browser-modals.mdc"
+  },
+  "macro-modals.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:29.018Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/macro-modals.mdc"
+  },
+  "assignment-assistant-freeze.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:29.431Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/assignment-assistant-freeze.mdc"
+  },
+  "d2l-grades-automation.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:30.013Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/d2l-grades-automation.mdc"
+  },
+  "d2l-course-builder-automation.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:36.565Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/d2l-course-builder-automation.mdc"
+  },
+  "macro-ci.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:37.489Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/macro-ci.mdc"
+  },
+  "pearson-session-contract.mdc": {
+    "count": 1,
+    "last": "2026-08-02T20:02:37.995Z",
+    "lastPath": "C:/Users/chase/Documents/Programs/School Scrips/Macro App/.cursor/rules/pearson-session-contract.mdc"
+  }
+}

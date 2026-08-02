@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-02 — exam2-review-map: 3.4/3.5 problem text + collapsible sections
+
+**Files changed:** `agent docs/exam2-review-map.html` (~660 lines)
+
+**What worked:** Added 16 + 14 Pearson print-harvested `{ prompt, expr }` entries (3.4, 3.5). Fixed homework accordion — second click on open section collapses it and clears right panel.
+
+**Current state:** Green
+
+**File size flag:** None
+
+**Next session:** Serve via docs server; continue PROBLEMS harvest for 3.6+
+
 ## 2026-08-01 — Capture ladder learning, audit doc, session scorecard HTML log
 
 **Files changed:** `docs/SESSION_SCORECARD.md`, `docs/INSTRUCTION_LAYER_AUDIT.md`, `docs/context-engineering-capture-costs.html` (+ guide boxes), `scripts/append-session-scorecard.js`, `docs/session-scorecards-log.html`, `docs/session-scorecards.jsonl`, `AGENTS.md` (end-of-session scorecard step), `.cursor/rules/html-infographic-delivery.mdc` (write-only scorecard note). Conversation also refined capture ladder mental models (rungs 1–5, 3 vs 5, robot vs AI audit).
