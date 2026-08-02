@@ -33,6 +33,24 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 
 ---
 
+## Hook auto-tally (experimental)
+
+`.cursor/hooks.json` runs `scripts/scorecard-hook-tally.js` on every **postToolUse** event. It appends to the same running file:
+
+| Tool | Count |
+|------|--------|
+| `Grep`, `Glob`, `WebSearch`, `Shell` | +1 search |
+| `Read` | file read (+ docs/rules if path matches) |
+| `Write`, `StrReplace`, `Delete`, `EditNotebook` | file edited |
+
+Sets `hookTally: true` on the running object. Finalize shows a **Hook tallied** pill; `confidence` is **medium** when hooks ran but the agent never bumped.
+
+**Hooks do not replace bumps** — they miss task boundaries (`chunkNote`), turns, corrections, and anything run outside Cursor tools (e.g. manual `ilspycmd` in an external terminal).
+
+**Reload Cursor** after changing hooks. Check **Output → Hooks** if counts stay at zero.
+
+---
+
 ## After each completed task (bump)
 
 When you finish a chunk of work and report to Chase, run:
@@ -101,14 +119,14 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 
 ---
 
-*Updated: 2026-08-01 — running tally*
+*Updated: 2026-08-02 — hook auto-tally*
 
 ---
 
 ## `bumped` — derived, never self-reported
 
-`finalize` sets `bumped: true` only if a running tally file existed, i.e. bumps
-were actually logged. The agent cannot claim it.
+`finalize` sets `bumped: true` only if the agent logged at least one **bump**
+(`--bump-file`), not merely because the hook created a running file.
 
 | `bumped` | `confidence` | What it means |
 |---|---|---|

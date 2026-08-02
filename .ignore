@@ -8,3 +8,8 @@
 # Keep these OUT of search
 Deprecated apps/
 School Scrips/Calendar 2.0/
+
+# Chase's own reminders — not agent context. Read only when he points at one.
+# Also excluded from the stale-plan sweep (scripts/archive-stale-plans.js).
+docs/chase-notes/
+chase-notes/

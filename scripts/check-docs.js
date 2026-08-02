@@ -11,6 +11,8 @@
  *                       (invisible to Claude Code, which does not auto-load .mdc)
  *   5. BARE VALUE     — a rule/entry point restating a timing constant's value
  *                       instead of naming it (AGENTS.md § One content home)
+ *   6. STALE PLAN     — a docs/plans/ file untouched past STALE_PLAN_DAYS.
+ *                       Reported only; scripts/archive-stale-plans.js moves them.
  *
  * Usage:
  *   node scripts/check-docs.js            # report (exit 0 unless dead links)
@@ -181,6 +183,64 @@ for (const [r, rawText] of content) {
   });
 }
 
+// ---------- stale plans ----------
+// Plans expire; reference docs do not. A plan is dead when it stops being TOUCHED —
+// not when it claims to be done. Declared status is unreliable: a plan is written,
+// the work happens (or gets restarted a different way), and nobody edits the header
+// afterwards. Git's last-commit date cannot go stale that way.
+//
+// Age is measured from last commit, so a plan under active edit keeps resetting its
+// own clock and never ages out. Only abandoned ones do.
+//
+// Reported here; NOTHING is moved. `scripts/archive-stale-plans.js` performs the
+// archive after Chase reviews the list.
+const STALE_PLAN_DAYS = 7;
+
+// Chase's own reminders — swept by nothing, read only when he asks.
+const PERSONAL_DIRS = new Set(['chase-notes']);
+
+function lastTouchedUnix(absFile) {
+  try {
+    const out = require('child_process').execSync(
+      `git log -1 --format=%ct -- "${path.basename(absFile)}"`,
+      { cwd: path.dirname(absFile), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
+    ).trim();
+    if (out) return Number(out);
+  } catch { /* untracked, or not a repo — fall through to mtime */ }
+  try { return Math.floor(fs.statSync(absFile).mtimeMs / 1000); } catch { return null; }
+}
+
+function findPlanDirs(dir, out = []) {
+  let entries;
+  try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+  for (const e of entries) {
+    if (!e.isDirectory()) continue;
+    const full = path.join(dir, e.name);
+    // Checked BEFORE IGNORED_DIRS: 'plans' is in that set (link/orphan scanning skips
+    // plans deliberately), but this sweep is exactly what must see them.
+    // 'archive' stays ignored, so docs/archive/plans is never reached.
+    if (e.name === 'plans' && path.basename(path.dirname(full)) === 'docs') { out.push(full); continue; }
+    if (IGNORED_DIRS.has(e.name) || PERSONAL_DIRS.has(e.name)) continue;
+    findPlanDirs(full, out);
+  }
+  return out;
+}
+
+const nowUnix = Math.floor(Date.now() / 1000);
+const stalePlans = [];
+for (const planDir of findPlanDirs(ROOT)) {
+  if (planDir.includes('Calendar 2.0')) continue; // frozen — never sweep a frozen app
+  for (const name of fs.readdirSync(planDir).filter((f) => f.endsWith('.md'))) {
+    if (name === 'README.md') continue;
+    const abs = path.join(planDir, name);
+    const ts = lastTouchedUnix(abs);
+    if (ts === null) continue;
+    const days = Math.floor((nowUnix - ts) / 86400);
+    if (days >= STALE_PLAN_DAYS) stalePlans.push({ file: rel(abs), days });
+  }
+}
+stalePlans.sort((a, b) => b.days - a.days);
+
 // ---------- report ----------
 const line = (s) => { if (!quiet) console.log(s); };
 
@@ -211,6 +271,13 @@ if (bareValues.length) {
   line('   → name the constant instead; values live in code or the topic doc\n');
 } else line('✅ No bare timing values in rules or entry points\n');
 
+if (stalePlans.length) {
+  line(`⚠️  STALE PLANS (${stalePlans.length}) — untouched ${STALE_PLAN_DAYS}+ days:`);
+  for (const p of stalePlans.slice(0, 25)) line(`   ${String(p.days).padStart(4)}d  ${p.file}`);
+  if (stalePlans.length > 25) line(`   …and ${stalePlans.length - 25} more`);
+  line('   → review, then: node scripts/archive-stale-plans.js --yes\n');
+} else line(`✅ No plans untouched ${STALE_PLAN_DAYS}+ days\n`);
+
 if (orphans.length) {
   line(`⚠️  ORPHANS (${orphans.length}) — nothing references these:`);
   for (const o of orphans.slice(0, 30)) line(`   ${o}`);
@@ -221,7 +288,7 @@ if (orphans.length) {
 console.log(
   `Summary: ${deadLinks.length} dead links · ${duplicates.length} duplicate sets · ` +
   `${unindexedRules.length} unindexed rules · ${bareValues.length} bare values · ` +
-  `${orphans.length} orphans`
+  `${stalePlans.length} stale plans · ${orphans.length} orphans`
 );
 
 const fail = deadLinks.length > 0

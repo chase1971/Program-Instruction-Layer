@@ -36,6 +36,7 @@ const TIPS = {
   lowConfidence: 'The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.',
   summarized: 'Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.',
   notBumped: 'The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.',
+  hookTally: 'Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.',
   worthNoting: 'Something unusual about this session worth a glance — not necessarily a problem.',
   captureSuggest: 'The agent\'s idea for a future rule or doc. Not a list of what you already asked to build unless you did.',
 };
@@ -218,6 +219,7 @@ function sessionCard(e, inProgress) {
         ${confLow ? pill('Low confidence counts', 'p2', TIPS.lowConfidence) : ''}
         ${e.summarized && !inProgress ? pill('Chat was summarized', 'p2', TIPS.summarized) : ''}
         ${e.bumped === false && !inProgress ? pill('Not bumped — counts reconstructed', 'p2', TIPS.notBumped) : ''}
+        ${e.hookTally ? pill('Hook tallied', 'p1', TIPS.hookTally) : ''}
         ${inProgress ? pill('Live tally', 'p1', 'Updated after each completed task — survives summarize.') : ''}
       </div>
       <div class="model">${esc(e.model || '—')}</div>
@@ -417,6 +419,8 @@ function emptyRunning() {
     filesReadList: [],
     filesEditedList: [],
     taskLog: [],
+    hookTally: false,
+    agentBumped: false,
   };
 }
 
@@ -435,9 +439,15 @@ function runningToDisplayEntry(r) {
     docsRulesOpened: r.docsRulesOpened,
     filesReadList: r.filesReadList,
     filesEditedList: r.filesEditedList,
-    worthNoting: r.taskLog?.length
-      ? `Tasks logged so far: ${r.taskLog.length} (last: ${r.taskLog[r.taskLog.length - 1].note || '—'})`
-      : '',
+    worthNoting: [
+      r.taskLog?.length
+        ? `Tasks logged so far: ${r.taskLog.length} (last: ${r.taskLog[r.taskLog.length - 1].note || '—'})`
+        : '',
+      r.hookTally ? 'Hook auto-tally active.' : '',
+    ]
+      .filter(Boolean)
+      .join(' '),
+    hookTally: !!r.hookTally,
   };
 }
 
@@ -462,6 +472,17 @@ function bumpRunning(delta) {
       filesEdited: delta.filesEdited || [],
     });
   }
+  if (
+    delta.chunkNote
+    || delta.addGreps
+    || delta.addTurns
+    || delta.addCorrections
+    || (delta.filesRead && delta.filesRead.length)
+    || (delta.filesEdited && delta.filesEdited.length)
+    || (delta.docsRulesOpened && delta.docsRulesOpened.length)
+  ) {
+    r.agentBumped = true;
+  }
   writeRunning(r);
   regenerate();
   return r;
@@ -480,8 +501,11 @@ function finalizeRunning(meta) {
     // Derived, never self-reported: a running file only exists if bumps were logged.
     // Separates "the chat was summarized" from "the agent forgot to bump" — different
     // failures, different fixes. Counts reconstructed at the end are guesses.
-    bumped: !!r,
-    confidence: meta.confidence || (r ? 'high' : 'low'),
+    bumped: !!(r && r.agentBumped),
+    hookTally: !!base.hookTally,
+    confidence:
+      meta.confidence
+      || (r && r.agentBumped ? 'high' : base.hookTally ? 'medium' : 'low'),
     turns: base.turns + Number(meta.addTurns || 0),
     greps: base.greps,
     corrections: base.corrections + Number(meta.addCorrections || 0),

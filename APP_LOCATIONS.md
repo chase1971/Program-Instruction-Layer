@@ -28,6 +28,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Transformations** | `School Scrips\transformations-app` | chase1971/transformations-app | Guided practice app; **code reader GUI:** `scripts\session_codec.py` (Launcher Panel: Transformations Code Reader) |
 | **student-session-kit** | `School Scrips\student-session-kit` | *(create repo)* | Shared Supabase client for math app session submission + Macro App review |
 | **Math App Studio** | `School Scrips\Math App Studio` | chase1971/annotation-studio | Electron embed + visual design/pin layer for math apps (launcher id `annotation-studio`) |
+| **School documents**, school docs | `School Scrips\School documents` | chase1971/School-Documents | Miscellaneous teaching HTML/docs (exam maps, Pearson comparisons); not app code. **Tell AI to save new school HTML here.** |
 | **Makeup Exam** | `School Scrips\makeup-exam-standalone` | chase1971/makeup-exam-standalone | Python + Electron |
 | **Extra Credit** (v2) | `School Scrips\Extra credit extractor v2` | chase1971/Extra-credit-extractor-v2 | |
 | **Seating Chart** | `School Scrips\Seating-Chart` | chase1971/Seating-Chart | Electron; reads Macro rosters |

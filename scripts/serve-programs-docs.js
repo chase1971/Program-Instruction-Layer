@@ -1,5 +1,5 @@
 /**
- * Serve Programs/docs/ on a fixed localhost port so chat http:// links open in a browser.
+ * Serve Programs/docs/ and agent docs/ on a fixed localhost port so chat http:// links open in a browser.
  * Usage: node scripts/serve-programs-docs.js
  * Then open: http://127.0.0.1:8765/context-engineering-infographic.html
  */
@@ -11,6 +11,8 @@ const path = require('path');
 
 const PORT = 8765;
 const DOCS = path.join(__dirname, '..', 'docs');
+const AGENT_DOCS = path.join(__dirname, '..', 'agent docs');
+const SERVE_ROOTS = [DOCS, AGENT_DOCS];
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -21,13 +23,27 @@ const MIME = {
   '.svg': 'image/svg+xml',
 };
 
+function resolveFile(rel) {
+  const clean = rel.replace(/^\//, '');
+  for (const root of SERVE_ROOTS) {
+    const file = path.normalize(path.join(root, clean));
+    if (!file.startsWith(root)) {
+      continue;
+    }
+    if (fs.existsSync(file) && fs.statSync(file).isFile()) {
+      return file;
+    }
+  }
+  return null;
+}
+
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
   if (rel === '/') rel = '/context-engineering-infographic.html';
-  const file = path.normalize(path.join(DOCS, rel.replace(/^\//, '')));
-  if (!file.startsWith(DOCS)) {
-    res.writeHead(403);
-    res.end('Forbidden');
+  const file = resolveFile(rel);
+  if (!file) {
+    res.writeHead(404);
+    res.end('Not found');
     return;
   }
   fs.readFile(file, (err, data) => {
@@ -43,4 +59,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`Programs docs: http://127.0.0.1:${PORT}/context-engineering-infographic.html`);
+  console.log(`Session scorecards: http://127.0.0.1:${PORT}/session-scorecards-log.html`);
 });

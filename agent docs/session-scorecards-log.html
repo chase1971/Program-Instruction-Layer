@@ -72,8 +72,8 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this chat. Rough proxy for how long the session ran.</li><li><strong>Searches:</strong> How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.</li><li><strong>Docs/rules read:</strong> Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.</li><li><strong>Low confidence counts:</strong> The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.</li><li><strong>Chat was summarized:</strong> Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:21 AM · Sunday, Aug 2, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>5</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:04 PM · Sunday, Aug 2, 2026</dd></div>
     </div>
     
     <section class="day-block">
@@ -81,12 +81,73 @@
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
       <div class="pills">
-        <span class="time">12:21 AM</span>
+        <span class="time">1:04 PM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
-        <span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
-        <span class="pill p2" title="Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.">Chat was summarized</span>
-        <span class="pill p2" title="The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.">Not bumped — counts reconstructed</span>
         
+        <span class="pill p2" title="Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.">Chat was summarized</span>
+        
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">Composer</div>
+    </header>
+    <p class="summary-human">Macro App: removed grade-sync simulator, fixed gradebook exam tooltip and hide-column scroll, added Pearson course-home failure probe with optional auto-reset. Programs root: stale-plan archiver, scorecard hook auto-tally, instruction-layer doc moves.</p>
+    <div class="metric-grid">
+      <div class="metric"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>14</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>112</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>0</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Instruction files the agent opened to learn what to do (.md, .mdc, HTML guides). Count of names listed — not files it created.">Docs/rules read</abbr></dt><dd>agent docs/SESSION_SCORECARD.md, C:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md, agent docs/APP_CONFORMANCE_PASS.md, AGENTS.md, C:/Users/chase/Desktop/Quasimorph-GoldBerg/mod-dev/SESSIONS.md, C:/Users/chase/Desktop/Quasimorph-GoldBerg/mod-dev/docs/sessions/SESSIONS.md, School Scrips/Macro App/CLAUDE.md, c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/PEARSON_BLANK_IFRAME_INTEGRATION.md, C:/Users/chase/Documents/Programs/agent docs/exam2-review-map.html, C:/Users/chase/Documents/Programs/APP_LOCATIONS.md, C:/Users/chase/Documents/Programs/School Scrips/student-session-kit/README.md, C:/Users/chase/Documents/Programs/School Scrips/School documents/README.md, c:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json, c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-gradebook.json, c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-pearson.json, School Scrips/Macro App/docs/PEARSON_BLANK_IFRAME_INTEGRATION.md, c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md, c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json</dd></div>
+    </div>
+    <div class="metric-grid counts">
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Doc files read</abbr></dt><dd>12</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code files read</abbr></dt><dd>38</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Document/instruction files changed.">Doc files edited</abbr></dt><dd>15</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Source code files changed.">Code files edited</abbr></dt><dd>27</dd></div>
+    </div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Running tally spanned ~12h (never finalized between chats); hooks carried search/file counts; agent bumps added task log only late.
+    </div>
+    <p class="next"><strong>Next time:</strong> Restart Macro App; smoke gradebook calculated-grade tooltip (Exams row) and hide-column scroll; smoke Pearson course-home auto-reset on Unable to load course cards.</p>
+    <details class="file-details">
+          <summary>File breakdown (hover labels for definitions)</summary>
+          <div class="file-grid">
+            <div class="file-group">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Docs read</abbr> (12)</h4>
+    <ul><li><code>agent docs/SESSION_SCORECARD.md</code></li><li><code>School Scrips/Macro App/docs/plans/additional-tools-reference.md</code></li><li><code>School Scrips/Macro App/calendar-vendor/README.md</code></li><li><code>School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code></li><li><code>School Scrips/Macro App/docs/sessions/SESSIONS-archive-2026-05_06.md</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/PEARSON_BLANK_IFRAME_INTEGRATION.md</code></li><li><code>C:/Users/chase/Documents/Programs/agent docs/exam2-review-map.html</code></li><li><code>C:/Users/chase/Documents/Programs/APP_LOCATIONS.md</code></li><li><code>C:/Users/chase/Documents/Programs/School Scrips/student-session-kit/README.md</code></li><li><code>c:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json</code></li><li><code>School Scrips/Macro App/docs/PEARSON_BLANK_IFRAME_INTEGRATION.md</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr> (38)</h4>
+    <ul><li><code>scripts/check-docs.js</code></li><li><code>School Scrips/Macro App/electron-app/main.js</code></li><li><code>School Scrips/Macro App/electron-app/preload.js</code></li><li><code>School Scrips/Macro App/electron-app/gradebook-files-ipc.js</code></li><li><code>School Scrips/Macro App/renderer/src/services/gradebookService.ts</code></li><li><code>School Scrips/Macro App/renderer/src/services/gradebookImportMachine.ts</code></li><li><code>School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookImport.ts</code></li><li><code>School Scrips/Macro App/renderer/src/types/macroApp.d.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/shared/assignmentType.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookCategoryFilters.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumns.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookRecalculateRow.test.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookClassSummary.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookScorecardTooltip.tsx</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookCombinedGrades.m1324.fixture.test.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookColumnHideAction.tsx</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnLayoutKey.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.test.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-post-login.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/browser/EmbeddedBrowserPanel.tsx</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-recreate.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-restart.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/modules/slotBootstrap.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-url.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-nudge.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-view-slots.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-post-login.test.js</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookStudentScorecard.ts</code></li><li><code>School Scrips/Macro App/renderer/src/components/gradebook/GradebookScrollFrame.tsx</code></li><li><code>School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnSnap.ts</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-post-login.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-nudge.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-view-slots.js</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Other paths opened">Other read</abbr> (7)</h4>
+    <ul><li><code>.ignore</code></li><li><code>School Scrips/Macro App/docs/plans/*.md (status lines)</code></li><li><code>School Scrips/Macro App/docs/archive/</code></li><li><code>School Scrips/Macro App/docs/decisions/</code></li><li><code>School Scrips/Macro App/docs/audits/</code></li><li><code>c:/Users/chase/My Drive/Rosters etc/MATH-1314 4201 6W2/gradebook files/Assignment Assistant working gradebook.csv</code></li><li><code>C:/Users/chase/Documents/Programs/.ignore</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Document/instruction files changed.">Docs edited</abbr> (15)</h4>
+    <ul><li><code>C:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md</code></li><li><code>School Scrips/Macro App/docs/chase-notes/README.md</code></li><li><code>C:/Users/chase/Desktop/Quasimorph-GoldBerg/mod-dev/SESSIONS.md</code></li><li><code>C:/Users/chase/Desktop/Quasimorph-GoldBerg/mod-dev/docs/sessions/SESSIONS.md</code></li><li><code>School Scrips/Macro App/CLAUDE.md</code></li><li><code>School Scrips/Macro App/calendar-vendor/README.md</code></li><li><code>School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code></li><li><code>School Scrips/Macro App/docs/sessions/SESSIONS-archive-2026-05_06.md</code></li><li><code>School Scrips/Macro App/package.json</code></li><li><code>C:/Users/chase/Documents/Programs/School Scrips/School documents/README.md</code></li><li><code>C:/Users/chase/Documents/Programs/APP_LOCATIONS.md</code></li><li><code>c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-gradebook.json</code></li><li><code>c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-pearson.json</code></li><li><code>c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Source code files changed.">Code edited</abbr> (27)</h4>
+    <ul><li><code>scripts/scorecard-hook-tally.js</code></li><li><code>C:/Users/chase/Documents/Programs/scripts/append-session-scorecard.js</code></li><li><code>C:/Users/chase/Documents/Programs/scripts/scorecard-hook-tally.js</code></li><li><code>scripts/check-docs.js</code></li><li><code>scripts/archive-stale-plans.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookStudentScorecard.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookScrollFrame.tsx</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookStudentScorecard.test.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.test.ts</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-url.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-course-home-probe.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-nudge.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-post-login.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-view-slots.js</code></li><li><code>c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-pearson-course-home-probe.test.js</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookStudentScorecard.ts</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.ts</code></li><li><code>School Scrips/Macro App/renderer/src/components/gradebook/GradebookScrollFrame.tsx</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookStudentScorecard.test.ts</code></li><li><code>School Scrips/Macro App/renderer/src/utils/gradebook/gradebookHiddenColumns.test.ts</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-url.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-course-home-probe.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-nudge.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-post-login.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-view-slots.js</code></li><li><code>School Scrips/Macro App/electron-app/browser-slot-pearson-course-home-probe.test.js</code></li></ul>
+  </div>
+            <div class="file-group">
+    <h4><abbr class="tip" title="Other paths changed">Other edited</abbr> (6)</h4>
+    <ul><li><code>.ignore</code></li><li><code>School Scrips/Macro App/docs/plans/ (13 files moved/archived)</code></li><li><code>School Scrips/Macro App/electron-app/ (main.js, preload.js, modules-ipc.js, gradebook-files-ipc.js, dev-build-stamp.js, .eslintrc.cjs, assignment-assistant-ipc.js, gradebook-display-prefs-io.js)</code></li><li><code>School Scrips/Macro App/renderer/src/ (App.tsx, gradebookService.ts, gradebookImportMachine.ts + test, useGradebookImport.ts, useGradebookD2L.ts, useCombinedCalculatedGradeCheck.ts, useGradebookEnterGradesPrep.ts, macroApp.d.ts, gradebookSlotWarmup.ts, enterGradesSlotService.ts, useBackgroundGradebookSlotLoader.ts, useAppMemorySnapshot.ts, AppMemoryPill.tsx, useMacroAppWorkspaceBrowserEffects.ts, gradebookLogSummary.ts, log-discipline.test.ts, layout.css, +3)</code></li><li><code>School Scrips/Macro App/docs/ (BROWSER_TAB_INTEGRATION.md, D2L_PDF_VIEWER_ELECTRON_INVESTIGATION.md, MODAL_CATALOG.md, decisions/ADR-002)</code></li><li><code>C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/assets/c__Users_chase_AppData_Roaming_Cursor_User_workspaceStorage_09d76da3e651a4e97d24a412fbec7f6c_images_image-981cfaaf-7009-484f-9049-649adff91445.png</code></li></ul>
+  </div>
+          </div>
+        </details>
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">12:21 AM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        <span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        
+        
+        
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
       </div>
       <div class="model">—</div>
     </header>
@@ -114,6 +175,7 @@
       <div class="pills">
         <span class="time">12:21 AM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        
         
         
         
@@ -172,6 +234,7 @@
         
         <span class="pill p2" title="The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.">Not bumped — counts reconstructed</span>
         
+        
       </div>
       <div class="model">—</div>
     </header>
@@ -202,6 +265,7 @@
         <span class="time">5:05 PM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
         <span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        
         
         
         <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
