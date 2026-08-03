@@ -20,7 +20,12 @@
 !/.gitignore
 !/.ignore
 
-# Instruction-layer tooling and docs at the Programs root. Without these the
+# Claude Code skills (capture procedure). Local-only: launch.json, settings.local.json.
+!/.claude/
+/.claude/*
+!/.claude/skills/
+
+# Instruction-layer tooling and docs at the Programs root.
 # audit doc, the check-docs robot, and the session scorecard log live on one
 # machine only — they never reach the laptop and are not backed up.
 # Renamed docs/ -> "agent docs/" on 2026-08-01.

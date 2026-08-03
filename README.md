@@ -10,6 +10,7 @@ Meta-backup repo for the **Programs instruction layer** — the rules, docs, and
 | `agent docs/` | Scorecards, audits, peer-review docs, session HTML logs |
 | `scripts/` | `check-docs.js`, scorecard pipeline, doc server |
 | `recipes/` | Shared UI/interaction patterns (dwell, toolbar, modals) |
+| `.claude/skills/` | Capture skill — ladder procedure when Chase says "remember:" / "capture that" |
 | `cursor-patterns/` | Coding standards and init recipes |
 | `.cursor/` | Cursor hooks (scorecard auto-tally) |
 
