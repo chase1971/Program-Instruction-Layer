@@ -148,7 +148,14 @@ On "end of session protocol", "wrap the session", "we're done for now":
 1. **Git status** — briefly list untracked/modified.
 2. **Scorecard finalize** — `--finalize-file <meta.json>` (uses the bumped counts; don't
    re-guess). Report only; no fixes after this unless Chase asks.
-3. **Append to** the app's `docs/sessions/SESSIONS.md`, newest at top:
+3. **Append a session entry, newest at top.** Which log depends on what the work touched:
+
+| Work was… | Log |
+|---|---|
+| Inside one app | `<app>/docs/sessions/SESSIONS.md` |
+| **Instruction layer, recipes, scripts, or cross-app** | **`agent docs/sessions/SESSIONS.md`** |
+
+If it touched both, log it where the *substance* was and name the other in the entry.
 
 ```
 ## YYYY-MM-DD — [Brief title]
