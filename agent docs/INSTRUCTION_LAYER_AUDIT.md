@@ -64,15 +64,19 @@ node scripts/check-docs.js --strict
 
 **In scope**
 
-- `AGENTS.md`, `CLAUDE.md`, `APP_LOCATIONS.md`
-- `.cursor/rules/*.mdc` (root + per-app)
+- `AGENTS.md`, `CLAUDE.md`, `APP_LOCATIONS.md`, `HOW_TO_INTERACT_WITH_AI.md`
+- **`recipes/` + `recipes/README.md`** — see § 2f-2
 - `cursor-patterns/*.md` (instruction-relevant)
-- `docs/*.md`, `docs/*.html` (instruction/delivery pages)
-- Per-app: `CLAUDE.md`, `guidelines/Guidelines.md`, `docs/*_INTEGRATION.md`, app `.cursor/rules/*.mdc`
+- `agent docs/rules/*.md`, `agent docs/*.md`, `agent docs/*.html`
+- Per-app: `AGENTS.md`, `CLAUDE.md`, `guidelines/Guidelines.md`, `docs/*_INTEGRATION.md`
+
+> **`.cursor/rules/*.mdc` no longer exist** outside frozen Calendar 2.0 (retired
+> 2026-08-02). If you find one, it is either frozen-app history or something a session
+> wrongly recreated — flag it.
 
 **Out of scope unless Chase names it**
 
-- `School Scrips/Calendar 2.0/` — **frozen** (`.cursor/rules/45-frozen-apps.mdc`)
+- `School Scrips/Calendar 2.0/` — **frozen** (`agent docs/rules/frozen-apps.md`)
 - `Archived markdowns/` — history only; do not treat as current
 - `Deprecated apps/`
 - App **source code** (renderer, electron, python modules) — unless the audit finds a doc that wrongly duplicates code comments
@@ -138,6 +142,26 @@ For each orphan listed by `check-docs`:
 AGENTS loads every chat (~4k–8k tokens whole file).
 
 **Action:** Trim long procedures to rung 5 docs; leave index rows + pointers. Do not duplicate always-on rule text in AGENTS.
+
+### 2f-2 — The recipe library (`Programs/recipes/`)
+
+Added 2026-08-02, when three scattered pattern libraries were consolidated into one
+folder. Because everything is now in **one place**, this pass is cheap — do it every
+audit, and do it before § 2g.
+
+| Check | How | Action |
+|---|---|---|
+| **Index row exists** | Every `recipes/*.md` appears in a table in `recipes/README.md` | A recipe no table names is invisible — add the row or archive the file |
+| **"You might say" is in his words** | Read the header line. Is it the *technical* name or what Chase would actually say? | Rewrite in his words. This line is the whole trigger |
+| **Duplicate recipes** | Two files covering one interaction (e.g. two drag recipes) | Merge into the one with working exemplars; tombstone the loser |
+| **Exemplar paths still exist** | Open each path in the header block | Fix or mark the recipe stale. A recipe pointing at a deleted file is worse than none |
+| **Status marks honest** | ✅ / ⚠️ / ❌ against what the code actually does | The 2026-08 import carried two known-bad recipes; do not let more accumulate silently |
+| **Bare values crept in** | Grep the folder for timings and pixel sizes | Replace with the **constant's name**. Values live in `dwell-and-head-mouse.md` and `dwell_constants.py` only |
+| **Wrong folder** | A file here that explains *one app's history* rather than how to build something | It is an app doc — move it to that app's `docs/` |
+
+**Do not** propose adding an always-on `AGENTS.md` rule to make the recipe folder
+"fire automatically." Chase retrieves recipes by asking for them; that is a deliberate
+design choice, and this audit is the mechanism that keeps the folder trustworthy.
 
 ### 2g — Doc vs **code** (highest yield — do not skip)
 

@@ -16,23 +16,30 @@
 
 **Cursor and Claude Code do not read the same files.**
 
-| | Cursor | Claude Code |
-|---|---|---|
-| `.cursor/rules/*.mdc` | ✅ auto-loads | ❌ **never** |
-| `AGENTS.md` | via user rule | ✅ always |
-| Nearest `CLAUDE.md` | — | ✅ auto-loads |
-| Any `.md` | only if pointed at | only if pointed at |
+| | Cursor | Claude Code | Codex |
+|---|---|---|---|
+| `AGENTS.md` (root + app) | ✅ | ✅ | ✅ |
+| Nearest `CLAUDE.md` | — | ✅ auto-loads | — |
+| Any `.md` | only if pointed at | only if pointed at | only if pointed at |
+| ~~`.cursor/rules/*.mdc`~~ | **retired 2026-08-02** | ❌ never did | ❌ |
 
-Everything below follows from this. A rule written into one format fires for one
-tool. A rule written into **both** drifts apart. So:
+**The fix that makes all three agree:** `AGENTS.md` holds the content, and
+`CLAUDE.md` is a three-line `@AGENTS.md` import of it. One file to edit; every tool
+lands on the same text.
+
+**Why the `.mdc` files went away:** they only loaded when a matching file happened to
+be open in a Cursor editor tab. I don't work that way — I say what I want, I don't
+browse code first. `mdc-read-stats.json` showed lifetime read counts of 1–3 per rule.
+They were costing maintenance and firing for nobody.
 
 > ### Content lives in exactly ONE file. Everything else points at it.
 
 | File | Role | May contain |
 |---|---|---|
-| `cursor-patterns/<topic>.md` | **The content.** Single source of truth | Everything — values, tables, reasons |
-| `.cursor/rules/*.mdc` | Cursor's glob trigger | Behavior + pointer. **No numbers** |
-| `AGENTS.md` / `CLAUDE.md` | Claude Code's entry point | Pointer + ≤2-line summary. **No numbers** |
+| `recipes/<name>.md` | **How to build something.** Triggered by what I say | Steps, exemplar paths. **No numbers** |
+| `cursor-patterns/<topic>.md` | **Standards + values.** Single source of truth | Everything — values, tables, reasons |
+| `AGENTS.md` (root or app) | The entry point every tool reads | Keyword rows + pointers. **No numbers** |
+| `agent docs/rules/*.md` | Detail behind one always-on section | The incident, the full procedure |
 
 **Never put a threshold, duration, or size in two files.** One accessibility timing
 had been copied into six files before this rule existed. `check-docs.js` now blocks
@@ -49,12 +56,22 @@ Higher = fires more reliably.
 |---|---|---|
 | **1** | Structurally impossible — code shape, single owner, API that can't be misused | Always |
 | **2** | Lint rule or test | Every commit |
-| **3** | Glob-scoped `.mdc` | When a matching file is open (Cursor only) |
-| **4** | Always-on rule (`AGENTS.md`) | Every session |
-| **5** | On-demand doc | Only when something points at it |
+| **3** | **A recipe in `recipes/`**, or a **keyword row in an app's `AGENTS.md`** | When I describe the task in my own words |
+| **4** | Always-on rule (root `AGENTS.md`) | Every session — **and costs tokens every session** |
+| **5** | On-demand doc nothing routes to | Only when something points at it |
 
 **Graduating requires deleting the lower copy.** Prose that lint already enforces
 is noise.
+
+**Rung 3 changed on 2026-08-02.** It used to be a glob-scoped `.mdc`, which depended
+on a file being open in an editor. Now it's a recipe or a keyword row, which depends
+on **what I say** — and I'm always saying something.
+
+**Rung 4 is not free.** It re-loads in every session, including the ones where it's
+irrelevant. Something belongs there only if it must fire at a moment I'm *not*
+thinking about it — screen permission, git sync, shell syntax. "He might forget the
+recipes folder exists" doesn't qualify: I only have to remember one folder name, and
+I remember it because I'm the one asking for the thing.
 
 ### Trigger phrases → the `capture` skill
 
@@ -176,12 +193,14 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | `AGENTS.md` | Always-on entry point. Rules, ladder, pointers |
 | `CLAUDE.md` | Thin — imports `AGENTS.md` |
 | `APP_LOCATIONS.md` | Which app lives where. Read before searching folders |
-| `cursor-patterns/` | The content library — `CODING_STANDARDS.md`, `dwell-and-head-mouse.md`, `INIT_NEW_APP.md` |
-| `.cursor/rules/*.mdc` | Cursor glob triggers (root + per-app) |
-| `<app>/CLAUDE.md` | Per-app index — what it is, which rules apply, on-demand docs |
+| **`recipes/`** | **How we've built it before.** One folder, one index. I point at it by name |
+| `cursor-patterns/` | Standards + values — `CODING_STANDARDS.md`, `dwell-and-head-mouse.md`, `INIT_NEW_APP.md` |
+| `agent docs/rules/*.md` | Detail behind an always-on section (screen permission, git, PowerShell, frozen, HTML) |
+| `<app>/AGENTS.md` | Per-app index — what it is, keyword table, on-demand docs |
+| `<app>/CLAUDE.md` | Three lines — imports that app's `AGENTS.md` |
 | `<app>/docs/*_INTEGRATION.md` | Subsystem deep-dives — mental model, symptom→fix, what burned us |
 | `<app>/docs/sessions/SESSIONS.md` | Session log |
-| `agent docs/INSTRUCTION_LAYER_AUDIT.md` | Workspace-wide periodic audit (rung 5, on demand) |
+| `agent docs/INSTRUCTION_LAYER_AUDIT.md` | Workspace-wide periodic audit (rung 5, on demand) — § 2f-2 audits the recipes |
 | `agent docs/APP_CONFORMANCE_PASS.md` | Bring **one app** up to the current standard |
 | `agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md` | Outward-facing summary for other developers |
 | `scripts/check-docs.js` | The robot |
@@ -192,6 +211,7 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 
 | I want… | I say |
 |---|---|
+| **To build something I've built before** | **"look in the recipes folder"** — or just name it: "how did we do the drag handle on an overlay?" |
 | A rule remembered | "remember: …" — invokes `capture` |
 | A rule that keeps getting missed | "that's the third time" — forces it up a rung |
 | Periodic instruction cleanup (whole tree) | "run the audit doc" |

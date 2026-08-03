@@ -1,11 +1,14 @@
----
-description: Frozen apps — skip git scans, exploration, and edits unless Chase explicitly names the app. Summary lives in AGENTS.md § Apps in this tree.
-globs:
-  - "School Scrips/Calendar 2.0/**"
-alwaysApply: false
----
-
 # Frozen apps
+
+> **Rung 5 — on demand.** The always-on summary is root `AGENTS.md` § Apps in this tree; this
+> file is the detail behind it. Read it when that section is not enough.
+> **What it covers:** Frozen apps — skip git scans, exploration, and edits unless Chase explicitly names the app. Summary lives in AGENTS.md § Apps in this tree.
+>
+> *Was `.cursor/rules/45-frozen-apps.mdc` until 2026-08-02. Moved because `.cursor/rules/*.mdc`
+> only load when a matching file is open in a Cursor editor tab — which is not how Chase works.
+> AGENTS.md links this file by path instead, so every tool can reach it.*
+
+---
 
 Chase has **detached** from active work on these apps. Treat them as off-limits for routine AI sessions.
 

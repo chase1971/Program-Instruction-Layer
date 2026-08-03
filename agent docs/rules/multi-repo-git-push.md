@@ -1,9 +1,14 @@
-﻿---
-description: Sync every git repo under Programs — pull at the start of a session, commit and push at the end. Not just the active app. Summary lives in AGENTS.md § Git.
-alwaysApply: false
----
-
 # Multi-repo Git — pull at start, commit and push at end
+
+> **Rung 5 — on demand.** The always-on summary is root `AGENTS.md` § Git; this
+> file is the detail behind it. Read it when that section is not enough.
+> **What it covers:** Sync every git repo under Programs — pull at the start of a session, commit and push at the end. Not just the active app. Summary lives in AGENTS.md § Git.
+>
+> *Was `.cursor/rules/40-multi-repo-git-push.mdc` until 2026-08-02. Moved because `.cursor/rules/*.mdc`
+> only load when a matching file is open in a Cursor editor tab — which is not how Chase works.
+> AGENTS.md links this file by path instead, so every tool can reach it.*
+
+---
 
 Chase uses **sibling repos** under `C:\Users\chase\Documents\Programs\` (not a monorepo). **Pull before you start, push before you stop** — agent drives this; Chase cannot rely on remembering.
 

@@ -1,9 +1,14 @@
 # AGENTS.md — Programs Root
 
 > Auto-loaded every session inside `C:\Users\chase\Documents\Programs\`.
-> **This is the only always-on file in this tree.** No `.cursor/rules/*.mdc` is
-> `alwaysApply: true` — they are glob- or description-triggered detail. Anything that
-> must fire in *every* session belongs here, once. See § Where rules live.
+> **This is the only always-on file in this tree.** Anything that must fire in *every*
+> session belongs here, once. See § Where rules live.
+>
+> **`.cursor/rules/*.mdc` were retired 2026-08-02.** They only loaded when a matching
+> file happened to be open in a Cursor editor tab — which is not how Chase works, so
+> they almost never fired. Their content now lives in `Programs/recipes/` (how to build
+> something), `agent docs/rules/` (detail behind a section here), or the owning app's
+> `AGENTS.md`. **Do not create new `.mdc` files.**
 
 ---
 
@@ -28,7 +33,7 @@ server *without* opening a browser at it.
 what he should see, what to report back. If a visible test is the only path, **ask first**
 and say what appears, on which screen, and how it goes away.
 
-Detail + the incident that caused this rule: `.cursor/rules/05-never-display-without-permission.mdc`
+Detail + the incident that caused this rule: `agent docs/rules/never-display-without-permission.md`
 
 ---
 
@@ -88,8 +93,8 @@ exist.
 
 **No timing values here on purpose** — every threshold lives in
 **`cursor-patterns/dwell-and-head-mouse.md`**. Never copy a number from anywhere else.
-Glob rule: `.cursor/rules/25-dwell-accessibility.mdc`. Exemplar constants:
-`electron-toolbar/modules/dwell/backend/dwell_constants.py`.
+Exemplar constants: `electron-toolbar/modules/dwell/backend/dwell_constants.py`.
+How to *build* one: `recipes/` (dwell-click, dwell-drag, hover-to-lock-drag, …).
 
 ---
 
@@ -119,7 +124,7 @@ asked: `.env`, credentials, `config/d2l-courses.json` backups, Calendar `server-
 **Do include** `Macro App/modules/makeup-exam/exam_history.jsonl`. No tests or builds unless
 Chase asks — sync only.
 
-Detail: `.cursor/rules/40-multi-repo-git-push.mdc`.
+Detail: `agent docs/rules/multi-repo-git-push.md`.
 
 ---
 
@@ -161,8 +166,8 @@ On "end of session protocol", "wrap the session", "we're done for now":
 
 4. **Leave TODO comments** in code where work stopped mid-edit.
 5. **Commit and push** per § Git above — invoking end-of-session *is* permission to commit.
-6. **`node scripts/check-docs.js`** — report the summary line; fix dead links and index any new
-   `.mdc` this session added.
+6. **`node scripts/check-docs.js`** — report the summary line; fix dead links and index any
+   new recipe or doc this session added.
 7. **Report back** in one short line: what was logged, commit/push result, check-docs summary,
    anything broken.
 
@@ -185,40 +190,47 @@ rung is genuinely ambiguous.
 
 ## Where rules live
 
-| Layer | Loads when | May contain |
+Every tool lands on the same text: `AGENTS.md` holds the content, `CLAUDE.md` is a
+three-line `@AGENTS.md` import of it. Cursor and Codex read `AGENTS.md` directly.
+
+| Layer | Read when | Holds |
 |---|---|---|
 | **`AGENTS.md`** (this file) | **Every session, all tools** | Rules that must always fire — short |
-| `<app>/CLAUDE.md` | Working in that app | Index of that app's rules + docs |
-| `.cursor/rules/*.mdc` | **Cursor only**, when a matching file is open (or by description) | Behavior + pointer. **No numbers** |
-| `cursor-patterns/*.md`, `docs/*_INTEGRATION.md` | Read on demand | The content — values, tables, reasons |
+| `<app>/AGENTS.md` | Working in that app | **Keyword table** — what Chase says → the one doc to read |
+| **`recipes/`** | **Building an interaction** — drag, dwell, hover, overlay, modal, canvas, animation | How we've built it before, + exemplar file paths |
+| `cursor-patterns/*.md` | Writing code | Standards — the shape all code must have |
+| `agent docs/rules/*.md` | A section above isn't enough | Detail behind one always-on rule |
+| `<app>/docs/*.md` | That subsystem | Why this app's code is the way it is |
 
-**Content lives in exactly one file; everything else points at it.** A threshold that appears
-twice is a threshold that will disagree with itself. Claude Code never auto-loads `.mdc`, so a
-lesson written only there fires for one tool.
+**Content lives in exactly one file; everything else points at it.** A threshold that
+appears twice is a threshold that will disagree with itself.
 
 **Capture ladder** (push as high as it goes; graduating means deleting the lower copy):
-structurally impossible → lint/test → glob `.mdc` → this file → on-demand doc. Full procedure:
-`.claude/skills/capture/SKILL.md`.
 
-**Root rules in `.cursor/rules/`** — all glob- or description-triggered, none always-on:
+| Rung | Form | Fires |
+|---|---|---|
+| **1** | Structurally impossible — one owner, an API that can't be misused | Always |
+| **2** | Lint rule or test | Every commit |
+| **3** | **A recipe in `recipes/` + its index row**, or a **keyword row in the app's `AGENTS.md`** | When Chase describes the task in his own words |
+| **4** | Always-on rule (this file) | Every session — **costs tokens every session; keep it short** |
+| **5** | On-demand doc nothing routes to | Only if something points at it |
 
-| Rule | Fires when |
+Rung 3 used to be a glob-scoped `.mdc`. That trigger depended on a file being open in a
+Cursor editor tab, which is not how Chase works — so it never fired. A keyword row fires
+on **what he says**, which is always present. Full procedure: `.claude/skills/capture/SKILL.md`.
+
+**Detail docs behind the sections above** — `agent docs/rules/`:
+
+| Doc | Detail behind |
 |---|---|
-| `00-programs-entrypoint.mdc` | superseded by this file; kept as a reading order |
-| `05-never-display-without-permission.mdc` | detail behind § Never put anything on Chase's screen |
-| `10-file-size-before-edit.mdc` | editing `.ts` / `.tsx` / `.py` / `.css` |
-| `20-modal-pattern.mdc` | editing modal files |
-| `25-dwell-accessibility.mdc` | `.tsx` / `.jsx` / overlay files |
-| `30-powershell-shell-commands.mdc` | `.ps1` / `.bat` / `.cmd` |
-| `40-multi-repo-git-push.mdc` | detail behind § Git |
-| `45-frozen-apps.mdc` | anything under `School Scrips/Calendar 2.0/` |
-| `50-electron-toolbar-launcher-panel.mdc` | `electron-toolbar/**` |
-| `html-infographic-delivery.mdc` | `docs/**/*.html` |
+| `never-display-without-permission.md` | § Never put anything on Chase's screen |
+| `powershell-shell-commands.md` | § Windows PowerShell 5.x |
+| `multi-repo-git-push.md` | § Git |
+| `frozen-apps.md` | § Apps in this tree |
+| `html-delivery.md` | § HTML pages Chase can click from chat |
 
-Per-app rules: `[app]/.cursor/rules/`, indexed in that app's `CLAUDE.md`.
-
-App-specific guidance (`[app]/CLAUDE.md`, `guidelines/Guidelines.md`) **supplements** these —
-app rules win for app concerns; file-size, App.tsx, and modal rules always apply.
+App-specific guidance (`<app>/AGENTS.md`) **supplements** these — app rules win for app
+concerns; file-size, App.tsx, and modal rules always apply.
 
 ---
 
@@ -229,11 +241,15 @@ app rules win for app concerns; file-size, App.tsx, and modal rules always apply
 - `School Scrips/` — React/Vite/Tailwind math apps + **Macro App** (main Electron hub)
 - `electron-toolbar/` — Python + Electron dwell-mouse overlay toolbar
 - `Agent Browser/` — Electron + Chromium for agent automation (CDP **9227**)
-- `Video Player/`, `cursor-patterns/` (pattern library), `agent docs/` (this layer's docs)
+- `Video Player/`, `recipes/` (how to build things), `cursor-patterns/` (standards),
+  `agent docs/` (this layer's docs)
+
+**Every real app has an `AGENTS.md`** with a keyword table — read that app's file when
+Chase names it or when working inside it. `APP_LOCATIONS.md` maps a name to a folder.
 
 **Frozen:** Calendar 2.0 (`School Scrips/Calendar 2.0`, since 2026-07-29) — no scans, edits, or
 git sync; it is also held out of search by `/.ignore`. Unfreeze only when Chase names it.
-See `FROZEN.md` in that folder and `.cursor/rules/45-frozen-apps.mdc`.
+See `FROZEN.md` in that folder and `agent docs/rules/frozen-apps.md`.
 
 **New app:** follow `cursor-patterns/INIT_NEW_APP.md` (asks 3 questions first).
 
@@ -244,8 +260,11 @@ See `FROZEN.md` in that folder and `.cursor/rules/45-frozen-apps.mdc`.
 When he asks to **link**, **open**, or **deliver** something as HTML: save a self-contained
 file under `docs/`, run `node scripts/serve-programs-docs.js` (port **8765**), and give him
 **only** `http://127.0.0.1:8765/<filename>.html` as a markdown link. **Never** a `C:\` path,
-`file:///`, or a `.bat` opener. Exemplar: `docs/exam2-review-map.html`. Contract:
-`.cursor/rules/html-infographic-delivery.mdc`.
+`file:///`, or a `.bat` opener.
+
+**The server serves `Programs/docs/` and `Programs/agent docs/` only** — a page anywhere
+else is not reachable at that URL. Exemplar: `agent docs/exam2-review-map.html`.
+Contract: `agent docs/rules/html-delivery.md`.
 
 ---
 
@@ -266,6 +285,6 @@ it and re-includes the active trees. If a tree-wide Grep finds nothing you're su
 `/.ignore` before assuming the code is missing.
 
 **Instruction-layer health:** `node scripts/check-docs.js` reports dead links, orphans,
-duplicates, and unindexed `.mdc`. Run it when a doc is added, moved, or retired.
+duplicates, and unindexed rule files. Run it when a doc is added, moved, or retired.
 
 History only, not current guidance: `Archived markdowns/`.

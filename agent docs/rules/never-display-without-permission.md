@@ -1,9 +1,14 @@
----
-description: Never run anything that puts pixels on Chase's screens, or changes his display config, without explicit per-run permission. Detail behind AGENTS.md § Never put anything on Chase's screen.
-alwaysApply: false
----
-
 # Never put anything on Chase's screen without asking
+
+> **Rung 5 — on demand.** The always-on summary is root `AGENTS.md` § Never put anything on Chase's screen; this
+> file is the detail behind it. Read it when that section is not enough.
+> **What it covers:** Never run anything that puts pixels on Chase's screens, or changes his display config, without explicit per-run permission. Detail behind AGENTS.md § Never put anything on Chase's screen.
+>
+> *Was `.cursor/rules/05-never-display-without-permission.mdc` until 2026-08-02. Moved because `.cursor/rules/*.mdc`
+> only load when a matching file is open in a Cursor editor tab — which is not how Chase works.
+> AGENTS.md links this file by path instead, so every tool can reach it.*
+
+---
 
 Chase drives the cursor with a **head-mounted gyroscopic mouse and dwell-click**.
 A window that appears unannounced steals focus and pointer context, and a display

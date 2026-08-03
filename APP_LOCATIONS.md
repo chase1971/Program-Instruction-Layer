@@ -32,7 +32,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Makeup Exam** | `School Scrips\makeup-exam-standalone` | chase1971/makeup-exam-standalone | Python + Electron |
 | **Extra Credit** (v2) | `School Scrips\Extra credit extractor v2` | chase1971/Extra-credit-extractor-v2 | |
 | **Seating Chart** | `School Scrips\Seating-Chart` | chase1971/Seating-Chart | Electron; reads Macro rosters |
-| **Electron toolbar**, toolbar | `electron-toolbar` | chase1971/electron-toolbar | Python + Electron overlay; dwell-mouse host. **"Put in electron toolbar" = Launcher Panel grid (📚), not App Dashboard, not main strip buttons** — see `.cursor/rules/50-electron-toolbar-launcher-panel.mdc` |
+| **Electron toolbar**, toolbar | `electron-toolbar` | chase1971/electron-toolbar | Python + Electron overlay; dwell-mouse host. **"Put in electron toolbar" = Launcher Panel grid (📚), not App Dashboard, not main strip buttons** — see `electron-toolbar/docs/LAUNCHER_PANEL.md` |
 | **Overlay maker**, overlay picker, overlay setups | `electron-toolbar\electron-app\src\` | *(part of electron-toolbar)* | **Overlay Folder** window (`overlay-picker.html` + `overlay-picker-ui.js`, `overlay-picker-presets.js`, `overlay-picker-manager.js`). Saved setups, active overlay grid, mode editing in setup tooltip. Mode popup: `overlay-behavior-popup.html`. Registry/presets: `services\overlay-registry-service.js`, `services\overlay-preset-service.js`. Open from toolbar strip **Overlay Folder** button (`toggle_overlay_picker`). |
 | **Video Player**, video player | `Video Player` | *(local git)* | **`C:\Users\chase\Documents\Programs\Video Player\`** — Electron + embedded VLC; random episode picker + resume. **Not inside electron-toolbar** — toolbar only launches it (`Shift+F19`, Launcher Panel tile `video-player` → `Video Player\launch.bat`). Data: `%APPDATA%\video-player\data\`. Docs: `Video Player\CLAUDE.md`, `docs\VLC_EMBEDDING.md`. |
 | **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. **Cursor MCP:** `Programs/.cursor/mcp.json` → server `agent-browser` (Playwright MCP + CDP). Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
@@ -121,7 +121,7 @@ Use when you need exact launch paths or proxy ports, not just “which folder is
 Each app above with a GitHub row is its **own git repo** (sibling repos, not a monorepo).
 Committing Macro App does **not** commit sibling repos (e.g. frozen Calendar 2.0).
 Programs root (`C:\Users\chase\Documents\Programs\.git`) — **`chase1971/Program-Instruction-Layer`**
-(instruction layer: `AGENTS.md`, `HOW_TO_INTERACT_WITH_AI.md`, `cursor-patterns/`, `.cursor/rules/` — not app source).
+(instruction layer: `AGENTS.md`, `HOW_TO_INTERACT_WITH_AI.md`, `recipes/`, `cursor-patterns/`, `agent docs/rules/` — not app source).
 
 ---
 

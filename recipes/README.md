@@ -1,0 +1,163 @@
+# recipes/ — how we've built it before
+
+> **The single place to look before building an interaction.** Drag, dwell, hover,
+> overlay, scroll, toggle, modal, canvas element, animation.
+>
+> **Chase points here by saying:** *"check the recipes folder"* / *"how did we do the
+> drag handle on an overlay?"* — but an agent should read this table **without being
+> asked**, any time it is about to build something in one of these categories.
+> Root `AGENTS.md` § Recipes says so.
+
+---
+
+## How to use this
+
+1. **Match his words to a row** in the table below. Read **that one recipe**.
+2. **Open the exemplar files** the recipe names. The code is the truth; the recipe
+   is the map.
+3. **Extend the exemplar.** Do not write a parallel implementation. If no recipe
+   matches, build it, then **add a recipe** (see § Adding a recipe).
+
+**Never copy a timing value out of a recipe.** Every dwell, hover, and drag
+threshold lives in **`cursor-patterns/dwell-and-head-mouse.md`** and in
+`electron-toolbar/modules/dwell/backend/dwell_constants.py`. Recipes describe
+*shape and order*; those two files own the *numbers*.
+
+---
+
+## Dwell and click
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "click by holding still", "dwell mode 1" | [dwell-click.md](./dwell-click.md) | ✅ |
+| "drag by dwelling", "the drag state machine", "dwell mode 2" | [dwell-drag.md](./dwell-drag.md) | ✅ |
+| "hover a button to fire it", "toolbar button activation" | [dwell-activation.md](./dwell-activation.md) | ✅ |
+| "count down before it does the thing" | [dwell-countdown.md](./dwell-countdown.md) | ✅ |
+| "dwell in the Studio", "the React dwell hook", "it clicks before I'm ready" | [studio-dwell-latch.md](./studio-dwell-latch.md) | ✅ |
+
+## Drag, move, position
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "drag handle on an overlay", "hover the handle then it follows", "ghost overlay" | [hover-to-lock-drag.md](./hover-to-lock-drag.md) | ⚠️ see note |
+| "move or resize a canvas element", "carry mode", "resize handles" | [canvas-move-resize.md](./canvas-move-resize.md) | ✅ |
+| "send the overlay to my cursor", "F14 / F23 reposition" | [move-to-cursor.md](./move-to-cursor.md) | ✅ |
+| "keep the window on the right monitor", "it opened off-screen" | [window-positioning.md](./window-positioning.md) | ✅ |
+
+## Overlays and windows
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "the overlay eats my clicks", "click-through window", "only hot regions clickable" | [click-through-windows.md](./click-through-windows.md) | ✅ |
+| "toggle the overlay on and off", "it flickers when I press the hotkey twice" | [toggle-pattern.md](./toggle-pattern.md) | ✅ |
+| "build a toolbar", "add a button to the toolbar" | [toolbar-system.md](./toolbar-system.md) | ✅ |
+| "stop dwell from firing over my own UI" | [overlay-exclusion-zones.md](./overlay-exclusion-zones.md) | ❌ **not implemented** |
+
+## Hover, keys, scroll
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "detect when the cursor is over a region", "polling vs events" | [mouse-hover-detection.md](./mouse-hover-detection.md) | ✅ |
+| "hover to press a key", "WASD pad", "arrow pad" | [hover-to-key-press.md](./hover-to-key-press.md) | ✅ |
+| "hold the key down", "it stops repeating" | [continuous-key-press.md](./continuous-key-press.md) | ✅ |
+| "scroll faster near the edge", "region to scroll speed" | [scroll-calculation.md](./scroll-calculation.md) | ✅ |
+
+## Building UI (React / canvas apps)
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "new modal", "make it look like that modal", "the modal scrolls wrong" | [modal-shell.md](./modal-shell.md) | ✅ |
+| "the blue instruction box", "info block", "step badge" | [canvas-info-block-design.md](./canvas-info-block-design.md) | ✅ |
+| "Back / Next buttons on the info block", "tutorial nav" | [info-block-nav-buttons.md](./info-block-nav-buttons.md) | ✅ |
+| "the element vanishes when I click it in edit mode" | [edit-underlay-layer-contract.md](./edit-underlay-layer-contract.md) | ✅ |
+| "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ |
+| "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ |
+
+## Animation
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "reuse an animation", "animation template", "port that animation over" | [animation-library.md](./animation-library.md) | ✅ |
+| "implement the director notes", "the pending animation file" | [animation-director-notes.md](./animation-director-notes.md) | ✅ |
+
+## Architecture and handoff
+
+| You might say | Recipe | Status |
+|---|---|---|
+| "manage the states", "it gets stuck between modes" | [state-machine.md](./state-machine.md) | ✅ |
+| "Studio and the AI are fighting over screens.json", "design handoff" | [studio-design-propagation.md](./studio-design-propagation.md) | ✅ |
+| "embed VLC", "the video rectangle", "VlcStage" | [vlc-embed-contract.md](./vlc-embed-contract.md) | ✅ |
+
+---
+
+## Accuracy notes — read before trusting a detail
+
+The status column is not decoration. Two recipes carry known debt:
+
+| Recipe | Problem |
+|---|---|
+| `overlay-exclusion-zones.md` | **Design sketch. No implementation exists.** Verified 2026-07-31 — no exclusion-zone code in `electron-toolbar/modules/dwell/backend/`. For real dwell suppression, add a **pause reason** modeled on `dwell_scroll_zone_pause.py` |
+| `hover-to-lock-drag.md` | Its example uses `addEventListener('mouseenter')`. Live overlays are **click-through**, so DOM events never fire — they **poll**. Following the snippet literally produces a handle that silently never activates |
+
+The 16 patterns moved from `electron-toolbar` were last substantively revised
+**2025-12-22**; the dwell backend has changed since. **Open the exemplar file and
+confirm before relying on a specific detail.** `agent docs/INSTRUCTION_LAYER_AUDIT.md`
+§ 2g is the pass that catches this.
+
+---
+
+## Where things live
+
+| Kind | Home | Example |
+|---|---|---|
+| **Recipe** — how to build one interaction | **this folder** | `dwell-drag.md` |
+| **Standard** — shape all code must have | `cursor-patterns/` | `CODING_STANDARDS.md`, `file-headers.md` |
+| **Values** — timings, thresholds, sizes | `cursor-patterns/dwell-and-head-mouse.md` + `dwell_constants.py` | never restated in a recipe |
+| **Integration doc** — why this subsystem is like this | the app's `docs/` | `EMBEDDED_BROWSER_AND_MODALS.md` |
+
+That split is what keeps this folder from becoming a dumping ground. If a
+document explains *one app's history*, it is not a recipe.
+
+---
+
+## Adding a recipe
+
+When you build an interaction that has no recipe — **before the session ends**:
+
+1. Create `recipes/<name>.md`.
+2. Header block, in this order:
+   - `> **You might say:** ` — the words **Chase** would use, not the technical name
+   - `> **What it is:** ` — one line
+   - `**Exemplar files**` — real paths to the working code
+3. Body: mental model, step order, gotchas. **No bare timing numbers.**
+4. **Add a row to the matching table above**, with a status mark.
+
+Size discipline, same as `PEARSON_BROWSER_AUTOMATION.md`:
+
+| Layer | Budget |
+|---|---|
+| Each table above | ~12 rows — always safe to read whole |
+| Each recipe | aim for under ~300 lines |
+| This index | keep under ~150 lines; split a category out if it outgrows that |
+
+**A recipe no table names is invisible.** Adding the file is half the job.
+
+## Promoting an app pattern into a recipe
+
+Not every pattern starts here. Something built inside one app stays in that app's
+`docs/` — until it gets built **a second time somewhere else**. That is the signal.
+
+| Where it is | Move it here when |
+|---|---|
+| `<app>/docs/*.md` | The same interaction has now been built in **two or more apps** |
+| A recipe here | — it never moves back; if only one app still uses it, leave it and note that |
+
+When promoting: move the file, generalize the exemplar list to name **every** app that
+uses it, add the index row, and leave a one-line pointer in the app doc it came from.
+
+The reverse also holds — if something in here turns out to be true of exactly one app
+and unlikely to spread, it is an app doc wearing the wrong hat. Move it out.
+
+---
+
+*Created 2026-08-02 by consolidating three scattered libraries: `electron-toolbar/electron-app/patterns/` (16), `School Scrips/Math App Studio/.cursor/rules/` (9), and single rules from `canvas-kit` and `Video Player`. The `.mdc` originals were Cursor glob rules that only fired when a matching file happened to be open in an editor tab — which is not how Chase works.*

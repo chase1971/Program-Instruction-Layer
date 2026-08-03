@@ -41,7 +41,7 @@ over four apps produces a report nobody reads and changes nobody can review.
 
 | Skip | Why |
 |---|---|
-| `School Scrips/Calendar 2.0` | **Frozen** (`.cursor/rules/45-frozen-apps.mdc`) unless Chase names it |
+| `School Scrips/Calendar 2.0` | **Frozen** (`agent docs/rules/frozen-apps.md`) unless Chase names it |
 | `Deprecated apps/**` | Retired — no conformance expected |
 | Vendored trees (`calendar-vendor`, `assignment-assistant-engine`, `my-calendar`) | Copies of other repos. Fix the **origin**, not the copy |
 | **Application source code** | This pass changes *instruction* files. Exception: § C, where code is **read** to verify a doc's claim — read, never edit |
@@ -55,13 +55,17 @@ Six checks. Run in this order — each is cheaper than the one after it.
 
 ### A · Discoverability — can an agent find the rules at all?
 
-- [ ] **`CLAUDE.md` exists at the app root.** Without it, **Claude Code cannot see
-      any `.mdc` file in this repo** — it never auto-loads them. This is the single
-      highest-impact gap and several apps still fail it.
-- [ ] **Every `.cursor/rules/*.mdc` has a row** in that `CLAUDE.md` rules table,
-      saying *when it applies* — not just its name.
-- [ ] Each `.mdc` has an explicit **`alwaysApply:`** value. Missing = no rung at all.
-- [ ] Globs are checked against **real filenames in this repo** (see § C).
+- [ ] **`AGENTS.md` exists at the app root**, holding the content — what the app is,
+      the keyword table, app-specific rules.
+- [ ] **`CLAUDE.md` exists and is three lines**: `@AGENTS.md` plus a pointer note.
+      Content in both files is the drift this structure exists to prevent.
+- [ ] **The keyword table routes what Chase would *say*** — his words, not the
+      technical name. A doc no row names is invisible.
+- [ ] **Every `docs/*.md` in the app has a row** in the on-demand table.
+- [ ] **No `.cursor/rules/*.mdc`.** Retired 2026-08-02 — they only fired when a
+      matching file was open in an editor tab. If one exists here, convert it: a
+      *how to build* rule becomes a recipe in `Programs/recipes/`; anything
+      app-specific becomes `docs/<TOPIC>.md` plus a keyword row.
 - [ ] The app appears in `APP_LOCATIONS.md` with its aliases.
 
 ### B · Single source — is any value written twice?

@@ -1,12 +1,14 @@
----
-description: Clickable HTML for Chase — serve docs/ on 8765, http link in chat only. Read when Chase asks to link/open HTML, infographic, comparison, or when editing docs/**/*.html. Never C:\ paths or .bat openers.
-globs:
-  - docs/**/*.html
-  - scripts/serve-programs-docs.js
-alwaysApply: false
----
-
 # HTML delivery to Chase (clickable chat links)
+
+> **Rung 5 — on demand.** The always-on summary is root `AGENTS.md` § HTML pages Chase can click from chat; this
+> file is the detail behind it. Read it when that section is not enough.
+> **What it covers:** Clickable HTML for Chase — serve docs/ on 8765, http link in chat only. Read when Chase asks to link/open HTML, infographic, comparison, or when editing docs/**/*.html. Never C:\ paths or .bat openers.
+>
+> *Was `.cursor/rules/html-infographic-delivery.mdc` until 2026-08-02. Moved because `.cursor/rules/*.mdc`
+> only load when a matching file is open in a Cursor editor tab — which is not how Chase works.
+> AGENTS.md links this file by path instead, so every tool can reach it.*
+
+---
 
 **Not always-on** — spare that budget for universal safety/git rules. This rule loads when
 you edit HTML under `docs/`, or when Chase asks for a linked page. Short pointer also lives

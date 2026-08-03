@@ -88,13 +88,25 @@ the one I would most want to compare notes on: **a trigger is only as good as th
 conditioned on**, and it is worth measuring whether that state actually occurs before trusting
 the mechanism.
 
+> **Update, 2026-08-02 — I acted on this.** Every `.mdc` in the tree is gone (except the
+> frozen app). Rung 3 was not deleted; its **trigger** was replaced. It is now either a
+> recipe in `recipes/` or a keyword row in an app's `AGENTS.md`, both of which fire on
+> *what I say* rather than on which file happens to be open. The 16 interaction patterns
+> that had been scattered across three libraries are now one folder with one index, which
+> is the only thing I have to remember the location of.
+>
+> The second-order lesson: **the replacement trigger has to be something that is already
+> present.** "What the user said" always exists in a session. "Which file is open in an
+> editor tab" only exists for people who work by browsing code first.
+
 ---
 
 ## One always-on file, read by both tools
 
-Cursor auto-loads `.cursor/rules/*.mdc`. Claude Code never does — it loads `AGENTS.md` and the
+Cursor auto-loaded `.cursor/rules/*.mdc`; Claude Code never did — it loads `AGENTS.md` and the
 nearest `CLAUDE.md`. A rule written in one format governs one tool; a rule written in both
-drifts apart within weeks.
+drifts apart within weeks. (As of 2026-08-02 the `.mdc` layer is retired entirely — see the
+update above — but the reasoning below is what led there.)
 
 My first solution split every rule across three files: content in a pattern document, a glob
 trigger in the rule file, a pointer in `CLAUDE.md`. It worked, and it was three files to keep

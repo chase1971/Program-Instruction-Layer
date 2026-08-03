@@ -1,0 +1,27 @@
+{
+  "addGreps": 6,
+  "docsRulesOpened": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "HOW_TO_INTERACT_WITH_AI.md",
+    "APP_LOCATIONS.md",
+    "agent docs/INSTRUCTION_LAYER_AUDIT.md",
+    "agent docs/APP_CONFORMANCE_PASS.md",
+    "agent docs/SESSION_SCORECARD.md",
+    "agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md",
+    "agent docs/mdc-read-stats.json",
+    ".claude/skills/capture/SKILL.md",
+    "cursor-patterns/README.md",
+    "School Scrips/Macro App/AGENTS.md",
+    "School Scrips/Macro App/CLAUDE.md",
+    "School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md",
+    "electron-toolbar/CLAUDE.md",
+    "electron-toolbar/electron-app/patterns/README.md",
+    "School Scrips/canvas-kit/CLAUDE.md",
+    "School Scrips/Math App Studio/CLAUDE.md"
+  ],
+  "mdcReadsList": [],
+  "summary": "Retired the entire .mdc layer; consolidated three scattered pattern libraries into Programs/recipes/ (29 recipes, one index with a 'you might say' column); rolled AGENTS.md + thin CLAUDE.md out to 19 apps; rewrote the capture ladder so rung 3 is a recipe or keyword row instead of a glob rule.",
+  "addTurns": 8,
+  "addCorrections": 2
+}

@@ -89,7 +89,7 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this chat. Rough proxy for how long the session ran.</li><li><strong>Searches:</strong> How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.</li><li><strong>Browser snapshots:</strong> Explicit browser_snapshot MCP calls — high count usually means exploratory automation.</li><li><strong>Tools used:</strong> Non-read/edit agent tools (MCP browser, Task, WebFetch, etc.). Snapshots counted separately.</li><li><strong>Markdowns read:</strong> Document/instruction files read (.md, .mdc, .html, etc.).</li><li><strong>Low confidence counts:</strong> The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.</li><li><strong>Chat was summarized:</strong> Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <details class="legend">
-    <summary><abbr class="tip" title="Lifetime total across sessions — Read tool on .mdc only. Auto-injected rules are invisible to this log.">MDC lifetime (Read tool)</abbr> — 13 rule file(s) opened via Read</summary>
+    <summary><abbr class="tip" title="Lifetime total across sessions — Read tool on .mdc only. Auto-injected rules are invisible to this log.">MDC lifetime (Read tool)</abbr> — 14 rule file(s) opened via Read</summary>
     <p class="muted-inline">Auto-injected glob rules (file open, no Read) are <strong>not</strong> counted. Low numbers here do not mean a rule is useless.</p>
     <table class="mdc-table">
       <thead><tr><th>Rule file</th><th>Reads</th><th>Last</th></tr></thead>
@@ -122,6 +122,10 @@
         <td>2</td>
         <td>3:02 PM</td>
       </tr><tr>
+        <td><code>50-electron-toolbar-launcher-panel.mdc</code></td>
+        <td>1</td>
+        <td>5:29 PM</td>
+      </tr><tr>
         <td><code>assignment-assistant-freeze.mdc</code></td>
         <td>1</td>
         <td>3:02 PM</td>
@@ -137,17 +141,13 @@
         <td><code>macro-ci.mdc</code></td>
         <td>1</td>
         <td>3:02 PM</td>
-      </tr><tr>
-        <td><code>macro-modals.mdc</code></td>
-        <td>1</td>
-        <td>3:02 PM</td>
       </tr></tbody>
     </table>
-    <p class="muted-inline">+ 1 more in <code>agent docs/mdc-read-stats.json</code></p>
+    <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>7</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:21 PM · Sunday, Aug 2, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>10</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:39 PM · Sunday, Aug 2, 2026</dd></div>
     </div>
     
     <section class="day-block">
@@ -155,13 +155,137 @@
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
       <div class="pills">
-        <span class="time">4:21 PM</span>
+        <span class="time">11:39 PM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
         
         <span class="pill p2" title="Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.">Chat was summarized</span>
-        
+        <span class="pill p2" title="The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.">Not bumped — counts reconstructed</span>
         <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
         
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Shipped Quasimorph mods: QM_StickyTooltips v2.0.0 click-to-toggle (Chase confirmed much better), QM_FloatingMinimap v1.4.2 minimal chrome + zoom persist, QM_SaveBackup v1.0.0 exit backup. Also Tracker UI readability, FactionDump mission fields, scroll-rail work earlier in session.</p>
+    <div class="metric-grid metric-grid-core">
+      <div class="metric"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>3</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>3</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>1</dd></div>
+      
+    </div>
+    <details class="activity-details">
+    <summary class="activity-summary">
+      <span class="activity-summary-label">Activity</span>
+      <span class="activity-chips"><span class="activity-chip">Markdowns read (2)</span><span class="activity-chip">Code read (0)</span></span>
+    </summary>
+    <div class="activity-body"><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr> (2)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/session-scorecards.jsonl">session-scorecards.jsonl</code></li></ul>
+  </div></div>
+  </details>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hover sticky tooltips failed with dwell-mouse; click-toggle model solved it.
+    </div><div class="capture-box">
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> For dwell-mouse UIs: prefer click-to-pin over hover-sticky; block accidental drag with movement threshold.
+    </div>
+    <p class="next"><strong>Next time:</strong> Optional: QM_StickyTooltips edge cases (ItemTooltipHandler non-slot UI, gamepad confirm); minimap play-test if not done.</p>
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">11:39 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        
+        
+        
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Shipped Quasimorph mods: QM_StickyTooltips v2.0.0 click-to-toggle (Chase confirmed much better), QM_FloatingMinimap v1.4.2 minimal chrome + zoom persist, QM_SaveBackup v1.0.0 exit backup. Also Tracker UI readability, FactionDump mission fields, scroll-rail work earlier in session.</p>
+    <div class="metric-grid metric-grid-core">
+      <div class="metric"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>11</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>120</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>3</dd></div>
+      
+    </div>
+    <details class="activity-details">
+    <summary class="activity-summary">
+      <span class="activity-summary-label">Activity</span>
+      <span class="activity-chips"><span class="activity-chip">Markdowns read (29)</span><span class="activity-chip">Code read (3)</span><span class="activity-chip">Markdowns edited (6)</span><span class="activity-chip">Code edited (13)</span></span>
+    </summary>
+    <div class="activity-body"><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr> (29)</h4>
+    <ul class="path-list"><li><code class="" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="" title="School Scrips/canvas-kit/CLAUDE.md">CLAUDE.md — canvas-kit</code></li><li><code class="" title="electron-toolbar/CLAUDE.md">CLAUDE.md — electron-toolbar</code></li><li><code class="" title="School Scrips/Macro App/CLAUDE.md">CLAUDE.md — Macro App</code></li><li><code class="" title="School Scrips/Math App Studio/CLAUDE.md">CLAUDE.md — Math App Studio</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json">.session-scorecard-running.json</code></li><li><code class="" title="agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md">AGENT_SETUP_FOR_PEER_REVIEW.md</code></li><li><code class="" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="" title="agent docs/APP_CONFORMANCE_PASS.md">APP_CONFORMANCE_PASS.md</code></li><li><code class="" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="" title="CLAUDE.md">CLAUDE.md — .</code></li><li><code class="" title="HOW_TO_INTERACT_WITH_AI.md">HOW_TO_INTERACT_WITH_AI.md</code></li><li><code class="" title="agent docs/INSTRUCTION_LAYER_AUDIT.md">INSTRUCTION_LAYER_AUDIT.md</code></li><li><code class="" title="agent docs/mdc-read-stats.json">mdc-read-stats.json</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_SaveBackup/modmanifest.json">modmanifest.json</code></li><li><code class="" title="School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md">PEARSON_BROWSER_AUTOMATION.md</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/README.md">README.md</code></li><li><code class="" title="cursor-patterns/README.md">README.md</code></li><li><code class="" title="electron-toolbar/electron-app/patterns/README.md">README.md</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/electron-toolbar/modules/scroll/frontend/scroll-overlay.html">scroll-overlay.html</code></li><li><code class="" title="agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/electron-toolbar/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title=".claude/skills/capture/SKILL.md">SKILL.md</code></li><li><code class="" title="c:/Users/chase/.cursor/plans/tracker_ui_readability_9c3ef0d6.plan.md">tracker_ui_readability_9c3ef0d6.plan.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr> (3)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/styles/browser-panel.css">browser-panel.css</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/LocalVerticalScrollRail.tsx">LocalVerticalScrollRail.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/browser/useBrowserScrollSpeed.ts">useBrowserScrollSpeed.ts</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr> (6)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_SaveBackup/modmanifest.json">modmanifest.json</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/README.md">README.md</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title="c:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md">SESSIONS.md</code></li><li><code class="" title="c:/Users/chase/.cursor/plans/tracker_ui_readability_9c3ef0d6.plan.md">tracker_ui_readability_9c3ef0d6.plan.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Source code files changed.">Code edited</abbr> (13)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/CompactFieldGrid.tsx">CompactFieldGrid.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/FactionOverviewPanel.tsx">FactionOverviewPanel.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/FactionTechRewardsPanel.tsx">FactionTechRewardsPanel.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/utils/browserScrollSpeed.ts">browserScrollSpeed.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/hooks/useBrowserScrollSpeed.ts">useBrowserScrollSpeed.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/ScrollRailButtons.tsx">ScrollRailButtons.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/ViewportScrollFrame.tsx">ViewportScrollFrame.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/PairedScrollColumns.tsx">PairedScrollColumns.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/styles/browser-scroll-rail.css">browser-scroll-rail.css</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/MissionDetailSection.tsx">MissionDetailSection.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/types/factionData.ts">factionData.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/SpaceStationDetailPanel.tsx">SpaceStationDetailPanel.tsx</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/CommodityDetailPanel.tsx">CommodityDetailPanel.tsx</code></li></ul>
+  </div></div>
+  </details>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hover sticky tooltips failed with dwell-mouse; click-toggle model solved it.
+    </div><div class="capture-box">
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> For dwell-mouse UIs: prefer click-to-pin over hover-sticky; block accidental drag with movement threshold.
+    </div>
+    <p class="next"><strong>Next time:</strong> Optional: QM_StickyTooltips edge cases (ItemTooltipHandler non-slot UI, gamepad confirm); minimap play-test if not done.</p>
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">9:41 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        
+        
+        
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Quasimorph Tracker got a normal maximized window, balanced faction/commodity/space typography with a working Text scale control, and horizontal tech-tier columns. Electron-toolbar gained dwell-sync Ctrl for Quasimorph overlays plus overlay activity console logging; QM_StickyTooltips v1.0.4 was built for in-game tooltip restore.</p>
+    <div class="metric-grid metric-grid-core">
+      <div class="metric"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>8</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>47</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>0</dd></div>
+      
+    </div>
+    <details class="activity-details">
+    <summary class="activity-summary">
+      <span class="activity-summary-label">Activity</span>
+      <span class="activity-chips"><span class="activity-chip">Markdowns read (7)</span><span class="activity-chip">Code read (0)</span><span class="activity-chip">Markdowns edited (2)</span><span class="activity-chip">Code edited (15)</span></span>
+    </summary>
+    <div class="activity-body"><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr> (7)</h4>
+    <ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json">.session-scorecard-running.json</code></li><li><code class="" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/84e9fca2-6c17-4681-8cec-b6d89a0981f8.txt">84e9fca2-6c17-4681-8cec-b6d89a0981f8.txt</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/cursor-patterns/electron-per-monitor-display-scaling.md">electron-per-monitor-display-scaling.md</code></li><li><code class="" title="C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/modmanifest.json">modmanifest.json</code></li><li><code class="" title="C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/README.md">README.md</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr> (2)</h4>
+    <ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/README.md">README.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Source code files changed.">Code edited</abbr> (15)</h4>
+    <ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/electron/main.js">main.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/FactionTechRewardsPanel.tsx">FactionTechRewardsPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/FactionTabPanels.tsx">FactionTabPanels.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/AppHeader.tsx">AppHeader.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/styles/browser-scroll-rail.css">browser-scroll-rail.css</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/DetailScaleShell.tsx">DetailScaleShell.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/styles/index.css">index.css</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/styles/tracker-typography.css">tracker-typography.css</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/utils/detailTextScale.ts">detailTextScale.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/CompactFieldGrid.tsx">CompactFieldGrid.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/FactionOverviewPanel.tsx">FactionOverviewPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/SpaceStationsListPanel.tsx">SpaceStationsListPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/CommodityDetailPanel.tsx">CommodityDetailPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/SpaceStationDetailPanel.tsx">SpaceStationDetailPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/Quasimorph Tracker/src/app/components/DisplayScaleModal.tsx">DisplayScaleModal.tsx</code></li></ul>
+  </div></div>
+  </details>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Quasimorph Tracker has no git repo yet — changes are local only under Programs/.
+    </div>
+    <p class="next"><strong>Next time:</strong> Restart toolbar + Quasimorph to verify Ctrl overlay and sticky tooltips; init git for Quasimorph Tracker if Chase wants GitHub backup.</p>
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">4:21 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        
+        
+        
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
       </div>
       <div class="model">—</div>
     </header>
