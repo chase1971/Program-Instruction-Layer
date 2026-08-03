@@ -1,0 +1,16 @@
+{
+  "addGreps": 14,
+  "docsRulesOpened": [
+    "recipes/README.md",
+    "recipes/hover-to-lock-drag.md",
+    "recipes/dwell-drag.md",
+    "recipes/toolbar-system.md",
+    "electron-toolbar/AGENTS.md",
+    "electron-toolbar/electron-app/patterns/README.md",
+    "scripts/check-docs.js"
+  ],
+  "mdcReadsList": [],
+  "summary": "Audited all 28 recipes against live code. Deleted 3 obsolete (874 lines) incl. two documenting a Python arrow module deleted in commit e98301b. Fixed the click-through/mouseenter trap. Anchored all 25 survivors with verified exemplar paths. Found 3 actively-wrong dwell timings baked into templates (DWELL_TIME 600 vs real 250-300) and replaced every tunable with its constant name; added a RECIPE VALUES check to check-docs.js so it cannot regress.",
+  "addTurns": 4,
+  "addCorrections": 1
+}

@@ -1,5 +1,16 @@
 # Dwell Click Pattern
 
+> **You might say:** "click by holding still", "dwell mode 1", "it clicks when I do not want it to"
+> **What it is:** Trigger a click by keeping the cursor stationary for a duration, with progress feedback and movement cancel.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/dwell/backend/dwell_module.py`
+- `electron-toolbar/modules/dwell/backend/dwell_constants.py` — every timing, named
+- `electron-toolbar/modules/dwell/backend/dwell_persisted_settings.json` — the overrides that actually run
+
+---
+
 ## Overview
 
 A pattern for triggering mouse clicks by keeping the cursor stationary at a position for a set duration (dwell time). Provides visual progress feedback and can be cancelled by movement.
@@ -180,7 +191,7 @@ class DwellClickHandler:
 Allow brief movement without canceling:
 
 ```python
-GRACE_MOVEMENT_THRESHOLD = 5  # pixels
+GRACE_MOVEMENT_THRESHOLD = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py — JIGGLE_COOLDOWN_MOVEMENT_THRESHOLD
 
 movement = distance(current_position, dwell_position)
 if movement > GRACE_MOVEMENT_THRESHOLD:

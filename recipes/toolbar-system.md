@@ -1,5 +1,16 @@
 # Toolbar System Pattern
 
+> **You might say:** "build a toolbar", "add a button to the toolbar", "the toolbar will not come back"
+> **What it is:** A full overlay toolbar: click-through window, dwell-activated buttons, auto-hide, reposition mode, multi-monitor.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/electron-app/src/window-managers/toolbar-manager.js — `createAllToolbars`, `startAutoHideTimer``
+- `electron-toolbar/electron-app/src/toolbar.html — `dwellTimer`, `activateButton` (~lines 346-403)`
+- `electron-toolbar/electron-app/src/main-constants.js — `COOLDOWNS`, `AUTO_HIDE_CONFIG``
+
+---
+
 ## Overview
 
 A reusable toolbar system that provides hover-based button activation with dwell time, progress feedback, and click-through window support. Designed for non-intrusive overlay interfaces.
@@ -104,7 +115,7 @@ Mouse Enter
 In `toolbar.html`:
 
 ```javascript
-const DWELL_TIME = 600;      // ms to hover before activation
+const DWELL_TIME = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py — DWELL_TIME */;
 const COOLDOWN_TIME = 800;   // ms between activations
 ```
 
@@ -350,7 +361,7 @@ const TOOLBAR_DEFAULTS = {
 ### Dwell Settings
 
 ```javascript
-const DWELL_TIME = 600;      // ms - time to hover
+const DWELL_TIME = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py — DWELL_TIME */;
 const COOLDOWN_TIME = 800;   // ms - time between activations
 ```
 

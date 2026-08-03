@@ -1,5 +1,15 @@
 # Move-to-Cursor Pattern
 
+> **You might say:** "send the overlay to my cursor", "bring it to where I am looking"
+> **What it is:** Reposition an overlay window to the cursor with a configurable offset, clamped to the monitor.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/scroll/backend/scroll_module.py — `move_to_cursor`, `clamp_to_monitor``
+- `electron-toolbar/electron-app/src/window-managers/arrow-manager.js` — the JS port (see its own comment at ~line 783)
+
+---
+
 A reusable pattern for moving overlay windows to the cursor position with configurable offsets. This pattern works in both Python (Tkinter) and Electron (JavaScript) environments.
 
 ## Overview
@@ -51,7 +61,7 @@ def move_to_cursor() -> None:
 
 1. **Cursor Position**: `pyautogui.position()` returns `(x, y)` tuple
 2. **Offset Constants**: Defined in `scroll_constants.py`
-   - `OFFSET_X = 60` (positions overlay to the right of cursor)
+   - `OFFSET_X = ...  # per-overlay; see that module's constants` (positions overlay to the right of cursor)
    - `OFFSET_Y = -ARROW_HEIGHT // 2` (centers vertically on cursor)
 3. **Window Movement**: `window.geometry("widthxheight+x+y")` sets position
 4. **Clamping**: `clamp_to_monitor()` ensures window stays within monitor bounds
@@ -60,7 +70,7 @@ def move_to_cursor() -> None:
 
 ```python
 # From scroll_constants.py
-OFFSET_X = 60
+OFFSET_X = ...  # per-overlay; see that module's constants
 OFFSET_Y = -ARROW_HEIGHT // 2  # Centers vertically
 ```
 
@@ -99,7 +109,7 @@ function moveArrowToCursor() {
         const ah = bounds.height;
         
         // 5. Calculate position with offset (same as Python)
-        const OFFSET_X = 60;
+        const OFFSET_X = ...  # per-overlay; see that module's constants;
         const OFFSET_Y = -ah / 2;  // Same as -ARROW_HEIGHT // 2
         
         const pos_x = mx + OFFSET_X;
@@ -247,13 +257,13 @@ Both implementations use the same offset pattern:
 
 ```python
 # Python
-OFFSET_X = 60
+OFFSET_X = ...  # per-overlay; see that module's constants
 OFFSET_Y = -ARROW_HEIGHT // 2  # Centers vertically
 ```
 
 ```javascript
 // Electron
-const OFFSET_X = 60;
+const OFFSET_X = ...  # per-overlay; see that module's constants;
 const OFFSET_Y = -ah / 2;  // Centers vertically
 ```
 
@@ -310,7 +320,7 @@ function moveOverlayToCursor() {
         const ah = bounds.height;
         
         // Calculate with offset
-        const OFFSET_X = 60;
+        const OFFSET_X = ...  # per-overlay; see that module's constants;
         const OFFSET_Y = -ah / 2;
         const pos_x = mx + OFFSET_X;
         const pos_y = my + OFFSET_Y;

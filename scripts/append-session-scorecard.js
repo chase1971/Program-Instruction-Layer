@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
 
 const ROOT = path.join(__dirname, '..');
 // Folder was renamed docs/ -> "agent docs/" on 2026-08-01. Kept as one constant so
@@ -39,7 +40,13 @@ const TIPS = {
   sessionType: 'Category for comparing similar sessions: Pearson, coding, Q&A, mixed, etc.',
   outcome: 'Done = finished the goal. Partial = some progress. Abandoned = stopped early.',
   lowConfidence: 'The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.',
+  partialConfidence: 'Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.',
   summarized: 'Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.',
+  summarizedNoBump: 'Chat was summarized AND the agent never ran --bump-file. Counts are a partial hook tally at best — treat as incomplete.',
+  summarizedEarlyMissing: 'Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.',
+  hookOnlyNoBump: 'Hook auto-tally ran but the agent never logged task bumps — no chunk boundaries, easy to miss work.',
+  preHookWorkUntracked: 'Hook tally started on this tool call — any reads/searches before that are not in the counts.',
+  missingEarlyWorkLive: 'Live tally is missing work from before the hook started or before the agent bumped a task.',
   notBumped: 'The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.',
   hookTally: 'Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.',
   worthNoting: 'Something unusual about this session worth a glance — not necessarily a problem.',
@@ -114,47 +121,113 @@ function toolDisplayLabel(key) {
   return `${server}:${s.slice(idx + 1)}`;
 }
 
-function pathListHtml(paths, labelFn) {
+function pathListHtml(paths, labelFn, markdownRed = false) {
   if (!paths.length) return '';
   return `<ul class="path-list">${paths.map((p) => {
-    const isMdc = String(p).toLowerCase().endsWith('.mdc');
-    return `<li><code class="${isMdc ? 'path-mdc' : ''}" title="${esc(p)}">${esc(labelFn(p))}</code></li>`;
+    const norm = String(p).toLowerCase();
+    const isMdc = norm.endsWith('.mdc');
+    const isDoc = markdownRed || fileKind(p) === 'doc';
+    const cls = isMdc ? 'path-mdc' : (isDoc ? 'path-doc' : '');
+    return `<li><code class="${cls}" title="${esc(p)}">${esc(labelFn(p))}</code></li>`;
   }).join('')}</ul>`;
 }
 
-function activityChip(label, count) {
-  if (!count) return '';
-  return `<span class="activity-chip">${esc(label)} (${count})</span>`;
-}
-
-function activityCategoryBlock(title, paths, tipText, labelFn) {
-  if (!paths.length) return '';
-  return `<div class="path-section">
-    <h4>${tip(title, tipText)} (${paths.length})</h4>
-    ${pathListHtml(paths, labelFn)}
+function staticMetric(label, value, warn, tipText) {
+  const dt = tipText
+    ? `<abbr class="tip" title="${esc(tipText)}">${esc(label)}</abbr>`
+    : esc(label);
+  return `<div class="metric${warn ? ' metric-warn' : ''}">
+    <dt>${dt}</dt>
+    <dd>${esc(String(value ?? '—'))}</dd>
   </div>`;
 }
 
-function toolsSectionBody(e) {
+function expandableMetric(label, count, paths, tipText, labelFn, opts = {}) {
+  const { markdownRed = false, warn = false } = opts;
+  const n = paths.length || Number(count) || 0;
+  const panel = paths.length
+    ? `<div class="metric-panel">${pathListHtml(paths, labelFn, markdownRed)}</div>`
+    : `<div class="metric-panel"><p class="muted-inline">None logged</p></div>`;
+  return `<details class="metric metric-expandable${warn ? ' metric-warn' : ''}">
+    <summary class="metric-summary">
+      <dt>${tip(label, tipText)}</dt>
+      <dd>${n}</dd>
+    </summary>
+    ${panel}
+  </details>`;
+}
+
+function toolsMetricBody(e) {
   const counts = e.toolsUsedCounts && typeof e.toolsUsedCounts === 'object' ? e.toolsUsedCounts : {};
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   const snaps = Number(e.browserSnapshots) || 0;
-  if (!entries.length && !snaps) return '';
+  if (!entries.length && !snaps) return null;
 
-  let html = `<div class="path-section path-section-tools">
-    <h4>${tip('Tools used', TIPS.toolsUsed)}${snaps ? ` · ${esc(String(snaps))} ${tip('snapshots', TIPS.browserSnapshots)}` : ''}</h4>`;
-  if (entries.length) {
-    html += `<ul class="path-list path-list-tools">${entries.map(([key, n]) => {
-      const isSnap = key.endsWith(':browser_snapshot');
-      const cls = isSnap ? 'path-snapshot' : '';
-      const suffix = n > 1 ? ` × ${n}` : '';
-      return `<li><code class="${cls}" title="${esc(key)}">${esc(toolDisplayLabel(key))}${suffix}</code></li>`;
-    }).join('')}</ul>`;
-  } else if (snaps) {
-    html += `<p class="muted-inline">${snaps} browser snapshot(s) — detail not in tool counts (pre-hook session).</p>`;
+  const paths = entries.map(([key, n]) => `${toolDisplayLabel(key)}${n > 1 ? ` × ${n}` : ''}`);
+  if (snaps && !entries.some(([k]) => k.endsWith(':browser_snapshot'))) {
+    paths.push(`${snaps} browser snapshot(s)`);
   }
-  html += '</div>';
+  return { count: toolsChipCount(e), paths };
+}
+
+function effectiveConfidence(e) {
+  if (e.countsTrust === 'low' || e.countsTrust === 'medium' || e.countsTrust === 'high') {
+    return e.countsTrust;
+  }
+  const summarized = !!e.summarized;
+  const bumped = e.bumped === true;
+  const hook = !!e.hookTally;
+  const taskChunks = Number(e.taskBumpCount) || (Array.isArray(e.taskLog) ? e.taskLog.length : 0);
+
+  if (summarized && !bumped && !hook) return 'low';
+  if (summarized && (!bumped || taskChunks < 1)) return 'low';
+  if (summarized) return 'medium';
+  if (!bumped && hook) return 'medium';
+  if (e.bumped === false) return 'low';
+  const stated = String(e.confidence || 'high').toLowerCase();
+  return stated === 'low' || stated === 'medium' ? stated : 'high';
+}
+
+function trustPills(e, inProgress) {
+  let html = '';
+  const summarized = !!e.summarized;
+  const bumped = e.bumped === true || e.agentBumped === true;
+  const conf = effectiveConfidence(e);
+  const missing = !!e.missingEarlyWork || !!e.preHookWorkUntracked;
+
+  if (inProgress && missing) {
+    html += pill('Missing early work — hook started late', 'p3', TIPS.preHookWorkUntracked);
+  } else if (inProgress && e.hookTally && !bumped) {
+    html += pill('Hook only — no task bumps yet', 'p2', TIPS.hookOnlyNoBump);
+  } else if (summarized && !bumped) {
+    html += pill('Counts incomplete — summarized, no bumps', 'p3', TIPS.summarizedNoBump);
+  } else if (summarized || (missing && !inProgress)) {
+    html += pill('Summarized — early work missing', 'p3', TIPS.summarizedEarlyMissing);
+  } else if (e.bumped === false) {
+    html += pill('Not bumped — counts reconstructed', 'p2', TIPS.notBumped);
+  } else if (!bumped && e.hookTally) {
+    html += pill('Hook only — no task bumps', 'p2', TIPS.hookOnlyNoBump);
+  }
+
+  if (conf === 'low') {
+    html += pill('Low confidence counts', 'p2', TIPS.lowConfidence);
+  } else if (conf === 'medium') {
+    html += pill('Partial counts', 'p2', TIPS.partialConfidence);
+  }
+
   return html;
+}
+
+function deriveFinalizeConfidence(meta, running, base) {
+  const withTrust = refreshCountsTrust({
+    ...base,
+    agentBumped: !!(running && running.agentBumped),
+    bumped: !!(running && running.agentBumped),
+    summarized: !!meta.summarized || !!base.summarized,
+    taskLog: base.taskLog,
+    taskBumpCount: Array.isArray(base.taskLog) ? base.taskLog.length : 0,
+  });
+  return withTrust.countsTrust;
 }
 
 function toolsChipCount(e) {
@@ -164,37 +237,30 @@ function toolsChipCount(e) {
   return uses + snaps;
 }
 
-function activityBreakdown(e, readSplit, editSplit, docsRulesList) {
+function activityBreakdown(e, readSplit, editSplit, docsRulesList, turns, grepWarn, corrWarn, browserSnapshots) {
   const markdownRead = sortMarkdownPaths([...docsRulesList, ...readSplit.doc]);
   const codeRead = dedupePaths(readSplit.code).sort((a, b) => fileLabel(a).localeCompare(fileLabel(b)));
   const markdownEdited = sortMarkdownPaths(editSplit.doc);
-  const codeEdited = dedupePaths(editSplit.code);
+  const codeEdited = dedupePaths(editSplit.code).sort((a, b) => fileLabel(a).localeCompare(fileLabel(b)));
+  const tools = toolsMetricBody(e);
 
-  const chips = [
-    activityChip('Tools', toolsChipCount(e)),
-    activityChip('Markdowns read', markdownRead.length) || `<span class="activity-chip">Markdowns read (0)</span>`,
-    activityChip('Code read', codeRead.length) || `<span class="activity-chip">Code read (0)</span>`,
-    activityChip('Markdowns edited', markdownEdited.length),
-    activityChip('Code edited', codeEdited.length),
+  const tiles = [
+    staticMetric('Your messages', e.turns ?? '—', turns >= 20, TIPS.turns),
+    staticMetric('Searches', e.greps ?? '—', grepWarn, TIPS.greps),
+    staticMetric('You corrected me', e.corrections ?? '—', corrWarn, TIPS.corrections),
+    browserSnapshots
+      ? staticMetric('Browser snapshots', browserSnapshots, browserSnapshots >= 3, TIPS.browserSnapshots)
+      : '',
+    expandableMetric('Markdowns read', markdownRead.length, markdownRead, TIPS.docsRead, agentMarkdownLabel, { markdownRed: true }),
+    expandableMetric('Code read', codeRead.length, codeRead, TIPS.codeRead, fileLabel),
+    expandableMetric('Markdowns edited', markdownEdited.length, markdownEdited, TIPS.docsEdited, agentMarkdownLabel, { markdownRed: true }),
+    expandableMetric('Code edited', codeEdited.length, codeEdited, TIPS.codeEdited, fileLabel),
+    tools
+      ? expandableMetric('Tools used', tools.count, tools.paths, TIPS.toolsUsed, (p) => p)
+      : '',
   ].filter(Boolean);
 
-  const body = [
-    toolsSectionBody(e),
-    activityCategoryBlock('Markdowns read', markdownRead, TIPS.docsRead, agentMarkdownLabel),
-    activityCategoryBlock('Code read', codeRead, TIPS.codeRead, fileLabel),
-    activityCategoryBlock('Markdowns edited', markdownEdited, TIPS.docsEdited, agentMarkdownLabel),
-    activityCategoryBlock('Code edited', codeEdited, TIPS.codeEdited, fileLabel),
-  ].filter(Boolean).join('');
-
-  if (!chips.length && !body) return '';
-
-  return `<details class="activity-details">
-    <summary class="activity-summary">
-      <span class="activity-summary-label">Activity</span>
-      <span class="activity-chips">${chips.join('')}</span>
-    </summary>
-    <div class="activity-body">${body}</div>
-  </details>`;
+  return `<div class="metric-grid metric-grid-activity">${tiles.join('')}</div>`;
 }
 
 
@@ -351,7 +417,6 @@ function sessionCard(e, inProgress) {
   const turns = Number(e.turns);
   const grepWarn = greps >= 8;
   const corrWarn = corrections >= 3;
-  const confLow = String(e.confidence || '').toLowerCase() === 'low';
 
   const filesRead = Array.isArray(e.filesReadList) ? e.filesReadList : [];
   const filesEdited = Array.isArray(e.filesEditedList) ? e.filesEditedList : [];
@@ -375,7 +440,9 @@ function sessionCard(e, inProgress) {
     </div>`;
   }
 
-  const activityBlock = activityBreakdown(e, readSplit, editSplit, docsRulesList);
+  const activityBlock = activityBreakdown(
+    e, readSplit, editSplit, docsRulesList, turns, grepWarn, corrWarn, browserSnapshots,
+  );
 
   const typePill = pill(sessionTypeLabel(e.sessionType), 'p0', TIPS.sessionType);
   const outPill = inProgress
@@ -389,21 +456,13 @@ function sessionCard(e, inProgress) {
       <div class="pills">
         <span class="time">${esc(timeShort(e.timestamp))}</span>
         ${typePill}${outPill}
-        ${confLow ? pill('Low confidence counts', 'p2', TIPS.lowConfidence) : ''}
-        ${e.summarized && !inProgress ? pill('Chat was summarized', 'p2', TIPS.summarized) : ''}
-        ${e.bumped === false && !inProgress ? pill('Not bumped — counts reconstructed', 'p2', TIPS.notBumped) : ''}
+        ${trustPills(e, inProgress)}
         ${e.hookTally ? pill('Hook tallied', 'p1', TIPS.hookTally) : ''}
         ${inProgress ? pill('Live tally', 'p1', 'Updated after each completed task — survives summarize.') : ''}
       </div>
       <div class="model">${esc(e.model || '—')}</div>
     </header>
     <p class="summary-human">${esc(summary)}</p>
-    <div class="metric-grid metric-grid-core">
-      ${metricCell('Your messages', e.turns ?? '—', turns >= 20, TIPS.turns)}
-      ${metricCell('Searches', e.greps ?? '—', grepWarn, TIPS.greps)}
-      ${metricCell('You corrected me', e.corrections ?? '—', corrWarn, TIPS.corrections)}
-      ${browserSnapshots ? metricCell('Browser snapshots', browserSnapshots, browserSnapshots >= 3, TIPS.browserSnapshots) : ''}
-    </div>
     ${activityBlock}
     ${e.redFlags ? `<p class="red-flags"><strong>Red flags:</strong> ${esc(e.redFlags)}</p>` : ''}
     ${worthNoting}${captureBlock}
@@ -419,8 +478,10 @@ function legendHtml() {
     ['Browser snapshots', TIPS.browserSnapshots],
     ['Tools used', TIPS.toolsUsed],
     ['Markdowns read', TIPS.docsRead],
+    ['Partial counts', TIPS.partialConfidence],
+    ['Counts incomplete — summarized, no bumps', TIPS.summarizedNoBump],
+    ['Summarized — early work missing', TIPS.summarizedEarlyMissing],
     ['Low confidence counts', TIPS.lowConfidence],
-    ['Chat was summarized', TIPS.summarized],
     ['Agent suggests capturing', TIPS.captureSuggest],
   ];
   return `<details class="legend">
@@ -451,7 +512,7 @@ function buildHtml(entries, running) {
   for (const [day, sessions] of byDay) {
     daySections += `<section class="day-block">
       <h2 class="day-title">${esc(day)}</h2>
-      <div class="day-sessions">${sessions.map(sessionCard).join('')}</div>
+      <div class="day-sessions">${sessions.map((e) => sessionCard(e)).join('')}</div>
     </section>`;
   }
 
@@ -480,17 +541,8 @@ function buildHtml(entries, running) {
     h1 { font-size: 1.85rem; margin: 0 0 0.35rem; }
     .subtitle { color: var(--muted); margin-bottom: 1rem; }
     abbr.tip { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; border: none; }
-    .legend, .file-details, .activity-details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 0.65rem; }
-    .legend summary, .file-details summary, .activity-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
-    .activity-summary { flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: center; list-style: none; }
-    .activity-summary::-webkit-details-marker { display: none; }
-    .activity-summary-label { color: var(--text); flex-shrink: 0; }
-    .activity-chips { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; align-items: center; }
-    .activity-chip {
-      display: inline-block; padding: 0.2em 0.55em; border-radius: 6px;
-      font-size: 0.78rem; font-weight: 600; background: #1e3350; color: var(--accent);
-      border: 1px solid rgba(94, 184, 255, 0.35);
-    }
+    .legend, .file-details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem 0.85rem; margin-bottom: 0.65rem; }
+    .legend summary, .file-details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
     .legend ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; }
     .legend li { margin: 0.35rem 0; }
     .muted-inline { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
@@ -514,9 +566,21 @@ function buildHtml(entries, running) {
     .model { color: var(--muted); font-size: 0.9rem; }
     .summary-human { margin: 0.35rem 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
     .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.35rem 0; }
-    .metric-grid-core { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 700px) { .metric-grid, .metric-grid-core { grid-template-columns: repeat(2, 1fr); } }
+    .metric-grid-activity { margin-top: 0.15rem; }
+    @media (max-width: 700px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
     .metric { background: #151c26; border-radius: 8px; padding: 0.45rem 0.55rem; }
+    .metric-expandable { padding: 0; overflow: hidden; }
+    .metric-expandable summary.metric-summary {
+      display: block; padding: 0.45rem 0.55rem; cursor: pointer; min-height: 44px;
+      list-style: none; border-radius: 8px;
+    }
+    .metric-expandable summary.metric-summary::-webkit-details-marker { display: none; }
+    .metric-expandable[open] { box-shadow: inset 0 0 0 1px rgba(94, 184, 255, 0.35); }
+    .metric-expandable[open] summary.metric-summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .metric-panel {
+      padding: 0.35rem 0.55rem 0.5rem; max-height: 260px; overflow-y: auto;
+      border-top: 1px solid rgba(61, 81, 102, 0.45);
+    }
     .metric-warn { border: 1px solid var(--warn); }
     .metric dt { font-size: 0.68rem; text-transform: uppercase; color: var(--muted); margin: 0; letter-spacing: 0.03em; }
     .metric dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.05rem; }
@@ -530,14 +594,11 @@ function buildHtml(entries, running) {
     .capture-box { background: #1a2a22; border: 1px solid var(--accent2); }
     .red-flags { color: var(--danger); font-size: 0.9rem; margin: 0.45rem 0 0; }
     .next { color: var(--muted); font-size: 0.9rem; margin: 0.45rem 0 0; }
-    .activity-body { margin-top: 0.35rem; }
-    .path-section { margin: 0.5rem 0 0.65rem; padding-top: 0.35rem; border-top: 1px solid rgba(61, 81, 102, 0.45); }
-    .path-section:first-child { border-top: none; padding-top: 0; }
-    .path-section h4 { margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--accent); font-weight: 600; }
     .path-list { margin: 0; padding: 0; list-style: none; font-size: 0.82rem; color: var(--muted); }
     .path-list li { margin: 0.2rem 0; min-height: 1.35rem; display: flex; align-items: baseline; }
     .path-list code { font-family: Consolas, "Courier New", monospace; font-size: 0.88rem; color: var(--text); word-break: break-all; }
     .path-list code.path-mdc { color: var(--warn); font-weight: 600; }
+    .path-list code.path-doc { color: var(--danger); }
     .path-list code.path-snapshot { color: var(--accent); }
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
@@ -611,18 +672,24 @@ function emptyRunning() {
     taskLog: [],
     hookTally: false,
     agentBumped: false,
+    ...emptyTrustFields(),
   };
 }
 
 function runningToDisplayEntry(r) {
+  refreshCountsTrust(r);
   return {
     timestamp: r.sessionStarted,
     model: r.model || '—',
     sessionType: r.sessionType || 'mixed',
     summaryHuman: r.summaryHuman || 'Session in progress…',
     outcome: 'Partial',
-    summarized: false,
-    confidence: 'high',
+    summarized: !!r.summarized,
+    confidence: r.countsTrust || 'low',
+    countsTrust: r.countsTrust,
+    missingEarlyWork: r.missingEarlyWork,
+    preHookWorkUntracked: r.preHookWorkUntracked,
+    agentBumped: !!r.agentBumped,
     turns: r.turns,
     greps: r.greps,
     corrections: r.corrections,
@@ -632,7 +699,9 @@ function runningToDisplayEntry(r) {
     filesEditedList: r.filesEditedList,
     toolsUsedCounts: r.toolsUsedCounts || {},
     browserSnapshots: r.browserSnapshots || 0,
+    taskBumpCount: Array.isArray(r.taskLog) ? r.taskLog.length : 0,
     worthNoting: [
+      r.missingEarlyWork ? 'Hook tally missing pre-hook work — bump tasks as you go.' : '',
       r.taskLog?.length
         ? `Tasks logged so far: ${r.taskLog.length} (last: ${r.taskLog[r.taskLog.length - 1].note || '—'})`
         : '',
@@ -649,6 +718,7 @@ function bumpRunning(delta) {
   if (delta.model) r.model = delta.model;
   if (delta.sessionType) r.sessionType = delta.sessionType;
   if (delta.summaryHuman) r.summaryHuman = delta.summaryHuman;
+  if (delta.summarized) r.summarized = true;
   r.turns += Number(delta.addTurns || 0);
   r.greps += Number(delta.addGreps || 0);
   r.corrections += Number(delta.addCorrections || 0);
@@ -677,6 +747,7 @@ function bumpRunning(delta) {
   ) {
     r.agentBumped = true;
   }
+  refreshCountsTrust(r);
   writeRunning(r);
   regenerate();
   return r;
@@ -685,21 +756,25 @@ function bumpRunning(delta) {
 function finalizeRunning(meta) {
   const r = readRunning();
   const base = r || emptyRunning();
+  if (meta.summarized) base.summarized = true;
+  refreshCountsTrust(base);
   const entry = normalize({
     timestamp: meta.timestamp || new Date().toISOString(),
     model: meta.model || base.model,
     sessionType: meta.sessionType || base.sessionType,
     summaryHuman: meta.summaryHuman || base.summaryHuman,
     outcome: meta.outcome || 'Done',
-    summarized: !!meta.summarized,
+    summarized: !!meta.summarized || !!base.summarized,
     // Derived, never self-reported: a running file only exists if bumps were logged.
     // Separates "the chat was summarized" from "the agent forgot to bump" — different
     // failures, different fixes. Counts reconstructed at the end are guesses.
     bumped: !!(r && r.agentBumped),
     hookTally: !!base.hookTally,
-    confidence:
-      meta.confidence
-      || (r && r.agentBumped ? 'high' : base.hookTally ? 'medium' : 'low'),
+    confidence: deriveFinalizeConfidence(meta, r, base),
+    countsTrust: base.countsTrust,
+    missingEarlyWork: base.missingEarlyWork,
+    preHookWorkUntracked: base.preHookWorkUntracked,
+    hookFirstTallyAt: base.hookFirstTallyAt || null,
     turns: base.turns + Number(meta.addTurns || 0),
     greps: base.greps,
     corrections: base.corrections + Number(meta.addCorrections || 0),
@@ -712,6 +787,8 @@ function finalizeRunning(meta) {
     worthNoting: meta.worthNoting || '',
     captureCandidate: meta.captureCandidate || '',
     nextSession: meta.nextSession || '',
+    taskBumpCount: Array.isArray(base.taskLog) ? base.taskLog.length : 0,
+    taskLog: base.taskLog || [],
   });
   const entries = readEntries();
   entries.push(entry);

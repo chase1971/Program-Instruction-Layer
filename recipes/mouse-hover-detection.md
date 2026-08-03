@@ -1,5 +1,16 @@
 # Mouse Hover Detection Pattern
 
+> **You might say:** "detect when the cursor is over a region", "polling vs events", "the hover never fires"
+> **What it is:** Deciding between polling and DOM events for hover, and hit-testing cursor position against regions.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/scroll/backend/scroll_module.py` — _poll_scroll`, `_start_polling
+- `electron-toolbar/modules/volume_module.py`
+- `electron-toolbar/electron-app/src/window-helpers.js`
+
+---
+
 ## Overview
 
 A pattern for detecting when the mouse cursor is over specific regions of an overlay window and triggering actions based on hover state.
@@ -194,7 +205,7 @@ def _poll_actions(self):
 Limit how often detection runs:
 
 ```python
-POLL_INTERVAL_MS = 50  # Don't poll more than every 50ms
+POLL_INTERVAL_MS = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py — SLEEP_MAIN_LOOP
 ```
 
 ### Early Exit

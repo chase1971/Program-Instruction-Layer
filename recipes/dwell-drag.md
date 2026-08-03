@@ -1,5 +1,16 @@
 # Dwell Drag Pattern
 
+> **You might say:** "drag by dwelling", "dwell mode 2", "the drag state machine", "it will not let go"
+> **What it is:** Drag via hover: countdown to grab, drag, countdown to release. Full state machine.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/dwell/backend/dwell_mode2.py — `Mode2State` transitions`
+- `electron-toolbar/modules/dwell/backend/dwell_globals.py — `mode2_state``
+- `electron-toolbar/modules/dwell/backend/dwell_constants.py`
+
+---
+
 ## Overview
 
 A state machine-based pattern for triggering drag operations through hover interactions. Uses countdown timers and state transitions to provide controlled drag start and release.
@@ -278,7 +289,7 @@ def start_release_countdown():
 Prevents accidental activation from brief stops:
 
 ```python
-COUNTDOWN_DEBOUNCE_TIME = 0.5  # seconds
+COUNTDOWN_DEBOUNCE_TIME = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py
 
 # Mouse must be stationary for this long before countdown starts
 if time_stationary >= COUNTDOWN_DEBOUNCE_TIME:
@@ -304,7 +315,7 @@ if has_moved_since_drag_start and mouse_stopped:
 Prevents immediate release after drag start:
 
 ```python
-DRAG_RELEASE_GRACE_TIME = 0.8  # seconds
+DRAG_RELEASE_GRACE_TIME = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py
 
 drag_release_grace_end = time.time() + DRAG_RELEASE_GRACE_TIME
 
@@ -352,14 +363,14 @@ def show_release_text():
 ## Constants
 
 ```python
-COUNTDOWN_DEBOUNCE_TIME = 0.5      # Wait before starting countdown
-COUNTDOWN_STEP_1_MS = 200          # Time for "2"
-COUNTDOWN_STEP_2_MS = 200          # Time for "1"
-DRAG_RELEASE_TIME = 1.0            # Time to hold before release countdown
-DRAG_STOP_CONFIRM_TIME = 0.1       # Time stopped before release countdown
-DRAG_RELEASE_GRACE_TIME = 0.8      # Grace period after drag start
-MODE2_COOLDOWN_DURATION = 1.5      # Cooldown after release
-MOVEMENT_THRESHOLD = 10            # Pixels moved to exit cooldown
+COUNTDOWN_DEBOUNCE_TIME = ...      # Wait before starting countdown
+COUNTDOWN_STEP_1_MS = ...          # Time for "2"
+COUNTDOWN_STEP_2_MS = ...          # Time for "1"
+DRAG_RELEASE_TIME = ...            # Time to hold before release countdown
+DRAG_STOP_CONFIRM_TIME = ...       # Time stopped before release countdown
+DRAG_RELEASE_GRACE_TIME = ...      # Grace period after drag start
+MODE2_COOLDOWN_DURATION = ...      # Cooldown after release
+MOVEMENT_THRESHOLD = ...           # Pixels moved to exit cooldown
 ```
 
 ## Related Patterns

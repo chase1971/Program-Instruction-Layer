@@ -1,5 +1,15 @@
 # Toggle Pattern
 
+> **You might say:** "toggle the overlay on and off", "it flickers when I press the hotkey twice"
+> **What it is:** Reliable overlay show/hide with explicit visibility state and a cooldown against double-fires.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/electron-app/src/window-managers/toolbar-manager.js — `checkCooldown('TOOLBAR_TOGGLE')`, ~line 774`
+- `electron-toolbar/electron-app/src/main-constants.js` — COOLDOWNS
+
+---
+
 ## Overview
 
 A pattern for reliably toggling overlay windows on and off, with proper state tracking, cooldown management, and race condition prevention. Used across all overlay modules (toolbar, arrow, scroll).

@@ -1,5 +1,16 @@
 # Click-Through Windows Pattern
 
+> **You might say:** "the overlay eats my clicks", "click-through window", "only the buttons should be clickable"
+> **What it is:** Overlay windows that ignore the mouse except over interactive regions.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/electron-app/src/window-helpers.js`
+- `electron-toolbar/electron-app/src/ipc-handlers/toolbar-handlers.js`
+- `electron-toolbar/electron-app/src/ipc-handlers/arrow-handlers.js`
+
+---
+
 ## Overview
 
 A pattern for creating overlay windows that ignore mouse events by default, but become interactive when the cursor hovers over specific UI elements. This allows overlays to be non-intrusive while still providing interactive controls.

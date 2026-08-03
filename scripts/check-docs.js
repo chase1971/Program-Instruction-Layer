@@ -183,6 +183,41 @@ for (const [r, rawText] of content) {
   });
 }
 
+// ---------- recipes restating an owned constant ----------
+// recipes/ is the rung-3 layer: an agent reads a recipe and copies its template.
+// So a value baked into a recipe's code fence is not "just an example" — it gets
+// pasted into real code. The general bare-value check deliberately blanks fences;
+// this one deliberately looks inside them, but ONLY for names that a constants file
+// already owns. That keeps it precise: Win32 flags and layout px are never flagged.
+//
+// Found 2026-08-02: dwell recipes carried DWELL_TIME = 600 while the real value was
+// 300 (and the persisted override 250), plus DRAG_RELEASE_TIME 1.0 vs 0.75 and
+// MOVEMENT_THRESHOLD 10 vs 15. Three wrong numbers in a folder meant to be trusted.
+const CONSTANT_OWNERS = [
+  'electron-toolbar/modules/dwell/backend/dwell_constants.py',
+];
+const ownedConstants = new Set();
+for (const rel of CONSTANT_OWNERS) {
+  const abs = path.join(ROOT, rel);
+  if (!fs.existsSync(abs)) continue;
+  for (const ln of fs.readFileSync(abs, 'utf8').split('\n')) {
+    const m = ln.match(/^([A-Z][A-Z0-9_]{3,})\s*=/);
+    if (m) ownedConstants.add(m[1]);
+  }
+}
+
+const recipeValues = [];
+for (const [r, rawText] of content) {
+  if (!/^recipes[\\/]/.test(r)) continue;
+  rawText.split('\n').forEach((ln, i) => {
+    if (VALUE_OK_RE.test(ln)) return;
+    const m = ln.match(/^\s*(?:const\s+|let\s+)?([A-Z][A-Z0-9_]{3,})\s*=\s*(\d+\.?\d*)/);
+    if (m && ownedConstants.has(m[1])) {
+      recipeValues.push({ file: r, line: i + 1, hits: `${m[1]} = ${m[2]} — named in ${CONSTANT_OWNERS[0]}; write the name, not the value` });
+    }
+  });
+}
+
 // ---------- stale plans ----------
 // Plans expire; reference docs do not. A plan is dead when it stops being TOUCHED —
 // not when it claims to be done. Declared status is unreliable: a plan is written,
@@ -271,6 +306,13 @@ if (bareValues.length) {
   line('   → name the constant instead; values live in code or the topic doc\n');
 } else line('✅ No bare timing values in rules or entry points\n');
 
+if (recipeValues.length) {
+  line(`⚠️  RECIPE VALUES (${recipeValues.length}) — a recipe restating a constant it does not own:`);
+  for (const b of recipeValues.slice(0, 25)) line(`   ${b.file}:${b.line}  →  ${b.hits}`);
+  if (recipeValues.length > 25) line(`   …and ${recipeValues.length - 25} more`);
+  line('   → recipes get copied verbatim; a stale number here ships into real code\n');
+} else line('✅ No recipe restates an owned constant\n');
+
 if (stalePlans.length) {
   line(`⚠️  STALE PLANS (${stalePlans.length}) — untouched ${STALE_PLAN_DAYS}+ days:`);
   for (const p of stalePlans.slice(0, 25)) line(`   ${String(p.days).padStart(4)}d  ${p.file}`);
@@ -288,9 +330,11 @@ if (orphans.length) {
 console.log(
   `Summary: ${deadLinks.length} dead links · ${duplicates.length} duplicate sets · ` +
   `${unindexedRules.length} unindexed rules · ${bareValues.length} bare values · ` +
+  `${recipeValues.length} recipe values · ` +
   `${stalePlans.length} stale plans · ${orphans.length} orphans`
 );
 
 const fail = deadLinks.length > 0
-  || (strict && (duplicates.length || orphans.length || unindexedRules.length || bareValues.length));
+  || (strict && (duplicates.length || orphans.length || unindexedRules.length
+      || bareValues.length || recipeValues.length));
 process.exit(fail ? 1 : 0);

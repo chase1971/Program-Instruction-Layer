@@ -51,16 +51,19 @@ threshold lives in **`cursor-patterns/dwell-and-head-mouse.md`** and in
 | "the overlay eats my clicks", "click-through window", "only hot regions clickable" | [click-through-windows.md](./click-through-windows.md) | ✅ |
 | "toggle the overlay on and off", "it flickers when I press the hotkey twice" | [toggle-pattern.md](./toggle-pattern.md) | ✅ |
 | "build a toolbar", "add a button to the toolbar" | [toolbar-system.md](./toolbar-system.md) | ✅ |
-| "stop dwell from firing over my own UI" | [overlay-exclusion-zones.md](./overlay-exclusion-zones.md) | ❌ **not implemented** |
 
-## Hover, keys, scroll
+## Hover and scroll
 
 | You might say | Recipe | Status |
 |---|---|---|
 | "detect when the cursor is over a region", "polling vs events" | [mouse-hover-detection.md](./mouse-hover-detection.md) | ✅ |
-| "hover to press a key", "WASD pad", "arrow pad" | [hover-to-key-press.md](./hover-to-key-press.md) | ✅ |
-| "hold the key down", "it stops repeating" | [continuous-key-press.md](./continuous-key-press.md) | ✅ |
 | "scroll faster near the edge", "region to scroll speed" | [scroll-calculation.md](./scroll-calculation.md) | ✅ |
+
+> **No key-press recipe right now.** `hover-to-key-press.md` and `continuous-key-press.md`
+> were deleted 2026-08-02 — they documented `modules/arrow_module.py`, which commit
+> `e98301b "Interface 2.0"` removed. Arrow lives in `coordinator/arrow_handlers.py` +
+> `electron-app/src/window-managers/arrow-manager.js` now. **Write the replacement from
+> that code**, not from memory of the old docs.
 
 ## Building UI (React / canvas apps)
 
@@ -92,17 +95,28 @@ threshold lives in **`cursor-patterns/dwell-and-head-mouse.md`** and in
 
 ## Accuracy notes — read before trusting a detail
 
-The status column is not decoration. Two recipes carry known debt:
+**Audited 2026-08-02 against the live code.** Every recipe above names exemplar files
+that were confirmed to exist, and the three that described deleted code were removed:
 
-| Recipe | Problem |
+| Removed | Why |
 |---|---|
-| `overlay-exclusion-zones.md` | **Design sketch. No implementation exists.** Verified 2026-07-31 — no exclusion-zone code in `electron-toolbar/modules/dwell/backend/`. For real dwell suppression, add a **pause reason** modeled on `dwell_scroll_zone_pause.py` |
-| `hover-to-lock-drag.md` | Its example uses `addEventListener('mouseenter')`. Live overlays are **click-through**, so DOM events never fire — they **poll**. Following the snippet literally produces a handle that silently never activates |
+| `overlay-exclusion-zones.md` | Design sketch — no implementation ever existed. For dwell suppression, add a **pause reason** modeled on `dwell_scroll_zone_pause.py` |
+| `hover-to-key-press.md` · `continuous-key-press.md` | Documented the deleted `modules/arrow_module.py`. Every class they named (`ArrowKeyHandler`, `ContinuousKeyPressHandler`, `poll_key_press`, `verify_key`) returned zero hits |
 
-The 16 patterns moved from `electron-toolbar` were last substantively revised
-**2025-12-22**; the dwell backend has changed since. **Open the exemplar file and
-confirm before relying on a specific detail.** `agent docs/INSTRUCTION_LAYER_AUDIT.md`
-§ 2g is the pass that catches this.
+**Timing values were wrong and are now removed from every recipe.** The dwell recipes
+carried `DWELL_TIME = 600` where the real constant is `0.3` and the persisted override
+is `250 ms`; `DRAG_RELEASE_TIME = 1.0` against a real `0.75`; `MOVEMENT_THRESHOLD = 10`
+against a real `15`. Recipes now write the **constant's name** and point at its owner.
+`scripts/check-docs.js` has a `RECIPE VALUES` check that fails if a number comes back.
+
+**Still worth a second look:** the toolbar recipes were last substantively revised
+**2025-12-22** and the dwell backend has moved since. They are anchored to real files
+now, but **open the exemplar before relying on a specific detail.**
+
+**Known gap:** nothing here covers the `coordinator/` layer (`module_registry.py`,
+`module_supervisor.py`, `module_lifecycle.py`, `hotkey_supervisor.py`). Modules are
+registered and supervised now; the recipes still describe standalone backends talking
+over signals. *How to add a new toolbar module* has no recipe yet.
 
 ---
 

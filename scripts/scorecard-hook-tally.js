@@ -9,6 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
@@ -70,6 +71,7 @@ function emptyRunning() {
     browserSnapshots: 0,
     hookTally: false,
     agentBumped: false,
+    ...emptyTrustFields(),
   };
 }
 
@@ -210,6 +212,7 @@ function recordToolUse(payload) {
     return;
   }
 
+  refreshCountsTrust(running);
   writeRunning(running);
 }
 

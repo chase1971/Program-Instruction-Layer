@@ -1,5 +1,16 @@
 # Modal/Dialog Pattern
 
+> **You might say:** "new modal", "make it look like that modal", "the modal is too wide", "it closes when I click outside"
+> **What it is:** The standard modal/dialog/wizard shell: max-w-md, no backdrop dismiss, design to fit without scrolling.
+
+**Exemplar files — read these before writing new code:**
+
+- `School Scrips/Macro App/renderer/src/components/ModalContainer.tsx` — follows the rules already; prefer it
+- `School Scrips/Macro App/renderer/src/components/ViewportScrollFrame.tsx` — for genuinely unbounded lists
+- `School Scrips/Macro App/renderer/src/components/gradebook/CategoryWeightsModal.tsx` — multi-column, fits without a scrollbar
+
+---
+
 > **Purpose:** Standard pattern for creating modal dialogs and overlays in React applications
 >
 > **When to Use:** Any time you need a modal, dialog, confirmation popup, or wizard overlay

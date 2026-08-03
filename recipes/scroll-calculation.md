@@ -1,5 +1,15 @@
 # Scroll Calculation Pattern
 
+> **You might say:** "scroll faster near the edge", "region to scroll speed", "it scrolls the wrong way"
+> **What it is:** Map cursor position within an overlay region to a scroll direction and speed, with detection padding.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/scroll/backend/scroll_module.py — `_poll_scroll`, `DragHandler``
+- `electron-toolbar/modules/scroll/backend/scroll_profiles.py`
+
+---
+
 ## Overview
 
 A pattern for detecting mouse position relative to an overlay and triggering continuous scrolling based on which region the cursor is in.
@@ -89,7 +99,7 @@ def _poll_scroll(self):
 Allows easier activation by extending detection zone:
 
 ```python
-DETECTION_PADDING_X = 20  # Pixels to extend left/right
+DETECTION_PADDING_X = ...  # see electron-toolbar/modules/scroll/backend/
 ```
 
 This makes it easier to trigger scrolling without precise cursor placement.
@@ -100,7 +110,7 @@ Configurable scroll speed:
 
 ```python
 SCROLL_OPTIONS = [20, 40, 60, 90]  # Pixels per scroll
-DEFAULT_SCROLL_AMOUNT = 40
+DEFAULT_SCROLL_AMOUNT = ...  # see electron-toolbar/modules/scroll/backend/
 ```
 
 ### 3. Scroll Delay
@@ -108,7 +118,7 @@ DEFAULT_SCROLL_AMOUNT = 40
 Time between scroll events:
 
 ```python
-SCROLL_DELAY_MS = 50  # Milliseconds between scrolls
+SCROLL_DELAY_MS = ...  # see electron-toolbar/modules/scroll/backend/
 ```
 
 Lower values = faster continuous scrolling.
@@ -118,7 +128,7 @@ Lower values = faster continuous scrolling.
 How often to check cursor position:
 
 ```python
-POLL_INTERVAL_MS = 50  # Milliseconds between polls
+POLL_INTERVAL_MS = ...  # see electron-toolbar/modules/scroll/backend/
 ```
 
 ## Complete Code Template

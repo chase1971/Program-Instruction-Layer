@@ -1,5 +1,15 @@
 # State Machine Pattern
 
+> **You might say:** "manage the states", "it gets stuck between modes", "it never leaves dragging"
+> **What it is:** Discrete states with explicit transitions, so an interaction can always be reasoned about and reset.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/dwell/backend/dwell_mode2.py` — Mode2State.IDLE / COUNTDOWN / DRAGGING / WAITING_FOR_MODE_SWITCH
+- `electron-toolbar/modules/dwell/backend/dwell_globals.py — `mode2_state` lives here`
+
+---
+
 ## Overview
 
 A pattern for managing complex behavior through discrete states and transitions. Used extensively in the dwell module for drag operations.

@@ -1,5 +1,16 @@
 # Dwell Countdown System
 
+> **You might say:** "count down before it does the thing", "give me a warning before it fires"
+> **What it is:** A reusable countdown display before a timed action, cancellable by movement.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/dwell/backend/dwell_mode2.py`
+- `electron-toolbar/modules/dwell/backend/dwell_globals.py`
+- `electron-toolbar/modules/dwell/backend/dwell_constants.py`
+
+---
+
 ## Overview
 
 A reusable countdown display system that shows visual feedback during timed operations. Used for drag start and drag release countdowns in the dwell module.
@@ -175,9 +186,9 @@ def should_continue_countdown():
 For consistent countdowns:
 
 ```python
-COUNTDOWN_STEP_1_MS = 200  # Time for "2"
-COUNTDOWN_STEP_2_MS = 200  # Time for "1"
-TOTAL_COUNTDOWN = 400ms
+COUNTDOWN_STEP_1_MS = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py
+COUNTDOWN_STEP_2_MS = ...  # see electron-toolbar/modules/dwell/backend/dwell_constants.py
+TOTAL_COUNTDOWN = sum of the two steps above
 ```
 
 ### Dynamic Timing

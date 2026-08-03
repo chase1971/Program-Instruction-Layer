@@ -1,5 +1,16 @@
 # Hover-to-Lock Drag Pattern
 
+> **You might say:** "drag handle on an overlay", "hover the handle then it follows", "ghost overlay"
+> **What it is:** Hover a handle to lock drag, ghost overlay follows the cursor, snaps when the cursor stops.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/modules/scroll/backend/scroll_module.py` — DragHandler`, `_start_polling
+- `electron-toolbar/modules/scroll/backend/scroll_placement_ui.py`
+- `electron-toolbar/electron-app/src/window-managers/arrow-manager.js`
+
+---
+
 ## Overview
 
 A reusable drag interaction pattern that allows users to move overlay windows by hovering over a drag handle, then having a ghost overlay follow the cursor until it stops moving.
@@ -40,10 +51,10 @@ class DragHandler:
 ### Constants
 
 ```python
-HOVER_LOCK_TIME = 0.5      # Seconds to hover before lock
-IDLE_SNAP_TIME = 0.25      # Seconds idle before snap
-DRAG_COOLDOWN_TIME = 1.0   # Cooldown after snap
-CURSOR_FOLLOW_INTERVAL = 10  # ms - ghost follow update rate
+HOVER_LOCK_TIME = ...      # Seconds to hover before lock
+IDLE_SNAP_TIME = ...       # Seconds idle before snap
+DRAG_COOLDOWN_TIME = ...   # Cooldown after snap
+CURSOR_FOLLOW_INTERVAL = ...  # ghost follow update rate
 ```
 
 ### Event Flow
@@ -169,18 +180,39 @@ drag_handler = DragHandler(instance, drag_handle_widget)
 # Automatically handles all drag interactions
 ```
 
-### Electron/JavaScript (Arrow Overlay)
+### Electron/JavaScript — **poll, do not listen**
+
+> 🔴 **This is the mistake this recipe exists to prevent.** An earlier version of this
+> doc showed `dragHandle.addEventListener('mouseenter', …)`. **That silently never
+> fires.** Live overlays are created click-through (`setIgnoreMouseEvents` — see
+> `recipes/click-through-windows.md`), so the OS never delivers mouse events to the
+> window and no DOM hover event is ever raised. Following it produces a handle that
+> looks correct and does nothing.
+
+The working approach polls the cursor position against the handle's rect from the
+**main process**, the same way `scroll_module.py` does on the Python side:
 
 ```javascript
-// Hover timer
-dragHandle.addEventListener('mouseenter', () => {
-    hoverTimer = setTimeout(() => {
-        ipcRenderer.send('arrow-drag-lock');
-    }, 500);
-});
+// main process — poll, because the overlay window is click-through
+const POLL_MS = /* see cursor-patterns/dwell-and-head-mouse.md */;
 
-// Main process handles ghost creation and cursor following
+setInterval(() => {
+    const { x, y } = screen.getCursorScreenPoint();
+    const over = pointInRect({ x, y }, handleRectOnScreen());
+
+    if (over && !hoverStart) hoverStart = Date.now();
+    if (!over) { hoverStart = null; return; }
+
+    if (Date.now() - hoverStart >= HOVER_LOCK_MS) lockDrag();
+}, POLL_MS);
 ```
+
+**Do not restate the timing values here** — `POLL_MS` and `HOVER_LOCK_MS` live in
+`cursor-patterns/dwell-and-head-mouse.md` and
+`electron-toolbar/modules/dwell/backend/dwell_constants.py`.
+
+Exception: if the window is **not** click-through (a normal focusable window), DOM
+events work fine. Check how the window was created before choosing.
 
 ## Key Design Decisions
 

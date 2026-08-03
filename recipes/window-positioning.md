@@ -1,5 +1,16 @@
 # Window Positioning Pattern
 
+> **You might say:** "it opened off-screen", "wrong monitor", "keep it on the screen I am using"
+> **What it is:** Clamp overlay windows to monitor bounds and handle multi-monitor setups.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/electron-app/src/window-helpers.js — `clampToMonitor``
+- `electron-toolbar/electron-app/src/window-managers/alt-manager.js`
+- `electron-toolbar/modules/scroll/backend/scroll_module.py — `clamp_to_monitor` (Python side)`
+
+---
+
 ## Overview
 
 A pattern for keeping overlay windows within monitor bounds and handling multi-monitor setups.

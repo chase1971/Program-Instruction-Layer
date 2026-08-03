@@ -1,5 +1,15 @@
 # Dwell Activation Pattern
 
+> **You might say:** "hover a button to fire it", "toolbar button activation", "it fires before I mean it to"
+> **What it is:** Hover-for-a-duration to trigger an action, with progress feedback and a cooldown.
+
+**Exemplar files — read these before writing new code:**
+
+- `electron-toolbar/electron-app/src/toolbar.html — `dwellTimer`, `activateButton` (~lines 346-403)`
+- `electron-toolbar/electron-app/src/window-managers/toolbar-manager.js`
+
+---
+
 ## Overview
 
 A pattern for triggering actions by hovering over UI elements for a set duration (dwell time). Provides visual progress feedback and prevents accidental activation.
@@ -18,8 +28,8 @@ Dwell activation:
 ### Basic Dwell System
 
 ```javascript
-const DWELL_TIME = 600;      // ms
-const COOLDOWN_TIME = 800;    // ms
+const DWELL_TIME = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py — DWELL_TIME */;
+const COOLDOWN_TIME = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py — TOGGLE_COOLDOWN */;
 
 let dwellTimer = null;
 let dwellStartTime = null;
@@ -240,7 +250,7 @@ Prevents rapid re-activation that could cause:
 ### Implementation
 
 ```javascript
-const COOLDOWN_TIME = 800; // ms
+const COOLDOWN_TIME = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py — TOGGLE_COOLDOWN */;
 let lastActivationTime = 0;
 
 function canActivate() {

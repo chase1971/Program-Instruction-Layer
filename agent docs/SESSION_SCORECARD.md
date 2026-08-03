@@ -45,7 +45,9 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 | `CallMcpTool` | tool count (`server:toolName`); `browser_snapshot` also increments snapshot total |
 | `Task`, `GetMcpTools`, `WebFetch`, `FetchMcpResource` | tool count |
 
-HTML groups **Tools**, **Markdowns** (`.mdc` first, then AGENTS/CLAUDE with app label), and **Code** in collapsible vertical lists (5 shown, expand for rest). **Your messages** still needs `addTurns` on finalize — hooks do not count chat turns.
+On every tally the hook also sets **`preHookWorkUntracked`**, **`missingEarlyWork`**, and **`countsTrust`** (`low` / `medium` / `high`) via `scripts/scorecard-trust.js`. The live card shows **Missing early work — hook started late** + **Low confidence counts** until the agent bumps tasks. Pass `"summarized": true` in a bump or finalize JSON when Cursor summarized the chat.
+
+HTML groups **Tools**, **Markdowns** (`.mdc` first, then AGENTS/CLAUDE with app label), and **Code** in expandable metric tiles. **Your messages** still needs `addTurns` on finalize — hooks do not count chat turns.
 
 **Hooks do not replace bumps** — they miss task boundaries (`chunkNote`), turns, corrections, and anything run outside Cursor tools (e.g. manual `ilspycmd` in an external terminal).
 
@@ -123,7 +125,7 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 
 ---
 
-*Updated: 2026-08-02 — hook auto-tally; MDC Read tracking + basename display*
+*Updated: 2026-08-03 — expandable activity metrics; summarized + no-bump pills; confidence derived at finalize*
 
 ---
 
