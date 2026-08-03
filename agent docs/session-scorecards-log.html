@@ -146,7 +146,7 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>10</dd></div>
+      <div><dt>Total sessions</dt><dd>11</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">11:39 PM · Sunday, Aug 2, 2026</dd></div>
     </div>
     
@@ -159,9 +159,51 @@
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
         
         <span class="pill p2" title="Cursor compressed older messages to save space. Early reads/searches may be missing from the counts.">Chat was summarized</span>
-        <span class="pill p2" title="The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.">Not bumped — counts reconstructed</span>
+        
         <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
         
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Diagnosed screen-paste hotkey failure (orphan screenshot processes + stale coordinator plan), improved overlay maker setup tooltip with clickable mode buttons, fixed key overlay false collision push-apart, and cleared phantom loaded-setup state on toolbar quit.</p>
+    <div class="metric-grid metric-grid-core">
+      <div class="metric"><dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt><dd>6</dd></div>
+      <div class="metric metric-warn"><dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt><dd>43</dd></div>
+      <div class="metric"><dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt><dd>0</dd></div>
+      
+    </div>
+    <details class="activity-details">
+    <summary class="activity-summary">
+      <span class="activity-summary-label">Activity</span>
+      <span class="activity-chips"><span class="activity-chip">Markdowns read (6)</span><span class="activity-chip">Code read (3)</span><span class="activity-chip">Markdowns edited (5)</span><span class="activity-chip">Code edited (6)</span></span>
+    </summary>
+    <div class="activity-body"><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr> (6)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json">.session-scorecard-running.json</code></li><li><code class="" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="" title="electron-toolbar/docs/COORDINATOR_DUPLICATION_FIX_PLAN.md">COORDINATOR_DUPLICATION_FIX_PLAN.md</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/electron-toolbar/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr> (3)</h4>
+    <ul class="path-list"><li><code class="" title="electron-toolbar/electron-app/src/window-managers/key-overlay-host-manager.js">key-overlay-host-manager.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/window-managers/overlay-picker-manager.js">overlay-picker-manager.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/overlay-picker-presets.js">overlay-picker-presets.js</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr> (5)</h4>
+    <ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="" title="electron-toolbar/electron-app/src/overlay-picker.html">overlay-picker.html</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/electron-toolbar/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul>
+  </div><div class="path-section">
+    <h4><abbr class="tip" title="Source code files changed.">Code edited</abbr> (6)</h4>
+    <ul class="path-list"><li><code class="" title="electron-toolbar/electron-app/src/overlay-picker-presets.js">overlay-picker-presets.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/key-overlay-host-runtime.js">key-overlay-host-runtime.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/window-managers/key-overlay-host-manager.js">key-overlay-host-manager.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/window-managers/overlay-picker-manager.js">overlay-picker-manager.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/main.js">main.js</code></li><li><code class="" title="electron-toolbar/electron-app/src/signal-handlers.js">signal-handlers.js</code></li></ul>
+  </div></div>
+  </details>
+    
+    
+    <p class="next"><strong>Next time:</strong> Full toolbar restart; verify Quasimorph setup mode buttons, tight overlay placement, clean ACTIVE area after quit; kill-all-scripts + relaunch if Ctrl+Shift+V still dead.</p>
+  </article><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">11:39 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        
+        
+        
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
       </div>
       <div class="model">—</div>
     </header>
