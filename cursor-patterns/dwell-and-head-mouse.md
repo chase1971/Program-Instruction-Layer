@@ -169,7 +169,7 @@ These each exist because a specific bug bit. Do not "clean them up".
 
 ## Related
 
-- `.cursor/rules/25-dwell-accessibility.mdc` — the always-relevant short form
-- `School Scrips/Math App Studio/.cursor/rules/studio-dwell-mechanics.mdc` — **the exemplar rule**; model new app rules on its shape
+- `AGENTS.md` § Dwell & head-mouse — the always-on short form
+- `recipes/studio-dwell-latch.md` — **the exemplar recipe**; model new recipes on its shape
 - `cursor-patterns/accessibility-patterns.md` — React drawer/keyboard/ARIA detail
 - `cursor-patterns/modal-pattern.md` — no-backdrop-dismiss

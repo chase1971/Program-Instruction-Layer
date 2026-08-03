@@ -23,7 +23,7 @@
 > | Overlay region hover (vanilla JS) | `createOverlayHoverPoll` | electron-toolbar |
 >
 > **The exemplar rule to model new app rules on:**
-> `School Scrips/Math App Studio/.cursor/rules/studio-dwell-mechanics.mdc`
+> `recipes/studio-dwell-latch.md`
 
 ---
 
@@ -587,11 +587,11 @@ Full pattern: `cursor-patterns/modal-pattern.md` § No overlay / backdrop dismis
 
 **Interaction patterns** — these live in the toolbar repo, not here
 (`electron-toolbar/electron-app/patterns/`, indexed by its `README.md`):
-- [Hover-to-Lock Drag](../electron-toolbar/electron-app/patterns/hover-to-lock-drag.md) — drag with hover-based activation
-- [Dwell Activation](../electron-toolbar/electron-app/patterns/dwell-activation.md) — button activation by hover duration
-- [Dwell Click](../electron-toolbar/electron-app/patterns/dwell-click.md) · [Dwell Drag](../electron-toolbar/electron-app/patterns/dwell-drag.md) · [Dwell Countdown](../electron-toolbar/electron-app/patterns/dwell-countdown.md)
-- [Toggle Pattern](../electron-toolbar/electron-app/patterns/toggle-pattern.md) — state management for toggles
-- [Mouse Hover Detection](../electron-toolbar/electron-app/patterns/mouse-hover-detection.md) — polling vs event detection
+- [Hover-to-Lock Drag](../recipes/hover-to-lock-drag.md) — drag with hover-based activation
+- [Dwell Activation](../recipes/dwell-activation.md) — button activation by hover duration
+- [Dwell Click](../recipes/dwell-click.md) · [Dwell Drag](../recipes/dwell-drag.md) · [Dwell Countdown](../recipes/dwell-countdown.md)
+- [Toggle Pattern](../recipes/toggle-pattern.md) — state management for toggles
+- [Mouse Hover Detection](../recipes/mouse-hover-detection.md) — polling vs event detection
 
 ---
 
