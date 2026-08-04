@@ -1,5 +1,6 @@
 /**
- * Serve Programs/docs/ and agent docs/ on a fixed localhost port so chat http:// links open in a browser.
+ * Serve Programs/docs/, agent docs/, and School documents on a fixed localhost port
+ * so chat http:// links open in a browser.
  * Usage: node scripts/serve-programs-docs.js
  * Then open: http://127.0.0.1:8765/context-engineering-infographic.html
  */
@@ -12,7 +13,9 @@ const path = require('path');
 const PORT = 8765;
 const DOCS = path.join(__dirname, '..', 'docs');
 const AGENT_DOCS = path.join(__dirname, '..', 'agent docs');
-const SERVE_ROOTS = [DOCS, AGENT_DOCS];
+const SCHOOL_DOCS = path.join(__dirname, '..', 'School Scrips', 'School documents');
+// School documents first so teaching HTML (exam maps) wins over agent-docs stubs
+const SERVE_ROOTS = [SCHOOL_DOCS, DOCS, AGENT_DOCS];
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',

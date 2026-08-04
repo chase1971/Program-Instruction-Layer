@@ -12,7 +12,7 @@
 
 **Not always-on** — spare that budget for universal safety/git rules. This rule loads when
 you edit HTML under `docs/`, or when Chase asks for a linked page. Short pointer also lives
-in `AGENTS.md` § HTML pages; exemplars: `docs/exam2-review-map.html`,
+in `AGENTS.md` § HTML pages; exemplars: `School Scrips/School documents/exam2-review-map.html` (teaching maps),
 `docs/context-engineering-infographic.html`.
 
 ## Trigger phrases
@@ -43,7 +43,7 @@ in `AGENTS.md` § HTML pages; exemplars: `docs/exam2-review-map.html`,
 
 ## Comparison layouts
 
-Side-by-side homework/review (or similar): copy structure from **`docs/exam2-review-map.html`** — do not invent a new always-on rule.
+Side-by-side homework/review (or similar): copy structure from **`School Scrips/School documents/exam2-review-map.html`** — do not invent a new always-on rule.
 
 ## Session scorecard log (write-only)
 
