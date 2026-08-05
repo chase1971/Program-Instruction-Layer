@@ -4,7 +4,7 @@
 >
 > Looking for **how to build a specific interaction** (drag, dwell, overlay,
 > modal, canvas element, animation)? That is **`Programs/recipes/`** —
-> see [recipes/README.md](../recipes/README.md). Different job, different folder.
+> see [recipes/INDEX.md](../recipes/INDEX.md). Different job, different folder.
 
 ---
 
@@ -35,23 +35,30 @@ any threshold. Never copy a number out of it into another file.
 
 ---
 
-## Deep-Dive References
+## Match what Chase said
 
-These files are referenced from `CODING_STANDARDS.md` when more detail is
-needed. You don't read these front-to-back — you jump in when relevant.
+> Reached here from [agent docs/INDEX.md](../agent%20docs/INDEX.md). Match a row, read
+> **that one file**. If nothing matches, grep — then add the row.
 
-| File | When to read |
+| You might say | Read this |
 |---|---|
-| [react-patterns.md](./react-patterns.md) | Building hooks, services, components, state extraction |
-| [file-headers.md](./file-headers.md) | Standardized header format for new files |
-| [refactoring-checklist.md](./refactoring-checklist.md) | When the user says "refactor", "clean up", or "make it 9/10" |
-| [anti-patterns.md](./anti-patterns.md) | Common mistakes catalog |
-| [accessibility-patterns.md](./accessibility-patterns.md) | Building dwell-friendly UIs (Chase uses dwell-mouse) |
-| [electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md) | **Required** for every Electron shell: Display button, per-monitor scale, exemplar Calendar 2.0 |
-| [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) | `.bat` one-liners, no visible cmd, Node spawn from Electron |
-| `School Scrips/App Dashboard/docs/LAUNCHER.md` | apps.json registry, ports, Toolbar Shift+F5 |
+| "is this file too long" · how big can a file get · 800 lines · split it | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § File Size Enforcement |
+| "App.tsx is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § App.tsx as Orchestrator |
+| "make it look like the other modals" · modal width · modal sizing | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Standard Modal Sizing |
+| "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
+| what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
+| "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
+| "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |
+| what not to do · common mistakes · god file · bare except · silent failure | [anti-patterns.md](./anti-patterns.md) |
+| "the button is too small to click" · dwell-friendly UI · hover-only won't work | [accessibility-patterns.md](./accessibility-patterns.md) |
+| **any dwell / hover / drag timing value** — never copy one from anywhere else | [dwell-and-head-mouse.md](./dwell-and-head-mouse.md) |
+| "initialize a new app" · scaffold a project · start something new | [INIT_NEW_APP.md](./INIT_NEW_APP.md) |
+| the window opened on the wrong monitor · display scaling · the Display button | [electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md) |
+| hidden `.bat` launcher · no visible cmd window · spawn from Electron | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) |
+| "am I done" · final build checklist · ready to ship | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Final Build Checklist |
+| apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
 
-**Moved to [`Programs/recipes/`](../recipes/README.md)** (2026-08-02):
+**Moved to [`Programs/recipes/`](../recipes/INDEX.md)** (2026-08-02):
 `modal-pattern.md` → `recipes/modal-shell.md`.
 
 **Archived** (superseded or stale — see `Archived markdowns/cursor-patterns/`):

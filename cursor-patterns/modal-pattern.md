@@ -5,7 +5,7 @@ The modal/dialog/wizard build recipe moved to the consolidated recipe library on
 `Programs/recipes/` is for.
 
 **Read:** `C:\Users\chase\Documents\Programs\recipes\modal-shell.md`
-**Index:** `Programs/recipes/README.md`
+**Index:** `Programs/recipes/INDEX.md`
 
 The non-negotiables are unchanged and still stated in root `AGENTS.md`
 § The most violated rules: **`max-w-md`** (448px), `max-h-[85vh]` +
