@@ -56,6 +56,7 @@ any threshold. Never copy a number out of it into another file.
 | the window opened on the wrong monitor · display scaling · the Display button | [electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md) |
 | hidden `.bat` launcher · no visible cmd window · spawn from Electron | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) |
 | "am I done" · final build checklist · ready to ship | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Final Build Checklist |
+| just finished a refactor or hotfix · "write up what we learned" · integration doc | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Document the Lesson — exemplar `Macro App/docs/BROWSER_TAB_INTEGRATION.md` |
 | apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
 
 **Moved to [`Programs/recipes/`](../recipes/INDEX.md)** (2026-08-02):
