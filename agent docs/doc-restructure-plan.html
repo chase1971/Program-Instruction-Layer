@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Index Tree — How Documentation Routing Works</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --panel-alt: #243044;
+      --text: #e8edf4;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-dim: #0ea5e9;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --purple: #a78bfa;
+      --border: #334155;
+      --radius: 14px;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg); color: var(--text);
+      line-height: 1.5; font-size: 18px;
+    }
+    .page { max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+    header { text-align: center; margin-bottom: 2.5rem; }
+    header h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; }
+    header p { color: var(--muted); margin-top: 0.6rem; font-size: 1.05rem; }
+
+    h2 {
+      font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700;
+      margin: 3rem 0 1.1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    p.note { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+    code {
+      background: var(--panel-alt); color: var(--accent);
+      padding: 0.1rem 0.35rem; border-radius: 5px;
+      font-size: 0.86em; font-family: Consolas, monospace;
+    }
+
+    /* ============ MAIN FLOW ============ */
+    .flow { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem 1.25rem; }
+
+    .tools { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .tool {
+      background: var(--panel-alt); border: 1px solid var(--border);
+      border-radius: 24px; padding: 0.5rem 1.1rem;
+      font-size: 0.92rem; font-weight: 600;
+    }
+    .tool small { display: block; color: var(--muted); font-weight: 400; font-size: 0.75rem; }
+
+    .arrow { text-align: center; color: var(--accent); font-size: 1.5rem; line-height: 1; margin: 0.7rem 0; }
+    .arrow.dim { color: var(--border); }
+
+    .box {
+      border-radius: 12px; padding: 1rem 1.2rem; text-align: center;
+      max-width: 30rem; margin: 0 auto;
+    }
+    .box .name { font-size: 1.15rem; font-weight: 800; }
+    .box .role { font-size: 0.86rem; margin-top: 0.25rem; }
+
+    .box.always { background: var(--amber); color: #1a1508; }
+    .box.always .role { color: #4a3c10; }
+    .box.index { background: var(--accent); color: #06202e; }
+    .box.index .role { color: #0d3d55; }
+
+    .tag {
+      display: inline-block; font-size: 0.68rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 800;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.4rem;
+    }
+    .tag.a { background: #1a1508; color: var(--amber); }
+    .tag.b { background: #06202e; color: var(--accent); }
+
+    .branches {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-top: 0.3rem;
+    }
+    .branch {
+      background: var(--panel-alt); border: 1px solid var(--accent);
+      border-radius: 10px; padding: 0.75rem 0.5rem; text-align: center;
+    }
+    .branch .bname { font-size: 0.83rem; font-weight: 700; word-break: break-word; }
+    .branch .bwhat { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+
+    .leaves { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; }
+    .leaf {
+      border: 1px dashed var(--border); border-radius: 10px;
+      padding: 0.6rem 0.4rem; text-align: center;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    /* ============ TWO MECHANISMS ============ */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .mech { border-radius: var(--radius); padding: 1.2rem; border: 1px solid var(--border); background: var(--panel); }
+    .mech.a { border-top: 4px solid var(--amber); }
+    .mech.b { border-top: 4px solid var(--accent); }
+    .mech h3 { font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .mech.a h3 { color: var(--amber); }
+    .mech.b h3 { color: var(--accent); }
+    .mech .when { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.7rem; }
+    .mech ul { list-style: none; }
+    .mech li { font-size: 0.87rem; color: var(--muted); padding: 0.22rem 0 0.22rem 1rem; position: relative; }
+    .mech li::before { content: "·"; position: absolute; left: 0.25rem; color: var(--border); font-weight: 800; }
+
+    /* ============ WORKED PATHS ============ */
+    .path { background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; }
+    .said { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.55rem; }
+    .said::before { content: "\201C"; color: var(--muted); }
+    .said::after { content: "\201D"; color: var(--muted); }
+    .chain { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+    .chain .step {
+      background: var(--panel-alt); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.25rem 0.6rem;
+      font-size: 0.78rem; font-family: Consolas, monospace; color: var(--text);
+    }
+    .chain .step.idx { border-color: var(--accent); color: var(--accent); }
+    .chain .step.hit { border-color: var(--green); color: var(--green); }
+    .chain .step.on { border-color: var(--amber); color: var(--amber); }
+    .chain .sep { color: var(--border); font-size: 0.85rem; }
+    .reads { margin-left: auto; font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+    /* ============ RULE ============ */
+    .rule {
+      background: linear-gradient(135deg, var(--panel-alt), var(--panel));
+      border: 1px solid var(--purple); border-radius: var(--radius);
+      padding: 1.4rem; text-align: center;
+    }
+    .rule .big { font-size: 1.25rem; font-weight: 800; color: var(--purple); line-height: 1.4; }
+    .rule .sub { color: var(--muted); font-size: 0.92rem; margin-top: 0.6rem; }
+
+    /* ============ STAGES ============ */
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .stage { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; }
+    .stage .sname { font-weight: 800; font-size: 1rem; margin-bottom: 0.15rem; }
+    .stage.a .sname { color: var(--green); }
+    .stage.b .sname { color: var(--accent); }
+    .stage.c .sname { color: var(--purple); }
+    .stage .sgoal { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.7rem; }
+    .stage ol { margin-left: 1.1rem; }
+    .stage li { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.35rem; }
+
+    .parked { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 0.8rem; }
+    .park { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 9px; padding: 0.85rem 1rem; }
+    .park h4 { font-size: 0.92rem; color: var(--amber); margin-bottom: 0.2rem; }
+    .park p { font-size: 0.83rem; color: var(--muted); }
+
+    footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+    @media (max-width: 760px) {
+      .branches, .leaves { grid-template-columns: repeat(2, 1fr); }
+      .split, .stages { grid-template-columns: 1fr; }
+      .reads { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>The Index Tree</h1>
+    <p>What the agent reads, in what order, to find anything.</p>
+  </header>
+
+  <!-- ========== THE FLOW ========== -->
+  <h2>The path — top to bottom</h2>
+  <div class="flow">
+
+    <div class="tools">
+      <div class="tool">Cursor<small>reads AGENTS.md</small></div>
+      <div class="tool">Codex<small>reads AGENTS.md</small></div>
+      <div class="tool">Claude Code<small>CLAUDE.md → @AGENTS.md</small></div>
+    </div>
+
+    <div class="arrow">▼</div>
+
+    <div class="box always">
+      <span class="tag a">Loads every session</span>
+      <div class="name">AGENTS.md</div>
+      <div class="role">Rules that always apply &nbsp;+&nbsp; one pointer down</div>
+    </div>
+
+    <div class="arrow">▼</div>
+
+    <div class="box index">
+      <span class="tag b">Read when looking something up</span>
+      <div class="name">agent docs/INDEX.md</div>
+      <div class="role">~25 rows &nbsp;·&nbsp; pointers only, never rules</div>
+    </div>
+
+    <div class="arrow">▼</div>
+
+    <div class="branches">
+      <div class="branch"><div class="bname">APP_<wbr />LOCATIONS.md</div><div class="bwhat">which app</div></div>
+      <div class="branch"><div class="bname">&lt;app&gt;/<wbr />AGENTS.md</div><div class="bwhat">inside an app</div></div>
+      <div class="branch"><div class="bname">recipes/<wbr />INDEX.md</div><div class="bwhat">how to build it</div></div>
+      <div class="branch"><div class="bname">cursor-patterns/<wbr />INDEX.md</div><div class="bwhat">code standards</div></div>
+      <div class="branch"><div class="bname">agent docs/<wbr />rules &amp; scripts</div><div class="bwhat">direct — no owner</div></div>
+    </div>
+
+    <div class="arrow dim">▼</div>
+
+    <div class="leaves">
+      <div class="leaf">the app folder</div>
+      <div class="leaf">that app's doc</div>
+      <div class="leaf">dwell-drag.md</div>
+      <div class="leaf">CODING_STANDARDS.md</div>
+      <div class="leaf">↑ already there</div>
+    </div>
+  </div>
+
+  <!-- ========== TWO MECHANISMS ========== -->
+  <h2>Two kinds of guidance — never mix them</h2>
+  <div class="split">
+    <div class="mech a">
+      <h3>Always-on rule</h3>
+      <p class="when">Fires whether or not you asked</p>
+      <ul>
+        <li>File size cap — 800 lines</li>
+        <li>App.tsx is an orchestrator</li>
+        <li>Modal sizing</li>
+        <li>Never put anything on screen without asking</li>
+        <li>PowerShell 5.1 — no <code>&amp;&amp;</code></li>
+        <li>Pull at start, push at end</li>
+      </ul>
+    </div>
+    <div class="mech b">
+      <h3>Look-up</h3>
+      <p class="when">Only when the topic comes up</p>
+      <ul>
+        <li>How to build a dwell-drag</li>
+        <li>Pearson browser automation</li>
+        <li>The scorecard procedure</li>
+        <li>Grade sync recovery</li>
+        <li>Packaging an installer</li>
+        <li>FERPA handling</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note" style="margin-top:1rem">
+    A rule you need <strong>every session</strong> must never be an index row — routing it would make it optional.
+    A doc you need <strong>occasionally</strong> must never be always-on — it would cost tokens every session forever.
+  </p>
+
+  <!-- ========== WORKED PATHS ========== -->
+  <h2>What actually happens when you say something</h2>
+
+  <div class="path">
+    <div class="said">what's the file size rule</div>
+    <div class="chain">
+      <span class="step on">AGENTS.md — already loaded</span>
+      <span class="reads">0 extra reads</span>
+    </div>
+  </div>
+
+  <div class="path">
+    <div class="said">put it on GitHub</div>
+    <div class="chain">
+      <span class="step idx">INDEX.md</span><span class="sep">▸</span>
+      <span class="step hit">rules/multi-repo-git-push.md</span>
+      <span class="reads">2 reads</span>
+    </div>
+  </div>
+
+  <div class="path">
+    <div class="said">how did we do the drag handle on an overlay</div>
+    <div class="chain">
+      <span class="step idx">INDEX.md</span><span class="sep">▸</span>
+      <span class="step">recipes/INDEX.md</span><span class="sep">▸</span>
+      <span class="step hit">hover-to-lock-drag.md</span>
+      <span class="reads">3 reads</span>
+    </div>
+  </div>
+
+  <div class="path">
+    <div class="said">we're gonna do an automation in Pearson</div>
+    <div class="chain">
+      <span class="step idx">INDEX.md</span><span class="sep">▸</span>
+      <span class="step">Macro App/AGENTS.md</span><span class="sep">▸</span>
+      <span class="step hit">Automations/PEARSON_BROWSER_AUTOMATION.md</span>
+      <span class="reads">3 reads</span>
+    </div>
+  </div>
+
+  <!-- ========== THE RULE ========== -->
+  <h2>The one rule that keeps it clean</h2>
+  <div class="rule">
+    <p class="big">The index names owners.<br />Owners name their contents.<br />Never reach past an owner.</p>
+    <p class="sub">
+      Same rule as App.tsx. The index says <em>"building an interaction → recipes"</em> — it never lists an
+      individual recipe. So adding a recipe never touches the index, and the index only changes when a whole
+      new category appears.
+    </p>
+  </div>
+
+  <!-- ========== STAGES ========== -->
+  <h2>Order of work — trunk, then branches</h2>
+  <div class="stages">
+    <div class="stage a">
+      <div class="sname">A · The trunk</div>
+      <div class="sgoal">Make the main path work</div>
+      <ol>
+        <li>Fix 2 dead links — the tree is red today</li>
+        <li>Build INDEX.md · add the pointer · rename both folder READMEs to INDEX.md</li>
+        <li>Arm the coverage check</li>
+        <li><strong>Run the routing drill</strong></li>
+      </ol>
+    </div>
+    <div class="stage b">
+      <div class="sname">B · Enforcement</div>
+      <div class="sgoal">Make it unable to rot</div>
+      <ol>
+        <li>Route the ~17 loose instruction docs</li>
+        <li>Delete all 8 tombstone stubs</li>
+        <li>Add the length monitor</li>
+      </ol>
+    </div>
+    <div class="stage c">
+      <div class="sname">C · Prune the branches</div>
+      <div class="sgoal">One branch at a time</div>
+      <ol>
+        <li>cursor-patterns — 1244-line file down to ~430, fix the wrong numbers</li>
+        <li>recipes — prune, then re-split the categories</li>
+        <li>apps — the missing keyword tables</li>
+        <li>Delete the old routers, after a week</li>
+      </ol>
+    </div>
+  </div>
+  <p class="note" style="margin-top:1rem">
+    The trunk has to work before anything gets pruned — a bad trunk means pruning the wrong branches.
+    Expect a lot of deletions in Stage&nbsp;C.
+  </p>
+
+  <!-- ========== PARKED ========== -->
+  <h2>Parked — on the record, not this pass</h2>
+  <div class="parked">
+    <div class="park">
+      <h4>CourseAgent</h4>
+      <p>38 docs, no keyword table, a quarter of the whole gap. Look at what's in there, keep what's worth keeping, then decide.</p>
+    </div>
+    <div class="park">
+      <h4>Three dwell timings</h4>
+      <p>250ms · 450ms · 1000ms across three apps. Legitimately different, or drift? Unknown.</p>
+    </div>
+    <div class="park">
+      <h4>Narrower categories</h4>
+      <p>Split recipes and cursor-patterns into finer buckets so the categories aren't so broad.</p>
+    </div>
+    <div class="park">
+      <h4>Apps with no table</h4>
+      <p>makeup-exam, Statistics, logic, Probability, Hearthstone 3.0 — each a hole in the second tier.</p>
+    </div>
+  </div>
+
+  <footer>
+    Nothing has been changed yet — this is the plan.<br />
+    <code>.claude/plans/alright-so-what-i-deep-iverson.md</code>
+  </footer>
+
+</div>
+</body>
+</html>

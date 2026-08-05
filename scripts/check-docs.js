@@ -51,9 +51,36 @@ const IGNORED_BASENAMES = new Set([
 
 // Docs that are entry points by definition — never reported as orphans.
 const ENTRY_POINTS = new Set([
-  'AGENTS.md', 'CLAUDE.md', 'README.md', 'APP_LOCATIONS.md',
+  'AGENTS.md', 'CLAUDE.md', 'README.md', 'APP_LOCATIONS.md', 'INDEX.md',
   'HOW_TO_INTERACT_WITH_AI.md', 'FROZEN.md', 'SESSIONS.md', 'Guidelines.md',
 ]);
+
+// ---------- index coverage config ----------
+// The master router. Every doc should be reachable from here in <= 2 hops:
+// either INDEX names it, or INDEX names a second-tier index that names it.
+const INDEX_DOC = 'agent docs/INDEX.md';
+
+// Second-tier indexes INDEX must name by hand. Every <app>/AGENTS.md is also a
+// second-tier index, but INDEX reaches those generically (via APP_LOCATIONS.md),
+// so they are discovered from disk rather than listed.
+const SECOND_TIER_INDEXES = [
+  'APP_LOCATIONS.md',
+  'recipes/INDEX.md',
+  'cursor-patterns/INDEX.md',
+  'HOW_TO_INTERACT_WITH_AI.md',
+  'agent docs/INSTRUCTION_LAYER_AUDIT.md',
+];
+
+// Trees this system was never meant to route. Not "gave up on" — out of scope.
+const COVERAGE_EXEMPT = [
+  'CourseAgent/',                 // separate project, no AGENTS.md — see INSTRUCTION_LAYER_AUDIT § Open questions
+  'School Scrips/Calendar 2.0/',  // frozen
+];
+
+// Ratchet, not a bar. Demanding 0 today (150 unreachable) would leave this
+// permanently red, which trains everyone to ignore it. Measured, then only ever
+// lowered — a rise is always a failure.
+const COVERAGE_BUDGET = 99;
 
 function walk(dir, out = []) {
   let entries;
@@ -135,6 +162,34 @@ const orphans = [...content.keys()].filter((r) => {
   // A rule referenced by bare filename in an index counts as linked
   const named = [...content.values()].some((t) => t.includes(base) );
   return !named;
+});
+
+// ---------- index coverage ----------
+// ORPHAN asks "does any doc mention this?" — which INDEX, by naming things, quietly
+// answers yes for. COVERAGE asks the stronger question: is it reachable from a
+// *declared* index? Coverage is the successor; keep orphan until coverage reads 0.
+const indexText = content.get(INDEX_DOC) || '';
+
+// If INDEX stops naming a branch, every doc behind it goes dark. The unrouted count
+// does rise too (verified: 99 -> 123 with all 5 severed), so the budget would catch it
+// eventually — but only as an unexplained number. This names the row that broke, and
+// always fails, because a severed graph is not a judgment call. Same class as a dead link.
+const brokenChain = SECOND_TIER_INDEXES.filter(
+  (t) => !indexText.includes(t) && !indexText.includes(path.basename(t)),
+);
+
+const appIndexes = [...content.keys()].filter(
+  (r) => /\/AGENTS\.md$/.test(r) && r !== 'AGENTS.md',
+);
+const liveTier2 = [...SECOND_TIER_INDEXES.filter((t) => !brokenChain.includes(t)), ...appIndexes];
+const routedText = [indexText, ...liveTier2.map((t) => content.get(t) || '')].join('\n');
+
+const uncovered = [...content.keys()].filter((r) => {
+  if (r === INDEX_DOC) return false;
+  if (ENTRY_POINTS.has(path.basename(r))) return false;
+  if (COVERAGE_EXEMPT.some((p) => r.startsWith(p))) return false;
+  if (liveTier2.includes(r)) return false;
+  return !routedText.includes(path.basename(r));
 });
 
 // ---------- unindexed .mdc ----------
@@ -320,6 +375,26 @@ if (stalePlans.length) {
   line('   → review, then: node scripts/archive-stale-plans.js --yes\n');
 } else line(`✅ No plans untouched ${STALE_PLAN_DAYS}+ days\n`);
 
+if (brokenChain.length) {
+  line(`❌ BROKEN CHAIN (${brokenChain.length}) — ${INDEX_DOC} no longer names these:`);
+  for (const b of brokenChain) line(`   ${b}`);
+  line('   → everything behind them is unreachable; restore the row\n');
+} else line('✅ Index names every branch\n');
+
+if (uncovered.length) {
+  const over = uncovered.length > COVERAGE_BUDGET;
+  line(
+    `${over ? '❌' : '⚠️ '} UNROUTED (${uncovered.length}/${COVERAGE_BUDGET}) — not reachable from ${INDEX_DOC} in 2 hops:`,
+  );
+  for (const u of uncovered.slice(0, 30)) line(`   ${u}`);
+  if (uncovered.length > 30) line(`   …and ${uncovered.length - 30} more`);
+  line(
+    over
+      ? '   → over budget. Route them, or raise COVERAGE_BUDGET only with a reason\n'
+      : '   → add a row, then lower COVERAGE_BUDGET in the same commit\n',
+  );
+} else line('✅ Every doc is routable from the index\n');
+
 if (orphans.length) {
   line(`⚠️  ORPHANS (${orphans.length}) — nothing references these:`);
   for (const o of orphans.slice(0, 30)) line(`   ${o}`);
@@ -328,13 +403,16 @@ if (orphans.length) {
 } else line('✅ No orphaned docs\n');
 
 console.log(
-  `Summary: ${deadLinks.length} dead links · ${duplicates.length} duplicate sets · ` +
+  `Summary: ${deadLinks.length} dead links · ${brokenChain.length} broken chain · ` +
+  `${uncovered.length}/${COVERAGE_BUDGET} unrouted · ${duplicates.length} duplicate sets · ` +
   `${unindexedRules.length} unindexed rules · ${bareValues.length} bare values · ` +
   `${recipeValues.length} recipe values · ` +
   `${stalePlans.length} stale plans · ${orphans.length} orphans`
 );
 
 const fail = deadLinks.length > 0
+  || brokenChain.length > 0
+  || uncovered.length > COVERAGE_BUDGET
   || (strict && (duplicates.length || orphans.length || unindexedRules.length
       || bareValues.length || recipeValues.length));
 process.exit(fail ? 1 : 0);

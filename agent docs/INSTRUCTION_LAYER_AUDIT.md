@@ -21,6 +21,23 @@ Periodic cleanup of **rules, AGENTS pointers, and instruction docs** — things 
 
 ---
 
+## Open questions — parked by Chase, decide later
+
+> Deliberately deferred during the 2026-08-04 index restructure. These are **not** rot to
+> clean up silently — each one needs Chase's judgment. Raise them when he next runs an audit.
+
+| # | Question | Why it's parked | What decides it |
+|---|---|---|---|
+| 1 | **CourseAgent** — 38 docs, no `AGENTS.md`, 36 unreachable. Currently in `COVERAGE_EXEMPT` in `scripts/check-docs.js` | Chase hasn't looked at what's in there and didn't want to deal with it during the restructure | He reviews the contents, pulls out anything worth keeping, then: give it a keyword table, or move it to `Deprecated apps/`. It is ~25% of the whole coverage gap, so this moves the number more than any other single call |
+| 2 | **Three dwell timings disagree** — Toolbar 250ms, Math App Studio 450ms, Macro App 1000ms | Unknown whether these are legitimately per-app or two of them are drift. Guessing is how the original six-copy problem started | If per-app: `dwell-and-head-mouse.md` gets a three-row table naming each app's owning constants file. If one is canonical: the other two get corrected in code. **Do not touch until Chase says which** |
+| 3 | **Re-split `recipes/` and `cursor-patterns/` into narrower categories** | Chase wants finer buckets so the categories aren't so broad, but hasn't reviewed what's actually in them | His review of each folder's contents |
+| 4 | **Apps with real docs but no `AGENTS.md`** — `makeup-exam-standalone` (15 docs), `Statistics app` (5), `logic-app` (4), `Probability App` (4), `Hearthstone Overlay 3.0` (3) | Each missing file is a hole in the second tier. Adding five is a bigger project than the restructure itself | Whether those apps are still live enough to earn a keyword table |
+
+**Note on #2:** `accessibility-patterns.md`'s 500ms figures were fixed separately — every source
+agrees those match nothing that ships, so correcting them needed no judgment call.
+
+---
+
 ## Cadence
 
 | Run audit when… | Skip when… |
@@ -65,7 +82,7 @@ node scripts/check-docs.js --strict
 **In scope**
 
 - `AGENTS.md`, `CLAUDE.md`, `APP_LOCATIONS.md`, `HOW_TO_INTERACT_WITH_AI.md`
-- **`recipes/` + `recipes/README.md`** — see § 2f-2
+- **`recipes/` + `recipes/INDEX.md`** — see § 2f-2
 - `cursor-patterns/*.md` (instruction-relevant)
 - `agent docs/rules/*.md`, `agent docs/*.md`, `agent docs/*.html`
 - Per-app: `AGENTS.md`, `CLAUDE.md`, `guidelines/Guidelines.md`, `docs/*_INTEGRATION.md`
@@ -151,7 +168,7 @@ audit, and do it before § 2g.
 
 | Check | How | Action |
 |---|---|---|
-| **Index row exists** | Every `recipes/*.md` appears in a table in `recipes/README.md` | A recipe no table names is invisible — add the row or archive the file |
+| **Index row exists** | Every `recipes/*.md` appears in a table in `recipes/INDEX.md` | A recipe no table names is invisible — add the row or archive the file |
 | **"You might say" is in his words** | Read the header line. Is it the *technical* name or what Chase would actually say? | Rewrite in his words. This line is the whole trigger |
 | **Duplicate recipes** | Two files covering one interaction (e.g. two drag recipes) | Merge into the one with working exemplars; tombstone the loser |
 | **Exemplar paths still exist** | Open each path in the header block | Fix or mark the recipe stale. A recipe pointing at a deleted file is worse than none |

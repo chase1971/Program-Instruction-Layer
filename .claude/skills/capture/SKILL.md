@@ -20,7 +20,7 @@ the rung is genuinely ambiguous.**
 Search for where this rule already lives. Check, in order:
 
 1. `AGENTS.md` (root)
-2. **`recipes/README.md`** — is there already a recipe for this?
+2. **`recipes/INDEX.md`** — is there already a recipe for this?
 3. `<app>/AGENTS.md` keyword table
 4. `cursor-patterns/*.md` and `agent docs/rules/*.md`
 5. Existing lint configs (`.eslintrc.cjs`) and `scripts/check-*.js`
@@ -118,13 +118,13 @@ version — rather than deleting, so links don't dangle.
 
 A rule nothing points at is functionally deleted. Update whichever applies:
 
-- **New recipe** → add a row to the matching table in `recipes/README.md`, with a
+- **New recipe** → add a row to the matching table in `recipes/INDEX.md`, with a
   status mark. **A recipe no table names is invisible.**
 - **New app-specific doc** → add a keyword row to that app's `AGENTS.md`, in the
   words Chase would use
 - **New root rule** → add it to the right section of root `AGENTS.md`; if it needs
   detail, put the detail in `agent docs/rules/` and link it from that section
-- **New `cursor-patterns/` standard** → add it to `cursor-patterns/README.md`
+- **New `cursor-patterns/` standard** → add it to `cursor-patterns/INDEX.md`
 - **New app with no `AGENTS.md` yet** → create one plus a three-line `CLAUDE.md`
   that does `@AGENTS.md` (see `cursor-patterns/INIT_NEW_APP.md`)
 

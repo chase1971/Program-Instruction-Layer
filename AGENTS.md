@@ -12,6 +12,16 @@
 
 ---
 
+## First move — find the doc
+
+**Where anything lives: `agent docs/INDEX.md`.** Match what Chase said, or what you're about
+to do, to a row; read that one file. Do this **before grepping the tree**. If nothing matches,
+grep — then add the row before the session ends.
+
+That file holds **pointers only**. Rules that must fire every session are *here*, not there.
+
+---
+
 ## Never put anything on Chase's screen without asking
 
 Chase drives the cursor with a **head-mounted gyro mouse + dwell click**. A window that

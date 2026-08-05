@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cursor-patterns — File-by-File Triage</title>
+  <style>
+    :root {
+      --bg:#0f1419; --panel:#1a2332; --panel-alt:#243044;
+      --text:#e8edf4; --muted:#94a3b8;
+      --accent:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171; --purple:#a78bfa;
+      --border:#334155; --radius:13px;
+      --font:"Segoe UI",system-ui,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;font-size:17px}
+    .page{max-width:1040px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+    header{text-align:center;margin-bottom:2rem}
+    header h1{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:700;letter-spacing:-.02em}
+    header p{color:var(--muted);margin-top:.5rem}
+
+    /* summary */
+    .sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin:1.5rem 0 2.5rem}
+    .s{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem .8rem;text-align:center}
+    .s .n{font-size:1.9rem;font-weight:800;line-height:1}
+    .s .l{font-size:.8rem;color:var(--muted);margin-top:.35rem}
+    .n.red{color:var(--red)} .n.amber{color:var(--amber)} .n.green{color:var(--green)} .n.blue{color:var(--accent)}
+
+    h2{font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+       margin:2.5rem 0 1rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+    h2.del{color:var(--red)} h2.shr{color:var(--amber)} h2.fix{color:var(--purple)} h2.keep{color:var(--green)}
+
+    /* card */
+    .f{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+       padding:1.1rem 1.2rem;margin-bottom:.85rem}
+    .f.del{border-left:5px solid var(--red)}
+    .f.shr{border-left:5px solid var(--amber)}
+    .f.fix{border-left:5px solid var(--purple)}
+    .f.keep{border-left:5px solid var(--green)}
+
+    .fh{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;margin-bottom:.5rem}
+    .fn{font-family:Consolas,monospace;font-size:1.02rem;font-weight:700}
+    .badge{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;
+           padding:.17rem .5rem;border-radius:4px;white-space:nowrap}
+    .badge.del{background:rgba(248,113,113,.15);color:var(--red)}
+    .badge.shr{background:rgba(251,191,36,.15);color:var(--amber)}
+    .badge.fix{background:rgba(167,139,250,.15);color:var(--purple)}
+    .badge.keep{background:rgba(52,211,153,.15);color:var(--green)}
+
+    .meta{margin-left:auto;font-size:.78rem;color:var(--muted);font-family:Consolas,monospace;white-space:nowrap}
+    .meta .warnl{color:var(--red)}
+    .meta .cold{color:var(--amber)}
+
+    .does{font-size:.92rem;color:var(--muted);margin-bottom:.6rem}
+    .act{background:var(--panel-alt);border-radius:8px;padding:.65rem .8rem;font-size:.88rem}
+    .act b{color:var(--text)}
+    .act.warn{border-left:3px solid var(--red)}
+
+    code{background:var(--panel-alt);color:var(--accent);padding:.08rem .3rem;border-radius:4px;
+         font-size:.85em;font-family:Consolas,monospace}
+
+    .note{background:var(--panel-alt);border-left:4px solid var(--accent);border-radius:8px;
+          padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.9rem;color:var(--muted)}
+    .note b{color:var(--text)}
+
+    table.tomb{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:.5rem}
+    table.tomb td{padding:.32rem .5rem;border-bottom:1px solid var(--border);color:var(--muted)}
+    table.tomb td:first-child{font-family:Consolas,monospace;color:var(--text)}
+    table.tomb tr:last-child td{border-bottom:none}
+
+    footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--border);
+           text-align:center;color:var(--muted);font-size:.85rem}
+    @media(max-width:640px){ .meta{margin-left:0;width:100%} }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>cursor-patterns/ — file by file</h1>
+    <p>What each one does, when it was last touched, and what I'd do with it.</p>
+  </header>
+
+  <div class="sum">
+    <div class="s"><div class="n blue">17</div><div class="l">files in the folder</div></div>
+    <div class="s"><div class="n red">7</div><div class="l">are 5-line tombstones</div></div>
+    <div class="s"><div class="n amber">3</div><div class="l">over the 800-line cap</div></div>
+    <div class="s"><div class="n amber">3</div><div class="l">never edited since written</div></div>
+    <div class="s"><div class="n green">1</div><div class="l">genuinely healthy</div></div>
+  </div>
+
+  <div class="note">
+    <b>How to read the dates.</b> "1 commit" means the file was written once and never revised —
+    either it's stable and correct, or nobody has needed it. Paired with content overlap, that's
+    the strongest signal in this list. The folder's most-edited file is also its most wrong one.
+  </div>
+
+  <!-- ============ DELETE ============ -->
+  <h2 class="del">Delete</h2>
+
+  <div class="f del">
+    <div class="fh">
+      <span class="fn">.coding-standards-global.md</span>
+      <span class="badge del">delete</span>
+      <span class="meta">832 lines · <span class="warnl">untracked by git</span> · dated 2026-01-01</span>
+    </div>
+    <p class="does">
+      A second, generic "global coding standards" doc at the Programs root. Covers the same ground as
+      <code>CODING_STANDARDS.md</code> section for section — dev phases, DRY/SRP/KISS, naming, validation,
+      error handling, API shape, secrets, anti-patterns, when to break the rules.
+    </p>
+    <div class="act warn">
+      <b>Delete it — but salvage first, because this one is unrecoverable.</b> It is git-ignored by the root
+      allowlist, so there is no history to restore from and no copy on GitHub. It is also the source of a
+      live contradiction: it declares a <b>1000-line hard cap</b> while <code>AGENTS.md</code> and
+      <code>CODING_STANDARDS.md</code> say 800 — and it contradicts <i>itself</i> two sections later.
+      Five sections are unique and worth keeping: Magic Numbers → Constants, docstring/JSDoc format,
+      When to Write Tests, Working With AI, and Maintenance Schedule. Move those into
+      <code>CODING_STANDARDS.md</code>, then delete the file.
+    </div>
+  </div>
+
+  <div class="f del">
+    <div class="fh">
+      <span class="fn">7 tombstone stubs</span>
+      <span class="badge del">delete</span>
+      <span class="meta">5–14 lines each · 44 lines total</span>
+    </div>
+    <p class="does">
+      Redirect files left behind when content moved. Each says "moved to X" and nothing else. They point
+      into <code>Archived markdowns/</code>, which the robot never scans — so they route to content that
+      is already out of play.
+    </p>
+    <table class="tomb">
+      <tr><td>modal-pattern.md</td><td>14 lines · 6 commits · → <code>recipes/modal-shell.md</code></td></tr>
+      <tr><td>modal-scrolling-fix.md</td><td>5 · → <code>modal-pattern.md</code>, itself a stub — a stub pointing at a stub</td></tr>
+      <tr><td>file-size-enforcement.md</td><td>5 · superseded by ESLint + pre-commit</td></tr>
+      <tr><td>FILE_SIZE_QUICK_REFERENCE.md</td><td>5 · same</td></tr>
+      <tr><td>logging-standards.md</td><td>5 · superseded by per-app logging docs</td></tr>
+      <tr><td>add-a-line-change-a-sign.md</td><td>5 · app-specific, stale</td></tr>
+      <tr><td>animation-frame-debug-tool.md</td><td>5 · belongs to Math App Studio if ever revived</td></tr>
+    </table>
+    <div class="act" style="margin-top:.7rem">
+      <b>Delete all seven.</b> That's 41% of the folder's file count carrying zero routing value. Replace the
+      two "Archived" notes in <code>INDEX.md</code> with one prose line naming the archive folder once.
+      Safe: their inbound references are backticked prose, which the robot never reports as dead links.
+    </div>
+  </div>
+
+  <!-- ============ SHRINK ============ -->
+  <h2 class="shr">Shrink — over the cap they declare</h2>
+
+  <div class="f shr">
+    <div class="fh">
+      <span class="fn">CODING_STANDARDS.md</span>
+      <span class="badge shr">shrink → ~430</span>
+      <span class="meta">1244 lines · <span class="cold">1 commit, never revised</span> · 2026-06-04</span>
+    </div>
+    <p class="does">
+      The declared master standards file — file size, App.tsx orchestrator, modal sizing, naming, validation,
+      error handling, logging, secrets, the final-build checklist.
+    </p>
+    <div class="act">
+      <b>444 lines over the 800-line cap it itself declares.</b> Don't split it into three — that would create
+      React, file-header, and anti-pattern files that <i>already exist</i> as deep dives. Instead move each
+      condensed section into the deep dive that owns it and leave a one-line pointer: React (650–804) →
+      <code>react-patterns.md</code>, File Headers (855–927) → <code>file-headers.md</code>, Anti-Patterns
+      (1062–1129) → <code>anti-patterns.md</code>, Electron display (66–86), Modal prose (828–854).
+      <b>Keep § Standard Modal Sizing</b> — it becomes the one place the 448px value is stated.
+      Also rebuild § Related Pattern Files: it currently lists four deleted stubs, a file that doesn't exist
+      (<code>APP_BOOTSTRAP_TEMPLATE.md</code>), and <code>modal-pattern.md</code>, which is a stub.
+    </div>
+  </div>
+
+  <div class="f shr">
+    <div class="fh">
+      <span class="fn">INIT_NEW_APP.md</span>
+      <span class="badge shr">shrink + fix</span>
+      <span class="meta">840 lines · 2 commits · last 2026-08-01</span>
+    </div>
+    <p class="does">
+      The scaffolding recipe for a brand-new app — six steps plus full file templates for three variants
+      (educational-math, functional-tool, electron-overlay).
+    </p>
+    <div class="act">
+      <b>40 over cap, and it teaches two retired things.</b> Cites frozen <b>Calendar 2.0</b> as the exemplar
+      in 5 places, and still ships a <code>.cursorrules</code> file template. Remove the Electron step-4b
+      block (duplicates <code>electron-per-monitor-display-scaling.md</code>), repoint the exemplar to
+      <b>Macro App</b>, drop the <code>.cursorrules</code> template. Re-measure — if still over 800, extract
+      the three variant scaffolds into one appendix.
+    </div>
+  </div>
+
+  <!-- ============ FIX ============ -->
+  <h2 class="fix">Fix — good file, wrong content</h2>
+
+  <div class="f fix">
+    <div class="fh">
+      <span class="fn">accessibility-patterns.md</span>
+      <span class="badge fix">fix — highest severity</span>
+      <span class="meta">606 lines · 6 commits (most active) · last 2026-08-02</span>
+    </div>
+    <p class="does">
+      Dwell-mouse, keyboard, and screen-reader patterns — how to build UI that works with a head mouse.
+      The subject matter is the most important in the folder.
+    </p>
+    <div class="act warn">
+      <b>It states timing values that ship nowhere.</b> It gives 500ms for hover-open, hover-close, lock,
+      and cooldown. <code>dwell-and-head-mouse.md</code> — the file declared as the owner of every timing
+      in the tree — says in writing that those figures "match nothing that ships." Real values are 250ms,
+      450ms, and 1000ms in three different apps. <b>Delete the timing section entirely</b> and point at the
+      owner. Keep everything else; the non-timing guidance is good and it's the folder's most-maintained file.
+    </div>
+  </div>
+
+  <div class="f fix">
+    <div class="fh">
+      <span class="fn">anti-patterns.md</span>
+      <span class="badge fix">fix</span>
+      <span class="meta">302 lines · <span class="cold">1 commit, never revised</span> · 2026-06-04</span>
+    </div>
+    <p class="does">
+      Catalog of specific mistakes with bad/good code pairs — state management, bare excepts, silent
+      failures, god files, magic numbers, threading.
+    </p>
+    <div class="act">
+      <b>Contradicts the file-size rule.</b> Calls out "God Files (1000+ lines)" while the cap is 800 —
+      it's quietly teaching that a 900-line file is fine. Name the rule instead of restating a number:
+      point at <code>CODING_STANDARDS.md</code> § File Size Enforcement. Its bare-except and silent-failure
+      examples are also near-verbatim duplicates of two other files; this should be the one that keeps them.
+    </div>
+  </div>
+
+  <div class="f fix">
+    <div class="fh">
+      <span class="fn">electron-per-monitor-display-scaling.md</span>
+      <span class="badge fix">fix</span>
+      <span class="meta">267 lines · 2 commits · last 2026-08-01</span>
+    </div>
+    <p class="does">
+      Required procedure for per-monitor display scaling in every Electron shell — the Display button,
+      scale handling, init checklist.
+    </p>
+    <div class="act">
+      <b>Points at a frozen app 5 times.</b> Calendar 2.0 is the cited reference implementation, but it's
+      frozen and excluded from search — an agent told to copy from it will find nothing. Repoint to
+      <b>Macro App</b>. Content otherwise good; keep at current size.
+    </div>
+  </div>
+
+  <div class="f fix">
+    <div class="fh">
+      <span class="fn">react-patterns.md</span>
+      <span class="badge fix">minor fix</span>
+      <span class="meta">615 lines · 2 commits · last 2026-08-01</span>
+    </div>
+    <p class="does">
+      Hooks, service layer, state extraction, import organization, component structure, testing patterns.
+      The real depth behind the React rules.
+    </p>
+    <div class="act">
+      Solid, keep it. Two edits: strip the <code>(448px)</code> / <code>(512px)</code> parentheticals at
+      line 589 — that value belongs to <code>CODING_STANDARDS.md</code> § Standard Modal Sizing and is
+      currently stated in four files — and absorb the React section coming out of
+      <code>CODING_STANDARDS.md</code>.
+    </div>
+  </div>
+
+  <!-- ============ KEEP ============ -->
+  <h2 class="keep">Keep</h2>
+
+  <div class="f keep">
+    <div class="fh">
+      <span class="fn">dwell-and-head-mouse.md</span>
+      <span class="badge keep">keep — healthiest file here</span>
+      <span class="meta">175 lines · 3 commits · newest (2026-07-31)</span>
+    </div>
+    <p class="does">
+      The declared source of truth for every dwell, hover, and drag timing in the tree. Names the four
+      implementations, explains why they legitimately differ, and flags what isn't legitimate.
+    </p>
+    <div class="act">
+      <b>The model the rest of the folder should copy.</b> Short, actively maintained, owns its values
+      explicitly, and it's the only file that audits <i>other</i> files. Leave it alone — except for the
+      open question about whether the three shipped timings (250/450/1000ms) are genuinely per-app or two
+      of them are drift. That's parked for you in the audit doc.
+    </div>
+  </div>
+
+  <div class="f keep">
+    <div class="fh">
+      <span class="fn">file-headers.md</span>
+      <span class="badge keep">keep</span>
+      <span class="meta">400 lines · 2 commits · last 2026-08-01</span>
+    </div>
+    <p class="does">Header format templates for TS/JS and Python, with real examples and a checklist.</p>
+    <div class="act">Fine as-is. Absorbs the condensed header section coming out of <code>CODING_STANDARDS.md</code>.</div>
+  </div>
+
+  <div class="f keep">
+    <div class="fh">
+      <span class="fn">refactoring-checklist.md</span>
+      <span class="badge keep">keep — but worth questioning</span>
+      <span class="meta">604 lines · <span class="cold">1 commit, never revised</span> · 2026-06-04</span>
+    </div>
+    <p class="does">
+      Phased refactor procedure — baseline, quick wins, structure, patterns, docs, verification, final build.
+      Triggered by "refactor this" or "make it 9/10".
+    </p>
+    <div class="act">
+      Content is good and the trigger phrases are genuinely yours. But <b>600 lines written once and never
+      revisited in two months</b> — worth asking whether you've actually used it. Its Phase 6 also mirrors
+      <code>CODING_STANDARDS.md</code> § Final Build Checklist item for item; one of those should point at
+      the other. <b>My call: keep, dedupe Phase 6, revisit if it's still untouched next audit.</b>
+    </div>
+  </div>
+
+  <div class="f keep">
+    <div class="fh">
+      <span class="fn">INDEX.md</span>
+      <span class="badge keep">keep — just rebuilt</span>
+      <span class="meta">94 lines · renamed from README.md today</span>
+    </div>
+    <p class="does">The folder's router — 15 keyword rows in your words, pointing at the files above.</p>
+    <div class="act">
+      New today. One duplication left to clear in phase 9: its § How AI Sessions Find This repeats
+      <code>HOW_TO_INTERACT_WITH_AI.md</code>.
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:2.5rem">
+    <b>Net effect if you do all of this:</b> 17 files → 10. Roughly 5,200 lines → about 3,400.
+    Every remaining file under the 800 cap. Four wrong numbers corrected, 11 pointers to a frozen app
+    repointed, and one file deleted that git was never backing up in the first place.
+  </div>
+
+  <footer>
+    Line counts and git history read 2026-08-04 · nothing has been changed yet<br />
+    Plan: Stage C, phase 6
+  </footer>
+
+</div>
+</body>
+</html>
