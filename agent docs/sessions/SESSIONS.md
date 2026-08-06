@@ -2,20 +2,6 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
-## 2026-08-06 — Exam 3 map workflow, problem capture, and school HTML recipe
-
-**Files changed:** `School Scrips/School documents/exam3-homework-map.html`, `exam3-homework-map-app.js` (near cap at 698), `exam3-map-state.js` (424), `exam3-review-map-state.json`, `exam3-exam-data.js` (new), `exam3-exam-harvest.json` (new cleaned exam print text), `exam3-exam-harvest.a11y.json` (new raw backup), `harvest/pearson_a11y_math.py` (640), `harvest/clean_exam3_math.py`, `School Scrips/School documents/README.md`; `recipes/school-exam-map-html.md` (new, 161) and `recipes/INDEX.md`.
-
-**What worked:** Expanded the Exam 3 HTML map into the intended three-tab workflow: Homework builds Review, Review builds Exam pools, and Exam summarizes all pools. Captured Exam 3 question details and printed problem text, made exam rows expandable, cleaned Pearson accessibility math enough to remove screen-reader artifacts, fixed mojibake separators, and added Homework-tab `Remove HW` state so homework can be pruned while still adding selected problems to review. Documented the construction pattern as a reusable recipe keyed to Chase's wording.
-
-**Current state:** Green — `http://127.0.0.1:8765/exam3-homework-map.html` has the three tabs, Add to Review / Remove HW on homework rows, review-to-exam pool controls, and expandable exam rows.
-
-**File size flag:** `exam3-homework-map-app.js` is 698 lines, right below the extract threshold; `pearson_a11y_math.py` is 640 lines and should be extracted before adding more math rules; generated data/harvest JSON files are large and should not be hand-edited.
-
-**Next session:** Investigate a rendered Pearson problem capture path that preserves equation markup better than the print accessibility page; screenshots should be a targeted fallback, not the primary source.
-
----
-
 ## 2026-08-05 — Index-tree Stage A, AGENTS.md 307→218 lines, scorecard hook wired for Claude Code
 
 **Files changed:** `agent docs/INDEX.md` (new, ~25 rows, pure delegation), `AGENTS.md` (307→218,
