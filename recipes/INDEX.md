@@ -76,6 +76,8 @@ threshold lives in **`cursor-patterns/dwell-and-head-mouse.md`** and in
 | "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ |
 | "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ |
 
+| "school HTML exam map", "homework tab builds review", "review tab builds exam" | [school-exam-map-html.md](./school-exam-map-html.md) | done |
+
 ## Animation
 
 | You might say | Recipe | Status |
