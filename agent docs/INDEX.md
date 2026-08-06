@@ -34,6 +34,7 @@ never touches this file.
 | "don't put that on my screen" · launch the app · GUI or UI test · change the display config | [rules/never-display-without-permission.md](./rules/never-display-without-permission.md) |
 | PowerShell error · `&&` didn't work · curl failed · shell syntax | [rules/powershell-shell-commands.md](./rules/powershell-shell-commands.md) |
 | "put it on GitHub" · pull at start · push at end · which repos get committed | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
+| `.gitignore` didn't work · ignored file still shows in git · runtime file keeps changing | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | frozen apps · Calendar 2.0 · "don't touch that one" | [rules/frozen-apps.md](./rules/frozen-apps.md) |
 | "make me an HTML page I can click" · deliver a link · the docs server on 8765 | [rules/html-delivery.md](./rules/html-delivery.md) |
 
@@ -41,7 +42,7 @@ never touches this file.
 
 | You might say | Read this |
 |---|---|
-| "end of session protocol" · wrap the session · we're done for now | [AGENTS.md](../AGENTS.md) § End-of-Session Protocol |
+| "end of session protocol" · wrap the session · we're done for now | [END_OF_SESSION.md](./END_OF_SESSION.md) — the seven steps and the log template |
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
 | "log the task" · bump the scorecard · finalize the session counts | [SESSION_SCORECARD.md](./SESSION_SCORECARD.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |
@@ -55,6 +56,7 @@ never touches this file.
 | "run the conformance pass on \<app\>" · bring one app up to standard | [APP_CONFORMANCE_PASS.md](./APP_CONFORMANCE_PASS.md) |
 | how does this whole setup work · which tool reads which file · why did `.mdc` go away | [HOW_TO_INTERACT_WITH_AI.md](../HOW_TO_INTERACT_WITH_AI.md) |
 | explain my setup to another developer | [AGENT_SETUP_FOR_PEER_REVIEW.md](./AGENT_SETUP_FOR_PEER_REVIEW.md) |
+| "show me the diagram" · the pages on 8765 · how is the index laid out | [index.html](./index.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |
 | what is this index · how do I add a row | this file — § Keeping this honest, below |
 
 ## Scripts

@@ -2,6 +2,51 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-05 — Index-tree Stage A, AGENTS.md 307→218 lines, scorecard hook wired for Claude Code
+
+**Files changed:** `agent docs/INDEX.md` (new, ~25 rows, pure delegation), `AGENTS.md` (307→218,
+§ Where rules live deleted, § Dwell & head-mouse deleted at Chase's call, § Windows launchers
+widened to cover both launcher surfaces, § End-of-Session moved to `agent docs/END_OF_SESSION.md`,
+precedence sentence restored after Codex dropped it), `recipes/README.md`→`recipes/INDEX.md` and
+`cursor-patterns/README.md`→`cursor-patterns/INDEX.md` (renamed via `git mv`, ~35 inbound refs
+updated), `scripts/check-docs.js` (340→418 lines — index coverage + broken-chain checks, ratchet
+armed at 99/99), `scripts/scorecard-hook-tally.js` (Claude Code tool names + automatic turn
+counting added), `.claude/settings.json` (new — `PostToolUse`/`UserPromptSubmit` hooks, tracked
+so it syncs to the laptop like `.cursor/hooks.json` already did), `agent docs/rules/html-delivery.md`
+and `multi-repo-git-push.md` (corrected stale `docs/` folder reference; documented the
+`.gitignore`-doesn't-untrack lesson from the electron-toolbar collision), `agent docs/index.html` +
+`instructional-layer-htmls/` (new — durable-vs-scratch HTML split, front door at `/`),
+`Macro App/docs/modal-redesign-queue.md` (+1 finding), `electron-toolbar/docs/LAUNCHER_PANEL.md`
+(+launcher pointer). 12 sibling repos synced (doc-pointer rename); electron-toolbar's runtime
+state files untracked in two passes (`scroll_config.txt`/`scroll_position.json`/`scroll_state.json`/
+`dwell_persisted_settings.json`, then 4 more) after they blocked a push.
+
+**What worked:** Built the index tree's trunk — `agent docs/INDEX.md` delegates to
+`APP_LOCATIONS.md`, `recipes/INDEX.md`, `cursor-patterns/INDEX.md`, and app `AGENTS.md` files
+rather than listing their contents, so adding a recipe or standard never touches the master index.
+Walked AGENTS.md section by section with Chase, cutting or relocating anything that only fires on
+a trigger phrase; found and fixed a real bug in the process — the "never a visible console"
+launcher rule was scoped `(School Scrips)` and so silently didn't cover electron-toolbar's
+Launcher Panel, which Chase uses just as often. Wired the Claude Code scorecard hook that never
+existed (Cursor had `.cursor/hooks.json`, Claude Code had nothing — the agent wasn't forgetting to
+bump, there was no mechanism), and made turn-counting automatic via `UserPromptSubmit`. Reviewed
+Chase's continuation of this work with Codex: verified the orchestrator-rule generalization and
+the gitignore fix both survived, caught and restored one real content loss (the app-AGENTS.md
+precedence sentence), confirmed a "third time" escalation trigger moved to the capture skill
+rather than being lost. Ran end-of-session across Programs root + Macro App + electron-toolbar.
+
+**Current state:** Green — `check-docs.js` exit 0, 0 dead links, 0 broken chain, 99/99 unrouted
+(ratchet unchanged this session).
+
+**File size flag:** None — `check-docs.js` itself is at 418 lines (700 is the extract line).
+
+**Next session:** Run the 10-phrase routing drill (listed in the plan) via cold subagents before
+trusting the deleted § Where rules live section — it was removed same-day rather than after the
+week-long soak the plan called for. Then continue Stage 2 (cursor-patterns merit review, ~100
+sections) at `C:\Users\chase\.claude\plans\alright-so-what-i-deep-iverson.md`.
+
+---
+
 ## 2026-08-02 — Retired `.mdc`, built `recipes/`, AGENTS.md rollout to 19 apps
 
 **Files changed:** `recipes/` (new — 25 recipes + README index), `AGENTS.md`, `CLAUDE.md`,

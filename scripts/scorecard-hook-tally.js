@@ -15,12 +15,23 @@ const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
 const MDC_STATS = path.join(ROOT, 'agent docs', 'mdc-read-stats.json');
 
+// Tool names differ between hosts. Cursor sends Shell/StrReplace/Task; Claude Code sends
+// Bash/PowerShell/Edit/Agent. Both sets are listed so one hook script serves both.
 const DOC_EXT = new Set(['.md', '.mdc', '.html', '.json', '.jsonl', '.txt']);
 const SEARCH_TOOLS = new Set(['Grep', 'Glob', 'WebSearch']);
 const READ_TOOLS = new Set(['Read']);
-const EDIT_TOOLS = new Set(['Write', 'StrReplace', 'Delete', 'EditNotebook']);
-const SHELL_TOOLS = new Set(['Shell']);
-const AGENT_TOOLS = new Set(['Task', 'GetMcpTools', 'WebFetch', 'FetchMcpResource', 'CallMcpTool']);
+const EDIT_TOOLS = new Set([
+  'Write', 'StrReplace', 'Delete', 'EditNotebook',
+  'Edit', 'NotebookEdit',                             // Claude Code
+]);
+const SHELL_TOOLS = new Set([
+  'Shell',
+  'Bash', 'PowerShell',                               // Claude Code
+]);
+const AGENT_TOOLS = new Set([
+  'Task', 'GetMcpTools', 'WebFetch', 'FetchMcpResource', 'CallMcpTool',
+  'Agent',                                            // Claude Code
+]);
 
 function bumpToolCount(running, key) {
   if (!key) {
@@ -164,9 +175,23 @@ function pickPath(toolInput) {
   );
 }
 
+// UserPromptSubmit carries no tool_name — it fires once per thing Chase says.
+// `turns` used to depend on the agent remembering to bump it, so it was almost
+// always 0. This makes the interaction count automatic like the tool counts.
+function recordTurn() {
+  const running = readRunning() || emptyRunning();
+  running.hookTally = true;
+  running.turns = (running.turns || 0) + 1;
+  refreshCountsTrust(running);
+  writeRunning(running);
+}
+
 function recordToolUse(payload) {
   const toolName = String(payload.tool_name || payload.toolName || '').trim();
   if (!toolName) {
+    if (payload.prompt !== undefined || payload.hook_event_name === 'UserPromptSubmit') {
+      recordTurn();
+    }
     return;
   }
 

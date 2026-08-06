@@ -1,6 +1,6 @@
 ---
 name: capture
-description: Capture a lesson, rule, or correction into the Programs instruction layer at the right level of the capture ladder. Use when Chase says "remember:", "capture that", "that was the third time", "make sure you always/never...", or otherwise states a durable rule he wants to stop repeating. Not for one-off task instructions.
+description: Capture a lesson, rule, or correction into the Programs instruction layer at the right level of the capture ladder. Use when Chase says "remember:", "capture this", "capture that", "make sure you always/never...", or otherwise states a durable rule he wants to stop repeating. Not for one-off task instructions.
 ---
 
 # Capture a lesson into the instruction layer
@@ -59,9 +59,9 @@ make a lookup folder "fire automatically."
 
 ### Repetition forces graduation
 
-If Chase signals this is a repeat — *"that was the third time"*, *"I've told you
-this before"*, *"again"* — the current rung is **proven too low**. Move it up at
-least one rung. Do not simply reword it in place.
+If Chase signals this is a repeat — for example, *"that was the third time"* or
+*"I've told you this before"* — the current rung is **proven too low**. Move it up
+at least one rung. Do not simply reword it in place.
 
 ---
 
@@ -137,8 +137,8 @@ it. Never write the same guidance into both.
 
 One or two lines:
 
-> Captured as a glob rule at `<path>` (fires on `*.tsx`). Removed the paragraph it
-> replaced in `<other path>`. Indexed in `<app>/CLAUDE.md`.
+> Captured in `<owning doc>` and indexed in `<index path>` under "<spoken trigger>".
+> Removed the lower copy it replaced in `<other path>`.
 
 Do not narrate the ladder reasoning unless the choice was close.
 

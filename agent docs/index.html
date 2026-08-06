@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Programs — pages</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--purple:#a78bfa;
+        --border:#334155;--radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;font-size:18px}
+  .page{max-width:900px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+  header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.7rem,5vw,2.3rem);font-weight:700;letter-spacing:-.02em}
+  header p{color:var(--muted);margin-top:.6rem;font-size:1.02rem}
+
+  h2{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:2.5rem 0 .5rem;color:var(--accent)}
+  h2.amber{color:var(--amber)} h2.grey{color:var(--muted)}
+  .rule{color:var(--muted);font-size:.9rem;margin-bottom:1.1rem}
+  .rule b{color:var(--text)}
+
+  /* Big dwell-friendly click targets — whole card is the link */
+  a.card{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--border);
+         border-left:5px solid var(--accent);border-radius:var(--radius);
+         padding:1.15rem 1.3rem;margin-bottom:.8rem;min-height:78px;color:inherit}
+  a.card:hover,a.card:focus{background:var(--panel-alt);border-color:var(--accent);outline:none}
+  a.card .t{font-size:1.12rem;font-weight:700;color:var(--text)}
+  a.card .d{font-size:.92rem;color:var(--muted);margin-top:.28rem}
+  a.card .m{font-size:.76rem;color:var(--muted);margin-top:.45rem;font-family:Consolas,monospace}
+
+  a.card.amber{border-left-color:var(--amber)}
+  a.card.grey{border-left-color:var(--border)}
+  a.card.green{border-left-color:var(--green)}
+
+  .empty{background:var(--panel);border:1px dashed var(--border);border-radius:var(--radius);
+         padding:1.15rem 1.3rem;color:var(--muted);font-size:.92rem}
+  .empty b{color:var(--text)}
+  code{background:var(--panel-alt);color:var(--accent);padding:.08rem .32rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--border);
+         color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Programs — pages</h1>
+  <p>Everything served on <code>127.0.0.1:8765</code>. Grouped by <b>how long it stays true</b>, not by topic.</p>
+</header>
+
+<!-- ===== DURABLE ===== -->
+<h2>Instruction Layer HTMLs — maintained</h2>
+<p class="rule">
+  Visual pages for reviewing how the instruction layer is organized. <b>These get updated whenever the structure changes.</b>
+  If a page here disagrees with reality, that's a bug worth fixing.
+</p>
+
+<a class="card" href="instructional-layer-htmls/doc-restructure-plan.html">
+  <div class="t">The Index Tree</div>
+  <div class="d">What the agent reads and in what order, to find anything. The two-kinds-of-guidance split, worked examples with read counts, and the order of work.</div>
+  <div class="m">instructional-layer-htmls/doc-restructure-plan.html · verified 2026-08-05</div>
+</a>
+
+<a class="card" href="instructional-layer-htmls/head-agents-md.html">
+  <div class="t">Head AGENTS.md</div>
+  <div class="d">Stable visual summary of the Programs-root always-on file: what each section does, why it stays loaded, and what belongs elsewhere.</div>
+  <div class="m">instructional-layer-htmls/head-agents-md.html · verified 2026-08-05</div>
+</a>
+
+<!-- ===== SCRATCH ===== -->
+<h2 class="amber">Scratch — not maintained</h2>
+<p class="rule">
+  One-off visualizations. <b>Read once, then assume they go stale.</b> Every page here carries a dated
+  banner, because the code it describes will change and nothing will tell you.
+</p>
+
+<div class="empty">
+  <b>Empty.</b> Anything that answers "show me what this code is doing" right now — and that you'd never
+  open twice — goes in <code>agent docs/scratch/</code>. Never here in Architecture.
+</div>
+
+<!-- ===== UNSORTED ===== -->
+<h2 class="grey">Not yet sorted</h2>
+<p class="rule">
+  Made before this split existed. Each one still needs a call: <b>maintained, scratch, or delete.</b>
+</p>
+
+<a class="card grey" href="cursor-patterns-triage.html">
+  <div class="t">cursor-patterns — file by file</div>
+  <div class="d">All 17 files with line counts, git history, and a keep/shrink/fix/delete verdict on each.</div>
+  <div class="m">cursor-patterns-triage.html · 2026-08-04</div>
+</a>
+
+<a class="card grey" href="rule-architecture-infographic.html">
+  <div class="t">AI Guidance Architecture</div>
+  <div class="d">How the guidance system works. Predates the index restructure, so parts may now be wrong.</div>
+  <div class="m">rule-architecture-infographic.html · 2026-08-01</div>
+</a>
+
+<a class="card grey" href="context-engineering-infographic.html">
+  <div class="t">Context engineering</div>
+  <div class="d">Why the instruction layer is shaped the way it is.</div>
+  <div class="m">context-engineering-infographic.html · 2026-08-01</div>
+</a>
+
+<a class="card grey" href="context-engineering-capture-ladder.html">
+  <div class="t">The capture ladder</div>
+  <div class="d">The five rungs, and why a rule should be pushed as high as it goes.</div>
+  <div class="m">context-engineering-capture-ladder.html · 2026-08-01</div>
+</a>
+
+<a class="card grey" href="context-engineering-capture-costs.html">
+  <div class="t">Capture costs</div>
+  <div class="d">What each rung costs per session.</div>
+  <div class="m">context-engineering-capture-costs.html · 2026-08-01</div>
+</a>
+
+<!-- ===== GENERATED ===== -->
+<h2 class="grey">Generated</h2>
+<p class="rule">Written by a script. <b>Never edit by hand.</b></p>
+
+<a class="card green" href="session-scorecards-log.html">
+  <div class="t">Session scorecards</div>
+  <div class="d">Running log of session activity. Rebuilt by <code>scripts/append-session-scorecard.js</code>.</div>
+  <div class="m">session-scorecards-log.html</div>
+</a>
+
+<footer>
+  Served by <code>scripts/serve-programs-docs.js</code> · also serves School documents (exam maps)
+</footer>
+
+</div>
+</body>
+</html>

@@ -36,3 +36,16 @@ Also: Cursor Automation, nightly backup. **No npm test / pytest / builds** unles
 6. Summary table: repo, commit, push result, skipped.
 
 Run commit/push scan **before** `SESSIONS.md` on end-of-session.
+
+## `.gitignore` does not untrack files
+
+If a runtime file keeps appearing in `git status` even though the path is in `.gitignore`,
+Git is already tracking it. `.gitignore` only blocks new untracked files; it does not remove
+tracked files from the index.
+
+Fix:
+
+1. Confirm the file should not be versioned.
+2. Keep the `.gitignore` pattern.
+3. Run `git rm --cached <path>` for the tracked runtime file, then commit that removal.
+4. Leave the local file on disk unless Chase asked to delete it.

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Head AGENTS.md - Programs Root</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:48rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1rem 1.05rem; min-height:118px; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card.purple { border-left-color:var(--purple); }
+  .eyebrow { color:var(--muted); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+  .title { font-weight:800; font-size:1.04rem; margin:.15rem 0 .35rem; }
+  .body { color:var(--muted); font-size:.9rem; }
+  .why { color:var(--text); font-size:.86rem; margin-top:.55rem; padding-top:.55rem; border-top:1px solid rgba(148,163,184,.18); }
+  .flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.65rem; margin-top:.8rem; }
+  .step { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:.85rem .7rem; text-align:center; }
+  .step b { display:block; font-size:.92rem; }
+  .step span { display:block; color:var(--muted); font-size:.76rem; margin-top:.25rem; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; }
+  th, td { padding:.78rem .85rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.9rem; }
+  tr:last-child td { border-bottom:0; }
+  .two { display:grid; grid-template-columns:1.1fr .9fr; gap:.9rem; }
+  .plain { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem; }
+  .plain p { color:var(--muted); font-size:.92rem; margin-bottom:.75rem; }
+  .plain p:last-child { margin-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) {
+    .stats, .grid, .flow, .two { grid-template-columns:1fr; }
+    .card { min-height:0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Head <code>AGENTS.md</code></h1>
+    <p>The Programs-root always-on instruction file. This page is not a review checklist; it is the stable map of what the head file currently does and why each section earns startup space.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">15</b><span>sections</span></div>
+    <div class="stat"><b style="color:var(--green)">145</b><span>nonblank lines</span></div>
+    <div class="stat"><b style="color:var(--amber)">~9.3k</b><span>characters</span></div>
+    <div class="stat"><b style="color:var(--purple)">1</b><span>always-on root file</span></div>
+  </div>
+
+  <div class="note">
+    <strong>The design:</strong> root <code>AGENTS.md</code> holds short behaviors that must fire before an agent knows what it is doing. Long explanations, app-specific knowledge, recipes, and procedures live behind indexes.
+  </div>
+
+  <h2>The Startup Path</h2>
+  <div class="flow">
+    <div class="step"><b>Tool starts</b><span>Cursor, Codex, or Claude Code</span></div>
+    <div class="step"><b>Loads head file</b><span>Programs root <code>AGENTS.md</code></span></div>
+    <div class="step"><b>Finds index</b><span><code>agent docs/INDEX.md</code></span></div>
+    <div class="step"><b>Routes by words</b><span>what Chase actually said</span></div>
+    <div class="step"><b>Reads one owner</b><span>app doc, recipe, standard, or rule detail</span></div>
+  </div>
+
+  <h2>What Is Always-On</h2>
+  <div class="grid">
+    <div class="card green">
+      <div class="eyebrow">Orientation</div>
+      <div class="title">First move - find the doc</div>
+      <div class="body">Tells agents to start with <code>agent docs/INDEX.md</code> before grepping the tree.</div>
+      <div class="why">Why it stays: without this, the whole keyword-router system is optional.</div>
+    </div>
+
+    <div class="card red">
+      <div class="eyebrow">Screen safety</div>
+      <div class="title">Never put anything on Chase's screen without asking</div>
+      <div class="body">No surprise GUI launches, windows, browser opens, display changes, overlays, or UI smoke tests.</div>
+      <div class="why">Why it stays: a stolen focus or display change can leave Chase unable to undo it.</div>
+    </div>
+
+    <div class="card red">
+      <div class="eyebrow">Input safety</div>
+      <div class="title">No keyboard-driven handoffs</div>
+      <div class="body">Do not send Chase into terminal prompts, arrow-key menus, or type-to-filter boxes as the next step.</div>
+      <div class="why">Why it stays: it prevents workflows that are technically correct but physically unusable.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="eyebrow">Conversation</div>
+      <div class="title">Ask before assuming</div>
+      <div class="body">Ask one focused question when scope, wording, or approach is genuinely ambiguous.</div>
+      <div class="why">Why it stays: Chase uses speech-to-text, and misheard terms can send an agent into the wrong app.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="eyebrow">Shell</div>
+      <div class="title">Windows PowerShell 5.x</div>
+      <div class="body"><code>&amp;&amp;</code>, <code>||</code>, and bare <code>curl</code> are wrong defaults here.</div>
+      <div class="why">Why it stays: four lines prevent routine command failures in almost every session.</div>
+    </div>
+
+    <div class="card purple">
+      <div class="eyebrow">Code shape</div>
+      <div class="title">The most violated rules</div>
+      <div class="body">File-size cap, entry-file orchestration, preserve behavior, grep before new mechanisms, no backdrop-dismiss modals, plus React extraction/service-layer reminders.</div>
+      <div class="why">Why it stays: these are broad failure modes that create expensive cleanup when missed.</div>
+    </div>
+
+    <div class="card red">
+      <div class="eyebrow">Launchers</div>
+      <div class="title">Never a visible console</div>
+      <div class="body">Launcher surfaces must not spawn detached visible <code>cmd.exe</code> windows.</div>
+      <div class="why">Why it stays: launchers are how Chase opens apps, and a visible console steals focus and can kill the app when closed.</div>
+    </div>
+
+    <div class="card green">
+      <div class="eyebrow">Git</div>
+      <div class="title">Pull at start, push at end</div>
+      <div class="body">Scan sibling repos, fetch, fast-forward clean-behind repos, stop on dirty-and-ahead collisions, commit/push only when asked or at end-of-session.</div>
+      <div class="why">Why it stays: Programs is many sibling repos, not a monorepo, so sync must be agent-driven.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="eyebrow">Bookkeeping</div>
+      <div class="title">Session scorecard</div>
+      <div class="body">After each completed deliverable, bump the running scorecard file through the script.</div>
+      <div class="why">Why it stays: it preserves work counts through summarization and long sessions.</div>
+    </div>
+
+    <div class="card green">
+      <div class="eyebrow">Closeout</div>
+      <div class="title">End-of-session protocol</div>
+      <div class="body">Routes wrap-up phrases to the detailed closeout doc; state/resume phrases read the latest session log instead.</div>
+      <div class="why">Why it stays: the trigger must be noticed, but the full procedure does not belong in startup context.</div>
+    </div>
+
+    <div class="card green">
+      <div class="eyebrow">Memory</div>
+      <div class="title">Capturing a lesson</div>
+      <div class="body">"Capture this" means run the capture skill, grep existing coverage, write or update the owner, and index it.</div>
+      <div class="why">Why it stays: the trigger itself is easy for agents to miss if it is only hidden behind a lookup doc.</div>
+    </div>
+
+    <div class="card purple">
+      <div class="eyebrow">Rule placement</div>
+      <div class="title">Capture ladder</div>
+      <div class="body">One table names the five rungs: structure, lint/test, recipe or app keyword row, always-on rule, on-demand doc.</div>
+      <div class="why">Why it stays: it keeps new rules from landing in the wrong layer.</div>
+    </div>
+
+    <div class="card red">
+      <div class="eyebrow">Frozen work</div>
+      <div class="title">Calendar 2.0</div>
+      <div class="body">No scans, edits, or git sync unless Chase explicitly names the frozen app.</div>
+      <div class="why">Why it stays: by the time an agent thinks to look this up, it may already have scanned or touched the folder.</div>
+    </div>
+
+    <div class="card green">
+      <div class="eyebrow">Clickable pages</div>
+      <div class="title">HTML delivery</div>
+      <div class="body">When Chase asks for HTML, return only a clickable <code>127.0.0.1:8765</code> link, never a file path or opener script.</div>
+      <div class="why">Why it stays: the wrong kind of link is unusable from chat.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="eyebrow">Search</div>
+      <div class="title">Searching this tree</div>
+      <div class="body">Use content search that respects ignores; scope filename search; preserve <code>/.ignore</code>.</div>
+      <div class="why">Why it stays: bad search results lead agents to edit build copies or rebuild code that already exists.</div>
+    </div>
+  </div>
+
+  <h2>The Capture Ladder</h2>
+  <table>
+    <tr><th>Rung</th><th>Form</th><th>When it fires</th></tr>
+    <tr><td>1</td><td>Structurally impossible</td><td>Always, because the code shape prevents misuse.</td></tr>
+    <tr><td>2</td><td>Lint rule or test</td><td>Every commit or verification run.</td></tr>
+    <tr><td>3</td><td>Recipe plus <code>recipes/INDEX.md</code>, or keyword row in an app <code>AGENTS.md</code></td><td>When Chase describes the task in his own words.</td></tr>
+    <tr><td>4</td><td>Always-on rule in head <code>AGENTS.md</code></td><td>Every session, so it must stay short.</td></tr>
+    <tr><td>5</td><td>On-demand document</td><td>Only when an index, rule, or user phrase points to it.</td></tr>
+  </table>
+
+  <h2>What Is Deliberately Not In The Head File</h2>
+  <div class="two">
+    <div class="plain">
+      <p><strong>Long procedures.</strong> End-of-session steps, HTML serving details, git edge cases, and screen-safety incidents live in detail docs.</p>
+      <p><strong>Individual recipes.</strong> Drag, dwell, modal, canvas, animation, and overlay patterns belong in <code>recipes/INDEX.md</code> and one recipe file.</p>
+      <p><strong>App-specific knowledge.</strong> Pearson, gradebook, Launcher Panel, Macro App, and other local systems route through the app's own <code>AGENTS.md</code>.</p>
+    </div>
+    <div class="plain">
+      <p><strong>Repeated values.</strong> Timings, thresholds, and sizes should live in one owner. Other files point at that owner.</p>
+      <p><strong>Historical explanation.</strong> Why <code>.mdc</code> went away and how the instruction layer evolved lives in <code>HOW_TO_INTERACT_WITH_AI.md</code> and the visual architecture pages.</p>
+      <p><strong>One-off visuals.</strong> Temporary diagrams belong in <code>agent docs/scratch/</code>, not the maintained instruction-layer HTML collection.</p>
+    </div>
+  </div>
+
+  <footer>
+    Current source: <code>C:\Users\chase\Documents\Programs\AGENTS.md</code><br />
+    Stable visual summary generated 2026-08-05. Update this page when the head file's structure changes.
+  </footer>
+</div>
+</body>
+</html>

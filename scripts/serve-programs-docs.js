@@ -42,7 +42,7 @@ function resolveFile(rel) {
 
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
-  if (rel === '/') rel = '/context-engineering-infographic.html';
+  if (rel === '/') rel = '/index.html';
   const file = resolveFile(rel);
   if (!file) {
     res.writeHead(404);
@@ -61,6 +61,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Programs docs: http://127.0.0.1:${PORT}/context-engineering-infographic.html`);
+  console.log(`Programs pages: http://127.0.0.1:${PORT}/`);
   console.log(`Session scorecards: http://127.0.0.1:${PORT}/session-scorecards-log.html`);
 });

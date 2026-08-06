@@ -33,6 +33,8 @@ Periodic cleanup of **rules, AGENTS pointers, and instruction docs** — things 
 | 3 | **Re-split `recipes/` and `cursor-patterns/` into narrower categories** | Chase wants finer buckets so the categories aren't so broad, but hasn't reviewed what's actually in them | His review of each folder's contents |
 | 4 | **Apps with real docs but no `AGENTS.md`** — `makeup-exam-standalone` (15 docs), `Statistics app` (5), `logic-app` (4), `Probability App` (4), `Hearthstone Overlay 3.0` (3) | Each missing file is a hole in the second tier. Adding five is a bigger project than the restructure itself | Whether those apps are still live enough to earn a keyword table |
 
+| 5 | **The session scorecard doesn't fire** — agents forget to bump it, or skip it entirely, despite § Session scorecard being always-on | Chase noticed this 2026-08-05 and wants to redesign how it's triggered rather than patch the wording again | His call on the mechanism. **Leave § Session scorecard in `AGENTS.md` untouched until then** — don't trim or reword it, since he's reconsidering the whole approach. Worth noting the pattern: an always-on rule that still doesn't fire is evidence for pushing it down the ladder, the same as the modal backdrop rule |
+
 **Note on #2:** `accessibility-patterns.md`'s 500ms figures were fixed separately — every source
 agrees those match nothing that ships, so correcting them needed no judgment call.
 

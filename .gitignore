@@ -20,10 +20,13 @@
 !/.gitignore
 !/.ignore
 
-# Claude Code skills (capture procedure). Local-only: launch.json, settings.local.json.
+# Claude Code skills (capture procedure) + hooks. Local-only: launch.json, settings.local.json
+# (machine-specific permission paths). settings.json holds only the scorecard hooks, so it
+# syncs to the laptop the same way .cursor/hooks.json does.
 !/.claude/
 /.claude/*
 !/.claude/skills/
+!/.claude/settings.json
 
 # Instruction-layer tooling and docs at the Programs root.
 # audit doc, the check-docs robot, and the session scorecard log live on one
