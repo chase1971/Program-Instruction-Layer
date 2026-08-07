@@ -172,5 +172,5 @@ These each exist because a specific bug bit. Do not "clean them up".
 
 - `AGENTS.md` § Dwell & head-mouse — the always-on short form
 - `recipes/studio-dwell-latch.md` — **the exemplar recipe**; model new recipes on its shape
-- `cursor-patterns/accessibility-patterns.md` — React drawer/keyboard/ARIA detail
+- `cursor-patterns/CODING_STANDARDS.md` § Modal Pattern — no-backdrop-dismiss
 - `cursor-patterns/modal-pattern.md` — no-backdrop-dismiss
