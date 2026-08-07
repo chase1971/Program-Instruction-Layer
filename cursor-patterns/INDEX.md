@@ -27,7 +27,7 @@ patterns, anti-patterns, and the final-build checklist. Read this first.
 
 **[INIT_NEW_APP.md](./INIT_NEW_APP.md)** — recipe for scaffolding a new app
 (educational-math / functional-tool / electron-overlay variants). AI follows
-this when you say "initialize a new app." **Electron apps:** Step 4b + **[electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md)** (required).
+this when you say "initialize a new app." **Electron apps:** Step 4b + **[electron-per-monitor-display-scaling.md](./electron-per-monitor-display-scaling.md)** (the manual Display button is required; per-monitor auto-memory is optional).
 
 **[dwell-and-head-mouse.md](./dwell-and-head-mouse.md)** — **the source of truth
 for every dwell / hover / drag timing value in the tree.** Read before touching
