@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-07 — Scorecard Stop hooks for Cursor + Codex; cross-agent hook parity
+
+**Files changed:** `.cursor/hooks.json` (added `stop`, `preCompact`, `beforeSubmitPrompt` — Cursor had only `postToolUse` tally before, so agents could finish with edits and zero bumps); `.codex/hooks.json` (new — same Stop/PreCompact/tally wiring for Codex project hooks); `.gitignore` (track `.codex/hooks.json`); `scripts/scorecard-enforce.js` (also emits `followup_message` for Cursor native stop format); `scripts/scorecard-hook-tally.js` (`beforeSubmitPrompt` turn counting); `agent docs/SESSION_SCORECARD.md` (§ Enforcement table for Cursor / Claude Code / Codex). Also in this repo commit batch: prior-session instructional-layer edits still dirty (`INSTRUCTION_LAYER_AUDIT.md`, `END_OF_SESSION.md`, review HTMLs, `append-session-scorecard.js`, `.claude/settings.json`).
+
+**What worked:** Chase noticed Cursor only auto-tallied tool use — the Claude Code **Stop** hook that blocks finishing without a `--bump-file` never ran in Cursor. Root cause: enforcement lived only in `.claude/settings.json`. Wired the same `scripts/scorecard-enforce.js --stop` / `--precompact` into native `.cursor/hooks.json` (`loop_limit: 3`) and new `.codex/hooks.json` (Codex trusted-project hooks). Documented all three agents in one table so the gap doesn't recur. Separate Macro App work this session (AA download double save dialog + workspace history on Google Drive) logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green headlessly — hook scripts smoke-test clean. **Not live-verified:** Cursor needs restart to reload hooks; Codex needs one-time `/hooks` trust after pull; Stop-hook block behavior not exercised in GUI this session.
+
+**File size flag:** None.
+
+**Next session:** After pull on laptop: restart Cursor, trust Codex hooks once, confirm a session with ≥2 file edits and 0 bumps gets blocked at turn end. Consider extending `unbumpedState()` with "time since last bump" if long sessions go quiet after one early bump.
+
+---
+
 ## 2026-08-05 — Index-tree Stage A, AGENTS.md 307→218 lines, scorecard hook wired for Claude Code
 
 **Files changed:** `agent docs/INDEX.md` (new, ~25 rows, pure delegation), `AGENTS.md` (307→218,
@@ -99,30 +113,6 @@ recipe for the `coordinator/` layer (`module_registry.py`, `module_supervisor.py
 `Hearthstone Overlay 3.0`, `Quasimorph Tracker` still have full `CLAUDE.md` and no `AGENTS.md`;
 8 boilerplate `guidelines/Guidelines.md` awaiting his one-by-one pass; `dwell-and-head-mouse.md`
 vs `accessibility-patterns.md` overlap unresolved.
-
-## 2026-08-02 — exam2-review-map: full homework harvest + Exam 2 Review
-
-**Files changed:** `agent docs/exam2-review-map.html` (~721 lines), `School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md`
-
-**What worked:** Pearson print harvest (Macro App MCP, no snapshots) for homework 3.6–3.10 and Exam 2 Review. Trimmed map to homework 3.3–3.10 only; updated REVIEW to edited 18-question list; added six review-only PROBLEMS (3.3.63, 3.5.25, 3.5.59, 3.7.23, 3.9.36, 3.9.75); right-panel hover tooltips; tooltip wrap fix for long equations.
-
-**Current state:** Green — map complete for current review/homework set.
-
-**File size flag:** None
-
-**Next session:** Serve at `http://127.0.0.1:8765/exam2-review-map.html`; optional fix for parameterized IDs showing homework vs review instance text.
-
-## 2026-08-02 — exam2-review-map: 3.4/3.5 problem text + collapsible sections
-
-**Files changed:** `agent docs/exam2-review-map.html` (~660 lines)
-
-**What worked:** Added 16 + 14 Pearson print-harvested `{ prompt, expr }` entries (3.4, 3.5). Fixed homework accordion — second click on open section collapses it and clears right panel.
-
-**Current state:** Green
-
-**File size flag:** None
-
-**Next session:** Serve via docs server; continue PROBLEMS harvest for 3.6+
 
 ## 2026-08-01 — Capture ladder learning, audit doc, session scorecard HTML log
 

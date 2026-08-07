@@ -189,7 +189,12 @@ function recordTurn() {
 function recordToolUse(payload) {
   const toolName = String(payload.tool_name || payload.toolName || '').trim();
   if (!toolName) {
-    if (payload.prompt !== undefined || payload.hook_event_name === 'UserPromptSubmit') {
+    const eventName = String(payload.hook_event_name || payload.hookEventName || '').trim();
+    if (
+      payload.prompt !== undefined
+      || eventName === 'UserPromptSubmit'
+      || eventName === 'beforeSubmitPrompt'
+    ) {
       recordTurn();
     }
     return;

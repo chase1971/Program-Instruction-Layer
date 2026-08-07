@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cursor Patterns Review - Programs Root</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:50rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.grey { color:var(--muted); }
+  .cardlist { display:flex; flex-direction:column; gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card.grey { border-left-color:var(--border); }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .title { font-weight:800; font-size:1.08rem; font-family:Consolas,monospace; }
+  .badge { flex-shrink:0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+    padding:.3rem .65rem; border-radius:999px; white-space:nowrap; }
+  .badge.green { background:rgba(52,211,153,.15); color:var(--green); }
+  .badge.amber { background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.red { background:rgba(248,113,113,.15); color:var(--red); }
+  .badge.grey { background:rgba(148,163,184,.15); color:var(--muted); }
+  .meta { color:var(--muted); font-size:.78rem; margin-top:.4rem; font-family:Consolas,monospace; }
+  .fn { color:var(--text); font-size:.92rem; margin-top:.6rem; }
+  .finding { color:var(--muted); font-size:.88rem; margin-top:.5rem; padding-top:.55rem;
+    border-top:1px solid rgba(148,163,184,.18); }
+  .finding b { color:var(--text); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Cursor Patterns Review</h1>
+    <p>All 17 files in <code>cursor-patterns/</code> — the code-standards library, separate from <code>recipes/</code> (how to build one interaction) and <code>agent docs/</code> (how the AI operates). Every cross-reference below was checked against what's actually on disk, not assumed from the prose.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">17</b><span>markdown files reviewed</span></div>
+    <div class="stat"><b style="color:var(--green)">15</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">2</b><span>need an update</span></div>
+    <div class="stat"><b style="color:var(--red)">0</b><span>need removal</span></div>
+  </div>
+
+  <div class="note">
+    <strong>Is it worth keeping?</strong> Yes. This isn't dead weight — <code>INDEX.md</code>'s keyword table routes ~14 different things Chase might say directly into this folder, and the two most-recently-touched files (<code>dwell-and-head-mouse.md</code>, <code>INIT_NEW_APP.md</code>) are genuinely well-maintained. The 7 short "archived" stub files aren't clutter either — every one of them points at a real file in <code>Archived markdowns/cursor-patterns/</code>, verified below. The real issue is narrower: the 1,244-line master file hasn't been touched since June and has drifted from the August restructure, and one file contradicts its own intro.
+  </div>
+
+  <h2 class="amber">Needs an update (2)</h2>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top">
+        <div class="title">CODING_STANDARDS.md</div>
+        <span class="badge amber">Needs update</span>
+      </div>
+      <div class="meta">Created 2026-06-04 · last modified 2026-06-04 (untouched 2+ months) · 1,244 lines</div>
+      <div class="fn">The designated master file — "read this first," single source of truth for file size, App.tsx orchestration, modal sizing, naming, service layer, launchers, and the final-build checklist.</div>
+      <div class="finding"><b>Three concrete findings:</b>
+        <br>1. Its own <b>"Related Pattern Files" table is stale</b> — lists <code>APP_BOOTSTRAP_TEMPLATE.md</code> as if it's a live file (it was archived and superseded by <code>INIT_NEW_APP.md</code> months ago) and still lists <code>logging-standards.md</code> as primary reading (also now a 5-line archive stub). It never mentions <code>INIT_NEW_APP.md</code>, <code>dwell-and-head-mouse.md</code>, or <code>accessibility-patterns.md</code> at all, despite those being the three most-actively-used files in the folder today.
+        <br>2. Its <b>"Windows: Hidden Launchers" section</b> (~70 lines of its own spawn-mechanics detail) is a <i>third</i> copy of the launcher rule — root <code>AGENTS.md</code> now points that rule's detail at <code>School Scrips/App Dashboard/docs/LAUNCHER.md</code> instead, not here. Two different "authoritative detail" pointers for the same rule is exactly the "same topic, two homes" pattern <code>INSTRUCTION_LAYER_AUDIT.md</code> §2a exists to catch — and this copy is the one nobody's been keeping in sync since June.
+        <br>3. The top 5 "Quick Reference" rules (file size, orchestrator, grep-before-adding, etc.) duplicate root <code>AGENTS.md</code>'s "most violated rules" almost verbatim. That's an intentional rung-4/rung-5 split and the numbers still agree — not broken, just worth knowing it's duplicated on purpose, not by accident.
+      </div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top">
+        <div class="title">accessibility-patterns.md</div>
+        <span class="badge amber">Needs update</span>
+      </div>
+      <div class="meta">Created 2026-06-04 · last modified 2026-08-02 · 606 lines</div>
+      <div class="fn">React-side dwell-mouse / keyboard / screen-reader patterns.</div>
+      <div class="finding"><b>Finding:</b> the file <i>already</i> got a partial fix on 2026-08-02 — a loud banner was added at the very top correctly disclaiming every timing value below as "illustrative, not shipped" and flagging the <code>useDrawerHover</code> hook as reference code that was never implemented, with a pointer to the real source of truth (<code>dwell-and-head-mouse.md</code>). But the fix stopped at the banner. ~500 lines later, a <b>"Timing Guidelines" section still presents the same fabricated 500ms figures as "Recommended Values"</b> and a "Testing Accessibility" checklist references them as if normative, with no repeated disclaimer nearby. A reader who jumps past the intro — plausible in a 606-line file — hits fiction presented as fact a second time. Fix: either strip the timing tables/checklist entirely (the code-shape patterns — lock period, hover delay, ARIA — are still useful as illustration) or repeat the disclaimer at each reintroduction of a number.</div>
+    </div>
+
+  </div>
+
+  <h2 class="green">Fine as-is — substantive files (7)</h2>
+  <table>
+    <tr><th>File</th><th>Created</th><th>Modified</th><th>Lines</th><th>Why it's fine</th></tr>
+    <tr>
+      <td><code>dwell-and-head-mouse.md</code></td><td>2026-07-31</td><td>2026-08-02</td><td>175</td>
+      <td>The best-maintained file in the folder. Explicitly documents its own open questions ("Status: unverified" on the cross-layer coupling, an "Unresolved (2026-08-01)" note on leave-handlers) instead of asserting false confidence — the model other files here should follow.</td>
+    </tr>
+    <tr>
+      <td><code>INIT_NEW_APP.md</code></td><td>2026-06-04</td><td>2026-08-01</td><td>840</td>
+      <td>Recently touched and detailed — Step 4b (Display scaling) and 4c (Electron version pinning for embedded-browser apps) are both current and cross-reference correctly. Close to the 800-line code cap, but it's a doc, not code — worth a light eye if it keeps growing.</td>
+    </tr>
+    <tr>
+      <td><code>electron-per-monitor-display-scaling.md</code></td><td>2026-06-04</td><td>2026-08-01</td><td>267</td>
+      <td>Cross-references <code>INIT_NEW_APP.md</code> and <code>CODING_STANDARDS.md</code> correctly in both directions; exemplar paths (Calendar 2.0, Macro App) verified to exist.</td>
+    </tr>
+    <tr>
+      <td><code>react-patterns.md</code></td><td>2026-06-04</td><td>2026-08-01*</td><td>615</td>
+      <td>Generic, timeless reference content (hook extraction, service layer, import order). Numbers agree with <code>CODING_STANDARDS.md</code> (5+ useState / 300 lines). *Git date is a rename-sweep touch — the file's own "Last Updated: 2026-01-12" footer is more honest about when the content itself last changed.</td>
+    </tr>
+    <tr>
+      <td><code>file-headers.md</code></td><td>2026-06-04</td><td>2026-08-01*</td><td>400</td>
+      <td>Header templates — timeless by nature, low staleness risk. Same rename-sweep caveat as <code>react-patterns.md</code>.</td>
+    </tr>
+    <tr>
+      <td><code>refactoring-checklist.md</code></td><td>2026-06-04</td><td>2026-06-04</td><td>604</td>
+      <td>Generic checklist, no dates or broken references to go stale. Some overlap with <code>CODING_STANDARDS.md</code> (file size, API shape) but different format/use case — a checklist to run through, not a reference to look up.</td>
+    </tr>
+    <tr>
+      <td><code>anti-patterns.md</code></td><td>2026-06-04</td><td>2026-06-04</td><td>302</td>
+      <td>Generic anti-pattern catalog (Python/threading/state). No dates, no dead references — timeless by design.</td>
+    </tr>
+  </table>
+
+  <h2 class="grey">Fine as-is — tombstones and index (8)</h2>
+  <table>
+    <tr><th>File</th><th>Lines</th><th>What it is</th></tr>
+    <tr><td><code>INDEX.md</code></td><td>95</td><td>The router itself, last touched 2026-08-05. Current and consistent with everything found in this review.</td></tr>
+    <tr><td><code>modal-pattern.md</code></td><td>14</td><td>Tombstone → <code>recipes/modal-shell.md</code>. Target verified to exist.</td></tr>
+    <tr><td><code>modal-scrolling-fix.md</code></td><td>5</td><td>Tombstone → <code>modal-pattern.md</code>. Target verified.</td></tr>
+    <tr><td><code>FILE_SIZE_QUICK_REFERENCE.md</code></td><td>5</td><td>Tombstone → <code>Archived markdowns/cursor-patterns/</code>. Target verified. Superseded by ESLint + pre-commit hook.</td></tr>
+    <tr><td><code>file-size-enforcement.md</code></td><td>5</td><td>Same tombstone pattern. Target verified.</td></tr>
+    <tr><td><code>logging-standards.md</code></td><td>5</td><td>Tombstone → archive. Target verified. (Still listed as live in <code>CODING_STANDARDS.md</code>'s table — see that finding above.)</td></tr>
+    <tr><td><code>animation-frame-debug-tool.md</code></td><td>5</td><td>Tombstone → archive. Target verified.</td></tr>
+    <tr><td><code>add-a-line-change-a-sign.md</code></td><td>5</td><td>Tombstone → archive. Target verified.</td></tr>
+  </table>
+
+  <footer>
+    Reviewed 2026-08-07 against <code>C:\Users\chase\Documents\Programs\cursor-patterns\</code>.<br />
+    Snapshot, not a live check — regenerate after the next pass through this folder.
+  </footer>
+</div>
+</body>
+</html>

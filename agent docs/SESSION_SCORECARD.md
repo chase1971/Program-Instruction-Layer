@@ -33,9 +33,38 @@ End-of-session-only scorecards **lose accuracy** when Cursor summarizes the chat
 
 ---
 
-## Hook auto-tally (experimental)
+## Enforcement (2026-08-07) — hooks block, prose no longer just asks
 
-`.cursor/hooks.json` runs `scripts/scorecard-hook-tally.js` on every **postToolUse** event. It appends to the same running file:
+Prose alone didn't work: a full session on 2026-08-06 had real edits and zero bumps. Two
+hooks in `scripts/scorecard-enforce.js` run on **Stop** and **PreCompact** for every agent
+that loads the Programs hook configs:
+
+| Agent | Config file | Stop (blocks finish) | PreCompact (reminder) | Auto-tally |
+|-------|-------------|----------------------|------------------------|------------|
+| **Cursor** | [`.cursor/hooks.json`](../.cursor/hooks.json) | `stop` → `--stop`, `loop_limit: 3` | `preCompact` → `--precompact` | `postToolUse` + `beforeSubmitPrompt` |
+| **Claude Code** | [`.claude/settings.json`](../.claude/settings.json) | `Stop` → `--stop` | `PreCompact` → `--precompact` | `PostToolUse` + `UserPromptSubmit` |
+| **Codex** | [`.codex/hooks.json`](../.codex/hooks.json) | `Stop` → `--stop` | `PreCompact` → `--precompact` | `PostToolUse` + `UserPromptSubmit` |
+
+Cursor also loads `.claude/settings.json` when **Settings → Rules → Include third-party Plugins, Skills, and other configs** is on — but the native `.cursor/hooks.json` entries above are the primary enforcement path.
+
+**Codex:** project hooks load when the Programs folder is a **trusted** project (already set in your `~/.codex/config.toml`). First run may prompt **Trust** in `/hooks` — accept once per machine.
+
+| Hook | What it does |
+|------|----------------|
+| **Stop** | **Blocks** the agent's turn from ending when the running tally shows ≥2 edited files, 0 bumps, and ≥3 turns. The block reason is fed back to the agent, telling it to run `--bump-file` before finishing. Capped at **3 consecutive blocks** (`loop_limit` in Cursor; `stopBlockCount` in the running file for Claude/Codex), then force-allows — cannot loop forever. |
+| **PreCompact** | Non-blocking reminder injected right before compaction when there's unbumped work. The disk-based tally survives compaction; the agent's memory that it needs to bump does not. |
+
+**Known gap:** the check only fires on "never bumped this session." A session that bumps
+once early and then goes quiet for the rest of a long session won't re-trigger — there's no
+"time since last bump" check yet. If that pattern shows up, extend `scorecard-enforce.js`'s
+`unbumpedState()` rather than adding a second mechanism.
+
+## Hook auto-tally
+
+`.cursor/hooks.json` (Cursor), `.claude/settings.json` (Claude Code), and `.codex/hooks.json`
+(Codex) all run `scripts/scorecard-hook-tally.js` on tool use (and on prompt submit where the
+agent supports it). It appends to the same running file — this part is fully automatic and
+does **not** depend on the agent remembering anything:
 
 | Tool | Count |
 |------|--------|
@@ -52,6 +81,7 @@ HTML groups **Tools**, **Markdowns** (`.mdc` first, then AGENTS/CLAUDE with app 
 **Hooks do not replace bumps** — they miss task boundaries (`chunkNote`), turns, corrections, and anything run outside Cursor tools (e.g. manual `ilspycmd` in an external terminal).
 
 **Reload Cursor** after changing hooks. Check **Output → Hooks** if counts stay at zero.
+**Codex:** run `/hooks` once after pull if hooks show as untrusted.
 
 ---
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agent Docs Review - Programs Root</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:50rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); }
+  .cardlist { display:flex; flex-direction:column; gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .title { font-weight:800; font-size:1.08rem; font-family:Consolas,monospace; }
+  .badge { flex-shrink:0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+    padding:.3rem .65rem; border-radius:999px; white-space:nowrap; }
+  .badge.green { background:rgba(52,211,153,.15); color:var(--green); }
+  .badge.amber { background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.red { background:rgba(248,113,113,.15); color:var(--red); }
+  .meta { color:var(--muted); font-size:.78rem; margin-top:.4rem; font-family:Consolas,monospace; }
+  .fn { color:var(--text); font-size:.92rem; margin-top:.6rem; }
+  .finding { color:var(--muted); font-size:.88rem; margin-top:.5rem; padding-top:.55rem;
+    border-top:1px solid rgba(148,163,184,.18); }
+  .finding b { color:var(--text); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Agent Docs Review</h1>
+    <p>Every markdown file in <code>agent docs/</code> — the on-demand tier the new <code>INDEX.md</code> trunk routes to — reviewed for whether it still matches reality. Machine checks (<code>check-docs.js</code>) confirm the plumbing is sound: zero dead links, every file reachable within two hops. What follows is the read a robot can't do — does each doc still describe what actually happens.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">12</b><span>markdown files reviewed</span></div>
+    <div class="stat"><b style="color:var(--green)">11</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">1</b><span>needs an update</span></div>
+    <div class="stat"><b style="color:var(--red)">0</b><span>needs removal</span></div>
+  </div>
+
+  <div class="note">
+    <strong>Verdict:</strong> the indexing system itself is healthy — <code>INDEX.md</code> is 2 days old, names every branch, and <code>check-docs.js</code> reports 0 dead links inside <code>agent docs/</code>. Three of the four issues found on 2026-08-07 were fixed same-day (see below); one — <code>AGENT_SETUP_FOR_PEER_REVIEW.md</code> — is deliberately deferred until the wider recipes/markdown pass is done.
+  </div>
+
+  <h2 class="amber">Needs an update (1)</h2>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top">
+        <div class="title">AGENT_SETUP_FOR_PEER_REVIEW.md</div>
+        <span class="badge amber">Needs update — deferred</span>
+      </div>
+      <div class="meta">Created 2026-08-01 · last modified 2026-08-02 · 318 lines</div>
+      <div class="fn">A letter written by the agent explaining the whole instruction-layer setup, meant to be exchanged with another user's AI.</div>
+      <div class="finding"><b>Finding:</b> predates the <code>INDEX.md</code> tree by three days. It describes "keyword routers in AGENTS.md" as the entire discovery mechanism and never mentions <code>agent docs/INDEX.md</code> or the two-tier trunk-and-branch system built 2026-08-05. It's still explicitly routed from <code>INDEX.md</code> under "explain my setup to another developer," so it's a live pointer to an out-of-date snapshot. <b>Chase's call (2026-08-07):</b> leave it until the rest of the markdowns and recipes are accounted for — refresh it once, not twice.</div>
+    </div>
+
+  </div>
+
+  <h2 class="green">Fine as-is (11)</h2>
+  <table>
+    <tr><th>File</th><th>Created</th><th>Modified</th><th>Lines</th><th>Why it's fine</th></tr>
+    <tr>
+      <td><code>INDEX.md</code></td><td>2026-08-05</td><td>2026-08-05</td><td>98</td>
+      <td>The trunk itself. Newest file in the set; pure pointers, no content to drift. <code>check-docs.js</code> confirms it names every branch.</td>
+    </tr>
+    <tr>
+      <td><code>END_OF_SESSION.md</code></td><td>2026-08-05</td><td>2026-08-07</td><td>70</td>
+      <td>Written the same day as the restructure. <b>Fixed 2026-08-07:</b> the SESSIONS.md routing rule was too broad ("cross-app" pulled in unrelated app work) — narrowed to instruction-layer-only, per Chase.</td>
+    </tr>
+    <tr>
+      <td><code>APP_CONFORMANCE_PASS.md</code></td><td>2026-08-01</td><td>2026-08-02</td><td>181</td>
+      <td>Self-dated "standard as of 2026-08-01" but every mechanism it checks for (<code>.mdc</code> retirement, 3-line CLAUDE.md, frozen-apps.md) still matches the current tree.</td>
+    </tr>
+    <tr>
+      <td><code>SESSION_SCORECARD.md</code></td><td>2026-08-01</td><td>2026-08-07</td><td>166</td>
+      <td><b>Fixed 2026-08-07:</b> was missing the Claude Code hook entirely; now documents both the auto-tally (fully automatic) and the new <code>scorecard-enforce.js</code> Stop/PreCompact enforcement hooks (§ Enforcement) built the same day in response to a session with real edits and zero bumps.</td>
+    </tr>
+    <tr>
+      <td><code>INSTRUCTION_LAYER_AUDIT.md</code></td><td>2026-08-01</td><td>2026-08-07</td><td>262</td>
+      <td><b>Fixed 2026-08-07:</b> open question #5 (scorecard mechanism) marked resolved with a link to the new enforcement hooks and its one known gap. Questions #1–#4 still open, unchanged.</td>
+    </tr>
+    <tr>
+      <td><code>rules/html-delivery.md</code></td><td>2026-08-01</td><td>2026-08-05</td><td>73</td>
+      <td>Recently corrected — the stale <code>Programs/docs/</code> reference was fixed this same restructure. Verified: <code>instructional-layer-htmls/</code>, <code>scratch/</code>, and <code>index.html</code> all exist as described.</td>
+    </tr>
+    <tr>
+      <td><code>rules/multi-repo-git-push.md</code></td><td>2026-08-01</td><td>2026-08-07</td><td>51</td>
+      <td><b>Fixed 2026-08-07:</b> the leftover <code>45-frozen-apps.mdc</code> reference now points at <code>agent docs/rules/frozen-apps.md</code>.</td>
+    </tr>
+    <tr>
+      <td><code>rules/frozen-apps.md</code></td><td>2026-08-01</td><td>2026-08-02</td><td>33</td>
+      <td>One frozen app, matches AGENTS.md and current reality — Calendar 2.0 still frozen, nothing new added.</td>
+    </tr>
+    <tr>
+      <td><code>rules/never-display-without-permission.md</code></td><td>2026-08-01</td><td>2026-08-02</td><td>66</td>
+      <td>Matches root AGENTS.md; the incident that motivated it is still the live justification.</td>
+    </tr>
+    <tr>
+      <td><code>rules/powershell-shell-commands.md</code></td><td>2026-08-01</td><td>2026-08-02</td><td>36</td>
+      <td>Matches the confirmed current shell (Windows PowerShell 5.1) — nothing to update.</td>
+    </tr>
+    <tr>
+      <td><code>sessions/SESSIONS.md</code></td><td>2026-08-01</td><td>2026-08-07</td><td>113</td>
+      <td>Append-only log. <b>Fixed 2026-08-07:</b> two exam2-review-map entries that belonged to School documents work were relocated to <code>School Scrips/School documents/docs/sessions/SESSIONS.md</code> — this log is for instruction-layer work only, not a cross-app diary.</td>
+    </tr>
+  </table>
+
+  <h2>What this review didn't cover</h2>
+  <div class="note" style="border-left-color:var(--purple)">
+    This page is scoped to the 12 files living in <code>agent docs/</code> (root docs + <code>rules/</code> + <code>sessions/</code>) — the on-demand tier <code>INDEX.md</code> routes into. It does not re-run the full <code>INSTRUCTION_LAYER_AUDIT.md</code> across the whole workspace (recipes, cursor-patterns, per-app <code>AGENTS.md</code> files) — that's a separate, larger pass with its own doc.
+  </div>
+
+  <footer>
+    Reviewed 2026-08-07 against <code>C:\Users\chase\Documents\Programs\agent docs\</code>.<br />
+    Regenerate this page after the next restructure or audit pass — it's a snapshot, not a live check.
+  </footer>
+</div>
+</body>
+</html>

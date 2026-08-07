@@ -22,9 +22,15 @@
    | Work was… | Log |
    |---|---|
    | Inside one app | `<app>/docs/sessions/SESSIONS.md` |
-   | **Instruction layer, recipes, scripts, or cross-app** | **`agent docs/sessions/SESSIONS.md`** |
+   | **The instruction layer itself** — `agent docs/`, root `AGENTS.md`/`CLAUDE.md`, `recipes/INDEX.md`, `cursor-patterns/INDEX.md`, the capture skill, `check-docs.js` and friends | **`agent docs/sessions/SESSIONS.md`** |
+   | Cross-app work with no instructional-layer content (touched several apps' code, not their docs) | The most-touched app's `SESSIONS.md`; name the others in the entry |
 
-   If it touched both, log it where the *substance* was and name the other in the entry.
+   **This log is for the documentation system, not a catch-all cross-app diary.** If it touched
+   both instruction-layer docs and app code, log it where the *instructional* substance was and
+   name the app work in the entry. School documents / exam-map / Pearson-harvest work belongs in
+   `School Scrips/School documents/docs/sessions/SESSIONS.md`, even when the output HTML happened
+   to be served from `agent docs/` — the folder a page is *served* from is not the same as the
+   work being *about* the instructional layer.
 
    ```
    ## YYYY-MM-DD — [Brief title]

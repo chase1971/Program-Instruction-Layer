@@ -746,6 +746,7 @@ function bumpRunning(delta) {
     || (delta.docsRulesOpened && delta.docsRulesOpened.length)
   ) {
     r.agentBumped = true;
+    r.stopBlockCount = 0;
   }
   refreshCountsTrust(r);
   writeRunning(r);

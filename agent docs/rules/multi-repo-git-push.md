@@ -18,7 +18,7 @@ Chase uses **sibling repos** under `C:\Users\chase\Documents\Programs\` (not a m
 
 Trigger: first substantive request, or "what's the state", "where did we leave off", "I'm on my laptop/PC", "let's start", "pull". **Before any code changes.**
 
-1. Scan git repos under Programs (`School Scrips/*`, Programs root). `git status --short` + `git fetch` each. **Skip frozen apps** (`45-frozen-apps.mdc` — Calendar 2.0).
+1. Scan git repos under Programs (`School Scrips/*`, Programs root). `git status --short` + `git fetch` each. **Skip frozen apps** (`agent docs/rules/frozen-apps.md` — Calendar 2.0).
 2. Clean + behind → `git pull --ff-only`. Report updates.
 3. Dirty + remote ahead → **STOP** — surface local vs incoming (two-machine collision).
 4. Merge conflict → **STOP** — never auto-resolve. Per-machine styling in committed source → ask Chase (likely belongs in AppData profile, not source).

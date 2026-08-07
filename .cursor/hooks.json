@@ -5,6 +5,22 @@
       {
         "command": "node scripts/scorecard-hook-tally.js"
       }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "node scripts/scorecard-hook-tally.js"
+      }
+    ],
+    "preCompact": [
+      {
+        "command": "node scripts/scorecard-enforce.js --precompact"
+      }
+    ],
+    "stop": [
+      {
+        "command": "node scripts/scorecard-enforce.js --stop",
+        "loop_limit": 3
+      }
     ]
   }
 }

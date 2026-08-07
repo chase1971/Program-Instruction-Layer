@@ -1,11 +1,13 @@
 {
+  "description": "Session scorecard auto-tally and bump enforcement (shared with Cursor and Claude Code).",
   "hooks": {
     "PostToolUse": [
       {
+        "matcher": ".*",
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/scorecard-hook-tally.js 2>/dev/null || true",
+            "command": "node scripts/scorecard-hook-tally.js",
             "timeout": 10
           }
         ]
@@ -16,18 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/scorecard-hook-tally.js 2>/dev/null || true",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node scripts/scorecard-enforce.js --stop 2>/dev/null || true",
+            "command": "node scripts/scorecard-hook-tally.js",
             "timeout": 10
           }
         ]
@@ -38,8 +29,20 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/scorecard-enforce.js --precompact 2>/dev/null || true",
+            "command": "node scripts/scorecard-enforce.js --precompact",
             "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/scorecard-enforce.js --stop",
+            "timeout": 10,
+            "statusMessage": "Checking session scorecard"
           }
         ]
       }

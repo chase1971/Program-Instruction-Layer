@@ -28,6 +28,11 @@
 !/.claude/skills/
 !/.claude/settings.json
 
+# Codex project hooks — scorecard tally + bump enforcement (mirrors .cursor/hooks.json).
+!/.codex/
+/.codex/*
+!/.codex/hooks.json
+
 # Instruction-layer tooling and docs at the Programs root.
 # audit doc, the check-docs robot, and the session scorecard log live on one
 # machine only — they never reach the laptop and are not backed up.
