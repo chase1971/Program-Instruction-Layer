@@ -211,7 +211,7 @@ If pure Python or Electron, adapt accordingly — ask before scaffolding.
 - Click-through where appropriate
 - IPC signals between Python and Electron (no file-based polling)
 - Sister app to reference: `electron-toolbar` (see `electron-toolbar/ARCHITECTURE_PATTERNS.md` and `electron-toolbar/OVERLAY_MODULE_PATTERN.md`)
-- **Electron shell:** per-monitor **Display** scaling is still required for any renderer window Chase resizes on multiple monitors — see **Step 4b** and `cursor-patterns/electron-per-monitor-display-scaling.md` (port from Calendar 2.0 if the overlay uses React/HTML in Electron).
+- **Electron shell:** a Display scale button is still required for any renderer window Chase resizes on multiple monitors — see **Step 4b** (port from Calendar 2.0 if the overlay uses React/HTML in Electron).
 
 **Folder structure:**
 ```
