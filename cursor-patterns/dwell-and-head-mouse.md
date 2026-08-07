@@ -27,14 +27,13 @@ accidentally.*
 
 ---
 
-## The four implementations
+## The three implementations
 
 | Where | Timing source | Arms at | Releases after | Move threshold |
 |---|---|---|---|---|
 | **electron-toolbar** (OS-level dwell click) | `modules/dwell/backend/dwell_constants.py` + `dwell_persisted_settings.json` | **250 ms** *(persisted; the constants-file default of 300 is not what runs)* | 300 ms | 15 px |
 | **Math App Studio** (in-app latch-to-drag) | `renderer/src/utils/dwellStationary.ts` | **450 ms** | 280 ms idle | 12 px |
 | **Macro App** (tooltips only) | `renderer/src/hooks/gradebook/useGradebookDelayedHover.ts` | **1000 ms** (headers 400) | 150 ms grace | — |
-| **`accessibility-patterns.md`** (React drawer prose) | *documentation only* | 500 ms | 500 ms | — |
 
 ### Why they legitimately differ
 
@@ -48,9 +47,11 @@ accidentally.*
 
 ### What is NOT legitimate
 
-The `accessibility-patterns.md` 500 ms figures match nothing that ships. They were
-written as illustrative prose, not measured. **Do not copy them into new code** —
-use the table above.
+Any timing value not measured from one of the three implementations above —
+including invented "illustrative" figures in prose. **Do not write example code with
+a made-up millisecond value** — use the table above, or ask which of the three
+existing mechanisms applies. (`accessibility-patterns.md` used to be exactly this
+mistake — 500 ms figures that shipped nowhere — before it was gutted 2026-08-07.)
 
 ---
 
