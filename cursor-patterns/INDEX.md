@@ -43,7 +43,7 @@ any threshold. Never copy a number out of it into another file.
 | You might say | Read this |
 |---|---|
 | "is this file too long" · how big can a file get · 800 lines · split it | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § File Size Enforcement |
-| "App.tsx is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § App.tsx as Orchestrator |
+| "App.tsx is doing too much" · "main.py is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Entry File as Orchestrator |
 | "make it look like the other modals" · modal width · modal sizing | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Standard Modal Sizing |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
