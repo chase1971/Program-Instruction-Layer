@@ -313,7 +313,7 @@ For `electron-overlay`:
 - IPC: use shared/signals.py (socket-based). NEVER file-polling.
 - Python state classes always use threading.Lock(). No raw globals.
 - Tkinter operations only on main thread. Use master.after(0, ...) from threads.
-- Electron renderer windows: implement Display scaling (Step 4b / electron-per-monitor-display-scaling.md); per-monitor auto-memory is optional.
+- Electron renderer windows: implement the Display scale button (Step 4b).
 ```
 
 ---
