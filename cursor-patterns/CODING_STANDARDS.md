@@ -1230,19 +1230,18 @@ Deep-dives on specific topics. Read these only when relevant to current work.
 
 | File | When to Read |
 |------|--------------|
-| `file-size-enforcement.md` | Full reference for the size-enforcement rule |
+| `INIT_NEW_APP.md` | Scaffolding a new app — variants, folder structure, file templates |
 | `react-patterns.md` | Building hooks, services, components |
 | `modal-pattern.md` | Building a modal/dialog/wizard |
 | `file-headers.md` | Header templates and examples |
 | `refactoring-checklist.md` | When the user asks to refactor or clean up |
 | `anti-patterns.md` | Full anti-pattern catalog with examples |
 | `accessibility-patterns.md` | Hover delays, dwell-mouse support, screen readers |
+| `dwell-and-head-mouse.md` | **Source of truth** for any dwell/hover/drag timing value |
 | `electron-per-monitor-display-scaling.md` | **Required** Electron shell: Display button, per-monitor scale |
 | `School Scrips/App Dashboard/docs/LAUNCHER.md` | Registry, ports, hidden `.bat` chain, Toolbar hotkey |
-| `logging-standards.md` | Detailed logging conventions |
-| `APP_BOOTSTRAP_TEMPLATE.md` | Creating a brand new app |
-| `add-a-line-change-a-sign.md` | Educational math animation pattern |
-| `animation-frame-debug-tool.md` | React dev tool for pixel-perfect overlays |
+
+File size enforcement is covered in full above in this same file — no separate deep-dive needed.
 
 ---
 
