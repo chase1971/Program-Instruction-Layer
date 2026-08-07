@@ -29,8 +29,9 @@ deep-dives on specific patterns — this file references them when relevant.
    over 700 lines require extraction before adding anything new. See
    [File Size Enforcement](#file-size-enforcement-critical).
 
-2. **App.tsx is an orchestrator, never an implementer.** Target under 100 lines.
-   See [App.tsx Architecture](#apptsx-as-orchestrator).
+2. **The entry file orchestrates, never implements** — `App.tsx` (React), `main.py`
+   (Python), `index.js` (Node), whatever it's called for the stack. Target under 100 lines.
+   See [Entry File as Orchestrator](#entry-file-as-orchestrator).
 
 3. **Modals use `max-w-md`. Never `max-w-3xl` or larger.** See
    [Modal Pattern](#modal-pattern).
