@@ -236,8 +236,10 @@ Snapshot freeze is fine for **non-scaling** shells or modals where scale cannot 
 
 ### Phase 5 — Verify
 - [ ] 100% and 70% — no clip, no page scroll
-- [ ] Move window to second monitor — auto switch
 - [ ] Persist after restart
+- [ ] *(Only if Phase 3 built)* Move window to second monitor — confirm it actually restores
+      that monitor's own remembered scale, not just whatever was last set anywhere. This is
+      the step that was skipped when Macro App's version shipped without being verified.
 - [ ] With embedded browser: open Display, drag slider — browser area should **not** look like a frozen screenshot
 
 ---
