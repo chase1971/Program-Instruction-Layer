@@ -7,6 +7,6 @@ read the same text. App-specific guidance lives in each app's `AGENTS.md` — a 
 table routing what Chase says to the one doc to read — imported by that app's
 three-line `CLAUDE.md`.
 
-**How to build something we've built before:** `recipes/INDEX.md`.
+**How to build something we've built before:** `agent docs/recipes/INDEX.md`.
 
 `.cursor/rules/*.mdc` were retired 2026-08-02; do not create new ones.

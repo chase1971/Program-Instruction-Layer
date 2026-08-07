@@ -86,7 +86,7 @@ directory, or `;` in one invocation. No `curl` — use `Invoke-WebRequest -UseBa
 **React apps also:** API calls go through a service layer — never an inline `fetch()` in a
 component; over 5 `useState` or 300 lines → extract a hook.
 
-Full standards, and where each of these is spelled out: **`cursor-patterns/INDEX.md`** —
+Full standards, and where each of these is spelled out: **`agent docs/recipes/INDEX.md`** —
 a reference, not something to load every turn.
 
 **These five always apply, even where an app's own `AGENTS.md` says otherwise.** App-specific
@@ -163,9 +163,9 @@ summarize in 2–3 lines. That is not this protocol.
 skill (`.claude/skills/capture/SKILL.md`); don't just answer conversationally.
 
 Capture means: grep for existing coverage, place it on the capture ladder, write or update
-the owning doc, and make it reachable from the right index (`recipes/INDEX.md`,
-`<app>/AGENTS.md`, `cursor-patterns/INDEX.md`, or root `AGENTS.md`). Ask one question only
-if placement is genuinely ambiguous.
+the owning doc, and make it reachable from the right index (`agent docs/recipes/INDEX.md`,
+`<app>/AGENTS.md`, or root `AGENTS.md`). Ask one question only if placement is genuinely
+ambiguous.
 
 ---
 
@@ -178,7 +178,7 @@ or rule that appears twice will eventually disagree with itself.
 |---|---|---|
 | **1** | Structurally impossible — one owner, an API that can't be misused | Always |
 | **2** | Lint rule or test | Every commit |
-| **3** | Recipe + `recipes/INDEX.md`, or keyword row in `<app>/AGENTS.md` | When Chase describes the task |
+| **3** | Recipe + `agent docs/recipes/INDEX.md`, or keyword row in `<app>/AGENTS.md` | When Chase describes the task |
 | **4** | Always-on rule in this file | Every session — keep short |
 | **5** | On-demand doc | Only when something points at it |
 

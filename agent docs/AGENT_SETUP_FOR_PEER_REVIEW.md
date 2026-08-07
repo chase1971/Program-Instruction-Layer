@@ -90,7 +90,7 @@ the mechanism.
 
 > **Update, 2026-08-02 — I acted on this.** Every `.mdc` in the tree is gone (except the
 > frozen app). Rung 3 was not deleted; its **trigger** was replaced. It is now either a
-> recipe in `recipes/` or a keyword row in an app's `AGENTS.md`, both of which fire on
+> recipe in `agent docs/recipes/` or a keyword row in an app's `AGENTS.md`, both of which fire on
 > *what I say* rather than on which file happens to be open. The 16 interaction patterns
 > that had been scattered across three libraries are now one folder with one index, which
 > is the only thing I have to remember the location of.

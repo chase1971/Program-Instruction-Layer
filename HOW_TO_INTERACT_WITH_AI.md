@@ -36,8 +36,7 @@ They were costing maintenance and firing for nobody.
 
 | File | Role | May contain |
 |---|---|---|
-| `recipes/<name>.md` | **How to build something.** Triggered by what I say | Steps, exemplar paths. **No numbers** |
-| `cursor-patterns/<topic>.md` | **Standards + values.** Single source of truth | Everything — values, tables, reasons |
+| `agent docs/recipes/<name>.md` | **How to build something, or the shape code must have.** Triggered by what I say | Steps, exemplar paths. **No numbers** |
 | `AGENTS.md` (root or app) | The entry point every tool reads | Keyword rows + pointers. **No numbers** |
 | `agent docs/rules/*.md` | Detail behind one always-on section | The incident, the full procedure |
 
@@ -56,7 +55,7 @@ Higher = fires more reliably.
 |---|---|---|
 | **1** | Structurally impossible — code shape, single owner, API that can't be misused | Always |
 | **2** | Lint rule or test | Every commit |
-| **3** | **A recipe in `recipes/`**, or a **keyword row in an app's `AGENTS.md`** | When I describe the task in my own words |
+| **3** | **A recipe in `agent docs/recipes/`**, or a **keyword row in an app's `AGENTS.md`** | When I describe the task in my own words |
 | **4** | Always-on rule (root `AGENTS.md`) | Every session — **and costs tokens every session** |
 | **5** | On-demand doc nothing routes to | Only when something points at it |
 
@@ -160,8 +159,9 @@ Two rules subsume most of the rest:
 2. **Assume every hovered element gets clicked** — design so that click is harmless
    or is the intended action.
 
-**Source of truth: `cursor-patterns/dwell-and-head-mouse.md`.** Every timing value
-lives there and nowhere else. Never copy a number out of it into another doc.
+**Source of truth for timing: `electron-toolbar/modules/dwell/backend/dwell_constants.py`
+and the toolbar's own settings — never a markdown file.** Chase controls dwell speed through
+the toolbar directly; no doc should restate or invent a number.
 
 ---
 
@@ -193,8 +193,7 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | `AGENTS.md` | Always-on entry point. Rules, ladder, pointers |
 | `CLAUDE.md` | Thin — imports `AGENTS.md` |
 | `APP_LOCATIONS.md` | Which app lives where. Read before searching folders |
-| **`recipes/`** | **How we've built it before.** One folder, one index. I point at it by name |
-| `cursor-patterns/` | Standards + values — `CODING_STANDARDS.md`, `dwell-and-head-mouse.md`, `INIT_NEW_APP.md` |
+| **`agent docs/recipes/`** | **How we've built it before, and the shape code must have.** One folder, one index — `CODING_STANDARDS.md`, `INIT_NEW_APP.md`, and every interaction recipe live here together. I point at it by name |
 | `agent docs/rules/*.md` | Detail behind an always-on section (screen permission, git, PowerShell, frozen, HTML) |
 | `<app>/AGENTS.md` | Per-app index — what it is, keyword table, on-demand docs |
 | `<app>/CLAUDE.md` | Three lines — imports that app's `AGENTS.md` |
@@ -218,7 +217,7 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | Modernize one app's agent docs | "run the conformance pass on `<app>`" |
 | Session wrap-up | "end of session protocol" — logs, commits, pushes all dirty repos |
 | State on resuming | "where did we leave off" |
-| A new app | "initialize a new app" — follows `cursor-patterns/INIT_NEW_APP.md` |
+| A new app | "initialize a new app" — follows `agent docs/recipes/INIT_NEW_APP.md` |
 
 **Ask before you assume:** when scope or approach is genuinely ambiguous, ask **one**
 focused question and wait. Not five. Not none.

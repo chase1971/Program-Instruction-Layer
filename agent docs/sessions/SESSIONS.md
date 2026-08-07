@@ -2,6 +2,53 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-07 — Full agent docs/ + cursor-patterns/ review; cursor-patterns/ eliminated
+
+**Files changed:** Reviewed all 12 `agent docs/` files and all 17 `cursor-patterns/` files
+file-by-file (two new HTML reviews under `agent docs/instructional-layer-htmls/`, plus 7
+per-file detail pages under `.../cursor-patterns/`). Built the original scorecard
+Stop/PreCompact enforcement in `scripts/scorecard-enforce.js` +
+`.claude/settings.json` (later extended to Cursor/Codex by the entry below). Then, at
+Chase's direction, eliminated `cursor-patterns/` as a folder entirely: `accessibility-patterns.md`
+(606→21 lines) and `dwell-and-head-mouse.md` (175→~25 lines) gutted to keep only what he
+confirmed mattered (no-backdrop-dismiss modal rule, real overlay code pointers);
+`electron-per-monitor-display-scaling.md` deleted outright, no merge, after Chase reported
+its per-monitor memory never reliably worked even in Macro App; 6 dead archive stubs deleted;
+`CODING_STANDARDS.md`, `INIT_NEW_APP.md`, `file-headers.md`, `react-patterns.md`,
+`refactoring-checklist.md`, `anti-patterns.md` moved into `agent docs/recipes/` (which itself
+moved from `Programs/recipes/`). Rewrote path references across ~60 files in Programs root
+plus ~16 sibling app repos (each committed separately, see their own `SESSIONS.md`/commit log).
+Fixed a real bug in `scripts/check-docs.js`: its own hardcoded `SECOND_TIER_INDEXES` and the
+`RECIPE VALUES` check still pointed at the pre-move paths, silently checking nothing.
+
+**What worked:** The review process itself caught real problems the fast way — reading each
+file against what actually exists on disk rather than trusting the prose. Concrete finds:
+`dwell-and-head-mouse.md` claimed an "always-on AGENTS.md short form" that was deleted
+2026-08-05 (false — nothing routed to it anymore); `CODING_STANDARDS.md`'s own launcher
+section, initially flagged as a duplicate of `App Dashboard/docs/LAUNCHER.md`, turned out to be
+the canonical source that `LAUNCHER.md` itself defers to (caught before a wrong edit).
+Chase's core objection, once he walked through `dwell-and-head-mouse.md` and
+`accessibility-patterns.md` section by section: most of it was AI-generated documentation from
+years ago describing needs he doesn't have (keyboard nav, screen readers, invented timing
+values) rather than the one thing he actually uses (electron-toolbar's real overlay/dwell
+mechanism). Used Plan mode for the folder elimination given the ~100-file blast radius across
+15+ separate git repos — researched via two parallel Explore agents first (recipe inventory +
+reference count), then a written plan before touching anything.
+
+**Current state:** Green — `check-docs.js`: 0 dead links, 98/99 unrouted (at, not over, the
+pre-existing ratchet), 0 recipe-values violations. All 17 doc/detail HTML pages re-verified
+serving after a docs-server restart (had gone down independent of this work).
+
+**File size flag:** None over cap. `agent docs/recipes/` is now ~34 files flat — see Next session.
+
+**Next session:** Chase wants the merged `agent docs/recipes/` folder sorted into topic
+subfolders (dwell/overlay, canvas UI, code standards, etc.) — deliberately deferred, not
+started. Also worth checking: `agent docs/instructional-layer-htmls/cursor-patterns-review.html`
+and its 7 per-file detail pages are now historical record only (folder they describe is gone);
+fine to leave as-is, but don't treat them as a current map.
+
+---
+
 ## 2026-08-07 — Scorecard Stop hooks for Cursor + Codex; cross-agent hook parity
 
 **Files changed:** `.cursor/hooks.json` (added `stop`, `preCompact`, `beforeSubmitPrompt` — Cursor had only `postToolUse` tally before, so agents could finish with edits and zero bumps); `.codex/hooks.json` (new — same Stop/PreCompact/tally wiring for Codex project hooks); `.gitignore` (track `.codex/hooks.json`); `scripts/scorecard-enforce.js` (also emits `followup_message` for Cursor native stop format); `scripts/scorecard-hook-tally.js` (`beforeSubmitPrompt` turn counting); `agent docs/SESSION_SCORECARD.md` (§ Enforcement table for Cursor / Claude Code / Codex). Also in this repo commit batch: prior-session instructional-layer edits still dirty (`INSTRUCTION_LAYER_AUDIT.md`, `END_OF_SESSION.md`, review HTMLs, `append-session-scorecard.js`, `.claude/settings.json`).
@@ -21,8 +68,8 @@ Instruction-layer and cross-app work at `Programs/` root (not inside a single Sc
 **Files changed:** `agent docs/INDEX.md` (new, ~25 rows, pure delegation), `AGENTS.md` (307→218,
 § Where rules live deleted, § Dwell & head-mouse deleted at Chase's call, § Windows launchers
 widened to cover both launcher surfaces, § End-of-Session moved to `agent docs/END_OF_SESSION.md`,
-precedence sentence restored after Codex dropped it), `recipes/README.md`→`recipes/INDEX.md` and
-`cursor-patterns/README.md`→`cursor-patterns/INDEX.md` (renamed via `git mv`, ~35 inbound refs
+precedence sentence restored after Codex dropped it), `agent docs/recipes/README.md`→`agent docs/recipes/INDEX.md` and
+`cursor-patterns/README.md`→`agent docs/recipes/INDEX.md` (renamed via `git mv`, ~35 inbound refs
 updated), `scripts/check-docs.js` (340→418 lines — index coverage + broken-chain checks, ratchet
 armed at 99/99), `scripts/scorecard-hook-tally.js` (Claude Code tool names + automatic turn
 counting added), `.claude/settings.json` (new — `PostToolUse`/`UserPromptSubmit` hooks, tracked
@@ -36,7 +83,7 @@ state files untracked in two passes (`scroll_config.txt`/`scroll_position.json`/
 `dwell_persisted_settings.json`, then 4 more) after they blocked a push.
 
 **What worked:** Built the index tree's trunk — `agent docs/INDEX.md` delegates to
-`APP_LOCATIONS.md`, `recipes/INDEX.md`, `cursor-patterns/INDEX.md`, and app `AGENTS.md` files
+`APP_LOCATIONS.md`, `agent docs/recipes/INDEX.md`, `agent docs/recipes/INDEX.md`, and app `AGENTS.md` files
 rather than listing their contents, so adding a recipe or standard never touches the master index.
 Walked AGENTS.md section by section with Chase, cutting or relocating anything that only fires on
 a trigger phrase; found and fixed a real bug in the process — the "never a visible console"
@@ -61,10 +108,10 @@ sections) at `C:\Users\chase\.claude\plans\alright-so-what-i-deep-iverson.md`.
 
 ---
 
-## 2026-08-02 — Retired `.mdc`, built `recipes/`, AGENTS.md rollout to 19 apps
+## 2026-08-02 — Retired `.mdc`, built `agent docs/recipes/`, AGENTS.md rollout to 19 apps
 
-**Files changed:** `recipes/` (new — 25 recipes + README index), `AGENTS.md`, `CLAUDE.md`,
-`HOW_TO_INTERACT_WITH_AI.md`, `APP_LOCATIONS.md`, `.gitignore` (allowlist `/recipes/`),
+**Files changed:** `agent docs/recipes/` (new — 25 recipes + README index), `AGENTS.md`, `CLAUDE.md`,
+`HOW_TO_INTERACT_WITH_AI.md`, `APP_LOCATIONS.md`, `.gitignore` (allowlist `/agent docs/recipes/`),
 `.claude/skills/capture/SKILL.md` (steps 1–5), `scripts/check-docs.js` (+`RECIPE VALUES` check),
 `agent docs/rules/` (new — 5 docs), `agent docs/INSTRUCTION_LAYER_AUDIT.md` (+§ 2f-2),
 `agent docs/APP_CONFORMANCE_PASS.md` (§ A), `agent docs/AGENT_SETUP_FOR_PEER_REVIEW.md`,
@@ -75,7 +122,7 @@ sections) at `C:\Users\chase\.claude\plans\alright-so-what-i-deep-iverson.md`.
 
 **What worked:** Every `.cursor/rules/*.mdc` in the tree is gone except frozen Calendar 2.0.
 Three scattered pattern libraries (`electron-toolbar/electron-app/patterns/`, Math App Studio's
-9 rules, canvas-kit + Video Player) consolidated into **one** `Programs/recipes/` folder with a
+9 rules, canvas-kit + Video Player) consolidated into **one** `Programs/agent docs/recipes/` folder with a
 single index whose rows are keyed on **"You might say"** — Chase's words, not technical names.
 Root went from 10 rules → 0 and 7 loose markdowns → 4. Capture ladder rung 3 rewritten: a recipe
 or a keyword row, not a glob rule. Every app now has `AGENTS.md` (content) + a 3-line `CLAUDE.md`
@@ -104,7 +151,7 @@ Captured in the capture skill so it isn't re-proposed.
 frozen Calendar 2.0).
 
 **File size flag:** None. Largest recipe `toolbar-system.md` ~650 lines (index budget says aim
-under 300 — flagged in `recipes/README.md`, not enforced).
+under 300 — flagged in `agent docs/recipes/README.md`, not enforced).
 
 **Next session:** Chase's electron-toolbar / dwell pass — rewrite the key-press recipe from
 `coordinator/arrow_handlers.py` + `arrow-manager.js`, and add a **toolbar-module-lifecycle**

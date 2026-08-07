@@ -71,19 +71,19 @@
   <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
 
   <header>
-    <h1>Cursor Patterns Review</h1>
-    <p>All 17 files in <code>cursor-patterns/</code> — the code-standards library, separate from <code>recipes/</code> (how to build one interaction) and <code>agent docs/</code> (how the AI operates). Every cross-reference below was checked against what's actually on disk, not assumed from the prose.</p>
+    <h1>Cursor Patterns Review <span style="color:var(--red);font-size:.5em;vertical-align:middle;">RETIRED</span></h1>
+    <p><code>cursor-patterns/</code> no longer exists. Everything in it that survived this review — <code>CODING_STANDARDS.md</code>, <code>INIT_NEW_APP.md</code>, <code>file-headers.md</code>, <code>react-patterns.md</code>, <code>refactoring-checklist.md</code>, <code>anti-patterns.md</code> — moved into <code>agent docs/recipes/</code> on 2026-08-07, merged flat alongside the interaction recipes. There was no functional distinction left once <code>.cursor/rules/*.mdc</code> retired — both were just markdown discovered the same way, and Chase said so directly: "why are these in a cursor patterns [folder]? What's special about them that's not true for other things?" Nothing was. This page stays as a record of the review that led to the merge; the content itself now lives at <code>Programs/agent docs/recipes/</code>.</p>
   </header>
 
   <div class="stats">
-    <div class="stat"><b style="color:var(--blue)">17</b><span>markdown files reviewed</span></div>
-    <div class="stat"><b style="color:var(--green)">16</b><span>fine as-is</span></div>
-    <div class="stat"><b style="color:var(--amber)">1</b><span>open item</span></div>
-    <div class="stat"><b style="color:var(--red)">0</b><span>need removal</span></div>
+    <div class="stat"><b style="color:var(--blue)">17</b><span>files reviewed → 0 remain here</span></div>
+    <div class="stat"><b style="color:var(--green)">6</b><span>merged into recipes/</span></div>
+    <div class="stat"><b style="color:var(--red)">11</b><span>deleted (stubs + dead content)</span></div>
+    <div class="stat"><b style="color:var(--amber)">2026-08-07</b><span>retired</span></div>
   </div>
 
   <div class="note">
-    <strong>Is it worth keeping?</strong> Yes. This isn't dead weight — <code>INDEX.md</code>'s keyword table routes ~14 different things Chase might say directly into this folder, and the two most-recently-touched files (<code>dwell-and-head-mouse.md</code>, <code>INIT_NEW_APP.md</code>) are genuinely well-maintained. The 7 short "archived" stub files aren't clutter either — every one of them points at a real file in <code>Archived markdowns/cursor-patterns/</code>, verified below. Updated 2026-08-07: <code>CODING_STANDARDS.md</code>'s stale references and React-only orchestrator wording are fixed; <code>accessibility-patterns.md</code> was gutted from 606 to 21 lines at Chase's direction, keeping only the modal rule and the real dwell recipes; the Electron Display-scaling spec was downgraded from required to optional for its per-monitor half. Only the modal-sizing picklist is still an open question.
+    <strong>What happened to the "electron-per-monitor-display-scaling.md" and "dwell-and-head-mouse.md" entries below?</strong> Both deleted outright per Chase's explicit call, after the sections below already found real problems with each (the Display-scaling per-monitor memory never reliably worked; the dwell file was mostly AI-generated detail nobody used). The findings below are kept as the historical record of <em>why</em> — read them if you want the reasoning, not as a current map of the folder.
   </div>
 
   <h2 class="amber">Recently changed (2 of 2 addressed)</h2>

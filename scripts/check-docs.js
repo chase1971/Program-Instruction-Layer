@@ -1,7 +1,7 @@
 /**
  * FILE: scripts/check-docs.js
  * PURPOSE: Health check for the instruction layer (AGENTS.md / CLAUDE.md /
- *          .cursor/rules/*.mdc / cursor-patterns/ / per-app docs).
+ *          .cursor/rules/*.mdc / agent docs/recipes/ / per-app docs).
  *
  * Catches the four ways this system decayed historically:
  *   1. DEAD LINK      — a relative link that resolves to nothing
@@ -65,8 +65,7 @@ const INDEX_DOC = 'agent docs/INDEX.md';
 // so they are discovered from disk rather than listed.
 const SECOND_TIER_INDEXES = [
   'APP_LOCATIONS.md',
-  'recipes/INDEX.md',
-  'cursor-patterns/INDEX.md',
+  'agent docs/recipes/INDEX.md',
   'HOW_TO_INTERACT_WITH_AI.md',
   'agent docs/INSTRUCTION_LAYER_AUDIT.md',
 ];
@@ -207,7 +206,7 @@ const unindexedRules = [...content.keys()]
 // this check exists because one dwell timing had been copied into six files.
 //
 // Only `.mdc`, AGENTS.md and CLAUDE.md are scanned. A topic's source-of-truth
-// doc under cursor-patterns/ IS allowed to hold values — that is its whole job.
+// doc under agent docs/recipes/ IS allowed to hold values — that is its whole job.
 // Visual px specs are deliberately NOT flagged: for a design contract the .mdc
 // is the single home, so a border width there is not a duplicate.
 const VALUE_FILE_RE = /(\.mdc$)|((^|\/)(AGENTS|CLAUDE)\.md$)/;
@@ -263,7 +262,7 @@ for (const rel of CONSTANT_OWNERS) {
 
 const recipeValues = [];
 for (const [r, rawText] of content) {
-  if (!/^recipes[\\/]/.test(r)) continue;
+  if (!/^agent docs[\\/]recipes[\\/]/.test(r)) continue;
   rawText.split('\n').forEach((ln, i) => {
     if (VALUE_OK_RE.test(ln)) return;
     const m = ln.match(/^\s*(?:const\s+|let\s+)?([A-Z][A-Z0-9_]{3,})\s*=\s*(\d+\.?\d*)/);

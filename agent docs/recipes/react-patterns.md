@@ -599,7 +599,7 @@ describe('dataService', () => {
 <div className="w-full">  {/* No constraint! */}
 ```
 
-**See:** [Modal Pattern](./modal-pattern.md) for complete modal guidelines.
+**See:** [modal-shell.md](./modal-shell.md) for complete modal guidelines.
 
 ---
 
@@ -608,7 +608,7 @@ describe('dataService', () => {
 - [File Headers](./file-headers.md) - Standardized documentation
 - [Coding Standards](./CODING_STANDARDS.md) - General code quality
 - [Refactoring Checklist](./refactoring-checklist.md) - When to refactor
-- [Modal Pattern](./modal-pattern.md) - Modal/dialog sizing and structure
+- [modal-shell.md](./modal-shell.md) - Modal/dialog sizing and structure
 
 ---
 

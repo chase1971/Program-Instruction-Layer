@@ -12,7 +12,7 @@
 
 ## How To Use This File
 
-This is the single source of truth. The other files in `cursor-patterns/` are
+This is the single source of truth. The other files in this folder are
 deep-dives on specific patterns — this file references them when relevant.
 
 **Reading order for a new session:**
@@ -815,7 +815,7 @@ without a max-width.
 
 **Never dismiss on overlay click.** Do not put `onClick={onClose}` on the
 backdrop. The user must use an explicit button (OK, Cancel, Close). Required
-for dwell-mouse accessibility. See `cursor-patterns/modal-pattern.md`.
+for dwell-mouse accessibility. See `modal-shell.md`.
 
 ### Correct Modal
 

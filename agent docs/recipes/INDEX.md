@@ -1,7 +1,8 @@
 # recipes/ — how we've built it before
 
-> **The single place to look before building an interaction.** Drag, dwell, hover,
-> overlay, scroll, toggle, modal, canvas element, animation.
+> **The single place to look before building anything.** Drag, dwell, hover,
+> overlay, scroll, toggle, modal, canvas element, animation — and code shape: file size,
+> naming, React patterns, refactoring.
 >
 > **Chase points here by saying:** *"check the recipes folder"* / *"how did we do the
 > drag handle on an overlay?"* — but an agent should read this table **without being
@@ -19,13 +20,40 @@
    matches, build it, then **add a recipe** (see § Adding a recipe).
 
 **Never copy a timing value out of a recipe.** Every dwell, hover, and drag
-threshold lives in **`cursor-patterns/dwell-and-head-mouse.md`** and in
-`electron-toolbar/modules/dwell/backend/dwell_constants.py`. Recipes describe
-*shape and order*; those two files own the *numbers*.
+threshold lives in `electron-toolbar/modules/dwell/backend/dwell_constants.py` and the
+toolbar's own settings — not in a markdown file. Recipes describe *shape and order*, not
+numbers. Timing is controlled through the toolbar's settings; don't invent or copy a value
+into new code.
 
 ---
 
+## Code shape — file size, naming, React patterns, "how do I refactor this"
+
+> Merged in from `cursor-patterns/` 2026-08-07 — see § Where things live below.
+
+| You might say | Read this |
+|---|---|
+| "is this file too long" · how big can a file get · 800 lines · split it | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § File Size Enforcement |
+| "App.tsx is doing too much" · "main.py is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Entry File as Orchestrator |
+| "make it look like the other modals" · modal width · modal sizing | [modal-shell.md](./modal-shell.md) |
+| "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
+| what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
+| "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
+| "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |
+| what not to do · common mistakes · god file · bare except · silent failure | [anti-patterns.md](./anti-patterns.md) |
+| "initialize a new app" · scaffold a project · start something new | [INIT_NEW_APP.md](./INIT_NEW_APP.md) |
+| the window opened on the wrong monitor · display scaling · the Display button | [INIT_NEW_APP.md](./INIT_NEW_APP.md) § Step 4b |
+| hidden `.bat` launcher · no visible cmd window · spawn from Electron | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) |
+| "am I done" · final build checklist · ready to ship | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Final Build Checklist |
+| just finished a refactor or hotfix · "write up what we learned" · integration doc | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Document the Lesson — exemplar `Macro App/docs/BROWSER_TAB_INTEGRATION.md` |
+| apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
+
 ## Dwell and click
+
+Building a drag handle or hover/dwell interaction on an overlay? **Copy how the
+electron-toolbar's existing overlays already do it** — don't invent a new mechanism. OS-level
+dwell click engine: `electron-toolbar/modules/dwell/backend/`. Overlay hover/dwell factory:
+`electron-toolbar/electron-app/src/overlay-hover-poll.js`.
 
 | You might say | Recipe | Status |
 |---|---|---|
@@ -126,13 +154,16 @@ over signals. *How to add a new toolbar module* has no recipe yet.
 
 | Kind | Home | Example |
 |---|---|---|
-| **Recipe** — how to build one interaction | **this folder** | `dwell-drag.md` |
-| **Standard** — shape all code must have | `cursor-patterns/` | `CODING_STANDARDS.md`, `file-headers.md` |
-| **Values** — timings, thresholds, sizes | `cursor-patterns/dwell-and-head-mouse.md` + `dwell_constants.py` | never restated in a recipe |
+| **Recipe / standard** — how to build one interaction, or the shape all code must have | **this folder** | `dwell-drag.md`, `CODING_STANDARDS.md` |
+| **Values** — timings, thresholds, sizes | `dwell_constants.py` (real code) | never restated in a recipe |
 | **Integration doc** — why this subsystem is like this | the app's `docs/` | `EMBEDDED_BROWSER_AND_MODALS.md` |
 
-That split is what keeps this folder from becoming a dumping ground. If a
-document explains *one app's history*, it is not a recipe.
+*(Until 2026-08-07, code-shape standards lived in a separate `cursor-patterns/` folder.
+Merged in — there was no functional distinction left once `.cursor/rules/*.mdc` retired;
+both were just markdown discovered the same way.)*
+
+If a document explains *one app's history*, it is not a recipe — that belongs in the app's
+own `docs/`.
 
 ---
 

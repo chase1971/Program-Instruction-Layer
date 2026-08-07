@@ -22,7 +22,7 @@
    | Work was… | Log |
    |---|---|
    | Inside one app | `<app>/docs/sessions/SESSIONS.md` |
-   | **The instruction layer itself** — `agent docs/`, root `AGENTS.md`/`CLAUDE.md`, `recipes/INDEX.md`, `cursor-patterns/INDEX.md`, the capture skill, `check-docs.js` and friends | **`agent docs/sessions/SESSIONS.md`** |
+   | **The instruction layer itself** — `agent docs/`, root `AGENTS.md`/`CLAUDE.md`, `agent docs/recipes/INDEX.md`, `agent docs/recipes/INDEX.md`, the capture skill, `check-docs.js` and friends | **`agent docs/sessions/SESSIONS.md`** |
    | Cross-app work with no instructional-layer content (touched several apps' code, not their docs) | The most-touched app's `SESSIONS.md`; name the others in the entry |
 
    **This log is for the documentation system, not a catch-all cross-app diary.** If it touched

@@ -38,7 +38,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. **Cursor MCP:** `Programs/.cursor/mcp.json` → server `agent-browser` (Playwright MCP + CDP). Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
 | **Hearthstone Overlay 3.0**, HS Overlay 3.0, go face, hearthstone overlay | `Hearthstone Overlay 3.0` | *(local)* | **`C:\Users\chase\Documents\Programs\Hearthstone Overlay 3.0\`** — Electron + Python log service. Launch: `launch.bat` or toolbar Launcher Panel tile **`hearthstone-overlay-3`**. Go Face / combat robot: `electron/play-actions.js`, `electron/robot-worker.js`, `electron/go-face-window.js`. Session log: `docs/sessions/SESSIONS.md`. Daily driver (2.0 is legacy Tk overlay). |
 | **CourseAgent** | `CourseAgent` | ccarlozzi/CourseAgent | |
-| **Programs patterns / standards** | `cursor-patterns\` | *(Programs root repo)* | `CODING_STANDARDS.md` lives here |
+| **Programs patterns / standards / recipes** | `agent docs\recipes\` | *(Programs root repo)* | `CODING_STANDARDS.md`, `INIT_NEW_APP.md`, and every interaction recipe live here |
 
 Full paths: prepend `C:\Users\chase\Documents\Programs\` to every relative path above.
 
@@ -121,7 +121,7 @@ Use when you need exact launch paths or proxy ports, not just “which folder is
 Each app above with a GitHub row is its **own git repo** (sibling repos, not a monorepo).
 Committing Macro App does **not** commit sibling repos (e.g. frozen Calendar 2.0).
 Programs root (`C:\Users\chase\Documents\Programs\.git`) — **`chase1971/Program-Instruction-Layer`**
-(instruction layer: `AGENTS.md`, `HOW_TO_INTERACT_WITH_AI.md`, `recipes/`, `cursor-patterns/`, `agent docs/rules/` — not app source).
+(instruction layer: `AGENTS.md`, `HOW_TO_INTERACT_WITH_AI.md`, `agent docs/recipes/`, `agent docs/rules/` — not app source).
 
 ---
 

@@ -9,7 +9,7 @@
 the row before the session ends.
 
 **This index names owners; owners name their contents.** It points at
-[recipes/INDEX.md](../recipes/INDEX.md), never at an individual recipe. So adding a recipe
+[recipes/INDEX.md](./recipes/INDEX.md), never at an individual recipe. So adding a recipe
 never touches this file.
 
 ---
@@ -20,8 +20,8 @@ never touches this file.
 |---|---|
 | any app by name · "where does X live" · which folder is that in | [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
 | anything inside one app — its subsystems, its docs, "Pearson", "the gradebook", "the launcher panel" | that app's `AGENTS.md` — find the folder via [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
-| building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](../recipes/INDEX.md) |
-| how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [cursor-patterns/INDEX.md](../cursor-patterns/INDEX.md) |
+| building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |
+| how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
 | school HTML — exam maps, review maps, teaching documents | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
 
 ## The detail behind an always-on rule
@@ -79,9 +79,8 @@ title itself "accessibility patterns"; what he says is *"the button is too small
 The second one is the row that works.
 
 **Never add a row for:**
-- an individual recipe or standard — those belong to [recipes/INDEX.md](../recipes/INDEX.md)
-  and [cursor-patterns/INDEX.md](../cursor-patterns/INDEX.md). Adding them here creates a
-  second copy that will drift.
+- an individual recipe or standard — those belong to [recipes/INDEX.md](./recipes/INDEX.md).
+  Adding them here creates a second copy that will drift.
 - a rule that fires every session — that belongs in [AGENTS.md](../AGENTS.md). Routing it
   makes it optional.
 

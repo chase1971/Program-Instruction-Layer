@@ -445,9 +445,8 @@ const handleOpenModal = (data: string) => {
 
 ## Related Patterns
 
-- [React Patterns](../cursor-patterns/react-patterns.md) - Component organization, hooks
-- [Accessibility Patterns](../cursor-patterns/accessibility-patterns.md) - Keyboard nav, screen readers
-- [File Headers](../cursor-patterns/file-headers.md) - Modal component documentation
+- [React Patterns](./react-patterns.md) - Component organization, hooks
+- [File Headers](./file-headers.md) - Modal component documentation
 
 ---
 

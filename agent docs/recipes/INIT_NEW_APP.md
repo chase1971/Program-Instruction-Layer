@@ -89,7 +89,7 @@ Tell Chase:
 - What variant
 - What to run next (`npm run dev`, port number, etc.)
 - Where the AI orientation is (`[app]/CLAUDE.md`)
-- Reminder: master coding standards at `cursor-patterns/CODING_STANDARDS.md`
+- Reminder: master coding standards at `CODING_STANDARDS.md`
 - If Electron: confirm Display scaling (Step 4b) was included or deferred with Chase’s OK
 - If embedded browser: confirm Electron version matches Macro App (Step 4c)
 
@@ -265,7 +265,7 @@ to identify geometric transformations interactively. Mobile-first landscape."]
 ## Read First
 
 Master coding standards:
-`C:\Users\chase\Documents\Programs\cursor-patterns\CODING_STANDARDS.md`
+`C:\Users\chase\Documents\Programs\agent docs\recipes\CODING_STANDARDS.md`
 
 ## App-Specific Rules
 
@@ -347,7 +347,7 @@ See `CLAUDE.md` for the AI orientation and folder layout.
 ## Development Guidelines
 
 App-specific rules: `guidelines/Guidelines.md`
-Global coding standards: `C:\Users\chase\Documents\Programs\cursor-patterns\CODING_STANDARDS.md`
+Global coding standards: `C:\Users\chase\Documents\Programs\agent docs\recipes\CODING_STANDARDS.md`
 
 ## Build
 
@@ -424,7 +424,7 @@ Primary action buttons:
 
 - Max 800 lines (hard limit)
 - Warning at 500 lines
-- See `cursor-patterns/CODING_STANDARDS.md` for full rules
+- See `CODING_STANDARDS.md` for full rules
 
 ## Testing Checklist
 
@@ -476,7 +476,7 @@ All endpoints return:
 
 ## File Size Limits
 
-See `cursor-patterns/CODING_STANDARDS.md` (max 800 lines).
+See `CODING_STANDARDS.md` (max 800 lines).
 
 ## Testing Strategy
 
@@ -525,7 +525,7 @@ Use `shared/signals.py` for cross-module communication. Socket-based.
 
 Pattern catalog: `[app]/ARCHITECTURE_PATTERNS.md`
 Overlay pattern: `[app]/OVERLAY_MODULE_PATTERN.md` (if applicable)
-Master standards: `cursor-patterns/CODING_STANDARDS.md`
+Master standards: `CODING_STANDARDS.md`
 ```
 
 ---
@@ -547,7 +547,7 @@ Latest entries at top. Keep each entry to ~10 lines.
 
 ## [YYYY-MM-DD] — Initial scaffold
 
-**Files changed:** Project initialized via cursor-patterns/INIT_NEW_APP.md.
+**Files changed:** Project initialized via INIT_NEW_APP.md.
 
 **What worked:** Folder structure, configs, guidelines, and AI orientation files created.
 
@@ -568,7 +568,7 @@ alwaysApply: true
 ---
 
 Read CLAUDE.md in this directory and follow it.
-Master coding standards: C:\Users\chase\Documents\Programs\cursor-patterns\CODING_STANDARDS.md
+Master coding standards: C:\Users\chase\Documents\Programs\agent docs\recipes\CODING_STANDARDS.md
 ```
 
 ---
@@ -820,7 +820,7 @@ The dev server will print the URL (usually http://localhost:5173 or next).
 
 AI orientation: [app-name]/CLAUDE.md
 App rules: [app-name]/guidelines/Guidelines.md
-Master standards: cursor-patterns/CODING_STANDARDS.md
+Master standards: CODING_STANDARDS.md
 
 Append session entries to: [app-name]/docs/sessions/SESSIONS.md
 ```

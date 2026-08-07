@@ -20,9 +20,9 @@ the rung is genuinely ambiguous.**
 Search for where this rule already lives. Check, in order:
 
 1. `AGENTS.md` (root)
-2. **`recipes/INDEX.md`** — is there already a recipe for this?
+2. **`agent docs/recipes/INDEX.md`** — is there already a recipe or standard for this?
 3. `<app>/AGENTS.md` keyword table
-4. `cursor-patterns/*.md` and `agent docs/rules/*.md`
+4. `agent docs/rules/*.md`
 5. Existing lint configs (`.eslintrc.cjs`) and `scripts/check-*.js`
 
 **`.cursor/rules/*.mdc` no longer exist** (retired 2026-08-02) — do not create one.
@@ -40,7 +40,7 @@ The capture ladder, strongest first. Push it as high as it will go.
 |---|---|---|
 | **1** | Structurally impossible — one owner, an API that can't be misused | The rule is about *who may do X*. Exemplar: only `usePersistedState.ts` may touch `localStorage` |
 | **2** | Lint rule or test | The violation is mechanically detectable in code |
-| **3a** | **A recipe in `recipes/` + its index row** | It is *how to build something* — an interaction, a component, a flow. **Default for patterns** |
+| **3a** | **A recipe in `agent docs/recipes/` + its index row** | It is *how to build something* — an interaction, a component, a flow. **Default for patterns** |
 | **3b** | **A keyword row in `<app>/AGENTS.md`** pointing at one doc | It applies to one app, and Chase would ask for it in plain speech |
 | **4** | Always-on rule (root `AGENTS.md`) | It applies everywhere, is short, and must fire when Chase is *not* thinking about it. **Costs tokens every session** |
 | **5** | On-demand doc nothing routes to | Deep background that can't be compressed, and no keyword fits |
@@ -67,7 +67,7 @@ at least one rung. Do not simply reword it in place.
 
 ## Step 3 — Write it in the five-ingredient shape
 
-Model on `recipes/studio-dwell-latch.md` — the exemplar in this tree. Every rule needs:
+Model on `agent docs/recipes/studio-dwell-latch.md` — the exemplar in this tree. Every rule needs:
 
 1. **Why it exists**, in one sentence. A rule without a reason reads as a
    preference, and preferences get overridden.
@@ -118,15 +118,15 @@ version — rather than deleting, so links don't dangle.
 
 A rule nothing points at is functionally deleted. Update whichever applies:
 
-- **New recipe** → add a row to the matching table in `recipes/INDEX.md`, with a
+- **New recipe** → add a row to the matching table in `agent docs/recipes/INDEX.md`, with a
   status mark. **A recipe no table names is invisible.**
 - **New app-specific doc** → add a keyword row to that app's `AGENTS.md`, in the
   words Chase would use
 - **New root rule** → add it to the right section of root `AGENTS.md`; if it needs
   detail, put the detail in `agent docs/rules/` and link it from that section
-- **New `cursor-patterns/` standard** → add it to `cursor-patterns/INDEX.md`
+- **New code-shape standard** → add it to `agent docs/recipes/INDEX.md`
 - **New app with no `AGENTS.md` yet** → create one plus a three-line `CLAUDE.md`
-  that does `@AGENTS.md` (see `cursor-patterns/INIT_NEW_APP.md`)
+  that does `@AGENTS.md` (see `agent docs/recipes/INIT_NEW_APP.md`)
 
 **Both tools read the same file.** `AGENTS.md` holds the content; `CLAUDE.md` imports
 it. Never write the same guidance into both.

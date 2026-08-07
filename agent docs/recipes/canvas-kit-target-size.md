@@ -14,7 +14,7 @@
 
 Chase drives these apps with a **gyro head-mouse + dwell click**. Target size is an
 accessibility constraint here, not a style preference.
-Background: `cursor-patterns/dwell-and-head-mouse.md`.
+Background: this folder's "Dwell and click" section (see `INDEX.md`).
 
 ## The hole this closes
 
@@ -48,7 +48,7 @@ For a different design box, recompute: `44 / designHeight` and `44 / designWidth
   wrong dwell click. Leave ≥2% of the design box between interactive rects.
 - **No hover-only affordances.** Anything revealed on hover must also be reachable
   by a click path — the dwell click fires on its own timer whether or not you
-  wanted it (timing: `cursor-patterns/dwell-and-head-mouse.md`).
+  wanted it — see this folder's "Dwell and click" section for the real dwell mechanics).
 - **Scale down, not up.** Because `CanvasStage` letterboxes, a target that is
   borderline at design size is *smaller* on a narrower viewport. Check the smallest
   viewport the app ships to, not the Studio canvas.
@@ -63,6 +63,5 @@ them at once. Verify in the Studio **and** one live app before calling it done.
 
 ## Related
 
-- `recipes/info-block-nav-buttons.md` — Back/Next MenuButton wiring
-- `recipes/canvas-info-block-design.md` — info block visual design
-- `cursor-patterns/dwell-and-head-mouse.md` — timing + coupling
+- `info-block-nav-buttons.md` — Back/Next MenuButton wiring
+- `canvas-info-block-design.md` — info block visual design

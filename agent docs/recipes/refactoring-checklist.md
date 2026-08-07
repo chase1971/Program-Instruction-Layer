@@ -207,7 +207,7 @@ app.post('/api/process', (req, res) => {
 ## Phase 3: Patterns (Do If Significant)
 
 ### Check Against Existing Patterns
-- [ ] Is there a pattern in `cursor-patterns/` that should be used?
+- [ ] Is there a pattern in this folder (`agent docs/recipes/`) that should be used?
 - [ ] Is the code doing something a pattern already solves?
 - [ ] Should this code become a new pattern?
 

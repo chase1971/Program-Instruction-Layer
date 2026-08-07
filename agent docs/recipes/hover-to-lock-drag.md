@@ -185,7 +185,7 @@ drag_handler = DragHandler(instance, drag_handle_widget)
 > 🔴 **This is the mistake this recipe exists to prevent.** An earlier version of this
 > doc showed `dragHandle.addEventListener('mouseenter', …)`. **That silently never
 > fires.** Live overlays are created click-through (`setIgnoreMouseEvents` — see
-> `recipes/click-through-windows.md`), so the OS never delivers mouse events to the
+> `click-through-windows.md`), so the OS never delivers mouse events to the
 > window and no DOM hover event is ever raised. Following it produces a handle that
 > looks correct and does nothing.
 
@@ -194,7 +194,7 @@ The working approach polls the cursor position against the handle's rect from th
 
 ```javascript
 // main process — poll, because the overlay window is click-through
-const POLL_MS = /* see cursor-patterns/dwell-and-head-mouse.md */;
+const POLL_MS = /* see electron-toolbar/modules/dwell/backend/dwell_constants.py */;
 
 setInterval(() => {
     const { x, y } = screen.getCursorScreenPoint();
@@ -208,8 +208,7 @@ setInterval(() => {
 ```
 
 **Do not restate the timing values here** — `POLL_MS` and `HOVER_LOCK_MS` live in
-`cursor-patterns/dwell-and-head-mouse.md` and
-`electron-toolbar/modules/dwell/backend/dwell_constants.py`.
+`electron-toolbar/modules/dwell/backend/dwell_constants.py` and the toolbar's own settings.
 
 Exception: if the window is **not** click-through (a normal focusable window), DOM
 events work fine. Check how the window was created before choosing.

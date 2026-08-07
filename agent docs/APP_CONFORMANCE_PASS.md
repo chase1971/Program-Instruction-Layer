@@ -64,7 +64,7 @@ Six checks. Run in this order — each is cheaper than the one after it.
 - [ ] **Every `docs/*.md` in the app has a row** in the on-demand table.
 - [ ] **No `.cursor/rules/*.mdc`.** Retired 2026-08-02 — they only fired when a
       matching file was open in an editor tab. If one exists here, convert it: a
-      *how to build* rule becomes a recipe in `Programs/recipes/`; anything
+      *how to build* rule becomes a recipe in `Programs/agent docs/recipes/`; anything
       app-specific becomes `docs/<TOPIC>.md` plus a keyword row.
 - [ ] The app appears in `APP_LOCATIONS.md` with its aliases.
 

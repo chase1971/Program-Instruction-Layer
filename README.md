@@ -9,9 +9,8 @@ Meta-backup repo for the **Programs instruction layer** — the rules, docs, and
 | `AGENTS.md` | Always-on agent baseline (loaded every Cursor session) |
 | `agent docs/` | Scorecards, audits, peer-review docs, session HTML logs |
 | `scripts/` | `check-docs.js`, scorecard pipeline, doc server |
-| `recipes/` | Shared UI/interaction patterns (dwell, toolbar, modals) |
+| `agent docs/recipes/` | Coding standards, init recipes, and every interaction recipe (dwell, toolbar, modals) |
 | `.claude/skills/` | Capture skill — ladder procedure when Chase says "remember:" / "capture that" |
-| `cursor-patterns/` | Coding standards and init recipes |
 | `.cursor/` | Cursor hooks (scorecard auto-tally) |
 
 Individual apps (Macro App, electron-toolbar, math apps, etc.) have **their own git repos** as siblings under Programs. This repo tracks only the cross-app instruction layer — not app source code.

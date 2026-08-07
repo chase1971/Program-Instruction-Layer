@@ -31,9 +31,9 @@ All shared timing (latch, release, move threshold, poll interval, hit padding)
 lives in **`renderer/src/utils/dwellStationary.ts`**. That file is the owner —
 read the constants there, never a number copied into a doc.
 
-For how Studio's timing relates to the toolbar's OS-level dwell click, and why
-they legitimately differ, see **`cursor-patterns/dwell-and-head-mouse.md`**
-(tree-wide source of truth).
+Studio's latch timing is deliberately layered on top of the toolbar's OS-level dwell click,
+not a copy of it — don't invent a shared value between them. Toolbar timing lives in
+`electron-toolbar/modules/dwell/backend/dwell_constants.py` and its own settings.
 
 **Grep before adding** any new drag/attach hook. If you need element move/resize, wire through existing hooks.
 

@@ -29,8 +29,8 @@ Periodic cleanup of **rules, AGENTS pointers, and instruction docs** — things 
 | # | Question | Why it's parked | What decides it |
 |---|---|---|---|
 | 1 | **CourseAgent** — 38 docs, no `AGENTS.md`, 36 unreachable. Currently in `COVERAGE_EXEMPT` in `scripts/check-docs.js` | Chase hasn't looked at what's in there and didn't want to deal with it during the restructure | He reviews the contents, pulls out anything worth keeping, then: give it a keyword table, or move it to `Deprecated apps/`. It is ~25% of the whole coverage gap, so this moves the number more than any other single call |
-| 2 | **Three dwell timings disagree** — Toolbar 250ms, Math App Studio 450ms, Macro App 1000ms | Unknown whether these are legitimately per-app or two of them are drift. Guessing is how the original six-copy problem started | If per-app: `dwell-and-head-mouse.md` gets a three-row table naming each app's owning constants file. If one is canonical: the other two get corrected in code. **Do not touch until Chase says which** |
-| 3 | **Re-split `recipes/` and `cursor-patterns/` into narrower categories** | Chase wants finer buckets so the categories aren't so broad, but hasn't reviewed what's actually in them | His review of each folder's contents |
+| ~~2~~ | ~~Three dwell timings disagree~~ — **moot, 2026-08-07** | Chase reviewed `dwell-and-head-mouse.md` and said he doesn't want per-app timing documented in markdown at all — dwell speed is controlled through the toolbar's own settings, and each app legitimately differing is fine. The file was cut to a pointer table (real code paths only); no timing values live in a doc anymore | Resolved by removing the thing the question was about |
+| 3 | **Re-split `agent docs/recipes/` into narrower topic subfolders** | `cursor-patterns/` was merged flat into `recipes/` 2026-08-07 (Chase: "get rid of these cursor patterns" — no functional distinction once `.mdc` retired). Chase wants finer buckets so the ~34-file flat folder isn't one big list, but explicitly deferred the split to a future session | His review of what's actually in the merged folder |
 | 4 | **Apps with real docs but no `AGENTS.md`** — `makeup-exam-standalone` (15 docs), `Statistics app` (5), `logic-app` (4), `Probability App` (4), `Hearthstone Overlay 3.0` (3) | Each missing file is a hole in the second tier. Adding five is a bigger project than the restructure itself | Whether those apps are still live enough to earn a keyword table |
 
 | ~~5~~ | ~~The session scorecard doesn't fire~~ — **resolved 2026-08-07** | Chase reported a full session (2026-08-06) with real edits and zero bumps — proof the always-on prose instruction alone doesn't reach the agent reliably, prose can't force compliance | Redesigned the mechanism instead of rewording it again: `scripts/scorecard-enforce.js` adds a **Stop hook** that blocks the agent's turn from ending when the running tally shows edited files but zero bumps (capped at 3 consecutive blocks, then force-allows — can't loop forever), plus a non-blocking **PreCompact hook** that reminds the agent to bump right before compaction, since the disk-based tally survives compaction but the agent's memory that it needs to bump does not. Both wired in `.claude/settings.json`. See `SESSION_SCORECARD.md` § Enforcement. **Known gap:** only catches "never bumped all session" — a session that bumps once early then goes quiet for the rest of a long session won't re-trigger. Worth a follow-up if that pattern shows up |
@@ -84,8 +84,7 @@ node scripts/check-docs.js --strict
 **In scope**
 
 - `AGENTS.md`, `CLAUDE.md`, `APP_LOCATIONS.md`, `HOW_TO_INTERACT_WITH_AI.md`
-- **`recipes/` + `recipes/INDEX.md`** — see § 2f-2
-- `cursor-patterns/*.md` (instruction-relevant)
+- **`agent docs/recipes/` + `agent docs/recipes/INDEX.md`** — see § 2f-2 (absorbed `cursor-patterns/` 2026-08-07)
 - `agent docs/rules/*.md`, `agent docs/*.md`, `agent docs/*.html`
 - Per-app: `AGENTS.md`, `CLAUDE.md`, `guidelines/Guidelines.md`, `docs/*_INTEGRATION.md`
 
@@ -162,7 +161,7 @@ AGENTS loads every chat (~4k–8k tokens whole file).
 
 **Action:** Trim long procedures to rung 5 docs; leave index rows + pointers. Do not duplicate always-on rule text in AGENTS.
 
-### 2f-2 — The recipe library (`Programs/recipes/`)
+### 2f-2 — The recipe library (`Programs/agent docs/recipes/`)
 
 Added 2026-08-02, when three scattered pattern libraries were consolidated into one
 folder. Because everything is now in **one place**, this pass is cheap — do it every
@@ -170,7 +169,7 @@ audit, and do it before § 2g.
 
 | Check | How | Action |
 |---|---|---|
-| **Index row exists** | Every `recipes/*.md` appears in a table in `recipes/INDEX.md` | A recipe no table names is invisible — add the row or archive the file |
+| **Index row exists** | Every `agent docs/recipes/*.md` appears in a table in `agent docs/recipes/INDEX.md` | A recipe no table names is invisible — add the row or archive the file |
 | **"You might say" is in his words** | Read the header line. Is it the *technical* name or what Chase would actually say? | Rewrite in his words. This line is the whole trigger |
 | **Duplicate recipes** | Two files covering one interaction (e.g. two drag recipes) | Merge into the one with working exemplars; tombstone the loser |
 | **Exemplar paths still exist** | Open each path in the header block | Fix or mark the recipe stale. A recipe pointing at a deleted file is worse than none |
