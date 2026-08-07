@@ -52,38 +52,11 @@ deep-dives on specific patterns — this file references them when relevant.
    something exists, extend it. If you add a new one anyway, your response
    MUST name what you chose not to reuse and why. See [Grep Before Adding](#grep-before-adding-critical).
 
-9. **Document the lesson when you finish a focused refactor or hotfix.**
+8. **Document the lesson when you finish a focused refactor or hotfix.**
    Write a `docs/<subsystem>_INTEGRATION.md` next to the affected code,
    modeled on `School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md`.
    The reasons code exists must live in the repo, not in your head. See
    [Document the Lesson](#document-the-lesson-critical).
-
----
-
-## Electron Shell: Display Scaling
-
-**Applies to:** Every app with an Electron desktop shell (`electron/` + React or HTML renderer).
-
-**Spec:** `cursor-patterns/electron-per-monitor-display-scaling.md`
-
-**Exemplar:** `School Scrips/Calendar 2.0`
-
-**Minimum deliverables (required):**
-
-- `displayZoom.ts` — transform scale on `#app-scale-frame`, not `zoom` on `#root`
-- `DisplayScaleModal` + **Display** button in title bar (slider 35–100%, Fit, Done)
-- A remembered scale in `localStorage` (one global value — not per-monitor by default)
-- `initPerMonitorDisplayZoom()` in entry file **before** `createRoot`
-- If the app embeds a **BrowserView** under modals: **`freezeForModal({ snapshot: false })`** — PNG snapshots look frozen when Display scale changes
-
-**Optional, build only if Chase asks:** per-monitor auto-memory — `{appSlug}-display-by-monitor`
-persistence keyed by monitor id, plus `electron/main.js` + `preload.js` IPC
-(`get-active-monitor-info`, `active-display-changed`) to detect and auto-restore a distinct
-scale per monitor. Downgraded from required 2026-08-07 — even in Macro App, the exemplar for
-this half, it wasn't reliably saving the manual re-adjustment it's meant to save.
-
-New Electron apps: follow `INIT_NEW_APP.md` **Step 4b** for the required part. Do not ship a
-new Electron shell without the manual Display button unless Chase opts out explicitly.
 
 ---
 
