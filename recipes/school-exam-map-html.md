@@ -22,15 +22,16 @@ This is a static teaching tool served from the Programs docs server. It should o
 
 The page is not a landing page. The first viewport is the working interface.
 
-Build it as three linked work surfaces:
+Build it as four linked work surfaces:
 
 1. Homework builds the review.
 2. Review builds the exam.
 3. Exam summarizes the final pools.
+4. Exam changes shows what you added or removed since the Pearson harvest baseline.
 
 The important thing is direction. Do not make Chase bounce between Pearson assignments in
 order to remember problem choices. Each tab should show the source list and the current
-target state beside it.
+target state beside it (except **Exam changes**, which is a diff-only audit view).
 
 ## File Split
 
@@ -99,7 +100,33 @@ Purpose: final ordered exam summary for copying into Pearson.
 - Show every pool in order.
 - Show every possible question in a pool.
 - Make rows expandable when written problem text is available.
+- **Problem text:** load from `*-exam-harvest.json` only — do not fall back to `PROBLEMS`
+  (print harvest has MC junk and stale stems).
 - Do not put edit-only controls here unless Chase asks; this tab is for review/copying.
+
+### Exam changes Tab
+
+Purpose: audit trail vs the initial Pearson editor harvest.
+
+- **Baseline:** `EXAM3_POOLS` in `*-exam-data.js` (same IDs as the editor harvest).
+- **Current:** `examGroups` in saved state (`*-review-map-state.json` / localStorage).
+- Three sections: **removed** (strikethrough), **added** (highlighted; badge **review** if from
+  review), **unchanged from harvest**.
+- Updates when Chase uses **Add to Exam** / **Remove from Exam** on the Review tab.
+
+## Exam problem text pipeline
+
+Homework/review text: print harvest → `pearson_a11y_math.py` → `*-homework-map-data.js`.
+
+**Pooled exam text:** editor harvest only — full recipe:
+`School Scrips/Macro App/docs/Automations/PEARSON_EXAM_POOL_HARVEST.md`
+
+1. MCP harvest → `harvest/exam3-editor-preview-raw.json`
+2. Phase E: `write_exam3_editor_harvest.py` (+ `stem_polish.py`)
+3. Phase F (optional): `ai_polish_exam_stems.py --prepare` → agent → `--apply`
+4. Output: `exam3-exam-harvest.json` + `EXAM3_POOLS` header in `exam3-exam-data.js`
+
+Do **not** use AM ⋮ Preview for pooled exams (~14 live draws vs all pool alternates).
 
 ## State Rules
 
