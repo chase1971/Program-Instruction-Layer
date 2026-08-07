@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>anti-patterns.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/anti-patterns.md</h1>
+    <p>The full catalog of common mistakes — what <code>CODING_STANDARDS.md</code>'s condensed anti-patterns section points to for the complete version. 302 lines, all Python/threading examples aimed at the electron-toolbar-style modules.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">302</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--muted)">2026-06-04</b><span>unchanged since</span></div>
+    <div class="stat"><b style="color:var(--green)">6</b><span>categories, all fine</span></div>
+    <div class="stat"><b style="color:var(--green)">11</b><span>anti-patterns cataloged</span></div>
+  </div>
+
+  <div class="note green">
+    <strong>Overall call:</strong> fine as-is. Like <code>refactoring-checklist.md</code>, there's nothing dated or path-specific in here to go stale — it's ❌/✅ code-shape pairs, and the shapes themselves (bare except, magic numbers, god files) don't expire.
+  </div>
+
+  <h2>Category-by-category</h2>
+  <table>
+    <tr><th>Category</th><th>Anti-patterns covered</th><th>Status</th></tr>
+    <tr><td><b>State Management</b></td><td>Scattered global state (fix: consolidated state class with a lock) · File-based IPC / polling text files (fix: socket-based signals via <code>shared/signals.py</code>).</td><td><span class="tag fine">Fine</span> — the socket-signals fix matches what <code>INIT_NEW_APP.md</code>'s <code>electron-overlay</code> variant scaffolds by default.</td></tr>
+    <tr><td><b>Error Handling</b></td><td>Bare <code>except:</code> clauses (fix: catch specific exceptions, re-raise unexpected ones) · Silent failures (fix: log then handle with a default).</td><td><span class="tag fine">Fine</span> — matches <code>CODING_STANDARDS.md</code>'s Error Handling section exactly.</td></tr>
+    <tr><td><b>Code Organization</b></td><td>God files (1000+ lines) → split by responsibility · Magic numbers → named constants · Inconsistent module structure → the standard <code>module/module.py + _constants.py + _state.py + _helpers.py</code> shape.</td><td><span class="tag fine">Fine</span> — the module shape example matches <code>INIT_NEW_APP.md</code>'s <code>electron-overlay</code> folder template exactly.</td></tr>
+    <tr><td><b>Threading</b></td><td>Unprotected shared state (race conditions) → lock-guarded properties · GUI operations from background threads → <code>master.after(0, ...)</code> scheduling.</td><td><span class="tag fine">Fine</span> — this is Tkinter-specific guidance for the toolbar's Python side, correctly scoped.</td></tr>
+    <tr><td><b>Communication</b></td><td>Hardcoded paths (<code>C:\Users\chase\...</code>) → <code>Path(__file__).parent</code> · Polling too frequently (1000/sec) → reasonable intervals (100/sec).</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Summary Table</b></td><td>11-row recap: anti-pattern → problem → solution, one line each.</td><td><span class="tag fine">Fine</span> — fast-lookup version of everything above.</td></tr>
+  </table>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

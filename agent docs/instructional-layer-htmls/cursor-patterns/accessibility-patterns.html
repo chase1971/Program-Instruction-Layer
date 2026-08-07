@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>accessibility-patterns.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.gone { background:rgba(248,113,113,.15); color:var(--red); }
+  .tag.kept { background:rgba(52,211,153,.15); color:var(--green); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/accessibility-patterns.md</h1>
+    <p>Gutted 2026-08-07 at Chase's direction, from 606 lines to 21. Now a tombstone pointing to <code>dwell-and-head-mouse.md</code> and the modal rule — the two things he confirmed actually matter.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--red)">606 → 21</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--green)">2026-08-07</b><span>gutted</span></div>
+    <div class="stat"><b style="color:var(--green)">2</b><span>sections kept</span></div>
+    <div class="stat"><b style="color:var(--red)">9</b><span>sections removed</span></div>
+  </div>
+
+  <div class="note green">
+    <strong>Why the whole file was wrong for him, not just the fake numbers:</strong> reading through it section by section, the pattern was that most of it addressed accessibility needs Chase doesn't have — keyboard-only navigation, screen readers — rather than the one need he does have (dwell/head-mouse). It read like generic web-accessibility boilerplate, not something written for his actual setup. The 2026-08-02 disclaimer banner caught the fake timing numbers; it didn't catch that most of the file was answering questions nobody was asking.
+  </div>
+
+  <h2>What was removed and why</h2>
+  <table>
+    <tr><th>Section</th><th>What it was</th><th>Why it's gone</th></tr>
+    <tr><td><b>Dwell Mouse Support / Lock Period</b></td><td>Explained the "ignore close-triggers for ~500ms after opening" pattern with a fabricated timing constant.</td><td><span class="tag gone">Removed</span> — the concept is legitimate but only matters inside overlay/dwell behavior, which <code>dwell-and-head-mouse.md</code> already owns with real numbers.</td></tr>
+    <tr><td><b>Hover Delay Pattern</b></td><td>Open/close-on-hover with debounce timers.</td><td><span class="tag gone">Removed</span> — "not needed," Chase's words.</td></tr>
+    <tr><td><b>Complete Dwell-Accessible Drawer Pattern</b> (<code>useDrawerHover</code>)</td><td>A ~90-line hook that was never actually implemented anywhere — reference code only.</td><td><span class="tag gone">Removed</span> — fictional code nobody was using.</td></tr>
+    <tr><td><b>Timing Guidelines</b></td><td>A "Recommended Values" table restating the same fake 500ms figures as normative — the section that undid the file's own disclaimer banner.</td><td><span class="tag gone">Removed</span> — "I don't recommend values, let's get rid of it."</td></tr>
+    <tr><td><b>Debugging Accessibility Features</b></td><td>Console-log pattern + a dev-only visual "LOCKED" badge for verifying timer state while building.</td><td><span class="tag gone">Removed</span> — tied to the lock-period pattern above, which moved out.</td></tr>
+    <tr><td><b>Keyboard Navigation</b></td><td>Tab-focus, arrow-key, Escape handling for keyboard-only users.</td><td><span class="tag gone">Removed</span> — Chase doesn't navigate by keyboard; this was written for a different kind of accessibility user.</td></tr>
+    <tr><td><b>Screen Reader Support</b></td><td>ARIA labels, live regions.</td><td><span class="tag gone">Removed</span> — same reasoning; not his interaction model.</td></tr>
+    <tr><td><b>Testing Accessibility</b></td><td>Manual + automated test checklist built around the fake 500ms figures.</td><td><span class="tag gone">Removed</span> — tested behavior that was never real.</td></tr>
+    <tr><td><b>Common Mistakes</b></td><td>❌/✅ pairs for lock-period, hover-delay, and cleanup bugs.</td><td><span class="tag gone">Removed</span> — illustrating patterns for concepts that moved out.</td></tr>
+    <tr><td><b>Resources</b></td><td>External links: WebAIM, WCAG 2.1, Inclusive Design Principles.</td><td><span class="tag gone">Removed</span> — general accessibility reading, not specific to his system.</td></tr>
+  </table>
+
+  <h2>What was kept</h2>
+  <table>
+    <tr><th>Section</th><th>Why it stayed</th></tr>
+    <tr><td><b>No-backdrop-dismiss modal rule</b></td><td><span class="tag kept">Kept</span> — Chase confirmed directly: "that's something I would like all modals to do." Also already stated in <code>CODING_STANDARDS.md</code> and root <code>AGENTS.md</code> rule 5, so this file now just points there instead of restating it.</td></tr>
+    <tr><td><b>Links to the real recipes</b></td><td><span class="tag kept">Kept</span> — <code>dwell-click.md</code>, <code>dwell-drag.md</code>, <code>hover-to-lock-drag.md</code>, etc. This is literally "how do I build a drag handle," which Chase named as the one thing in this whole space he actually cares about.</td></tr>
+  </table>
+
+  <h2>Follow-up fixes made elsewhere</h2>
+  <div class="note">
+    <code>dwell-and-head-mouse.md</code> referenced this file's fake 500ms figures in three places (a comparison table row, an anti-pattern bullet, a "related docs" link) — all three updated to stop pointing at content that no longer exists. <code>CODING_STANDARDS.md</code>'s "Related Pattern Files" table row updated to describe the tombstone instead of the old content. <code>check-docs.js</code> confirms zero dead links after the change.
+  </div>
+
+  <footer>Reviewed / rewritten 2026-08-07.</footer>
+</div>
+</body>
+</html>

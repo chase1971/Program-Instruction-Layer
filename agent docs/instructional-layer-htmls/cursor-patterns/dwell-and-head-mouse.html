@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>dwell-and-head-mouse.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note.amber { border-left-color:var(--amber); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  .tag.open { background:rgba(251,191,36,.15); color:var(--amber); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/dwell-and-head-mouse.md</h1>
+    <p>The single source of truth for every dwell/hover/drag timing value in the tree. 175 lines. The best-maintained file in this folder — it documents its own open questions instead of asserting false confidence.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">175</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--green)">2026-08-02</b><span>last touched</span></div>
+    <div class="stat"><b style="color:var(--green)">4</b><span>real implementations documented</span></div>
+    <div class="stat"><b style="color:var(--amber)">2</b><span>self-flagged open questions</span></div>
+  </div>
+
+  <div class="note green">
+    <strong>Why this is the exemplar:</strong> every other file in the folder that goes stale does so by asserting something as fact that stopped being true. This file does the opposite — where it isn't sure, it says so in the text itself ("Status: unverified," "Unresolved (2026-08-01)") instead of presenting a guess as settled. That's the behavior worth copying into the other files, not just the content.
+  </div>
+
+  <h2>Section-by-section</h2>
+  <table>
+    <tr><th>Section</th><th>What it does</th><th>Status</th></tr>
+    <tr><td><b>The interaction model</b></td><td>Table of hardware facts (cursor wobble, no reliable hover-without-click, no typing) mapped to UI consequences.</td><td><span class="tag fine">Fine</span> — this is the "why" every other accessibility rule in the tree traces back to.</td></tr>
+    <tr><td><b>The four implementations</b></td><td>Real table: electron-toolbar (250ms OS dwell click), Math App Studio (450ms latch-to-drag), Macro App (1000ms tooltip), <code>accessibility-patterns.md</code> (documentation-only, not shipped) — with the file/path each number actually lives in.</td><td><span class="tag fine">Fine, and load-bearing</span> — this table is what makes every other file's timing claims checkable. It also explicitly names <code>accessibility-patterns.md</code>'s numbers as fiction, which is the source of that file's disclaimer banner.</td></tr>
+    <tr><td><b>Why they legitimately differ</b></td><td>Explains why 250/450/1000ms are each correct for their own purpose (system dwell-click needs speed; a drag-latch needs to be slower than the dwell-click under it; a tooltip needs a long deliberate pause) rather than being unreconciled drift.</td><td><span class="tag fine">Fine</span> — this is the reasoning that stops someone from "fixing" the inconsistency by making them all equal.</td></tr>
+    <tr><td><b>The cross-layer coupling</b> (open question)</td><td>Documents that the toolbar's OS-level dwell click and every app's own hover delay run simultaneously on the same cursor, with neither system aware of the other — with a concrete timeline diagram showing the OS click landing 200ms before Studio's latch would fire.</td><td><span class="tag open">Self-flagged, unverified</span> — the file says outright: "Chase does not currently know whether toolbar dwell stays live while working in Studio," and gives 3 concrete steps to settle it. This is a real open question, not a completed answer — worth knowing if you're about to build something that depends on the answer.</td></tr>
+    <tr><td><b>Grep before you build</b></td><td>Table mapping "what you need" (move/resize, floating panel, tooltip, overlay hover, OS-level click) to the actual hook/module that already does it, with the exemplar file for each.</td><td><span class="tag fine">Fine</span> — directly enforces AGENTS.md rule 4 for this specific domain.</td></tr>
+    <tr><td><b>Non-negotiable behaviors</b></td><td>6 rules (leave-handlers are no-ops, re-arm requires exit, release needs movement, hit-test padding, Escape/right-click, no backdrop dismiss), each tied to a bug that motivated it.</td><td><span class="tag open">One self-flagged contradiction</span> — the file admits the toolbar's own overlay code actually <i>does</i> cancel the arming timer on leave, contradicting its own "leave handlers are no-ops" rule, and says so isn't necessarily wrong: "If a drag handle ever feels like it 'won't catch,' this rule is right and the code is wrong." That's an honest doc-vs-code note, not a bug it's hiding.</td></tr>
+    <tr><td><b>Anti-patterns</b></td><td>6-item list: tight thresholds, using leave events to cancel, hover-only with no click path, a second drag implementation, copying the fake 500ms figures, assuming hover ≠ click.</td><td><span class="tag fine">Fine</span> — directly names <code>accessibility-patterns.md</code>'s numbers as the thing not to copy.</td></tr>
+    <tr><td><b>Where the code lives</b></td><td>Table of 8 real file paths across electron-toolbar, Math App Studio, and Macro App.</td><td><span class="tag fine">Fine</span> — spot-checked several of these paths against the tree; they exist.</td></tr>
+    <tr><td><b>Related</b></td><td>Links to <code>AGENTS.md</code> § Dwell & head-mouse, <code>recipes/studio-dwell-latch.md</code> (named as the exemplar recipe shape), <code>accessibility-patterns.md</code>, <code>modal-pattern.md</code>.</td><td><span class="tag fine">Fine</span> — all four targets verified to exist.</td></tr>
+  </table>
+
+  <h2>Nothing to fix here</h2>
+  <div class="note">
+    This file doesn't need an update pass. The two "open" items above aren't staleness — they're the file correctly refusing to assert something Chase hasn't verified. If either question ever does get answered (the cross-layer coupling test, or the toolbar's leave-handler behavior), that's the moment to edit this file — not before.
+  </div>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

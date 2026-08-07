@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CODING_STANDARDS.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.amber { border-left-color:var(--amber); }
+  .note.red { border-left-color:var(--red); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  .tag.dup { background:rgba(251,191,36,.15); color:var(--amber); }
+  .tag.stale { background:rgba(248,113,113,.15); color:var(--red); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/CODING_STANDARDS.md</h1>
+    <p>The designated "read this first" master file — single source of truth for file size, App.tsx orchestration, modal sizing, naming, service layer, launchers, and the final-build checklist. 22 sections, 1,244 lines.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">1,244</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--green)">2026-08-07</b><span>last edited</span></div>
+    <div class="stat"><b style="color:var(--green)">20</b><span>sections fine</span></div>
+    <div class="stat"><b style="color:var(--amber)">1</b><span>open item</span></div>
+  </div>
+
+  <div class="note amber">
+    <strong>Overall call:</strong> keep it — it's the file 10 rows in <code>cursor-patterns/INDEX.md</code>'s keyword table point straight at, and most sections are solid, timeless reference material. Two real fixes landed 2026-08-07: <b>Entry File as Orchestrator</b> was React-only wording for a language-agnostic rule, and <b>Related Pattern Files</b> pointed at archived files while omitting the ones everyone actually uses. One earlier finding (<b>Windows: Hidden Launchers</b>) turned out to be wrong on closer reading — corrected below, no change made. Only the <b>modal-sizing picklist</b> is still an open question, pending Chase's call.
+  </div>
+
+  <h2>Section-by-section</h2>
+  <table>
+    <tr><th>Section</th><th>What it does</th><th>Status</th></tr>
+    <tr><td><b>Quick Reference Card</b> (9 rules)</td><td>File size, App.tsx orchestrator, modal sizing, service layer, state extraction, preserve behavior, Display scaling, grep-before-adding, document the lesson.</td><td><span class="tag dup">Duplicate (intentional)</span> — 5 of these 9 overlap root <code>AGENTS.md</code>'s "most violated rules" almost verbatim. The numbers still agree (800/700 line caps, 5+ useState, etc.), so this reads as the intended rung-4-thin / rung-5-detail split, not accidental drift — but it's the kind of duplication that goes stale silently if only one side gets edited.</td></tr>
+    <tr><td><b>Electron Shell: Display Scaling</b></td><td>Required-deliverables list, points to <code>electron-per-monitor-display-scaling.md</code> and the Calendar 2.0 exemplar.</td><td><span class="tag fine">Fine</span> — cross-references verified, consistent with the dedicated file.</td></tr>
+    <tr><td><b>Windows: Hidden Launchers</b> (.bat + Node spawn)</td><td>~70 lines: three launch mechanisms (per-app .bat, Node <code>child_process.spawn</code>, Dashboard's own launcher), a spawn-options table, debug env vars, a new-app checklist.</td><td><span class="tag fine">Fine — correction</span> — originally flagged this as a competing duplicate of <code>App Dashboard/docs/LAUNCHER.md</code>. Wrong: <code>LAUNCHER.md</code> itself says outright, <i>"Canonical rules: <code>cursor-patterns/CODING_STANDARDS.md</code> → Windows: Hidden Launchers"</i> — it explicitly defers here for the spawn-visibility mechanics and only adds App-Dashboard-specific detail (ports, <code>apps.json</code>, Caddy routing) that doesn't belong in a cross-repo standards file. This section is the canonical source, correctly deferred to. No move needed.</td></tr>
+    <tr><td><b>Development Phases</b></td><td>Rough Draft / Polish / Final Build — what quality bar applies at each stage.</td><td><span class="tag fine">Fine</span> — generic, timeless, no dead references.</td></tr>
+    <tr><td><b>File Size Enforcement</b></td><td>Hard limits table (800/700/500+50/100+ line triggers), before-adding checklist, mandatory-approval conditions, extraction destination table, after-violation protocol.</td><td><span class="tag fine">Fine</span> — numbers match <code>AGENTS.md</code> exactly (800 hard cap, 700 extract line). This is the deep-dive the thin AGENTS.md rule is supposed to have.</td></tr>
+    <tr><td><b>Grep Before Adding</b></td><td>The core "don't build a second implementation" rule — 60-second grep checklist, what counts as "extending" vs "parallel," worked examples of what parallel mechanisms look like.</td><td><span class="tag fine">Fine</span> — this is genuinely one of the best-written sections in the whole folder; concrete, example-driven, matches <code>AGENTS.md</code> rule 4.</td></tr>
+    <tr><td><b>Document the Lesson</b></td><td>When and how to write a <code>docs/&lt;SUBSYSTEM&gt;_INTEGRATION.md</code> after a focused refactor. 5 required sections, exemplar named (Macro App <code>BROWSER_TAB_INTEGRATION.md</code>).</td><td><span class="tag fine">Fine</span> — exemplar path exists. Matches AGENTS.md § "The most violated rules" #9 territory.</td></tr>
+    <tr><td><b>Entry File as Orchestrator</b> <span style="color:var(--green)">(fixed 2026-08-07)</span></td><td>Responsibilities list, correct/incorrect examples, growth-handling steps.</td><td><span class="tag fine">Fixed</span> — was titled "App.tsx as Orchestrator" and only gave a React example, which undersold the rule: it's the entry file in any language (Chase's example: <code>main.py</code>, with <code>main()</code> as the orchestrator). Renamed, generalized, and given a matching Python example alongside the React one.</td></tr>
+    <tr><td><b>File and Module Organization</b></td><td>React/TS layout tree, Python module layout, "should I create a new file" decision tree, proactive-splitting guidance.</td><td><span class="tag fine">Fine</span> — generic structural guidance, still matches what apps actually look like.</td></tr>
+    <tr><td><b>Core Principles</b></td><td>DRY, Single Responsibility, Keep It Simple, Fail Fast (guard clauses), Preserve Existing Behavior.</td><td><span class="tag fine">Fine</span> — timeless.</td></tr>
+    <tr><td><b>Naming Conventions</b></td><td>Python / TypeScript / file-naming / React state-and-handler naming tables.</td><td><span class="tag fine">Fine</span>.</td></tr>
+    <tr><td><b>Function Guidelines</b></td><td>50-line soft cap, 100-line hard cap, 1–3 ideal params.</td><td><span class="tag fine">Fine</span>.</td></tr>
+    <tr><td><b>React Patterns</b> (hook extraction, naming, service layer, import order)</td><td>Condensed version of what <code>react-patterns.md</code> covers in full.</td><td><span class="tag dup">Duplicate (by design)</span> — matches <code>react-patterns.md</code>'s numbers (5+ useState, 300 lines). Consistent, not contradictory.</td></tr>
+    <tr><td><b>Modal Pattern</b></td><td>Sizing table (<code>max-w-md</code>/<code>lg</code>/<code>xl</code>), correct-modal code example, no-backdrop-dismiss rule.</td><td><span class="tag dup">Open question</span> — the no-backdrop-dismiss rule is settled (Chase confirmed he cares about it, it matches AGENTS.md rule 5). The specific width picklist is not — Chase questioned why a modal's width should be prescribed at all when content varies. Pending his call: keep as a hard guardrail (it exists because modals kept ballooning to <code>max-w-3xl</code>+ and looking broken) or loosen to "avoid these known-bad values" without a hard number.</td></tr>
+    <tr><td><b>File Headers</b></td><td>Short TS example inline; points to <code>file-headers.md</code> for the full template.</td><td><span class="tag fine">Fine</span>.</td></tr>
+    <tr><td><b>Input Validation</b></td><td>What to check at boundaries (existence/type/format/range), Python example, response-message good/bad examples.</td><td><span class="tag fine">Fine</span>.</td></tr>
+    <tr><td><b>API Response Shape</b></td><td><code>{ success, error?, data?, logs? }</code> contract + a response-helper pattern.</td><td><span class="tag fine">Fine</span> — matches <code>react-patterns.md</code> and app-scaffold templates in <code>INIT_NEW_APP.md</code>.</td></tr>
+    <tr><td><b>Error Handling</b> / <b>Logging</b> / <b>Anti-Patterns to Avoid</b></td><td>Condensed do/don't examples; full catalog lives in <code>anti-patterns.md</code>.</td><td><span class="tag fine">Fine</span> — correctly says "see <code>anti-patterns.md</code> for full examples."</td></tr>
+    <tr><td><b>Secrets & Configuration</b></td><td>Never-commit list, env var examples, <code>.gitignore</code> essentials.</td><td><span class="tag fine">Fine</span>.</td></tr>
+    <tr><td><b>Final Build Checklist</b> (9/10 Quality)</td><td>8-category checklist: tests, env config, React state, Python CLI, docs, error handling, API consistency, quality pass.</td><td><span class="tag fine">Fine</span> — condensed version; full version is <code>refactoring-checklist.md</code> Phase 6.</td></tr>
+    <tr><td><b>When to Break the Rules</b></td><td>Exception table + the "will I understand this faster in 6 months" readability test.</td><td><span class="tag fine">Fine</span> — good judgment-calibration section, nothing to verify against code.</td></tr>
+    <tr><td><b>Related Pattern Files</b> <span style="color:var(--green)">(fixed 2026-08-07)</span></td><td>Table of "read these when relevant" pointers to the other files in the folder.</td><td><span class="tag fine">Fixed</span> — dropped <code>APP_BOOTSTRAP_TEMPLATE.md</code>, <code>logging-standards.md</code>, <code>add-a-line-change-a-sign.md</code>, <code>animation-frame-debug-tool.md</code> (all archived), and <code>file-size-enforcement.md</code> (redundant — its content is already in this same file, above). Added <code>INIT_NEW_APP.md</code> and <code>dwell-and-head-mouse.md</code>, the two most-used files that were missing entirely.</td></tr>
+    <tr><td><b>Workflow Contract</b></td><td>Plan → Implement → Verify → Writeback loop for meaningful changes.</td><td><span class="tag fine">Fine</span>.</td></tr>
+  </table>
+
+  <h2>What's still open</h2>
+  <div class="note">
+    <b>Modal sizing picklist:</b> Chase's call pending — strict guardrail vs. loosened guidance. No-backdrop-dismiss stays either way. See the explanation in chat for what the rule is actually for.
+  </div>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

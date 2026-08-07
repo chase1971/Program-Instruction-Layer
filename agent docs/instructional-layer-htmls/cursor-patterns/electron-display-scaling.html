@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>electron-per-monitor-display-scaling.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.5rem,4.2vw,2.05rem); line-height:1.15; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/electron-per-monitor-display-scaling.md</h1>
+    <p>Spec for every Electron app's title-bar "Display" button and slider scaling. 267 lines. As of 2026-08-07, split into a required half (manual Display button/slider) and an optional half (automatic per-monitor memory).</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">267</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--green)">2026-08-07</b><span>last touched</span></div>
+    <div class="stat"><b style="color:var(--green)">Required</b><span>manual Display button</span></div>
+    <div class="stat"><b style="color:var(--amber)">Optional</b><span>per-monitor auto-memory</span></div>
+  </div>
+
+  <div class="note amber">
+    <strong>2026-08-07 policy change:</strong> Chase reported that in Macro App — the exemplar for the per-monitor half of this spec — moving the window between his TV and secondary monitor doesn't restore each monitor's own remembered scale the way it's supposed to. He wasn't getting the one thing that half of the feature is for (tune each monitor once, never re-adjust). Rather than debug it, he chose to downgrade: the manual Display button + slider stays required for every Electron app (it fixes a real, confirmed clipping bug), but automatic per-monitor detection/memory (Phase 3 in the checklist below) is now optional — build it only if he specifically asks. Physically different monitors can't be made to "look the same" through zoom alone regardless of whether the memory works, which he'd already reasoned through himself.
+  </div>
+
+  <h2>Section-by-section</h2>
+  <table>
+    <tr><th>Section</th><th>What it does</th><th>Status</th></tr>
+    <tr><td><b>Policy (one line)</b></td><td>The one-sentence summary: scale frame + transform + Display button (required); per-monitor storage + main-process IPC (optional).</td><td><span class="tag fine">Updated 2026-08-07</span></td></tr>
+    <tr><td><b>Problem this solves</b></td><td>Explains the actual bug this spec exists to prevent: at high Windows display scaling (225%), UI clips with no scroll because layout stays full-size while the window shrinks.</td><td><span class="tag fine">Fine</span> — names a concrete failure mode, not an abstract preference.</td></tr>
+    <tr><td><b>Do NOT use</b></td><td>Three rejected approaches (CSS <code>zoom</code>, auto-scale on startup, long DPI preset lists) with why each fails.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Architecture</b></td><td>ASCII diagram of the IPC → renderer → UI flow, plus the exact scale-math formula (<code>transform: scale(z)</code> with inverse vw/vh).</td><td><span class="tag fine">Fine</span> — concrete enough to implement from directly.</td></tr>
+    <tr><td><b>Per-app constants</b></td><td>Table of what changes per new app: <code>STORAGE_KEY</code> pattern, portal ids, modal path, button label.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Files to create or port</b></td><td>9-row table naming every file to copy from the Calendar 2.0 exemplar, with its purpose.</td><td><span class="tag fine">Fine</span> — this is a real port checklist, not a description.</td></tr>
+    <tr><td><b>Electron main (required IPC)</b></td><td>Exact IPC contract: <code>get-active-monitor-info</code> invoke, <code>active-display-changed</code> push event, which main-process events to subscribe to.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Preload bridge</b></td><td>The literal preload.js code to bridge those two IPC calls.</td><td><span class="tag fine">Fine</span> — copy-pasteable.</td></tr>
+    <tr><td><b>Renderer bootstrap</b></td><td>Where <code>initPerMonitorDisplayZoom()</code> and <code>initManualZoom()</code> must be called — before <code>createRoot</code>.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Embedded browser + modal freeze snapshots</b> (required warning)</td><td>Explains why apps that embed a native browser under a modal must use <code>freezeForModal({ snapshot: false })</code> — a frozen PNG snapshot doesn't rescale, so it visibly "breaks" the moment Display scale changes.</td><td><span class="tag fine">Fine</span> — names the exact exemplar files in Macro App's codebase; this is the section that would be easiest to get subtly wrong, and it's the most concrete one in the file.</td></tr>
+    <tr><td><b>Display modal UX</b></td><td>Slider range (35–100%), save-on-commit behavior, Fit-to-window, no backdrop dismiss, minimum button/slider sizes.</td><td><span class="tag fine">Fine</span> — matches the dwell-accessibility rule from <code>dwell-and-head-mouse.md</code> and <code>modal-pattern.md</code>.</td></tr>
+    <tr><td><b>Init checklist</b> (5 phases)</td><td>Mechanics → UI/storage → Per-monitor Electron → Embedded browser → Verify, each with checkboxes.</td><td><span class="tag fine">Updated</span> — Phase 3 (per-monitor Electron IPC) now marked optional/skip-unless-asked; Phase 5's "move to second monitor" verification step now only applies if Phase 3 was built, and explicitly calls out that this is the verification step that was skipped when Macro App's version shipped.</td></tr>
+    <tr><td><b>New app bootstrap</b></td><td>5-step summary of what <code>INIT_NEW_APP.md</code> should do when scaffolding an Electron app.</td><td><span class="tag fine">Updated</span> — storage key now defaults to a single global value (<code>{appSlug}-display-scale</code>); the per-monitor key is only used if Phase 3 is explicitly being built. Matches the corresponding fix in <code>INIT_NEW_APP.md</code> Step 4b.</td></tr>
+    <tr><td><b>Adding to an existing Electron app</b></td><td>4-step retrofit guidance, distinct from new-app bootstrap.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Known limitations</b></td><td>3 honest limitations: monitor = display under window center (not span), Vite-only dev is single-scale until Electron runs, IPC changes need a full restart.</td><td><span class="tag fine">Fine</span> — the kind of honesty that keeps a spec trustworthy.</td></tr>
+    <tr><td><b>Summary for agents</b></td><td>7-point compressed recap of the whole file.</td><td><span class="tag fine">Fine</span></td></tr>
+  </table>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

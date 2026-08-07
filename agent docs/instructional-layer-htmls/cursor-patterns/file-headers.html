@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>file-headers.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  .tag.minor { background:rgba(251,191,36,.15); color:var(--amber); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/file-headers.md</h1>
+    <p>Header format templates for TypeScript/JavaScript and Python files — what goes at the top of a file so AI (and Chase) can understand it without reading the whole thing. 400 lines.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">400</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--muted)">2026-01-12</b><span>content dated internally</span></div>
+    <div class="stat"><b style="color:var(--green)">10</b><span>sections, all fine</span></div>
+    <div class="stat"><b style="color:var(--amber)">1</b><span>minor date note</span></div>
+  </div>
+
+  <div class="note green">
+    <strong>Overall call:</strong> fine as-is. This is templates and examples, not claims about what currently exists in the codebase — the kind of content that ages well because there's nothing in it to go stale.
+  </div>
+
+  <h2>Section-by-section</h2>
+  <table>
+    <tr><th>Section</th><th>What it does</th><th>Status</th></tr>
+    <tr><td><b>Why File Headers Matter</b></td><td>5-point rationale: prevent breaking changes, guide refactoring, speed onboarding, document dependencies, track verification dates.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Standard Header (TypeScript) — long form</b></td><td>Full template for utilities/services/hooks: MODULE ROLE, WHY THIS EXISTS, PUBLIC API, INTERNAL COMPONENTS, INPUTS/OUTPUTS, SIDE EFFECTS, DEPENDENCIES, INVARIANTS, SAFE TO MODIFY, FRAGILE AREAS, CALL FLOW, LAST VERIFIED.</td><td><span class="tag fine">Fine</span> — this is the template <code>CODING_STANDARDS.md</code> and <code>react-patterns.md</code> both point back to.</td></tr>
+    <tr><td><b>Standard Header (TypeScript) — short form</b></td><td>Condensed version for React components: PURPOSE, LAST VERIFIED, SAFE TO MODIFY, FRAGILE.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Standard Header (Python)</b></td><td>Equivalent template using Python docstring conventions.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>When to Update Headers</b></td><td>Rules for when the "LAST VERIFIED" date should move, when "SAFE TO MODIFY" should grow, when "FRAGILE" should grow.</td><td><span class="tag fine">Fine</span> — this is the part that keeps headers from becoming write-once decoration.</td></tr>
+    <tr><td><b>Examples from Real Projects</b></td><td>3 worked examples (<code>useDrawerHover.ts</code>, <code>exportService.ts</code>, <code>Sidebar.tsx</code>) with dates from 2026-01-10 to 2026-01-20.</td><td><span class="tag minor">Minor note</span> — these are illustrative snapshots of a real past refactor, not live claims about current files. They still work as teaching examples even though the specific files may have moved on since.</td></tr>
+    <tr><td><b>Common Mistakes</b></td><td>Too-vague vs specific-and-useful, no-risk-context vs clear-risk-warning, paired ❌/✅ examples.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Template Checklist</b></td><td>9-item checklist to run through when writing a header.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Benefits of Good Headers</b></td><td>Separate benefit lists for AI, developers, and teams.</td><td><span class="tag fine">Fine</span> — rationale, not a claim to verify.</td></tr>
+    <tr><td><b>Related Patterns</b></td><td>Links to <code>refactoring-checklist.md</code>, <code>CODING_STANDARDS.md</code>, <code>anti-patterns.md</code>.</td><td><span class="tag fine">Fine</span> — all three targets exist and are current.</td></tr>
+  </table>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

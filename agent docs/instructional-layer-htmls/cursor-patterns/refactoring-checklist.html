@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>refactoring-checklist.md Breakdown</title>
+<style>
+  :root { --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4; --muted:#94a3b8;
+    --border:#334155; --blue:#38bdf8; --green:#34d399; --amber:#fbbf24; --red:#f87171;
+    --purple:#a78bfa; --radius:14px; --font:"Segoe UI",system-ui,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1100px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; margin-right:.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.6rem,4.5vw,2.2rem); line-height:1.1; letter-spacing:-.02em; font-family:Consolas,monospace; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.6rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.76rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note.green { border-left-color:var(--green); }
+  .note strong { color:var(--text); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.2rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.68rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  .tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    padding:.15rem .5rem; border-radius:999px; white-space:nowrap; }
+  .tag.fine { background:rgba(52,211,153,.15); color:var(--green); }
+  .tag.dup { background:rgba(251,191,36,.15); color:var(--amber); }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../cursor-patterns-review.html">&larr;&nbsp; Cursor Patterns Review</a>
+  <a class="back" href="../../index.html">All pages</a>
+
+  <header>
+    <h1>cursor-patterns/refactoring-checklist.md</h1>
+    <p>The step-by-step checklist for "refactor this," "clean it up," and "final build" requests. 604 lines across 7 phases (0–6). No dates or file paths inside it to go stale — it's a process document, not a claims document.</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">604</b><span>lines</span></div>
+    <div class="stat"><b style="color:var(--muted)">2026-06-04</b><span>unchanged since</span></div>
+    <div class="stat"><b style="color:var(--green)">7</b><span>phases, all fine</span></div>
+    <div class="stat"><b style="color:var(--amber)">1</b><span>intentional overlap</span></div>
+  </div>
+
+  <div class="note green">
+    <strong>Overall call:</strong> fine as-is. Checklists don't rot the way reference docs do — there's no file path or timing value in here to drift. The only thing worth knowing is it overlaps <code>CODING_STANDARDS.md</code>'s Final Build Checklist on purpose (see below).
+  </div>
+
+  <h2>Phase-by-phase</h2>
+  <table>
+    <tr><th>Phase</th><th>What it covers</th><th>Status</th></tr>
+    <tr><td><b>Trigger routing</b></td><td>Table mapping what Chase says ("refactor," "final build," "prepare for production") to which phases apply.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Phase 0 — Before Starting</b></td><td>Baseline: run tests, note current behavior, define in-scope/out-of-scope, checkpoint with a git commit first.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Phase 1 — Quick Wins</b></td><td>Dead code removal, file-header requirements on new files, a secrets check, magic-number extraction, naming fixes, error-handling consistency.</td><td><span class="tag fine">Fine</span> — this is the "always do" tier.</td></tr>
+    <tr><td><b>Phase 2 — Structure</b></td><td>Splitting files over 500 lines, extracting duplicate code, simplifying 30+ line functions, circular-import checks, test coverage, parameter reduction (dataclass pattern), input validation at boundaries, API response consistency.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Phase 3 — Patterns</b></td><td>Checking against existing <code>cursor-patterns/</code> content before inventing something new, state consolidation, module architecture consistency, error propagation, a performance pass.</td><td><span class="tag fine">Fine</span> — explicitly loops back to "is there a pattern here that should be used," reinforcing grep-before-adding.</td></tr>
+    <tr><td><b>Phase 4 — Documentation</b></td><td>Missing docs, outdated comments/docstrings, breaking-change documentation.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Phase 5 — Verification</b></td><td>Definition of "done": tests pass, no new lint errors, runs clean, original functionality intact.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Refactoring Report Template</b></td><td>The summary format to hand back after a refactor pass — changes made, before/after quality counts, remaining tech debt, new patterns created.</td><td><span class="tag fine">Fine</span></td></tr>
+    <tr><td><b>Quick Reference table</b></td><td>18-row cheat sheet: category → what to look for → the fix.</td><td><span class="tag fine">Fine</span> — a fast lookup version of everything above it.</td></tr>
+    <tr><td><b>Phase 6 — Final Build</b> (9/10 Quality)</td><td>8 sub-sections: testing, environment config, React state management, Python CLI refactoring, documentation, error handling, API consistency, final verification — plus a separate report template.</td><td><span class="tag dup">Duplicate (by design)</span> — this covers the same ground as <code>CODING_STANDARDS.md</code>'s "Final Build Checklist" section, just in far more depth (worked code examples for each sub-phase vs. a condensed checklist there). Consistent, not contradictory — <code>CODING_STANDARDS.md</code> is explicitly the summary, this is the deep-dive.</td></tr>
+  </table>
+
+  <footer>Reviewed 2026-08-07. Snapshot, not a live check.</footer>
+</div>
+</body>
+</html>

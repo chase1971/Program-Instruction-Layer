@@ -33,8 +33,11 @@
     font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
   h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.grey { color:var(--muted); }
   .cardlist { display:flex; flex-direction:column; gap:.85rem; }
-  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
-    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card { display:block; text-decoration:none; color:inherit; background:var(--panel); border:1px solid var(--border);
+    border-left:5px solid var(--blue); border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  a.card:hover, a.card:focus { background:var(--panel2); border-color:var(--blue); outline:none; }
+  a.card .more { display:inline-block; margin-top:.7rem; font-size:.8rem; font-weight:800;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--blue); }
   .card.green { border-left-color:var(--green); }
   .card.amber { border-left-color:var(--amber); }
   .card.red { border-left-color:var(--red); }
@@ -74,41 +77,44 @@
 
   <div class="stats">
     <div class="stat"><b style="color:var(--blue)">17</b><span>markdown files reviewed</span></div>
-    <div class="stat"><b style="color:var(--green)">15</b><span>fine as-is</span></div>
-    <div class="stat"><b style="color:var(--amber)">2</b><span>need an update</span></div>
+    <div class="stat"><b style="color:var(--green)">16</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">1</b><span>open item</span></div>
     <div class="stat"><b style="color:var(--red)">0</b><span>need removal</span></div>
   </div>
 
   <div class="note">
-    <strong>Is it worth keeping?</strong> Yes. This isn't dead weight — <code>INDEX.md</code>'s keyword table routes ~14 different things Chase might say directly into this folder, and the two most-recently-touched files (<code>dwell-and-head-mouse.md</code>, <code>INIT_NEW_APP.md</code>) are genuinely well-maintained. The 7 short "archived" stub files aren't clutter either — every one of them points at a real file in <code>Archived markdowns/cursor-patterns/</code>, verified below. The real issue is narrower: the 1,244-line master file hasn't been touched since June and has drifted from the August restructure, and one file contradicts its own intro.
+    <strong>Is it worth keeping?</strong> Yes. This isn't dead weight — <code>INDEX.md</code>'s keyword table routes ~14 different things Chase might say directly into this folder, and the two most-recently-touched files (<code>dwell-and-head-mouse.md</code>, <code>INIT_NEW_APP.md</code>) are genuinely well-maintained. The 7 short "archived" stub files aren't clutter either — every one of them points at a real file in <code>Archived markdowns/cursor-patterns/</code>, verified below. Updated 2026-08-07: <code>CODING_STANDARDS.md</code>'s stale references and React-only orchestrator wording are fixed; <code>accessibility-patterns.md</code> was gutted from 606 to 21 lines at Chase's direction, keeping only the modal rule and the real dwell recipes; the Electron Display-scaling spec was downgraded from required to optional for its per-monitor half. Only the modal-sizing picklist is still an open question.
   </div>
 
-  <h2 class="amber">Needs an update (2)</h2>
+  <h2 class="amber">Recently changed (2 of 2 addressed)</h2>
   <div class="cardlist">
 
-    <div class="card amber">
+    <a class="card amber" href="cursor-patterns/coding-standards.html">
       <div class="card-top">
         <div class="title">CODING_STANDARDS.md</div>
         <span class="badge amber">Needs update</span>
       </div>
-      <div class="meta">Created 2026-06-04 · last modified 2026-06-04 (untouched 2+ months) · 1,244 lines</div>
-      <div class="fn">The designated master file — "read this first," single source of truth for file size, App.tsx orchestration, modal sizing, naming, service layer, launchers, and the final-build checklist.</div>
-      <div class="finding"><b>Three concrete findings:</b>
-        <br>1. Its own <b>"Related Pattern Files" table is stale</b> — lists <code>APP_BOOTSTRAP_TEMPLATE.md</code> as if it's a live file (it was archived and superseded by <code>INIT_NEW_APP.md</code> months ago) and still lists <code>logging-standards.md</code> as primary reading (also now a 5-line archive stub). It never mentions <code>INIT_NEW_APP.md</code>, <code>dwell-and-head-mouse.md</code>, or <code>accessibility-patterns.md</code> at all, despite those being the three most-actively-used files in the folder today.
-        <br>2. Its <b>"Windows: Hidden Launchers" section</b> (~70 lines of its own spawn-mechanics detail) is a <i>third</i> copy of the launcher rule — root <code>AGENTS.md</code> now points that rule's detail at <code>School Scrips/App Dashboard/docs/LAUNCHER.md</code> instead, not here. Two different "authoritative detail" pointers for the same rule is exactly the "same topic, two homes" pattern <code>INSTRUCTION_LAYER_AUDIT.md</code> §2a exists to catch — and this copy is the one nobody's been keeping in sync since June.
-        <br>3. The top 5 "Quick Reference" rules (file size, orchestrator, grep-before-adding, etc.) duplicate root <code>AGENTS.md</code>'s "most violated rules" almost verbatim. That's an intentional rung-4/rung-5 split and the numbers still agree — not broken, just worth knowing it's duplicated on purpose, not by accident.
+      <div class="meta">Created 2026-06-04 · last edited 2026-08-07 · 1,244 lines</div>
+      <div class="fn">The designated master file — "read this first," single source of truth for file size, entry-file orchestration, modal sizing, naming, service layer, launchers, and the final-build checklist.</div>
+      <div class="finding"><b>Status after Chase's review pass:</b>
+        <br>1. <b>Fixed:</b> "App.tsx as Orchestrator" was React-only wording for a language-agnostic rule (Chase's example: <code>main.py</code> / <code>main()</code>). Renamed to "Entry File as Orchestrator," generalized, Python example added alongside the React one.
+        <br>2. <b>Corrected, not a bug:</b> originally flagged the "Windows: Hidden Launchers" section as competing with <code>App Dashboard/docs/LAUNCHER.md</code>. Wrong — <code>LAUNCHER.md</code> itself names this section as the canonical rules and only adds App-Dashboard-specific detail. No move needed.
+        <br>3. <b>Fixed:</b> the <b>"Related Pattern Files" table</b> referenced an archived file as current and omitted the three most-used files in the folder. Rewritten.
+        <br>4. <b>Pending Chase's call:</b> the modal-sizing picklist (<code>max-w-md</code> etc.) — keep as a hard guardrail, or loosen since content varies. No-backdrop-dismiss stays regardless.
       </div>
-    </div>
+      <div class="more">Full section-by-section breakdown &rarr;</div>
+    </a>
 
-    <div class="card amber">
+    <a class="card green" href="cursor-patterns/accessibility-patterns.html">
       <div class="card-top">
         <div class="title">accessibility-patterns.md</div>
-        <span class="badge amber">Needs update</span>
+        <span class="badge green">Fixed - gutted</span>
       </div>
-      <div class="meta">Created 2026-06-04 · last modified 2026-08-02 · 606 lines</div>
-      <div class="fn">React-side dwell-mouse / keyboard / screen-reader patterns.</div>
-      <div class="finding"><b>Finding:</b> the file <i>already</i> got a partial fix on 2026-08-02 — a loud banner was added at the very top correctly disclaiming every timing value below as "illustrative, not shipped" and flagging the <code>useDrawerHover</code> hook as reference code that was never implemented, with a pointer to the real source of truth (<code>dwell-and-head-mouse.md</code>). But the fix stopped at the banner. ~500 lines later, a <b>"Timing Guidelines" section still presents the same fabricated 500ms figures as "Recommended Values"</b> and a "Testing Accessibility" checklist references them as if normative, with no repeated disclaimer nearby. A reader who jumps past the intro — plausible in a 606-line file — hits fiction presented as fact a second time. Fix: either strip the timing tables/checklist entirely (the code-shape patterns — lock period, hover delay, ARIA — are still useful as illustration) or repeat the disclaimer at each reintroduction of a number.</div>
-    </div>
+      <div class="meta">Created 2026-06-04 · last edited 2026-08-07 · 606 to 21 lines</div>
+      <div class="fn">Was React-side dwell-mouse / keyboard / screen-reader patterns; now a short tombstone.</div>
+      <div class="finding"><b>Resolved 2026-08-07, further than originally proposed:</b> the 2026-08-02 partial fix (a disclaimer banner) didn't stop the "Timing Guidelines" section 500 lines later from restating the same fake numbers as fact. Rather than patch that one section, Chase reviewed the file section-by-section and had almost all of it removed &mdash; most of it turned out to be generic keyboard-navigation and screen-reader guidance for accessibility needs he doesn't have, not his actual setup (dwell/head-mouse). Kept: the no-backdrop-dismiss modal rule (confirmed still wanted) and links to the real dwell recipes. Everything else &mdash; lock period, hover delay, the never-implemented <code>useDrawerHover</code> hook, timing tables, debugging aids, keyboard nav, screen readers, testing checklist, external resources &mdash; deleted. <code>dwell-and-head-mouse.md</code> updated in three places to stop referencing the removed content.</div>
+      <div class="more">Full section-by-section breakdown &rarr;</div>
+    </a>
 
   </div>
 
@@ -116,7 +122,7 @@
   <table>
     <tr><th>File</th><th>Created</th><th>Modified</th><th>Lines</th><th>Why it's fine</th></tr>
     <tr>
-      <td><code>dwell-and-head-mouse.md</code></td><td>2026-07-31</td><td>2026-08-02</td><td>175</td>
+      <td><a href="cursor-patterns/dwell-and-head-mouse.html"><code>dwell-and-head-mouse.md</code></a></td><td>2026-07-31</td><td>2026-08-02</td><td>175</td>
       <td>The best-maintained file in the folder. Explicitly documents its own open questions ("Status: unverified" on the cross-layer coupling, an "Unresolved (2026-08-01)" note on leave-handlers) instead of asserting false confidence — the model other files here should follow.</td>
     </tr>
     <tr>
@@ -124,23 +130,23 @@
       <td>Recently touched and detailed — Step 4b (Display scaling) and 4c (Electron version pinning for embedded-browser apps) are both current and cross-reference correctly. Close to the 800-line code cap, but it's a doc, not code — worth a light eye if it keeps growing.</td>
     </tr>
     <tr>
-      <td><code>electron-per-monitor-display-scaling.md</code></td><td>2026-06-04</td><td>2026-08-01</td><td>267</td>
-      <td>Cross-references <code>INIT_NEW_APP.md</code> and <code>CODING_STANDARDS.md</code> correctly in both directions; exemplar paths (Calendar 2.0, Macro App) verified to exist.</td>
+      <td><a href="cursor-patterns/electron-display-scaling.html"><code>electron-per-monitor-display-scaling.md</code></a></td><td>2026-06-04</td><td>2026-08-07</td><td>267</td>
+      <td><b>Policy changed 2026-08-07:</b> per-monitor auto-memory downgraded from required to optional after Chase reported it wasn't reliably working even in Macro App. Manual Display button/slider stays required. Cross-references with <code>INIT_NEW_APP.md</code> and <code>CODING_STANDARDS.md</code> updated to match.</td>
     </tr>
     <tr>
       <td><code>react-patterns.md</code></td><td>2026-06-04</td><td>2026-08-01*</td><td>615</td>
       <td>Generic, timeless reference content (hook extraction, service layer, import order). Numbers agree with <code>CODING_STANDARDS.md</code> (5+ useState / 300 lines). *Git date is a rename-sweep touch — the file's own "Last Updated: 2026-01-12" footer is more honest about when the content itself last changed.</td>
     </tr>
     <tr>
-      <td><code>file-headers.md</code></td><td>2026-06-04</td><td>2026-08-01*</td><td>400</td>
+      <td><a href="cursor-patterns/file-headers.html"><code>file-headers.md</code></a></td><td>2026-06-04</td><td>2026-08-01*</td><td>400</td>
       <td>Header templates — timeless by nature, low staleness risk. Same rename-sweep caveat as <code>react-patterns.md</code>.</td>
     </tr>
     <tr>
-      <td><code>refactoring-checklist.md</code></td><td>2026-06-04</td><td>2026-06-04</td><td>604</td>
+      <td><a href="cursor-patterns/refactoring-checklist.html"><code>refactoring-checklist.md</code></a></td><td>2026-06-04</td><td>2026-06-04</td><td>604</td>
       <td>Generic checklist, no dates or broken references to go stale. Some overlap with <code>CODING_STANDARDS.md</code> (file size, API shape) but different format/use case — a checklist to run through, not a reference to look up.</td>
     </tr>
     <tr>
-      <td><code>anti-patterns.md</code></td><td>2026-06-04</td><td>2026-06-04</td><td>302</td>
+      <td><a href="cursor-patterns/anti-patterns.html"><code>anti-patterns.md</code></a></td><td>2026-06-04</td><td>2026-06-04</td><td>302</td>
       <td>Generic anti-pattern catalog (Python/threading/state). No dates, no dead references — timeless by design.</td>
     </tr>
   </table>
