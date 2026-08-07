@@ -306,7 +306,7 @@ For `functional-tool`:
 - All API calls through service layer (no inline fetch).
 - Validate input at API/CLI/function boundaries.
 - File path handling: use pathlib (Python) or path.join (Node). Never hardcode "C:\".
-- If Electron: per-monitor Display scaling is required — cursor-patterns/electron-per-monitor-display-scaling.md; exemplar Calendar 2.0.
+- If Electron: Display scaling (manual button + slider) is required, per-monitor auto-memory is optional — cursor-patterns/electron-per-monitor-display-scaling.md; exemplar Calendar 2.0.
 ```
 
 For `electron-overlay`:
