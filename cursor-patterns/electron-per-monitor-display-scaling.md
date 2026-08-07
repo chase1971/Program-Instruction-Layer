@@ -249,19 +249,21 @@ Snapshot freeze is fine for **non-scaling** shells or modals where scale cannot 
 When `INIT_NEW_APP.md` scaffolds any variant that includes **`electron/`** + a React (or HTML) renderer:
 
 1. Read this file.
-2. Port files from Calendar 2.0 exemplar (table above).
-3. Set `STORAGE_KEY` to `{appSlug}-display-by-monitor`.
+2. Port files from Calendar 2.0 exemplar (table above), skipping the per-monitor IPC files
+   unless Chase asks for Phase 3.
+3. Set `STORAGE_KEY` to `{appSlug}-display-scale` (or `{appSlug}-display-by-monitor` only if
+   building Phase 3).
 4. Wire **Display** into the app’s title bar / shell.
-5. Add to the app’s `CLAUDE.md`: “Electron shell includes per-monitor Display scaling — see cursor-patterns/electron-per-monitor-display-scaling.md.”
+5. Add to the app’s `CLAUDE.md`: “Electron shell includes Display scaling — see cursor-patterns/electron-per-monitor-display-scaling.md.”
 
 ---
 
 ## Adding to an existing Electron app
 
-1. Implement Phases 1–3 above.
+1. Implement Phases 1–2 above (Phase 3 only if Chase asks).
 2. Do not remove user’s layout — only add frame + button.
 3. Confirm all `createPortal` targets live inside moved portal nodes.
-4. Report storage key and that Electron restart is needed after IPC changes.
+4. Report storage key and, if Phase 3 was built, that Electron restart is needed after IPC changes.
 
 ---
 
