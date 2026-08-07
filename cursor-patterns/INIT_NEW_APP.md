@@ -41,29 +41,24 @@ Use the variant-specific structure from the [Variants](#variants) section below.
 Use the templates from the [File Templates](#file-templates) section. Fill in the
 `[bracketed]` placeholders with the actual app name, variant, purpose, etc.
 
-### Step 4b: Electron shell — Display scaling (REQUIRED; per-monitor memory is optional)
+### Step 4b: Electron shell — Display scale button (REQUIRED)
 
 If the app includes an **Electron** desktop shell (`electron/main.js` or `electron-app/`
-+ a React/Vite or HTML renderer), you **must** implement the manual Display scale button
-**before** calling the app "done" for first scaffold. Automatic **per-monitor** memory
-(detecting which monitor and auto-restoring a distinct remembered scale) is **optional** —
-build it only if Chase asks. See `electron-per-monitor-display-scaling.md`'s 2026-08-07 note
-for why: even Macro App's version of it wasn't reliably saving him a re-adjustment.
++ a React/Vite or HTML renderer), add a title-bar **Display** button opening a slider modal
+(35–100%, Fit to window, Done; no backdrop dismiss) that scales the whole app via
+`#app-scale-frame` + `transform: scale` — never CSS `zoom` on `#root`, never auto-scale on
+load. **Exemplar: copy/adapt from `School Scrips/Calendar 2.0`.** Mention in the app's
+`CLAUDE.md` and `guidelines/Guidelines.md` that Display scaling is standard for this app.
 
-1. Read **`cursor-patterns/electron-per-monitor-display-scaling.md`** (full spec + checklist).
-2. **Exemplar:** copy/adapt from `School Scrips/Calendar 2.0` (see file table in that doc).
-3. Set `STORAGE_KEY` in `displayZoom.ts` to `{appSlug}-display-scale` (one global value —
-   only use `{appSlug}-display-by-monitor` if building the optional per-monitor Phase 3).
-4. Add a title-bar **Display** button opening a slider modal (35–100%, Fit to window, Done; no backdrop dismiss).
-5. Wire `initPerMonitorDisplayZoom()` + `initManualZoom()` in `main.tsx` before `createRoot`.
-6. **Optional (skip unless asked):** add IPC in main/preload (`get-active-monitor-info`, `active-display-changed`) for per-monitor auto-memory.
-7. Mention in the app’s `CLAUDE.md` and `guidelines/Guidelines.md` that Display scaling is standard for this app.
+**Embedded BrowserView:** If the app hides the browser and shows a **snapshot image** under
+modals, use **`freezeForModal({ snapshot: false })`** (default snapshot to off) — otherwise
+Display rescaling looks like the browser isn't updating.
 
-**Do not** use CSS `zoom` on `#root` or auto-scale on load. **Do** use `#app-scale-frame` + `transform: scale`.
+*(The old deep-dive spec for this, `electron-per-monitor-display-scaling.md`, was deleted
+2026-08-07 — its per-monitor auto-memory half never reliably worked, and Chase would rather
+rebuild from the Calendar 2.0 exemplar if this needs revisiting than maintain a doc for it.)*
 
-**Embedded BrowserView:** If the app hides the browser and shows a **snapshot image** under modals, use **`freezeForModal({ snapshot: false })`** (and default snapshot to off). Otherwise Display rescaling looks like the browser is not updating. See the “Embedded browser + modal freeze snapshots” section in `electron-per-monitor-display-scaling.md`.
-
-Skip the whole step only if Chase explicitly says the app is not Electron or opts out of Display scaling.
+Skip this step only if Chase explicitly says the app is not Electron or opts out of Display scaling.
 
 ### Step 4c: Embedded browser — pin Electron to Macro App (REQUIRED)
 
