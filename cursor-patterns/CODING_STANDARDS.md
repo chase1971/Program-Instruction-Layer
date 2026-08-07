@@ -451,18 +451,19 @@ They are the two halves of "the codebase remembers what we learned."
 
 ---
 
-## App.tsx as Orchestrator
+## Entry File as Orchestrator
 
-**App.tsx is an orchestrator, never an implementer.** Target: under 100 lines,
-ideally under 50.
+**The entry file is an orchestrator, never an implementer** — whatever it's called for the
+stack in use: `App.tsx` (React), `main.py` (Python), `index.js` (Node). Target: under 100
+lines, ideally under 50.
 
-### App.tsx Responsibilities
-- Render the right component based on view state
-- Manage high-level navigation/view state
-- Pass callbacks to child components
+### Entry File Responsibilities
+- Wire the pieces together and hand off to them
+- Own top-level state/mode if nothing else owns it (React: which view is active; Python:
+  which subcommand or mode was requested)
 - That's it.
 
-### Correct App.tsx
+### Correct App.tsx (React)
 ```typescript
 import MainMenu from '@/app/components/MainMenu';
 import Tutorial from '@/app/components/Tutorial';
@@ -479,20 +480,35 @@ export default function App() {
 }
 ```
 
-### What Does NOT Belong in App.tsx
-- Detailed UI components (buttons, forms, cards)
-- Business logic (calculations, validations, transformations)
-- Complex styling beyond container setup
-- API calls or data fetching
-- Animation logic
-- Form handling
-- Anything that could be extracted
+### Correct main.py (Python)
+```python
+from module_a import run_module_a
+from module_b import run_module_b
+from cli_args import parse_args
 
-### When App.tsx Grows Too Large
-1. Identify logical sections (menu, tutorial, practice modes, etc.)
-2. Extract each to its own component
-3. Import and conditionally render in App.tsx
-4. Pass necessary props and callbacks
+def main():
+    args = parse_args()
+    if args.mode == "a":
+        run_module_a(args)
+    else:
+        run_module_b(args)
+
+if __name__ == "__main__":
+    main()
+```
+
+### What Does NOT Belong in the Entry File
+- The actual work of any module — delegate to it
+- Business logic (calculations, validations, transformations)
+- Detailed UI components (buttons, forms, cards) — React specifically
+- API calls or data fetching
+- Anything that could be extracted into its own file or function
+
+### When the Entry File Grows Too Large
+1. Identify logical sections (menu, tutorial, module A, module B, etc.)
+2. Extract each to its own component / function / module
+3. Import and call or render from the entry file
+4. Pass necessary props / arguments
 
 ---
 
