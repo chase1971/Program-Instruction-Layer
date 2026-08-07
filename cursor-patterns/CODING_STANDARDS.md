@@ -45,9 +45,10 @@ deep-dives on specific patterns — this file references them when relevant.
 6. **Preserve existing behavior.** Don't refactor things you weren't asked to
    touch. Don't add "just in case" features.
 
-7. **Electron apps include per-monitor Display scaling.** Title-bar **Display**
-   button, `#app-scale-frame`, per-monitor `localStorage`, monitor IPC. See
-   [Electron Shell: Display Scaling](#electron-shell-display-scaling-required).
+7. **Electron apps include Display scaling.** Title-bar **Display** button,
+   `#app-scale-frame`, slider + Fit-to-window. (Per-monitor auto-memory is
+   optional, not required — build only if asked.) See
+   [Electron Shell: Display Scaling](#electron-shell-display-scaling).
 
 8. **Grep before adding any new mechanism.** Before creating a new hook,
    utility, service, IPC channel, log helper, state store, partition,
