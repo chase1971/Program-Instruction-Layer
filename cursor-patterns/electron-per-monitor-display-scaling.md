@@ -1,20 +1,35 @@
-# Electron Shell: Per-Monitor Display Scaling
+# Electron Shell: Display Scaling
 
-> **Required for every Electron desktop app** Chase builds (React/Vite renderer + `electron/` main/preload).
+> **Required for every Electron desktop app** Chase builds: the manual **Display** button +
+> slider + Fit-to-window, scaling the whole app via `#app-scale-frame`. This solves a
+> real, confirmed bug — UI clipping at high Windows display scaling — and Chase actively
+> uses it (open Display, drag slider until it looks right).
 >
-> **AI:** If you scaffold or work on any app with an Electron shell, implement this pattern unless Chase explicitly opts out. Read this file and copy/adapt from the **exemplar** below.
+> **Optional, not required: automatic per-monitor memory** — detecting which monitor the
+> window is on and auto-restoring a distinct remembered scale per monitor (Phase 3 below).
+> **Downgraded 2026-08-07** — Chase confirmed that even in Macro App, the exemplar for this
+> half of the spec, it isn't reliably saving him the manual re-adjustment it's meant to save,
+> and physically different monitors can't be made to "look the same" through zoom alone
+> regardless. Manual-only (one remembered scale, no per-monitor auto-switch) is a fully
+> legitimate implementation. Build Phase 3 only if Chase specifically asks for it.
+>
+> **AI:** Implement Phases 1–2 (manual Display button + slider) for every Electron shell.
+> Skip Phase 3 (automatic per-monitor detection/memory) unless asked. Read this file and
+> copy/adapt from the **exemplar** below.
 >
 > **Exemplars:**
 > - Calendar 2.0 — display scale only (`School Scrips/Calendar 2.0`)
 > - Macro App — display scale + embedded `BrowserView` / `WebContentsView` (`School Scrips/Macro App`)
 >
-> **Last verified:** 2026-05
+> **Last verified:** 2026-08-07
 
 ---
 
 ## Policy (one line)
 
-**Every Electron app gets:** `#app-scale-frame` + transform scale + per-monitor `localStorage` + title-bar **Display** button (slider + fit) + main-process monitor IPC.
+**Every Electron app gets:** `#app-scale-frame` + transform scale + title-bar **Display**
+button (slider + fit). **Optional:** per-monitor `localStorage` + main-process monitor IPC,
+so the remembered scale is per-monitor instead of one global value.
 
 ---
 
@@ -25,10 +40,10 @@ On Windows with high display scaling (e.g. 225%), UI can be **clipped** with no 
 | Requirement | Notes |
 |-------------|--------|
 | Scale the **whole app** | Real controls, not a bitmap shrink |
-| **Per-monitor memory** | Dragging between monitors restores each monitor’s last scale |
 | **Simple control** | **Display** button, slider 35–100%, **Fit to this window** |
 | **Accessibility** | Large targets; **no backdrop-click** to close Display modal |
 | Modals scale too | Portal roots inside `#app-scale-frame` |
+| *(Optional)* **Per-monitor memory** | Dragging between monitors restores each monitor's own last scale — build only if asked; see banner above |
 
 ---
 
