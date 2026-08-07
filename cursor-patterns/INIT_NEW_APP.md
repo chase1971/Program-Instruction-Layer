@@ -467,7 +467,8 @@ Before committing:
 
 ## Electron shell (if this app uses Electron)
 
-- Per-monitor **Display** scaling is required on first scaffold.
+- **Display** scaling (manual button + slider) is required on first scaffold. Per-monitor
+  auto-memory is optional — build only if asked.
 - Spec: `cursor-patterns/electron-per-monitor-display-scaling.md`
 - Exemplar: `School Scrips/Calendar 2.0`
 - Title bar **Display** button; slider modal; no backdrop dismiss on Display modal.
