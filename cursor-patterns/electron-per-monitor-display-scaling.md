@@ -220,9 +220,11 @@ Snapshot freeze is fine for **non-scaling** shells or modals where scale cannot 
 - [ ] **Display** in title bar → modal with slider + Fit + Done
 - [ ] Save on slider commit
 
-### Phase 3 — Per-monitor Electron
+### Phase 3 — Per-monitor Electron (OPTIONAL — build only if Chase asks)
 - [ ] Main + preload + `electron.d.ts` as above
 - [ ] `initPerMonitorDisplayZoom()` listens for display-changed + resize/focus
+- [ ] Without this phase: store one global scale (not keyed by monitor id) and skip the
+      monitor-detection IPC entirely — simpler, and matches what Chase actually uses today
 
 ### Phase 4 — Embedded browser (if applicable)
 
