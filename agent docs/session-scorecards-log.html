@@ -146,13 +146,123 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>16</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:34 PM · Thursday, Aug 6, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>18</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:39 PM · Thursday, Aug 6, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Thursday, Aug 6, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">11:39 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Coding</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">claude-sonnet-5</div>
+    </header>
+    <p class="summary-human">Redesigned Video Player around named 'sessions' (Family Guy, etc.) so Chase can keep several shows/movies configured and switch between them, and added a sequential/in-order playback mode alongside the existing random picker for New Show and New Movie sessions.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>6</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>28</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>8</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/Video Player/CLAUDE.md">CLAUDE.md — Programs root</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="c:/Users/chase/AppData/LocalLow/Magnum Scriptum Ltd/Quasimorph/LocalUserPresets/Chase_QM_FloatingMinimap/modmanifest.json">modmanifest.json</code></li><li><code class="path-doc" title="c:/Users/chase/AppData/LocalLow/Magnum Scriptum Ltd/Quasimorph/QM_FloatingMinimap/panel.json">panel.json</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/4adb4200-5f9f-4a89-b079-b1b4122ff4dc/scratchpad/scorecard-final.json">scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/scripts/append-session-scorecard.js">append-session-scorecard.js</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/4adb4200-5f9f-4a89-b079-b1b4122ff4dc/scratchpad/scorecard-final.json">scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Forgot to run --bump-file mid-session (the always-on bump rule) — this finalize is reconstructed from memory, not a running tally. Also found and left alone a pre-existing, unrelated tsconfig.json issue: ignoreDeprecations '6.0' is rejected by the installed TypeScript 5.9.3 (works with '5.0' override) — flagged to Chase, not fixed.
+    </div>
+    <p class="next"><strong>Next time:</strong> Chase to click-test session create/switch/remove and sequential Next/Previous ordering in the running app (handed off as a checklist instead of me launching it).</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:12 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Diagnosed a Makeup Exam automation bug (E2005 iframe-not-found) through two rounds of user-corrected hypotheses — first wrongly blamed load timing, then correctly landed on a name-vs-id frame-matching mismatch combined with a silent false-success bug — and shipped both fixes plus richer failure diagnostics. Built two explainer infographics (revised in place as the diagnosis was corrected) and ran the end-of-session protocol twice this session.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>8</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>9</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>2</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/366433.txt">366433.txt</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/29d6a7c2-14b7-42f7-954e-29e1f2cd6bc5/scratchpad/makeup-exam-e2005-explainer.html">makeup-exam-e2005-explainer.html</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/makeup-exam/backend/automation_core.py">automation_core.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/makeup-exam/user_messages/catalog.py">catalog.py</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/29d6a7c2-14b7-42f7-954e-29e1f2cd6bc5/scratchpad/makeup-exam-e2005-explainer.html">makeup-exam-e2005-explainer.html</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/makeup-exam/backend/automation_core.py">automation_core.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/makeup-exam/user_messages/catalog.py">catalog.py</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Non-read/edit agent tools (MCP browser, Task, WebFetch, etc.). Snapshots counted separately.">Tools used</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="Agent">Agent</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> User corrected two consecutive wrong hypotheses with direct firsthand observation (frame visibly loaded/interactive for 2+ minutes; cursor already blinking in the field) — explicitly asked to be consulted for eyewitness facts before further theorizing. Concurrent Pearson/Exam3-harvest session (chase1971, no Claude co-author trailer) committed and pushed its own work (86c4e59) independently mid-session, confirming last session's two-session-collision finding.
+    </div><div class="capture-box">
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When diagnosing a bug from logs/screenshots and the user was present when it happened, ask what they directly observed (screen state, timing, visible cues) before proposing a root-cause theory — don't rely on log/code inference alone when a firsthand witness is available.
+    </div>
+    <p class="next"><strong>Next time:</strong> Chase declined a new distribution build this session; next build should bundle the E2005 fix (automation_core.py field-presence frame search + failure-instead-of-false-success) along with anything else pending.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">9:34 PM</span>
