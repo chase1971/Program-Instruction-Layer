@@ -150,7 +150,7 @@ These each exist because a specific bug bit. Do not "clean them up".
 - Using `onPointerLeave` / `onMouseLeave` to cancel arming.
 - Hover-only actions with **no click path**.
 - A second drag/hover implementation "just for this one overlay".
-- Copying the 500 ms figures from `accessibility-patterns.md` — they ship nowhere.
+- Writing a timing value into example code that isn't from the table above.
 - Assuming a hovered element is not also being clicked (see § coupling).
 
 ---
