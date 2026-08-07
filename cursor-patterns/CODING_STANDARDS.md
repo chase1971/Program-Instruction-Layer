@@ -1213,7 +1213,6 @@ Deep-dives on specific topics. Read these only when relevant to current work.
 | `anti-patterns.md` | Full anti-pattern catalog with examples |
 | `accessibility-patterns.md` | Tombstone → `dwell-and-head-mouse.md` (dwell/overlay behavior) + this file's Modal Pattern section |
 | `dwell-and-head-mouse.md` | **Source of truth** for any dwell/hover/drag timing value |
-| `electron-per-monitor-display-scaling.md` | **Required** Electron shell: Display button, per-monitor scale |
 | `School Scrips/App Dashboard/docs/LAUNCHER.md` | Registry, ports, hidden `.bat` chain, Toolbar hotkey |
 
 File size enforcement is covered in full above in this same file — no separate deep-dive needed.
