@@ -279,8 +279,8 @@ When `INIT_NEW_APP.md` scaffolds any variant that includes **`electron/`** + a R
 
 1. No `zoom` on `#root`.
 2. `#app-scale-frame` + `transform: scale(z)` + `(100/z)vw/vh`.
-3. `localStorage` map by `display.id`.
-4. Main process notifies on monitor change.
+3. `localStorage` — one global scale by default; a map by `display.id` **only if Phase 3 (optional) is being built.**
+4. *(Phase 3 only)* Main process notifies on monitor change.
 5. **Display** button: slider + fit; no backdrop dismiss; save on slider release.
 6. Init before `createRoot`.
 7. **Embedded browser modals:** `freezeForModal({ snapshot: false })` — snapshots break when Display scale changes.
