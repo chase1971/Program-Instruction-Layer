@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Macro App — How Course Setup Actually Works</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2332;
+    --panel-alt: #243044;
+    --text: #e8edf4;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --purple: #a78bfa;
+    --rose: #fb7185;
+    --border: #334155;
+    --radius: 14px;
+    --font: "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 17px;
+  }
+  .page { max-width: 1150px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  a.back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: .65rem 1rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 2px solid var(--border); }
+  header h1 { font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: .6rem; line-height: 1.25; }
+  header p { color: var(--muted); }
+  h2 {
+    font-size: 1.35rem;
+    color: var(--text);
+    margin: 2.75rem 0 .6rem;
+    line-height: 1.3;
+  }
+  h3 {
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin: 1.5rem 0 .45rem;
+  }
+  p, li { color: var(--muted); }
+  p { margin-bottom: .85rem; }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { padding-left: 1.35rem; margin-bottom: .85rem; }
+  li { margin-bottom: .4rem; }
+  li b, p b { color: var(--text); font-weight: 600; }
+  .lead {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--green);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .lead p { color: var(--text); font-size: 1.02rem; }
+  .two-buckets {
+    display: grid;
+    gap: .85rem;
+    margin: 1rem 0 1.5rem;
+  }
+  @media (min-width: 680px) { .two-buckets { grid-template-columns: 1fr 1fr; } }
+  .bucket {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+  }
+  .bucket h3 { margin-top: 0; color: var(--purple); font-size: 1rem; }
+  .bucket--roster { border-top: 4px solid var(--rose); }
+  .bucket--teaching { border-top: 4px solid var(--green); }
+  .step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    margin-bottom: .85rem;
+  }
+  .step-label {
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    font-weight: 700;
+    margin-bottom: .2rem;
+  }
+  .step-title { font-size: 1.12rem; font-weight: 700; margin-bottom: .5rem; color: var(--text); }
+  .uses {
+    margin-top: .75rem;
+    padding-top: .75rem;
+    border-top: 1px dashed var(--border);
+  }
+  .uses-title {
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 700;
+    margin-bottom: .35rem;
+  }
+  .uses ul { margin-bottom: 0; font-size: .95rem; }
+  .example {
+    background: var(--panel-alt);
+    border-radius: 10px;
+    padding: .85rem 1rem;
+    margin: .75rem 0;
+    font-size: .95rem;
+    border-left: 3px solid var(--accent);
+  }
+  .example b { color: var(--accent); }
+  .calendar-split {
+    display: grid;
+    gap: .85rem;
+    margin: 1rem 0;
+  }
+  @media (min-width: 680px) { .calendar-split { grid-template-columns: 1fr 1fr; } }
+  .cal-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+  .cal-card h3 { margin-top: 0; }
+  .cal-card--grid { border-top: 4px solid var(--accent); }
+  .cal-card--assign { border-top: 4px solid var(--amber); }
+  .module-list { display: grid; gap: .75rem; margin-top: .75rem; }
+  .module {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+  .module h3 { margin: 0 0 .45rem; color: var(--text); font-size: 1.05rem; }
+  .module .needs { font-size: .88rem; color: var(--green); font-weight: 700; margin-bottom: .35rem; }
+  .module p { font-size: .95rem; margin: 0; }
+  .flow-simple {
+    background: var(--panel);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    margin: 1rem 0;
+    font-size: .95rem;
+  }
+  .flow-line { margin: .5rem 0; color: var(--muted); }
+  .flow-line .from { color: var(--text); font-weight: 600; }
+  .flow-line .arrow { color: var(--amber); margin: 0 .35rem; }
+  .note {
+    font-size: .9rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: .5rem;
+  }
+  .viz-section {
+    margin: 2rem 0 2.5rem;
+    padding: 1.25rem 1.15rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .viz-section > p { margin-bottom: 1rem; }
+  .viz-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem 1rem;
+    margin-bottom: 1.25rem;
+    font-size: .88rem;
+  }
+  .viz-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--muted);
+  }
+  .viz-legend i {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 2px solid;
+  }
+  .viz-legend .lg-action i { border-color: var(--accent); background: var(--panel-alt); }
+  .viz-legend .lg-data i { border-color: var(--green); background: #1a3328; }
+  .viz-legend .lg-tab i { border-color: var(--purple); background: #2a2440; }
+  .viz-legend .lg-ext i { border-color: var(--amber); background: #3a3018; }
+  .viz-block { margin-bottom: 2rem; }
+  .viz-block:last-child { margin-bottom: 0; }
+  .viz-caption {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .35rem;
+  }
+  .viz-caption-sub {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: .85rem;
+  }
+  .mermaid-wrap {
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    overflow-x: auto;
+    min-height: 12rem;
+  }
+  .mermaid-wrap .mermaid {
+    display: flex;
+    justify-content: center;
+    min-width: 100%;
+  }
+  .mermaid-wrap svg {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-width: 520px;
+  }
+  .chart-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 820px) {
+    .chart-grid { grid-template-columns: 1fr 1fr; }
+    .chart-grid .viz-block--wide { grid-column: 1 / -1; }
+  }
+  footer {
+    margin-top: 2.5rem;
+    color: var(--muted);
+    font-size: .88rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">← All pages</a>
+
+  <header>
+    <h1>How Course Setup Actually Works</h1>
+    <p>
+      A plain-language guide to what you decide during Setup Courses, what those decisions
+      connect to, and which Macro App tabs need which piece later in the semester.
+      Written for someone who has never seen the config files.
+    </p>
+  </header>
+
+  <div class="lead">
+    <p>
+      Setup is really <b>two separate jobs</b>. Most people mix them up because they happen
+      in the same wizard. Keeping them straight is the whole game.
+    </p>
+  </div>
+
+  <div class="two-buckets">
+    <div class="bucket bucket--teaching">
+      <h3>① Who you teach &amp; when</h3>
+      <p>
+        Which D2L sections are yours, when class meets, and <b>which My Calendar workbook tab</b>
+        goes with each section. <b>No student names.</b>
+      </p>
+      <p class="note">Powers Pearson, First Day Handout, Manage Dates, and every course dropdown.</p>
+    </div>
+    <div class="bucket bucket--roster">
+      <h3>② Your gradebook workspace</h3>
+      <p>
+        A folder per course with a <b>roster CSV</b> downloaded from D2L — names, emails, org IDs.
+        Optional during setup; you can add it later from the Gradebook tab.
+      </p>
+      <p class="note">Powers Gradebook, Assignment Assistant, and Makeup Exam only.</p>
+    </div>
+  </div>
+
+  <section class="viz-section" aria-labelledby="viz-heading">
+    <h2 id="viz-heading">Visual maps</h2>
+    <p>
+      Broken into smaller charts so each one is easier to read at full size.
+      Scroll horizontally if your window is narrow — each chart is drawn large on purpose.
+    </p>
+
+    <div class="viz-legend">
+      <span class="lg-action"><i aria-hidden="true"></i> Your action in setup</span>
+      <span class="lg-data"><i aria-hidden="true"></i> Information that now exists</span>
+      <span class="lg-tab"><i aria-hidden="true"></i> Macro App tab that reads it</span>
+      <span class="lg-ext"><i aria-hidden="true"></i> Built in My Calendar (separate tool)</span>
+    </div>
+
+    <div class="viz-block viz-block--wide">
+      <div class="viz-caption">Chart 1 — Setup wizard (pick section through roster)</div>
+      <div class="viz-caption-sub">What you do in Setup Courses, and what information gets saved at each step.</div>
+      <div class="mermaid-wrap">
+        <pre class="mermaid">
+flowchart TB
+  classDef action fill:#243044,stroke:#38bdf8,stroke-width:2px,color:#e8edf4
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef gate fill:#1a2332,stroke:#94a3b8,stroke-width:2px,color:#e8edf4
+  classDef milestone fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+
+  START(["Setup Courses starts"]):::milestone
+  START --> PICK["Pick this D2L section"]:::action
+  PICK --> N1[("Course list entry")]:::data
+  PICK --> SCHED["Enter class schedule"]:::action
+  SCHED --> N2[("Class schedule")]:::data
+  SCHED --> LINK["Attach calendar grid tab"]:::action
+  LINK --> N3[("Calendar grid link")]:::data
+  LINK --> ROSTERQ{"Export roster now?"}:::gate
+  ROSTERQ -->|"Yes"| ROSTER["Download roster from D2L"]:::action
+  ROSTER --> N4[("Roster CSV")]:::data
+  ROSTERQ -->|"Not now"| READY
+  N4 --> READY(["Course ready in Macro App"]):::milestone
+        </pre>
+      </div>
+    </div>
+
+    <div class="viz-block viz-block--wide">
+      <div class="viz-caption">Chart 1b — My Calendar assignment calendar (separate step)</div>
+      <div class="viz-caption-sub">Built in My Calendar, not in the Setup wizard. Manage Dates uses this.</div>
+      <div class="mermaid-wrap">
+        <pre class="mermaid">
+flowchart LR
+  classDef ext fill:#3a3018,stroke:#fbbf24,stroke-width:2px,color:#e8edf4
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+
+  MC["Open My Calendar"]:::ext
+  ASSIGN["Assign assignment calendar to section"]:::ext
+  N5[("Assignment rows: name, start, due, times")]:::data
+  MD["Manage Dates pushes into D2L"]:::tab
+
+  MC --> ASSIGN --> N5 --> MD
+        </pre>
+      </div>
+    </div>
+
+    <div class="viz-caption" style="margin-top: 1.5rem;">Chart 2 — Who reads each piece of saved information</div>
+    <div class="viz-caption-sub">Five small charts — one per information node. Arrows show which tab pulls what.</div>
+
+    <div class="chart-grid">
+      <div class="viz-block">
+        <div class="viz-caption">Course list entry</div>
+        <div class="mermaid-wrap">
+          <pre class="mermaid">
+flowchart LR
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+  N1[("Course list")]:::data
+  N1 -->|"course picker"| FDH["First Day Handout"]:::tab
+  N1 -->|"course picker"| PEAR["Pearson"]:::tab
+  N1 -->|"picker + D2L URL"| MD["Manage Dates"]:::tab
+  N1 -->|"course picker"| GB["Gradebook"]:::tab
+  N1 -->|"course picker"| AA["Assignment Assistant"]:::tab
+          </pre>
+        </div>
+      </div>
+
+      <div class="viz-block">
+        <div class="viz-caption">Class schedule</div>
+        <div class="mermaid-wrap">
+          <pre class="mermaid">
+flowchart LR
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+  N2[("Class schedule")]:::data
+  N2 -->|"days + time on handout"| FDH["First Day Handout"]:::tab
+  N2 -->|"default homework due time"| PEAR["Pearson"]:::tab
+          </pre>
+        </div>
+      </div>
+
+      <div class="viz-block">
+        <div class="viz-caption">Calendar grid link</div>
+        <div class="mermaid-wrap">
+          <pre class="mermaid">
+flowchart TB
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+  N3[("Calendar grid link")]:::data
+  N3 -->|"exam + quiz dates, ODR"| FDH["First Day Handout"]:::tab
+  N3 -->|"exam dates + windows"| PEAR["Pearson"]:::tab
+  N3 -->|"pre-select template"| MD["Manage Dates"]:::tab
+          </pre>
+        </div>
+      </div>
+
+      <div class="viz-block">
+        <div class="viz-caption">Roster CSV</div>
+        <div class="mermaid-wrap">
+          <pre class="mermaid">
+flowchart TB
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+  N4[("Roster CSV")]:::data
+  N4 -->|"student list"| GB["Gradebook"]:::tab
+  N4 -->|"working gradebook"| AA["Assignment Assistant"]:::tab
+  N4 -->|"student picker"| ME["Makeup Exam"]:::tab
+          </pre>
+        </div>
+      </div>
+
+      <div class="viz-block viz-block--wide">
+        <div class="viz-caption">Assignment calendar</div>
+        <div class="mermaid-wrap">
+          <pre class="mermaid">
+flowchart LR
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:2px,color:#e8edf4
+  N5[("Assignment calendar rows")]:::data
+  N5 -->|"start/due dates + times CSV"| MD["Manage Dates"]:::tab
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="viz-block viz-block--wide">
+      <div class="viz-caption">Chart 3 — First Day Handout uses two different nodes</div>
+      <div class="viz-caption-sub">Class schedule and calendar link feed different parts of the handout.</div>
+      <div class="mermaid-wrap">
+        <pre class="mermaid">
+flowchart TB
+  classDef data fill:#1a3328,stroke:#34d399,stroke-width:2px,color:#e8edf4
+  classDef tab fill:#2a2440,stroke:#a78bfa,stroke-width:3px,color:#e8edf4
+  classDef field fill:#243044,stroke:#38bdf8,stroke-width:1px,color:#e8edf4
+
+  FDH["First Day Handout"]:::tab
+  N2[("Class schedule")]:::data
+  N3[("Calendar grid link")]:::data
+
+  N2 -->|"Tues/Thurs · 9:00–10:50"| F1["Days + class time"]:::field
+  N3 -->|"Important Dates table"| F2["Quiz + exam dates"]:::field
+  N3 -->|"ODR · exam count"| F3["Drop date · # exams"]:::field
+
+  F1 --> FDH
+  F2 --> FDH
+  F3 --> FDH
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <h2>The Setup wizard — what each step is really doing</h2>
+
+  <div class="step">
+    <div class="step-label">After sign-in</div>
+    <div class="step-title">Pick which D2L sections you teach</div>
+    <p>
+      The app scans D2L and shows your course list. You check the sections for this term
+      and can rename them to something you'll recognize all semester (e.g. shorten
+      "MATH-1314 4201 6W2" to "M1314 Summer II").
+    </p>
+    <p>
+      <b>What you're deciding:</b> the master list of courses Macro App knows about.
+      This is not assigning students or calendars yet — it's just "these shells exist and belong to me."
+    </p>
+    <div class="uses">
+      <div class="uses-title">Who reads this later</div>
+      <ul>
+        <li>Every tab with a course picker (Gradebook, Pearson, First Day Handout, Manage Dates, …)</li>
+        <li>Folder names if you export rosters</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-label">For each new section</div>
+    <div class="step-title">Tell the app your class schedule</div>
+    <p>
+      For each course you haven't set up before, you answer: online or in-person,
+      which term (Fall, Spring, Summer I, Summer II), and if in-person — meeting days
+      (Mon/Wed, Tue/Thu, Mon–Thu) plus class start and end time.
+    </p>
+    <p>
+      <b>What you're deciding:</b> when your class physically (or logically) meets.
+      This is <em>not</em> the exam calendar — it's "Tues/Thurs 9:00–10:50" style facts.
+    </p>
+    <div class="uses">
+      <div class="uses-title">Who uses this later</div>
+      <ul>
+        <li><b>First Day Handout</b> — fills in class days and class time on the printed handout</li>
+        <li><b>Pearson</b> — default homework due time (class start for in-person; 11:59 PM for online)</li>
+        <li><b>Next setup step</b> — suggests which My Calendar tab to attach (Tue/Thu → "Tuesday/Thursday")</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-label">For each new section</div>
+    <div class="step-title">Attach this D2L section to a calendar workbook tab</div>
+    <p>
+      This is the step people find confusing. Here's what it means in practice:
+    </p>
+    <p>
+      In <b>My Calendar</b>, each course template (like M1314 Fall) is a workbook with
+      <b>multiple tabs</b> for different sections — "Monday/Wednesday", "Tuesday/Thursday",
+      "Online", and so on. Each tab is a full semester grid with exam dates, quiz dates,
+      drop date, and first day of class.
+    </p>
+    <div class="example">
+      <b>Example:</b> Your D2L section "MATH-1314 4201 Fall" meets Tue/Thu.
+      You attach it to the <b>M1314 Fall → Tuesday/Thursday</b> tab in My Calendar.
+      From now on, when you pick that D2L section in Pearson or First Day Handout,
+      the app reads exam and quiz dates from <em>that specific tab</em> — not from a guess
+      based on the course title.
+    </div>
+    <p>
+      The app may suggest a tab based on your schedule from the previous step. You confirm
+      or pick a different one. You can skip and fix it later from the Browser tab
+      (Course Schedules area) without rerunning the whole wizard.
+    </p>
+    <p>
+      <b>What you're deciding:</b> "This D2L shell and that calendar grid tab are the same class."
+    </p>
+    <div class="uses">
+      <div class="uses-title">Who needs this attachment</div>
+      <ul>
+        <li><b>Pearson</b> — exam dates (and exam windows for online) to build unit due dates</li>
+        <li><b>First Day Handout</b> — the Important Dates table (quizzes + exams) and drop date</li>
+        <li><b>Manage Dates</b> — knows which assignment template to pre-select when pushing dates into D2L</li>
+      </ul>
+    </div>
+    <p class="note">
+      If this link is missing, Pearson and First Day Handout will stop and tell you to
+      attach a calendar tab — they no longer guess from the course name.
+    </p>
+  </div>
+
+  <div class="step">
+    <div class="step-label">Optional</div>
+    <div class="step-title">Rename course folders</div>
+    <p>
+      Makes the folder name on your drive match what you call the course.
+      Purely for your own organization — nothing in the app breaks if you skip this.
+    </p>
+  </div>
+
+  <div class="step">
+    <div class="step-label">Gradebook setup</div>
+    <div class="step-title">Set up gradebook files now?</div>
+    <p>
+      The wizard asks whether to download student rosters right away.
+    </p>
+    <ul>
+      <li><b>Yes</b> — you pick a parent folder (often your Google Drive "Rosters" area).
+        The app creates one folder per course and downloads a roster CSV from D2L for each.</li>
+      <li><b>Not now</b> — course folders only. You can export rosters later from the Gradebook tab.</li>
+    </ul>
+    <p>
+      <b>What you're deciding:</b> where student lists live and whether to pull them today.
+      This has nothing to do with exam dates or Pearson — it's the gradebook side of the house.
+    </p>
+    <div class="uses">
+      <div class="uses-title">What ends up in each course folder</div>
+      <ul>
+        <li><b>Roster CSV</b> — student names, emails, org IDs (downloaded from D2L)</li>
+        <li>Later: grade backups, Assignment Assistant working file, session files — all created as you use those tabs</li>
+      </ul>
+    </div>
+    <div class="uses">
+      <div class="uses-title">Who uses the roster file</div>
+      <ul>
+        <li><b>Gradebook</b> — owns it; refreshes when students add/drop</li>
+        <li><b>Assignment Assistant</b> — builds its working gradebook from the roster</li>
+        <li><b>Makeup Exam</b> — student picker list</li>
+        <li><b>Not</b> Pearson, First Day Handout, or My Calendar — they never touch the roster</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-label">Later, from the Gradebook tab</div>
+    <div class="step-title">Pull grades from D2L</div>
+    <p>
+      When you pull grades, dated backup CSVs are saved inside each course's gradebook folder.
+      Only the Gradebook reads these — for history, restore, and push-back to D2L.
+    </p>
+  </div>
+
+  <h2>The two My Calendar tabs — and why both matter</h2>
+  <p>
+    Step 3 above attaches your D2L section to the <b>calendar grid tab</b>. But My Calendar
+    also has a separate <b>assignment calendar</b> — and Manage Dates uses that one, not the grid.
+  </p>
+
+  <div class="calendar-split">
+    <div class="cal-card cal-card--grid">
+      <h3>Calendar grid tab</h3>
+      <p><b>What it looks like:</b> the visual semester calendar — Exam 1, Exam 2, quizzes, drop date, first day.</p>
+      <p><b>What it holds:</b> <em>dates</em> for big milestones. Not individual homework due times.</p>
+      <p><b>Attached in Setup step 3.</b> Used by Pearson and First Day Handout.</p>
+    </div>
+    <div class="cal-card cal-card--assign">
+      <h3>Assignment calendar tab</h3>
+      <p><b>What it looks like:</b> a spreadsheet — one row per D2L assignment with start date, due date, start time, due time.</p>
+      <p><b>What it holds:</b> the full due-date schedule you push into D2L (homework, discussions, quizzes, etc.).</p>
+      <p><b>Set up in My Calendar</b> (you assign which assignment calendar goes with which section). Used by <b>Manage Dates</b> when you apply a schedule to D2L.</p>
+    </div>
+  </div>
+
+  <p>
+    The assignment tab and the grid tab are linked to the same section — same course, same term,
+    same meeting pattern — but they answer different questions. The grid says "when is Exam 2?"
+    The assignment tab says "Homework 3.4 is due Tuesday at 11:59 PM."
+  </p>
+
+  <h2>What each Macro App tab needs from setup</h2>
+
+  <div class="module-list">
+    <div class="module">
+      <h3>First Day Handout</h3>
+      <div class="needs">Needs: calendar grid tab attached + class schedule</div>
+      <p>
+        <b>From the calendar grid tab:</b> quiz and exam dates for the Important Dates section,
+        drop date, how many exams, final exam timing.<br>
+        <b>From the class schedule (step 2):</b> "Tues/Thurs" and "9:00–10:50" on the handout —
+        those come from what you entered about meeting days and times, not from the calendar grid.<br>
+        Does <b>not</b> use the roster or assignment calendar.
+      </p>
+    </div>
+
+    <div class="module">
+      <h3>Pearson</h3>
+      <div class="needs">Needs: calendar grid tab attached</div>
+      <p>
+        Reads exam dates (and online exam windows) from the linked grid tab to place units and
+        set homework due dates. Uses class schedule for default due times. Will not run without
+        the calendar attachment from setup.
+      </p>
+    </div>
+
+    <div class="module">
+      <h3>Manage Dates (D2L)</h3>
+      <div class="needs">Needs: calendar attachment + assignment calendar in My Calendar</div>
+      <p>
+        Pre-selects the right template when you open it. Builds a CSV from the
+        <b>assignment calendar</b> (start/due dates and times per assignment) and applies it
+        on D2L's Change Due Dates page. Exam dates on the grid tab are not what gets pushed here.
+      </p>
+    </div>
+
+    <div class="module">
+      <h3>Gradebook</h3>
+      <div class="needs">Needs: course in your list + roster CSV (or grade backup)</div>
+      <p>
+        Uses the course list from setup and the roster file from the gradebook folder.
+        Does not care about calendar tabs. Pulls grade backups into the same folder.
+      </p>
+    </div>
+
+    <div class="module">
+      <h3>Assignment Assistant</h3>
+      <div class="needs">Needs: roster CSV</div>
+      <p>
+        Opens a working copy of the gradebook built from the roster. Stays in sync when
+        Gradebook refreshes the roster after add/drop.
+      </p>
+    </div>
+
+    <div class="module">
+      <h3>Makeup Exam</h3>
+      <div class="needs">Needs: roster CSV</div>
+      <p>
+        Student list for scheduling makeup exams. Nothing from the calendar setup.
+      </p>
+    </div>
+  </div>
+
+  <h2>How it flows — one picture</h2>
+  <div class="flow-simple">
+    <div class="flow-line">
+      <span class="from">Setup: pick courses</span>
+      <span class="arrow">→</span>
+      every tab knows which sections exist
+    </div>
+    <div class="flow-line">
+      <span class="from">Setup: class schedule</span>
+      <span class="arrow">→</span>
+      handout days/times, Pearson due-time defaults, calendar tab suggestion
+    </div>
+    <div class="flow-line">
+      <span class="from">Setup: attach calendar grid tab</span>
+      <span class="arrow">→</span>
+      Pearson exam dates, handout Important Dates, Manage Dates template picker
+    </div>
+    <div class="flow-line">
+      <span class="from">My Calendar: assignment calendar</span>
+      <span class="arrow">→</span>
+      Manage Dates pushes per-assignment due dates into D2L
+    </div>
+    <div class="flow-line">
+      <span class="from">Setup: roster export</span>
+      <span class="arrow">→</span>
+      Gradebook, Assignment Assistant, Makeup Exam
+    </div>
+  </div>
+
+  <footer>
+    Updated 2026-08-08. For the roster-only pipeline (add/drop mid-semester, folder layout),
+    see the Macro App infographic
+    <a href="../../School%20Scrips/Macro%20App/docs/infographics/08-course-setup-and-roster.html">Course Setup &amp; the Roster Pipeline</a>.
+  </footer>
+</div>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      darkMode: true,
+      background: '#243044',
+      primaryColor: '#1a2332',
+      primaryTextColor: '#e8edf4',
+      primaryBorderColor: '#334155',
+      lineColor: '#94a3b8',
+      secondaryColor: '#243044',
+      tertiaryColor: '#1a3328',
+      fontSize: '18px',
+    },
+    flowchart: {
+      htmlLabels: true,
+      curve: 'basis',
+      padding: 20,
+      nodeSpacing: 55,
+      rankSpacing: 65,
+    },
+  });
+</script>
+</body>
+</html>
