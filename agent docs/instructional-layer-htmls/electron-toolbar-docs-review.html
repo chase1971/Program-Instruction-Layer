@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Electron Toolbar Docs Review (RESOLVED)</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  .note.purple { border-left-color:var(--purple); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.red { color:var(--red); } h2.grey { color:var(--muted); }
+  h3.cat { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:1.4rem 0 .6rem; }
+  .cardlist { display:flex; flex-direction:column; gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card.purple { border-left-color:var(--purple); }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .title { font-weight:800; font-size:1.08rem; font-family:Consolas,monospace; }
+  .badge { flex-shrink:0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+    padding:.3rem .65rem; border-radius:999px; white-space:nowrap; }
+  .badge.green { background:rgba(52,211,153,.15); color:var(--green); }
+  .badge.amber { background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.red { background:rgba(248,113,113,.15); color:var(--red); }
+  .meta { color:var(--muted); font-size:.78rem; margin-top:.4rem; font-family:Consolas,monospace; }
+  .fn { color:var(--text); font-size:.92rem; margin-top:.6rem; }
+  .finding { color:var(--muted); font-size:.88rem; margin-top:.5rem; padding-top:.55rem;
+    border-top:1px solid rgba(148,163,184,.18); }
+  .finding b { color:var(--text); }
+  .fix { color:var(--muted); font-size:.88rem; margin-top:.45rem; }
+  .fix b { color:var(--amber); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Electron Toolbar Docs Review <span style="color:var(--green);font-size:.5em;vertical-align:middle;">RESOLVED 2026-08-08</span></h1>
+    <p>All 39 markdown files under <code>electron-toolbar/</code>, across 8 folders — checked against the live code they describe, not just whether the exemplar file exists. This is the same doc-vs-code pass as the <a href="recipes-review.html" style="color:var(--blue)">Recipes Review</a>, run over the app's own subsystem docs (architecture, hotkeys, logging, launcher, incident notes) rather than the interaction recipes, which were already covered there. <b>The findings below are the original pass and are kept as historical record</b> — Chase then walked through the 16 flagged items himself and made the actual call on each, which is captured in the outcome box below.</p>
+  </header>
+
+  <div class="note" style="border-left-color:var(--green)">
+    <strong>Outcome (2026-08-08):</strong> of the 16 flagged files, <b>11 deleted outright</b> (all 6 reds, plus <code>SCROLL_MODULE.md</code> and 3 of the 4 logging docs — <code>README_LOGGING.md</code>, <code>LOGGING_SYSTEM_SUMMARY.md</code>, <code>MIGRATION_EXAMPLE.md</code> — as overlapping restatements of the same design), including two now-empty tombstone folders (<code>modules/hearthstone/</code>, <code>electron-app/patterns/</code>) removed along with their READMEs. Chase overrode the original "keep and fix" call on two incident docs he judged nobody would ever have the AI read — <code>COORDINATOR_DUPLICATION_FIX_PLAN.md</code> and <code>BLANK_CMD_CONSOLE_SPAM.md</code> — both deleted rather than fixed. <b>2 kept and fixed in place</b>: <code>ARCHITECTURE_PATTERNS.md</code> (added a correction banner + fixed the "main.js creates the window" claim and stale module paths) and root <code>README.md</code> (dropped the hardcoded dwell-time instruction, fixed stale paths). <b>1 pending</b> — <code>LOGGING_SYSTEM.md</code> is being rewritten by Chase directly; the discussion also settled that a logging-conventions doc isn't a <i>recipe</i> (recipes are retrieval-by-description for things Chase asks to build; a coding convention like this belongs as a short AGENTS.md pointer to a real exemplar file, or at most a trimmed reference doc — not 670 lines of migration-status tracking). Cross-references cleaned up in <code>AGENTS.md</code>, <code>docs/LAUNCHER_PANEL.md</code>, and <code>tools/audit_logging.py</code> so nothing links to the deleted files.
+  </div>
+
+  <div class="note purple">
+    <strong>Second pass (2026-08-08, later the same day):</strong> Chase's own rule for whether a markdown earns its place — <b>"would an agent actually be pointed here for a real reason? If not, delete it."</b> Markdown is agent-facing (read to build/fix something); HTML pages like this one are Chase-facing (read to review and decide). Applying that test split the 27 survivors into two piles: <b>recipes</b> (already named in <code>AGENTS.md</code>'s "what Chase says → what to read" table — the test passes automatically) and <b>everything else</b>, which needed a one-by-one call.
+  </div>
+
+  <h2 id="agents-md">AGENTS.md — what's actually in it</h2>
+  <div class="note">
+    <strong>Trimmed twice, same day:</strong> first pass moved the "Known doc gaps" session-diary narrative into <code>docs/sessions/SESSIONS.md</code> (178 → 141 lines). Second pass applied Chase's "does an agent actually need this" test section by section: deleted <b>On-demand docs</b> (5 of 6 rows duplicated a pointer already above it), <b>Dwell module map</b> (Chase never has an agent touch dwell code — settings UI handles it), and <b>Sister apps</b> (no real reason to keep it). Trimmed <b>File size</b> down to the one policy nuance a git hook can't express. <b>141 → 91 lines.</b> Below is every section that's left.
+  </div>
+  <table>
+    <tr><th>Section</th><th>What it does</th></tr>
+    <tr><td>Header (lines 1–6)</td><td>How Cursor/Claude Code/Codex all reach this file, and a one-line note that <code>.cursor/rules/*.mdc</code> is retired here.</td></tr>
+    <tr><td>What this app is</td><td>Two-sentence orientation: this is the dwell-mouse host driving every other app, Electron+Python, no React/build step. The only "what is this" content in the file — deliberately short.</td></tr>
+    <tr><td>Read first</td><td>3-row table: where to go for an interaction recipe, code-shape standards, and module architecture. The banner below it explains the recipe folder's two-move history in one paragraph.</td></tr>
+    <tr><td>Start here — what Chase asked for → what to read</td><td>The actual routing table — 12 rows mapping a phrase you'd say to the one file to read. This is the mechanism the whole recipe system runs on.</td></tr>
+    <tr><td>Overlay architecture (hard rules)</td><td>4 non-negotiable constraints: standalone HTML only, window creation lives in window-managers not main.js, Python does no UI, IPC+signals for communication. Kept deliberately — short "don't do the obviously wrong thing" digest that heads off the single most likely mistake (reaching for React), linking out to the full docs rather than duplicating them.</td></tr>
+    <tr><td>File size</td><td>The 800-line hard cap (enforced by a git hook regardless of this doc) plus the one thing the hook can't express: don't extend the grandfathered allowlist without a split plan. The 4-file line-count table was cut — it drifts every time those files are edited, and the real numbers live in the script itself.</td></tr>
+    <tr><td>Known doc gaps</td><td>2 items pending Chase's call (no key-press/exclusion-zone recipe, no recipe for the <code>coordinator/</code> layer — kept until he confirms he'd never ask for either) plus the click-through-vs-focus-prevention distinction, kept as genuinely evergreen. A pointer to the session log replaces the historical narrative that used to live here.</td></tr>
+    <tr><td>Session log</td><td>One line: append to <code>docs/sessions/</code> at session end. Mechanically necessary — every app in the tree has this exact line.</td></tr>
+  </table>
+
+  <h2 class="green">Recipes — moved to docs/recipes/ (10)</h2>
+  <div class="note" style="border-left-color:var(--green)">
+    All 12 pass the test outright — each has its own row in <code>AGENTS.md</code>'s keyword table, so an agent lands here the moment Chase describes the matching interaction. Moved from flat <code>docs/</code> into <code>docs/recipes/</code> to match the <code>&lt;app&gt;/docs/recipes/</code> convention Math App Studio already uses. All content already verified accurate (see the original recipe-review findings further down) — this was a pure reorganization, not a content change, aside from fixing two internal cross-references (<code>toolbar-system.md</code>, <code>scroll-calculation.md</code>) that still pointed at the old shared <code>agent docs/recipes/</code> location.
+  </div>
+  <table>
+    <tr><th>Recipe</th><th>Triggered by saying</th></tr>
+    <tr><td><code>dwell-activation.md</code></td><td>"hover a button to fire it"</td></tr>
+    <tr><td><code>hover-to-lock-drag.md</code></td><td>"drag handle on an overlay", "ghost overlay"</td></tr>
+    <tr><td><code>click-through-windows.md</code></td><td>"the overlay eats my clicks", "click-through"</td></tr>
+    <tr><td><code>focus-prevention.md</code></td><td>"the overlay steals focus", "clicking it pauses my game" — promoted in on 2026-08-08, see below</td></tr>
+    <tr><td><code>toggle-pattern.md</code></td><td>"toggle the overlay", "it flickers on the hotkey"</td></tr>
+    <tr><td><code>mouse-hover-detection.md</code></td><td>"detect when the cursor is over a region", "polling vs events"</td></tr>
+    <tr><td><code>window-positioning.md</code></td><td>"it opened off-screen", "wrong monitor"</td></tr>
+    <tr><td><code>scroll-calculation.md</code></td><td>"scroll faster near the edge", "make the scroll bar variable speed" — expanded 2026-08-08 to cover the not-yet-built variable-speed version alongside the real current fixed-speed one</td></tr>
+    <tr><td><code>toolbar-system.md</code></td><td>"build a toolbar", "add a button to the toolbar"</td></tr>
+    <tr><td><code>LAUNCHER_PANEL.md</code></td><td>"add it to the electron toolbar", "put it in the launcher menu" — came from a retired <code>.mdc</code> rule rather than the original recipe batch, but already used the same "you might say" shape</td></tr>
+  </table>
+  <div class="note amber" style="border-left-color:var(--amber)">
+    <strong>Third pass (same day, after further discussion):</strong> Chase confirmed he never has an agent touch the dwell click/drag state machine directly — dwell behavior is tuned entirely through the settings UI, not by editing code — so <code>dwell-click.md</code>, <code>dwell-drag.md</code>, and <code>dwell-countdown.md</code> were deleted (12 → 9). Two more moves went the other way: <code>electron-app/JOYSTICK_MODULE.md</code> deleted (never routed, confirmed not needed) and <code>electron-app/FOCUS_PREVENTION.md</code> <b>promoted</b> into <code>docs/recipes/focus-prevention.md</code> with a proper header and routing, since it's a real reusable technique that was simply never named anywhere (9 → 10). <code>scroll-calculation.md</code> was also expanded, not just kept — Chase wants a future variable-speed scroll bar, which isn't what's built today, so the doc now clearly separates the real current behavior from the worked pattern for building the variable-speed version.
+  </div>
+
+  <h2 class="amber">Non-recipes — read these and decide (13)</h2>
+  <div class="note">
+    Everything left that isn't a session log or an archived file. For each: what it is, and my take — <b>keep as markdown</b> (an agent is genuinely served by reading it), <b>convert to HTML</b> (the useful part is you reviewing it, not an agent building from it), or <b>promote to recipe</b> (reusable technique, currently unrouted, belongs in <code>docs/recipes/</code> too).
+  </div>
+  <div class="cardlist">
+
+    <div class="card green">
+      <div class="card-top"><div class="title">AGENTS.md / CLAUDE.md</div><span class="badge green">Keep — this is the index itself</span></div>
+      <div class="fn">The router every tool reads first. Not optional, not a candidate for anything else. <a href="#agents-md" style="color:var(--blue)">Full section-by-section breakdown near the top of this page</a> — trimmed the same day this list was made.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">README.md (root)</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Install/usage/requirements for a fresh machine. An agent bootstrapping this repo needs it, not just you.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">HOTKEYS.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Full hotkey map. An agent adding a new hotkey has to check this first or it'll collide with something already bound — that's a build-time need, not just a Chase-reference one.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">ARCHITECTURE_PATTERNS.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Routed in AGENTS.md's "Read first" table for module architecture. An agent adding a new module reads this to pick the right pattern (A-HTML/B-NoUI/C-HTML/D-Tkinter/E-Toolbar) before writing anything.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">OVERLAY_MODULE_PATTERN.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Routed for "overlay three-tier structure." Same reasoning as above — read before building, not after.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">docs/HOTKEY_HOST_INTEGRATION.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Routed for "the hotkey doesn't fire." Root-cause + recovery pattern an agent needs mid-debug, not something you'd browse for fun.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">modules/overlays/README.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Standard code-folder README — inventory of what's in this folder and how the pieces connect. An agent opening this folder reads it the way it'd read any package README.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">electron-app/JOYSTICK_MODULE.md</div><span class="badge green">Deleted — Chase confirmed not needed</span></div>
+      <div class="fn">Half agent-useful (file structure, signal names, config constants), half written for <i>you</i>: "How to Use," "Playing with the Joystick," player-facing troubleshooting. Never routed from AGENTS.md. Chase's call: just delete it, no HTML conversion needed.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">electron-app/FOCUS_PREVENTION.md</div><span class="badge green">Promoted to docs/recipes/focus-prevention.md</span></div>
+      <div class="fn">A real, reusable technique (WS_EX_NOACTIVATE via PowerShell to stop an overlay from stealing focus) already shared by the arrow, joystick, and scroll overlays — never routed from AGENTS.md. Given a proper recipe header and routing row. Distinct from click-through: click-through means the window never receives events at all; this is for the parts of an overlay that DO need to register a click/hover without stealing OS focus.</div>
+    </div>
+
+    <div class="card green">
+      <div class="card-top"><div class="title">docs/sessions/SESSIONS.md / SESSIONS_ARCHIVE.md</div><span class="badge green">Keep as markdown</span></div>
+      <div class="fn">Append-only history. This is what a growing log is for — not a static reference, so not an HTML candidate either.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="title">archive/tabletop-prototype/README.md</div><span class="badge">No action needed</span></div>
+      <div class="fn">Generic unedited Vite/React scaffold boilerplate, sitting in <code>archive/</code> — already out of scope by the same convention as Programs' own <code>Archived markdowns/</code>. Genuinely zero-content if you ever want to reclaim the disk space, but it isn't costing anything sitting there.</div>
+    </div>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">39</b><span>markdown files reviewed</span></div>
+    <div class="stat"><b style="color:var(--green)">23</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">10</b><span>needs rework</span></div>
+    <div class="stat"><b style="color:var(--red)">6</b><span>needs removal</span></div>
+  </div>
+
+  <h2>Original findings (before Chase's file-by-file pass)</h2>
+  <div class="note">
+    <strong>Verdict:</strong> the interaction-pattern docs in <code>docs/</code> (dwell, drag, toolbar, scroll — the 11 migrated from <code>agent docs/recipes/</code> on 2026-08-08) are in good shape; the stale timing values the original <a href="recipes-review.html" style="color:var(--blue)">Recipes Review</a> flagged were confirmed fixed against current <code>dwell_constants.py</code> / <code>main-constants.js</code> during the move. The problems cluster in three places instead: <b>root-level architecture/overview docs</b> that predate the Electron/backend-folder reorgs and now contradict newer, more-correct docs sitting right next to them; a <b>5-file logging-system cluster</b> from 2025-12-29 describing a migration that partly happened (Python) and partly never did (JS, the log-filter UI) with the tracker never updated either way; and a handful of <b>tombstone / feature docs that now point at things that don't exist</b> — a folder that was renamed again, a pattern-folder move that itself got moved again, an abandoned prototype approach. These predate the app-folder split above, so a filename below may no longer exist.</p>
+  </div>
+
+  <h2 class="red">Needs removal (6)</h2>
+  <div class="cardlist">
+
+    <div class="card red">
+      <div class="card-top"><div class="title">docs/LOG_FILTER_UI_GUIDE.md</div><span class="badge red">Remove — describes code that was never built</span></div>
+      <div class="meta">Created/modified 2025-12-30 · 382 lines</div>
+      <div class="fn">User guide for a dwell-friendly log-filtering UI panel.</div>
+      <div class="finding"><b>Finding:</b> its own "Files Created" section lists <code>electron-app/src/window-managers/log-filter-ui.html</code> and <code>log-filter-manager.js</code>. Neither file exists anywhere in the repo, and <code>main.js</code> has zero references to <code>log-filter</code>. This documents a feature that was designed and written up but never actually shipped — 382 lines describing a UI Chase cannot open.</div>
+    </div>
+
+    <div class="card red">
+      <div class="card-top"><div class="title">electron-app/RIGHT_CLICK_IMPLEMENTATION_LOG.md</div><span class="badge red">Remove — abandoned debug journal</span></div>
+      <div class="meta">Created 2025-12-22, never modified · 272 lines</div>
+      <div class="fn">Blow-by-blow log of five failed PowerShell approaches to a JS right-click implementation.</div>
+      <div class="finding"><b>Finding:</b> ends unresolved — "Status: Implemented but not working (user reports no right-click)." It's about <code>modules/tabletop/prototype-code/mouse-utils.cjs</code> and <code>electron-app/src/wip/tabletop-overlay-v2.html</code>, the <b>abandoned v2 prototype</b>. <code>OVERLAY_MODULE_PATTERN.md</code> explicitly warns "do not model new work on anything under <code>wip/</code>." The real shipped right-click is Python <code>pyautogui.rightClick()</code> in <code>modules/overlays/tabletop_module.pyw</code> (see <code>modules/overlays/README.md</code>) — this file documents a dead end, not current behavior.</div>
+    </div>
+
+    <div class="card red">
+      <div class="card-top"><div class="title">electron-app/APPS_LAUNCHER_FEATURE.md</div><span class="badge red">Remove — superseded, unrouted</span></div>
+      <div class="meta">Created/modified 2026-02-11 · 71 lines</div>
+      <div class="fn">Describes a 📚 button opening a hardcoded 5-app menu (Calendar, D2L Assistant, Factoring, Makeup Exam, Matrix).</div>
+      <div class="finding"><b>Finding:</b> <code>docs/LAUNCHER_PANEL.md</code> — the doc <code>AGENTS.md</code> actually routes Chase to for "add it to the electron toolbar" / "launcher menu" — describes a different, more general mechanism: <code>scripts-panel.html</code>'s <code>NON_SCHOOL_CANONICALS</code>/<code>requiredIds</code>, <code>school-launchers.js</code>, <code>packaged-launchers.json</code>. This older doc's specific claims (button position "Row 1, Column 7", a static <code>appPaths</code> map in <code>toolbar-handlers.js</code>) aren't mentioned anywhere in the current routing doc, and this file isn't linked from <code>AGENTS.md</code> at all — an orphan describing the launcher's first, since-generalized version.</div>
+    </div>
+
+    <div class="card red">
+      <div class="card-top"><div class="title">modules/hearthstone/README.md</div><span class="badge red">Remove — points at a folder that no longer exists</span></div>
+      <div class="meta">Created/modified 2026-07-09 · 9 lines</div>
+      <div class="fn">Tombstone: "this module was extracted to <code>Hearthstone Overlay 2.0</code>."</div>
+      <div class="finding"><b>Finding:</b> <code>C:\Users\chase\Documents\Programs\Hearthstone Overlay 2.0\</code> does not exist — verified. The real app today is <b><code>Hearthstone Overlay 3.0</code></b>. <code>docs/sessions/SESSIONS_ARCHIVE.md</code> (2026-06-30 entry) confirms the module moved to "2.0" at that time; it was evidently renamed/rebuilt to "3.0" afterward and this tombstone was never updated to match.</div>
+    </div>
+
+    <div class="card red">
+      <div class="card-top"><div class="title">electron-app/patterns/README.md</div><span class="badge red">Remove — tombstone is now itself stale</span></div>
+      <div class="meta">Created 2025-12-06 · modified 2026-08-07 · 32 lines</div>
+      <div class="fn">"Patterns moved to <code>Programs/agent docs/recipes/</code> on 2026-08-02" redirect.</div>
+      <div class="finding"><b>Finding:</b> true as of 2026-08-07 (last edit), false as of 2026-08-08 (today) — those same patterns moved <i>again</i>, from <code>agent docs/recipes/</code> into this app's own <code>docs/</code> folder (per <code>electron-toolbar/AGENTS.md</code>'s "Known doc gaps" entry and <code>modules/overlays/README.md</code>, which already got the memo). A tombstone for a move that has itself been superseded by a second move — ironic given it lives in the very repo the patterns moved back into.</div>
+    </div>
+
+    <div class="card red">
+      <div class="card-top"><div class="title">PROJECT_SYNOPSIS.md</div><span class="badge red">Remove — describes an architecture two migrations out of date</span></div>
+      <div class="meta">Created/modified 2025-12-12, never touched since · 60 lines</div>
+      <div class="fn">"Read this first before making any changes to this project" — project overview.</div>
+      <div class="finding"><b>Finding:</b> says the threading model is "Main thread: Tkinter UI (all GUI operations must be on this thread)" and points at a defunct <code>electron-toolbar/patterns/</code> folder. The whole point of the Electron rewrite (see root <code>README.md</code> § Why Electron?) was to move overlay UI off Tkinter; <code>OVERLAY_MODULE_PATTERN.md</code> and <code>ARCHITECTURE_PATTERNS.md</code> are the current architecture references and both supersede this file's claims. Still listed in <code>AGENTS.md</code>'s on-demand table for "Project overview" — a live pointer to a description of an architecture that no longer exists.</div>
+    </div>
+
+  </div>
+
+  <h2 class="amber">Needs rework (10)</h2>
+
+  <h3 class="cat">Root architecture &amp; overview</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">ARCHITECTURE_PATTERNS.md</div><span class="badge amber">Rework — contradicts a newer, corrected doc</span></div>
+      <div class="meta">Created 2025-12-29 · modified 2026-05-26 · 684 lines · routed from AGENTS.md for "module architecture"</div>
+      <div class="fn">The technical pattern (A-HTML/B-NoUI/C-HTML/D-Tkinter/E-Toolbar) each module follows, with full data-flow traces.</div>
+      <div class="finding"><b>Finding:</b> repeatedly states "main.js creates BrowserWindow" for Arrow/Tabletop/Dwell overlays (steps like "5. main.js calls <code>new BrowserWindow()</code>"). <code>OVERLAY_MODULE_PATTERN.md</code> — revised 2026-07-31, two months after this file's last edit — explicitly corrects that exact claim: "<code>main.js</code> creates no windows — it contains zero <code>new BrowserWindow</code> calls," moved to per-overlay window managers in <code>electron-app/src/window-managers/</code>. Also uses flat paths (<code>modules/scroll_module.py</code>, <code>modules/dwell_module.py</code>) that predate the <code>{module}/backend/</code> reorg confirmed current elsewhere (<code>SCROLL_MODULE.md</code>, dwell exemplar paths).</div>
+      <div class="fix"><b>Fix:</b> replace every "main.js creates the window" claim with a pointer to the owning window-manager file; update module paths to include <code>/backend/</code>.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">README.md</div><span class="badge amber">Rework — stale paths, hardcoded timing</span></div>
+      <div class="meta">Created 2025-12-06 · modified 2026-07-16 · 134 lines</div>
+      <div class="fn">Root install/usage README — requirements, hotkeys, architecture diagram, customization.</div>
+      <div class="finding"><b>Finding:</b> "Changing dwell time" section says <code>const DWELL_TIME = 600; // ms to hover before activation</code> in <code>toolbar.html</code> — directly contradicts this repo's own rule (<code>toolbar-system.md</code>, <code>dwell-activation.md</code>, and <code>AGENTS.md</code>'s dwell module map) that timing constants live in <code>main-constants.js</code>/<code>dwell_constants.py</code> and should never be hardcoded or restated. The architecture diagram also shows old paths (<code>electron-toolbar/src/</code>, flat <code>modules/scroll_module.py</code>) instead of current <code>electron-app/src/</code> and <code>modules/scroll/backend/</code>.</div>
+      <div class="fix"><b>Fix:</b> drop the "Changing dwell time" code sample and point at the constants file instead; update the architecture diagram paths.</div>
+    </div>
+
+  </div>
+
+  <h3 class="cat">Incident docs — resolution status is stale</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">docs/COORDINATOR_DUPLICATION_FIX_PLAN.md</div><span class="badge amber">Rework — 3 of 5 fixes since landed, doc still says open</span></div>
+      <div class="meta">Written 2026-07-18 · 133 lines</div>
+      <div class="fn">Root-cause + 5-point fix plan (A–E) for duplicate coordinators / orphaned processes / console spam.</div>
+      <div class="finding"><b>Finding:</b> verified directly against current code — <b>Fix A</b> (single-instance bind) is live: <code>shared/signals.py</code> uses <code>SO_EXCLUSIVEADDRUSE</code>, not <code>SO_REUSEADDR</code>. <b>Fix D</b> (<code>CREATE_NO_WINDOW</code>) is live in <code>coordinator/module_lifecycle.py</code> (5 call sites). <b>Fix C</b> (orphan reap on startup) is live: <code>coordinator/startup.py</code> calls <code>reap_orphan_module_processes()</code>. The doc's own "Recommended sequencing" still frames A+C+D as the undone first pass. (Fix B — Job Object — and Fix E — health-guard verify-before-reattach — status not confirmed either way.)</div>
+      <div class="fix"><b>Fix:</b> mark A, C, D resolved with the commit/date if known; keep B and E as the actual open items.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">docs/BLANK_CMD_CONSOLE_SPAM.md</div><span class="badge amber">Rework — same stale "not done yet"</span></div>
+      <div class="meta">Incident note 2026-07-23 · 123 lines · routed from AGENTS.md for "blank cmd window, console spam"</div>
+      <div class="fn">Symptom → cause → emergency-stop PowerShell one-liner for the console-spam incident.</div>
+      <div class="finding"><b>Finding:</b> its "Lasting fixes (not done yet as of this note)" table lists the same D/A/C/E items as still pending. As shown above, A/C/D are now implemented in current code. The emergency-stop kill script and root-cause explanation are still accurate and useful; only the "not done yet" framing is stale.</div>
+      <div class="fix"><b>Fix:</b> update the table to reflect A/C/D landed; keep the emergency-stop command as-is.</div>
+    </div>
+
+  </div>
+
+  <h3 class="cat">Misc</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">docs/WINDOW_DETECTION_GUIDE.md</div><span class="badge amber">Rework — wrong file path</span></div>
+      <div class="meta">170 lines · routed from AGENTS.md for "Voicy mic-indicator window detection"</div>
+      <div class="fn">How to configure window-based detection for the Voicy microphone indicator.</div>
+      <div class="finding"><b>Finding:</b> tells Chase to run <code>python C:\Users\chase\Documents\Programs\microphone-indicator.py --find-window</code> and to edit that same root-level path. The file actually lives at <code>C:\Users\chase\Documents\Programs\generic scripts\microphone-indicator.py</code> — verified, no file exists at the path this doc names.</div>
+      <div class="fix"><b>Fix:</b> update both path references to <code>generic scripts\microphone-indicator.py</code>.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">electron-app/SCROLL_MODULE.md</div><span class="badge amber">Rework — duplicates scroll-calculation.md, bakes in numbers</span></div>
+      <div class="meta">Created/modified 2026-01-25, never touched since · 495 lines</div>
+      <div class="fn">Deep-dive on the scroll overlay: two-window architecture, speed cycling, drag-to-lock, all constants inlined.</div>
+      <div class="finding"><b>Finding:</b> technically accurate where checked (paths already use <code>modules/scroll/backend/</code>, <code>POLL_INTERVAL_MS</code> matches the confirmed-real value of 10ms) — but it inlines every constant as a literal ("Default: 8ms", "Default: 30px", speed options 20/40/60/90) exactly where the newer <code>docs/scroll-calculation.md</code> deliberately switched to naming constants instead of restating them, because the numbers drift. Two docs, same subject, different staleness risk.</div>
+      <div class="fix"><b>Fix:</b> either fold this into <code>scroll-calculation.md</code> or strip its inline numbers down to pointers at <code>scroll_constants.py</code>.</div>
+    </div>
+
+  </div>
+
+  <h3 class="cat">Logging cluster — status tracker frozen since 2025-12-30</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">docs/README_LOGGING.md, LOGGING_SYSTEM_SUMMARY.md, LOGGING_SYSTEM.md, MIGRATION_EXAMPLE.md</div><span class="badge amber">Rework — migration status is backwards</span></div>
+      <div class="meta">All 4 created/modified 2025-12-29/30, never touched since · 217+396+672+670 = 1955 lines combined</div>
+      <div class="fn">The hierarchical <code>[MODULE:CATEGORY:SEVERITY]</code> logger design, API reference, and a full before/after migration example (<code>volume_module.py</code>).</div>
+      <div class="finding"><b>Finding:</b> the Logger API itself is real (<code>shared/logger.py</code>, <code>electron-app/src/logger.js</code> both exist) and these docs describe it accurately. But every "current status" / checklist section is frozen at the day-one snapshot — "⏳ File migration in progress," 10-item TODO list, "8 Python files need migration." Verified against current code: the <b>Python side actually migrated far beyond that count</b> — 16 files now import <code>shared.logger</code>, including <code>dwell_module.py</code>, <code>scroll_module.py</code>, the hotkey host/supervisor stack — real progress the docs never recorded. The <b>JavaScript side is genuinely still stuck</b>: only <code>hotkey-trace.js</code> uses <code>logger.js</code>; none of the window-managers (<code>console-manager.js</code>, <code>toolbar-manager.js</code>, <code>arrow-manager.js</code>, etc.) the docs list as migration targets have been touched.</div>
+      <div class="fix"><b>Fix:</b> consolidate to one current-state doc (API reference + real importer list), drop the day-one audit numbers, delete the migration-in-progress framing since Python is mostly done and JS is a separate, still-real TODO.</div>
+    </div>
+
+  </div>
+
+  <h2 class="green">Fine as-is (23)</h2>
+  <table>
+    <tr><th>File</th><th>Why it's fine</th></tr>
+    <tr><td><code>AGENTS.md</code></td><td>Current, accurate keyword routing table; its own "Known doc gaps" section correctly flags the 2026-08-08 recipe migration and the coordinator/ layer gap.</td></tr>
+    <tr><td><code>CLAUDE.md</code></td><td>3-line import, matches the standard pattern used across all apps.</td></tr>
+    <tr><td><code>HOTKEYS.md</code></td><td>Actively maintained (modified 2026-08-07) — records exact dates of past hotkey reassignments, cross-references live constants file names. Model doc for the folder.</td></tr>
+    <tr><td><code>OVERLAY_MODULE_PATTERN.md</code></td><td>Explicitly self-corrected 2026-07-31 with a changelog note explaining exactly what was wrong before and why. The doc other stale files should have matched.</td></tr>
+    <tr><td><code>docs/HOTKEY_HOST_INTEGRATION.md</code></td><td>Detailed, internally consistent root-cause reference with anti-patterns and a reusable method section. No contradictions found anywhere else in the tree.</td></tr>
+    <tr><td><code>docs/LAUNCHER_PANEL.md</code></td><td>Current, explains its own migration history from a retired <code>.mdc</code> rule, and is the doc <code>APPS_LAUNCHER_FEATURE.md</code> should have been updated to match instead of left behind.</td></tr>
+    <tr><td><code>modules/overlays/README.md</code></td><td>Already correctly reflects the 2026-08-08 recipe-folder move that <code>electron-app/patterns/README.md</code> missed.</td></tr>
+    <tr><td><code>electron-app/JOYSTICK_MODULE.md</code></td><td>Internally consistent; hotkeys (Shift+F21/F22) match <code>HOTKEYS.md</code>'s summary table exactly; cross-references <code>FOCUS_PREVENTION.md</code> correctly.</td></tr>
+    <tr><td><code>electron-app/FOCUS_PREVENTION.md</code></td><td>Self-contained Win32 technique writeup; corroborated independently by both <code>SCROLL_MODULE.md</code> and <code>JOYSTICK_MODULE.md</code> describing the same mechanism consistently.</td></tr>
+    <tr><td><code>docs/dwell-click.md</code></td><td>Migrated 2026-08-08; verified current — points at <code>dwell_constants.py</code> by name rather than restating the stale 10-20ms figure the original recipe review flagged.</td></tr>
+    <tr><td><code>docs/dwell-drag.md</code></td><td>Migrated 2026-08-08; the stale 200ms countdown figure the recipe review flagged is fixed — now names <code>COUNTDOWN_STEP_1_MS</code>/<code>COUNTDOWN_STEP_2_MS</code>. Minor: one exemplar bullet has a nested-backtick formatting glitch.</td></tr>
+    <tr><td><code>docs/dwell-countdown.md</code></td><td>Same fix confirmed as dwell-drag.md — countdown steps now named, not hardcoded.</td></tr>
+    <tr><td><code>docs/dwell-activation.md</code></td><td>Migrated 2026-08-08; the invented dwellTime/cooldownTime defaults and timing-range table the recipe review flagged are gone, replaced with "read the real values, don't hardcode them." Minor: same nested-backtick glitch in one exemplar bullet.</td></tr>
+    <tr><td><code>docs/hover-to-lock-drag.md</code></td><td>Fixed before the move per the Recipes Review — the self-contradicting DOM-hover-events claim was corrected against its own exemplar.</td></tr>
+    <tr><td><code>docs/click-through-windows.md</code></td><td>Verified fine in the original Recipes Review; all three exemplars real and on-point.</td></tr>
+    <tr><td><code>docs/toggle-pattern.md</code></td><td>Verified fine in the original Recipes Review; cooldown constant confirmed real.</td></tr>
+    <tr><td><code>docs/mouse-hover-detection.md</code></td><td>Exemplar swap fixed before the move per the Recipes Review.</td></tr>
+    <tr><td><code>docs/window-positioning.md</code></td><td>Verified fine in the original Recipes Review; code block matches <code>window-helpers.js</code> almost verbatim.</td></tr>
+    <tr><td><code>docs/scroll-calculation.md</code></td><td>The stale "50ms poll interval" claim is fixed — now explicitly calls out that it was wrong and points at the real constant. Minor: one exemplar bullet has the same backtick-nesting glitch.</td></tr>
+    <tr><td><code>docs/toolbar-system.md</code></td><td>All three stale numbers the Recipes Review found (inactivity timeout, height, phantom offset fields) are fixed — replaced with a pointer to <code>main-constants.js</code> and an explicit note about the old wrong values. Known <code>coordinator/</code> gap is now explicitly documented rather than silently missing.</td></tr>
+    <tr><td><code>docs/sessions/SESSIONS.md</code></td><td>Append-only log, working as intended — recent entries even cross-reference and validate other docs in this review (e.g. the 2026-08-02 entry independently confirms the coordinator fix-plan's status at that time).</td></tr>
+    <tr><td><code>docs/sessions/SESSIONS_ARCHIVE.md</code></td><td>Historical log, correctly superseded-flagged entries (e.g. the Hearthstone move) — the source of truth this review used to date that migration.</td></tr>
+    <tr><td><code>archive/tabletop-prototype/README.md</code></td><td>Lives under <code>archive/</code> (out of scope by the same convention as Programs' own <code>Archived markdowns/</code>) — generic Vite/React scaffold boilerplate, not project documentation. No action needed.</td></tr>
+  </table>
+
+  <h2 class="grey">What this review didn't cover</h2>
+  <div class="note purple">
+    Scoped to the 39 markdown files under <code>electron-toolbar/</code>. Does not re-verify the 3 interaction recipes that stayed in the shared <code>agent docs/recipes/</code> folder (covered in the <a href="recipes-review.html" style="color:var(--purple)">Recipes Review</a>), and does not re-run <code>check-docs.js</code>'s mechanical checks (dead links, orphans, duplicates) across the whole tree — this is the doc-vs-code read those checks can't do.
+  </div>
+
+  <footer>
+    Reviewed 2026-08-08 against <code>C:\Users\chase\Documents\Programs\electron-toolbar\</code> — every finding above was checked against live code (grep, file existence, git history), not inferred from the doc's own prose. Regenerate after the next restructure — this is a snapshot, not a live check.
+  </footer>
+</div>
+</body>
+</html>

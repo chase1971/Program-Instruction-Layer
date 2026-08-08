@@ -241,4 +241,4 @@ writes is what costs**. Consequences:
 
 `School Scrips/Calendar 2.0` is **frozen** — no scans, edits, or git sync unless I
 name it explicitly. It's excluded from tree-wide search via `/.ignore`, and its rules
-are deliberately left unindexed. See `.cursor/rules/45-frozen-apps.mdc`.
+are deliberately left unindexed. See `agent docs/rules/frozen-apps.md`.
