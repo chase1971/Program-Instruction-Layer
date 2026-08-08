@@ -53,7 +53,7 @@ For a different design box, recompute: `44 / designHeight` and `44 / designWidth
   borderline at design size is *smaller* on a narrower viewport. Check the smallest
   viewport the app ships to, not the Studio canvas.
 - **Don't cancel interactions on `pointerleave`** in any canvas layer — head-mouse
-  wobble fires it constantly. See `25-dwell-accessibility.mdc`.
+  wobble fires it constantly.
 
 ## Changing shared components
 

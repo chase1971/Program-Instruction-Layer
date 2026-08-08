@@ -48,78 +48,37 @@ into new code.
 | just finished a refactor or hotfix · "write up what we learned" · integration doc | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Document the Lesson — exemplar `Macro App/docs/BROWSER_TAB_INTEGRATION.md` |
 | apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
 
-## Dwell and click
+## What's left here — genuinely cross-app, or nobody's claimed a narrower home yet
 
-Building a drag handle or hover/dwell interaction on an overlay? **Copy how the
-electron-toolbar's existing overlays already do it** — don't invent a new mechanism. OS-level
-dwell click engine: `electron-toolbar/modules/dwell/backend/`. Overlay hover/dwell factory:
-`electron-toolbar/electron-app/src/overlay-hover-poll.js`.
+**2026-08-08: this folder shrank a lot.** Every recipe that turned out to belong to exactly
+one app moved into that app's own `docs/` — see the table below. What's left is either used
+by enough apps that a shared home earns its keep, or hasn't been triaged this way yet.
 
-| You might say | Recipe | Status |
-|---|---|---|
-| "click by holding still", "dwell mode 1" | [dwell-click.md](./dwell-click.md) | ✅ |
-| "drag by dwelling", "the drag state machine", "dwell mode 2" | [dwell-drag.md](./dwell-drag.md) | ✅ |
-| "hover a button to fire it", "toolbar button activation" | [dwell-activation.md](./dwell-activation.md) | ✅ |
-| "count down before it does the thing" | [dwell-countdown.md](./dwell-countdown.md) | ✅ |
-| "dwell in the Studio", "the React dwell hook", "it clicks before I'm ready" | [studio-dwell-latch.md](./studio-dwell-latch.md) | ✅ |
+| You might say | Recipe | Status | Used by |
+|---|---|---|---|
+| "new modal", "make it look like that modal", "the modal scrolls wrong" | [modal-shell.md](./modal-shell.md) | ✅ | ~10 apps — genuinely universal |
+| "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ | canvas-kit + 6 consuming apps |
+| "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ | 5 independent live math apps share the CSS class |
 
-## Drag, move, position
+## Where everything else went (2026-08-08)
 
-| You might say | Recipe | Status |
-|---|---|---|
-| "drag handle on an overlay", "hover the handle then it follows", "ghost overlay" | [hover-to-lock-drag.md](./hover-to-lock-drag.md) | ⚠️ see note |
-| "move or resize a canvas element", "carry mode", "resize handles" | [canvas-move-resize.md](./canvas-move-resize.md) | ✅ |
-| "send the overlay to my cursor", "F14 / F23 reposition" | [move-to-cursor.md](./move-to-cursor.md) | ✅ |
-| "keep the window on the right monitor", "it opened off-screen" | [window-positioning.md](./window-positioning.md) | ✅ |
+| Moved to | Files |
+|---|---|
+| `electron-toolbar/docs/` — Chase doesn't retrieve these as cross-app recipes, they're internal to that one app | `dwell-click.md`, `dwell-drag.md`, `dwell-countdown.md`, `dwell-activation.md`, `scroll-calculation.md`, `toolbar-system.md`, `hover-to-lock-drag.md`, `mouse-hover-detection.md`, `click-through-windows.md`, `toggle-pattern.md`, `window-positioning.md` |
+| `School Scrips/Math App Studio/docs/recipes/` — Studio-only, or canvas-kit-scoped and shared with just Solving Quadratics App | `studio-dwell-latch.md`, `canvas-move-resize.md`, `animation-director-notes.md`, `animation-library.md`, `studio-design-propagation.md`, `canvas-info-block-design.md`, `info-block-nav-buttons.md`, `edit-underlay-layer-contract.md` |
+| `Video Player/docs/` — only consumer | `vlc-embed-contract.md` |
+| `School Scrips/School documents/docs/` — only consumer | `school-exam-map-html.md` |
+| Deleted outright | `move-to-cursor.md` (Chase: never used it), `state-machine.md` (generic tutorial, not documentation of something real) |
 
-## Overlays and windows
+**Start at the owning app's `AGENTS.md`** for any of the moved files — each keyword table
+routes to the new location. Building a drag handle or hover/dwell interaction anywhere else
+should still copy how electron-toolbar does it rather than inventing a new mechanism.
 
-| You might say | Recipe | Status |
-|---|---|---|
-| "the overlay eats my clicks", "click-through window", "only hot regions clickable" | [click-through-windows.md](./click-through-windows.md) | ✅ |
-| "toggle the overlay on and off", "it flickers when I press the hotkey twice" | [toggle-pattern.md](./toggle-pattern.md) | ✅ |
-| "build a toolbar", "add a button to the toolbar" | [toolbar-system.md](./toolbar-system.md) | ✅ |
-
-## Hover and scroll
-
-| You might say | Recipe | Status |
-|---|---|---|
-| "detect when the cursor is over a region", "polling vs events" | [mouse-hover-detection.md](./mouse-hover-detection.md) | ✅ |
-| "scroll faster near the edge", "region to scroll speed" | [scroll-calculation.md](./scroll-calculation.md) | ✅ |
-
-> **No key-press recipe right now.** `hover-to-key-press.md` and `continuous-key-press.md`
-> were deleted 2026-08-02 — they documented `modules/arrow_module.py`, which commit
-> `e98301b "Interface 2.0"` removed. Arrow lives in `coordinator/arrow_handlers.py` +
-> `electron-app/src/window-managers/arrow-manager.js` now. **Write the replacement from
-> that code**, not from memory of the old docs.
-
-## Building UI (React / canvas apps)
-
-| You might say | Recipe | Status |
-|---|---|---|
-| "new modal", "make it look like that modal", "the modal scrolls wrong" | [modal-shell.md](./modal-shell.md) | ✅ |
-| "the blue instruction box", "info block", "step badge" | [canvas-info-block-design.md](./canvas-info-block-design.md) | ✅ |
-| "Back / Next buttons on the info block", "tutorial nav" | [info-block-nav-buttons.md](./info-block-nav-buttons.md) | ✅ |
-| "the element vanishes when I click it in edit mode" | [edit-underlay-layer-contract.md](./edit-underlay-layer-contract.md) | ✅ |
-| "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ |
-| "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ |
-
-| "school HTML exam map", "homework tab builds review", "review tab builds exam" | [school-exam-map-html.md](./school-exam-map-html.md) | done |
-
-## Animation
-
-| You might say | Recipe | Status |
-|---|---|---|
-| "reuse an animation", "animation template", "port that animation over" | [animation-library.md](./animation-library.md) | ✅ |
-| "implement the director notes", "the pending animation file" | [animation-director-notes.md](./animation-director-notes.md) | ✅ |
-
-## Architecture and handoff
-
-| You might say | Recipe | Status |
-|---|---|---|
-| "manage the states", "it gets stuck between modes" | [state-machine.md](./state-machine.md) | ✅ |
-| "Studio and the AI are fighting over screens.json", "design handoff" | [studio-design-propagation.md](./studio-design-propagation.md) | ✅ |
-| "embed VLC", "the video rectangle", "VlcStage" | [vlc-embed-contract.md](./vlc-embed-contract.md) | ✅ |
+**No key-press recipe right now.** `hover-to-key-press.md` and `continuous-key-press.md`
+were deleted 2026-08-02 — they documented `modules/arrow_module.py`, which commit
+`e98301b "Interface 2.0"` removed. Arrow lives in `coordinator/arrow_handlers.py` +
+`electron-app/src/window-managers/arrow-manager.js` now. **Write the replacement from
+that code**, not from memory of the old docs.
 
 ---
 
@@ -139,14 +98,21 @@ is `250 ms`; `DRAG_RELEASE_TIME = 1.0` against a real `0.75`; `MOVEMENT_THRESHOL
 against a real `15`. Recipes now write the **constant's name** and point at its owner.
 `scripts/check-docs.js` has a `RECIPE VALUES` check that fails if a number comes back.
 
-**Still worth a second look:** the toolbar recipes were last substantively revised
-**2025-12-22** and the dwell backend has moved since. They are anchored to real files
-now, but **open the exemplar before relying on a specific detail.**
+**Second pass 2026-08-08 (real-usage triage, not just doc-vs-code):** Chase reviewed the 12
+recipes flagged by that check and reclassified several — not everything accurate is
+something he actually retrieves as a recipe, and not everything in a shared folder is
+actually shared. Three rounds, same day, each one moving files that turned out to belong to
+exactly one app into that app's own `docs/`, deleting two that weren't real recipes at all,
+and — the one near-miss — almost moving `modal-shell.md` and `canvas-kit-target-size.md`
+under Math App Studio too, until a grep found 10 and 7 consuming apps respectively. Full
+narrative: `agent docs/sessions/SESSIONS.md` (2026-08-08 entries). Original findings before
+any of this triage: `agent docs/instructional-layer-htmls/recipes-review.html`.
 
-**Known gap:** nothing here covers the `coordinator/` layer (`module_registry.py`,
-`module_supervisor.py`, `module_lifecycle.py`, `hotkey_supervisor.py`). Modules are
-registered and supervised now; the recipes still describe standalone backends talking
-over signals. *How to add a new toolbar module* has no recipe yet.
+**Known gap:** nothing here (or in `electron-toolbar/docs/`) covers the `coordinator/` layer
+(`module_registry.py`, `module_supervisor.py`, `module_lifecycle.py`,
+`hotkey_supervisor.py`). Modules are registered and supervised now; existing docs still
+describe standalone backends talking over signals. *How to add a new toolbar module* has no
+recipe yet — flagged again in `electron-toolbar/docs/toolbar-system.md` § Known gap.
 
 ---
 
@@ -154,7 +120,7 @@ over signals. *How to add a new toolbar module* has no recipe yet.
 
 | Kind | Home | Example |
 |---|---|---|
-| **Recipe / standard** — how to build one interaction, or the shape all code must have | **this folder** | `dwell-drag.md`, `CODING_STANDARDS.md` |
+| **Recipe / standard** — how to build one interaction, or the shape all code must have | **this folder, if genuinely cross-app** | `modal-shell.md`, `CODING_STANDARDS.md` |
 | **Values** — timings, thresholds, sizes | `dwell_constants.py` (real code) | never restated in a recipe |
 | **Integration doc** — why this subsystem is like this | the app's `docs/` | `EMBEDDED_BROWSER_AND_MODALS.md` |
 

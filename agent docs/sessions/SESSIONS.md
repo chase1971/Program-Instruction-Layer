@@ -2,6 +2,144 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-08 (round 3) — Recipes folder split by owning app; only 3 recipes stayed shared
+
+**Files changed:** Moved 8 files to new `School Scrips/Math App Studio/docs/recipes/`
+(`studio-dwell-latch.md`, `canvas-move-resize.md`, `animation-director-notes.md`,
+`studio-design-propagation.md`, `canvas-info-block-design.md`, `edit-underlay-layer-contract.md`,
+`animation-library.md`, `info-block-nav-buttons.md` — fixed two stale `.mdc` cross-references
+and one double-blank-line formatting issue in the same edit), `vlc-embed-contract.md` to
+`Video Player/docs/`, `school-exam-map-html.md` to `School Scrips/School documents/docs/`.
+Updated pointers in `Math App Studio/AGENTS.md`, `Solving Quadratics App/AGENTS.md`,
+`canvas-kit/AGENTS.md`, `Video Player/AGENTS.md`, and `School documents/README.md`.
+Rewrote `agent docs/recipes/INDEX.md` (shrank from documenting ~19 recipes to 3 — everything
+else now lives with its owning app) and `agent docs/instructional-layer-htmls/recipes-review.html`
+per Chase's request to bring the review page current (added a "where each of the 26 ended up"
+destination table, marked the original findings as pre-split historical record).
+
+**What worked:** Chase grouped the remaining "keep as-is" recipes by owning app himself
+(Math App Studio, canvas-kit, Macro App, Video Player, School documents) and asked two
+clarifying questions before committing — what `click-through-windows.md` does, and whether
+`school-exam-map-html.md` is current — both confirmed in the prior turn. His working
+assumption was "everything left besides click-through-windows is Math App Studio's, including
+canvas-kit." Grepping for real consumers caught two problems with that before any file moved:
+canvas-kit is consumed by Solving Quadratics App too (9 files import it, not zero), and — the
+bigger catch — `modal-shell.md` and `canvas-kit-target-size.md` are referenced from **10 and 7
+apps respectively** (factoring-app, transformations-app, Matrix app, Fractions-App, App
+Dashboard, Seating-Chart, Agent Browser, canvas-kit, Solving Quadratics App, and either Macro
+App or Math App Studio itself), not narrowly scoped at all. Moving those two under Math App
+Studio would have broken 8-9 other apps' pointers and buried a genuinely universal convention
+in one app's folder. Held both back in the shared folder and flagged the finding instead of
+executing the move silently. The other 8 real Math-App-Studio/canvas-kit files and the 2
+single-consumer files (Video Player, School documents) had no such fan-out — confirmed via the
+same grep-for-consumers method before moving, not assumed.
+
+**Current state:** All moves verified — `check-docs.js` clean, no stale references to the 10
+moved/deleted filenames found tree-wide outside expected historical records (old PROJECT_SYNOPSIS.md
+staleness pre-dating this session, noted but out of scope; doc-restructure-plan.html's illustrative
+example, same).
+
+**File size flag:** None. `agent docs/recipes/INDEX.md` trimmed from ~197 to ~176 lines despite
+documenting three rounds of reorg — still over its own ~150 budget but judged acceptable for
+a doc explaining a one-time structural change.
+
+**Next session:** `agent docs/recipes/` is down to 3 interaction recipes + the 6 code-standards
+docs. Worth a fresh look at whether "recipes" is still the right name for a folder that's mostly
+`CODING_STANDARDS.md` and friends now that the interaction patterns have scattered to their
+owning apps. `dwell-activation.md`'s possible rename is still deferred at Chase's own call.
+
+---
+
+## 2026-08-08 — Recipes review resolved: real-usage triage, not just doc accuracy
+
+**Files changed:** Built `agent docs/instructional-layer-htmls/recipes-review.html` — a
+doc-vs-code accuracy pass across all 26 interaction recipes in `agent docs/recipes/` (three
+parallel agents, each opening every named exemplar file rather than trusting the recipe's own
+prose). 12 of 26 came back needing a fix. Chase then walked through those 12 himself and
+reclassified several by whether he actually retrieves them as recipes, not just whether they're
+accurate. Outcome: `move-to-cursor.md` and `state-machine.md` deleted (`agent docs/recipes/`,
+`electron-toolbar/modules/move-to-cursor.md` tombstone also removed). `scroll-calculation.md`,
+`dwell-click.md`, `dwell-drag.md`, `dwell-countdown.md`, `toolbar-system.md` moved to
+`electron-toolbar/docs/` with their stale numbers fixed in the same edit. `hover-to-lock-drag.md`,
+`mouse-hover-detection.md`, `dwell-activation.md`, `modal-shell.md` (514→257 lines),
+`canvas-kit-target-size.md` reworked in place in `agent docs/recipes/`. Updated
+`agent docs/recipes/INDEX.md` (7 rows removed, pointers added to the new `electron-toolbar/docs/`
+homes), `electron-toolbar/AGENTS.md` (keyword table repointed, known-gaps section updated), and
+cross-references in `toggle-pattern.md` / `mouse-hover-detection.md` that pointed at deleted or
+moved files. `recipes-review.html` and its `agent docs/index.html` card marked resolved.
+
+**What worked:** Doc-accuracy triage alone would have kept all 12 in place, just fixed. Chase's
+own read reframed the actual question — several of these were never "recipes" he retrieves, just
+captures of how his own dwell overlay works ("I don't use them as recipes, I just captured how
+they worked"). Distinguishing "accurate but never referenced" (→ move to the one app it
+documents) from "accurate and heavily used" (→ keep, just fix) from "not even real" (→ delete)
+required his judgment, not just the code check — the code check correctly found 0 dead exemplars
+across all 26, so nothing here was catchable by `check-docs.js` or a second doc-vs-code pass
+alone. One real bug caught along the way: `hover-to-lock-drag.md`'s own "mistake this recipe
+exists to prevent" callout (DOM hover events never fire on click-through overlays) was
+contradicted by a live `mouseenter` listener in its own third exemplar file — softened to "check
+per-window, don't assume" rather than an absolute claim.
+
+**Current state:** Round 1 verified clean — `check-docs.js` 0 dead links / 0 bare values / 0
+recipe values, no stale references found tree-wide except expected historical records.
+
+**File size flag:** None over cap. `modal-shell.md` cut from 514→257 lines;
+`toolbar-system.md` cut from 652→243 lines during its move to `electron-toolbar/docs/`.
+
+---
+
+**Round 2, same day:** Chase started reviewing the 14 "keep as-is" recipes and immediately
+found the same real-usage question applied there too — not "should this be a recipe at all"
+this time, but "is this actually in the right shared folder." He grouped the remaining files
+by owning app (Math App Studio, canvas-kit, Macro App, Video Player, School documents) and
+asked to confirm two things: what `click-through-windows.md` actually does, and whether
+`school-exam-map-html.md` is current. Both confirmed — click-through-windows.md is
+electron-toolbar (overlay ignores clicks except over specific regions), and
+school-exam-map-html.md's exemplars (`exam2-review-map.html`, `exam3-homework-map.html`) were
+both modified today, so it's live, not stale (it's a recurring per-exam-cycle tool, not a
+one-off page).
+
+While answering, found that his assumption "everything else is Math App Studio" was wrong on
+two counts: `modal-shell.md` is actually Macro App (its exemplars — `ModalContainer.tsx`,
+`ModalPortal.tsx`, `ViewportScrollFrame.tsx` — are all Macro App, not Studio), and canvas-kit
+turned out to be a shared library consumed by **two** apps, not one — grepped for canvas-kit
+imports and found 9 files in `Solving Quadratics App` alongside the Math App Studio ones. Also
+found 6 more files that were exactly like the first round's electron-toolbar batch
+(`click-through-windows.md`, `dwell-activation.md`, `hover-to-lock-drag.md`,
+`mouse-hover-detection.md`, `toggle-pattern.md`, `window-positioning.md`) — internal to that
+app, not cross-app patterns — which Chase confirmed moving. Executed that move: files relocated
+to `electron-toolbar/docs/`, cross-references between them simplified now that they're
+siblings again, the dead `hover-to-key-press.md` reference in `click-through-windows.md`
+removed (that file was deleted 2026-08-02), `electron-toolbar/AGENTS.md` keyword table and
+known-gaps section updated, `agent docs/recipes/INDEX.md` restructured (the now-empty
+"Overlays and windows" / "Hover and scroll" sections collapsed into one note), and a genuinely
+stale inbound pointer fixed in `electron-toolbar/modules/overlays/README.md` (still said
+`electron-app/patterns/`, a path retired 2026-08-02, predating this session entirely).
+
+**`agent docs/recipes/` no longer has any electron-toolbar-specific recipes.** What's left:
+`studio-dwell-latch.md` + `canvas-move-resize.md` (Math App Studio only),
+`canvas-info-block-design.md` + `canvas-kit-target-size.md` + `edit-underlay-layer-contract.md`
++ `animation-library.md` + `info-block-nav-buttons.md` (canvas-kit, shared by Studio and
+Solving Quadratics App — Chase's call: keep filed as canvas-kit's own, folded under Math App
+Studio's home since that's where he thinks of it, not split further), `modal-shell.md` (Macro
+App), `vlc-embed-contract.md` (Video Player), `school-exam-map-html.md` (School documents),
+`tutorial-flash-vocabulary.md` (genuinely cross-app — 5 independent live math apps share the
+CSS class), plus `animation-director-notes.md` + `studio-design-propagation.md` (Math App
+Studio). **Not yet moved** — Chase confirmed the electron-toolbar batch only; the
+Math-App-Studio/canvas-kit/Macro-App/Video-Player/School-documents moves are proposed, not
+executed.
+
+**Next session:** Execute the remaining moves once Chase confirms scope: Math App Studio's own
+recipes folder (4 files, or 9 if canvas-kit folds in as he leans toward), Macro App gets
+`modal-shell.md`, Video Player gets `vlc-embed-contract.md`, School documents gets
+`school-exam-map-html.md` (target: `School Scrips/School documents/docs/`, which doesn't exist
+yet). `tutorial-flash-vocabulary.md` — genuinely cross-app, probably the one file that should
+stay in the shared `agent docs/recipes/` folder rather than move anywhere. Re-run
+`check-docs.js` and the stale-reference grep after any further move, same as this round.
+`dwell-activation.md`'s possible rename still deferred at Chase's own call.
+
+---
+
 ## 2026-08-07 — Full agent docs/ + cursor-patterns/ review; cursor-patterns/ eliminated
 
 **Files changed:** Reviewed all 12 `agent docs/` files and all 17 `cursor-patterns/` files

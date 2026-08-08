@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recipes Review - agent docs/recipes/ (RESOLVED)</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  .note.purple { border-left-color:var(--purple); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.grey { color:var(--muted); }
+  h3.cat { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:1.4rem 0 .6rem; }
+  .cardlist { display:flex; flex-direction:column; gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card.purple { border-left-color:var(--purple); }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .title { font-weight:800; font-size:1.08rem; font-family:Consolas,monospace; }
+  .badge { flex-shrink:0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+    padding:.3rem .65rem; border-radius:999px; white-space:nowrap; }
+  .badge.green { background:rgba(52,211,153,.15); color:var(--green); }
+  .badge.amber { background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.red { background:rgba(248,113,113,.15); color:var(--red); }
+  .badge.purple { background:rgba(167,139,250,.15); color:var(--purple); }
+  .meta { color:var(--muted); font-size:.78rem; margin-top:.4rem; font-family:Consolas,monospace; }
+  .fn { color:var(--text); font-size:.92rem; margin-top:.6rem; }
+  .finding { color:var(--muted); font-size:.88rem; margin-top:.5rem; padding-top:.55rem;
+    border-top:1px solid rgba(148,163,184,.18); }
+  .finding b { color:var(--text); }
+  .fix { color:var(--muted); font-size:.88rem; margin-top:.45rem; }
+  .fix b { color:var(--amber); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Recipes Review <span style="color:var(--green);font-size:.5em;vertical-align:middle;">RESOLVED 2026-08-08</span></h1>
+    <p>Every interaction recipe in <code>agent docs/recipes/</code> checked against the live code that
+    backs it — not just whether the exemplar file exists, but whether the function, class, or value it
+    names is still there and still does what the recipe says. This is <code>INSTRUCTION_LAYER_AUDIT.md</code>
+    &sect; 2g (doc vs. code) run recipe-by-recipe, the highest-yield check because a recipe can be internally
+    consistent and simply wrong about the code — nothing else catches that. <b>The findings below are the
+    original doc-vs-code pass and are kept as historical record</b> — Chase then walked through all 12
+    "needs rework" items in real-usage terms (does he actually reference this as a recipe, not just is it
+    accurate), which changed several outcomes from what a pure accuracy pass would have done. See the
+    outcome box below.</p>
+  </header>
+
+  <div class="note" style="border-left-color:var(--green)">
+    <strong>Outcome (2026-08-08, three rounds):</strong> of the original 26, only <b>3 recipes are
+    still in the shared <code>agent docs/recipes/</code> folder</b> — <code>modal-shell.md</code>,
+    <code>canvas-kit-target-size.md</code>, <code>tutorial-flash-vocabulary.md</code> — each confirmed
+    genuinely cross-app (10, 7, and 5 consuming apps respectively). Everything else moved to the one app
+    that actually owns it: <b>11 files</b> to <code>electron-toolbar/docs/</code> (dwell
+    click/drag/countdown/activation, hover-to-lock-drag, mouse-hover-detection, click-through-windows,
+    toggle-pattern, window-positioning, scroll-calculation, toolbar-system), <b>8 files</b> to
+    <code>Math App Studio/docs/recipes/</code> (studio-dwell-latch, canvas-move-resize,
+    animation-director-notes, studio-design-propagation, plus 4 canvas-kit-scoped ones also used by
+    Solving Quadratics App), <b>1 file</b> each to <code>Video Player/docs/</code>
+    (<code>vlc-embed-contract.md</code>) and <code>School documents/docs/</code>
+    (<code>school-exam-map-html.md</code>). <b>2 deleted outright</b>
+    (<code>move-to-cursor.md</code>, <code>state-machine.md</code>). One near-miss: Chase's first
+    instinct was that everything left was Math App Studio's, including <code>modal-shell.md</code> and
+    <code>canvas-kit-target-size.md</code> — a grep for real consumers caught that before the move
+    happened. Current map: <code>agent docs/recipes/INDEX.md</code>. Full reasoning, round by round:
+    <code>agent docs/sessions/SESSIONS.md</code> (2026-08-08 entries).
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">26</b><span>recipes freshly checked</span></div>
+    <div class="stat"><b style="color:var(--green)">14</b><span>keep as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">12</b><span>needs rework</span></div>
+    <div class="stat"><b style="color:var(--red)">0</b><span>delete</span></div>
+  </div>
+
+  <h2>Where each of the 26 ended up</h2>
+  <table>
+    <tr><th>Destination</th><th>Files</th></tr>
+    <tr><td>Stayed — <code>agent docs/recipes/</code> (genuinely cross-app)</td>
+      <td><code>modal-shell.md</code> (~10 apps), <code>canvas-kit-target-size.md</code> (canvas-kit + 6 apps), <code>tutorial-flash-vocabulary.md</code> (5 apps)</td></tr>
+    <tr><td><code>electron-toolbar/docs/</code></td>
+      <td><code>dwell-click.md</code>, <code>dwell-drag.md</code>, <code>dwell-countdown.md</code>, <code>dwell-activation.md</code>, <code>scroll-calculation.md</code>, <code>toolbar-system.md</code>, <code>hover-to-lock-drag.md</code>, <code>mouse-hover-detection.md</code>, <code>click-through-windows.md</code>, <code>toggle-pattern.md</code>, <code>window-positioning.md</code></td></tr>
+    <tr><td><code>School Scrips/Math App Studio/docs/recipes/</code></td>
+      <td><code>studio-dwell-latch.md</code>, <code>canvas-move-resize.md</code>, <code>animation-director-notes.md</code>, <code>studio-design-propagation.md</code>, <code>canvas-info-block-design.md</code>, <code>info-block-nav-buttons.md</code>, <code>edit-underlay-layer-contract.md</code>, <code>animation-library.md</code></td></tr>
+    <tr><td><code>Video Player/docs/</code></td><td><code>vlc-embed-contract.md</code></td></tr>
+    <tr><td><code>School Scrips/School documents/docs/</code></td><td><code>school-exam-map-html.md</code></td></tr>
+    <tr><td>Deleted</td><td><code>move-to-cursor.md</code>, <code>state-machine.md</code></td></tr>
+  </table>
+
+  <h2>Original findings (2026-08-08, before the app-folder split)</h2>
+  <div class="note">
+    <strong>Verdict:</strong> no dead recipes and no missing exemplars &mdash; every file still pointed at
+    real code. The problem was narrower and sneakier: <b>stale or invented numbers.</b> Several recipes
+    restated a timing value instead of naming the constant (the one rule the folder leads with), and a few
+    of those numbers were flat wrong &mdash; not just against the rule, but factually stale versus what
+    the code did. Two files (<code>modal-shell.md</code>, <code>state-machine.md</code>) went further
+    and described a hook, state, or import path that was never real. The cards and table below are that
+    original pass, kept as historical record — they predate the app-folder moves in the table above, so a
+    filename here may no longer live in <code>agent docs/recipes/</code>.
+  </div>
+
+  <div class="note purple">
+    <strong>Not covered on this page:</strong> the 6 code-shape standards that live in the same folder
+    &mdash; <code>CODING_STANDARDS.md</code>, <code>INIT_NEW_APP.md</code>, <code>file-headers.md</code>,
+    <code>react-patterns.md</code>, <code>refactoring-checklist.md</code>, <code>anti-patterns.md</code>.
+    Those were reviewed and reworked yesterday (2026-08-07) as part of the <code>cursor-patterns/</code>
+    elimination &mdash; see <a href="cursor-patterns-review.html" style="color:var(--purple)">that review</a>
+    and <code>agent docs/sessions/SESSIONS.md</code>. This page is the 26 files that hadn't had an
+    individual pass since they were written (mostly 2026-08-02, toolbar recipes since 2025-12-22).
+  </div>
+
+  <h2 class="amber">Needs rework (12)</h2>
+
+  <h3 class="cat">Dwell &amp; hover</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">dwell-countdown.md</div><span class="badge amber">Rework &mdash; wrong number</span></div>
+      <div class="meta">Exemplars real: dwell_mode2.py, dwell_globals.py, dwell_constants.py</div>
+      <div class="fn">Explains the two-step countdown before a dwell-drag commits.</div>
+      <div class="finding"><b>Finding:</b> the "Drag Start Countdown" code sample hardcodes <code>delays = [200, 200, 0]</code>. The real constants in <code>dwell_constants.py</code> are <code>COUNTDOWN_STEP_1_MS = 150</code> and <code>COUNTDOWN_STEP_2_MS = 150</code>. This is exactly the kind of bare value the recipe folder's own rule bans &mdash; and it's now factually wrong, which <code>check-docs.js</code> can't catch because it isn't attached to a constant name.</div>
+      <div class="fix"><b>Fix:</b> delete the literal array; point at <code>COUNTDOWN_STEP_1_MS</code> / <code>COUNTDOWN_STEP_2_MS</code> by name, same as the section two paragraphs later already does correctly.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">dwell-drag.md</div><span class="badge amber">Rework &mdash; same wrong number</span></div>
+      <div class="meta">Exemplars real: Mode2State enum, dwell_mode2.py, dwell_globals.py &mdash; state names all match</div>
+      <div class="fn">The IDLE&rarr;COUNTDOWN&rarr;DRAGGING&rarr;COOLDOWN state machine for dwell-to-drag.</div>
+      <div class="finding"><b>Finding:</b> the same "Drag Start Countdown" snippet repeats the stale <code>200ms</code> figure (real: <code>150ms</code>). <code>MOVEMENT_THRESHOLD = 15</code> and <code>DRAG_RELEASE_TIME = 0.75</code> elsewhere in the doc are correctly left as pointers, not restated &mdash; only the one instance needs fixing.</div>
+      <div class="fix"><b>Fix:</b> same as dwell-countdown.md &mdash; replace <code>200ms</code> with the constant name.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">dwell-activation.md</div><span class="badge amber">Rework</span></div>
+      <div class="meta">Exemplars real: toolbar.html (dwellTimer, activateButton), toolbar-manager.js</div>
+      <div class="fn">Hover-a-toolbar-button-to-fire-it pattern.</div>
+      <div class="finding"><b>Finding:</b> exemplars check out, but the "Complete Template" code hardcodes <code>dwellTime = options.dwellTime || 600</code> and <code>cooldownTime || 800</code>, and a "Timing Considerations" section prints invented ranges ("Fast 300-400ms", "Medium 500-700ms recommended") that don't correspond to any real constant.</div>
+      <div class="fix"><b>Fix:</b> strip the numeric defaults and the ranges table; point at <code>dwell_constants.py</code> the way the header already correctly does.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">dwell-click.md</div><span class="badge amber">Rework</span></div>
+      <div class="meta">Exemplars real: dwell_module.py handle_mode1() lines 478-543</div>
+      <div class="fn">Stationary-position dwell click (dwell mode 1).</div>
+      <div class="finding"><b>Finding:</b> the poll-loop shape matches the real code exactly, but "Timing Considerations" invents unsourced numbers ("Click Delay: Recommended 10-20ms") &mdash; the real code sleeps <code>0.04s</code> (40ms) before <code>mouseDown</code>, not 10-20ms.</div>
+      <div class="fix"><b>Fix:</b> remove the three bare-value subsections; the rest of the recipe is an accurate template.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">hover-to-lock-drag.md</div><span class="badge amber">Rework &mdash; self-contradicting</span></div>
+      <div class="meta">⚠️ already flagged in INDEX.md &mdash; the flag understates it</div>
+      <div class="fn">Drag handle on an overlay: hover to lock, then it follows the cursor.</div>
+      <div class="finding"><b>Finding:</b> the recipe's own "mistake this recipe exists to prevent" box says click-through overlays can never fire DOM <code>mouseenter</code>/<code>mouseleave</code> and mandates polling from the main process. But its own third exemplar, <code>arrow-overlay.html</code>, has a live <code>dragHandle.addEventListener('mouseenter', ...)</code> at line 460 that works. Worse: the actual current implementation &mdash; <code>drag-overlay-runtime.js</code> built on <code>overlay-hover-poll.js</code>'s <code>createOverlayHoverPoll</code> (real constants <code>HOVER_DWELL_MS=500</code>, <code>DRAG_STATIONARY_MS=500</code>) &mdash; isn't named anywhere in the recipe.</div>
+      <div class="fix"><b>Fix:</b> rewrite the Electron section to point at <code>drag-overlay-runtime.js</code> + <code>overlay-hover-poll.js</code> instead of hand-rolled pseudocode; drop or caveat the "DOM events never fire" claim since there's a live counterexample in the recipe's own cited file.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">mouse-hover-detection.md</div><span class="badge amber">Rework &mdash; downgrade from ✅</span></div>
+      <div class="meta">2 of 3 exemplars real; window-helpers.js has no hover logic</div>
+      <div class="fn">Detect cursor-over-region: polling vs. events.</div>
+      <div class="finding"><b>Finding:</b> <code>scroll_module.py</code>'s polling functions and <code>volume_module.py</code> check out. But the third named exemplar, <code>window-helpers.js</code>, contains window creation/click-through helpers &mdash; no hover-polling logic at all. The real generic implementation this recipe should point to is <code>overlay-hover-poll.js</code>'s <code>createOverlayHoverPoll</code>, which isn't mentioned.</div>
+      <div class="fix"><b>Fix:</b> swap the third exemplar for <code>overlay-hover-poll.js</code>.</div>
+    </div>
+
+  </div>
+
+  <h3 class="cat">Movement, canvas &amp; UI</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">move-to-cursor.md</div><span class="badge amber">Rework &mdash; stale paths, broken code</span></div>
+      <div class="meta">390 lines &mdash; budget is ~300</div>
+      <div class="fn">Send an overlay/arrow to the current cursor position on hotkey.</div>
+      <div class="finding"><b>Finding:</b> header exemplars are correct, but the body cites old paths (<code>modules/scroll_module.py</code> instead of <code>modules/scroll/backend/scroll_module.py</code>, <code>electron-toolbar/src/main.js</code> instead of <code>electron-app/src/main.js</code>) and describes a <code>handleSignal()</code> switch living directly in <code>main.js</code> &mdash; the real dispatch is in <code>signal-handlers.js:68-70</code>, which calls a thin wrapper in <code>main.js:255</code> that delegates to <code>arrowManager.moveArrowToCursor()</code>. Three code blocks also contain broken syntax from a bad timing-value scrub &mdash; a Python comment (<code># per-overlay; see that module's constants;</code>) pasted into a JavaScript block.</div>
+      <div class="fix"><b>Fix:</b> correct the paths, describe the actual <code>signal-handlers.js</code> dispatch, fix the broken placeholder syntax, cut the three near-duplicate templates down toward the 300-line budget.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">scroll-calculation.md</div><span class="badge amber">Rework &mdash; wrong number</span></div>
+      <div class="meta">Exemplars real: DragHandler, ScrollInstance, _poll_scroll, scroll_profiles.py</div>
+      <div class="fn">Region-to-scroll-speed mapping.</div>
+      <div class="finding"><b>Finding:</b> "Performance Considerations" claims "50ms is a good default" for the poll interval. The real <code>POLL_INTERVAL_MS</code> in <code>scroll_constants.py:54</code> is <code>10</code> &mdash; 50 is actually a different constant, <code>SIGNAL_POLL_INTERVAL_MS</code>. Also <code>SCROLL_OPTIONS = [20, 40, 60, 90]</code> is left as a literal array while a sibling constant nearby was correctly scrubbed to a pointer.</div>
+      <div class="fix"><b>Fix:</b> remove the "50ms" claim (point at the constant name only, don't restate it); scrub <code>SCROLL_OPTIONS</code> the same way.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">modal-shell.md</div><span class="badge amber">Rework &mdash; fabricated content</span></div>
+      <div class="meta">514 lines &mdash; budget is ~300</div>
+      <div class="fn">Modal sizing, backdrop, scroll-frame shell.</div>
+      <div class="finding"><b>Finding:</b> real exemplars (<code>ModalContainer.tsx</code>, <code>ViewportScrollFrame.tsx</code>, three named app modals, <code>Guidelines.md</code>) all check out. But two sections are invented: the "Basic Modal Template" and "Modal Portal Pattern" import <code>ModalPortal</code> from <code>'../portals/PortalLayer'</code> &mdash; that path doesn't exist anywhere in the repo (the real component is <code>Macro App/renderer/src/components/ModalPortal.tsx</code>, imported as <code>'../ModalPortal'</code>). The "Modal State Management" section documents a <code>useModalState</code> hook that returns zero hits in the codebase. The max-w-md/lg sizing guidance is also restated four separate times across the file.</div>
+      <div class="fix"><b>Fix:</b> fix the import path, delete or replace the fabricated hook section, cut the fourfold duplication of the sizing rule down to one place.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">canvas-kit-target-size.md</div><span class="badge amber">Rework &mdash; minor, dead link</span></div>
+      <div class="meta">Otherwise accurate &mdash; class strings and 44px-floor math verified exact</div>
+      <div class="fn">Minimum clickable target size on canvas buttons.</div>
+      <div class="finding"><b>Finding:</b> one dead reference &mdash; line 56 points to <code>25-dwell-accessibility.mdc</code>, which no longer exists anywhere in the tree. Leftover from the <code>.cursor/rules/*.mdc</code> retirement on 2026-08-02 that never got cleaned up here.</div>
+      <div class="fix"><b>Fix:</b> remove or replace that one citation. Everything else in the file is correct as written.</div>
+    </div>
+
+  </div>
+
+  <h3 class="cat">Architecture</h3>
+  <div class="cardlist">
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">state-machine.md</div><span class="badge amber">Rework &mdash; fabricated state</span></div>
+      <div class="meta">Exemplars real: dwell_mode2.py, dwell_globals.py, Mode2State</div>
+      <div class="fn">General template for state-machine-shaped UI (dwell drag as the example).</div>
+      <div class="finding"><b>Finding:</b> the "Dwell Drag State Machine" section invents a fifth state, <code>COOLDOWN</code>, that doesn't exist &mdash; the real enum in <code>dwell_constants.py:10-16</code> has exactly four: <code>IDLE</code>, <code>DRAGGING</code>, <code>COUNTDOWN</code>, <code>WAITING_FOR_MODE_SWITCH</code>. Everything below that point reads as generic invented pseudocode, not a description of the real mechanism.</div>
+      <div class="fix"><b>Fix:</b> strip the fabricated <code>COOLDOWN</code> state and the generic boilerplate; ground the dwell-drag section in what <code>dwell_mode2.py</code> actually does, or drop the worked example and keep this purely as a generic template.</div>
+    </div>
+
+    <div class="card amber">
+      <div class="card-top"><div class="title">toolbar-system.md</div><span class="badge amber">Rework &mdash; oversized, stale numbers, known gap</span></div>
+      <div class="meta">652 lines &mdash; budget is ~300. Largest recipe in the folder.</div>
+      <div class="fn">Building a toolbar / adding a toolbar button.</div>
+      <div class="finding"><b>Finding:</b> named exemplars and line numbers roughly hold, but several hardcoded values are now wrong, not just against the rule: doc says <code>INACTIVITY_TIMEOUT: 5000</code>, real <code>main-constants.js:92</code> is <code>2500</code>; doc says <code>TOOLBAR_DEFAULTS.HEIGHT: 120</code>, real value is <code>160</code>; the doc's <code>OFFSET_X</code>/<code>OFFSET_Y</code> fields don't exist on the real object at all; <code>COOLDOWN_TIME = 800</code> has no matching real constant. Separately, <code>electron-toolbar/AGENTS.md</code> confirms its own known gap is still real: no recipe covers the <code>coordinator/</code> layer (<code>module_registry.py</code>, <code>module_supervisor.py</code>, <code>module_lifecycle.py</code>, <code>hotkey_supervisor.py</code>).</div>
+      <div class="fix"><b>Fix:</b> cut to ~300 lines, replace every stale number with a pointer to <code>main-constants.js</code> / <code>dwell_constants.py</code>, and add a section (or a new sibling recipe) for the <code>coordinator/</code> layer.</div>
+    </div>
+
+  </div>
+
+  <h2 class="green">Keep as-is (14)</h2>
+  <table>
+    <tr><th>Recipe</th><th>What was verified</th></tr>
+    <tr><td><code>studio-dwell-latch.md</code></td><td>Every named symbol confirmed exact &mdash; <code>onHandlePointerLeave</code>, <code>needsExitHandleRef</code>, <code>setDwellHandleState</code> all match line-for-line in <code>useDwellRectEdit.ts</code>. Zero bare timing values. The model recipe in the set.</td></tr>
+    <tr><td><code>click-through-windows.md</code></td><td>All three exemplars real and on-point (<code>window-helpers.js</code>, <code>toolbar-handlers.js</code>, <code>arrow-handlers.js</code>) &mdash; <code>setIgnoreMouseEvents</code> / <code>createOverlayInteractiveGate</code> confirmed live.</td></tr>
+    <tr><td><code>toggle-pattern.md</code></td><td><code>checkCooldown('TOOLBAR_TOGGLE')</code> and <code>COOLDOWNS.TOOLBAR_TOGGLE = 300</code> both confirmed real (line number drifted by 19 lines &mdash; harmless).</td></tr>
+    <tr><td><code>canvas-move-resize.md</code></td><td>All 6 exemplars exist; <code>RESIZE_HANDLE_OFFSET_PX = 10</code>, handle class strings, and geometry functions all match exactly in Math App Studio.</td></tr>
+    <tr><td><code>window-positioning.md</code></td><td><code>clampToMonitor</code> code block matches <code>window-helpers.js:87-105</code> almost verbatim. Only a cosmetic malformed-backtick header fix needed.</td></tr>
+    <tr><td><code>canvas-info-block-design.md</code></td><td>Every class string and layout constant checked out character-for-character against <code>CanvasInfoBlockLayer.tsx</code> and <code>canvasDefaults.ts</code>.</td></tr>
+    <tr><td><code>info-block-nav-buttons.md</code></td><td>Every cited symbol verified across 6 real files &mdash; the most rigorously accurate recipe reviewed on this pass.</td></tr>
+    <tr><td><code>edit-underlay-layer-contract.md</code></td><td>All exemplars confirmed (<code>EditCanvasUnderlay.tsx</code>, <code>editLiveLayer.ts</code> exports). Only cosmetic doubled-blank-line formatting to clean up.</td></tr>
+    <tr><td><code>animation-director-notes.md</code></td><td>All 5 exemplar paths resolve to real files; the pending-notes export mechanism matches described behavior.</td></tr>
+    <tr><td><code>animation-library.md</code></td><td><code>animationTemplateRegistry</code> and the <code>{Name}Template.tsx</code> / <code>{id}Beats.ts</code> / <code>{id}Params.ts</code> shape both confirmed in canvas-kit.</td></tr>
+    <tr><td><code>tutorial-flash-vocabulary.md</code></td><td>All named files exist; the shared <code>.animate-tutorial-pulse</code> keyframe was verified present verbatim across 5 apps as claimed.</td></tr>
+    <tr><td><code>studio-design-propagation.md</code></td><td>All 6 named PowerShell scripts exist; <code>saveCanvasSpec</code>'s "one write path" claim confirmed in <code>canvas-spec.js</code>.</td></tr>
+    <tr><td><code>vlc-embed-contract.md</code></td><td><code>httpClient.js</code>, <code>playbackMonitor.js</code>, and the Win32 VLC helpers all exist exactly as cited.</td></tr>
+    <tr><td><code>school-exam-map-html.md</code></td><td>All 8 exemplar files exist. Process doc rather than reusable pattern, which matches its "done" status mark &mdash; no change needed.</td></tr>
+  </table>
+
+  <h2 class="grey">What actually happened to the INDEX.md status marks</h2>
+  <div class="note">
+    Overtaken by the app-folder split above — most of the INDEX.md rows these marks referred to don't
+    exist anymore (moved to the owning app's own docs, which don't use the ✅/⚠️ convention). The two
+    marks that mattered — <code>hover-to-lock-drag.md</code>'s ⚠️ (wrong exemplar + a self-contradicting
+    claim, not just "see note") and the <code>mouse-hover-detection.md</code> exemplar swap — were fixed
+    before either file moved to <code>electron-toolbar/docs/</code>, so the fix traveled with the file.
+  </div>
+
+  <footer>
+    Original pass: 2026-08-08 against live code &mdash; three parallel agents, each opening every named
+    exemplar file rather than trusting the recipe's own prose. <code>check-docs.js</code> reported clean
+    (0 dead links, 0 bare values, 0 recipe-value violations) on all 26 &mdash; every issue found was a
+    doc-vs-code mismatch a robot can't see. Resolution: same day, three rounds of real-usage triage with
+    Chase — see the destination table near the top of this page and
+    <code>agent docs/sessions/SESSIONS.md</code> for the full reasoning.
+  </footer>
+</div>
+</body>
+</html>
