@@ -37,6 +37,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Video Player**, video player | `Video Player` | *(local git)* | **`C:\Users\chase\Documents\Programs\Video Player\`** — Electron + embedded VLC; random episode picker + resume. **Not inside electron-toolbar** — toolbar only launches it (`Shift+F19`, Launcher Panel tile `video-player` → `Video Player\launch.bat`). Data: `%APPDATA%\video-player\data\`. Docs: `Video Player\CLAUDE.md`, `docs\VLC_EMBEDDING.md`. |
 | **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. **Cursor MCP:** `Programs/.cursor/mcp.json` → server `agent-browser` (Playwright MCP + CDP). Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
 | **Hearthstone Overlay 3.0**, HS Overlay 3.0, go face, hearthstone overlay | `Hearthstone Overlay 3.0` | *(local)* | **`C:\Users\chase\Documents\Programs\Hearthstone Overlay 3.0\`** — Electron + Python log service. Launch: `launch.bat` or toolbar Launcher Panel tile **`hearthstone-overlay-3`**. Go Face / combat robot: `electron/play-actions.js`, `electron/robot-worker.js`, `electron/go-face-window.js`. Session log: `docs/sessions/SESSIONS.md`. Daily driver (2.0 is legacy Tk overlay). |
+| **Quasimorph Tracker**, QM Tracker | `Quasimorph Tracker` | *(local)* | Electron + React companion dashboard for Quasimorph; reads `QM_FactionDump` JSON. Launcher Panel tile `quasimorph-tracker` -> `launch.bat`. |
 | **CourseAgent** | `CourseAgent` | ccarlozzi/CourseAgent | |
 | **Programs patterns / standards / recipes** | `agent docs\recipes\` | *(Programs root repo)* | `CODING_STANDARDS.md`, `INIT_NEW_APP.md`, and every interaction recipe live here |
 
@@ -104,6 +105,7 @@ All superseded copies below live under **`Deprecated apps\`** (safe to delete th
 
 | Workspace | Path | Notes |
 |-----------|------|-------|
+| **Quasimorph mods**, Quasimorph, QM_StickyTooltips | `C:\Users\chase\Desktop\games\Quasimorph-GoldBerg\mod-dev` | Local Harmony mod source outside Programs; build each mod from `QM_*\src`; post-build deploys to Quasimorph `LocalUserPresets`. |
 | **Rosters etc** | `C:\Users\chase\My Drive\Rosters etc` | Course rosters, attendance, calendars, email templates — Google Drive |
 | **D2L Assignment Assistant** | `C:\Users\chase\Documents\D2L Assignment Assistant` | Separate Cursor workspace folder (may be empty or symlink — prefer Macro App for AA code) |
 

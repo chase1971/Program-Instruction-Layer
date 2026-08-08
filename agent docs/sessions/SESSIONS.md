@@ -2,6 +2,24 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-08 - Quasimorph routing + local Tracker/mod work
+
+**Files changed:** `APP_LOCATIONS.md` (added Quasimorph Tracker and Quasimorph mods rows),
+`agent docs/session-scorecards.jsonl`, `agent docs/session-scorecards-log.html`; local-only work
+outside root git in `Quasimorph Tracker/` and `Desktop/games/Quasimorph-GoldBerg/mod-dev/`.
+
+**What worked:** Routed future "Quasimorph Tracker" and "Quasimorph mods" requests directly.
+Built/deployed `QM_StickyTooltips` v2.2.0 for dwell-click-safe hover tooltips, and added
+Tracker ship material tracking with pinned two-column commodities plus centered scroll controls.
+
+**Current state:** Green - scorecard finalized, Tracker `npm run build` passed, StickyTooltips
+`dotnet build -c Release` passed and deployed. Visible app/game smoke tests were not run.
+
+**File size flag:** None.
+
+**Next session:** Chase smoke-tests StickyTooltips and Tracker tracking in the live app/game;
+consider initializing git for Quasimorph Tracker if it should be backed up.
+
 ## 2026-08-08 (round 3) — Recipes folder split by owning app; only 3 recipes stayed shared
 
 **Files changed:** Moved 8 files to new `School Scrips/Math App Studio/docs/recipes/`
