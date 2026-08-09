@@ -1,0 +1,265 @@
+{
+  "title": "Lone Star College Fall 2026 Final Exam Schedule",
+  "sourceUrl": "https://www.lonestar.edu/examschedule.htm",
+  "retrievedDate": "2026-08-08",
+  "term": "Fall 2026",
+  "scope": "Final exam schedule for classes scheduled in the 16-week Fall 2026 session.",
+  "timezone": "America/Chicago",
+  "notes": [
+    "Weekday classes scheduled to meet once per week conduct their final exam on the last scheduled class day during final exam week at the exam time listed in this schedule.",
+    "Weekend classes have final exams on December 12-13, 2026 during regularly scheduled class periods.",
+    "For session lengths other than the 16-week session, refer to the class syllabus for the specific final exam date and time."
+  ],
+  "schedule": [
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "6:00 - 6:59 am",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "6:00 - 7:50 am",
+      "examStartTime": "06:00",
+      "examEndTime": "07:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "7:00 - 7:59 am",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "7:00 - 8:50 am",
+      "examStartTime": "07:00",
+      "examEndTime": "08:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "8:00 - 8:59 am",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "8:00 - 9:50 am",
+      "examStartTime": "08:00",
+      "examEndTime": "09:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "9:00 - 9:59 am",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "9:00 - 10:50 am",
+      "examStartTime": "09:00",
+      "examEndTime": "10:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "10:00 - 10:59 am",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "10:00 - 11:50 am",
+      "examStartTime": "10:00",
+      "examEndTime": "11:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "11:00 - 11:59 am",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "11:00 am - 12:50 pm",
+      "examStartTime": "11:00",
+      "examEndTime": "12:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "noon - 12:59 pm",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "noon - 1:50 pm",
+      "examStartTime": "12:00",
+      "examEndTime": "13:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "1:00 - 1:59 pm",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "1:00 - 2:50 pm",
+      "examStartTime": "13:00",
+      "examEndTime": "14:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "2:00 - 2:59 pm",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "2:00 - 3:50 pm",
+      "examStartTime": "14:00",
+      "examEndTime": "15:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "3:00 - 3:59 pm",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "3:00 - 4:50 pm",
+      "examStartTime": "15:00",
+      "examEndTime": "16:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "4:00 - 5:29 pm",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "4:00 - 5:50 pm",
+      "examStartTime": "16:00",
+      "examEndTime": "17:50"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "5:30 - 6:59 pm",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "5:30 - 7:20 pm",
+      "examStartTime": "17:30",
+      "examEndTime": "19:20"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "7:00 - 8:29 pm",
+      "examDate": "2026-12-07",
+      "examDay": "Monday",
+      "examTime": "7:30 - 9:20 pm",
+      "examStartTime": "19:30",
+      "examEndTime": "21:20"
+    },
+    {
+      "meetingPattern": "MWF",
+      "meetingPatternDescription": "Monday, Wednesday, Friday",
+      "classBeginsAnytimeBetween": "8:30 - 9:59 pm",
+      "examDate": "2026-12-09",
+      "examDay": "Wednesday",
+      "examTime": "8:00 - 9:50 pm",
+      "examStartTime": "20:00",
+      "examEndTime": "21:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "6:00 - 6:59 am",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "6:00 - 7:50 am",
+      "examStartTime": "06:00",
+      "examEndTime": "07:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "7:00 - 7:59 am",
+      "examDate": "2026-12-10",
+      "examDay": "Thursday",
+      "examTime": "7:30 - 9:20 am",
+      "examStartTime": "07:30",
+      "examEndTime": "09:20"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "8:00 - 9:29 am",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "8:00 - 9:50 am",
+      "examStartTime": "08:00",
+      "examEndTime": "09:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "9:30 - 10:59 am",
+      "examDate": "2026-12-10",
+      "examDay": "Thursday",
+      "examTime": "9:30 - 11:20 am",
+      "examStartTime": "09:30",
+      "examEndTime": "11:20"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "11:00 am - 12:29 pm",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "11:00 am - 12:50 pm",
+      "examStartTime": "11:00",
+      "examEndTime": "12:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "12:30 - 1:59 pm",
+      "examDate": "2026-12-10",
+      "examDay": "Thursday",
+      "examTime": "12:30 - 2:20 pm",
+      "examStartTime": "12:30",
+      "examEndTime": "14:20"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "2:00 - 3:29 pm",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "2:00 - 3:50 pm",
+      "examStartTime": "14:00",
+      "examEndTime": "15:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "3:30 - 4:59 pm",
+      "examDate": "2026-12-10",
+      "examDay": "Thursday",
+      "examTime": "4:00 - 5:50 pm",
+      "examStartTime": "16:00",
+      "examEndTime": "17:50"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "5:00 - 6:59 pm",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "5:30 - 7:20 pm",
+      "examStartTime": "17:30",
+      "examEndTime": "19:20"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "7:00 - 8:29 pm",
+      "examDate": "2026-12-10",
+      "examDay": "Thursday",
+      "examTime": "7:30 - 9:20 pm",
+      "examStartTime": "19:30",
+      "examEndTime": "21:20"
+    },
+    {
+      "meetingPattern": "TTh",
+      "meetingPatternDescription": "Tuesday, Thursday",
+      "classBeginsAnytimeBetween": "8:30 - 9:59 pm",
+      "examDate": "2026-12-08",
+      "examDay": "Tuesday",
+      "examTime": "8:00 - 9:50 pm",
+      "examStartTime": "20:00",
+      "examEndTime": "21:50"
+    }
+  ]
+}
