@@ -6,6 +6,31 @@
 > **Fires on:** "end of session protocol" · "wrap the session" · "we're done for now".
 >
 > **Invoking it *is* permission to commit and push.** No separate ask needed.
+>
+> **Invoking it also means:** Chase is **done** — no more coding, no more running
+> anything tonight. Assume he already tested what mattered (or accepts headless CI).
+> **Do not ask him to run, launch, restart, open, or verify anything** — not apps, not
+> servers, not browsers, not smoke tests, not "quick checks."
+
+---
+
+## What this phrase means
+
+**"End of session protocol" = I'm done.** Wrap-up is **agent-only**: git, scorecard,
+session log, commit/push, check-docs, one-line report — then stop.
+
+- **Never** ask Chase to run anything as part of wrap-up.
+- **Never** end with handoff steps directed at him ("restart and confirm…", "want to
+  launch…?", "smoke-test these three things…").
+- Headless checks during the session are enough for **Current state** unless he said
+  something is still broken.
+- If he confirmed it works in chat, log **Green** — not "Green headlessly — live test
+  needed."
+- **Next session** in the log is for a *future* agent/session, not a to-do list for Chase
+  tonight.
+
+Mid-session is different: still ask before launching GUIs per root `AGENTS.md` § Never put
+anything on Chase's screen without asking.
 
 ---
 
@@ -56,7 +81,7 @@
    row for any recipe or doc this session created.
 
 7. **Report back in one short line:** what was logged, commit/push result, check-docs summary,
-   anything left broken.
+   anything left broken. **Do not ask Chase to run anything.**
 
 ---
 

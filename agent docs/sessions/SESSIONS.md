@@ -2,6 +2,40 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-08 (round 4) — App Dashboard conformance pass, first of the School Scrips series
+
+**Files changed:** New `agent docs/instructional-layer-htmls/app-dashboard-docs-review.html`
+(Phase 1 report, then updated in place with the outcome once Chase made his calls); added its
+card to `agent docs/index.html`. Inside `School Scrips/App Dashboard` (separate repo): deleted
+`docs/REBUILD-PLAN.md`, `docs/PHASES.md`, `docs/LIFECYCLE-TRACKING-NOTES.md`,
+`docs/sessions/END_OF_SESSION_CHECKLIST.md`, `guidelines/Guidelines.md` (and the now-empty
+`guidelines/` folder); fixed a stale toolbar-routing claim and a broken backslash-path link in
+`README.md`; removed the now-dangling pointers to the deleted files from `AGENTS.md` and
+`QUICK_START.md`.
+
+**What worked:** Ran the conformance pass per `APP_CONFORMANCE_PASS.md` — all 12 markdown files
+checked against live code, not just against each other's prose. Found a real, currently-unguarded
+bug: Macro App's Vite dev server and D2L Platform (Personal)'s API server both hardcode port
+**5328**; `npm run audit:launch-registry` doesn't catch it because only Macro App's side is
+registered in `apps.json`'s `devRouting`. Also found `README.md` directly contradicting
+`LAUNCHER.md` about how the toolbar sources app paths (stale `appPaths` map claim; the real
+mechanism is `school-launchers.js` reading `apps.json`). Chase then reviewed every finding for
+*usefulness*, not just correctness — his call was "I don't use this app much, that plan is too
+old to remember, not worth the tokens to fix the lifecycle bug" — and deleted the five docs above
+rather than fixing them.
+
+**Current state:** Green. App Dashboard now has 7 markdown files, all either verified accurate
+or freshly fixed. Two findings deliberately left open: the 5328 port collision (Chase hasn't
+picked which side to move) and a stale `(future)` tag on the `process` log source in
+`docs/LOGGING.md`.
+
+**File size flag:** None — this was a docs-only session.
+
+**Next session:** Decide the 5328 collision (move Macro App's `devRouting.upstreamPort` off it,
+or register D2L Personal's hardcoded API port so the audit script can see the conflict). Then
+continue the School Scrips conformance-pass series — Macro App, Math App Studio, and 8 others
+still to review, one at a time per `APP_CONFORMANCE_PASS.md`.
+
 ## 2026-08-08 - Quasimorph routing + local Tracker/mod work
 
 **Files changed:** `APP_LOCATIONS.md` (added Quasimorph Tracker and Quasimorph mods rows),

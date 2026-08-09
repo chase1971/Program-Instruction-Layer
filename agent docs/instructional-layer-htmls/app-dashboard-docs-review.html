@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App Dashboard Docs Review</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  .note.red { border-left-color:var(--red); }
+  .note.purple { border-left-color:var(--purple); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.red { color:var(--red); } h2.grey { color:var(--muted); }
+  h3.cat { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:1.4rem 0 .6rem; }
+  .cardlist { display:flex; flex-direction:column; gap:.85rem; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:5px solid var(--blue);
+    border-radius:var(--radius); padding:1.1rem 1.2rem; }
+  .card.green { border-left-color:var(--green); }
+  .card.amber { border-left-color:var(--amber); }
+  .card.red { border-left-color:var(--red); }
+  .card.purple { border-left-color:var(--purple); }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .title { font-weight:800; font-size:1.08rem; font-family:Consolas,monospace; }
+  .badge { flex-shrink:0; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800;
+    padding:.3rem .65rem; border-radius:999px; white-space:nowrap; }
+  .badge.green { background:rgba(52,211,153,.15); color:var(--green); }
+  .badge.amber { background:rgba(251,191,36,.15); color:var(--amber); }
+  .badge.red { background:rgba(248,113,113,.15); color:var(--red); }
+  .meta { color:var(--muted); font-size:.78rem; margin-top:.4rem; font-family:Consolas,monospace; }
+  .fn { color:var(--text); font-size:.92rem; margin-top:.6rem; }
+  .finding { color:var(--muted); font-size:.88rem; margin-top:.5rem; padding-top:.55rem;
+    border-top:1px solid rgba(148,163,184,.18); }
+  .finding b { color:var(--text); }
+  .fix { color:var(--muted); font-size:.88rem; margin-top:.45rem; }
+  .fix b { color:var(--amber); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>App Dashboard Docs Review <span style="color:var(--green);font-size:.5em;vertical-align:middle;">MOSTLY RESOLVED 2026-08-08</span></h1>
+    <p>First app picked for the School Scrips conformance-pass series, run one app at a time per <code>agent docs/APP_CONFORMANCE_PASS.md</code>. All 12 markdown files under <code>School Scrips/App Dashboard/</code> checked against the live code they describe &mdash; same method as the <a href="electron-toolbar-docs-review.html" style="color:var(--blue)">Electron Toolbar Docs Review</a>. <b>The findings below are the original Phase 1 pass, kept as the record of what was found</b> &mdash; Chase then made the call on each, captured in the outcome box below.</p>
+  </header>
+
+  <div class="note" style="border-left-color:var(--green)">
+    <strong>Outcome (2026-08-08):</strong> Chase's read on the roadmap/notes docs was "I don't use this app much and don't remember writing that plan &mdash; not worth keeping." <b>5 files deleted outright:</b> <code>docs/sessions/END_OF_SESSION_CHECKLIST.md</code> (finding&nbsp;3, orphaned + duplicated the tree-wide protocol), <code>guidelines/Guidelines.md</code> (finding&nbsp;5, orphaned + restated rules that already live in <code>AGENTS.md</code> &mdash; the now-empty <code>guidelines/</code> folder went with it), and all three of <code>docs/REBUILD-PLAN.md</code>, <code>docs/PHASES.md</code>, <code>docs/LIFECYCLE-TRACKING-NOTES.md</code> (finding&nbsp;4 plus the lifecycle doc from the "fine as-is" table below) &mdash; Chase judged the chrome-vite "still says running after you closed it" cosmetic bug documented there isn't worth ever fixing. <b>2 fixed in place:</b> <code>README.md</code>'s stale <code>appPaths</code> claim (finding&nbsp;2) now points at the real toolbar-sourcing mechanism, and its broken backslash-path link (finding&nbsp;6) now resolves. <code>AGENTS.md</code> and <code>QUICK_START.md</code> had their now-dangling pointers to the deleted files removed. <b>Still open:</b> finding&nbsp;1, the 5328 port collision between Macro App and D2L Platform (Personal) &mdash; Chase hasn't picked a side yet &mdash; and finding&nbsp;7, the stale <code>(future)</code> tag in <code>docs/LOGGING.md</code>, not yet touched.
+  </div>
+
+  <div class="note">
+    <strong>The shape of it, in short:</strong> App Dashboard's instruction layer is <b>fundamentally healthy</b> &mdash; clean <code>AGENTS.md</code>/<code>CLAUDE.md</code>, no retired <code>.cursor/rules</code>, a correctly-wired and git-tracked file-size hook, and the two most load-bearing docs (<code>QUICK_START.md</code>, the rotation mechanics in <code>docs/LOGGING.md</code>) check out exactly against code. The problems are narrower than that summary implies but one of them is a real one: <code>docs/LAUNCHER.md</code>'s port table has an <b>undetected port collision</b> between Macro App and the D2L Platform (Personal) dev server, both on <b>5328</b> &mdash; invisible to <code>audit:launch-registry</code> because only one side is registered. Everything else is staleness: a README claim that contradicts its own sibling doc, three roadmap/checklist docs whose progress markers lag behind what's actually built, and two docs nothing routes an agent to.</p>
+  </div>
+
+  <h2 id="findings">Findings, worst first</h2>
+  <table>
+    <tr><th>#</th><th>Check</th><th>What's there now</th><th>Why it's a problem</th><th>Effort</th></tr>
+    <tr>
+      <td>1</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/LAUNCHER.md</code>'s port table claims <b>5328</b> = "D2L personal variant (API)". Verified: <code>Deprecated apps/D2L-Assignment-Platform/product/variants/personal/electron/main.js:21</code> hardcodes <code>LOCAL_API_PORT = isDev ? 5328 : 5000</code>. But <b>Macro App's own Vite dev server also uses 5328</b> &mdash; <code>Macro App/renderer/vite.config.ts:148</code>, registered in <code>apps.json</code> as <code>macro-app</code>'s <code>devRouting.upstreamPort</code>.</td>
+      <td>Running Macro App and D2L Platform (Personal) dev servers at the same time collides on 5328 &mdash; the exact "silent wrong-app load" failure LAUNCHER.md's whole port-registry system exists to prevent. <code>npm run audit:launch-registry</code> passes clean because D2L's API port is hardcoded in its own source, never entered into <code>apps.json</code>'s <code>devRouting</code> &mdash; the one side of the collision the tooling can see is the D2L Vite port (5327), not its API port.</td>
+      <td>S&ndash;M</td>
+    </tr>
+    <tr>
+      <td>2</td><td>C &middot; Doc vs code</td>
+      <td><code>README.md</code> tells you the toolbar reads <code>appPaths['school-os-dashboard']</code> in <code>electron-toolbar/.../toolbar-handlers.js</code>. <code>docs/LAUNCHER.md</code>'s own "Electron toolbar (single source of truth)" section says that map was <b>removed</b>, replaced by <code>schoolLaunchers.getSchoolLaunchers()</code>. Verified against current code: no <code>appPaths</code> anywhere in <code>toolbar-handlers.js</code>, only two <code>getSchoolLaunchers()</code> call sites.</td>
+      <td>Two docs in the same app directly contradict each other, and the one an agent is more likely to open first (root <code>README.md</code>) is the wrong one. Following it sends an agent hunting for a map that doesn't exist.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>3</td><td>F &middot; Retirement / A &middot; Discoverability</td>
+      <td><code>docs/sessions/END_OF_SESSION_CHECKLIST.md</code> still reads "Last completed: 2026-04-25" &mdash; <code>SESSIONS.md</code>'s actual latest entry is <b>2026-07-10</b>, so the tracking line is 2.5+ months behind real activity. It's also not routed anywhere in <code>AGENTS.md</code>'s keyword table, and <code>check-docs.js</code> independently flags it as unreachable within 2 hops of the root index.</td>
+      <td>A checklist meant to run "at the end of every session" that nothing points an agent to, and whose own progress marker looks abandoned, reads as dead rather than current &mdash; even though the underlying five-step flow is still reasonable.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>4</td><td>B &middot; Single source</td>
+      <td><code>docs/REBUILD-PLAN.md</code>'s Part 2 checklist still shows <code>[ ] Renderer: persistent status rings/labels + optional stop UI polish</code> as undone. Verified in code: <code>AppIcon.tsx</code> already renders a persistent status dot + "Starting&hellip;/Running/Error" label (lines 43&ndash;53), and <code>Desktop.tsx</code> already wires <code>stopApp</code>. <code>docs/PHASES.md</code> separately still labels itself "R1 &mdash; Docs Reconciliation (current)" even though R2's listed items (status UX, stop action) are the ones actually built.</td>
+      <td>Two roadmap docs understate real progress. An agent asked "what's left to build" reads a checklist that says work is pending when it's largely done &mdash; risk of redoing it, or of Chase re-explaining status he already established.</td>
+      <td>M &mdash; needs Chase's call on what's actually finished</td>
+    </tr>
+    <tr>
+      <td>5</td><td>A &middot; Discoverability</td>
+      <td><code>guidelines/Guidelines.md</code> isn't linked from <code>AGENTS.md</code>'s "Read first" or "Start here" tables, nor from <code>README.md</code>'s Documentation table &mdash; nothing routes an agent to it. Its content (main.ts orchestration-only, file-size rule, don't hardcode apps in React) is also a smaller restatement of ground <code>AGENTS.md</code> and root <code>Programs/AGENTS.md</code> already cover.</td>
+      <td>An orphaned, partially-duplicate doc: never found by description, and if found, mostly repeats a rule that already lives somewhere with more authority.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>6</td><td>B &middot; Single source</td>
+      <td>Both <code>guidelines/Guidelines.md</code> (2 links) and <code>README.md</code>'s "Global patterns" line link to <code>recipes/INDEX.md</code> using a raw Windows path with backslashes as the href: <code>C:\Users\chase\Documents\Programs\agent docs\recipes\INDEX.md</code>.</td>
+      <td>Not a valid relative markdown link &mdash; won't render clickable in the docs server, GitHub, or most renderers. A dead link at the exact spot meant to point an agent at cross-app standards.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>7</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/LOGGING.md</code>'s field table still marks <code>source: "process"</code> as <code>(future)</code>. Verified: <code>process</code> is a real <code>LogSource</code> in <code>electron/logger.ts</code>, and <code>processManager.ts</code> already logs dozens of <code>process</code>-sourced events (<code>chrome_opening</code>, <code>chrome_not_found</code>, etc.).</td>
+      <td>Minor &mdash; a one-word tag left over from before the field shipped. Low confusion risk, but it's the kind of thing that makes a reader wonder what else in the table is stale.</td>
+      <td>S</td>
+    </tr>
+  </table>
+
+  <h2 class="green">Fine as-is &mdash; no action needed (5)</h2>
+  <table>
+    <tr><th>File</th><th>Why it's fine</th></tr>
+    <tr><td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td><td>Matches the current tree-wide standard exactly &mdash; 3-line <code>CLAUDE.md</code> import, keyword table routes Chase's actual phrases, no <code>.cursor/rules/*.mdc</code>, correctly listed in <code>APP_LOCATIONS.md</code>.</td></tr>
+    <tr><td><code>QUICK_START.md</code></td><td>Every command, script name, and port claim checked against <code>package.json</code> and <code>vite.config.ts</code> and matched exactly (<code>free-port</code>, <code>dev</code>, <code>dev:vite</code>, <code>build:electron</code>, port 5317). Flagged by tree-wide <code>check-docs.js</code> as "unrouted from root INDEX," but that's expected &mdash; it's reachable from this app's own <code>README.md</code>, which is the correct routing layer for an app-internal doc.</td></tr>
+    <tr><td><code>docs/LOGGING.md</code> (rotation mechanics)</td><td>5&nbsp;MB / 5-file rotation claim verified byte-for-byte against <code>electron/constants.ts</code>'s <code>LOG_MAX_BYTES</code>/<code>LOG_MAX_FILES</code>. (The one stale field-table tag is finding&nbsp;7 above &mdash; the rest of the doc is accurate.)</td></tr>
+    <tr><td><code>docs/LIFECYCLE-TRACKING-NOTES.md</code></td><td>Dated 2026-04-25 but every concrete claim re-verified against current code still holds: the chrome-vite "still shows running after close" issue is genuinely still unfixed, <code>openChromeWindow</code> still uses <code>detached: true</code> + <code>unref()</code> with no process-handle tracking. Accurate, just <b>stale as an action item</b> &mdash; its 5-item pickup checklist shows no sign any item was executed in the 3.5 months since. Worth asking Chase whether this is still live work or should move to <code>SESSIONS.md</code> as history.</td></tr>
+    <tr><td><code>docs/sessions/SESSIONS.md</code></td><td>Append-only log, working as intended &mdash; used directly above to establish the real "last active" date against <code>END_OF_SESSION_CHECKLIST.md</code>'s stale marker.</td></tr>
+  </table>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">12</b><span>markdown files reviewed</span></div>
+    <div class="stat"><b style="color:var(--green)">5</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">7</b><span>needs rework</span></div>
+    <div class="stat"><b style="color:var(--red)">0</b><span>needs removal</span></div>
+  </div>
+
+  <h2 class="grey">Also checked, no findings</h2>
+  <div class="note">
+    <b>D &middot; Enforcement:</b> file-size hook present and correctly wired &mdash; <code>.git/hooks/pre-commit</code> calls <code>scripts/check-file-size.cjs</code>, which is tracked in git along with its installer (<code>scripts/install-hooks.sh</code>). Running it in <code>--all</code> mode today shows only 2 files over cap (<code>electron/processManager.ts</code> at 836, <code>dist-electron/main.cjs</code> at 1735), both correctly allowlisted with a named split plan. One minor aside, code not docs: the script's own header comment says "this repo has 10 files already over cap" as of 2026-07-31 &mdash; 8 of those were apparently split since without the comment being updated. Not worth its own line item; mention it if you're ever in that file.
+  </div>
+  <div class="note purple">
+    <b>D2L Platform paths:</b> both <code>apps.json</code> entries for D2L (default + personal) point at <code>Deprecated apps/D2L-Assignment-Platform/product/variants/&lt;variant&gt;</code>. Confirmed both paths still exist and are real, working trees &mdash; not a broken registry entry. Left untouched here since <code>Deprecated apps/**</code> is out of scope for this pass per <code>APP_CONFORMANCE_PASS.md</code>; noted only because it's the other half of finding&nbsp;1's port collision.
+  </div>
+
+  <h2 class="grey">What I'd do first, and why</h2>
+  <div class="note">
+    <b>Finding&nbsp;1 (the 5328 collision) first</b> &mdash; it's the only finding here that's a live bug risk rather than a stale doc, and it's cheap to at least make visible: either give Macro App a different <code>devRouting.upstreamPort</code>, or register D2L Personal's hardcoded API port in <code>apps.json</code> so <code>audit:launch-registry</code> can see it (D2L's own code is out of scope to edit here, but the App Dashboard side &mdash; the port table and/or Macro App's assignment &mdash; isn't). <b>Finding&nbsp;2</b> (the README/LAUNCHER.md contradiction) is a one-line fix right after. Findings 3, 5, and 6 are all quick discoverability/link fixes worth batching together. Finding&nbsp;4 needs your call on what's actually done before anyone edits the checklist &mdash; that one I can't resolve by reading code alone.
+  </div>
+
+  <h2 class="grey">Couldn't determine without asking</h2>
+  <div class="note">
+    Whether <code>docs/LIFECYCLE-TRACKING-NOTES.md</code>'s pickup checklist is still active work you plan to return to, or dead enough to fold into <code>SESSIONS.md</code> as history. And for finding&nbsp;1: whether you'd rather move Macro App off 5328 or leave D2L Personal's hardcoded port as-is and just document the collision &mdash; I don't know which of the two you use more often side-by-side.
+  </div>
+
+  <footer>
+    Reviewed 2026-08-08 against <code>C:\Users\chase\Documents\Programs\School Scrips\App Dashboard\</code> &mdash; every finding above was checked against live code (grep, file existence, running <code>audit:launch-registry</code> and <code>check-file-size.cjs --all</code>), not inferred from a doc's own prose. Phase 1 only &mdash; no files were changed. Part of the School Scrips conformance-pass series; <a href="../index.html" style="color:var(--blue)">back to all pages</a> for the next app.
+  </footer>
+</div>
+</body>
+</html>

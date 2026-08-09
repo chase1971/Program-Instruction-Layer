@@ -215,7 +215,7 @@ implementation of an existing concept is a stop-and-ask, not a judgment call.
 | A rule that keeps getting missed | "that's the third time" — forces it up a rung |
 | Periodic instruction cleanup (whole tree) | "run the audit doc" |
 | Modernize one app's agent docs | "run the conformance pass on `<app>`" |
-| Session wrap-up | "end of session protocol" — logs, commits, pushes all dirty repos |
+| Session wrap-up | "end of session protocol" — Chase is done; agent wraps up (log, commit, push); never ask him to run anything |
 | State on resuming | "where did we leave off" |
 | A new app | "initialize a new app" — follows `agent docs/recipes/INIT_NEW_APP.md` |
 

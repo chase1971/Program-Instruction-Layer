@@ -150,7 +150,8 @@ if a chunk finished without a bump.
 ## End-of-Session Protocol
 
 On **"end of session protocol"**, "wrap the session", "we're done for now" → follow
-**`agent docs/END_OF_SESSION.md`**. Invoking it *is* permission to commit and push.
+**`agent docs/END_OF_SESSION.md`**. Invoking it *is* permission to commit and push, and
+means **Chase is done** — wrap up silently; **never ask him to run, launch, or verify anything**.
 
 On "what's the state" / "where did we leave off" → read the latest `SESSIONS.md` entry and
 summarize in 2–3 lines. That is not this protocol.
