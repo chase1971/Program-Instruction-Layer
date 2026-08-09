@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session tracking — task log</title>
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface2: #243044;
+      --text: #e8eef4; --muted: #9db0c4; --accent: #5eb8ff; --accent2: #7ee787;
+      --warn: #f0b429; --danger: #ff7b72; --border: #3d5166;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 17px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+    h1 { font-size: 1.85rem; margin: 0 0 0.35rem; }
+    .subtitle { color: var(--muted); margin-bottom: 1rem; }
+    .summary-bar {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;
+      padding: 0.85rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .summary-bar dt { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); }
+    .summary-bar dd { margin: 0.15rem 0 0; font-size: 1.15rem; font-weight: 700; }
+    .day-block { margin: 1.75rem 0; }
+    .day-title { font-size: 1.2rem; color: var(--accent); margin: 0 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+    .day-count { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
+    .day-tasks { display: flex; flex-direction: column; gap: 0.55rem; }
+    .track-entry { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .track-entry[open] { box-shadow: inset 0 0 0 1px rgba(94, 184, 255, 0.35); }
+    .track-summary {
+      cursor: pointer; min-height: 48px; padding: 0.65rem 0.85rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; list-style: none;
+    }
+    .track-summary::-webkit-details-marker { display: none; }
+    .track-title { flex: 1 1 12rem; font-size: 0.95rem; line-height: 1.4; }
+    .track-panel { padding: 0 0.85rem 0.75rem; border-top: 1px solid rgba(61, 81, 102, 0.45); }
+    .track-meta { margin: 0.5rem 0 0.35rem; font-size: 0.85rem; }
+    .pill { display: inline-block; padding: 0.2em 0.55em; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
+    .p0 { background: #1e3350; color: var(--accent); }
+    .p2 { background: #4a3818; color: var(--warn); }
+    .muted-inline { color: var(--muted); font-size: 0.9rem; }
+    .empty { color: var(--muted); padding: 2rem; text-align: center; }
+    .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
+    .footer a { color: var(--accent); }
+    
+    .nav-path-block { background: #151c26; border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.75rem; margin: 0.65rem 0 0.35rem; }
+    .nav-path-block summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-weight: 600; list-style: none; }
+    .nav-path-block summary::-webkit-details-marker { display: none; }
+    .nav-path-summary { font-weight: 400; color: var(--muted); font-size: 0.88rem; }
+    .nav-legend { margin: 0.35rem 0 0.5rem; font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
+    .nav-helpful-pill, .nav-partial-pill, .nav-dead-pill { font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 6px; }
+    .nav-helpful-pill { background: #264032; color: var(--accent2); }
+    .nav-partial-pill { background: #4a3818; color: var(--warn); }
+    .nav-dead-pill { background: #3d2020; color: var(--danger); }
+    .nav-tree { margin: 0; padding: 0; list-style: none; }
+    .nav-root { padding-left: 0; }
+    .nav-nested { margin: 0.25rem 0 0.15rem 1.35rem; padding-left: 0.5rem; border-left: 2px solid rgba(94, 184, 255, 0.25); }
+    .nav-step { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem; margin: 0.35rem 0; font-size: 0.88rem; min-height: 1.4rem; }
+    .nav-marker { font-weight: 800; width: 1.1rem; text-align: center; flex-shrink: 0; }
+    .nav-step.nav-helpful .nav-marker { color: var(--accent2); }
+    .nav-step.nav-partial .nav-marker { color: var(--warn); }
+    .nav-step.nav-dead .nav-marker { color: var(--danger); }
+    .nav-step-num { color: var(--muted); font-size: 0.75rem; min-width: 1.1rem; }
+    .nav-branch { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); background: #1e3350; padding: 0.1rem 0.35rem; border-radius: 4px; }
+    .nav-target { font-family: Consolas, "Courier New", monospace; font-size: 0.84rem; color: var(--text); word-break: break-word; }
+    .nav-note { color: var(--muted); font-size: 0.82rem; flex-basis: 100%; padding-left: 2.5rem; }
+    .nav-step .nav-tree { flex-basis: 100%; }
+  
+    .track-entry .nav-path-block { margin-top: 0.35rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Session tracking</h1>
+    <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
+    <div class="summary-bar">
+      <div><dt>Total tasks</dt><dd>1</dd></div>
+      <div><dt>Tasks today</dt><dd>1</dd></div>
+      <div><dt>Avg steps</dt><dd>5.0</dd></div>
+      <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">5:05 PM · Sunday, Aug 9, 2026</dd></div>
+    </div>
+    <section class="day-block">
+      <h2 class="day-title">Sunday, Aug 9, 2026 <span class="day-count">1 task</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:05 PM — Quick drag (F22 / DRAG overlay) works while paused; returns to paused when drag finishes — 5 steps · 14m 37s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 4:50 PM
+         · 14m 37s since previous task
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="User asked: quick drag while paused, return to paused after">User asked: quick drag while paused, return to paused after</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Read dwell_hotkeys activate_quick_drag + explicit_user_pause gate">Read dwell_hotkeys activate_quick_drag + explicit_user_pause gate</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Read dwell_mode2 quick drag completion path">Read dwell_mode2 quick drag completion path</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Add quick_drag_return_to_pause restore flags + complete_quick_drag()">Add quick_drag_return_to_pause restore flags + complete_quick_drag()</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Wire DRAG overlay to dwell_quick_drag (F22) not dwell_toggle_mode">Wire DRAG overlay to dwell_quick_drag (F22) not dwell_toggle_mode</code>
+      
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section>
+    <p class="footer">Generated by <code>scripts/append-session-scorecard.js</code> ·
+      <a href="http://127.0.0.1:8765/session-metrics-log.html">Session metrics</a> ·
+      <a href="http://127.0.0.1:8765/index.html">All pages</a></p>
+  </div>
+</body>
+</html>

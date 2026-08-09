@@ -134,17 +134,19 @@ Detail: `agent docs/rules/multi-repo-git-push.md`.
 
 ---
 
-## Session scorecard — bump as you go
+## Session tracking — bump as you go
 
 After each **completed deliverable** ("here's the fix", "done", a refactor phase) — not after
 every tool call — run
-`node scripts/append-session-scorecard.js --bump-file <delta.json>` with that chunk's greps and
-files. Procedure: **`agent docs/SESSION_SCORECARD.md`**. **Never read**
-`session-scorecards-log.html`; give Chase `http://127.0.0.1:8765/session-scorecards-log.html`.
+`node scripts/append-session-scorecard.js --bump-file <delta.json>` with `chunkNote` and
+`navigationPath`. Procedure: **`agent docs/SESSION_TRACKING.md`**. **Never read**
+the generated HTML logs; give Chase **`http://127.0.0.1:8765/session-tracking-log.html`**.
 
 **Every bump must include `navigationPath`** — ordered steps showing where you looked first,
-what helped (✓), what was a dead end (✗), and nested `steps` for Task sub-agents. Chase uses
-this tree on the HTML card to see whether INDEX.md / app `AGENTS.md` are creating short routes.
+what helped (✓), what was a dead end (✗), and nested `steps` for Task sub-agents.
+
+End-of-session **metrics** finalize: **`agent docs/SESSION_METRICS.md`** →
+`http://127.0.0.1:8765/session-metrics-log.html`.
 
 Counts live on disk, so they survive a mid-session summarize. Chase can say **"log the task"**
 if a chunk finished without a bump.
