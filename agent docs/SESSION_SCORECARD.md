@@ -106,6 +106,32 @@ node scripts/append-session-scorecard.js --bump-file agent docs/.scorecard-bump.
 }
 ```
 
+Optional — **doc navigation path** (ordered lookup map; shown as a tree on the HTML card):
+
+```json
+{
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "partial", "note": "No row for course rename — grepped next" },
+    { "target": "rename.*course in Macro App", "kind": "grep", "outcome": "helpful", "note": "Found useRenameCoursesModal + rosters_paths" },
+    { "target": "School Scrips/Macro App/AGENTS.md", "kind": "doc", "outcome": "helpful", "note": "Keyword table → ROSTER_PIPELINE_INTEGRATION.md" },
+    { "target": "renderer/src/hooks/shell/useRenameCoursesModal.ts", "kind": "code", "outcome": "helpful" },
+    {
+      "branch": "subagent explore",
+      "target": "Task: find all folder-path owners",
+      "kind": "task",
+      "outcome": "helpful",
+      "steps": [
+        { "target": "electron-app/rosters-paths.js", "kind": "code", "outcome": "helpful" },
+        { "target": "modules/d2l/rosters_paths.py", "kind": "code", "outcome": "helpful" }
+      ]
+    },
+    { "target": "docs/sessions/SESSIONS.md (2026-07-07 entry)", "kind": "doc", "outcome": "dead-end", "note": "History only — fix already shipped" }
+  ]
+}
+```
+
+`outcome`: **`helpful`** (✓), **`partial`** (~), **`dead-end`** (✗). Log **every task bump** — reconstruct from memory if the chat summarized.
+
 - Count **your** tool uses since the last bump (or since session start).
 - `addTurns`: optional — usually only bump at end with `finalize` unless Chase sent several messages in this chunk.
 - Delete the temp bump file after running.
@@ -151,11 +177,12 @@ Legacy one-shot: `--file full.json` still works (no running tally).
 | **`docsRulesOpened`** | Instruction files **read** (.md, .mdc) — not created. HTML shows **filename only**; hover for full path. |
 | **`mdcReadsList`** | Subset: `.mdc` files opened via **Read tool**. Lifetime totals in `agent docs/mdc-read-stats.json` + HTML panel. **Does not** count Cursor auto-injecting glob rules when a matching file is open. |
 | **`filesRead` / `filesEdited`** | Paths; HTML splits into Tools / Markdowns / Code sections |
+| **`navigationPath`** | Ordered lookup map for **this task** — docs, greps, code, Task sub-agents. HTML tree: ✓ helpful, ~ partial, ✗ dead end. Nested `steps` = sub-agent branch. **Required on every bump.** |
 | **`toolsUsedCounts`** | MCP and other agent tools (from hook); snapshots also in `browserSnapshots` |
 
 ---
 
-*Updated: 2026-08-03 — expandable activity metrics; summarized + no-bump pills; confidence derived at finalize*
+*Updated: 2026-08-09 — doc navigation path tree on HTML cards; agents log `navigationPath` on every bump*
 
 ---
 

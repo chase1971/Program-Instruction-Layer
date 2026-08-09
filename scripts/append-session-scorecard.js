@@ -8,6 +8,12 @@
 const fs = require('fs');
 const path = require('path');
 const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
+const {
+  NAV_TIP,
+  mergeNavigationPaths,
+  navigationPathHtml,
+  navigationPathStyles,
+} = require('./scorecard-navigation-path');
 
 const ROOT = path.join(__dirname, '..');
 // Folder was renamed docs/ -> "agent docs/" on 2026-08-01. Kept as one constant so
@@ -49,6 +55,7 @@ const TIPS = {
   missingEarlyWorkLive: 'Live tally is missing work from before the hook started or before the agent bumped a task.',
   notBumped: 'The agent never logged a running tally during this session, so every count here was reconstructed from memory at the end. Treat them as order-of-magnitude. If this pill keeps appearing, the bump rule is not being followed.',
   hookTally: 'Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.',
+  navigationPath: NAV_TIP,
   worthNoting: 'Something unusual about this session worth a glance — not necessarily a problem.',
   captureSuggest: 'The agent\'s idea for a future rule or doc. Not a list of what you already asked to build unless you did.',
 };
@@ -443,6 +450,7 @@ function sessionCard(e, inProgress) {
   const activityBlock = activityBreakdown(
     e, readSplit, editSplit, docsRulesList, turns, grepWarn, corrWarn, browserSnapshots,
   );
+  const navBlock = navigationPathHtml(e.navigationPath, TIPS.navigationPath);
 
   const typePill = pill(sessionTypeLabel(e.sessionType), 'p0', TIPS.sessionType);
   const outPill = inProgress
@@ -464,6 +472,7 @@ function sessionCard(e, inProgress) {
     </header>
     <p class="summary-human">${esc(summary)}</p>
     ${activityBlock}
+    ${navBlock}
     ${e.redFlags ? `<p class="red-flags"><strong>Red flags:</strong> ${esc(e.redFlags)}</p>` : ''}
     ${worthNoting}${captureBlock}
     ${e.nextSession ? `<p class="next"><strong>Next time:</strong> ${esc(e.nextSession)}</p>` : ''}
@@ -478,6 +487,7 @@ function legendHtml() {
     ['Browser snapshots', TIPS.browserSnapshots],
     ['Tools used', TIPS.toolsUsed],
     ['Markdowns read', TIPS.docsRead],
+    ['Doc navigation path', TIPS.navigationPath],
     ['Partial counts', TIPS.partialConfidence],
     ['Counts incomplete — summarized, no bumps', TIPS.summarizedNoBump],
     ['Summarized — early work missing', TIPS.summarizedEarlyMissing],
@@ -603,6 +613,7 @@ function buildHtml(entries, running) {
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
     .footer a { color: var(--accent); }
+    ${navigationPathStyles()}
   </style>
 </head>
 <body>
@@ -670,6 +681,7 @@ function emptyRunning() {
     toolsUsedCounts: {},
     browserSnapshots: 0,
     taskLog: [],
+    navigationPath: [],
     hookTally: false,
     agentBumped: false,
     ...emptyTrustFields(),
@@ -710,6 +722,7 @@ function runningToDisplayEntry(r) {
       .filter(Boolean)
       .join(' '),
     hookTally: !!r.hookTally,
+    navigationPath: r.navigationPath || [],
   };
 }
 
@@ -726,6 +739,9 @@ function bumpRunning(delta) {
   r.filesEditedList = mergeUnique(r.filesEditedList, delta.filesEdited);
   r.docsRulesOpened = mergeUnique(r.docsRulesOpened, delta.docsRulesOpened);
   r.mdcReadsList = mergeUnique(r.mdcReadsList, delta.mdcReadsList);
+  if (delta.navigationPath?.length) {
+    r.navigationPath = mergeNavigationPaths(r.navigationPath, delta.navigationPath);
+  }
   if (delta.chunkNote) {
     if (!r.taskLog) r.taskLog = [];
     r.taskLog.push({
@@ -734,6 +750,7 @@ function bumpRunning(delta) {
       addGreps: delta.addGreps || 0,
       filesRead: delta.filesRead || [],
       filesEdited: delta.filesEdited || [],
+      navigationPath: delta.navigationPath || [],
     });
   }
   if (
@@ -790,6 +807,7 @@ function finalizeRunning(meta) {
     nextSession: meta.nextSession || '',
     taskBumpCount: Array.isArray(base.taskLog) ? base.taskLog.length : 0,
     taskLog: base.taskLog || [],
+    navigationPath: base.navigationPath || [],
   });
   const entries = readEntries();
   entries.push(entry);
