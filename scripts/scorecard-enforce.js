@@ -85,9 +85,9 @@ function runStop() {
   writeRunning(running);
 
   const message =
-    `Session scorecard: ${edited} file(s) edited this session, ${bumps} bumps logged. `
+    `Session tracking: ${edited} file(s) edited this session, ${bumps} bumps logged. `
     + 'Before finishing, run node scripts/append-session-scorecard.js --bump-file <path> '
-    + '(see agent docs/SESSION_SCORECARD.md) with a chunkNote for the work just done, '
+    + '(see agent docs/SESSION_TRACKING.md) with chunkNote and navigationPath, '
     + 'then finish your reply normally. '
     + `(This auto-allows after ${MAX_BLOCKS} reminders regardless, so it can't loop forever.)`;
 
@@ -114,8 +114,8 @@ function runPrecompact() {
       hookEventName: 'PreCompact',
       additionalContext:
         `Compaction is about to summarize this conversation. ${edited} file(s) have been `
-        + 'edited so far with 0 scorecard bumps logged. Run node scripts/append-session-scorecard.js '
-        + '--bump-file <path> now, before detail about the work gets summarized away.',
+        + 'edited so far with 0 session tracking bumps logged. Run node scripts/append-session-scorecard.js '
+        + '--bump-file <path> with chunkNote and navigationPath now, before detail gets summarized away.',
     },
   });
 }

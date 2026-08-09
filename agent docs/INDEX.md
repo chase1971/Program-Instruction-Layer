@@ -44,7 +44,8 @@ never touches this file.
 |---|---|
 | "end of session protocol" · wrap the session · we're done for now | [END_OF_SESSION.md](./END_OF_SESSION.md) — the seven steps and the log template |
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
-| "log the task" · bump the scorecard · finalize the session counts | [SESSION_SCORECARD.md](./SESSION_SCORECARD.md) |
+| "log the task" · bump session tracking · task navigation path | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
+| finalize session metrics · grep/file counts · hook enforcement | [SESSION_METRICS.md](./SESSION_METRICS.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |
 | where should this rule go · which rung · is this always-on or on-demand | [AGENTS.md](../AGENTS.md) § Capture ladder |
 
@@ -65,7 +66,7 @@ never touches this file.
 |---|---|
 | check the docs are healthy · dead links · orphans · is anything unrouted | [scripts/check-docs.js](../scripts/check-docs.js) |
 | serve a page Chase can click · start the docs server · port 8765 | [scripts/serve-programs-docs.js](../scripts/serve-programs-docs.js) |
-| bump or finalize the scorecard | [scripts/append-session-scorecard.js](../scripts/append-session-scorecard.js) |
+| bump task tracking or finalize session metrics | [scripts/append-session-scorecard.js](../scripts/append-session-scorecard.js) |
 | archive old plans · sweep `docs/plans/` | [scripts/archive-stale-plans.js](../scripts/archive-stale-plans.js) |
 | turn a markdown file into a PDF | [scripts/md-to-pdf.js](../scripts/md-to-pdf.js) |
 

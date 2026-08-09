@@ -2,6 +2,29 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-09 — Session tracking split (metrics vs task pathing)
+
+**Files changed:** New `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`;
+`scripts/scorecard-navigation-path.js` (+ `summarizeNavigationPath`, `formatDurationMs`);
+`scripts/append-session-scorecard.js` (bump → tracking JSONL + both HTML pages); `scripts/scorecard-enforce.js`,
+`scripts/serve-programs-docs.js`; `agent docs/SESSION_TRACKING.md`, `SESSION_METRICS.md`, `SESSION_SCORECARD.md`
+(pointer); `AGENTS.md`, `INDEX.md`, `END_OF_SESSION.md`, `index.html`, `rules/html-delivery.md`; removed
+`session-scorecards-log.html`; generated `session-tracking-log.html`, `session-metrics-log.html`,
+`session-tracking.jsonl`.
+
+**What worked:** Per-request `--bump-file` now appends a collapsible task row with ordered navigation path
+(✓ helpful, ~ partial, ✗ dead-end) to `session-tracking.jsonl` and regenerates tracking HTML. Metrics finalize
+writes the grep/file tally card only (`session-metrics-log.html`). Primary URL for path review:
+`http://127.0.0.1:8765/session-tracking-log.html`. Chase declined auto-appending missed INDEX routes — path
+tracking only, thin index + grep unchanged.
+
+**Current state:** Green headlessly — bump/finalize scripts run; no live docs-server smoke test this wrap.
+
+**File size flag:** None.
+
+**Next session:** Optional backfill of older finalized sessions' `taskLog` into `session-tracking.jsonl` if
+historical bumps included `navigationPath`.
+
 ## 2026-08-08 (round 4) — App Dashboard conformance pass, first of the School Scrips series
 
 **Files changed:** New `agent docs/instructional-layer-htmls/app-dashboard-docs-review.html`

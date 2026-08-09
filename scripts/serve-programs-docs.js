@@ -62,5 +62,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`Programs pages: http://127.0.0.1:${PORT}/`);
-  console.log(`Session scorecards: http://127.0.0.1:${PORT}/session-scorecards-log.html`);
+  console.log(`Session tracking: http://127.0.0.1:${PORT}/session-tracking-log.html`);
+  console.log(`Session metrics: http://127.0.0.1:${PORT}/session-metrics-log.html`);
 });

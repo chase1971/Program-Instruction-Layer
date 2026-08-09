@@ -146,13 +146,62 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>33</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">5:05 PM · Sunday, Aug 9, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>34</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">5:12 PM · Sunday, Aug 9, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Sunday, Aug 9, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">5:12 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Instruction layer: split session scorecard into per-task tracking (session-tracking-log.html + session-tracking.jsonl with navigation paths) vs session metrics (session-metrics-log.html); docs and hooks updated. Macro App: verified course rename safety (labels only, folder index unchanged); lazy-import d2l_processor for faster cold start; gradebook archive sync prefetches session reads; d2l-courses.json label time colons + Sandbox name.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>4</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>42</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>19</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-finalize-2026-08-09-eos2.json">.scorecard-finalize-2026-08-09-eos2.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-finalize-2026-08-09-eos3.json">.scorecard-finalize-2026-08-09-eos3.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json">.session-scorecard-running.json</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/974112.txt">974112.txt</code></li><li><code class="path-doc" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/rules/html-delivery.md">html-delivery.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/index.html">index.html</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="path-doc" title="agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/session-scorecards-log.html">session-scorecards-log.html</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/session-tracking-log.html">session-tracking-log.html</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/session-tracking.jsonl">session-tracking.jsonl</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>6</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="scripts/append-session-scorecard.js">append-session-scorecard.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/append-session-scorecard.js">append-session-scorecard.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/d2l/d2l_processor.py">d2l_processor.py</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/scorecard-enforce.js">scorecard-enforce.js</code></li><li><code class="" title="scripts/scorecard-navigation-path.js">scorecard-navigation-path.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/serve-programs-docs.js">serve-programs-docs.js</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>19</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-finalize-2026-08-09-eos2.json">.scorecard-finalize-2026-08-09-eos2.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-finalize-2026-08-09-eos3.json">.scorecard-finalize-2026-08-09-eos3.json</code></li><li><code class="path-doc" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/rules/html-delivery.md">html-delivery.md</code></li><li><code class="path-doc" title="agent docs/rules/html-delivery.md">html-delivery.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/index.html">index.html</code></li><li><code class="path-doc" title="agent docs/index.html">index.html</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="agent docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="path-doc" title="agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/session-scorecards-log.html">session-scorecards-log.html</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>10</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="scripts/append-session-scorecard.js">append-session-scorecard.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/modules/d2l/d2l_processor.py">d2l_processor.py</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/scorecard-enforce.js">scorecard-enforce.js</code></li><li><code class="" title="scripts/scorecard-enforce.js">scorecard-enforce.js</code></li><li><code class="" title="scripts/scorecard-navigation-path.js">scorecard-navigation-path.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/serve-programs-docs.js">serve-programs-docs.js</code></li><li><code class="" title="scripts/serve-programs-docs.js">serve-programs-docs.js</code></li><li><code class="" title="scripts/session-tracking-html.js">session-tracking-html.js</code></li><li><code class="" title="scripts/session-tracking-store.js">session-tracking-store.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookArchiveSync.ts">useGradebookArchiveSync.ts</code></li></ul></div>
+  </details></div>
+    
+    
+    <p class="next"><strong>Next time:</strong> Optional: backfill older taskLog navigationPath entries into session-tracking.jsonl; live-test gradebook course switch after d2l_processor lazy-import.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">5:05 PM</span>

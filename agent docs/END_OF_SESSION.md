@@ -38,9 +38,10 @@ anything on Chase's screen without asking.
 
 1. **Git status** — briefly list untracked/modified across the tree, not just the active app.
 
-2. **Scorecard finalize** — `node scripts/append-session-scorecard.js --finalize-file <meta.json>`.
-   Uses the counts already bumped during the session; **don't re-guess them**. Report only — no
-   fixes after this point unless Chase asks.
+2. **Session metrics finalize** — `node scripts/append-session-scorecard.js --finalize-file <meta.json>`.
+   Task **tracking** bumps should already be on disk from `--bump-file` during the session
+   ([SESSION_TRACKING.md](./SESSION_TRACKING.md)). Finalize writes the metrics card only —
+   see [SESSION_METRICS.md](./SESSION_METRICS.md). **Don't re-guess counts** from memory.
 
 3. **Append a session entry, newest at top.** Which log depends on what the work touched:
 
