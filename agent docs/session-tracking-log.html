@@ -74,15 +74,343 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>10</dd></div>
-      <div><dt>Tasks today</dt><dd>8</dd></div>
-      <div><dt>Avg steps</dt><dd>4.2</dd></div>
+      <div><dt>Total tasks</dt><dd>15</dd></div>
+      <div><dt>Tasks today</dt><dd>13</dd></div>
+      <div><dt>Avg steps</dt><dd>5.1</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:43 PM · Monday, Aug 10, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:08 PM · Monday, Aug 10, 2026</dd></div>
     </div>
     <section class="day-block">
-      <h2 class="day-title">Monday, Aug 10, 2026 <span class="day-count">8 tasks</span></h2>
+      <h2 class="day-title">Monday, Aug 10, 2026 <span class="day-count">13 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:08 PM — Planned + implemented: hide Assignment Assistant's Working Gradebook section when the main Gradebook tab is hidden — 7 steps · 15s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:12 PM
+         · 15s since previous task
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Explore agent">Explore agent</code>
+      <span class="nav-note">surveyed tab-visibility mechanism and what depends on the working gradebook session</span>
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/modules/moduleContracts.ts">renderer/src/modules/moduleContracts.ts</code>
+      <span class="nav-note">found D2L_WORKSPACE_TABS / D2L_SESSION_OPTIONAL_TAB_IDS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/shell/workspaceTabLayout.ts">renderer/src/utils/shell/workspaceTabLayout.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/services/assignmentAssistantGradebookSync.ts">renderer/src/services/assignmentAssistantGradebookSync.ts</code>
+      <span class="nav-note">found assertGradeColumnInWorkingGradebook hard-fail gate</span>
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="AskUserQuestion">AskUserQuestion</code>
+      <span class="nav-note">user corrected scope to: just hide the Working Gradebook sidebar option, not build a new D2L push path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/shell/useMacroAppShell.ts">renderer/src/hooks/shell/useMacroAppShell.ts</code>
+      <span class="nav-note">confirmed shell.workspaceTabVisibleIds already exists</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/modules/d2l-assignment-assistant/shell/AssignmentAssistantShellSidebar.tsx">renderer/src/modules/d2l-assignment-assistant/shell/AssignmentAssistantShellSidebar.tsx</code>
+      <span class="nav-note">gated workingGradebook in visibleSections filter</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:08 PM — Added on/off toggle for Append Document in Assignment Assistant sidebar, moved to card header per feedback — 4 steps · 13s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:12 PM
+         · 13s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/modules/d2l-assignment-assistant/shell/sections/AppendDocumentSection.tsx">renderer/src/modules/d2l-assignment-assistant/shell/sections/AppendDocumentSection.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/assignment-assistant/useAssignmentAssistantAppendPdf.ts">renderer/src/hooks/assignment-assistant/useAssignmentAssistantAppendPdf.ts</code>
+      <span class="nav-note">found existing setEnabled already persists appendPdfEnabled</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/modules/d2l-assignment-assistant/shell/ShellActionCard.tsx">renderer/src/modules/d2l-assignment-assistant/shell/ShellActionCard.tsx</code>
+      <span class="nav-note">added headerAction slot after user asked for far-right placement</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/src/styles/dashboard/sidebar-tools.css">assignment-assistant-engine/src/styles/dashboard/sidebar-tools.css</code>
+      <span class="nav-note">confirmed real .da-card__header is a flex row</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:08 PM — Diagnosed gradebook D2L pull hang on course-switch from macro-app.log, fixed with real timeouts + cancel-on-switch — 9 steps · 15m 40s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:12 PM
+         · 15m 40s since previous task
+        <br>9 steps · first helpful at #1 · 9 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="docs/GRADE_SYNC_PLAYBOOK.md">docs/GRADE_SYNC_PLAYBOOK.md</code>
+      <span class="nav-note">confirmed 'avoid switching course mid-sync' known limitation</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Explore agent">Explore agent</code>
+      <span class="nav-note">traced D2L pull cancellation-on-switch chain across renderer + electron-app + python</span>
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookArchiveSync.ts">renderer/src/hooks/gradebook/useGradebookArchiveSync.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-app/d2l-bridge.js">electron-app/d2l-bridge.js</code>
+      <span class="nav-note">found runningKeyFor / cancel() lock mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/d2l_raw_cdp.py">modules/d2l/d2l_raw_cdp.py</code>
+      
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="C:/Users/chase/AppData/Roaming/macro-app/logs/macro-app.log">C:/Users/chase/AppData/Roaming/macro-app/logs/macro-app.log</code>
+      <span class="nav-note">found the exact 65s silent gap in the real incident</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/services/gradebookD2LBackupSync.ts">renderer/src/services/gradebookD2LBackupSync.ts</code>
+      <span class="nav-note">added HIDDEN_SLOT_CONNECT_TIMEOUT_MS, cancelGradebookBackgroundPull</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookTimedLog.ts">renderer/src/utils/gradebook/gradebookTimedLog.ts</code>
+      <span class="nav-note">made runTimed maxMs actually enforced via withTimeout</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="electron-app/modules-ipc.js">electron-app/modules-ipc.js</code>
+      <span class="nav-note">added modules:cancel-run IPC handler</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:52 PM — Created Tome addon that draws HP numbers over visible hostile actors — 7 steps · 40m 7s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:12 PM
+         · 40m 7s since previous task
+        <br>7 steps · first helpful at #2 · 6 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Confirmed no app-specific route for external Desktop Tome install</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/*.teaa">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/*.teaa</code>
+      <span class="nav-note">Copied the shipped addon shape: init.lua plus superload files</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="tome-1.7.6.team mod/class/Actor.lua">tome-1.7.6.team mod/class/Actor.lua</code>
+      <span class="nav-note">Found existing tactical frame and health bar rendering callbacks</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="te4-1.7.6.teae engine/Module.lua">te4-1.7.6.teae engine/Module.lua</code>
+      <span class="nav-note">Confirmed install-level addon discovery and savefile addon filtering</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-enemy-hp-numbers">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-enemy-hp-numbers</code>
+      <span class="nav-note">Created readable addon source with Actor superload</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-enemy-hp-numbers.teaa">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-enemy-hp-numbers.teaa</code>
+      <span class="nav-note">Packaged addon with forward-slash zip entries</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Headless package inspection">Headless package inspection</code>
+      <span class="nav-note">Verified package contains init.lua and superload/mod/class/Actor.lua</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:12 PM — Set Tome to 3840x2160 borderless window mode — 7 steps · 29m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:12 PM
+         · 29m since previous task
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed display/window safety and git-start rules before touching the game</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/rules/never-display-without-permission.md">agent docs/rules/never-display-without-permission.md</code>
+      <span class="nav-note">Confirmed no GUI launch or display config change without per-run permission</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Programs repo sync scan">Programs repo sync scan</code>
+      <span class="nav-note">Fetched sibling repos and found no dirty+behind collisions</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6">C:/Users/chase/Desktop/t-engine4-windows-1.7.6</code>
+      <span class="nav-note">Found the Tome install folder and logs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="C:/Users/chase/T-Engine/4.0/settings/resolution.cfg">C:/Users/chase/T-Engine/4.0/settings/resolution.cfg</code>
+      <span class="nav-note">Found exclusive fullscreen 3840x2160 setting</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="te4-1.7.6.teae engine Lua scan">te4-1.7.6.teae engine Lua scan</code>
+      <span class="nav-note">Confirmed Borderless is a supported resolution suffix and window_pos.cfg controls origin</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Read-only display queries">Read-only display queries</code>
+      <span class="nav-note">Confirmed primary display origin (0,0) and current 3840x2160 mode</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:43 PM — Fixed Monitor Configuration App living-room switch Band-Aid — 8 steps · 6h 6m</span>
       
