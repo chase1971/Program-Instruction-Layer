@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gradebook Pull — timing map</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #9aa8bc;
+      --accent: #5eb8ff;
+      --poll: #3dd68c;
+      --fixed: #ffb020;
+      --nav: #b794f6;
+      --bad: #ff6b6b;
+      --ok: #3dd68c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 18px/1.5 system-ui, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 1.25rem;
+    }
+    a { color: var(--accent); }
+    h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+    p, li { max-width: 52rem; }
+    .banner {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      border-left: 5px solid var(--ok);
+    }
+    .banner.warn { border-left-color: var(--fixed); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.65rem 0.5rem;
+      border-bottom: 1px solid #2a3548;
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .tag-poll { background: #1e3d32; color: var(--poll); }
+    .tag-fixed { background: #3d3018; color: var(--fixed); }
+    .tag-nav { background: #2e2540; color: var(--nav); }
+    .tag-skip { background: #243040; color: var(--muted); }
+    .tag-work { background: #1e3348; color: var(--accent); }
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      font: 14px/1.4 ui-monospace, Consolas, monospace;
+      background: #0a0e14;
+      color: var(--text);
+      border: 2px solid #2a3548;
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+    button, .btn {
+      display: inline-block;
+      margin: 0.75rem 0.5rem 0.75rem 0;
+      padding: 0.85rem 1.4rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #041018;
+      cursor: pointer;
+    }
+    button.secondary { background: #2a3548; color: var(--text); }
+    #results { margin-top: 1rem; }
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .stat {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      min-width: 10rem;
+    }
+    .stat strong { display: block; font-size: 1.5rem; color: var(--accent); }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+    .bar-row {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+    }
+    .bar-label { font-weight: 600; margin-bottom: 0.35rem; }
+    .bar-meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .bar-track {
+      height: 22px;
+      background: #2a3548;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-actual {
+      height: 100%;
+      background: var(--poll);
+      border-radius: 6px 0 0 6px;
+    }
+    .bar-waste {
+      height: 100%;
+      background: var(--fixed);
+      opacity: 0.85;
+    }
+    .bar-row.highlight .bar-waste { background: var(--bad); }
+    .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 0.75rem 0; font-size: 0.9rem; }
+    .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 0.35rem; }
+  </style>
+</head>
+<body>
+  <p><a href="/index.html">← All pages</a></p>
+  <h1>Pull from D2L — what waits, how long, and what is wasted</h1>
+  <p>Aug 9, 2026 · MATH-1314 flow · Paste your activity log below after a pull to see actual vs max wait.</p>
+
+  <div class="banner">
+    <strong>Roster fix status: working on disk</strong>
+    <p style="margin:0.5rem 0 0">Roster CSV has <strong>28 students, 0 blank emails</strong>. No roster re-download prompt on pull is expected — that modal only appears when students still lack Email / OrgDefinedId / Username in the CSV. No drop warning means no names on your roster were missing from the D2L grid this pull.</p>
+  </div>
+
+  <div class="banner warn">
+    <strong>How to read waits</strong>
+    <ul style="margin:0.5rem 0 0">
+      <li><span class="tag tag-poll">poll</span> — waits until D2L is ready, then <strong>goes to the next step immediately</strong>. Max is a ceiling, not a delay.</li>
+      <li><span class="tag tag-fixed">fixed</span> — always sleeps the full duration even if the page is already ready (real waste candidate).</li>
+      <li><span class="tag tag-nav">navigate</span> — full page load; ends when DOM event fires, then continues.</li>
+      <li><span class="tag tag-skip">skip</span> — no wait when condition already met (e.g. already on Enter Grades).</li>
+    </ul>
+  </div>
+
+  <h2>Pull pipeline (in order)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Step</th>
+        <th>Wait type</th>
+        <th>Max / fixed</th>
+        <th>When it advances</th>
+      </tr>
+    </thead>
+    <tbody id="pipeline"></tbody>
+  </table>
+
+  <h2>Parse your activity log</h2>
+  <p>Copy the detail log from Session after a pull (lines with <code>[Timing]</code> and <code>[Sync]</code>). Paste here and click Parse.</p>
+  <textarea id="logInput" placeholder="[Sync] Manual pull from D2L…&#10;[Timing] Connect hidden Enter Grades browser slot — waiting…&#10;[Timing] Connect hidden Enter Grades browser slot — ready in 0.04s…"></textarea>
+  <button type="button" id="parseBtn">Parse log and build timeline</button>
+  <button type="button" class="secondary" id="clearBtn">Clear</button>
+
+  <div id="results" hidden>
+    <div class="stat-row">
+      <div class="stat"><strong id="totalActual">—</strong><span>Total measured time (sum of [Timing] steps)</span></div>
+      <div class="stat"><strong id="totalSlack">—</strong><span>Total slack (max − actual on poll steps)</span></div>
+      <div class="stat"><strong id="stepCount">—</strong><span>Timed steps found</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--poll)"></i>Actual time (green)</span>
+      <span><i style="background:var(--fixed)"></i>Poll ceiling headroom (orange/red) — <strong>not time spent waiting</strong>; task finished early and moved on</span>
+    </div>
+    <div id="bars"></div>
+    <h2>Steps with high slack or fixed sleeps</h2>
+    <ul id="wasteList"></ul>
+  </div>
+
+  <script>
+    const PIPELINE = [
+      { n: 1, step: 'Pull from D2L clicked', type: 'skip', max: '—', advance: 'Starts Step 1 immediately' },
+      { n: 2, step: 'Connect hidden Enter Grades browser slot', type: 'skip', max: '—', advance: 'Skips navigate if slot already on Enter Grades' },
+      { n: 3, step: 'Python backup — read D2L Enter Grades grid', type: 'work', max: '20s command timeout', advance: 'Runs sub-steps 4–10 inside one subprocess' },
+      { n: 4, step: 'Already on Enter Grades (reload removed)', type: 'skip', max: '—', advance: 'No page reload — proceeds to grid wait' },
+      { n: 5, step: 'Enter Grades HTML grid (student rows + editors)', type: 'poll', max: '5s (warm slot)', advance: 'Immediate when grid JS probe passes' },
+      { n: 6, step: 'Enter Grades spreadsheet view', type: 'poll', max: '20s', advance: 'Skipped if already spreadsheet; else poll after click' },
+      { n: 7, step: 'Spreadsheet view settle', type: 'fixed', max: '400ms fixed', advance: 'Always waits full 400ms after toggle' },
+      { n: 8, step: 'Scrape grade grid from page HTML', type: 'work', max: '—', advance: 'CPU/DOM work; may include 500ms scroll pauses' },
+      { n: 9, step: 'Write merged backup CSV to disk', type: 'work', max: '—', advance: 'Immediate when write finishes' },
+      { n: 10, step: 'Return browser to previous page (goto)', type: 'skip', max: '—', advance: 'Skipped when still on same Enter Grades URL (typical pull)' },
+      { n: 11, step: 'Step 2 — load session from latest backup CSV', type: 'work', max: '—', advance: 'Disk read + merge; no D2L wait' },
+      { n: 12, step: 'Student may have dropped modal', type: 'skip', max: '—', advance: 'Only if roster names not on D2L grid' },
+      { n: 13, step: 'Roster re-download modal', type: 'skip', max: '—', advance: 'Only if CSV still has blank Email/OrgDefinedId/Username' },
+    ];
+
+    const tbody = document.getElementById('pipeline');
+    PIPELINE.forEach((row) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.n}</td>
+        <td>${row.step}</td>
+        <td><span class="tag tag-${row.type}">${row.type}</span></td>
+        <td>${row.max}</td>
+        <td>${row.advance}</td>`;
+      tbody.appendChild(tr);
+    });
+
+    const TIMING_RE = /\[Timing\]\s+(.+?)\s+—\s+(ready|done|failed)\s+in\s+([\d.]+)s\s+\((max\s+([\d.]+)s|no max)([^)]*)\)/i;
+
+    function parseLog(text) {
+      const lines = text.split(/\r?\n/);
+      const steps = [];
+      for (const line of lines) {
+        const m = line.match(TIMING_RE);
+        if (!m) continue;
+        const label = m[1].trim();
+        const actual = parseFloat(m[3]);
+        const max = m[5] ? parseFloat(m[5]) : null;
+        const tail = m[6] || '';
+        const isFixed = /fixed sleep/i.test(tail) || (max !== null && max <= 2 && actual >= max * 0.85);
+        steps.push({ label, actual, max, isFixed, raw: line.trim() });
+      }
+      return steps;
+    }
+
+    function renderResults(steps) {
+      const results = document.getElementById('results');
+      const bars = document.getElementById('bars');
+      const wasteList = document.getElementById('wasteList');
+      if (!steps.length) {
+        results.hidden = false;
+        bars.innerHTML = '<p>No [Timing] lines found. Restart Macro App after the timing update, then pull again and paste the log.</p>';
+        return;
+      }
+
+      let totalActual = 0;
+      let totalSlack = 0;
+      bars.innerHTML = '';
+      wasteList.innerHTML = '';
+
+      steps.forEach((s, i) => {
+        totalActual += s.actual;
+        const slack = s.max !== null ? Math.max(0, s.max - s.actual) : 0;
+        if (!s.isFixed && s.max !== null) totalSlack += slack;
+
+        const scale = s.max !== null ? s.max : Math.max(s.actual, 1);
+        const actualPct = Math.min(100, (s.actual / scale) * 100);
+        const slackPct = Math.max(0, 100 - actualPct);
+        const highlight = s.isFixed || slack >= 2;
+
+        const row = document.createElement('div');
+        row.className = 'bar-row' + (highlight ? ' highlight' : '');
+        row.innerHTML = `
+          <div class="bar-label">${i + 1}. ${s.label}</div>
+          <div class="bar-meta">Actual: <strong>${s.actual.toFixed(2)}s</strong>
+            ${s.max !== null ? ` · Max: ${s.max.toFixed(1)}s · Slack: ${slack.toFixed(2)}s` : ''}
+            ${s.isFixed ? ' · <strong style="color:var(--fixed)">Fixed sleep</strong>' : ' · Next step starts immediately'}
+          </div>
+          <div class="bar-track" style="display:flex">
+            <div class="bar-actual" style="width:${actualPct}%"></div>
+            <div class="bar-waste" style="width:${slackPct}%"></div>
+          </div>`;
+        bars.appendChild(row);
+
+        if (s.isFixed) {
+          const li = document.createElement('li');
+          li.textContent = `${s.label} — always waits ~${s.actual.toFixed(2)}s (fixed sleep)`;
+          wasteList.appendChild(li);
+        } else if (slack >= 1) {
+          const li = document.createElement('li');
+          li.textContent = `${s.label} — finished in ${s.actual.toFixed(2)}s but could have waited up to ${s.max.toFixed(1)}s (slack ${slack.toFixed(2)}s — not wasted, poll ceiling)`;
+          wasteList.appendChild(li);
+        }
+      });
+
+      document.getElementById('totalActual').textContent = totalActual.toFixed(2) + 's';
+      document.getElementById('totalSlack').textContent = totalSlack.toFixed(2) + 's';
+      document.getElementById('stepCount').textContent = String(steps.length);
+      if (!wasteList.children.length) {
+        wasteList.innerHTML = '<li>No fixed sleeps flagged in this log. Check pipeline table for known 400ms settle.</li>';
+      }
+      results.hidden = false;
+    }
+
+    document.getElementById('parseBtn').addEventListener('click', () => {
+      renderResults(parseLog(document.getElementById('logInput').value));
+    });
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      document.getElementById('logInput').value = '';
+      document.getElementById('results').hidden = true;
+    });
+  </script>
+</body>
+</html>

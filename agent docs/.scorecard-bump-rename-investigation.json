@@ -1,0 +1,108 @@
+{
+  "chunkNote": "Investigated Macro App course rename vs folder paths — confirmed July 2026 fix; verified live disk data",
+  "addGreps": 3,
+  "addTurns": 1,
+  "filesRead": [
+    "agent docs/INDEX.md",
+    "School Scrips/Macro App/renderer/src/hooks/shell/useRenameCoursesModal.ts",
+    "School Scrips/Macro App/modules/d2l/rosters_paths.py",
+    "School Scrips/Macro App/electron-app/rosters-paths.js",
+    "School Scrips/Macro App/renderer/src/utils/gradebook/gradesBackupPaths.ts",
+    "School Scrips/Macro App/renderer/src/utils/gradebook/pruneMissingCourseFolders.ts",
+    "School Scrips/Macro App/docs/ROSTER_PIPELINE_INTEGRATION.md",
+    "School Scrips/Macro App/docs/sessions/SESSIONS.md",
+    "School Scrips/Macro App/renderer/src/__tests__/electron-rosters-paths.test.ts",
+    "School Scrips/Macro App/renderer/src/utils/gradebook/gradesBackupPaths.test.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useAutoPruneMissingCourses.ts",
+    "School Scrips/Macro App/electron-app/pearson-units-io.js",
+    "School Scrips/Macro App/config/d2l-courses.json",
+    "c:/Users/chase/My Drive/Rosters etc/.course-folder-index.json",
+    "c:/Users/chase/My Drive/Rosters etc/MATH-1314 4201 1/gradebook files/current-session/session.json"
+  ],
+  "filesEdited": [],
+  "docsRulesOpened": [
+    "agent docs/INDEX.md",
+    "School Scrips/Macro App/docs/ROSTER_PIPELINE_INTEGRATION.md",
+    "School Scrips/Macro App/docs/sessions/SESSIONS.md"
+  ],
+  "navigationPath": [
+    {
+      "target": "agent docs/INDEX.md",
+      "kind": "doc-index",
+      "outcome": "partial",
+      "note": "Read first per AGENTS.md — no row matched 'course rename folders'; grepped next"
+    },
+    {
+      "target": "rename.*course | course.*rename in Macro App",
+      "kind": "grep",
+      "outcome": "helpful",
+      "note": "Surfaced useRenameCoursesModal, rosters_paths, SESSIONS 2026-07-07 fix"
+    },
+    {
+      "target": "courseFolder | course_name | folder.*course in Macro App",
+      "kind": "grep",
+      "outcome": "helpful",
+      "note": "Found gradesBackupPaths, pruneMissingCourseFolders, path owners"
+    },
+    {
+      "target": "renderer/src/hooks/shell/useRenameCoursesModal.ts",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Rename updates d2l-courses.json label only — never folder index"
+    },
+    {
+      "target": "modules/d2l/rosters_paths.py",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "resolveFolderNameForCourse + session.json self-heal"
+    },
+    {
+      "target": "electron-app/rosters-paths.js",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "JS mirror of Python path resolution"
+    },
+    {
+      "target": "renderer/src/utils/gradebook/gradesBackupPaths.ts",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Renderer backup matching uses folder index, not label alone"
+    },
+    {
+      "target": "docs/ROSTER_PIPELINE_INTEGRATION.md",
+      "kind": "doc",
+      "outcome": "partial",
+      "note": "Confirms rosters-paths.js is rename-proof; no dedicated rename section"
+    },
+    {
+      "target": "docs/sessions/SESSIONS.md (2026-07-07)",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Historical context — removed folder-index sync on label-only rename"
+    },
+    {
+      "target": "renderer/src/__tests__/electron-rosters-paths.test.ts",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Test: renamed label still finds original data folder"
+    },
+    {
+      "target": "renderer/src/utils/gradebook/pruneMissingCourseFolders.ts",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Auto-prune uses index — won't delete after rename"
+    },
+    {
+      "target": "electron-app/pearson-units-io.js",
+      "kind": "code",
+      "outcome": "dead-end",
+      "note": "Uses label for D2L calendar scoring only — not gradebook writes"
+    },
+    {
+      "target": "My Drive/Rosters etc/.course-folder-index.json + d2l-courses.json",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Live verify: renamed labels map to original on-disk folders"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "summaryHuman": "Macro App: calendar Excel export borders, Bulk Edit fingerprint cache, gradebook timing, and related session work were already pushed earlier. This wrap added electron-toolbar quick drag while paused — F22 and the DRAG overlay arm one-shot Mode 2 even when dwell is explicitly paused, then restore Paused when the drag finishes; DRAG overlay now uses dwell_quick_drag instead of persistent F20.",
+  "sessionType": "mixed",
+  "outcome": "Done",
+  "summarized": true,
+  "confidence": "medium",
+  "nextSession": "Live-test quick drag from paused (F17 → F22 or DRAG label hover → complete drag → confirm Paused); Macro App Bulk Edit second-open speed on unchanged Manage Grades.",
+  "addTurns": 3,
+  "addCorrections": 0
+}

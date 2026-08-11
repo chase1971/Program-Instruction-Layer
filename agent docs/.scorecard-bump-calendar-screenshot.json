@@ -1,0 +1,7 @@
+{
+  "task": "Calendar screenshot Mon-Thu + border fix + higher res",
+  "greps": 8,
+  "files_read": 10,
+  "files_edited": 4,
+  "notes": "Mon-Thu cols only, 1200px width, calendarBorderSides with left-edge override for cropped grid"
+}
