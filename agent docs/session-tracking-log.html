@@ -74,15 +74,335 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>15</dd></div>
-      <div><dt>Tasks today</dt><dd>13</dd></div>
-      <div><dt>Avg steps</dt><dd>5.1</dd></div>
+      <div><dt>Total tasks</dt><dd>19</dd></div>
+      <div><dt>Tasks today</dt><dd>3</dd></div>
+      <div><dt>Avg steps</dt><dd>5.8</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:08 PM · Monday, Aug 10, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:40 PM · Tuesday, Aug 11, 2026</dd></div>
     </div>
     <section class="day-block">
-      <h2 class="day-title">Monday, Aug 10, 2026 <span class="day-count">13 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Aug 11, 2026 <span class="day-count">3 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:40 PM — Fixed My Calendar course-lock matching for online templates (stripped '(Online)' suffix mismatch); diagnosed M2413 Fall gap as missing D2L course record, not a code bug — 15 steps · 25m 20s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:14 PM
+         · 25m 20s since previous task
+        <br>15 steps · first helpful at #3 · 13 ✓ · 2 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row for calendar course-locking — routed via APP_LOCATIONS to Macro App</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No direct keyword row; confirmed no dedicated doc exists for this feature</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Explore agent: my-calendar course-lock investigation">Explore agent: my-calendar course-lock investigation</code>
+      <span class="nav-note">Found root cause: templateKeysMatch() exact-compares courseCode incl. '(Online)' suffix</span>
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useSetupTemplateCourses.ts">my-calendar/src/hooks/useSetupTemplateCourses.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useTemplateLinkedSections.ts">my-calendar/src/hooks/useTemplateLinkedSections.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/matchTemplateToD2LCourses.ts">my-calendar/src/utils/matchTemplateToD2LCourses.ts</code>
+      <span class="nav-note">templateKeysMatch strict equality — root cause</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/normalizeTemplateCourseKey.ts">my-calendar/src/utils/normalizeTemplateCourseKey.ts</code>
+      <span class="nav-note">confirms online templates get ' (Online)' suffix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="my-calendar/src/components/excel-workspace/convertWizardLabels.ts">my-calendar/src/components/excel-workspace/convertWizardLabels.ts</code>
+      <span class="nav-note">stripOnlineParentheticalFromCourseCode precedent</span>
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/matchTemplateToD2LCourses.ts">my-calendar/src/utils/matchTemplateToD2LCourses.ts</code>
+      <span class="nav-note">Applied fix: strip trailing parenthetical modality qualifier before comparing</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="my-calendar/src/__tests__/matchTemplateToD2LCourses.test.ts">my-calendar/src/__tests__/matchTemplateToD2LCourses.test.ts</code>
+      <span class="nav-note">Updated test that had encoded the bug as expected behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="npx vitest run (my-calendar)">npx vitest run (my-calendar)</code>
+      <span class="nav-note">54/54 passed after fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/utils/d2l/matchD2LTemplate.ts">renderer/src/utils/d2l/matchD2LTemplate.ts</code>
+      <span class="nav-note">Found parallel sibling bug in resolveCourseKey() — spawned follow-up task instead of bundling</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="config/d2l-courses.json">config/d2l-courses.json</code>
+      <span class="nav-note">M2413 follow-up: only a Summer online section on record, no Fall entry — explains empty Detail sections panel</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/SetupCoursesWizardModal.tsx">renderer/src/components/shell/SetupCoursesWizardModal.tsx</code>
+      <span class="nav-note">Confirmed D2L course discovery/scan flow that would add the missing Fall record</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/AppHomeSidePanel.tsx">renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      <span class="nav-note">Located the 'Setup courses' entry point to point Chase at</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:07 PM — Saved phased Macro App browser residency implementation plan — 4 steps · 22m 13s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:08 PM
+         · 22m 13s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Confirmed app-specific routing and root docs location before saving the plan</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Macro App browser lifecycle files">Macro App browser lifecycle files</code>
+      <span class="nav-note">Used prior inspection of cold-tier eviction, gradebook LRU cap, and Playwright isolation to ground the phases</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md">agent docs/scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md</code>
+      <span class="nav-note">Saved a phased implementation plan under the requested Programs agent docs folder</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Plan line count">Plan line count</code>
+      <span class="nav-note">Trimmed from 701 lines to 667 lines to stay below the 700-line warning threshold</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:45 PM — Assessed Macro App embedded browser residency policy and planned configurable slot caps — 8 steps · 15h 32m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:08 PM
+         · 15h 32m since previous task
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App request through app location and app-specific AGENTS guidance before searching code</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Pointed browser/tab work to the embedded browser and browser tab integration docs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="docs/EMBEDDED_BROWSER_AND_MODALS.md">docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed multi-slot architecture, modal freeze contract, and key files</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="docs/BROWSER_TAB_INTEGRATION.md">docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed warmup/readiness layers and one-queue-per-slot design</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-cold-tier.js">electron-app/browser-slot-cold-tier.js</code>
+      <span class="nav-note">Found cold-tier workspace tab eviction; Pearson is the only warm exception</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-gradebook-lru.js">electron-app/browser-slot-gradebook-lru.js</code>
+      <span class="nav-note">Found hard cap of two live gradebook courses</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/d2l-bridge.js">electron-app/d2l-bridge.js</code>
+      <span class="nav-note">Found separate Playwright isolation path that destroys/restores slots for selected automations</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer settings and Manage tabs files">renderer settings and Manage tabs files</code>
+      <span class="nav-note">Confirmed settings modal structure and existing tab visibility prefs</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Monday, Aug 10, 2026 <span class="day-count">14 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:12 PM — Created Tome addon for left-click item pickup movement — 8 steps · 3m 46s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:08 PM
+         · 3m 46s since previous task
+        <br>8 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed click interaction through recipes index before searching the Tome install</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">No Tome-specific recipe; confirmed general interaction guidance and stayed scoped</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="engine/interface/PlayerMouse.lua">engine/interface/PlayerMouse.lua</code>
+      <span class="nav-note">Found default left-click movement path through Player:mouseMove</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="mod/class/Game.lua">mod/class/Game.lua</code>
+      <span class="nav-note">Confirmed mouseLeftClick only swallows auto-shoot target clicks before default movement</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="mod/class/Player.lua">mod/class/Player.lua</code>
+      <span class="nav-note">Reused Tome's playerPickup and pickupFloor flow instead of moving objects by hand</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-click-pickup">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-click-pickup</code>
+      <span class="nav-note">Created readable addon source with Player superload</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-click-pickup.teaa">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-click-pickup.teaa</code>
+      <span class="nav-note">Packaged addon with init.lua and superload/mod/class/Player.lua</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Headless package inspection">Headless package inspection</code>
+      <span class="nav-note">Verified forward-slash package entries and final Lua content</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">9:08 PM — Planned + implemented: hide Assignment Assistant's Working Gradebook section when the main Gradebook tab is hidden — 7 steps · 15s</span>
       

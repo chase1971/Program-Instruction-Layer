@@ -1,0 +1,10 @@
+{
+  "summaryHuman": "First Day Handout: course template library, edit-banner hard-copy save, preview formatting, exams-only Important Dates column, template-level marker overrides, and split [course]/[section] markers with reordered chips.",
+  "sessionType": "feature",
+  "outcome": "Done",
+  "summarized": true,
+  "worthNoting": "Fixed prefs-io stripping computedMarkerOverrides; fixed draftComputedOverridesRef crash on load.",
+  "nextSession": "Add [section] to Word handout templates where full course title used to live; save hard copies for each course variant after editing markers.",
+  "addTurns": 8,
+  "addCorrections": 1
+}

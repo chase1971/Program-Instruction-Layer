@@ -39,6 +39,11 @@ server *without* opening a browser at it.
 what he should see, what to report back. If a visible test is the only path, **ask first**
 and say what appears, on which screen, and how it goes away.
 
+**The handoff is a statement, never a prompt.** State what to run/expect, then stop —
+never "want me to X" or "are you good to check it yourself." No exception for low-stakes
+changes (a text/label fix he'll see next time he opens the app still gets a flat statement,
+not a question). Detail + why: `agent docs/rules/never-display-without-permission.md`.
+
 Detail + the incident that caused this rule: `agent docs/rules/never-display-without-permission.md`
 
 ---
