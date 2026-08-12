@@ -74,15 +74,89 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>23</dd></div>
-      <div><dt>Tasks today</dt><dd>7</dd></div>
-      <div><dt>Avg steps</dt><dd>5.9</dd></div>
+      <div><dt>Total tasks</dt><dd>24</dd></div>
+      <div><dt>Tasks today</dt><dd>8</dd></div>
+      <div><dt>Avg steps</dt><dd>6.0</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">6:59 PM · Tuesday, Aug 11, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:32 PM · Tuesday, Aug 11, 2026</dd></div>
     </div>
     <section class="day-block">
-      <h2 class="day-title">Tuesday, Aug 11, 2026 <span class="day-count">7 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Aug 11, 2026 <span class="day-count">8 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:32 PM — Fixed online-course calendar matching in My Calendar and Manage Dates (two matchers, coexisting-key disambiguation), Course Schedules tab label fix, and captured the handoff-is-a-statement rule — 8 steps · 14m 58s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:17 PM
+         · 14m 58s since previous task
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/matchTemplateToD2LCourses.ts">my-calendar/src/utils/matchTemplateToD2LCourses.ts</code>
+      <span class="nav-note">Root cause: (Online) suffix never stripped before comparing template course keys to D2L labels</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useSetupTemplateCourses.ts and useTemplateLinkedSections.ts">my-calendar/src/hooks/useSetupTemplateCourses.ts and useTemplateLinkedSections.ts</code>
+      <span class="nav-note">Confirmed both linking UIs share the one matcher function, so the fix is universal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/components/course-schedule/CalendarTemplateLinkStep.tsx">renderer/src/components/course-schedule/CalendarTemplateLinkStep.tsx</code>
+      <span class="nav-note">Suggested/other-tab buttons showed bare tab name only; prefixed with course key</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/d2l/matchD2LTemplate.ts">renderer/src/utils/d2l/matchD2LTemplate.ts</code>
+      <span class="nav-note">Second, separate matcher with the same bug; needed a modality hint since bare+suffixed keys can coexist for one course</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/services/firstDayHandoutCalendarService.ts">renderer/src/services/firstDayHandoutCalendarService.ts</code>
+      <span class="nav-note">Deleted a duplicate private copy of the buggy resolver in favor of the shared fixed one</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/d2l/useD2LScheduleSource.ts and useD2LModule.ts">renderer/src/hooks/d2l/useD2LScheduleSource.ts and useD2LModule.ts</code>
+      <span class="nav-note">Threaded selectedCourseModality through to the Manage Dates auto-select call site</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="full renderer vitest + tsc --noEmit">full renderer vitest + tsc --noEmit</code>
+      <span class="nav-note">Caught a self-introduced ordering bug (exact match short-circuited before disambiguation) before it shipped; 1142/1142 tests green after fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="agent docs/rules/never-display-without-permission.md and root AGENTS.md">agent docs/rules/never-display-without-permission.md and root AGENTS.md</code>
+      <span class="nav-note">Captured 'handoff is a statement, never a prompt' after Chase rejected a post-task AskUserQuestion</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">6:59 PM — Removed browser memory Settings controls and tied browser residency to Manage Tabs visibility — 6 steps · 20m 4s</span>
       

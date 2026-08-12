@@ -2,6 +2,30 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-11 — Capture: handoff is a statement, never a prompt
+
+**Files changed:** `AGENTS.md` (§ Never put anything on Chase's screen without asking), `agent
+docs/rules/never-display-without-permission.md`. App code work this session (Macro App online-
+course calendar matching fixes) is logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**What worked:** Chase rejected an AskUserQuestion call that asked "want me to do anything else,
+or are you good to check it yourself?" after a safe, non-GUI text-label fix, and said to stop
+asking permission or asking him to start/verify things — ever. Captured as a tightening of the
+existing "never put anything on screen without asking" rule: the launch-permission half stays
+unchanged, but the handoff step (when work can't be verified headlessly) must now always be a
+flat, declarative statement — never an interactive question, and no exception for low-stakes
+changes he'll see next time he opens the app anyway. Added the rule to both the always-on root
+`AGENTS.md` summary and the detail doc, plus a matching memory file so it persists across
+sessions.
+
+**Current state:** Green — doc-only change, no code/tests affected.
+
+**File size flag:** None.
+
+**Next session:** None pending.
+
+---
+
 ## 2026-08-09 — Session tracking split (metrics vs task pathing)
 
 **Files changed:** New `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`;
