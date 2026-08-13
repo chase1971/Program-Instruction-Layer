@@ -74,15 +74,343 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>32</dd></div>
-      <div><dt>Tasks today</dt><dd>8</dd></div>
-      <div><dt>Avg steps</dt><dd>5.7</dd></div>
+      <div><dt>Total tasks</dt><dd>37</dd></div>
+      <div><dt>Tasks today</dt><dd>13</dd></div>
+      <div><dt>Avg steps</dt><dd>5.8</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">3:25 PM · Wednesday, Aug 12, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:43 PM · Wednesday, Aug 12, 2026</dd></div>
     </div>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Aug 12, 2026 <span class="day-count">8 tasks</span></h2>
+      <h2 class="day-title">Wednesday, Aug 12, 2026 <span class="day-count">13 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:43 PM — Fixed D2L Manage Dates automation to dismiss Saved successfully toasts — 8 steps · 2h 33m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:53 PM
+         · 2h 33m since previous task
+        <br>8 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App work through the app AGENTS file</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No specific Manage Dates process/toast row existed; added one after locating the owner</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/STORED_AUTOMATIONS.md">School Scrips/Macro App/modules/d2l/STORED_AUTOMATIONS.md</code>
+      <span class="nav-note">Identified Manage Dates process schedule owner files and documented toast-dismiss behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="live Macro App CDP page">live Macro App CDP page</code>
+      <span class="nav-note">Found 24 D2L d2l-alert-toast nodes with shadow-DOM Close Alert buttons and clicked them</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/d2l_date_editor.py">School Scrips/Macro App/modules/d2l/d2l_date_editor.py</code>
+      <span class="nav-note">Added dismiss_success_toasts and called it before open/save plus after dialog save and inline removal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/d2l_dom.py">School Scrips/Macro App/modules/d2l/d2l_dom.py</code>
+      <span class="nav-note">Re-exported the new toast dismissal helper with the other date-editor mechanics</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="live Process Schedule reruns">live Process Schedule reruns</code>
+      <span class="nav-note">First rerun exposed delayed-toast timing; second rerun after polling fix finished with no open or lingering saved-toast nodes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="targeted Python tests and docs check">targeted Python tests and docs check</code>
+      <span class="nav-note">Verified py_compile, Manage Dates toast tests, remove marker tests, export tests, and instruction docs check</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:10 PM — Fixed First Day Handout export filenames to use canonical days and compact times — 6 steps · 18m 4s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:53 PM
+         · 18m 4s since previous task
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App work through the app AGENTS file</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Matched the First Day Handout request to the handout owner doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/FIRST_DAY_HANDOUT.md">School Scrips/Macro App/docs/FIRST_DAY_HANDOUT.md</code>
+      <span class="nav-note">Confirmed save/export and final-date ownership, then documented filename convention</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/first-day-handout/firstDayHandoutMerge.ts">School Scrips/Macro App/renderer/src/utils/first-day-handout/firstDayHandoutMerge.ts</code>
+      <span class="nav-note">Updated filename stem builder from T-TH and colon-bearing ranges to TTH and compact ranges</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookBlankRosterExcel.ts">School Scrips/Macro App/renderer/src/utils/gradebook/gradebookBlankRosterExcel.ts</code>
+      <span class="nav-note">Adjusted shared day-label caller to the new canonical meeting tokens</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="targeted renderer tests, lint, and typecheck">targeted renderer tests, lint, and typecheck</code>
+      <span class="nav-note">Verified first-day-handout merge tests, blank roster tests, touched-file lint, and renderer TypeScript</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:52 PM — Trimmed My Calendar model-only blank week after the final dated row — 7 steps · 14m 30s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:53 PM
+         · 14m 30s since previous task
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Confirmed the active template/export model ownership for My Calendar</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="active, export, and blank model workbooks">active, export, and blank model workbooks</code>
+      <span class="nav-note">Found model-only bordered rows 69-72 after the last real 16-week date box</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/utils/calendarGridBorderPlan.ts">School Scrips/Macro App/my-calendar/src/utils/calendarGridBorderPlan.ts</code>
+      <span class="nav-note">Changed last-row resolution to stop at the final actual date box instead of trailing border-only rows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/utils/calendarExportPrep.ts">School Scrips/Macro App/my-calendar/src/utils/calendarExportPrep.ts</code>
+      <span class="nav-note">Clears trailing model-only rows and sets print area from trimmed bounds during export</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/scripts/normalize-fall-templates.js">School Scrips/Macro App/my-calendar/scripts/normalize-fall-templates.js</code>
+      <span class="nav-note">Updated normalization so rebuilt Fall templates trim after the final generated date box</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="active Fall calendar templates">active Fall calendar templates</code>
+      <span class="nav-note">Applied normalizer; all sheets now use printArea A1:G68 and have no row 69+ grid borders or text</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="targeted tests and typecheck">targeted tests and typecheck</code>
+      <span class="nav-note">Verified export prep, border plan, view borders, and My Calendar TypeScript</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:37 PM — Added First Day Handout final-time copy button for My Calendar paste — 6 steps · 12m 47s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:53 PM
+         · 12m 47s since previous task
+        <br>6 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed app work through the Macro App AGENTS file</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No First Day Handout keyword row existed, so a focused search was needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/components/first-day-handout/FinalExamSetupModal.tsx">renderer/src/components/first-day-handout/FinalExamSetupModal.tsx</code>
+      <span class="nav-note">Added the copy button inside the face-to-face final date/time editor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/first-day-handout/firstDayHandoutFinalExam.ts">renderer/src/utils/first-day-handout/firstDayHandoutFinalExam.ts</code>
+      <span class="nav-note">Added date-free calendar paste text helper: Final plus selected start time</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/utils/first-day-handout/firstDayHandoutFinalExam.test.ts">renderer/src/utils/first-day-handout/firstDayHandoutFinalExam.test.ts</code>
+      <span class="nav-note">Covered calendar paste text and online-section exclusion</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="docs/FIRST_DAY_HANDOUT.md">docs/FIRST_DAY_HANDOUT.md</code>
+      <span class="nav-note">Added owner map and verification commands, then linked it from Macro App AGENTS</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:24 PM — Diagnosed and fixed My Calendar exports dropping the first printed column — 7 steps · 1h 31m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:53 PM
+         · 1h 31m since previous task
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Routed the request through the My Calendar templates/export guidance</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="exported M1314 workbook OOXML">exported M1314 workbook OOXML</code>
+      <span class="nav-note">Confirmed the sheet had column A but a hidden Print_Area of B1:F68</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Calendar Templates/M1314/fall workbook OOXML">Calendar Templates/M1314/fall workbook OOXML</code>
+      <span class="nav-note">Confirmed the stale print area was present in the saved course template</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="my-calendar/server/Calendars/ExportFullWeekTemplate Fall or Spring.xlsx">my-calendar/server/Calendars/ExportFullWeekTemplate Fall or Spring.xlsx</code>
+      <span class="nav-note">Found the same stale B:F print area in the blank full-week model</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/calendarExportPrep.ts">my-calendar/src/utils/calendarExportPrep.ts</code>
+      <span class="nav-note">Added export-time print area reset based on the final visible calendar grid</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="my-calendar/src/__tests__/calendarExportPrep.test.ts">my-calendar/src/__tests__/calendarExportPrep.test.ts</code>
+      <span class="nav-note">Covered the stale B:F print area regression at workbook XML level</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="docs/MY_CALENDAR_TEMPLATES.md">docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Recorded that hidden Print_Area metadata can make Excel print preview drop a visible column</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">3:25 PM — Fixed off-by-one exam/quiz template painting after Fall normalization — 5 steps · 1h 13m</span>
       
