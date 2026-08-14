@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-14 — Session tracking hook verification
+
+**Files changed:** `scripts/session-tracking-stats.js` (new), `scripts/scorecard-hook-tally.js`, `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`, `scripts/append-session-scorecard.js`, `scripts/scorecard-navigation-path.js`; `agent docs/SESSION_TRACKING.md`; generated `session-tracking-log.html`, `session-tracking.jsonl`, `session-metrics-log.html`.
+
+**What worked:** Hook now records an ordered `toolTimeline` (search, doc-read, read, edit). Each bump reconciles self-reported `navigationPath` against hook observations — index-first rate, unexplained searches, path coverage, active tool time. Tracking page replaced misleading duration/dead-end stats with honest aggregates and a "Where the index failed" backlog. Headless smoke test confirmed coverage pills. Overlay Creator extraction logged in `electron-toolbar/docs/sessions/SESSIONS.md`; Assignment Assistant workspace paths logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green — headless verify passed; no GUI tests run.
+
+**File size flag:** None (`session-tracking-html.js` ~300 lines).
+
+**Next session:** Watch index-first and path-coverage rates over a few sessions; add index rows from the failure backlog as patterns emerge.
+
+---
+
 ## 2026-08-11 — Capture: handoff is a statement, never a prompt
 
 **Files changed:** `AGENTS.md` (§ Never put anything on Chase's screen without asking), `agent

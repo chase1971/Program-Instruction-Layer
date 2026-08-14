@@ -68,6 +68,32 @@ Nested **`steps`** array = Task sub-agent branch. Use `branch` label on the pare
 
 Legacy shorthand `{ "step": "…", "result": "✓" }` still parses.
 
+### Honesty rule
+
+Log every lookup that did not help as `dead-end` or `partial`. The hook records searches independently; the tracking page compares hook counts to your path and shows **"N searches not in path"** when the gap is ≥3. Omitting dead ends makes coverage look better than it was — the page now catches that.
+
+### Bump granularity
+
+One bump per **deliverable** (a fix, a feature chunk, a doc update), not per chat exchange. Q&A threads where you ask several follow-ups without new code still get one bump when the answer is done.
+
+---
+
+## Hook-verified fields (automatic)
+
+Each bump compares the agent's `navigationPath` to the hook's `toolTimeline` for that task window. You do not set these — they appear on [session tracking](http://127.0.0.1:8765/session-tracking-log.html):
+
+| Field | Meaning |
+|-------|---------|
+| `activeMs` / `activeLabel` | First-to-last tool event in the task window (excludes idle gaps) |
+| `durationMs` / `durationLabel` | Wall-clock since previous bump (includes idle — kept for back-compat) |
+| `indexFirst` | First nav event was an index-like doc read before any search |
+| `searchesBeforeFirstDoc` | Searches that ran before the first doc read |
+| `observedSearches` | Hook-counted searches in the window |
+| `unexplainedSearches` | Observed searches not logged in the path |
+| `pathCoverage` | Logged steps ÷ observed nav events (low = path is a summary, not a record) |
+
+Pre-change entries lack these fields and are excluded from aggregate rates on the summary bar.
+
 ---
 
 ## Write-only rule
@@ -90,4 +116,4 @@ Hooks still block finish when ≥2 files edited and zero bumps — see [SESSION_
 
 ---
 
-*Updated: 2026-08-09 — session tracking split from session metrics*
+*Updated: 2026-08-14 — hook-verified navigation reconciliation*
