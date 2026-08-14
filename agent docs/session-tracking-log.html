@@ -74,13 +74,111 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>37</dd></div>
-      <div><dt>Tasks today</dt><dd>13</dd></div>
-      <div><dt>Avg steps</dt><dd>5.8</dd></div>
+      <div><dt>Total tasks</dt><dd>38</dd></div>
+      <div><dt>Tasks today</dt><dd>1</dd></div>
+      <div><dt>Avg steps</dt><dd>5.9</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:43 PM · Wednesday, Aug 12, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:02 PM · Thursday, Aug 13, 2026</dd></div>
     </div>
     <section class="day-block">
+      <h2 class="day-title">Thursday, Aug 13, 2026 <span class="day-count">1 task</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:02 PM — Gradebook tab-switch smoothness/performance — many rounds of fixes (tab height, remount removal, disk-scan skip, no-scan session resume, per-course async state flashes, two race-condition crashes); final crash reported still unresolved at session end — 11 steps · 22h 27m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:35 PM
+         · 22h 27m since previous task
+        <br>11 steps · first helpful at #1 · 10 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookCourseTabs.tsx">School Scrips/Macro App/renderer/src/components/gradebook/GradebookCourseTabs.tsx</code>
+      <span class="nav-note">Removed always-on sync status text row to shrink tab height</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx">School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx</code>
+      <span class="nav-note">Removed key={gradebook.filePath} forcing full remount on every tab switch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSelectCourse.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSelectCourse.ts</code>
+      <span class="nav-note">Skip listGradebookBackups() full scan on repeat/cache-hit visits; later added no-scan resume-from-session fast path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookEditSession.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookEditSession.ts</code>
+      <span class="nav-note">Fixed missing setCourseSlug causing an infinite selectCourse loop; added resumeExistingSession no-scan path, then isStillActive guard to fix a race condition it introduced</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts</code>
+      <span class="nav-note">Gated FLIP column-slide animation on course identity, not just column signature</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts</code>
+      <span class="nav-note">Render-time sync correction instead of effect-driven, avoiding one-frame flash of wrong course's filter order</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookDisplaySettings.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookDisplaySettings.ts</code>
+      <span class="nav-note">Same render-time sync fix for per-course font/view-tuning</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts</code>
+      <span class="nav-note">Same render-time sync fix for per-course hidden-column set</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts</code>
+      <span class="nav-note">loadCourseFromLatestBackup now reuses preloaded scan results; tries resumeExistingSession before falling back to a full scan</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="diagnostic logging in useGradebookSelectCourse.ts (added then removed)">diagnostic logging in useGradebookSelectCourse.ts (added then removed)</code>
+      <span class="nav-note">Proved selectCourse blocking was correct; pointed at a different hook as the real crash source</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts</code>
+      <span class="nav-note">Fixed a genuine unstable-useMemo-dependency infinite-render-loop bug (confirmed via diagnostic stack trace), but Chase reports the crash/issue is still not resolved after this fix — root cause of remaining issue not yet found</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Wednesday, Aug 12, 2026 <span class="day-count">13 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

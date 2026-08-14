@@ -146,11 +146,65 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>43</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:18 PM · Wednesday, Aug 12, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>44</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:02 PM · Thursday, Aug 13, 2026</dd></div>
     </div>
     
     <section class="day-block">
+      <h2 class="day-title">Thursday, Aug 13, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">8:02 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">debugging</span><span class="pill p2" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Partly done</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Spent the whole session chasing gradebook course-tab switching lag and visual jank in the Macro App, fixing a real remount and several real async-state-flash and race-condition bugs along the way. Ended with a genuine infinite-render-loop bug fixed (useGradebookHomeworkDueBatch unstable memo dependency), but Chase reports the underlying issue he's chasing is still not resolved.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>13</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>11</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>9</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>16</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/gradebook-files-ipc.js">gradebook-files-ipc.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookAutoD2LPullGate.ts">gradebookAutoD2LPullGate.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/services/gradebookFilteringPrefsService.ts">gradebookFilteringPrefsService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/services/gradebookSessionService.ts">gradebookSessionService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookTable.tsx">GradebookTable.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useBackgroundGradebookSlotLoader.ts">useBackgroundGradebookSlotLoader.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts">useGradebookBackupLoader.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts">useGradebookCategoryFilters.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">useGradebookColumnBlockFlip.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookDisplaySettings.ts">useGradebookDisplaySettings.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookEditSession.ts">useGradebookEditSession.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts">useGradebookHiddenColumns.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookRestoreLastCourse.ts">useGradebookRestoreLastCourse.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSelectCourse.ts">useGradebookSelectCourse.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSlotWarmupCoordinator.ts">useGradebookSlotWarmupCoordinator.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookViewTuning.ts">useGradebookViewTuning.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>23</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="School Scrips/Macro App/renderer/src/services/gradebookCourseSessionCache.ts">gradebookCourseSessionCache.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookCourseTabs.tsx">GradebookCourseTabs.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/services/gradebookFilteringPrefsService.ts">gradebookFilteringPrefsService.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/services/gradebookFilteringPrefsService.ts">gradebookFilteringPrefsService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookTable.tsx">GradebookTable.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookTable.tsx">GradebookTable.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx">GradebookView.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/gradebook/panel-shell.css">panel-shell.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebook.ts">useGradebook.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts">useGradebookBackupLoader.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts">useGradebookBackupLoader.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts">useGradebookCategoryFilters.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts">useGradebookCategoryFilters.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">useGradebookColumnBlockFlip.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">useGradebookColumnBlockFlip.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookDisplaySettings.ts">useGradebookDisplaySettings.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookEditSession.ts">useGradebookEditSession.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookEditSession.ts">useGradebookEditSession.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts">useGradebookHiddenColumns.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHiddenColumns.ts">useGradebookHiddenColumns.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts">useGradebookHomeworkDueBatch.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSelectCourse.ts">useGradebookSelectCourse.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookSelectCourse.ts">useGradebookSelectCourse.ts</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Multiple rounds of 'fix, verify headlessly, ship' surfaced real latent bugs each time (courseSlug staleness, a resumeExistingSession race, and an unstable useMemo dependency) that were previously masked by slower disk I/O — each fix was correct and tested, but did not fully resolve what Chase is seeing live, since Claude cannot run the Electron GUI directly.
+    </div>
+    <p class="next"><strong>Next time:</strong> Chase says the fix did not resolve it. Get a fresh console log / repro steps from him before making further changes — do not guess again. Consider asking him to describe exactly what's still wrong (crash? visual jank? stuck tab?) since his last message just said 'that didn't fix it' with no detail.</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Wednesday, Aug 12, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
