@@ -105,6 +105,7 @@ All superseded copies below live under **`Deprecated apps\`** (safe to delete th
 
 | Workspace | Path | Notes |
 |-----------|------|-------|
+| **ToME**, Tome, T-Engine | `C:\Users\chase\Desktop\t-engine4-windows-1.7.6` | Tales of Maj'Eyal/T-Engine desktop install. Addons go in `game\addons\*.teaa`; user data lives in `C:\Users\chase\T-Engine\4.0\tome\`. |
 | **Quasimorph mods**, Quasimorph, QM_StickyTooltips | `C:\Users\chase\Desktop\games\Quasimorph-GoldBerg\mod-dev` | Local Harmony mod source outside Programs; build each mod from `QM_*\src`; post-build deploys to Quasimorph `LocalUserPresets`. |
 | **Rosters etc** | `C:\Users\chase\My Drive\Rosters etc` | Course rosters, attendance, calendars, email templates — Google Drive |
 | **D2L Assignment Assistant** | `C:\Users\chase\Documents\D2L Assignment Assistant` | Separate Cursor workspace folder (may be empty or symlink — prefer Macro App for AA code) |
