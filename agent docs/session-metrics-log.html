@@ -146,13 +146,115 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>47</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:20 PM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>49</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:31 PM · Friday, Aug 14, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Friday, Aug 14, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">12:31 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Coding</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized AND the agent never ran --bump-file. Counts are a partial hook tally at best — treat as incomplete.">Counts incomplete — summarized, no bumps</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Planned and implemented the Assignment Assistant workspace layout so new grading output is grouped under each course's Assignment Assistant files folder. Added legacy-compatible discovery, Clear Data behavior, storage cleanup support, and focused headless tests.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>1</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> A prior commit already existed on Macro App for most of the implementation; the final pass extracted Clear Data folder-tree logic and added focused helper tests.
+    </div>
+    <p class="next"><strong>Next time:</strong> If this area comes up again, consider an optional migration utility for old top-level grade processing folders.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">12:29 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Fixed the My Calendar Assignment Template linking bug end-to-end: legacy assignment tabs now get adopted instead of orphaned/duplicated on link, course-rename now propagates into My Calendar, and a real prop-wiring bug (wrong sheetName passed to the header on the Assignment sub-tab) was found and fixed after live testing surfaced it. Also cleaned up a stale duplicate assignment tab in Chase's M1324 workbook after comparing the two candidates' content.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>1</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>24</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>13</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/267849.txt">267849.txt</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/plans/ASSIGNMENT_ASSISTANT_FILES_LAYOUT_PLAN.md">ASSIGNMENT_ASSISTANT_FILES_LAYOUT_PLAN.md</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/bump1.json">bump1.json</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/bump2.json">bump2.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/finalize.json">finalize.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">MY_CALENDAR_TEMPLATES.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/electron-toolbar/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>8</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/assignment-assistant-engine/python-modules/assignment_workspace_paths.py">assignment_workspace_paths.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/clear_data_cli.py">clear_data_cli.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/src/components/ClearDataPanel.tsx">ClearDataPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/extract_grades_cli.py">extract_grades_cli.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/python-modules/grading_processor.py">grading_processor.py</code></li><li><code class="" title="School Scrips/Macro App/electron-app/macro-storage-tree.js">macro-storage-tree.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/routes/quiz.js">quiz.js</code></li><li><code class="" title="School Scrips/Macro App/electron-app/retire-course-io.js">retire-course-io.js</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>6</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/bump1.json">bump1.json</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/bump2.json">bump2.json</code></li><li><code class="path-doc" title="C:/Users/chase/AppData/Local/Temp/claude/C--Users-chase-Documents-Programs/fc319f44-1bb8-42c2-8659-25318ac99755/scratchpad/finalize.json">finalize.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/electron-toolbar/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>27</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/python-modules/assignment_workspace_paths.py">assignment_workspace_paths.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/helpers/assignment-workspace-paths.js">assignment-workspace-paths.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/helpers/assignment-workspace-paths.test.js">assignment-workspace-paths.test.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/src/components/utils/assignmentUtils.ts">assignmentUtils.ts</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/clear_data_cli.py">clear_data_cli.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/helpers/clear-data-folder-tree.js">clear-data-folder-tree.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/src/components/ClearDataPanel.tsx">ClearDataPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/extract_grades_cli.py">extract_grades_cli.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/helpers/file-paths.js">file-paths.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/python-modules/grading_processor.py">grading_processor.py</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/helper_cli.py">helper_cli.py</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/linkD2lSectionToCalendarTab.ts">linkD2lSectionToCalendarTab.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/loadAssignmentBuffer.ts">loadAssignmentBuffer.ts</code></li><li><code class="" title="School Scrips/Macro App/electron-app/macro-storage-tree.js">macro-storage-tree.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/server/routes/quiz.js">quiz.js</code></li><li><code class="" title="School Scrips/Macro App/electron-app/retire-course-io.js">retire-course-io.js</code></li><li><code class="" title="School Scrips/Macro App/electron-app/retire-course-io.test.js">retire-course-io.test.js</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/scripts/split_pdf_cli.py">split_pdf_cli.py</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/components/templates/TemplateWorkspaceCardHeader.tsx">TemplateWorkspaceCardHeader.tsx</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/components/templates/TemplateWorkspaceMain.tsx">TemplateWorkspaceMain.tsx</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/python-modules/tests/test_assignment_workspace_paths.py">test_assignment_workspace_paths.py</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/tryAutoAssignSingleAssignmentTab.ts">tryAutoAssignSingleAssignmentTab.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentCourseTabs.ts">useAssignmentCourseTabs.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentTabRenameDelete.ts">useAssignmentTabRenameDelete.ts</code></li><li><code class="" title="School Scrips/Macro App/assignment-assistant-engine/src/components/hooks/useOption2Actions.ts">useOption2Actions.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useSetupTemplateCourses.ts">useSetupTemplateCourses.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useTemplateLinkedSections.ts">useTemplateLinkedSections.ts</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Discovered mid-session that another concurrent session/process committed a broad, unrelated bundle of changes (message 'Harden React tab flows and assignment assistant UI') on top of this session's work in the Macro App repo -- flagged to Chase, not resolved by me.
+    </div>
+    <p class="next"><strong>Next time:</strong> Confirm in the live app that MATH-2412 and MATH-1314 assignment tabs now show as linked, then use Assign assignment template to link M1324's surviving 16-Week TTH tab to its D2L course.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">12:20 PM</span>

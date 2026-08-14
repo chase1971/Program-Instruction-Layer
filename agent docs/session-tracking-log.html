@@ -82,19 +82,24 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>52</dd></div>
-      <div><dt>Tasks today</dt><dd>7</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 1 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>55</dd></div>
+      <div><dt>Tasks today</dt><dd>10</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 4 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">0% (0/6 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>43%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:07 PM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (1/35 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>71%</dd></div>
+      <div><dt>Avg steps</dt><dd>6.2</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:29 PM · Friday, Aug 14, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Workbook/export mechanics only, not D2L linking</span>
+      <span class="index-fail-task">12:29 PM — Fixed My Calendar D2L-section link sync (legacy tab adoption, calendar/assignment link state clarification) and course-rename propagation into My Calendar; verified with npm run ci:local</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md">School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code>
       <span class="nav-note">Confirmed vendored engine and over-cap file caution</span>
@@ -152,8 +157,271 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">7 tasks</span></h2>
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">10 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:29 PM — Follow-up from Chase's live testing: simplified Assignment tab header text, found and fixed the real 'still not linked' bug (wrong sheetName prop passed to header on Assignment sub-tab), investigated and cleaned up M1324 duplicate assignment tab — 9 steps · 3s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:20 PM
+         · 3s since previous task
+        <br>9 steps · first helpful at #1 · 9 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Chase screenshots + dictation">Chase screenshots + dictation</code>
+      <span class="nav-note">Two courses still showed not-linked; M1324 showed unexplained duplicate tabs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="my-calendar/src/components/templates/TemplateWorkspaceCardHeader.tsx">my-calendar/src/components/templates/TemplateWorkspaceCardHeader.tsx</code>
+      <span class="nav-note">Simplified message per Chase's explicit wording</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Assignment Templates/M2412/fall/*.xlsx (exceljs inspection script)">Assignment Templates/M2412/fall/*.xlsx (exceljs inspection script)</code>
+      <span class="nav-note">Sheet already had d2lCourseCode set -- proved it WAS linked, contradicting the UI</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Assignment Templates/M1314/fall/*.xlsx (exceljs inspection script)">Assignment Templates/M1314/fall/*.xlsx (exceljs inspection script)</code>
+      <span class="nav-note">Same pattern confirmed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="my-calendar/src/components/templates/TemplateWorkspaceMain.tsx">my-calendar/src/components/templates/TemplateWorkspaceMain.tsx</code>
+      <span class="nav-note">Root cause: sheetName prop was the calendar tab name, not assignmentCourseTabs.activeSheetName, when viewing Assignment sub-tab</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Assignment Templates/M1324/fall/*.xlsx (exceljs inspection script)">Assignment Templates/M1324/fall/*.xlsx (exceljs inspection script)</code>
+      <span class="nav-note">Compared '16 WK TTh' (remove-placeholders, dup rows) vs '16-Week TTH' (clean) to recommend which to keep</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="npm run ci:local">npm run ci:local</code>
+      <span class="nav-note">Green after sheetName fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Chase confirmation to delete '16 WK TTh'">Chase confirmation to delete '16 WK TTh'</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="Assignment Templates/M1324/fall/*.xlsx (exceljs delete + rewrite _AssignmentMeta script)">Assignment Templates/M1324/fall/*.xlsx (exceljs delete + rewrite _AssignmentMeta script)</code>
+      <span class="nav-note">Backed up first, then deleted sheet and rebuilt meta</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:29 PM — Fixed My Calendar D2L-section link sync (legacy tab adoption, calendar/assignment link state clarification) and course-rename propagation into My Calendar; verified with npm run ci:local — 12 steps · 1m 9s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:20 PM
+         · 1m 9s active tool time
+        <br>12 steps · first helpful at #1 · 10 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 2 search(es), 3 doc read(s) · 2 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 1m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Programs/AGENTS.md">INDEX → Programs/AGENTS.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">My Calendar keyword row -&gt; docs/MY_CALENDAR_TEMPLATES.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Workbook/export mechanics only, not D2L linking</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Explore agent: link/rename architecture">Explore agent: link/rename architecture</code>
+      <span class="nav-note">Found two independent link states (preset store vs xlsx _AssignmentMeta) and rename-event gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Plan agent: implementation design">Plan agent: implementation design</code>
+      <span class="nav-note">Confirmed root causes, designed minimal-diff fix + extraction plan</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/tryAutoAssignSingleAssignmentTab.ts">my-calendar/src/utils/tryAutoAssignSingleAssignmentTab.ts</code>
+      <span class="nav-note">Root cause: legacy workbook never adopted into existing tab</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/linkD2lSectionToCalendarTab.ts">my-calendar/src/utils/linkD2lSectionToCalendarTab.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useTemplateLinkedSections.ts">my-calendar/src/hooks/useTemplateLinkedSections.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useAssignmentCourseTabs.ts">my-calendar/src/hooks/useAssignmentCourseTabs.ts</code>
+      <span class="nav-note">723 lines, extracted rename/delete to unblock 700-line cap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useSetupTemplateCourses.ts">my-calendar/src/hooks/useSetupTemplateCourses.ts</code>
+      <span class="nav-note">Second caller of tryAutoAssignSingleAssignmentTab found via typecheck error</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="npm run typecheck:my-calendar">npm run typecheck:my-calendar</code>
+      <span class="nav-note">First pass: TS narrowing quirk under strict:false + missing calendarTabNames param</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="npm run ci:local">npm run ci:local</code>
+      <span class="nav-note">Full pass green after fixes</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:27 PM — Implemented Assignment Assistant files layout for grading workspaces — 8 steps · 2m 9s</span>
+      <span class="pill p2">13 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:20 PM
+         · 2m 9s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 61 doc read(s) · 13 not in path · coverage 11%
+        <br>Wall-clock gap since previous task: 7m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/plans/ASSIGNMENT_ASSISTANT_FILES_LAYOUT_PLAN.md">School Scrips/Macro App/docs/plans/ASSIGNMENT_ASSISTANT_FILES_LAYOUT_PLAN.md</code>
+      <span class="nav-note">Used the accepted folder contract and compatibility plan</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/python-modules/assignment_workspace_paths.py">assignment-assistant-engine/python-modules/assignment_workspace_paths.py</code>
+      <span class="nav-note">Added Python helper for new container, legacy fallback, archive paths, and assignment lookup</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/server/helpers/assignment-workspace-paths.js">assignment-assistant-engine/server/helpers/assignment-workspace-paths.js</code>
+      <span class="nav-note">Added server-side mirror for processing folder discovery</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/python-modules/grading_processor.py">assignment-assistant-engine/python-modules/grading_processor.py</code>
+      <span class="nav-note">Changed processing creation to Assignment Assistant files/&lt;assignment&gt;</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/scripts/*.py">assignment-assistant-engine/scripts/*.py</code>
+      <span class="nav-note">Updated extract grades, split/rezip, open latest folder, and clear/archive/delete behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/server/routes/quiz.js + helpers">assignment-assistant-engine/server/routes/quiz.js + helpers</code>
+      <span class="nav-note">Updated Clear Data folder tree for nested Assignment Assistant files and extracted route recursion</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Assignment Assistant UI utilities and Macro storage/retire helpers">Assignment Assistant UI utilities and Macro storage/retire helpers</code>
+      <span class="nav-note">Updated UI labels/path parsing, Storage Explorer grouping, and retire-course cleanup classification</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="targeted py_compile, pytest, node --check, node --test, renderer build">targeted py_compile, pytest, node --check, node --test, renderer build</code>
+      <span class="nav-note">Verified helper behavior and TypeScript integration headlessly</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">12:07 PM — Session tracking hook verification — timeline, reconcile stats, HTML report — 6 steps · 1m 14s</span>
       <span class="pill p2">7 searches not in path</span>
