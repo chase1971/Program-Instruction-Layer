@@ -82,14 +82,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>55</dd></div>
-      <div><dt>Tasks today</dt><dd>10</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 4 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (1/35 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>71%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.2</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:29 PM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Total tasks</dt><dd>59</dd></div>
+      <div><dt>Tasks today</dt><dd>14</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 8 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>1.5</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (1/52 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>28%</dd></div>
+      <div><dt>Avg steps</dt><dd>6.0</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">2:12 PM · Friday, Aug 14, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
@@ -157,8 +157,207 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">10 tasks</span></h2>
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">14 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:12 PM — Course Builder: refresh before sort + persist selected course across tab switches — 2 steps · 5m 53s</span>
+      <span class="pill p2">26 searches not in path</span><span class="pill p2">Hunted before doc — 26 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 2:06 PM
+         · 5m 53s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 26 search(es), 0 doc read(s) · 26 not in path · coverage 4%
+        <br>Wall-clock gap since previous task: 6m 1s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="useCourseBuilderAutomation + courseBuilderService">useCourseBuilderAutomation + courseBuilderService</code>
+      <span class="nav-note">Reload d2l-course slot before sort</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="useD2LCourseManagement + courseBuilderLastCourse">useD2LCourseManagement + courseBuilderLastCourse</code>
+      <span class="nav-note">Persist selection + sync from browser URL on tab return</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:54 PM — Sticky D2L session gating + embedded file picker for Managing Grades upload — 3 steps · 20m 16s</span>
+      <span class="pill p2">68 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:33 PM
+         · 20m 16s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 68 search(es), 5 doc read(s) · 68 not in path · coverage 2%
+        <br>Wall-clock gap since previous task: 20m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="slotSessionStore.ts + tests">slotSessionStore.ts + tests</code>
+      <span class="nav-note">Tab lock only before first sign-in; Ally/external nav no longer locks tabs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="browser-slot-url.js">browser-slot-url.js</code>
+      <span class="nav-note">Main-process auth URL aligned with renderer (no blanket my.lonestar.edu)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="embedded-session.js + browser-slot-file-picker.js">embedded-session.js + browser-slot-file-picker.js</code>
+      <span class="nav-note">Permissions + preload detach before OS file picker</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:34 PM — Unit folder sort — homework modules now sort after video assignments, before quizzes — 3 steps · 2m 35s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:33 PM
+         · 2m 35s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 2 search(es), 0 doc read(s) · 2 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 2m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_sort.py">modules/d2l/course_builder_reorder_sort.py</code>
+      <span class="nav-note">Added _is_homework_module tier between video and quiz</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/tests/test_course_builder_reorder_sort.py">modules/d2l/tests/test_course_builder_reorder_sort.py</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/STORED_AUTOMATIONS.md">modules/d2l/STORED_AUTOMATIONS.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:32 PM — Course Builder unit sort — new tier order, duplicate-name DOM reorder, Cancel sort button, fixed promote pulling nested quiz/practice links out, restored Units 1–4 on live course — 9 steps · 58m 45s</span>
+      <span class="pill p2">39 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:33 PM
+         · 58m 45s active tool time
+        <br>9 steps · first helpful at #1 · 8 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 39 search(es), 5 doc read(s) · 39 not in path · coverage 13%
+        <br>Wall-clock gap since previous task: 58m 52s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Routed to D2L_COURSE_BUILDER_AUTOMATION.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_sort.py">modules/d2l/course_builder_reorder_sort.py</code>
+      <span class="nav-note">Rewrote module_sort_tier for Notes/Videos + First Assignment order</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_scripts.py">modules/d2l/course_builder_reorder_scripts.py</code>
+      <span class="nav-note">Duplicate-name DOM reorder; promote only from notes folders; nest script</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder.py">modules/d2l/course_builder_reorder.py</code>
+      <span class="nav-note">Occurrence-index drag fallback; nest_unit_child_under_module</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="CDP Course Builder MATH-2412">CDP Course Builder MATH-2412</code>
+      <span class="nav-note">Reproduced Unit 2 stuck on duplicate Quiz 3 names; confirmed promote damage</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/d2l/useCourseBuilderAutomation.ts">renderer/src/hooks/d2l/useCourseBuilderAutomation.ts</code>
+      <span class="nav-note">Cancel sort via cancelD2LProcess</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/components/side-panels/D2LCourseMacrosSidePanel.tsx">renderer/src/components/side-panels/D2LCourseMacrosSidePanel.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="modules/d2l/tests/test_course_builder_reorder_sort.py">modules/d2l/tests/test_course_builder_reorder_sort.py</code>
+      
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="scripts/inspect_unit_promote_state.py">scripts/inspect_unit_promote_state.py</code>
+      <span class="nav-note">Diagnostic; removed live promote call after it mutated page</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">12:29 PM — Follow-up from Chase's live testing: simplified Assignment tab header text, found and fixed the real 'still not linked' bug (wrong sheetName prop passed to header on Assignment sub-tab), investigated and cleaned up M1324 duplicate assignment tab — 9 steps · 3s</span>
       
