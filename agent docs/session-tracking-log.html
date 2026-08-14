@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -74,15 +74,167 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>46</dd></div>
-      <div><dt>Tasks today</dt><dd>1</dd></div>
-      <div><dt>Avg steps</dt><dd>6.0</dd></div>
+      <div><dt>Total tasks</dt><dd>49</dd></div>
+      <div><dt>Tasks today</dt><dd>4</dd></div>
+      <div><dt>Avg steps</dt><dd>5.9</dd></div>
       <div><dt>Avg dead-ends (tasks with any)</dt><dd>0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:53 AM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:50 AM · Friday, Aug 14, 2026</dd></div>
     </div>
     <section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">1 task</span></h2>
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">4 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:50 AM — Added a React effect-loop audit test covering all Macro App React tab surfaces — 4 steps · 4m 51s</span>
+
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 AM
+         · 4m 51s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md">School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code>
+      <span class="nav-note">Confirmed the Assignment Assistant renderer engine is vendored under assignment-assistant-engine/src and imported by Macro App</span>
+
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed the browser-backed workspace tab model and which React surfaces matter for tab crash risk</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/assignment-assistant-engine/src">School Scrips/Macro App/assignment-assistant-engine/src</code>
+      <span class="nav-note">Expanded the effect-loop scan to Assignment Assistant; it introduced no new high-risk findings</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/__tests__/reactEffectLoopRisk.test.ts">School Scrips/Macro App/renderer/src/__tests__/reactEffectLoopRisk.test.ts</code>
+      <span class="nav-note">Added a Vitest source audit so new state-writing effects tied to unstable callback dependencies are caught headlessly</span>
+
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:45 AM — Audited React effects for Maximum update depth patterns and hardened remaining high-confidence risks — 5 steps · 1h 10m</span>
+
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 AM
+         · 1h 10m since previous task
+        <br>5 steps · first helpful at #2 · 4 ✓ · 1 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+
+      <code class="nav-target" title="School Scrips/Macro App renderer/calendar sources">School Scrips/Macro App renderer/calendar sources</code>
+      <span class="nav-note">Raw useEffect/setState grep was too noisy to identify real crash risks directly</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+
+      <code class="nav-target" title="inline React effect loop scanner">inline React effect loop scanner</code>
+      <span class="nav-note">Filtered effects to setter calls plus function-like dependencies; reduced 58 possible hits to a small manual audit set</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookColumnAverageTooltip.tsx">School Scrips/Macro App/renderer/src/components/gradebook/GradebookColumnAverageTooltip.tsx</code>
+      <span class="nav-note">Removed callback identities from layout-effect dependencies and avoided no-op position state updates</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/hooks/useTemplateSheetModalitySync.ts">School Scrips/Macro App/my-calendar/src/hooks/useTemplateSheetModalitySync.ts</code>
+      <span class="nav-note">Moved callback prop through a ref and skipped same-value state writes</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentCalendarEditor.ts">School Scrips/Macro App/my-calendar/src/hooks/useAssignmentCalendarEditor.ts</code>
+      <span class="nav-note">Removed redundant callback prop dependency from auto-extract effect</span>
+
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:35 AM — Fixed Calendar Add Tab picker infinite render loop triggered by switching to Gradebook — 5 steps · 20m 53s</span>
+
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 AM
+         · 20m 53s since previous task
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed this back into Macro App docs before code search</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed Macro App gradebook/calendar ownership and validation expectations</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+
+      <code class="nav-target" title="C:/Users/chase/.codex/attachments/2ed974b4-bd8b-49a5-93e4-806757cc24e4/pasted-text.txt">C:/Users/chase/.codex/attachments/2ed974b4-bd8b-49a5-93e4-806757cc24e4/pasted-text.txt</code>
+      <span class="nav-note">Crash stack identified TemplateAddTabPickSourceModal rather than gradebook restore as the component throwing Maximum update depth</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/calendar-vendor/src/components/templates/TemplateAddTabPickSourceModal.tsx">School Scrips/Macro App/calendar-vendor/src/components/templates/TemplateAddTabPickSourceModal.tsx</code>
+      <span class="nav-note">Hardened option loading so parent function identity changes cannot retrigger state-setting loops</span>
+
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+
+      <code class="nav-target" title="School Scrips/Macro App/calendar-vendor/src/hooks/useTemplateAddTabWorkflow.ts">School Scrips/Macro App/calendar-vendor/src/hooks/useTemplateAddTabWorkflow.ts</code>
+      <span class="nav-note">Made enrichCopyOptions stable with useCallback</span>
+
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">8:53 AM — Made gradebook startup prehydration parallel and moved browser-slot warmup out of the cached tab critical path — 5 steps · 8h 53m</span>
 
