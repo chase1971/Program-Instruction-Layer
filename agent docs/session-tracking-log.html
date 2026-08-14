@@ -82,19 +82,24 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>59</dd></div>
-      <div><dt>Tasks today</dt><dd>14</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 8 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>1.5</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (1/52 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>28%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">2:12 PM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Total tasks</dt><dd>63</dd></div>
+      <div><dt>Tasks today</dt><dd>18</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 12 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">1% (1/85 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>25%</dd></div>
+      <div><dt>Avg steps</dt><dd>6.2</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">4:31 PM · Friday, Aug 14, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Confirmed interaction/code-shape routing; no specific Course Builder drag recipe</span>
+      <span class="index-fail-task">3:58 PM — Fixed Macro App Course Builder unit sort guardrails: no row-center drops, collapse unit descendants, strict toast+position success, nested repair, CDP preflight default</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
       <span class="nav-note">Workbook/export mechanics only, not D2L linking</span>
@@ -157,8 +162,319 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">14 tasks</span></h2>
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">18 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:31 PM — Optimized Course Builder menu sorter by removing per-click unit prepare and polling order instead of fixed waits — 3 steps · 12m 39s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:39 PM
+         · 12m 39s since previous task
+        <br>3 steps · first helpful at #1 · 2 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 12m 39s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_moves.py">modules/d2l/course_builder_reorder_moves.py</code>
+      <span class="nav-note">Found full prepare_unit_for_reorder and fixed 500ms wait inside every one-slot move</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/tests/test_course_builder_reorder_moves.py">modules/d2l/tests/test_course_builder_reorder_moves.py</code>
+      <span class="nav-note">Updated unchanged-order test for the new polling behavior</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="reversible live speed probe">reversible live speed probe</code>
+      <span class="nav-note">Did not benchmark MATH-2412 because that CDP target was no longer open; no forced navigation</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:19 PM — Rebuilt Course Builder Sort around Actions menu Move Up/Move Down and live-sorted MATH-2412 Units 1-5 — 8 steps · 19m 50s</span>
+      <span class="pill p2">28 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:39 PM
+         · 19m 50s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 28 search(es), 3 doc read(s) · 28 not in path · coverage 25%
+        <br>Wall-clock gap since previous task: 20m 52s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Live Course Builder page via CDP">Live Course Builder page via CDP</code>
+      <span class="nav-note">Confirmed Syllabus Quiz Actions menu exposes Move Up/Move Down/Move To</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_moves.py">modules/d2l/course_builder_reorder_moves.py</code>
+      <span class="nav-note">Replaced drag-based move loop with row Actions menu Move Up/Move Down</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/tests/test_course_builder_reorder_moves.py">modules/d2l/tests/test_course_builder_reorder_moves.py</code>
+      <span class="nav-note">Replaced drag-oriented tests with menu move/toast/order-change tests</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="docs/Automations/D2L_COURSE_BUILDER_AUTOMATION.md">docs/Automations/D2L_COURSE_BUILDER_AUTOMATION.md</code>
+      <span class="nav-note">Documented menu move contract for Sort button</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/d2l/STORED_AUTOMATIONS.md">modules/d2l/STORED_AUTOMATIONS.md</code>
+      <span class="nav-note">Updated stored automation catalog from drag to Move Up/Move Down</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="python -m modules.d2l.course_builder_cli reorder-units &quot;Unit 1&quot;">python -m modules.d2l.course_builder_cli reorder-units &quot;Unit 1&quot;</code>
+      <span class="nav-note">Live Unit 1 sort succeeded with three Move Up toasts</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="python -m modules.d2l.course_builder_cli reorder-units &quot;Unit 2&quot; &quot;Unit 3&quot; &quot;Unit 4&quot; &quot;Unit 5&quot;">python -m modules.d2l.course_builder_cli reorder-units &quot;Unit 2&quot; &quot;Unit 3&quot; &quot;Unit 4&quot; &quot;Unit 5&quot;</code>
+      <span class="nav-note">Live Units 2-5 sort succeeded</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="final CDP verification script">final CDP verification script</code>
+      <span class="nav-note">Units 1-5 inOrder true and expandedChildren empty</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:58 PM — Fixed Macro App Course Builder unit sort guardrails: no row-center drops, collapse unit descendants, strict toast+position success, nested repair, CDP preflight default — 12 steps · 2m 26s</span>
+      <span class="pill p2">12 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:39 PM
+         · 2m 26s active tool time
+        <br>12 steps · first helpful at #1 · 11 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 3 doc read(s) · 12 not in path · coverage 67%
+        <br>Wall-clock gap since previous task: 2m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App and interaction work before searching</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Resolved Macro App folder and paired engine context</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Confirmed interaction/code-shape routing; no specific Course Builder drag recipe</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Keyword row pointed to Course Builder automation doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_COURSE_BUILDER_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_COURSE_BUILDER_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Sort unit folders source files and no one-off scripts</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/STORED_AUTOMATIONS.md">School Scrips/Macro App/modules/d2l/STORED_AUTOMATIONS.md</code>
+      <span class="nav-note">Confirmed real moves require Moved successfully toast and collapsed subfolders</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/sessions/SESSIONS.md">School Scrips/Macro App/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Found prior mid-refactor state and live Unit 1 failure notes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder.py">modules/d2l/course_builder_reorder.py</code>
+      <span class="nav-note">Found row-center drag_to shortcut and loose drop-point handling</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_moves.py">modules/d2l/course_builder_reorder_moves.py</code>
+      <span class="nav-note">Found toast-only success gate and missing direct-child recovery gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_reorder_scripts.py">modules/d2l/course_builder_reorder_scripts.py</code>
+      <span class="nav-note">Patched descendant collapse and drag-handle drop coordinates</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_move_to.py">modules/d2l/course_builder_move_to.py</code>
+      <span class="nav-note">Patched nested repair selection to use the actual nested path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_session.py + modules/shared/cdp.py">modules/d2l/course_builder_session.py + modules/shared/cdp.py</code>
+      <span class="nav-note">Read-only CDP attach failed until preflight got a default Course Builder URL hint</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:55 PM — Overlay pointer policy (through/block) + saved-group picker redesign — registry/presets, block gate runtime, picker Exit/title UX, docs/recipes, headless test — 10 steps · 16m 11s</span>
+      <span class="pill p2">76 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:39 PM
+         · 16m 11s active tool time
+        <br>10 steps · first helpful at #1 · 10 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 76 search(es), 70 doc read(s) · 76 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 16m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md → recipes/INDEX.md">agent docs/INDEX.md → recipes/INDEX.md</code>
+      <span class="nav-note">Cross-app recipe placement</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-toolbar/overlay-creator/AGENTS.md">electron-toolbar/overlay-creator/AGENTS.md</code>
+      <span class="nav-note">Keyword table for overlay-creator</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="overlay-creator/services/overlay-registry-service.js">overlay-creator/services/overlay-registry-service.js</code>
+      <span class="nav-note">pointerPolicy persistence</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="overlay-creator/services/overlay-preset-service.js">overlay-creator/services/overlay-preset-service.js</code>
+      <span class="nav-note">snapshot + snapshotsEqual</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="electron-app/src/window-helpers.js">electron-app/src/window-helpers.js</code>
+      <span class="nav-note">createOverlayBlockGate + IPC hub</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="overlay-creator/frontend/key-overlay-host-runtime.js">overlay-creator/frontend/key-overlay-host-runtime.js</code>
+      <span class="nav-note">Block poll on cursor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/src/tabletop-overlay-runtime.js">electron-app/src/tabletop-overlay-runtime.js</code>
+      <span class="nav-note">Same block pattern for R/2</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="overlay-creator/managers/overlay-picker-manager.js">overlay-creator/managers/overlay-picker-manager.js</code>
+      <span class="nav-note">Split to preset-controller + picker-ipc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="overlay-creator/frontend/overlay-picker-ui.js">overlay-creator/frontend/overlay-picker-ui.js</code>
+      <span class="nav-note">Title/Exit, T/B badge, no collapse</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="overlay-creator/test/overlay-pointer-preset.test.js">overlay-creator/test/overlay-pointer-preset.test.js</code>
+      <span class="nav-note">Headless normalize + snapshot</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">2:12 PM — Course Builder: refresh before sort + persist selected course across tab switches — 2 steps · 5m 53s</span>
       <span class="pill p2">26 searches not in path</span><span class="pill p2">Hunted before doc — 26 searches first</span>
