@@ -82,19 +82,24 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>63</dd></div>
-      <div><dt>Tasks today</dt><dd>18</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 12 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>77</dd></div>
+      <div><dt>Tasks today</dt><dd>13</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 26 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">1% (1/85 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>25%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.2</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:31 PM · Friday, Aug 14, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (5/161 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>43%</dd></div>
+      <div><dt>Avg steps</dt><dd>6.0</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">2:58 PM · Saturday, Aug 15, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
+      <span class="nav-note">Confirmed start-of-session repo sync behavior; surfaced unrelated deprecated repo issues.</span>
+      <span class="index-fail-task">11:46 PM — Patched ToME quicktransmo addon to bypass transmog confirmation and fix Shift-click event wiring</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">Confirmed interaction/code-shape routing; no specific Course Builder drag recipe</span>
@@ -162,8 +167,823 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">18 tasks</span></h2>
+      <h2 class="day-title">Saturday, Aug 15, 2026 <span class="day-count">13 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:58 PM — Fixed the D2L header's tab row wrap pushing the side panel/window controls down. First pass only re-anchored the pills within the header row and Chase reported the side panel itself still moved; root cause was the header having no fixed height in the app-shell column-flex layout, fixed by reserving a constant 2-row height on .shell-header-tabs-zone — 6 steps · 2s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 2s since previous task
+        <br>6 steps · first helpful at #1 · 4 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 2s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="D2LWorkspaceHeader.tsx">D2LWorkspaceHeader.tsx</code>
+      <span class="nav-note">side-slot pills + tabs-zone are siblings in one flex row</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="shell-tabs.css .shell-header-d2l-row">shell-tabs.css .shell-header-d2l-row</code>
+      <span class="nav-note">align-items: flex-end on the row drags shorter siblings to the bottom — fixed with align-self: flex-start, but this was not the full bug</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Chase feedback: whole side panel still not moving">Chase feedback: whole side panel still not moving</code>
+      <span class="nav-note">First fix only moved the pills, not the actual side panel below</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="TabbedAppShell.tsx">TabbedAppShell.tsx</code>
+      <span class="nav-note">Header and AppWorkspace are plain siblings, not a grid with a fixed header row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="layout/shell-chrome.css .app-shell">layout/shell-chrome.css .app-shell</code>
+      <span class="nav-note">display:flex; flex-direction:column — a taller header pushes every sibling below it down</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="shell-tabs.css .shell-header-tabs-zone fixed height">shell-tabs.css .shell-header-tabs-zone fixed height</code>
+      <span class="nav-note">height:106px (2 tab rows) makes the header height constant regardless of wrap</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:58 PM — Found the real export failure in macro-app.log: connect_over_cdp hung silently for the full 120s with zero log output (a known blocker-tab issue already solved for Course Builder but never wired into the shared connect() every other D2L/Pearson command uses). Fixed at the root in modules/shared/cdp.py. — 6 steps · 3s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 3s since previous task
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · coverage 100%
+        <br>Wall-clock gap since previous task: 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="docs/LOGGING.md">docs/LOGGING.md</code>
+      <span class="nav-note">Found the persisted log path (%APPDATA%/macro-app/logs/macro-app.log)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="macro-app.log (Select-String export-manage-dates)">macro-app.log (Select-String export-manage-dates)</code>
+      <span class="nav-note">No log line between 'Starting export-manage-dates...' and the 120s kill</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="d2l_manage_dates_export.py wait_for_assignments_table">d2l_manage_dates_export.py wait_for_assignments_table</code>
+      <span class="nav-note">Returns fast on 0 rows — not the hang</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="d2l_processor.py connect(cdp_url) call">d2l_processor.py connect(cdp_url) call</code>
+      <span class="nav-note">Hang is before any command-specific log line — must be the CDP attach itself</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/shared/cdp.py">modules/shared/cdp.py</code>
+      <span class="nav-note">Docstring names D2L Home chat iframe / blank tabs as known connect_over_cdp hang triggers</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_session.py">modules/d2l/course_builder_session.py</code>
+      <span class="nav-note">Already has the fix (close_known_playwright_cdp_blockers + bounded wait_for) — just never applied to the shared connect()</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:58 PM — Fixed disabled Cancel button on the Export Assignment Dates save modal (now cancels an in-flight save via the existing cancelD2LProcess) and added a fast fail (raise_if_login_redirect) after D2L navigation instead of a 20s selector timeout — 4 steps · 3s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 3s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · coverage 100%
+        <br>Wall-clock gap since previous task: 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="D2LExportAssignmentDatesSaveModal.tsx">D2LExportAssignmentDatesSaveModal.tsx</code>
+      <span class="nav-note">Cancel button was disabled={isSaving}</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="d2lService.ts cancelD2LProcess grep">d2lService.ts cancelD2LProcess grep</code>
+      <span class="nav-note">Found the existing modules:cancel owner, already used for Process Schedule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="useD2LModule.ts cancel()">useD2LModule.ts cancel()</code>
+      <span class="nav-note">Model for wiring cancel into the export modal handler</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="d2l_processor.py process/export-manage-dates commands">d2l_processor.py process/export-manage-dates commands</code>
+      <span class="nav-note">Both goto then a bare 20s wait_for_selector with no login check</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:58 PM — Explained why the 'Log in to D2L' button appears missing — it was moved (not deleted) from the embedded-browser toolbar to the Home side panel in an earlier commit, and only renders when isD2LLoggedIn is false — 4 steps · 57m 14s · 1 dead-end</span>
+      <span class="pill p2">10 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 57m 14s active tool time
+        <br>4 steps · first helpful at #2 · 3 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 12 search(es), 3 doc read(s) · 10 not in path · coverage 17%
+        <br>Wall-clock gap since previous task: 57m 19s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Macro App directory (DTL grep)">Macro App directory (DTL grep)</code>
+      <span class="nav-note">Speech-to-text mis-heard 'D2L' as 'DTL' — zero hits</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="D2L login grep across Programs">D2L login grep across Programs</code>
+      <span class="nav-note">Found the Macro App path and D2LLoginButton.tsx</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="git log -- D2LLoginButton.tsx / EmbeddedBrowserPanel.tsx">git log -- D2LLoginButton.tsx / EmbeddedBrowserPanel.tsx</code>
+      <span class="nav-note">Commit 4b2d68c moved it from browser toolbar to side panel, superseding the old one</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/AppHomeSidePanel.tsx">renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      <span class="nav-note">Found the isD2LLoggedIn &amp;&amp; !isSetupWizardActive gate</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:01 PM — Added 6 AM start-time options and fixed the Schedule times modal category panel so expanded assignment groups scroll inside the modal — 4 steps · 4m 31s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 4m 31s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 4m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="guidelines/Guidelines.md and docs/MODAL_CATALOG.md">guidelines/Guidelines.md and docs/MODAL_CATALOG.md</code>
+      <span class="nav-note">Confirmed modal scroll regions should use the existing viewport rail pattern</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/assignmentTimeScheduleOptions.ts">my-calendar/src/utils/assignmentTimeScheduleOptions.ts</code>
+      <span class="nav-note">Extended class/category start-time options to begin at 6:00 AM</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="my-calendar/src/components/excel-workspace/AssignmentTimeScheduleModal.tsx">my-calendar/src/components/excel-workspace/AssignmentTimeScheduleModal.tsx</code>
+      <span class="nav-note">Changed the category panel wrapper from free-growing grid layout to flex with minHeight 0 so the nested scroll viewport can scroll expanded groups</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="focused tests/typecheck">focused tests/typecheck</code>
+      <span class="nav-note">Ran assignmentTimeScheduleOptions, assignmentExtractedCategory, applyAssignmentTimeSchedule, My Calendar typecheck, and git diff check</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:56 PM — Updated extracted assignment grouping so rows containing key/keys go to Keys, rows containing assignment go to Homework, and schedule-time defaults recognize the new Keys category — 4 steps · 23m 32s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 23m 32s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 23m 32s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="docs/MY_CALENDAR_TEMPLATES.md">docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Confirmed the request belonged to My Calendar assignment template behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="my-calendar/src/utils/assignmentExtractedCategory.ts">my-calendar/src/utils/assignmentExtractedCategory.ts</code>
+      <span class="nav-note">Found and updated the central extracted-assignment classifier and labels</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="server schedule-time helpers">server schedule-time helpers</code>
+      <span class="nav-note">Mirrored Keys in saved schedule preset normalization and CSV generation classification</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="focused tests/typecheck">focused tests/typecheck</code>
+      <span class="nav-note">Ran assignmentExtractedCategory and applyAssignmentTimeSchedule tests, My Calendar typecheck, server require check, and git diff check</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:33 PM — Added renderer-side fallback so an already-running My Calendar backend cannot drop Schedule times from assignment-template CSVs while the app is open — 2 steps · 1m 44s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 1m 44s since previous task
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1m 44s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/services/myCalendarTemplateService.ts">renderer/src/services/myCalendarTemplateService.ts</code>
+      <span class="nav-note">Applied saved assignment time presets client-side when the backend response has not already applied one</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="My Calendar typecheck and focused tests">My Calendar typecheck and focused tests</code>
+      <span class="nav-note">Reran My Calendar typecheck, focused schedule-time tests, server CSV check, and git diff check</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:31 PM — Fixed assignment-template schedule times so saved Schedule times presets populate Process Schedule CSVs and the assignment calendar display/hover lines — 6 steps · 19m 55s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 19m 55s since previous task
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 19m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/d2l/STORED_AUTOMATIONS.md">modules/d2l/STORED_AUTOMATIONS.md</code>
+      <span class="nav-note">Confirmed Manage Dates template CSVs are supposed to carry Start Time and Due Time</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Generated M2412 assignment-template CSV">Generated M2412 assignment-template CSV</code>
+      <span class="nav-note">Found the generated schedule had dates but blank Start Time and Due Time cells, explaining why D2L kept old/random times</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="my-calendar/server/backend/services/assignmentTemplateCsvService.js">my-calendar/server/backend/services/assignmentTemplateCsvService.js</code>
+      <span class="nav-note">Applied saved assignment time presets while rendering assignment-template Process Schedule CSVs, including requested calendar-tab and D2L-course matching</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/d2l/useD2LScheduleSource.ts and myCalendarTemplateService.ts">renderer/src/hooks/d2l/useD2LScheduleSource.ts and myCalendarTemplateService.ts</code>
+      <span class="nav-note">Passed the selected D2L course code into the template CSV request so the server chooses the linked section preset</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="my-calendar/src/hooks/useAssignmentCalendarEditor.ts and assignment line components">my-calendar/src/hooks/useAssignmentCalendarEditor.ts and assignment line components</code>
+      <span class="nav-note">Merged saved preset times into assignment-template display items and added native titles so hover text includes the time</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Typecheck and focused tests">Typecheck and focused tests</code>
+      <span class="nav-note">My Calendar typecheck passed, focused schedule-time tests passed, and the patched builder output real M2412 rows with 8:00 AM / 11:59 PM</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:11 PM — Programmed Manage Dates to treat First Assignment as the Discussion Topic row, cleared stray advanced name filters before scans, removed a local speed-test cap, and live-verified the template run checks all 38 rows with 0 updates needed — 6 steps · 23m 23s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 23m 23s since previous task
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 23m 23s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Latest user screenshot and Manage Dates output">Latest user screenshot and Manage Dates output</code>
+      <span class="nav-note">Identified that the three First Assignment rows are wrappers plus the actual Discussion Topic row, and that the automation must choose the Discussion Topic row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/d2l_dom.py">School Scrips/Macro App/modules/d2l/d2l_dom.py</code>
+      <span class="nav-note">Added the First Assignment row-type override and reused the row-ranking logic in index and fallback matching</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/manage_dates_filter.py">School Scrips/Macro App/modules/d2l/manage_dates_filter.py</code>
+      <span class="nav-note">Cleared active advanced filters like Filter on Name before applying the automation's own tool filter so hidden rows do not become false not-found results</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/manage_dates_limit.txt">School Scrips/Macro App/manage_dates_limit.txt</code>
+      <span class="nav-note">Found and removed the ignored local speed-test cap that was limiting scans to 99 rows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Live MATH-2412 Manage Dates page via exact CDP target">Live MATH-2412 Manage Dates page via exact CDP target</code>
+      <span class="nav-note">First run updated First Assignment as the Discussion Topic row; final no-op run loaded 145 rows and reported 38 already correct, 0 not found</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/tests">School Scrips/Macro App/modules/d2l/tests</code>
+      <span class="nav-note">Added focused row-matching tests and reran the full D2L suite with 144 passing tests</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:48 PM — Fixed and live-verified D2L Manage Dates template processing: template CSVs now bypass stale baselines, date editor saves quickly, duplicate snapshots compare correctly, and final rerun reported 0 updates / 37 already correct — 7 steps · 47m 41s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 47m 41s since previous task
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 47m 41s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md -&gt; APP_LOCATIONS.md -&gt; School Scrips/Macro App/AGENTS.md">agent docs/INDEX.md -&gt; APP_LOCATIONS.md -&gt; School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Loaded the required root and app guidance before working in Macro App</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/d2l_csv.py and course scheduling files">modules/d2l/d2l_csv.py and course scheduling files</code>
+      <span class="nav-note">Compared the exported CSV, schedule-baseline.csv, and generated assignment-template CSV; proved the skipped 37 matched the old exported CSV path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/d2l/useD2LModule.ts">renderer/src/hooks/d2l/useD2LModule.ts</code>
+      <span class="nav-note">Cleared stale process summaries when switching to a new template or CSV without adding a new hook that breaks hot reload</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="modules/d2l/d2l_processor.py">modules/d2l/d2l_processor.py</code>
+      <span class="nav-note">Logged the schedule CSV path, bypassed baseline filtering for assignment-template CSVs, and left shared baselines untouched for template runs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/d2l/d2l_date_editor.py">modules/d2l/d2l_date_editor.py</code>
+      <span class="nav-note">Replaced slow Playwright checkbox/input actionability waits with JS event-driven controls for D2L's shadow-DOM date editor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Live MATH-2412 Manage Dates page via exact CDP target">Live MATH-2412 Manage Dates page via exact CDP target</code>
+      <span class="nav-note">Ran a two-row probe, full template update, export verification, duplicate snapshot fix, and final no-op rerun</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="modules/d2l/tests and renderer build">modules/d2l/tests and renderer build</code>
+      <span class="nav-note">Full D2L Python suite passed; renderer build passed earlier after the hook fix</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:00 PM — Verified and completed D2L quiz-key release-condition automation live for Quiz 4/5/6 — 5 steps · 8m 49s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 8m 49s since previous task
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 8m 49s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/d2l/d2l_processor.py">modules/d2l/d2l_processor.py</code>
+      <span class="nav-note">Used the real Macro App command path for live verification</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Live MATH-2412 D2L Content page via CDP">Live MATH-2412 D2L Content page via CDP</code>
+      <span class="nav-note">Confirmed fallback editor opened collapsed and lacked releaseConditionCreate until expanded</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/content_quiz_key_conditions.py">modules/d2l/content_quiz_key_conditions.py</code>
+      <span class="nav-note">Scoped panel state to the current key row and expanded Add dates and restrictions before setting dates/conditions</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Live automation rerun">Live automation rerun</code>
+      <span class="nav-note">Applied Quiz 4/5/6, then reran and verified all six keys came back already configured</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/d2l/tests">modules/d2l/tests</code>
+      <span class="nav-note">Ran full D2L Python suite after the verified fix</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:51 AM — Fixed Macro App quiz-key release-condition automation to detect visible PDF key rows and Content-page reruns — 8 steps · 34m 12s</span>
+      <span class="pill p2">35 searches not in path</span><span class="pill p2">Hunted before doc — 29 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 34m 12s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 35 search(es), 1 doc read(s) · 35 not in path · coverage 13%
+        <br>Wall-clock gap since previous task: 10h 59m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App work to APP_LOCATIONS and app AGENTS before searching</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Resolved Macro App path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Routed automation work to Stored Automations and Course Builder docs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="modules/d2l/STORED_AUTOMATIONS.md">modules/d2l/STORED_AUTOMATIONS.md</code>
+      <span class="nav-note">Identified quiz_key_release_conditions implementation and old off-screen-link assumption</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/d2l/content_quiz_key_conditions.py">modules/d2l/content_quiz_key_conditions.py</code>
+      <span class="nav-note">Found scanner used off-screen restriction links only and global topic-name de-dupe</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Live D2L Content DOM via CDP">Live D2L Content DOM via CDP</code>
+      <span class="nav-note">Confirmed Quiz 4/5/6 visible PDF key rows exist but lack off-screen restrictions links</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="modules/d2l/course_builder_session.py">modules/d2l/course_builder_session.py</code>
+      <span class="nav-note">Added Content-page attach path for reruns after automation navigates from Course Builder to Content</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="modules/d2l/tests">modules/d2l/tests</code>
+      <span class="nav-note">Added focused tests and ran full D2L Python suite</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:52 AM — Patched ToME quicktransmo addon so item descriptions always show equipped-item comparisons — 6 steps · 1h 5m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 1h 5m since previous task
+        <br>6 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1h 5m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed the ToME follow-up through APP_LOCATIONS before searching.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Confirmed the ToME install and addon source/package paths.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/class/Object.lua">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/class/Object.lua</code>
+      <span class="nav-note">Found getDesc clears compare_with unless force_compare is set or Ctrl is held.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/dialogs/ShowInventory.lua">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/dialogs/ShowInventory.lua</code>
+      <span class="nav-note">Confirmed inventory dialogs pass equipped-slot comparison data into getDesc.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-quicktransmo-work-20260814/superload/mod/class/Object.lua">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-quicktransmo-work-20260814/superload/mod/class/Object.lua</code>
+      <span class="nav-note">Added a small superload that sets name_param.force_compare before delegating to base getDesc.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-quicktransmo.teaa">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons/tome-quicktransmo.teaa</code>
+      <span class="nav-note">Rebuilt and verified the installed addon archive includes the new Object superload.</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">19 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:46 PM — Patched ToME quicktransmo addon to bypass transmog confirmation and fix Shift-click event wiring — 8 steps · 1m 55s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:52 PM
+         · 1m 55s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 2 search(es), 1 doc read(s) · 2 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 3h 53m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed app-location question through APP_LOCATIONS before searching.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Found ToME install and user-data paths outside Programs.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
+      <span class="nav-note">Confirmed start-of-session repo sync behavior; surfaced unrelated deprecated repo issues.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons</code>
+      <span class="nav-note">Identified installed tome-quicktransmo.teaa and existing quick-click backup.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-quicktransmo-work-20260814">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-quicktransmo-work-20260814</code>
+      <span class="nav-note">Found active addon source with ShowEquipInven superload and keybind hook.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/dialogs/UseItemDialog.lua">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/addons-src/tome-module-inspect-20260814/mod/dialogs/UseItemDialog.lua</code>
+      <span class="nav-note">Located transmo confirmation path: yesnoPopup around actor:transmoInven.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/engines/te4-1.7.6.teae">C:/Users/chase/Desktop/t-engine4-windows-1.7.6/game/engines/te4-1.7.6.teae</code>
+      <span class="nav-note">Read engine Inventory/ListColumns behavior from archived engine to explain Shift-click event mismatch.</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="lua/luac on PATH">lua/luac on PATH</code>
+      <span class="nav-note">No Lua compiler/interpreter available for syntax-only validation without launching ToME.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">4:31 PM — Optimized Course Builder menu sorter by removing per-click unit prepare and polling order instead of fixed waits — 3 steps · 12m 39s</span>
       
