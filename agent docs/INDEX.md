@@ -46,6 +46,7 @@ never touches this file.
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
 | "log the task" · bump session tracking · task navigation path | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
 | finalize session metrics · grep/file counts · hook enforcement | [SESSION_METRICS.md](./SESSION_METRICS.md) |
+| Macro App browser residency plan · browser memory plan | [scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md) · [review](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN_REVIEW.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |
 | where should this rule go · which rung · is this always-on or on-demand | [AGENTS.md](../AGENTS.md) § Capture ladder |
 

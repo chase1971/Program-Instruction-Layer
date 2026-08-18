@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Session tracking hook verification — timeline, reconcile stats, HTML report",
+  "navigationPath": [
+    { "target": "agent docs/SESSION_TRACKING.md", "kind": "doc", "outcome": "helpful", "note": "Procedure for bumps" },
+    { "target": "scripts/scorecard-hook-tally.js", "kind": "code", "outcome": "helpful", "note": "Added toolTimeline events" },
+    { "target": "scripts/session-tracking-stats.js", "kind": "code", "outcome": "helpful", "note": "New observeWindow + reconcile module" },
+    { "target": "scripts/session-tracking-store.js", "kind": "code", "outcome": "helpful" },
+    { "target": "scripts/session-tracking-html.js", "kind": "code", "outcome": "helpful", "note": "New summary stats + index failures section" },
+    { "target": "scripts/append-session-scorecard.js", "kind": "code", "outcome": "helpful", "note": "Timeline consume on bump" }
+  ]
+}

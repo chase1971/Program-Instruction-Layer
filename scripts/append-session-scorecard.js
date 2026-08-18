@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
+const { consumeTimelineUpTo } = require('./session-tracking-stats');
 const { NAV_TIP } = require('./scorecard-navigation-path');
 const {
   readTrackingEntries,
@@ -695,6 +696,7 @@ function emptyRunning() {
     browserSnapshots: 0,
     taskLog: [],
     lastTrackingBumpAt: null,
+    toolTimeline: [],
     hookTally: false,
     agentBumped: false,
     ...emptyTrustFields(),
@@ -766,6 +768,7 @@ function bumpRunning(delta) {
     const trackingEntry = buildTrackingEntry(delta, r, bumpTime);
     appendTrackingEntry(ROOT, trackingEntry);
     r.lastTrackingBumpAt = bumpTime;
+    r.toolTimeline = consumeTimelineUpTo(r.toolTimeline, bumpTime);
   }
 
   if (delta.chunkNote) {

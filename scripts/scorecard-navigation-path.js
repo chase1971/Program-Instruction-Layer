@@ -219,6 +219,7 @@ module.exports = {
   normalizeNavigationPath,
   mergeNavigationPaths,
   summarizeNavigationPath,
+  flattenSteps,
   formatDurationMs,
   navigationPathHtml,
   navigationPathStyles,

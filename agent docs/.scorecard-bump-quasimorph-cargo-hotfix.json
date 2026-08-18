@@ -1,0 +1,83 @@
+{
+  "chunkNote": "Fixed Quasimorph cargo hold regression from DISASM button label initialization",
+  "addGreps": 5,
+  "navigationPath": [
+    {
+      "target": "agent docs/INDEX.md",
+      "kind": "doc-index",
+      "outcome": "helpful",
+      "note": "Routed app-name lookup to APP_LOCATIONS.md before searching."
+    },
+    {
+      "target": "APP_LOCATIONS.md",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Found Quasimorph mod-dev outside Programs."
+    },
+    {
+      "target": "agent docs/rules/multi-repo-git-push.md",
+      "kind": "doc",
+      "outcome": "partial",
+      "note": "Confirmed start-of-session repo sync expectations."
+    },
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md",
+      "kind": "session-log",
+      "outcome": "helpful",
+      "note": "Identified latest cargo-tab DISASM change as regression area."
+    },
+    {
+      "target": "C:/Users/chase/AppData/LocalLow/Magnum Scriptum LTD/Quasimorph/Player.log",
+      "kind": "runtime-log",
+      "outcome": "helpful",
+      "note": "Found repeated NullReferenceException in CommonButton.InitCaption during ScreenWithShipCargo.Configure."
+    },
+    {
+      "target": "QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Removed unsafe InitCaption call and added null-safe TMP label fallback."
+    },
+    {
+      "target": "QM_DisassembleAssist/src/PatchGuard.cs",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Added one-shot exception guard so optional button installers cannot break vanilla screens."
+    },
+    {
+      "target": "dotnet build -c Release",
+      "kind": "verification",
+      "outcome": "helpful",
+      "note": "Build passed and deployed Chase_QM_DisassembleAssist v1.2.1."
+    }
+  ],
+  "filesRead": [
+    "APP_LOCATIONS.md",
+    "agent docs/rules/multi-repo-git-push.md",
+    "agent docs/SESSION_TRACKING.md",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md",
+    "C:/Users/chase/AppData/LocalLow/Magnum Scriptum LTD/Quasimorph/Player.log",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/StorageDisassembleButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/ScreenWithShipCargoDisassembleButtonPatch.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/ItemsStorageViewDisassembleButtonPatch.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Plugin.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Properties/AssemblyInfo.cs"
+  ],
+  "filesEdited": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/StorageDisassembleButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/ScreenWithShipCargoDisassembleButtonPatch.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/ItemsStorageViewDisassembleButtonPatch.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/PatchGuard.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Plugin.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Properties/AssemblyInfo.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/INDEX.md",
+    "APP_LOCATIONS.md",
+    "agent docs/rules/multi-repo-git-push.md",
+    "agent docs/SESSION_TRACKING.md"
+  ]
+}

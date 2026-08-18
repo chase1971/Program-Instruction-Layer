@@ -2,6 +2,44 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-14 — Session tracking hook verification
+
+**Files changed:** `scripts/session-tracking-stats.js` (new), `scripts/scorecard-hook-tally.js`, `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`, `scripts/append-session-scorecard.js`, `scripts/scorecard-navigation-path.js`; `agent docs/SESSION_TRACKING.md`; generated `session-tracking-log.html`, `session-tracking.jsonl`, `session-metrics-log.html`.
+
+**What worked:** Hook now records an ordered `toolTimeline` (search, doc-read, read, edit). Each bump reconciles self-reported `navigationPath` against hook observations — index-first rate, unexplained searches, path coverage, active tool time. Tracking page replaced misleading duration/dead-end stats with honest aggregates and a "Where the index failed" backlog. Headless smoke test confirmed coverage pills. Overlay Creator extraction logged in `electron-toolbar/docs/sessions/SESSIONS.md`; Assignment Assistant workspace paths logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green — headless verify passed; no GUI tests run.
+
+**File size flag:** None (`session-tracking-html.js` ~300 lines).
+
+**Next session:** Watch index-first and path-coverage rates over a few sessions; add index rows from the failure backlog as patterns emerge.
+
+---
+
+## 2026-08-11 — Capture: handoff is a statement, never a prompt
+
+**Files changed:** `AGENTS.md` (§ Never put anything on Chase's screen without asking), `agent
+docs/rules/never-display-without-permission.md`. App code work this session (Macro App online-
+course calendar matching fixes) is logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**What worked:** Chase rejected an AskUserQuestion call that asked "want me to do anything else,
+or are you good to check it yourself?" after a safe, non-GUI text-label fix, and said to stop
+asking permission or asking him to start/verify things — ever. Captured as a tightening of the
+existing "never put anything on screen without asking" rule: the launch-permission half stays
+unchanged, but the handoff step (when work can't be verified headlessly) must now always be a
+flat, declarative statement — never an interactive question, and no exception for low-stakes
+changes he'll see next time he opens the app anyway. Added the rule to both the always-on root
+`AGENTS.md` summary and the detail doc, plus a matching memory file so it persists across
+sessions.
+
+**Current state:** Green — doc-only change, no code/tests affected.
+
+**File size flag:** None.
+
+**Next session:** None pending.
+
+---
+
 ## 2026-08-09 — Session tracking split (metrics vs task pathing)
 
 **Files changed:** New `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`;

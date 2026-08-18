@@ -1,0 +1,53 @@
+{
+  "chunkNote": "Session scorecard: doc navigation path tree (HTML + bump schema + AGENTS rule)",
+  "addGreps": 2,
+  "addTurns": 1,
+  "filesRead": [
+    "agent docs/SESSION_SCORECARD.md",
+    "scripts/append-session-scorecard.js",
+    "agent docs/.session-scorecard-running.json",
+    "agent docs/session-scorecards.jsonl"
+  ],
+  "filesEdited": [
+    "scripts/scorecard-navigation-path.js",
+    "scripts/append-session-scorecard.js",
+    "agent docs/SESSION_SCORECARD.md",
+    "AGENTS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/SESSION_SCORECARD.md",
+    "AGENTS.md"
+  ],
+  "navigationPath": [
+    {
+      "target": "agent docs/SESSION_SCORECARD.md",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Chase said 'log the task' — read bump procedure first"
+    },
+    {
+      "target": "scripts/append-session-scorecard.js",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "864 lines — extracted nav renderer to new module"
+    },
+    {
+      "target": "agent docs/.session-scorecard-running.json",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Confirmed running-file shape for new field"
+    },
+    {
+      "target": "scripts/scorecard-navigation-path.js",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "New module: merge + HTML tree with ✓ ~ ✗ markers"
+    },
+    {
+      "target": "AGENTS.md § Session scorecard",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Added always-on rule: navigationPath required on every bump"
+    }
+  ]
+}

@@ -10,6 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
+const { pushTimelineEvent } = require('./session-tracking-stats');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
@@ -80,6 +81,7 @@ function emptyRunning() {
     taskLog: [],
     toolsUsedCounts: {},
     browserSnapshots: 0,
+    toolTimeline: [],
     hookTally: false,
     agentBumped: false,
     ...emptyTrustFields(),
@@ -204,16 +206,23 @@ function recordToolUse(payload) {
   const running = readRunning() || emptyRunning();
   running.hookTally = true;
 
+  const now = new Date().toISOString();
+
   if (SEARCH_TOOLS.has(toolName)) {
     running.greps += 1;
+    pushTimelineEvent(running, { t: now, k: 'search', p: null });
   } else if (SHELL_TOOLS.has(toolName)) {
     running.greps += 1;
+    pushTimelineEvent(running, { t: now, k: 'search', p: null });
   } else if (READ_TOOLS.has(toolName)) {
     const filePath = pickPath(toolInput);
     if (filePath) {
       running.filesReadList = mergeUnique(running.filesReadList, [filePath]);
       if (isDocRulePath(filePath)) {
         running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
+        pushTimelineEvent(running, { t: now, k: 'doc-read', p: filePath });
+      } else {
+        pushTimelineEvent(running, { t: now, k: 'read', p: filePath });
       }
       if (isMdcPath(filePath)) {
         running.mdcReadsList = mergeUnique(running.mdcReadsList, [filePath]);
@@ -227,6 +236,7 @@ function recordToolUse(payload) {
       if (isDocRulePath(filePath)) {
         running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
       }
+      pushTimelineEvent(running, { t: now, k: 'edit', p: filePath });
     }
   } else if (toolName === 'CallMcpTool') {
     const key = mcpToolKey(toolInput);

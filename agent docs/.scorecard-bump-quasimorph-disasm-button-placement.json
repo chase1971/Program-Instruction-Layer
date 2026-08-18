@@ -1,0 +1,60 @@
+{
+  "chunkNote": "Fixed Quasimorph cargo DISASM button placement and cloned Configure label",
+  "addGreps": 2,
+  "navigationPath": [
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md",
+      "kind": "instruction-file",
+      "outcome": "helpful",
+      "note": "Loaded Quasimorph-local paths, no-GUI rule, build/deploy flow, and log-first guidance."
+    },
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md",
+      "kind": "session-log",
+      "outcome": "helpful",
+      "note": "Confirmed latest DISASM cargo-button context and recorded v1.2.2."
+    },
+    {
+      "target": "C:/Users/chase/AppData/LocalLow/Magnum Scriptum LTD/Quasimorph/Player.log",
+      "kind": "runtime-log",
+      "outcome": "helpful",
+      "note": "Confirmed v1.2.1 clicks toggled cargo disassemble mode; issue was visible affordance and placement."
+    },
+    {
+      "target": "QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Inserted DISASM before Configure/manage and positioned it after Sort."
+    },
+    {
+      "target": "QM_DisassembleAssist/src/DisassembleButtonLabel.cs",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Added label helper to disable inherited menu wrappers and force DISASM text/minimum width."
+    },
+    {
+      "target": "dotnet build -c Release",
+      "kind": "verification",
+      "outcome": "helpful",
+      "note": "Build passed and deployed Chase_QM_DisassembleAssist v1.2.2."
+    }
+  ],
+  "filesRead": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+    "C:/Users/chase/AppData/LocalLow/Magnum Scriptum LTD/Quasimorph/Player.log",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/_decompile/Assembly-CSharp.decompiled.cs"
+  ],
+  "filesEdited": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/CargoDisassembleModeButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/StorageDisassembleButtonInstaller.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/DisassembleButtonLabel.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Plugin.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_DisassembleAssist/src/Properties/AssemblyInfo.cs",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md"
+  ],
+  "docsRulesOpened": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md"
+  ]
+}

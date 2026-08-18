@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Macro App Docs Review</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --red:#f87171; --purple:#a78bfa; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.5; font-size:18px; }
+  .page { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.5rem; }
+  a.back:hover, a.back:focus { color:var(--text); border-color:var(--blue); outline:none; }
+  header { margin-bottom:1.5rem; }
+  h1 { font-size:clamp(1.8rem,5vw,2.45rem); line-height:1.08; letter-spacing:-.02em; }
+  header p { max-width:52rem; margin-top:.65rem; color:var(--muted); font-size:1.02rem; }
+  code { font-family:Consolas,monospace; background:var(--panel2); color:var(--blue);
+    border-radius:5px; padding:.08rem .32rem; font-size:.85em; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.8rem; margin:1.4rem 0; }
+  .stat { background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+  .stat b { display:block; font-size:1.75rem; line-height:1; }
+  .stat span { display:block; color:var(--muted); font-size:.78rem; margin-top:.35rem; }
+  .note { background:var(--panel2); border-left:5px solid var(--blue); border-radius:10px;
+    padding:1rem 1.1rem; margin:1.3rem 0; color:var(--muted); }
+  .note strong { color:var(--text); }
+  .note.red { border-left-color:var(--red); }
+  .note.purple { border-left-color:var(--purple); }
+  h2 { font-size:.82rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2.4rem 0 .85rem; padding-bottom:.45rem; border-bottom:1px solid var(--border); }
+  h2.amber { color:var(--amber); } h2.green { color:var(--green); } h2.red { color:var(--red); } h2.grey { color:var(--muted); }
+  h3.cat { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:1.4rem 0 .6rem; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin-top:.5rem; }
+  th, td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { color:var(--text); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; background:var(--panel2); }
+  td { color:var(--muted); font-size:.87rem; }
+  tr:last-child td { border-bottom:0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--border); text-align:center;
+    color:var(--muted); font-size:.85rem; }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="../index.html">&larr;&nbsp; All pages</a>
+
+  <header>
+    <h1>Macro App Docs Review</h1>
+    <p>Second app in the School Scrips conformance-pass series, run one app at a time per <code>agent docs/APP_CONFORMANCE_PASS.md</code> &mdash; same method as <a href="app-dashboard-docs-review.html" style="color:var(--blue)">App Dashboard</a>. All 50 markdown files under <code>School Scrips/Macro App/</code> checked against the live code they describe (three parallel passes, each opening the real source rather than trusting a doc's own prose). <b>This is the Phase 1 report &mdash; no files have been changed.</b></p>
+  </header>
+
+  <div class="note">
+    <strong>The shape of it, in short:</strong> Macro App's instruction layer is <b>large and mostly healthy</b> &mdash; 38 of 50 files checked out accurate against current code, including every Pearson/grades/roster automation doc (CLI subcommands, function names, file paths all matched exactly) and the enforcement layer (husky pre-commit: file-size check, secret scan, lint-staged &mdash; all wired and tracked). The drift that exists is concentrated in three places: the <b>ADR set</b> (2 of 4 written ADRs have stale claims, and a 5th was never written despite the component it covers already being live), two <b>audits</b> that describe a problem as still-open when the code was already fixed since, and <b>one high-traffic doc</b> (<code>EMBEDDED_BROWSER_AND_MODALS.md</code>) that Chase's own keyword table routes debugging questions to, which has drifted on several concrete file paths and constant values.</p>
+  </div>
+
+  <h2 id="findings">Findings, worst first</h2>
+  <table>
+    <tr><th>#</th><th>Check</th><th>What's there now</th><th>Why it's a problem</th><th>Effort</th></tr>
+    <tr>
+      <td>1</td><td>F &middot; Retirement</td>
+      <td><code>docs/audits/E8-grades-god-files-audit.md</code>'s explicit, bolded conclusion is "Leave intact &hellip; do not split for line-count &hellip; Split landed: No," citing <code>grades_export_actions.py</code> at ~1239 lines. That file is now an <b>85-line re-export shell</b> &mdash; it was split into 4 files (<code>grades_export_scripts.py</code>, <code>grades_export_download_helpers.py</code>, <code>grades_export_navigation.py</code>, <code>grades_export_download.py</code>) months after the audit, directly reversing its own recommendation.</td>
+      <td>A reader trusts a "we looked at this and decided not to split it" verdict that was quietly overturned. The audit now reads as active guidance against something that already happened, rather than a dated record.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>2</td><td>C &middot; Doc vs code / B &middot; Single source</td>
+      <td><code>docs/decisions/ADR-004-shared-cdp.md</code> claims <code>shared/cdp.py</code> is the sole owner of Playwright CDP-connect logic, consolidated from "at least three" duplicated modules. Currently <b>6+ production modules</b> reimplement their own <code>async_playwright().start()</code> + <code>connect_over_cdp</code> instead &mdash; <code>course_builder_action_cli.py</code>, <code>course_builder_expand_cli.py</code>, <code>course_builder_notes_flow.py</code>, <code>course_builder_save_dates_flow.py</code>, <code>makeup_exam_cdp.py</code>, <code>email_composer.py</code>, <code>pearson_discover.py</code>, <code>pearson_discover_deep.py</code> &mdash; none listed in the ADR's "When NOT to use this" exemptions.</td>
+      <td>AGENTS.md's own rule is "grep for an existing owner" before adding a CDP helper &mdash; but the real owner isn't consistently used, so a future CDP behavior change has to be found and fixed in 7+ places instead of one. This is exactly the failure mode the ADR exists to prevent.</td>
+      <td>M &mdash; needs Chase's call: consolidate the 6+ modules, or expand the ADR's exemption list if the duplication was intentional</td>
+    </tr>
+    <tr>
+      <td>3</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/EMBEDDED_BROWSER_AND_MODALS.md</code> has several concrete drifts: its tab-slot table is missing 3 real slots (<code>manage-grades</code>, <code>d2l-discussion-grading</code>, <code>d2l-email</code>); its auth-exempt-slots example (<code>LONESTAR_PSOFT_SLOTS</code>) omits <code>d2l-email</code>, which actually is auth-exempt, and the real constant lives in a different file than claimed; two other constants are documented as living in <code>registry.ts</code> but actually live in <code>moduleContracts.ts</code>; an <code>App.tsx</code> code sample doesn't match the real prop shape; two hook paths are stale by one directory level; <code>D2L_SESSION_OPTIONAL_TAB_IDS</code> lists 3 of the real 9 members.</td>
+      <td>This is the doc Chase's own keyword table routes to for "the button does nothing," "freeze the browser," and Assignment Assistant overlay problems &mdash; exactly the moments where a wrong file path or an incomplete auth-exempt list costs the most debugging time.</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <td>4</td><td>C &middot; Doc vs code / B &middot; Single source</td>
+      <td><code>docs/CI_GUARDRAILS.md</code> (and the identical summary duplicated in this app's own <code>AGENTS.md</code> &sect; CI) describes <code>npm run ci:local</code> as 4 steps. The real script (<code>scripts/ci-local.cjs</code>) also runs an <b>electron typecheck</b>, a <b>my-calendar typecheck</b>, and a conditional Playwright smoke test, and its pytest scope is wider than stated (<code>modules/ my-calendar/server/tests</code>, not just <code>modules/</code>).</td>
+      <td>This is the doc routed to for "CI failed" &mdash; an agent debugging a real failure using it would not think to check the two missing typecheck gates or the smoke test, and the same wrong summary exists in two files.</td>
+      <td>S&ndash;M</td>
+    </tr>
+    <tr>
+      <td>5</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/decisions/ADR-002-user-data-store.md</code>'s Decision section shows <code>createUserDataStore(name)</code>. The real signature is <code>createUserDataStore({ fileName, normalize, onWrite, profileScoped })</code> &mdash; it now requires a <code>normalize</code> callback and supports profile-scoped filenames, a materially different shape.</td>
+      <td>An agent following the ADR to add a new store would write a call that doesn't match the real function and fail immediately.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>6</td><td>F &middot; Retirement</td>
+      <td><code>docs/plans/MAKEUP_EXAM_FIXES_PLAN.md</code>'s header still says "planned, not yet implemented (2026-07-27)." All 9 of its work items are verified implemented (config auto-sync, phone formatting, the CDP identity-gate fix &mdash; the last one is even cited by the commit that later created <code>MAKEUP_EXAM_CDP_INTEGRATION.md</code>). <code>check-docs.js</code> already flags this exact file as 7-days-stale. Separately: this app's <code>AGENTS.md</code> phrase "auto-archived by <code>scripts/archive-stale-plans.js</code>" overstates the mechanism &mdash; it flags automatically, but a human still has to run <code>--yes</code> to actually move the file.</td>
+      <td>Sitting in exactly the state its own lifecycle rule is designed to catch; low-consequence but a one-command fix nobody's run yet.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>7</td><td>B &middot; Single source</td>
+      <td><code>README.md</code>'s "Master standards" link is a raw Windows path &mdash; <code>C:\Users\chase\Documents\Programs\agent docs\recipes\CODING_STANDARDS.md</code> &mdash; not a valid relative markdown link.</td>
+      <td>Same bug found in App Dashboard's <code>README.md</code> last round: dead on the docs server, GitHub, and most renderers.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>8</td><td>A &middot; Discoverability / F &middot; Retirement</td>
+      <td><code>docs/decisions/README.md</code>'s own ADR index lists <b>ADR-005</b> governing <code>ModalContainer</code> as "Pending Phase D." No ADR-005 file exists. <code>ModalContainer.tsx</code> (<code>renderer/src/components/</code>) is already a live, shared modal shell &mdash; confirmed as the component behind the cross-app <code>modal-shell.md</code> recipe in the 2026-08-08 recipes review.</td>
+      <td>The ADR system's own trigger rule ("write an ADR when creating a shared abstraction other code is expected to use") applies exactly here and has gone unfulfilled &mdash; there's no recorded single-owner or "when not to use this" guidance for a component that's already load-bearing.</td>
+      <td>M &mdash; needs the ADR actually written, not just flagged</td>
+    </tr>
+    <tr>
+      <td>9</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/decisions/ADR-001-use-persisted-state.md</code> and the hook's own file header both cite <code>renderer/src/hooks/usePersistedState.ts</code>; the real path is <code>renderer/src/hooks/shared/usePersistedState.ts</code> (the ESLint config already has the right path). Also, 3 dev-only files bypass the gateway with direct <code>localStorage</code> calls under an eslint-disable, none listed in the ADR's exemptions.</td>
+      <td>Low-impact (dev tooling only) but a real second implementation the ADR doesn't acknowledge, plus a stale path in the doc meant to be the single reference.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>10</td><td>C &middot; Doc vs code</td>
+      <td><code>docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code>'s <code>VENDORED_PREFIXES</code> example only names <code>assignment-assistant-engine/</code>; the real constant also includes <code>calendar-vendor/</code>. Its sanity-check checklist says <code>git ls-files assignment-assistant-engine</code> "should be ~88 files" &mdash; actual count today is 103 (+17%).</td>
+      <td>An agent using the file count as a sanity gate would see an unexplained mismatch; the prefix omission means the doc undersells what the vendoring guard actually protects.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>11</td><td>F &middot; Retirement</td>
+      <td><code>docs/additional-tools-reference.md</code> frames Dependabot and GitHub Actions CI as "adopt now" Tier-1 recommendations. Both already exist (<code>.github/dependabot.yml</code>, <code>.github/workflows/ci.yml</code>). It also lists secret-scanning as an open gap without mentioning <code>scripts/check-secrets.js</code> already covers it via the pre-commit hook.</td>
+      <td>Explicitly framed as "a menu, not a plan" so lower urgency, but half its Tier-1 list is already shipped &mdash; an agent skimming it would re-propose infrastructure that exists.</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <td>12</td><td>F &middot; Retirement</td>
+      <td><code>docs/audits/D2-subprocess-deadline-audit.md</code>'s "current behavior" section says Python subprocesses run with no wall-clock deadline. <code>electron-app/d2l-bridge-timeouts.js</code> &mdash; which cites this audit by name in its header &mdash; already implements the exact tiered timeout table the audit recommended.</td>
+      <td>Same pattern as finding 1, lower stakes: describes a gap as open when it was already closed, no resolution note added.</td>
+      <td>S</td>
+    </tr>
+  </table>
+
+  <h2 class="green">Fine as-is &mdash; no action needed (38 of 50 files)</h2>
+  <table>
+    <tr><th>Group</th><th>Files</th><th>Why they're fine</th></tr>
+    <tr>
+      <td>Pearson / grades / roster / makeup automations</td>
+      <td><code>GRADE_IMPORT_INTEGRATION.md</code>, <code>GRADE_SYNC_PLAYBOOK.md</code>, <code>ROSTER_PIPELINE_INTEGRATION.md</code>, <code>MAKEUP_EXAM_CDP_INTEGRATION.md</code>, <code>PEARSON_BLANK_IFRAME_INTEGRATION.md</code>, <code>PEARSON_EXAM2_REVIEW_HOMEWORK_GAP.md</code>, <code>PEARSON_QUESTION_INVENTORY.md</code>, <code>Automations/README.md</code>, <code>Automations/D2L_COURSE_BUILDER_AUTOMATION.md</code>, <code>Automations/D2L_GRADES_AUTOMATION.md</code>, <code>Automations/PEARSON_BROWSER_AUTOMATION.md</code>, <code>Automations/PEARSON_EXAM_POOL_HARVEST.md</code></td>
+      <td>Every CLI subcommand (<code>grades_cli</code>, <code>course_builder_cli</code>), helper function, and referenced file checked directly against source &mdash; all matched exactly. <code>PEARSON_QUESTION_INVENTORY.md</code>'s "re-harvest if edited" mechanism is real (<code>scripts/pearson_question_details.py</code>).</td>
+    </tr>
+    <tr>
+      <td>Browser / modal / app-wide infra</td>
+      <td><code>BROWSER_TAB_INTEGRATION.md</code>, <code>MODAL_CATALOG.md</code>, <code>modal-redesign-queue.md</code>, <code>guidelines/Guidelines.md</code>, <code>ARCHITECTURE_PATTERNS.md</code>, <code>LOGGING.md</code>, <code>PACKAGING_AND_BETA_TESTING.md</code>, <code>FERPA_DATA_HANDLING.md</code></td>
+      <td>Extensively verified &mdash; <code>LOGGING.md</code> in particular checked 20+ file/function paths, all exact. <code>PACKAGING_AND_BETA_TESTING.md</code> matched every build script and helper function.</td>
+    </tr>
+    <tr>
+      <td><code>docs/decisions/ADR-003-shared-log.md</code></td>
+      <td>&mdash;</td>
+      <td>Accurate; <code>modules/shared/log.py</code> behavior and its enforcement test both match. One sentence lags (calls a file "deferred god-file" that's since been split), but the enforcement test itself already points at the correct current file.</td>
+    </tr>
+    <tr>
+      <td>Audits D1, D3, D4, D5</td>
+      <td><code>docs/audits/D1-session-slot-trackers-audit.md</code>, <code>D3-ipc-envelope-audit.md</code>, <code>D4-embedded-browser-split-audit.md</code>, <code>D5-scroll-hook-audit.md</code></td>
+      <td>All named files/hooks confirmed present or confirmed-removed as claimed. D4's split-audit line counts are close to current; worth noting <code>browser-view-slots.js</code> has grown to 749 lines &mdash; past the 700-line "extract before" flag in root <code>AGENTS.md</code> though still under the 800 hard cap &mdash; a code note, not a doc-accuracy problem.</td>
+    </tr>
+    <tr>
+      <td>Archive folder (4 files)</td>
+      <td><code>docs/archive/D2L_ASSIGNMENT_ASSISTANT_INTEGRATION_PLAN.md</code>, <code>D2L_INTEGRATION_PLAN.md</code>, <code>macro-app-improvement-plan-2026-06-12.md</code>, <code>macro-app-improvement-plan-phase-E-2026-06-13.md</code></td>
+      <td>Correctly retired &mdash; zero live references found anywhere in the repo outside <code>docs/archive/</code> and historical <code>SESSIONS.md</code> mentions.</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td><code>docs/decisions/README.md</code> (format/index, aside from the ADR-005 gap above), <code>modules/d2l/STORED_AUTOMATIONS.md</code>, <code>docs/sessions/SESSIONS.md</code>, <code>docs/chase-notes/README.md</code>, <code>AGENTS.md</code> / <code>CLAUDE.md</code> structure</td>
+      <td>Stored-automations catalog spot-checked against real files; session log current (top entry is today, 2026-08-09); chase-notes correctly excluded from indexing by design; keyword table, no <code>.mdc</code> files, listed in <code>APP_LOCATIONS.md</code> &mdash; matches the current standard.</td>
+    </tr>
+  </table>
+
+  <div class="stats">
+    <div class="stat"><b style="color:var(--blue)">50</b><span>markdown files reviewed</span></div>
+    <div class="stat"><b style="color:var(--green)">38</b><span>fine as-is</span></div>
+    <div class="stat"><b style="color:var(--amber)">12</b><span>needs rework</span></div>
+    <div class="stat"><b style="color:var(--red)">0</b><span>needs removal</span></div>
+  </div>
+
+  <h2 class="grey">Also checked, no findings</h2>
+  <div class="note">
+    <b>D &middot; Enforcement:</b> hooks run through <b>husky</b> (<code>core.hooksPath = .husky/_</code>), both tracked in git. <code>.husky/pre-commit</code> runs <code>lint-staged</code> (renderer TS/TSX), <code>scripts/check-file-size.js</code> (800-line hard block), and <code>scripts/check-secrets.js</code> &mdash; all three scripts confirmed present and wired, nothing to do.
+  </div>
+  <div class="note">
+    <b>Minor, not worth their own row:</b> <code>docs/D2L_PDF_VIEWER_ELECTRON_INVESTIGATION.md</code> lists a phantom port <code>9225</code> in one "Key files" line that doesn't exist anywhere in code (the rest of the doc correctly says only 9224/9226). <code>docs/TESTING_REFACTOR.md</code> is accurate but reads like a fully-landed phase checklist (all 4 cited test files exist, its one live gate is still satisfied) sitting in permanent <code>docs/</code> rather than being archived &mdash; worth asking Chase whether it's done.
+  </div>
+
+  <h2 class="grey">What I'd do first, and why</h2>
+  <div class="note">
+    <b>Findings 1, 6, and 12 first</b> &mdash; all three are "the code already did the right thing, the doc just never got a resolution note," and are one-line fixes each (or, for finding 6, literally running the existing <code>archive-stale-plans.js --yes</code> command). <b>Finding 7</b> (the dead README link) is the same one-line class. Those four clear a third of the list in minutes. <b>Finding 4</b> (CI_GUARDRAILS.md + AGENTS.md's duplicate CI summary) is next &mdash; it's the doc actively used when something's broken, so it's worth being accurate sooner. <b>Findings 2, 3, and 8</b> are the real judgment calls: whether to consolidate the CDP duplication or just document it as accepted, how much of <code>EMBEDDED_BROWSER_AND_MODALS.md</code> to rewrite given how many places drifted, and whether ADR-005 is worth actually writing now that ModalContainer is confirmed shared. Those need your call before anyone starts.
+  </div>
+
+  <h2 class="grey">Couldn't determine without asking</h2>
+  <div class="note">
+    Whether the CDP-connection duplication (finding 2) was ever a deliberate exception you'd rather just document than fix &mdash; I can't tell intent from the code alone. Whether <code>docs/TESTING_REFACTOR.md</code> is genuinely finished work that should move to <code>docs/archive/</code>, or if you're still tracking against it. And how much rewrite <code>EMBEDDED_BROWSER_AND_MODALS.md</code> needs &mdash; a handful of targeted line fixes, or enough drift that it's worth a fresh pass end to end.
+  </div>
+
+  <footer>
+    Reviewed 2026-08-09 against <code>C:\Users\chase\Documents\Programs\School Scrips\Macro App\</code> &mdash; every finding above was checked against live code (grep, file existence, reading the actual function signatures and constants), not inferred from a doc's own prose. Phase 1 only &mdash; no files were changed. Part of the School Scrips conformance-pass series; <a href="../index.html" style="color:var(--blue)">back to all pages</a> for the next app.
+  </footer>
+</div>
+</body>
+</html>

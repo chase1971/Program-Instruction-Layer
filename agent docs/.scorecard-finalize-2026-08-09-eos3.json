@@ -1,0 +1,10 @@
+{
+  "summaryHuman": "Instruction layer: split session scorecard into per-task tracking (session-tracking-log.html + session-tracking.jsonl with navigation paths) vs session metrics (session-metrics-log.html); docs and hooks updated. Macro App: verified course rename safety (labels only, folder index unchanged); lazy-import d2l_processor for faster cold start; gradebook archive sync prefetches session reads; d2l-courses.json label time colons + Sandbox name.",
+  "sessionType": "mixed",
+  "outcome": "Done",
+  "summarized": true,
+  "confidence": "medium",
+  "nextSession": "Optional: backfill older taskLog navigationPath entries into session-tracking.jsonl; live-test gradebook course switch after d2l_processor lazy-import.",
+  "addTurns": 2,
+  "addCorrections": 0
+}

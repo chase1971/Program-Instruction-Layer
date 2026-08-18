@@ -1,0 +1,7 @@
+{
+  "task": "Remove semester final-exams-start from important dates; FDH uses FinalDate marker",
+  "greps": 12,
+  "files_read": 18,
+  "files_edited": 16,
+  "notes": "Removed finalExamsStartDate from semester UI/storage/placement; FDH important dates exclude Final (includeFinal:false); stricter final label matching"
+}

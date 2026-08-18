@@ -1,0 +1,30 @@
+{
+  "chunkNote": "Quick drag (F22 / DRAG overlay) works while paused; returns to paused when drag finishes",
+  "addGreps": 12,
+  "addTurns": 2,
+  "filesEdited": [
+    "electron-toolbar/modules/dwell/backend/dwell_globals.py",
+    "electron-toolbar/modules/dwell/backend/dwell_hotkeys.py",
+    "electron-toolbar/modules/dwell/backend/dwell_mode2.py",
+    "electron-toolbar/modules/dwell/backend/dwell_module.py",
+    "electron-toolbar/electron-app/src/window-managers/drag-manager.js",
+    "electron-toolbar/electron-app/src/drag-overlay-runtime.js"
+  ],
+  "filesRead": [
+    "electron-toolbar/modules/dwell/backend/dwell_mode2.py",
+    "electron-toolbar/modules/dwell/backend/dwell_hotkeys.py",
+    "electron-toolbar/electron-app/src/drag-overlay-runtime.js",
+    "electron-toolbar/electron-app/src/window-managers/drag-manager.js",
+    "electron-toolbar/docs/sessions/SESSIONS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/END_OF_SESSION.md"
+  ],
+  "navigationPath": [
+    { "step": "User asked: quick drag while paused, return to paused after", "result": "✓" },
+    { "step": "Read dwell_hotkeys activate_quick_drag + explicit_user_pause gate", "result": "✓" },
+    { "step": "Read dwell_mode2 quick drag completion path", "result": "✓" },
+    { "step": "Add quick_drag_return_to_pause restore flags + complete_quick_drag()", "result": "✓" },
+    { "step": "Wire DRAG overlay to dwell_quick_drag (F22) not dwell_toggle_mode", "result": "✓" }
+  ]
+}

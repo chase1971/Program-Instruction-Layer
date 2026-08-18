@@ -5,11 +5,11 @@
 'use strict';
 
 const {
-  NAV_TIP,
   navigationPathStyles,
   renderNavSteps,
   escapeHtml,
 } = require('./scorecard-navigation-path');
+const { rollup, collectIndexFailures } = require('./session-tracking-stats');
 
 function dayKey(iso) {
   const d = new Date(iso || Date.now());
@@ -34,6 +34,21 @@ function sessionTimeShort(iso) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
+function formatPctOrDash(value) {
+  if (value == null || Number.isNaN(value)) return '—';
+  return `${value}%`;
+}
+
+function formatMedianOrDash(value) {
+  if (value == null || Number.isNaN(value)) return '—';
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function formatCoverageOrDash(value) {
+  if (value == null || Number.isNaN(value)) return '—';
+  return `${Math.round(value * 100)}%`;
+}
+
 function summaryStats(entries) {
   const today = dayKey(new Date().toISOString());
   const todayEntries = entries.filter((e) => dayKey(e.timestamp) === today);
@@ -41,15 +56,20 @@ function summaryStats(entries) {
   const avgSteps = withSteps.length
     ? (withSteps.reduce((s, e) => s + (e.stepCount || 0), 0) / withSteps.length).toFixed(1)
     : '—';
-  const withDead = entries.filter((e) => (e.deadEndCount || 0) > 0);
-  const avgDead = withDead.length
-    ? (withDead.reduce((s, e) => s + (e.deadEndCount || 0), 0) / withDead.length).toFixed(1)
-    : '0';
+  const roll = rollup(entries);
+
   return {
     total: entries.length,
     today: todayEntries.length,
     avgSteps,
-    avgDead,
+    indexFirstRate: roll.indexFirstRate,
+    indexFirstCount: roll.indexFirstCount,
+    observedTaskCount: roll.observedTaskCount,
+    deadEndRate: roll.deadEndRate,
+    deadEndSteps: roll.deadEndSteps,
+    totalSteps: roll.totalSteps,
+    medianSearchesBeforeDoc: roll.medianSearchesBeforeDoc,
+    medianPathCoverage: roll.medianPathCoverage,
   };
 }
 
@@ -60,11 +80,26 @@ function taskSummaryLine(entry) {
   ];
   const meta = [];
   if (entry.stepCount) meta.push(`${entry.stepCount} step${entry.stepCount === 1 ? '' : 's'}`);
-  if (entry.durationLabel) meta.push(entry.durationLabel);
+  if (entry.activeLabel && entry.activeMs > 0) meta.push(entry.activeLabel);
+  else if (entry.durationLabel) meta.push(entry.durationLabel);
   if (entry.deadEndCount) meta.push(`${entry.deadEndCount} dead-end`);
   if (entry.missingNavigationPath) meta.push('no path logged');
   if (meta.length) parts.push(meta.join(' · '));
   return parts.filter(Boolean).join(' — ');
+}
+
+function coveragePills(entry) {
+  let html = '';
+  if ((entry.unexplainedSearches || 0) >= 3) {
+    html += `<span class="pill p2">${entry.unexplainedSearches} searches not in path</span>`;
+  }
+  if ((entry.searchesBeforeFirstDoc || 0) >= 3) {
+    html += `<span class="pill p2">Hunted before doc — ${entry.searchesBeforeFirstDoc} searches first</span>`;
+  }
+  if (entry.indexFirst) {
+    html += '<span class="pill p1">Index first</span>';
+  }
+  return html;
 }
 
 function taskEntryHtml(entry) {
@@ -83,16 +118,30 @@ function taskEntryHtml(entry) {
       + `${entry.helpfulCount || 0} ✓ · ${entry.partialCount || 0} ~ · ${entry.deadEndCount || 0} ✗`
     : '';
 
+  const observedLine = entry.hasObservedData
+    ? `Hook saw ${entry.observedSearches || 0} search(es), ${entry.observedDocReads || 0} doc read(s)`
+      + `${entry.unexplainedSearches ? ` · ${entry.unexplainedSearches} not in path` : ''}`
+      + `${entry.pathCoverage != null ? ` · coverage ${Math.round((entry.pathCoverage || 0) * 100)}%` : ''}`
+    : '';
+
+  const idleNote = entry.durationLabel && entry.activeLabel && entry.durationMs !== entry.activeMs
+    ? `Wall-clock gap since previous task: ${entry.durationLabel} (includes idle time)`
+    : '';
+
   return `<details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">${escapeHtml(taskSummaryLine(entry))}</span>
-      ${warnPill}${backfillPill}
+      ${warnPill}${backfillPill}${coveragePills(entry)}
     </summary>
     <div class="track-panel">
       <p class="track-meta muted-inline">
         Session ${escapeHtml(sessionTimeShort(entry.sessionId))}
-        ${entry.durationLabel ? ` · ${escapeHtml(entry.durationLabel)} since previous task` : ''}
+        ${entry.activeLabel && entry.activeMs > 0
+    ? ` · ${escapeHtml(entry.activeLabel)} active tool time`
+    : (entry.durationLabel ? ` · ${escapeHtml(entry.durationLabel)} since previous task` : '')}
         ${statsLine ? `<br>${escapeHtml(statsLine)}` : ''}
+        ${observedLine ? `<br>${escapeHtml(observedLine)}` : ''}
+        ${idleNote ? `<br>${escapeHtml(idleNote)}` : ''}
       </p>
       <p class="muted-inline nav-legend">
         <span class="nav-helpful-pill">✓ helpful</span>
@@ -104,9 +153,40 @@ function taskEntryHtml(entry) {
   </details>`;
 }
 
+function indexFailuresSection(entries) {
+  const failures = collectIndexFailures(entries, 20);
+  if (!failures.length) return '';
+
+  const rows = failures.map((f) => {
+    const marker = f.outcome === 'dead-end' ? '✗' : '~';
+    const cls = f.outcome === 'dead-end' ? 'nav-dead' : 'nav-partial';
+    return `<li class="index-fail ${cls}">
+      <span class="nav-marker">${marker}</span>
+      <code title="${escapeHtml(f.target)}">${escapeHtml(f.target)}</code>
+      ${f.note ? `<span class="nav-note">${escapeHtml(f.note)}</span>` : ''}
+      <span class="index-fail-task">${escapeHtml(timeShort(f.timestamp))} — ${escapeHtml(f.chunkNote || '')}</span>
+    </li>`;
+  }).join('');
+
+  return `<section class="index-failures-block">
+    <h2 class="day-title">Where the index failed</h2>
+    <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
+    <ul class="index-failures-list">${rows}</ul>
+  </section>`;
+}
+
 function buildTrackingHtml(entries) {
   const sorted = [...entries].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   const stats = summaryStats(sorted);
+  const indexFirstLabel = stats.observedTaskCount
+    ? `${formatPctOrDash(stats.indexFirstRate)} (of ${stats.observedTaskCount} tasks)`
+    : '—';
+  const deadEndLabel = stats.totalSteps
+    ? `${formatPctOrDash(stats.deadEndRate)} (${stats.deadEndSteps}/${stats.totalSteps} steps)`
+    : '—';
+  const coverageLabel = stats.observedTaskCount
+    ? formatCoverageOrDash(stats.medianPathCoverage)
+    : '—';
 
   const byDay = new Map();
   for (const e of sorted) {
@@ -154,7 +234,7 @@ function buildTrackingHtml(entries) {
     }
     .summary-bar dt { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); }
     .summary-bar dd { margin: 0.15rem 0 0; font-size: 1.15rem; font-weight: 700; }
-    .day-block { margin: 1.75rem 0; }
+    .day-block, .index-failures-block { margin: 1.75rem 0; }
     .day-title { font-size: 1.2rem; color: var(--accent); margin: 0 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
     .day-count { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
     .day-tasks { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -170,11 +250,19 @@ function buildTrackingHtml(entries) {
     .track-meta { margin: 0.5rem 0 0.35rem; font-size: 0.85rem; }
     .pill { display: inline-block; padding: 0.2em 0.55em; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
     .p0 { background: #1e3350; color: var(--accent); }
+    .p1 { background: #264032; color: var(--accent2); }
     .p2 { background: #4a3818; color: var(--warn); }
     .muted-inline { color: var(--muted); font-size: 0.9rem; }
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
     .footer a { color: var(--accent); }
+    .index-failures-list { margin: 0.5rem 0 0; padding: 0; list-style: none; }
+    .index-fail {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem;
+      margin: 0.45rem 0; padding: 0.45rem 0.55rem; background: #151c26; border-radius: 8px; font-size: 0.88rem;
+    }
+    .index-fail code { font-family: Consolas, "Courier New", monospace; word-break: break-word; }
+    .index-fail-task { flex-basis: 100%; color: var(--muted); font-size: 0.82rem; padding-left: 1.45rem; }
     ${navigationPathStyles()}
     .track-entry .nav-path-block { margin-top: 0.35rem; }
   </style>
@@ -182,14 +270,18 @@ function buildTrackingHtml(entries) {
 <body>
   <div class="wrap">
     <h1>Session tracking</h1>
-    <p class="subtitle">One row per completed task — click to expand the doc navigation path. Data in <code>session-tracking.jsonl</code>.</p>
+    <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
       <div><dt>Total tasks</dt><dd>${stats.total}</dd></div>
       <div><dt>Tasks today</dt><dd>${stats.today}</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">${escapeHtml(indexFirstLabel)}</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>${escapeHtml(formatMedianOrDash(stats.medianSearchesBeforeDoc))}</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">${escapeHtml(deadEndLabel)}</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>${escapeHtml(coverageLabel)}</dd></div>
       <div><dt>Avg steps</dt><dd>${escapeHtml(String(stats.avgSteps))}</dd></div>
-      <div><dt>Avg dead-ends (tasks with any)</dt><dd>${escapeHtml(String(stats.avgDead))}</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">${escapeHtml(last)}</dd></div>
     </div>
+    ${indexFailuresSection(sorted)}
     ${daySections}
     <p class="footer">Generated by <code>scripts/append-session-scorecard.js</code> ·
       <a href="http://127.0.0.1:8765/session-metrics-log.html">Session metrics</a> ·

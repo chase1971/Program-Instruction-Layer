@@ -11,6 +11,11 @@ const {
   summarizeNavigationPath,
   formatDurationMs,
 } = require('./scorecard-navigation-path');
+const {
+  sliceTimeline,
+  observeWindow,
+  reconcile,
+} = require('./session-tracking-stats');
 
 function trackingDataPath(root) {
   return path.join(root, 'agent docs', 'session-tracking.jsonl');
@@ -59,6 +64,10 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
   const stats = summarizeNavigationPath(navigationPath);
   const chunkNote = String(delta.chunkNote || '').trim() || '(no task note)';
 
+  const windowEvents = sliceTimeline(running.toolTimeline, prevAt, timestamp);
+  const observed = observeWindow(windowEvents);
+  const reconciled = reconcile(observed, navigationPath);
+
   return {
     id: timestamp,
     sessionId,
@@ -66,8 +75,12 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
     chunkNote,
     durationMs,
     durationLabel: formatDurationMs(durationMs),
+    activeMs: observed.activeMs,
+    activeLabel: formatDurationMs(observed.activeMs),
     missingNavigationPath: navigationPath.length === 0,
     ...stats,
+    ...observed,
+    ...reconciled,
     navigationPath,
   };
 }

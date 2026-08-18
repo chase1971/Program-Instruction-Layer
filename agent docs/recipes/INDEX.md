@@ -59,6 +59,8 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "new modal", "make it look like that modal", "the modal scrolls wrong" | [modal-shell.md](./modal-shell.md) | ✅ | ~10 apps — genuinely universal |
 | "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ | canvas-kit + 6 consuming apps |
 | "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ | 5 independent live math apps share the CSS class |
+| "click through overlay", "block clicks under pill", "pointer policy" | [overlay-pointer-policy.md](./overlay-pointer-policy.md) | ✅ | electron-toolbar overlay-creator (key pills, tabletop) |
+| "block clicks under scroll zone", "dwell pause scroll zone" | [scroll-zone-click-block.md](./scroll-zone-click-block.md) | ✅ | electron-toolbar scroll zones (Python dwell pause) |
 
 ## Where everything else went (2026-08-08)
 

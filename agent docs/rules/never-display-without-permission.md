@@ -44,7 +44,7 @@ do not open a browser at it.
 ## What to do instead
 
 Write the code, verify it as far as you can headlessly, then **hand the test to
-Chase**:
+Chase** — as a flat statement, not a question:
 
 ```
 Ready to test. Run:  .\launch.bat
@@ -58,6 +58,25 @@ verified one that hijacked his screens.
 
 If a visible test is genuinely the only path forward, **ask first** and state what
 will appear, on which screen, and how it goes away.
+
+### The handoff is a statement, never a prompt
+
+Once you've said what to run and what to expect, **stop — don't solicit a
+response about it.** Never ask "want me to do X" or "are you good to check it
+yourself" — as a permission-style question (e.g. via an interactive question
+tool). That includes low-stakes changes too, not just GUI launches: a compiled
+text/label fix he'll see next time he naturally reopens the app gets the same
+flat statement, not a question about whether he wants to check it now.
+
+**Why:** typing costs him more than it costs most people (head-mounted gyro
+mouse + dwell-click), so a question he didn't need to answer is a tax, not a
+courtesy — see `agent docs/rules/multi-repo-git-push.md`'s sibling accessibility
+note and [user_accessibility.md] in memory. If he wants to respond, he will; make
+that possible without making it mandatory.
+
+**Anti-pattern:** "I made the change — want me to do anything else, or are you
+good to check it yourself?" Correct: "I made the change. Reload Macro App and
+the button will read `M2413 16-Week Online`."
 
 ## Why this exists
 

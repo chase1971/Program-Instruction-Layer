@@ -1,0 +1,32 @@
+{
+  "chunkNote": "Added Quasimorph mod-dev AGENTS.md with paths, build flow, and safety rules",
+  "addGreps": 0,
+  "navigationPath": [
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md",
+      "kind": "file-check",
+      "outcome": "helpful",
+      "note": "Confirmed no existing AGENTS.md before creating it."
+    },
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md",
+      "kind": "session-log",
+      "outcome": "helpful",
+      "note": "Used existing build/deploy/session conventions and appended a local note."
+    },
+    {
+      "target": "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md",
+      "kind": "instruction-file",
+      "outcome": "helpful",
+      "note": "Created compact workspace instructions for future Quasimorph mod work."
+    }
+  ],
+  "filesRead": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md"
+  ],
+  "filesEdited": [
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md",
+    "C:/Users/chase/Desktop/games/Quasimorph-GoldBerg/mod-dev/SESSIONS.md"
+  ],
+  "docsRulesOpened": []
+}
