@@ -82,19 +82,29 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>89</dd></div>
-      <div><dt>Tasks today</dt><dd>3</dd></div>
+      <div><dt>Total tasks</dt><dd>102</dd></div>
+      <div><dt>Tasks today</dt><dd>9</dd></div>
       <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 38 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
       <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (6/224 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>17%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.1</dd></div>
+      <div><dt>Avg steps</dt><dd>5.7</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">7:41 PM · Tuesday, Aug 18, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS</span>
+      <span class="index-fail-task">9:50 AM — Completion retry no-op: wizard overlay blocked sidebar; 4.6 unzip was empty Google Drive \\?\ extract</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No Idle-stuck row — routed via electron-toolbar AGENTS.md</span>
+      <span class="index-fail-task">9:38 AM — Fixed dwell overlay stuck on Idle — gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">Confirmed modal/animation work should follow existing modal patterns</span>
@@ -121,6 +131,16 @@
       <span class="index-fail-task">12:29 PM — Fixed My Calendar D2L-section link sync (legacy tab adoption, calendar/assignment link state clarification) and course-rename propagation into My Calendar; verified with npm run ci:local</span>
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No extract-grades row; routed via Macro App AGENTS</span>
+      <span class="index-fail-task">12:08 PM — Stopped false E1030 Import File not found during Extract Grades when working gradebook already exists</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">No Extract Grades keyword; added one after the fix</span>
+      <span class="index-fail-task">12:08 PM — Stopped false E1030 Import File not found during Extract Grades when working gradebook already exists</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md">School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code>
       <span class="nav-note">Confirmed vendored engine and over-cap file caution</span>
       <span class="index-fail-task">11:45 AM — Planned Assignment Assistant folder layout change to group grading workspaces under Assignment Assistant files</span>
@@ -139,6 +159,11 @@
       <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
       <span class="nav-note">Confirmed ToME was not in the Programs app index</span>
       <span class="index-fail-task">11:37 PM — Installed Quick Transmo ToME addon into the Desktop T-Engine game addons folder</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Listed School Scrips\Macro App; this machine uses School Scripts\Macro-App</span>
+      <span class="index-fail-task">8:25 AM — Pulled Macro App from GitHub — fast-forwarded 5 commits on main</span>
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
@@ -169,15 +194,10 @@
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">No Tome-specific recipe; confirmed general interaction guidance and stayed scoped</span>
       <span class="index-fail-task">9:12 PM — Created Tome addon for left-click item pickup movement</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Confirmed no app-specific route for external Desktop Tome install</span>
-      <span class="index-fail-task">8:52 PM — Created Tome addon that draws HP numbers over visible hostile actors</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Tuesday, Aug 18, 2026 <span class="day-count">3 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Aug 18, 2026 <span class="day-count">9 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:41 PM — Statistics extra credit — revert button, applied badges, change-log detection blocks re-apply — 5 steps · 5h 25m</span>
@@ -329,9 +349,290 @@
       
     </li></ul>
     </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:40 AM — Added Sync to gradebook for drop-lowest-quiz statistics — blanks eligible quiz cells, persists markers with hover tooltip — 5 steps · 1m 18s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:39 AM
+         · 1m 18s since previous task
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Prior session had context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="gradebookStatisticsDropLowestQuiz.ts">gradebookStatisticsDropLowestQuiz.ts</code>
+      <span class="nav-note">Added dropPlan + apply wiring</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="applyExamReplacementsService.ts">applyExamReplacementsService.ts</code>
+      <span class="nav-note">Allow empty replacement for quiz-drop kind</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="StatisticsWorkspaceView.tsx">StatisticsWorkspaceView.tsx</code>
+      <span class="nav-note">Sync button next to Target</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="GradebookExamReplacementMarker.tsx">GradebookExamReplacementMarker.tsx</code>
+      <span class="nav-note">∅ badge + quiz-drop tooltip</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:19 AM — Fix browser panel flash on AA modal close — reattach before clearing snapshot; drop redundant ensure on unfreeze — 4 steps · 11m 12s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:04 AM
+         · 11m 12s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="read useStableBrowserModalFreeze + useAssignmentAssistantModalFreeze">read useStableBrowserModalFreeze + useAssignmentAssistantModalFreeze</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="read useEmbeddedBrowserModal unfreeze + D2LAssignmentAssistantView browserModal wrapper">read useEmbeddedBrowserModal unfreeze + D2LAssignmentAssistantView browserModal wrapper</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="reorder unfreezeFromModal to clear snapshot after reattach">reorder unfreezeFromModal to clear snapshot after reattach</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="remove ensureAssignmentAssistantSession from AA unfreeze path">remove ensureAssignmentAssistantSession from AA unfreeze path</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:07 AM — Rename long scanner PDFs to Submission.ext at ZIP extraction for safe processing and rezip — 5 steps · 3m 38s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:04 AM
+         · 3m 38s since previous task
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="grep extract_zip_file / long path usage">grep extract_zip_file / long path usage</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="read extract_zip_file in grading_processor.py">read extract_zip_file in grading_processor.py</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="add normalize_long_submission_filenames to file_utils.py">add normalize_long_submission_filenames to file_utils.py</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="call normalize after extraction in extract_zip_file">call normalize after extraction in extract_zip_file</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="test rename on 4.6 Alexandra Burbatt folder">test rename on 4.6 Alexandra Burbatt folder</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:02 AM — Reverted uncommitted Macro App completion-processing edits (Drive long-path, error rewrite, empty-folder fail, wizard Try again, AGENTS row, test file). Left exam_history.jsonl and pushed toolbar Idle fix alone. — 2 steps · 6m 33s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:53 AM
+         · 6m 33s since previous task
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App git status">School Scripts/Macro-App git status</code>
+      <span class="nav-note">Confirmed six edited files plus new test</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="git checkout of those files + delete test_format_error_message.py">git checkout of those files + delete test_format_error_message.py</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:55 AM — Reverted uncommitted Macro App completion-processing edits (Drive long-path, error rewrite, empty-folder fail, wizard Try again, AGENTS row, test file). Left exam_history.jsonl and pushed toolbar Idle fix alone. — 2 steps · 5m 8s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:53 AM
+         · 5m 8s since previous task
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App git status">School Scripts/Macro-App git status</code>
+      <span class="nav-note">Confirmed six edited files plus new test</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="git checkout of those files + delete test_format_error_message.py">git checkout of those files + delete test_format_error_message.py</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:50 AM — Completion retry no-op: wizard overlay blocked sidebar; 4.6 unzip was empty Google Drive \\?\ extract — 5 steps · 21h 57m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:53 AM
+         · 21h 57m since previous task
+        <br>5 steps · first helpful at #2 · 4 ✓ · 1 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Button does nothing → overlay; added Process Completion row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/python-modules/grading_processor.py">assignment-assistant-engine/python-modules/grading_processor.py</code>
+      <span class="nav-note">Always prefixed extract with \\?\ on Windows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="G:\My Drive\...\4.6 Exponential Modeling Homework\unzipped folders">G:\My Drive\...\4.6 Exponential Modeling Homework\unzipped folders</code>
+      <span class="nav-note">12 student dirs exist, all empty of files</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="AssignmentProcessingWizardModal.tsx">AssignmentProcessingWizardModal.tsx</code>
+      <span class="nav-note">After failure, only Close; overlay blocks sidebar Process Completion</span>
+      
+    </li></ul>
+    </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Monday, Aug 17, 2026 <span class="day-count">3 tasks</span></h2>
+      <h2 class="day-title">Monday, Aug 17, 2026 <span class="day-count">6 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">8:46 PM — Extended quiz-key release conditions for YouTube topics in quiz modules — 31m 53s · no path logged</span>
@@ -447,6 +748,129 @@
         <span class="nav-dead-pill">✗ dead end</span>
       </p>
       <p class="muted-inline">No navigation path was logged for this task.</p>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:54 AM — Corrected Idle-stuck cause: wake signal never reached Python, so keyboard/mouse could not unidle — 3 steps · 1m 22s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:53 AM
+         · 1m 22s since previous task
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="electron-toolbar/electron-app/src/idle-health-guard.js">electron-toolbar/electron-app/src/idle-health-guard.js</code>
+      <span class="nav-note">Resume no-ops if Electron already awake; dropped signal leaves Python Idle forever</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-toolbar/modules/dwell/backend/dwell_module.py">electron-toolbar/modules/dwell/backend/dwell_module.py</code>
+      <span class="nav-note">Overlay Idle is dg.system_idle; only system_idle signal clears it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-toolbar/electron-app/src/signal-client.js">electron-toolbar/electron-app/src/signal-client.js</code>
+      <span class="nav-note">broadcastSystemIdle silently skips when disconnected</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:38 AM — Fixed dwell overlay stuck on Idle — gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit — 5 steps · 2m 37s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:35 AM
+         · 2m 37s since previous task
+        <br>5 steps · first helpful at #2 · 4 ✓ · 1 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No Idle-stuck row — routed via electron-toolbar AGENTS.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-toolbar/AGENTS.md">electron-toolbar/AGENTS.md</code>
+      <span class="nav-note">Dwell overlay recipes; added stuck-in-Idle keyword row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-toolbar/modules/dwell/backend/dwell_signals_ui.py">electron-toolbar/modules/dwell/backend/dwell_signals_ui.py</code>
+      <span class="nav-note">Overlay text Idle comes from dg.system_idle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-toolbar/electron-app/src/idle-health-guard.js">electron-toolbar/electron-app/src/idle-health-guard.js</code>
+      <span class="nav-note">15m Windows idle paused dwell; gyro does not reset GetLastInputInfo</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="electron-toolbar/modules/dwell/backend/dwell_module.py">electron-toolbar/modules/dwell/backend/dwell_module.py</code>
+      <span class="nav-note">system_idle skips main loop so clicks and hover-unpause cannot quit</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:31 AM — Pulled Macro App 13 commits; restored uncommitted E1030 fix with no conflicts — 1 step · 68h 23m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:04 PM
+         · 68h 23m since previous task
+        <br>1 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App git">School Scripts/Macro-App git</code>
+      <span class="nav-note">Stashed E1030, ff-only to 6896528, stash pop clean</span>
+      
+    </li></ul>
     </div>
   </details></div>
     </section><section class="day-block">
@@ -1606,7 +2030,7 @@
     </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">19 tasks</span></h2>
+      <h2 class="day-title">Friday, Aug 14, 2026 <span class="day-count">21 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">11:46 PM — Patched ToME quicktransmo addon to bypass transmog confirmation and fix Shift-click event wiring — 8 steps · 1m 55s · 1 dead-end</span>
@@ -2458,6 +2882,61 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
+      <span class="track-title">12:08 PM — Stopped false E1030 Import File not found during Extract Grades when working gradebook already exists — 5 steps · 4m 7s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:04 PM
+         · 4m 7s since previous task
+        <br>5 steps · first helpful at #3 · 2 ✓ · 2 ~ · 1 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No extract-grades row; routed via Macro App AGENTS</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">No Extract Grades keyword; added one after the fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine IMPORT_FILE_NOT_FOUND">assignment-assistant-engine IMPORT_FILE_NOT_FOUND</code>
+      <span class="nav-note">E1030 from load_import_file requiring roster template</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="handleSelectPdfFileForExtraction">handleSelectPdfFileForExtraction</code>
+      <span class="nav-note">Select PDF itself is JS; error came from workspace persist-draft save</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="import_file_handler.load_import_file">import_file_handler.load_import_file</code>
+      <span class="nav-note">Now loads existing working gradebook without template</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
       <span class="track-title">12:07 PM — Session tracking hook verification — timeline, reconcile stats, HTML report — 6 steps · 1m 14s</span>
       <span class="pill p2">7 searches not in path</span>
     </summary>
@@ -2667,6 +3146,33 @@
       
       <code class="nav-target" title="APP_LOCATIONS.md + AGENTS.md">APP_LOCATIONS.md + AGENTS.md</code>
       <span class="nav-note">Updated overlay maker location and keyword row</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:26 AM — Pulled Macro App from GitHub — fast-forwarded 3 commits on main — 1 step · 24h 34m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:40 AM
+         · 24h 34m since previous task
+        <br>1 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App">School Scripts/Macro-App</code>
+      <span class="nav-note">Clean, behind 3; git pull --ff-only to 99a9b45</span>
       
     </li></ul>
     </div>
@@ -2885,7 +3391,7 @@
     </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Thursday, Aug 13, 2026 <span class="day-count">8 tasks</span></h2>
+      <h2 class="day-title">Thursday, Aug 13, 2026 <span class="day-count">10 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">11:59 PM — Fixed first-render gradebook category collapse that made cached tabs still shuffle — 5 steps · 1m 24s</span>
@@ -3421,6 +3927,95 @@
       
       <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts</code>
       <span class="nav-note">Fixed a genuine unstable-useMemo-dependency infinite-render-loop bug (confirmed via diagnostic stack trace), but Chase reports the crash/issue is still not resolved after this fix — root cause of remaining issue not yet found</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:51 AM — Makeup Exam: reload form on next Start Automation, not after first fill — 4 steps · 2h 26m · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:40 AM
+         · 2h 26m since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 1 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS via app name</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Makeup exam row → CDP doc + reload lives in useMakeupExamAutomation</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/makeup-exam/useMakeupExamAutomation.ts">renderer/src/hooks/makeup-exam/useMakeupExamAutomation.ts</code>
+      <span class="nav-note">Moved reload from complete → next Start Automation</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="MakeupExamExamConfigPanel Send Email">MakeupExamExamConfigPanel Send Email</code>
+      <span class="nav-note">Chase confirmed 2nd trigger is Start Automation, not Send Email</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:25 AM — Pulled Macro App from GitHub — fast-forwarded 5 commits on main — 3 steps · 69h 40m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:40 AM
+         · 69h 40m since previous task
+        <br>3 steps · first helpful at #1 · 2 ✓ · 1 ~ · 0 ✗
+        
+        
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to APP_LOCATIONS + multi-repo git pull</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Listed School Scrips\Macro App; this machine uses School Scripts\Macro-App</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App">School Scripts/Macro-App</code>
+      <span class="nav-note">Clean, behind 5; git pull --ff-only to 8df0a74</span>
       
     </li></ul>
     </div>
