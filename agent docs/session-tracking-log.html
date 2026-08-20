@@ -82,14 +82,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>115</dd></div>
-      <div><dt>Tasks today</dt><dd>9</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 51 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>3</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (7/275 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>14%</dd></div>
+      <div><dt>Total tasks</dt><dd>117</dd></div>
+      <div><dt>Tasks today</dt><dd>11</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 53 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (7/286 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>13%</dd></div>
       <div><dt>Avg steps</dt><dd>5.7</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:25 AM · Thursday, Aug 20, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:36 PM · Thursday, Aug 20, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
@@ -197,8 +197,125 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Thursday, Aug 20, 2026 <span class="day-count">9 tasks</span></h2>
+      <h2 class="day-title">Thursday, Aug 20, 2026 <span class="day-count">11 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:36 PM — CDP probe: D2L Enter Grades uses header/item Final and label Final value for… (not Final Points Grade); itemsMatch exact-only fix for wrong-column push — 3 steps · 3m 56s</span>
+      <span class="pill p2">18 searches not in path</span><span class="pill p2">Hunted before doc — 18 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 3m 56s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 18 search(es), 0 doc read(s) · 18 not in path · coverage 11%
+        <br>Wall-clock gap since previous task: 4m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="CDP port 9224 Enter Grades page">CDP port 9224 Enter Grades page</code>
+      <span class="nav-note">Headers Final; d2l-input-number label Final value for…; Cell: Final vs Final Adjusted Grade</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/d2l/grades_enter_import_scripts.py itemsMatch">modules/d2l/grades_enter_import_scripts.py itemsMatch</code>
+      <span class="nav-note">Reverse prefix pi.startsWith(ei+' ') matched Final→Final Adjusted Grade in findGradeControlIds</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/grades_enter_import_scripts.py">modules/d2l/grades_enter_import_scripts.py</code>
+      <span class="nav-note">Exact-only itemsMatch in APPLY and VERIFY scripts</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:25 PM — Grade push save-confirm hardening plus live-browser debug during Push (gradebookD2LDebug flags); unblocked Programs/Macro App git push — 8 steps · 21m 8s</span>
+      <span class="pill p2">75 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:04 PM
+         · 21m 8s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 75 search(es), 366 doc read(s) · 75 not in path · coverage 2%
+        <br>Wall-clock gap since previous task: 21m 10s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
+      <span class="nav-note">Bump procedure</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Macro App user console logs">Macro App user console logs</code>
+      <span class="nav-note">16 cells applied; Save confirm Yes timed out at 20s</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/d2l/grades_enter_import_scripts.py">modules/d2l/grades_enter_import_scripts.py</code>
+      <span class="nav-note">CLICK_SAVE_CONFIRM_YES_SCRIPT too narrow vs bulk delete pattern</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="modules/d2l/grades_bulk_actions.py">modules/d2l/grades_bulk_actions.py</code>
+      <span class="nav-note">Exemplar d2l-dialog + shadow DOM confirm</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/config/gradebookD2LDebug.ts">renderer/src/config/gradebookD2LDebug.ts</code>
+      <span class="nav-note">Existing TEMP debug switches for live browser</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookImport.ts">renderer/src/hooks/gradebook/useGradebookImport.ts</code>
+      <span class="nav-note">Push used ensureHidden unless showD2LGradebookView</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts">renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts</code>
+      <span class="nav-note">showBrowserPanel hidden on gradebook tab</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Programs root git merge">Programs root git merge</code>
+      <span class="nav-note">Session log conflicts resolved; push synced</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">11:25 AM — Blank roster Excel: row height 23 when exactly 28 students so one-page print fits; other counts stay 30 — 3 steps · 42m 6s · 1 dead-end</span>
       <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 13 searches first</span>

@@ -154,9 +154,9 @@
       <div class="day-sessions"><article class="session-card in-progress">
     <header class="session-head">
       <div class="pills">
-        <span class="time">12:04 PM</span>
+        <span class="time">12:32 PM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
-        <span class="pill p3" title="Hook tally started on this tool call — any reads/searches before that are not in the counts.">Missing early work — hook started late</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        <span class="pill p3" title="Hook tally started on this tool call — any reads/searches before that are not in the counts.">Missing early work — hook started late</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
         <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
         <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
       </div>
@@ -168,38 +168,38 @@
     <dd>1</dd>
   </div><div class="metric metric-warn">
     <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
-    <dd>37</dd>
+    <dd>22</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
     <dd>0</dd>
   </div><details class="metric metric-expandable">
     <summary class="metric-summary">
       <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
-      <dd>8</dd>
+      <dd>3</dd>
     </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/5878fde2-df3b-48f4-bb21-2df791e29bd2.txt">5878fde2-df3b-48f4-bb21-2df791e29bd2.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/591794.txt">591794.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/591795.txt">591795.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/72026.txt">72026.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/72027.txt">72027.txt</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/session-scorecards.jsonl">session-scorecards.jsonl</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/session-tracking.jsonl">session-tracking.jsonl</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-final-exact-match.json">.scorecard-bump-final-exact-match.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li></ul></div>
   </details><details class="metric metric-expandable">
     <summary class="metric-summary">
       <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
-      <dd>3</dd>
+      <dd>11</dd>
     </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/scripts/append-session-scorecard.js">append-session-scorecard.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/__tests__/electron-grades-backup-paths.test.ts">electron-grades-backup-paths.test.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/__tests__/electron-macro-storage-tree.test.ts">electron-macro-storage-tree.test.ts</code></li></ul></div>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/buildGradebookImportCsv.test.ts">buildGradebookImportCsv.test.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/buildGradebookImportCsv.ts">buildGradebookImportCsv.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/d2l_raw_cdp.py">d2l_raw_cdp.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/gradebookHeaderMeta.ts">gradebookHeaderMeta.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/gradebookImportPayloadLog.ts">gradebookImportPayloadLog.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/types/gradebookTypes.ts">gradebookTypes.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_grid_scripts.py">grades_enter_grid_scripts.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/scripts/probe_enter_grades_grid.py">probe_enter_grades_grid.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/tests/test_grades_enter_import_actions.py">test_grades_enter_import_actions.py</code></li></ul></div>
   </details><details class="metric metric-expandable">
     <summary class="metric-summary">
       <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
-      <dd>1</dd>
+      <dd>3</dd>
     </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-final-exact-match.json">.scorecard-bump-final-exact-match.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li></ul></div>
   </details><details class="metric metric-expandable">
     <summary class="metric-summary">
       <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
-      <dd>0</dd>
+      <dd>4</dd>
     </summary>
-    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li></ul></div>
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hook tally missing pre-hook work — bump tasks as you go. Hook auto-tally active.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hook tally missing pre-hook work — bump tasks as you go. Tasks logged so far: 1 (last: CDP probe: D2L Enter Grades uses header/item Final and label Final value for… (not Final Points Grade); itemsMatch exact-only fix for wrong-column push) Hook auto-tally active.
     </div>
     
   </article></div>
