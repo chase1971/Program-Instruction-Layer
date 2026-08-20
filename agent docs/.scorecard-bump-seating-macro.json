@@ -1,0 +1,28 @@
+{
+  "chunkNote": "Seating Chart Macro integration: filter online courses, fix config/prefs paths, auto-fill seats when no saved chart",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "partial", "note": "No seating row — used APP_LOCATIONS" },
+    { "target": "APP_LOCATIONS.md", "kind": "doc", "outcome": "partial", "note": "Wrong path School Scrips\\Seating-Chart; live app is School Scripts\\seating-chart" },
+    { "target": "seating-chart/electron/macro-roster-bridge.js", "kind": "code", "outcome": "helpful", "note": "Existing Macro bridge" },
+    { "target": "seating-chart/AGENTS.md", "kind": "doc", "outcome": "helpful" },
+    { "target": "Macro-App/config/d2l-courses.json", "kind": "code", "outcome": "helpful", "note": "modality online vs face2face" },
+    { "target": "seating-chart/src/components/SeatingWorkspace.tsx", "kind": "code", "outcome": "helpful", "note": "Auto-fill effect" }
+  ],
+  "filesRead": [
+    "School Scripts/seating-chart/electron/macro-roster-bridge.js",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx",
+    "School Scripts/seating-chart/AGENTS.md",
+    "School Scripts/Macro-App/config/d2l-courses.json"
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/electron/macro-roster-bridge.js",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx",
+    "School Scripts/seating-chart/AGENTS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/INDEX.md",
+    "School Scripts/seating-chart/AGENTS.md"
+  ]
+}

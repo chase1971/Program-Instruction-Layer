@@ -1,0 +1,12 @@
+{
+  "chunkNote": "Blank roster Excel: row height 23 when exactly 28 students so one-page print fits; other counts stay 30",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "Macro-App/AGENTS.md", "kind": "doc", "outcome": "partial", "note": "No blank-roster keyword row" },
+    { "target": "electron-app/blank-roster-excel.js", "kind": "code", "outcome": "helpful", "note": "STUDENT_ROW_HEIGHT was 30 for all" },
+    { "target": "renderer/.../gradebookBlankRosterExcel.ts", "kind": "code", "outcome": "dead-end", "note": "Title/filename only — no row height" }
+  ],
+  "filesEdited": ["School Scripts/Macro-App/electron-app/blank-roster-excel.js"],
+  "docsRulesOpened": ["School Scripts/Macro-App/AGENTS.md"]
+}
