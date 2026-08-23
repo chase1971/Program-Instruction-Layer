@@ -82,19 +82,44 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>132</dd></div>
-      <div><dt>Tasks today</dt><dd>15</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 68 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>2</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (10/386 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>14%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.8</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">5:01 PM · Friday, Aug 21, 2026</dd></div>
+      <div><dt>Total tasks</dt><dd>143</dd></div>
+      <div><dt>Tasks today</dt><dd>1</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 79 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (11/483 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>17%</dd></div>
+      <div><dt>Avg steps</dt><dd>6.0</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:09 AM · Sunday, Aug 23, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/MODAL_CATALOG.md">School Scrips/Macro App/docs/MODAL_CATALOG.md</code>
+      <span class="nav-note">Useful for updating modal fixtures, not the runtime delay itself.</span>
+      <span class="index-fail-task">6:57 PM — Fixed Managing Grades Bulk Edit modal return timing and hidden category labels</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Bulk Edit automation commands and Manage Grades context</span>
+      <span class="index-fail-task">6:11 PM — Macro App: restored Bulk Edit scanning modal over snapshot and sped up picker return after live actions</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Managing Grades automation flow context</span>
+      <span class="index-fail-task">6:04 PM — Macro App: fixed Bulk Edit picker browser stacking and softened workspace tabs</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed workspace tabs are distinct from browser slots; no slot behavior change needed</span>
+      <span class="index-fail-task">5:44 PM — Restyled Macro App workspace tabs to match the trapezoid reference, including the selected tab treatment</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed this was workspace-tab/browser layout territory, not browser slot behavior</span>
+      <span class="index-fail-task">5:36 PM — Moved one-line Macro App workspace tabs up by removing the two-row reservation in the split browser layout</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
       <span class="nav-note">Checked browser slot/AA modal context; no freeze behavior change was needed</span>
@@ -169,34 +194,914 @@
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">Confirmed interaction/code-shape routing; no specific Course Builder drag recipe</span>
       <span class="index-fail-task">3:58 PM — Fixed Macro App Course Builder unit sort guardrails: no row-center drops, collapse unit descendants, strict toast+position success, nested repair, CDP preflight default</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
-      <span class="nav-note">Workbook/export mechanics only, not D2L linking</span>
-      <span class="index-fail-task">12:29 PM — Fixed My Calendar D2L-section link sync (legacy tab adoption, calendar/assignment link state clarification) and course-rename propagation into My Calendar; verified with npm run ci:local</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No extract-grades row; routed via Macro App AGENTS</span>
-      <span class="index-fail-task">12:08 PM — Stopped false E1030 Import File not found during Extract Grades when working gradebook already exists</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
-      <span class="nav-note">No Extract Grades keyword; added one after the fix</span>
-      <span class="index-fail-task">12:08 PM — Stopped false E1030 Import File not found during Extract Grades when working gradebook already exists</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md">School Scrips/Macro App/docs/ASSIGNMENT_ASSISTANT_ENGINE_VENDORING.md</code>
-      <span class="nav-note">Confirmed vendored engine and over-cap file caution</span>
-      <span class="index-fail-task">11:45 AM — Planned Assignment Assistant folder layout change to group grading workspaces under Assignment Assistant files</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
-      <span class="nav-note">Confirmed the browser-backed workspace tab model and which React surfaces matter for tab crash risk</span>
-      <span class="index-fail-task">10:50 AM — Added a React effect-loop audit test covering all Macro App React tab surfaces</span>
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">1 task</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:09 AM — Reattach contract fixed: unfreeze now releases a claim instead of commanding a reattach; deferred until no modal overlay is on screen, with a drift test on the overlay class — 6 steps · 12h 11m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 12h 11m since previous task
+        <br>6 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · coverage 100%
+        <br>Wall-clock gap since previous task: 12h 11m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/browser/useEmbeddedBrowserModal.ts">renderer/src/hooks/browser/useEmbeddedBrowserModal.ts</code>
+      <span class="nav-note">Single owner for freeze/unfreeze state — the right place for the guard</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grep: count freeze/unfreeze call sites">grep: count freeze/unfreeze call sites</code>
+      <span class="nav-note">47 unfreeze + 62 freeze across 18 files — ruled out threading an owner key through call sites as too invasive</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/pearson/usePearsonUnits.ts">renderer/src/hooks/pearson/usePearsonUnits.ts</code>
+      <span class="nav-note">backToSetup freezes without a matching unfreeze — proves a naive ++/-- refcount would leak and strand the browser detached</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/ModalContainer.tsx">renderer/src/components/ModalContainer.tsx</code>
+      <span class="nav-note">Shared shell exists but many modals hand-roll their overlay, so it is not a universal mount signal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="grep: overlay className census">grep: overlay className census</code>
+      <span class="nav-note">All 43 overlays carry courses-modal-overlay and closed modals return null — DOM is ground truth for 'is a modal on screen'</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/__tests__/modal-catalog-drift.test.ts">renderer/src/__tests__/modal-catalog-drift.test.ts</code>
+      <span class="nav-note">Existing drift-test precedent; modelled the overlay-class invariant test on it</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Saturday, Aug 22, 2026 <span class="day-count">10 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:57 PM — Diagnosed + fixed: browser reattaching over an open modal (Pearson Set Up Dates) — scrollBy was recovering the live browser from modal detach — 9 steps · 42s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 42s since previous task
+        <br>9 steps · first helpful at #1 · 8 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 42s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">INDEX → School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Keyword row 'modal over the browser / snapshot' routed straight to the owning doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="docs/EMBEDDED_BROWSER_AND_MODALS.md">docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Gave the freeze/detach/reattach contract and the three-layer architecture</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep for backdrop-dismiss handlers across renderer">grep for backdrop-dismiss handlers across renderer</code>
+      <span class="nav-note">Zero onClick/onMouseDown on any modal overlay — ruled out Chase's initial theory that the click dismissed it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/side-panels/PearsonUnitsModal.tsx">renderer/src/components/side-panels/PearsonUnitsModal.tsx</code>
+      <span class="nav-note">aria-label 'Set up Pearson dates' identified the modal from the dictated 'set updates'</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/pearson/usePearsonUnits.ts">renderer/src/hooks/pearson/usePearsonUnits.ts</code>
+      <span class="nav-note">openSetupModal ordering is correct per the doc; its catch unfreezes unconditionally but was not the trigger</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/browser/useEmbeddedBrowserModal.ts">renderer/src/hooks/browser/useEmbeddedBrowserModal.ts</code>
+      <span class="nav-note">freezeForModal ignores captureBrowserSnapshot's false return — detaches with snapshotDataUrl still null</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-modal.js">electron-app/browser-slot-modal.js</code>
+      <span class="nav-note">reattach() is a plain toggle, no refcount — one stray call defeats any open modal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-scroll.js">electron-app/browser-slot-scroll.js</code>
+      <span class="nav-note">ROOT CAUSE: scrollBy() called recoverLiveBrowserFromModalDetach() on every scroll</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/components/browser/BrowserVerticalScrollRail.tsx">renderer/src/components/browser/BrowserVerticalScrollRail.tsx</code>
+      <span class="nav-note">Rail scrolls on onMouseEnter — hover alone, no click, and it was gated on snapshotDataUrl not on being detached</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:57 PM — Fixed Managing Grades Bulk Edit modal return timing and hidden category labels — 11 steps · 10m 44s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 10m 44s since previous task
+        <br>11 steps · first helpful at #1 · 10 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 10m 44s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed the request to Macro App, D2L grades automation, embedded browser modal, and modal catalog docs.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed app constraints, file size caps, and no visible UI launches.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Matched the request to the Manage Grades bulk edit automation flow.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed the modal must detach the native browser view before overlaying UI.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/MODAL_CATALOG.md">School Scrips/Macro App/docs/MODAL_CATALOG.md</code>
+      <span class="nav-note">Useful for updating modal fixtures, not the runtime delay itself.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Changed post-action reopen and scan refresh to use detach-only freeze paths and preserve the scanning modal.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradesBulkEditOverlay.ts">School Scrips/Macro App/renderer/src/utils/gradebook/gradesBulkEditOverlay.ts</code>
+      <span class="nav-note">Added an explicit no-snapshot freeze option so the picker can return without waiting on a fresh browser snapshot.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_bulk_tasks.py">School Scrips/Macro App/modules/d2l/grades_bulk_tasks.py</code>
+      <span class="nav-note">Removed the redundant post-save verification scan that delayed modal return after the D2L page was already done.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_bulk_actions.py">School Scrips/Macro App/modules/d2l/grades_bulk_actions.py</code>
+      <span class="nav-note">Added hidden-from-users detection to the Manage Grades scan and cache fingerprint.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="Renderer bulk edit modal components and grades service/types">Renderer bulk edit modal components and grades service/types</code>
+      <span class="nav-note">Threaded hidden category data into dropdowns, category order, item badges, and modal catalog fixtures.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="py_compile, focused eslint, renderer tsc">py_compile, focused eslint, renderer tsc</code>
+      <span class="nav-note">Python compile, focused lint, and full renderer typecheck all passed.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:46 PM — Fixed Schedule times category defaults so Managing Dates uses changed Key/YouTube times instead of stale per-row overrides — 10 steps · 6m 25s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 6m 25s since previous task
+        <br>10 steps · first helpful at #1 · 10 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 6m 25s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed the task to Macro App/My Calendar and D2L schedule-processing docs.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed Macro App constraints and headless verification expectations.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md</code>
+      <span class="nav-note">Confirmed Schedule times presets feed assignment-template Process Schedule CSVs.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="C:/Users/chase/My Drive/Rosters etc/Calendars/Calendar Templates/assignment-time-schedules.json">C:/Users/chase/My Drive/Rosters etc/Calendars/Calendar Templates/assignment-time-schedules.json</code>
+      <span class="nav-note">Found saved category defaults at 6:00 AM but stale per-assignment overrides still at class start.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentTimeSchedule.ts">School Scrips/Macro App/my-calendar/src/hooks/useAssignmentTimeSchedule.ts</code>
+      <span class="nav-note">Save-time sync was re-inferring stale workbook times as new overrides after category defaults changed.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/src/utils/assignmentTimeScheduleOverrides.ts">School Scrips/Macro App/my-calendar/src/utils/assignmentTimeScheduleOverrides.ts</code>
+      <span class="nav-note">Added a mode to skip item-time inference on save and a helper to clear row overrides for edited category fields.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTimeScheduleStore.js">School Scrips/Macro App/my-calendar/server/backend/services/assignmentTimeScheduleStore.js</code>
+      <span class="nav-note">Added load-time pruning for stale class-start overrides that shadow changed category defaults.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTemplateCsvService.js">School Scrips/Macro App/my-calendar/server/backend/services/assignmentTemplateCsvService.js</code>
+      <span class="nav-note">Aligned CSV category classification so specific categories win before the general assignment/homework bucket.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/myCalendarTemplateService.ts">School Scrips/Macro App/renderer/src/services/myCalendarTemplateService.ts</code>
+      <span class="nav-note">Made the browser reapply the latest saved preset to the CSV it receives as an idempotent guard.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="Vitest, typecheck:my-calendar, build:renderer, and headless CSV replay">Vitest, typecheck:my-calendar, build:renderer, and headless CSV replay</code>
+      <span class="nav-note">Focused tests passed, typecheck/build passed, and replayed M2412/M1314/M1324 Key/YouTube rows now generate at 6:00 AM.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:40 PM — Column shift is one continuous move — ending a paging session no longer freezes and re-animates a glide already bound for a column edge — 4 steps · 14m 10s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 14m 10s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 18m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code>
+      <span class="nav-note">cancelActiveScroll did scrollTo(current,'auto') then a smooth snap — literally two animations, the lurch-then-correct Chase described</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookHorizontalArrowGuard.ts">renderer/src/hooks/gradebook/useGradebookHorizontalArrowGuard.ts</code>
+      <span class="nav-note">LEAVE_GRACE_MS 150 — with a dwell mouse the pointer leaves the arrow mid-glide constantly, so the interrupt path was the common path, not the edge case</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookColumnSnap.ts">renderer/src/utils/gradebook/gradebookColumnSnap.ts</code>
+      <span class="nav-note">Confirmed resolvePageTarget only ever returns an aligned offset or maxScrollLeft — that invariant is what makes letting the glide finish safe</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookHoverPage.ts">renderer/src/hooks/gradebook/useGradebookHoverPage.ts</code>
+      <span class="nav-note">Checked repeat pacing as an alternative cause — it gates on idle, so pages never overlap; ruled out</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:21 PM — Grade column is now drag-resizable, and its width drives the fixed assignment column width (floor tracks View Tuning) — 7 steps · 10m 1s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 10m 1s since previous task
+        <br>7 steps · first helpful at #1 · 6 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 10m 1s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookNameColumns.ts">renderer/src/hooks/gradebook/useGradebookNameColumns.ts</code>
+      <span class="nav-note">Existing pointer-drag/persist session reused for a third column instead of a parallel mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookNameColumnWidths.ts">renderer/src/utils/gradebook/gradebookNameColumnWidths.ts</code>
+      <span class="nav-note">NameColumnWidths widened to {col1,col2,grade}; codec had to tolerate legacy records</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookViewTuningPrefs.ts">renderer/src/utils/gradebook/gradebookViewTuningPrefs.ts</code>
+      <span class="nav-note">resolveAssignmentColMinWidthPx = the dynamic floor; measured 172px at default input 62 / font 22</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookFontSizes.ts">renderer/src/utils/gradebook/gradebookFontSizes.ts</code>
+      <span class="nav-note">DEFAULT_GRADE_FONT_SIZE = 22 — needed to compute the real floor before asking Chase</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookNameColumnHeader.tsx">renderer/src/components/gradebook/GradebookNameColumnHeader.tsx</code>
+      <span class="nav-note">Resize button extracted to GradebookColumnResizeHandle so Grade and name headers share one impl</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookSelectedStudentsTable.tsx">renderer/src/components/gradebook/GradebookSelectedStudentsTable.tsx</code>
+      <span class="nav-note">Checked for a sticky-calculated fallback regression — it only uses the base sticky class, so none</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/styles/gradebook/table-grid.css">renderer/src/styles/gradebook/table-grid.css</code>
+      <span class="nav-note">assignment min-width on the calculated col had to be replaced, not supplemented, or it would override narrow drags</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:11 PM — Macro App: restored Bulk Edit scanning modal over snapshot and sped up picker return after live actions — 8 steps · 6m 46s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 6m 46s since previous task
+        <br>8 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 6m 46s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App/browser modal follow-up before code search</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed scan loading screen needs freeze-before-modal ordering</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Bulk Edit automation commands and Manage Grades context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradesBulkEdit.ts">renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Found scan path unfreezing and hiding the modal; changed scans to hidden automation behind the loading modal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="electron-app/d2l-bridge.js">electron-app/d2l-bridge.js</code>
+      <span class="nav-note">Confirmed automationSlotVisible=false keeps automation hidden instead of reattaching over modals</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradesBulkEditOverlay.ts">renderer/src/utils/gradebook/gradesBulkEditOverlay.ts</code>
+      <span class="nav-note">Added fast refreeze option for returning after visible recategorize/reorder actions</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx">renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx</code>
+      <span class="nav-note">Made scanning modal render alone instead of stacking with the picker</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="npm run build:renderer">npm run build:renderer</code>
+      <span class="nav-note">Renderer build passed with existing Vite warnings</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:04 PM — Macro App: fixed Bulk Edit picker browser stacking and softened workspace tabs — 13 steps · 46s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 46s active tool time
+        <br>13 steps · first helpful at #1 · 12 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 2m 59s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App work before code search</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Confirmed Macro App path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Loaded app-specific constraints</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">BrowserView must detach before React modals can sit above it</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Managing Grades automation flow context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="User screenshots">User screenshots</code>
+      <span class="nav-note">Identified tab shape target and Bulk Edit hidden-modal case</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradesBulkEditOverlay.ts">renderer/src/utils/gradebook/gradesBulkEditOverlay.ts</code>
+      <span class="nav-note">Made picker opening depend on BrowserView detach success</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx">renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx</code>
+      <span class="nav-note">Stopped scanning phase from rendering a modal behind live BrowserView</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradesBulkEdit.ts">renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Centralized picker freeze failure handling and used detach confirmation on all picker paths</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useBulkEditReorderActions.ts">renderer/src/hooks/gradebook/useBulkEditReorderActions.ts</code>
+      <span class="nav-note">Extracted live-browser reorder actions to keep the main hook under size threshold</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/bulkEditScanCache.ts">renderer/src/utils/gradebook/bulkEditScanCache.ts</code>
+      <span class="nav-note">Moved scan cache helpers out of the main hook</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="renderer/src/styles/shell-tabs.css + shell-file-tabs.css">renderer/src/styles/shell-tabs.css + shell-file-tabs.css</code>
+      <span class="nav-note">Moved single-row tabs up and rounded the file-tab skin</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">13</span>
+      
+      <code class="nav-target" title="npm run build:renderer">npm run build:renderer</code>
+      <span class="nav-note">Renderer build passed with existing Vite warnings</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:01 PM — Gradebook: direction-aware column snapping, category filter lands on first column, Calculated Grade -&gt; Grade, fixed column width toggle — 11 steps · 16m 17s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 16m 17s active tool time
+        <br>11 steps · first helpful at #1 · 9 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 16m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      <span class="nav-branch" title="Parallel branch">explore</span>
+      <code class="nav-target" title="Explore sub-agent: map Gradebook scrolling/filter/options/header code">Task: Explore sub-agent: map Gradebook scrolling/filter/options/header code</code>
+      
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/*">renderer/src/components/gradebook/*</code>
+      <span class="nav-note">Returned full file/line map incl. line counts vs 800 cap</span>
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookColumnSnap.ts">renderer/src/utils/gradebook/gradebookColumnSnap.ts</code>
+      <span class="nav-note">findCurrentColumnIndex always rounds forward; measureNameEdge ignores FLIP translateX</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code>
+      <span class="nav-note">cancelActiveScroll froze the glide mid-column — root cause of the erratic feel</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookScrollFrame.tsx">renderer/src/components/gradebook/GradebookScrollFrame.tsx</code>
+      <span class="nav-note">Three realign paths racing on a category change</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookCategoryFilterColumns.ts">renderer/src/utils/gradebook/gradebookCategoryFilterColumns.ts</code>
+      <span class="nav-note">Column ORDER was already correct — ruled out an ordering fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts</code>
+      <span class="nav-note">560ms FLIP is what the mid-flight measurements were fighting</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookNameColumnWidths.ts">renderer/src/utils/gradebook/gradebookNameColumnWidths.ts</code>
+      <span class="nav-note">Last Name width source for the fixed-width toggle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookFilteringPanelOptions.tsx">renderer/src/components/gradebook/GradebookFilteringPanelOptions.tsx</code>
+      <span class="nav-note">Options toggle prop chain (4 files, modal spreads props)</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/__tests__/">renderer/src/__tests__/</code>
+      <span class="nav-note">No existing snap/scroll test to extend; colocated test pattern used instead</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="docs/decisions/ADR-001-use-persisted-state.md">docs/decisions/ADR-001-use-persisted-state.md</code>
+      <span class="nav-note">usePersistedState + booleanCodec is the owner for the new toggle</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:44 PM — Restyled Macro App workspace tabs to match the trapezoid reference, including the selected tab treatment — 8 steps · 1m 55s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 1m 55s active tool time
+        <br>8 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 8m 39s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App tab styling through the app location and app AGENTS guidance</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Resolved Macro App location</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed renderer styles belong under renderer/src</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed workspace tabs are distinct from browser slots; no slot behavior change needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="C:/Users/chase/Downloads/1.png">C:/Users/chase/Downloads/1.png</code>
+      <span class="nav-note">Matched trapezoid sides, baseline, and selected blue top bar</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/styles/shell-tabs.css">renderer/src/styles/shell-tabs.css</code>
+      <span class="nav-note">Extracted file-tab visual styles and kept shell layout under the file-size target</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/styles/shell-file-tabs.css">renderer/src/styles/shell-file-tabs.css</code>
+      <span class="nav-note">Added the new tab visual skin</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer/src/styles/index.css">renderer/src/styles/index.css</code>
+      <span class="nav-note">Imported the new tab skin after shell layout styles</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:36 PM — Moved one-line Macro App workspace tabs up by removing the two-row reservation in the split browser layout — 10 steps · 17h 36m</span>
+      <span class="pill p2">27 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:59 PM
+         · 17h 36m active tool time
+        <br>10 steps · first helpful at #1 · 8 ✓ · 2 ~ · 0 ✗
+        <br>Hook saw 27 search(es), 1 doc read(s) · 27 not in path · coverage 14%
+        <br>Wall-clock gap since previous task: 17h 37m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App work through app locations and the app AGENTS file</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Resolved Macro App to School Scrips/Macro App</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
+      <span class="nav-note">Confirmed the required start-of-session fetch/status behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="git status/fetch scan">git status/fetch scan</code>
+      <span class="nav-note">Confirmed no repo was behind; Macro App had pre-existing config/d2l-courses.json changes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Routed browser/tab work to BROWSER_TAB_INTEGRATION.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
+      <span class="nav-note">Confirmed this was workspace-tab/browser layout territory, not browser slot behavior</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/modules/moduleContracts.ts">renderer/src/modules/moduleContracts.ts</code>
+      <span class="nav-note">Confirmed the labels in the screenshot are the D2L workspace tabs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer/src/styles/shell-tabs.css">renderer/src/styles/shell-tabs.css</code>
+      <span class="nav-note">Found the split tab row's 106px two-row reservation causing the one-row gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/components/chrome/D2LWorkspaceHeader.tsx">renderer/src/components/chrome/D2LWorkspaceHeader.tsx</code>
+      <span class="nav-note">Confirmed shell-header-tabs-zone is the tablist owner</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/TabbedAppShell.tsx">renderer/src/components/shell/TabbedAppShell.tsx</code>
+      <span class="nav-note">Confirmed the tab row sits directly above the main browser panel</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Friday, Aug 21, 2026 <span class="day-count">15 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
