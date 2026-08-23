@@ -82,19 +82,29 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>117</dd></div>
-      <div><dt>Tasks today</dt><dd>11</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 53 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>123</dd></div>
+      <div><dt>Tasks today</dt><dd>6</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 59 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (7/286 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>13%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.7</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:36 PM · Thursday, Aug 20, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (8/311 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>17%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.6</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">4:01 PM · Sunday, Aug 23, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      <span class="index-fail-task">3:43 PM — Explained layout-switch pain; Electron falls back to dist; layout banner + verify script</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed via seating-chart AGENTS from prior context</span>
+      <span class="index-fail-task">3:37 PM — Room layout select now reseats roster; F219 draw + name normalize</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="Macro-App/AGENTS.md">Macro-App/AGENTS.md</code>
       <span class="nav-note">No blank-roster keyword row</span>
@@ -184,19 +194,307 @@
       <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
       <span class="nav-note">No specific Manage Dates process/toast row existed; added one after locating the owner</span>
       <span class="index-fail-task">8:43 PM — Fixed D2L Manage Dates automation to dismiss Saved successfully toasts</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">No First Day Handout keyword row existed, so a focused search was needed</span>
-      <span class="index-fail-task">5:37 PM — Added First Day Handout final-time copy button for My Calendar paste</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">No My Calendar template row existed yet, so added one after the repair</span>
-      <span class="index-fail-task">2:11 PM — Rebuilt Fall My Calendar templates on clean model workbooks</span>
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">6 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:01 PM — Fix Save seating when dropdown has course but chart.courseCode empty — 3 steps · 12m 17s</span>
+      <span class="pill p2">5 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 12m 17s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · 5 not in path · coverage 60%
+        <br>Wall-clock gap since previous task: 12m 41s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user screenshot save error">user screenshot save error</code>
+      <span class="nav-note">F219 works; save said no course</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="saveSeatingArrangement">saveSeatingArrangement</code>
+      <span class="nav-note">Only checked chart.courseCode, not dropdown</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="ensureCourseBound + save override">ensureCourseBound + save override</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:49 PM — Fixed initAppData re-run stomping F219; added on-screen debug log — 4 steps · 5m 54s</span>
+      <span class="pill p2">3 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 5m 54s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 3 search(es), 0 doc read(s) · 3 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 6m 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user screenshot">user screenshot</code>
+      <span class="nav-note">F214 + 0 named after F219 click</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="SeatingWorkspace initAppData effect">SeatingWorkspace initAppData effect</code>
+      <span class="nav-note">Effect depended on initAppData which changed every render</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="useSeatingChart initAppData">useSeatingChart initAppData</code>
+      <span class="nav-note">setLayoutId(disk) without restoring seats</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="debugLog + DebugLogPanel">debugLog + DebugLogPanel</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:43 PM — Explained layout-switch pain; Electron falls back to dist; layout banner + verify script — 5 steps · 5m 18s · 1 dead-end</span>
+      <span class="pill p2">16 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 5m 18s active tool time
+        <br>5 steps · first helpful at #2 · 3 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 16 search(es), 2 doc read(s) · 16 not in path · coverage 24%
+        <br>Wall-clock gap since previous task: 5m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/hooks/useSeatingChart.ts">School Scripts/seating-chart/src/hooks/useSeatingChart.ts</code>
+      <span class="nav-note">applyRoomLayout exists; stale UI more likely than missing code</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/electron/main.js">School Scripts/seating-chart/electron/main.js</code>
+      <span class="nav-note">Unpackaged Electron always hit Vite URL — blank/stale if Vite down</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="localhost:5329">localhost:5329</code>
+      <span class="nav-note">Vite not running when diagnosed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="scripts/verify-room-layouts.mjs">scripts/verify-room-layouts.mjs</code>
+      <span class="nav-note">Headless F219 geometry OK</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:37 PM — Room layout select now reseats roster; F219 draw + name normalize — 6 steps · 1h 7m</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 1h 7m active tool time
+        <br>6 steps · first helpful at #2 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 1 doc read(s) · 8 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 1h 7m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed via seating-chart AGENTS from prior context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/hooks/useSeatingChart.ts">School Scripts/seating-chart/src/hooks/useSeatingChart.ts</code>
+      <span class="nav-note">Root cause: setLayoutId alone left layout1_* seat keys</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/components/SeatingGrid.tsx">School Scripts/seating-chart/src/components/SeatingGrid.tsx</code>
+      <span class="nav-note">Middle group only when row has _middle_ seats</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/utils/nameFormat.ts">School Scripts/seating-chart/src/utils/nameFormat.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/services/seatingChartService.ts">School Scripts/seating-chart/src/services/seatingChartService.ts</code>
+      <span class="nav-note">Normalize roster on load</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/components/SeatingWorkspace.tsx">School Scripts/seating-chart/src/components/SeatingWorkspace.tsx</code>
+      <span class="nav-note">Wire RoomLayoutModal to applyRoomLayout</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:30 PM — Seating Chart: desktop/laptop Drive prefs like Macro; Room layout modal with F214 + F219 — 4 steps · 1h 5m</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 1h 5m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 1 doc read(s) · 9 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 1h 6m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Macro-App/electron-app/rosters-paths.js">Macro-App/electron-app/rosters-paths.js</code>
+      <span class="nav-note">C/G/D findRostersBasePath</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Macro-App/electron-app/machine-profile.js">Macro-App/electron-app/machine-profile.js</code>
+      <span class="nav-note">profiled gradebook-storage-prefs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="seating-chart/src/layouts/layout1Definition.ts">seating-chart/src/layouts/layout1Definition.ts</code>
+      <span class="nav-note">F214 baseline</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/recipes/modal-shell.md">agent docs/recipes/modal-shell.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:24 PM — Seating Chart: fix course switch; archive writes attendance+chart under Rosters etc/Seating Chart/archived/ — 3 steps · 72h 47m</span>
+      <span class="pill p2">29 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 72h 47m active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 29 search(es), 1 doc read(s) · 29 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 72h 47m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="seating-chart/src/components/SeatingWorkspace.tsx">seating-chart/src/components/SeatingWorkspace.tsx</code>
+      <span class="nav-note">Controlled select awaited save before switch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="seating-chart/electron/seating-drive-io.js">seating-chart/electron/seating-drive-io.js</code>
+      <span class="nav-note">New Seating Chart/ + archived/ layout</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="macro-roster-bridge.js">macro-roster-bridge.js</code>
+      <span class="nav-note">Filter archived from course list</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Thursday, Aug 20, 2026 <span class="day-count">11 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
