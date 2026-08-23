@@ -82,19 +82,39 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>143</dd></div>
-      <div><dt>Tasks today</dt><dd>1</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 79 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>154</dd></div>
+      <div><dt>Tasks today</dt><dd>12</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 90 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (11/483 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>17%</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (14/548 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>18%</dd></div>
       <div><dt>Avg steps</dt><dd>6.0</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:09 AM · Sunday, Aug 23, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">3:58 PM · Sunday, Aug 23, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No row for course history — it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
+      <span class="index-fail-task">3:08 PM — Course History: retire-with-archive now records durable per-offering statistics; repeat-student badge + pooled historical averages in gradebook tooltips and Class Summary</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS → FIRST_DAY_HANDOUT.md</span>
+      <span class="index-fail-task">1:06 PM — Online First Day Handout exam ranges from My Calendar tags</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Checked general recipe routing; app-specific browser docs were the useful source.</span>
+      <span class="index-fail-task">12:50 PM — Added embedded browser scroll and reset diagnostics, with live reattach hardening</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed modal/browser constraints; not directly responsible for the missing dropdown label.</span>
+      <span class="index-fail-task">12:28 PM — Fixed hidden labels in Bulk Edit dropdowns and cache fingerprint</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/MODAL_CATALOG.md">School Scrips/Macro App/docs/MODAL_CATALOG.md</code>
       <span class="nav-note">Useful for updating modal fixtures, not the runtime delay itself.</span>
@@ -174,31 +194,686 @@
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No Idle-stuck row — routed via electron-toolbar AGENTS.md</span>
       <span class="index-fail-task">9:38 AM — Fixed dwell overlay stuck on Idle — gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Confirmed modal/animation work should follow existing modal patterns</span>
-      <span class="index-fail-task">4:21 PM — Managing Grades Bulk Edit now shows animated move/sort progress and no longer auto-rescans after move/sort completion</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No ADA PDF row — grepped tree for accessible/ADA</span>
-      <span class="index-fail-task">1:57 PM — ADA PDF: PDF input in picker + core converter, Assessments document type (notes mode), launcher label ADA PDF</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
-      <span class="nav-note">Confirmed start-of-session repo sync behavior; surfaced unrelated deprecated repo issues.</span>
-      <span class="index-fail-task">11:46 PM — Patched ToME quicktransmo addon to bypass transmog confirmation and fix Shift-click event wiring</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Confirmed interaction/code-shape routing; no specific Course Builder drag recipe</span>
-      <span class="index-fail-task">3:58 PM — Fixed Macro App Course Builder unit sort guardrails: no row-center drops, collapse unit descendants, strict toast+position success, nested repair, CDP preflight default</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">1 task</span></h2>
+      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">12 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:58 PM — Changed Bulk Edit automation completion to leave the live D2L page visible instead of reopening the picker — 7 steps · 6s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:48 PM
+         · 6s active tool time
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 5m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App bulk-edit work to the app AGENTS file.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Matched the request to D2L Grades List bulk edit automation guidance.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed Bulk Edit uses the existing Grades List task runner and navigates the live D2L page.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradesBulkEdit.ts">renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Found and replaced the post-live-run picker freeze/reopen path with a finish-and-stop path.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useBulkEditReorderActions.ts">renderer/src/hooks/gradebook/useBulkEditReorderActions.ts</code>
+      <span class="nav-note">Changed sort-category and manual placement completion to call the finish callback instead of reopening the picker.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useBulkEditCategoryOrder.ts">renderer/src/hooks/gradebook/useBulkEditCategoryOrder.ts</code>
+      <span class="nav-note">Prevented category-order errors from priming a modal reopen and kept the live page visible.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Focused renderer typecheck and lint">Focused renderer typecheck and lint</code>
+      <span class="nav-note">Renderer TypeScript and focused ESLint passed after the change.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:52 PM — Route popup content into the visible embedded browser (Manage Dates, Manage Grades) — 3 steps · 2m 40s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:48 PM
+         · 2m 40s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · 7 not in path · coverage 38%
+        <br>Wall-clock gap since previous task: 2m 47s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user clarification — in-tab not separate window">user clarification — in-tab not separate window</code>
+      <span class="nav-note">Managing Dates uses d2l slot; popups were merging into primary browser slot</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="browser-slot-popups.js">browser-slot-popups.js</code>
+      <span class="nav-note">visibleSlotId === slotId → load popup URL in that embedded view</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="browser-slot-popups.test.js">browser-slot-popups.test.js</code>
+      <span class="nav-note">6 tests pass</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:49 PM — Fix Managing Grades popups opening in embedded tab instead of new window — 4 steps · 3s · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:48 PM
+         · 3s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 8s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="browser-slot-popups.js">browser-slot-popups.js</code>
+      <span class="nav-note">syncMainViewFromPopup hijacked D2L landing URLs from course-slot popups</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="browser-slot-state.js">browser-slot-state.js</code>
+      <span class="nav-note">Extended hidden-slot popup deny to manage-grades:</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="isHiddenGradebookCourseSlot gradebook-only hypothesis">isHiddenGradebookCourseSlot gradebook-only hypothesis</code>
+      <span class="nav-note">Only affects off-screen gradebook:, not visible manage-grades</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="browser-slot-popups.test.js">browser-slot-popups.test.js</code>
+      <span class="nav-note">4 tests pass</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:49 PM — Fix First Day Handout autosave losing Edit-tab typing — 3 steps · 1m 9s</span>
+      <span class="pill p2">17 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:48 PM
+         · 1m 9s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 1 doc read(s) · 17 not in path · coverage 11%
+        <br>Wall-clock gap since previous task: 1m 13s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="useFirstDayHandoutAutosave + useFirstDayHandoutWorkspace">useFirstDayHandoutAutosave + useFirstDayHandoutWorkspace</code>
+      <span class="nav-note">Autosave never flushed live editor HTML; remount used stale editorSeedHtml</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="firstDayHandoutWorkspaceEditorSync.ts">firstDayHandoutWorkspaceEditorSync.ts</code>
+      <span class="nav-note">Flush provider + tab-leave save</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="vitest (3 tests)">vitest (3 tests)</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:13 PM — Fix First Day Handout autosave losing Edit-tab typing — 3 steps · 5m</span>
+      <span class="pill p2">17 searches not in path</span><span class="pill p2">Hunted before doc — 17 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 2:49 PM
+         · 5m active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 0 doc read(s) · 17 not in path · coverage 14%
+        <br>Wall-clock gap since previous task: 5m 4s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="useFirstDayHandoutAutosave + useFirstDayHandoutWorkspace">useFirstDayHandoutAutosave + useFirstDayHandoutWorkspace</code>
+      <span class="nav-note">Autosave never flushed live editor HTML; remount used stale editorSeedHtml</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="firstDayHandoutWorkspaceEditorSync.ts">firstDayHandoutWorkspaceEditorSync.ts</code>
+      <span class="nav-note">Flush provider + tab-leave save</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="vitest (3 tests)">vitest (3 tests)</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:08 PM — Course History: retire-with-archive now records durable per-offering statistics; repeat-student badge + pooled historical averages in gradebook tooltips and Class Summary — 15 steps · 17m 27s · 2 dead-end</span>
+      <span class="pill p2">4 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 2:49 PM
+         · 17m 27s active tool time
+        <br>15 steps · first helpful at #2 · 10 ✓ · 3 ~ · 2 ✗
+        <br>Hook saw 4 search(es), 0 doc read(s) · 4 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 17m 35s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">INDEX → School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No row for course history — it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-app/retire-course-io.js">electron-app/retire-course-io.js</code>
+      <span class="nav-note">Retire already writes manifest.json with normalizedKey students — write-only, nothing read it back</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="docs/archive/plans/retire-course-2026-07-16.md">docs/archive/plans/retire-course-2026-07-16.md</code>
+      <span class="nav-note">Confirmed this exact feature was the explicitly deferred out-of-scope item</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookColumnClassAverages.ts">renderer/src/utils/gradebook/gradebookColumnClassAverages.ts</code>
+      <span class="nav-note">buildColumnClassAverages is the single owner of class average + outlier exclusion (15% exam / 20% calculated)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookClassSummary.ts">renderer/src/utils/gradebook/gradebookClassSummary.ts</code>
+      <span class="nav-note">Modelled the numeric snapshot builder on this; test asserts the two agree</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/services/categoryWeightHistoryService.ts">renderer/src/services/categoryWeightHistoryService.ts</code>
+      <span class="nav-note">KEY FIND — a cross-course, storage-root-level store already exists keyed by course template code</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/utils/d2l/matchD2LTemplate.ts">renderer/src/utils/d2l/matchD2LTemplate.ts</code>
+      <span class="nav-note">d2lLabelToTemplateCourseCode gives M1314 from the label; reused instead of inventing a second course-family key</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="modules/makeup-exam/backend/history_handler.py">modules/makeup-exam/backend/history_handler.py</code>
+      <span class="nav-note">JSONL append + dedupe-on-read precedent for the Drive-synced two-machine case</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="electron-app/macro-storage-tree.js">electron-app/macro-storage-tree.js</code>
+      <span class="nav-note">retired-courses/ is in CLEANUP_FOLDER_NAMES — proved the store must NOT live inside the archives</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookPullChangeBadge.tsx">renderer/src/components/gradebook/GradebookPullChangeBadge.tsx</code>
+      <span class="nav-note">Exemplar for the repeat-student badge + portal tooltip</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookCategorySummary.test.ts">renderer/src/utils/gradebook/gradebookCategorySummary.test.ts</code>
+      <span class="nav-note">Recovered the real D2L header format after my first test fixture produced no exam columns</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="renderer/src/__tests__/reactEffectLoopRisk.test.ts">renderer/src/__tests__/reactEffectLoopRisk.test.ts</code>
+      <span class="nav-note">Guardrail flagged reloadToken as function-like; renamed to reloadKey to match the repo's scalar convention</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">13</span>
+      
+      <code class="nav-target" title="electron-app/.eslintrc.cjs">electron-app/.eslintrc.cjs</code>
+      <span class="nav-note">ADR-002 rule caught fs.writeFileSync in my test fixture; rewrote with appendFileSync rather than widening the allowlist</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">14</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookReadApi.ts">renderer/src/hooks/gradebook/gradebookReadApi.ts</code>
+      <span class="nav-note">Thin guard only — no per-course read helper; the real path was gradebookSessionService.loadWorkingGradebook</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">15</span>
+      
+      <code class="nav-target" title="Programs root (Glob for 'Macro App')">Programs root (Glob for 'Macro App')</code>
+      <span class="nav-note">App is under School Scrips/, not Programs root — cost three subagents a path correction</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:51 PM — First Day Handout — insert/edit links in editor ribbon — 3 steps · 1m 50s</span>
+      <span class="pill p2">16 searches not in path</span><span class="pill p2">Hunted before doc — 16 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 2:49 PM
+         · 1m 50s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 16 search(es), 0 doc read(s) · 16 not in path · coverage 9%
+        <br>Wall-clock gap since previous task: 1m 54s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="FirstDayHandoutFormattingRibbon + useFirstDayHandoutEditor">FirstDayHandoutFormattingRibbon + useFirstDayHandoutEditor</code>
+      <span class="nav-note">Existing editor had no link support; CSS for anchors already present</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="InsertHandoutLinkModal + firstDayHandoutEditorLink.ts">InsertHandoutLinkModal + firstDayHandoutEditorLink.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="vitest (3 tests)">vitest (3 tests)</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:06 PM — Online First Day Handout exam ranges from My Calendar tags — 5 steps · 47s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:05 PM
+         · 47s active tool time
+        <br>5 steps · first helpful at #2 · 4 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 2 doc read(s) · 1 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 50s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Macro App AGENTS → FIRST_DAY_HANDOUT.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/FIRST_DAY_HANDOUT.md">School Scrips/Macro App/docs/FIRST_DAY_HANDOUT.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="buildQuizExamDatesTable.ts + extractExamWindowsFromTags.ts">buildQuizExamDatesTable.ts + extractExamWindowsFromTags.ts</code>
+      <span class="nav-note">Extended table assembly; reused tag windows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="firstDayHandoutCalendarService.ts">firstDayHandoutCalendarService.ts</code>
+      <span class="nav-note">Online path loads tags and substitutes exam rows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="vitest (19 tests)">vitest (19 tests)</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:50 PM — Added embedded browser scroll and reset diagnostics, with live reattach hardening — 10 steps · 1m 47s</span>
+      <span class="pill p2">60 searches not in path</span><span class="pill p2">Hunted before doc — 22 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:23 PM
+         · 1m 47s active tool time
+        <br>10 steps · first helpful at #1 · 9 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 60 search(es), 8 doc read(s) · 60 not in path · coverage 10%
+        <br>Wall-clock gap since previous task: 19m 7s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App browser work to the app-specific guidance.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed Macro App constraints before editing.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed modal-suppressed browser detachment is intentional and scroll must not reattach over modals.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Checked general recipe routing; app-specific browser docs were the useful source.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/components/browser/BrowserVerticalScrollRail.tsx">renderer/src/components/browser/BrowserVerticalScrollRail.tsx</code>
+      <span class="nav-note">Found the rail swallowed scrollBy results, so failures like modal_open/no_view were invisible.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/browser/useEmbeddedBrowser.ts">renderer/src/hooks/browser/useEmbeddedBrowser.ts</code>
+      <span class="nav-note">Found same-slot activation could skip ensureLiveBrowser when React thought the browser was already embedded.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-scroll.js">electron-app/browser-slot-scroll.js</code>
+      <span class="nav-note">Added Electron-side accepted/blocked scroll diagnostics with active, visible, and modal state.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="electron-app/browser-slot-restart.js">electron-app/browser-slot-restart.js</code>
+      <span class="nav-note">Added guarded reset lifecycle logging so reset failures surface instead of disappearing.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="renderer/src/__tests__/electron-browser-slot-modal-scroll.test.ts">renderer/src/__tests__/electron-browser-slot-modal-scroll.test.ts</code>
+      <span class="nav-note">Kept coverage for the modal_open behavior while expanding the returned state.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="Focused typecheck, lint, and vitest">Focused typecheck, lint, and vitest</code>
+      <span class="nav-note">Renderer typecheck, focused renderer/electron lint, and modal-scroll regression test passed.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:31 PM — Added two-minute freshness window for Managing Grades Bulk Edit scan cache — 4 steps · 2m 15s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:23 PM
+         · 2m 15s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 2m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Confirmed the in-session cache had no TTL and bypassed the fast check whenever the course scan matched.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/gradebook/bulkEditScanCache.ts">School Scrips/Macro App/renderer/src/utils/gradebook/bulkEditScanCache.ts</code>
+      <span class="nav-note">Confirmed the disk cache path always fast-fingerprints before reusing cached scan data, but cachedAt was not used as a time window.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts</code>
+      <span class="nav-note">Added a two-minute fresh-cache window and kept app-managed local changes fresh without a full rescan.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Renderer typecheck and focused lint">Renderer typecheck and focused lint</code>
+      <span class="nav-note">Full renderer typecheck and focused ESLint for useGradesBulkEdit passed.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:28 PM — Fixed hidden labels in Bulk Edit dropdowns and cache fingerprint — 8 steps · 1m 26s</span>
+      <span class="pill p2">9 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:23 PM
+         · 1m 26s active tool time
+        <br>8 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 2 doc read(s) · 9 not in path · coverage 38%
+        <br>Wall-clock gap since previous task: 5m 49s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed the screenshot follow-up to Macro App and modal interaction docs before searching.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed Macro App constraints and no visible UI testing.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
+      <span class="nav-note">Confirmed the Manage Grades bulk edit path and scrape ownership.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Confirmed modal/browser constraints; not directly responsible for the missing dropdown label.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditReorderPanel.tsx">School Scrips/Macro App/renderer/src/components/side-panels/BulkEditReorderPanel.tsx</code>
+      <span class="nav-note">Found the insert-after dropdown was rendering plain homework item names with no hidden metadata.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/side-panels/GradesBulkEditUnifiedModal.tsx">School Scrips/Macro App/renderer/src/components/side-panels/GradesBulkEditUnifiedModal.tsx</code>
+      <span class="nav-note">Derived homework dropdown options from itemsByCategory so hidden flags flow into option labels.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/manage-grades-bulk-scan-script.js">School Scrips/Macro App/electron-app/manage-grades-bulk-scan-script.js</code>
+      <span class="nav-note">Found the fast cache fingerprint script did not include hidden state, allowing stale scans without hidden metadata.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Focused renderer/electron/python checks">Focused renderer/electron/python checks</code>
+      <span class="nav-note">Renderer typecheck, focused renderer lint, Electron helper lint, Electron fingerprint test, and Python fingerprint test all passed.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:09 AM — Reattach contract fixed: unfreeze now releases a claim instead of commanding a reattach; deferred until no modal overlay is on screen, with a drift test on the overlay class — 6 steps · 12h 11m</span>
       
