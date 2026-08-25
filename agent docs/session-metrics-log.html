@@ -146,10 +146,64 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>68</dd></div>
+      <div><dt>Total sessions</dt><dd>70</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">4:00 PM · Tuesday, Aug 25, 2026</dd></div>
     </div>
+    <section class="day-block">
+      <h2 class="day-title">Current session (live tally)</h2>
+      <div class="day-sessions"><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">4:00 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        <span class="pill p3" title="Hook tally started on this tool call — any reads/searches before that are not in the counts.">Missing early work — hook started late</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Session in progress…</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>9</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>5</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/180987.txt">180987.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/a37e547e-cb5c-4b07-ae92-6d5e78cb0cc6.txt">a37e547e-cb5c-4b07-ae92-6d5e78cb0cc6.txt</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/session-scorecards.jsonl">session-scorecards.jsonl</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>0</dd>
+    </summary>
+    <div class="metric-panel"><p class="muted-inline">None logged</p></div>
+  </details></div>
     
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hook tally missing pre-hook work — bump tasks as you go. Hook auto-tally active.
+    </div>
+    
+  </article></div>
+    </section>
     <section class="day-block">
       <h2 class="day-title">Tuesday, Aug 25, 2026</h2>
       <div class="day-sessions"><article class="session-card">
@@ -266,6 +320,106 @@
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
+        <span class="time">4:37 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">feature</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Seating Chart: F219 room layout switch, save fix, debug log, and desktop launcher shortcut. Fixed boot race that reset layout and blocked save.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>17</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>129</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>19</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="School Scripts/seating-chart/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-final-exact-match.json">.scorecard-bump-final-exact-match.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-archive.json">.scorecard-bump-seating-archive.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-rooms.json">.scorecard-bump-seating-rooms.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.session-scorecard-running.json">.session-scorecard-running.json</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/1d4905ad-4778-4524-b82f-6271dbe488e1.txt">1d4905ad-4778-4524-b82f-6271dbe488e1.txt</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/recipes/modal-shell.md">modal-shell.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/package.json">package.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>41</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx">AttendanceHistoryModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/utils/attendanceUtils.ts">attendanceUtils.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/buildGradebookImportCsv.test.ts">buildGradebookImportCsv.test.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/buildGradebookImportCsv.ts">buildGradebookImportCsv.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/config/courseLayoutMap.ts">courseLayoutMap.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/d2l_raw_cdp.py">d2l_raw_cdp.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/scripts/electron-dev.mjs">electron-dev.mjs</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/gradebookHeaderMeta.ts">gradebookHeaderMeta.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/gradebook/gradebookImportPayloadLog.ts">gradebookImportPayloadLog.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/types/gradebookTypes.ts">gradebookTypes.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_grid_scripts.py">grades_enter_grid_scripts.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/Launch-Seating-Chart.bat">Launch-Seating-Chart.bat</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/launch.bat">launch.bat</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/layout-registry.js">layout-registry.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layout1Definition.ts">layout1Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layout2Definition.ts">layout2Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layoutDefinitions.ts">layoutDefinitions.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/layouts/layoutF219Definition.ts">layoutF219Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/electron-app/machine-profile.js">machine-profile.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/main.js">main.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/utils/nameFormat.ts">nameFormat.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/utils/nameFormat.ts">nameFormat.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/utils/shared/optionalSpread.ts">optionalSpread.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/preload.js">preload.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/scripts/probe_enter_grades_grid.py">probe_enter_grades_grid.py</code></li><li><code class="" title="School Scripts/seating-chart/src/components/RoomLayoutModal.tsx">RoomLayoutModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/electron-app/roster-csv-edit.js">roster-csv-edit.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/electron-app/rosters-paths.js">rosters-paths.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatCell.tsx">SeatCell.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/types/seating.ts">seating.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/services/seatingChartService.ts">seatingChartService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingGrid.tsx">SeatingGrid.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SettingsMenu.tsx">SettingsMenu.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/storage-io.js">storage-io.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/tests/test_grades_enter_import_actions.py">test_grades_enter_import_actions.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useCourseSelection.ts">useCourseSelection.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useSeatingChart.ts">useSeatingChart.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useSelectionHistory.ts">useSelectionHistory.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/vite-env.d.ts">vite-env.d.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>9</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-final-exact-match.json">.scorecard-bump-final-exact-match.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-archive.json">.scorecard-bump-seating-archive.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-rooms.json">.scorecard-bump-seating-rooms.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md">GRADE_IMPORT_INTEGRATION.md</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>41</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/scripts/.layout-bundle.cjs">.layout-bundle.cjs</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/config/courseLayoutMap.ts">courseLayoutMap.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/utils/debugLog.ts">debugLog.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/utils/debugLog.ts">debugLog.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/DebugLogPanel.tsx">DebugLogPanel.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/DebugLogPanel.tsx">DebugLogPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py">grades_enter_import_actions.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li><li><code class="" title="School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py">grades_enter_import_scripts.py</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layout1Definition.ts">layout1Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layoutDefinitions.ts">layoutDefinitions.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layoutF219Definition.ts">layoutF219Definition.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/layouts/layoutF219Definition.ts">layoutF219Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/macro-roster-bridge.js">macro-roster-bridge.js</code></li><li><code class="" title="School Scripts/seating-chart/electron/macro-roster-bridge.js">macro-roster-bridge.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/main.js">main.js</code></li><li><code class="" title="School Scripts/seating-chart/electron/main.js">main.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/utils/nameFormat.ts">nameFormat.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/utils/nameFormat.ts">nameFormat.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/preload.js">preload.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/RoomLayoutModal.tsx">RoomLayoutModal.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/RoomLayoutModal.tsx">RoomLayoutModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/seating-drive-io.js">seating-drive-io.js</code></li><li><code class="" title="School Scripts/seating-chart/electron/seating-drive-io.js">seating-drive-io.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/services/seatingChartService.ts">seatingChartService.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/services/seatingChartService.ts">seatingChartService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingGrid.tsx">SeatingGrid.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/SeatingGrid.tsx">SeatingGrid.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/seatingPersistTypes.ts">seatingPersistTypes.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/hooks/seatingPersistTypes.ts">seatingPersistTypes.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingWorkspace.tsx">SeatingWorkspace.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/SeatingWorkspace.tsx">SeatingWorkspace.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useCourseSelection.ts">useCourseSelection.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/hooks/useCourseSelection.ts">useCourseSelection.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/Macro-App/renderer/src/hooks/gradebook/useGradebookD2L.ts">useGradebookD2L.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useSeatingChart.ts">useSeatingChart.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/hooks/useSeatingChart.ts">useSeatingChart.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/scripts/verify-room-layouts.mjs">verify-room-layouts.mjs</code></li><li><code class="" title="School Scripts/seating-chart/scripts/verify-room-layouts.mjs">verify-room-layouts.mjs</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/vite-env.d.ts">vite-env.d.ts</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Chase confirmed F219 layout and save work live; initAppData re-run was root cause of layout stomp.
+    </div>
+    <p class="next"><strong>Next time:</strong> Gate or remove debug log panel; mirror F219 in electron layout-registry for pick hotkey.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">3:59 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">First Day Handout gained online exam date ranges from My Calendar tags, hyperlink editing, autosave that flushes live editor HTML, Syllabus.pdf export naming, and wider Important Dates columns for PDF. Embedded-browser popups from Managing Dates and Manage Grades now merge into the visible embedded tab instead of the primary browser slot.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>8</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>51</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>10</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">D2L_GRADES_AUTOMATION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/D2L_PDF_VIEWER_ELECTRON_INVESTIGATION.md">D2L_PDF_VIEWER_ELECTRON_INVESTIGATION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>14</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-gradebook-lru.js">browser-slot-gradebook-lru.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-manage-grades-probe.js">browser-slot-manage-grades-probe.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-popups.js">browser-slot-popups.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-state.js">browser-slot-state.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-url.js">browser-slot-url.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-zorder.test.js">browser-slot-zorder.test.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-view-slots.js">browser-view-slots.js</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/types/gradesTypes.ts">gradesTypes.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/manageGradesBrowserSlot.ts">manageGradesBrowserSlot.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/ManageGradesSidePanel.tsx">ManageGradesSidePanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx">ManageGradesSidePanelModals.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkEditSelection.ts">useBulkEditSelection.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/shell/useManageDatesBrowserEffects.ts">useManageDatesBrowserEffects.ts</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/shell/useManageGradesBrowserEffects.ts">useManageGradesBrowserEffects.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>4</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>6</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-popups.js">browser-slot-popups.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-popups.test.js">browser-slot-popups.test.js</code></li><li><code class="" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/electron-app/browser-slot-state.js">browser-slot-state.js</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkEditCategoryOrder.ts">useBulkEditCategoryOrder.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkEditReorderActions.ts">useBulkEditReorderActions.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">useGradesBulkEdit.ts</code></li></ul></div>
+  </details></div>
+    
+    
+    <p class="next"><strong>Next time:</strong> Full Electron restart then spot-check Manage Dates popup-in-tab and FDH Edit autosave on tab switch.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
         <span class="time">3:59 PM</span>
         <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
         <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
@@ -367,6 +521,63 @@
     
     <div class="note-box">
       <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Chase's report that clicking outside a modal dismissed it was wrong — no overlay in the app has backdrop dismiss. The modal never closed; the native browser was painted back over it by scrollBy calling recoverLiveBrowserFromModalDetach on every scroll, and BrowserVerticalScrollRail fires on hover, not click. A naive ++/-- refcount would have made this worse because freeze/unfreeze calls are deliberately unbalanced in usePearsonUnits.
+    </div>
+    <p class="next"><strong>Next time:</strong> Chase evaluates whether the Grade-column width works as the fixed column width for all assignment columns; a width slider was deferred and resolveGradeColWidthPx is the single place it would plug in.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">7:36 AM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Reworked Gradebook horizontal column paging so shifts land on exact column edges and move in one continuous glide, renamed Calculated Grade to Grade, and added a Fixed column width option driven by a new drag handle on the Grade column. Then diagnosed and fixed a Pearson-tab bug where hovering the browser scroll rail reattached the embedded browser over an open modal and bricked the app, and hardened the reattach contract so a stray unfreeze can no longer surface the browser under any modal.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>14</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>97</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>18</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/038325d4-d1fa-405f-9626-8fb9d9efb515.txt">038325d4-d1fa-405f-9626-8fb9d9efb515.txt</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/decisions/ADR-001-use-persisted-state.md">ADR-001-use-persisted-state.md</code></li><li><code class="path-doc" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">BROWSER_TAB_INTEGRATION.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">D2L_GRADES_AUTOMATION.md</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/agent-tools/ebf9ebb4-2e57-4bc5-bbb9-d710c173cf17.txt">ebf9ebb4-2e57-4bc5-bbb9-d710c173cf17.txt</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">EMBEDDED_BROWSER_AND_MODALS.md</code></li><li><code class="path-doc" title="C:/Users/chase/.claude/plans/in-the-macro-app-parsed-pearl.md">in-the-macro-app-parsed-pearl.md</code></li><li><code class="path-doc" title="agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/MODAL_CATALOG.md">MODAL_CATALOG.md</code></li><li><code class="path-doc" title="agent docs/rules/multi-repo-git-push.md">multi-repo-git-push.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/MY_CALENDAR_TEMPLATES.md">MY_CALENDAR_TEMPLATES.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/package.json">package.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/renderer/package.json">package.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/pytest-out.txt">pytest-out.txt</code></li><li><code class="path-doc" title="agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/modules/d2l/STORED_AUTOMATIONS.md">STORED_AUTOMATIONS.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>52</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/assignmentExtractedCategory.ts">assignmentExtractedCategory.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTemplateCsvService.js">assignmentTemplateCsvService.js</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/assignmentTimeScheduleOverrides.ts">assignmentTimeScheduleOverrides.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTimeScheduleStore.js">assignmentTimeScheduleStore.js</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditCategoryAccordion.tsx">BulkEditCategoryAccordion.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditCategoryOrderSection.tsx">BulkEditCategoryOrderSection.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditReorderPanel.tsx">BulkEditReorderPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/chrome/D2LWorkspaceHeader.tsx">D2LWorkspaceHeader.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookAssignmentBulkTooltip.tsx">GradebookAssignmentBulkTooltip.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookAssignmentHeaderAnchor.tsx">GradebookAssignmentHeaderAnchor.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookCategoryFilterButtons.tsx">GradebookCategoryFilterButtons.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookCategoryFilterColumns.ts">gradebookCategoryFilterColumns.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookCategoryFilters.ts">gradebookCategoryFilters.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookCategoryHeaderAnchor.tsx">GradebookCategoryHeaderAnchor.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookColumnAverageTooltip.tsx">GradebookColumnAverageTooltip.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumns.ts">gradebookColumns.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnSnap.ts">gradebookColumnSnap.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookFilteringPanel.tsx">GradebookFilteringPanel.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookFilteringPanelOptions.tsx">GradebookFilteringPanelOptions.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookHeaderCell.tsx">GradebookHeaderCell.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookLayoutDefaults.ts">gradebookLayoutDefaults.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookNameColumnHeader.tsx">GradebookNameColumnHeader.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookNameColumnWidths.ts">gradebookNameColumnWidths.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookOptionsModal.tsx">GradebookOptionsModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookPageSpeed.ts">gradebookPageSpeed.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookScrollFrame.tsx">GradebookScrollFrame.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookSimpleColumnHeaderAnchor.tsx">GradebookSimpleColumnHeaderAnchor.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookTable.tsx">GradebookTable.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookTableCellClass.ts">gradebookTableCellClass.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx">GradebookView.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookViewTuningPrefs.ts">gradebookViewTuningPrefs.ts</code></li><li><code class="" title="School Scrips/Macro App/modules/d2l/grades_bulk_actions.py">grades_bulk_actions.py</code></li><li><code class="" title="School Scrips/Macro App/modules/d2l/grades_bulk_tasks.py">grades_bulk_tasks.py</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradesBulkEditOverlay.ts">gradesBulkEditOverlay.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/services/gradesService.ts">gradesService.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/types/gradesTypes.ts">gradesTypes.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/index.css">index.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/services/myCalendarTemplateService.ts">myCalendarTemplateService.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/styles/gradebook/scroll-filter.css">scroll-filter.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/shell-tabs.css">shell-tabs.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/shell/TabbedAppShell.tsx">TabbedAppShell.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/styles/gradebook/table-grid.css">table-grid.css</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/server/backend/routes/templateLibraryRoutes.js">templateLibraryRoutes.js</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentTimeSchedule.ts">useAssignmentTimeSchedule.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookCategoryFilters.ts">useGradebookCategoryFilters.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookColumnBlockFlip.ts">useGradebookColumnBlockFlip.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookDisplaySettings.ts">useGradebookDisplaySettings.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHorizontalArrowGuard.ts">useGradebookHorizontalArrowGuard.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHoverPage.ts">useGradebookHoverPage.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookNameColumns.ts">useGradebookNameColumns.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">useGradebookScrollPaging.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">useGradesBulkEdit.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>4</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/My Drive/Rosters etc/Calendars/Calendar Templates/assignment-time-schedules.json">assignment-time-schedules.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">EMBEDDED_BROWSER_AND_MODALS.md</code></li><li><code class="path-doc" title="C:/Users/chase/.claude/plans/in-the-macro-app-parsed-pearl.md">in-the-macro-app-parsed-pearl.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/pytest-out.txt">pytest-out.txt</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>56</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="School Scrips/Macro App/renderer/src/components/shell/AppMainPanel.tsx">AppMainPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/__tests__/assignmentExtractedCategory.test.ts">assignmentExtractedCategory.test.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/assignmentExtractedCategory.ts">assignmentExtractedCategory.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTemplateCsvService.js">assignmentTemplateCsvService.js</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/__tests__/assignmentTimeScheduleOverrides.test.ts">assignmentTimeScheduleOverrides.test.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/utils/assignmentTimeScheduleOverrides.ts">assignmentTimeScheduleOverrides.ts</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/server/backend/services/assignmentTimeScheduleStore.js">assignmentTimeScheduleStore.js</code></li><li><code class="" title="School Scrips/Macro App/electron-app/browser-slot-scroll.js">browser-slot-scroll.js</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditCategoryAccordion.tsx">BulkEditCategoryAccordion.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditCategoryOrderModal.tsx">BulkEditCategoryOrderModal.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditCategoryOrderSection.tsx">BulkEditCategoryOrderSection.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/BulkEditReorderPanel.tsx">BulkEditReorderPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/bulkEditScanCache.ts">bulkEditScanCache.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/modules/d2l-assignment-assistant/D2LAssignmentAssistantView.tsx">D2LAssignmentAssistantView.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/__tests__/electron-browser-slot-modal-scroll.test.ts">electron-browser-slot-modal-scroll.test.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/browser/EmbeddedBrowserPanel.tsx">EmbeddedBrowserPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookColumnResizeHandle.tsx">GradebookColumnResizeHandle.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumns.ts">gradebookColumns.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnSnap.test.ts">gradebookColumnSnap.test.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnSnap.ts">gradebookColumnSnap.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookColumnSnap.ts">gradebookColumnSnap.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookFilteringPanel.tsx">GradebookFilteringPanel.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookFilteringPanelOptions.tsx">GradebookFilteringPanelOptions.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookHeaderCell.tsx">GradebookHeaderCell.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookNameColumnHeader.tsx">GradebookNameColumnHeader.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookNameColumnWidths.test.ts">gradebookNameColumnWidths.test.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradebookNameColumnWidths.ts">gradebookNameColumnWidths.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookScrollFrame.tsx">GradebookScrollFrame.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookTable.tsx">GradebookTable.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx">GradebookView.tsx</code></li><li><code class="" title="School Scrips/Macro App/modules/d2l/grades_bulk_actions.py">grades_bulk_actions.py</code></li><li><code class="" title="School Scrips/Macro App/modules/d2l/grades_bulk_tasks.py">grades_bulk_tasks.py</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/utils/gradebook/gradesBulkEditOverlay.ts">gradesBulkEditOverlay.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/GradesBulkEditUnifiedModal.tsx">GradesBulkEditUnifiedModal.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/services/gradesService.ts">gradesService.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/types/gradesTypes.ts">gradesTypes.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/index.css">index.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/components/side-panels/ManageGradesSidePanelModals.tsx">ManageGradesSidePanelModals.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/__tests__/modal-overlay-class-invariant.test.ts">modal-overlay-class-invariant.test.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/dev/modal-catalog/modalCatalogEntriesShellGradesPlus.tsx">modalCatalogEntriesShellGradesPlus.tsx</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/dev/modal-catalog/modalCatalogFixtures.ts">modalCatalogFixtures.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/services/myCalendarTemplateService.ts">myCalendarTemplateService.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/shell-file-tabs.css">shell-file-tabs.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/shell-manage-workspace-tabs.css">shell-manage-workspace-tabs.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/shell-tabs.css">shell-tabs.css</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/styles/gradebook/table-grid.css">table-grid.css</code></li><li><code class="" title="School Scrips/Macro App/my-calendar/src/hooks/useAssignmentTimeSchedule.ts">useAssignmentTimeSchedule.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkEditAutomationEpoch.ts">useBulkEditAutomationEpoch.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkEditReorderActions.ts">useBulkEditReorderActions.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/browser/useEmbeddedBrowser.ts">useEmbeddedBrowser.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/browser/useEmbeddedBrowserModal.ts">useEmbeddedBrowserModal.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookFixedColumnWidth.ts">useGradebookFixedColumnWidth.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookNameColumns.ts">useGradebookNameColumns.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">useGradebookScrollPaging.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">useGradebookScrollPaging.ts</code></li><li><code class="" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradesBulkEdit.ts">useGradesBulkEdit.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Non-read/edit agent tools (MCP browser, Task, WebFetch, etc.). Snapshots counted separately.">Tools used</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="Agent">Agent</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Chase's report that clicking outside a modal dismissed it was wrong ΓÇö no overlay in the app has backdrop dismiss. The modal never closed; the native browser was painted back over it by scrollBy calling recoverLiveBrowserFromModalDetach on every scroll, and BrowserVerticalScrollRail fires on hover, not click. A naive ++/-- refcount would have made this worse because freeze/unfreeze calls are deliberately unbalanced in usePearsonUnits.
     </div>
     <p class="next"><strong>Next time:</strong> Chase evaluates whether the Grade-column width works as the fixed column width for all assignment columns; a width slider was deferred and resolveGradeColWidthPx is the single place it would plug in.</p>
   </article></div>
@@ -471,7 +682,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Found a large batch of already-staged, uncommitted work from a prior session (portal anchoring, calendar times, AA sidebar trims) sitting in the index — committed it alongside this session's work per end-of-session protocol rather than leaving it stranded.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Found a large batch of already-staged, uncommitted work from a prior session (portal anchoring, calendar times, AA sidebar trims) sitting in the index ΓÇö committed it alongside this session's work per end-of-session protocol rather than leaving it stranded.
     </div>
     <p class="next"><strong>Next time:</strong> Chase to try the new down/up arrow pair under the left/right pager and confirm the feel; no other open threads.</p>
   </article><article class="session-card">
@@ -528,7 +739,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Prior CSS that collapsed tabbed-shell-left was the wrong layer — vendored embeds kept internal sidebars aligned with the tab row until the portal slot fix.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Prior CSS that collapsed tabbed-shell-left was the wrong layer ΓÇö vendored embeds kept internal sidebars aligned with the tab row until the portal slot fix.
     </div>
     <p class="next"><strong>Next time:</strong> After Macro App restart, confirm My Calendar sidebar is flush left under pills and AA browser gap looks right; tune --aa-shell-sidebar-gap if needed.</p>
   </article></div>
@@ -683,9 +894,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Office hours come from FDH section fieldOverrides when semester.officeHours is empty — not the old DEFAULT_HANDOUT_STORED_FIELDS fallback.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Office hours come from FDH section fieldOverrides when semester.officeHours is empty ΓÇö not the old DEFAULT_HANDOUT_STORED_FIELDS fallback.
     </div>
-    <p class="next"><strong>Next time:</strong> Live print from Schedule tab — confirm landscape half-page size; tweak print CSS if needed.</p>
+    <p class="next"><strong>Next time:</strong> Live print from Schedule tab ΓÇö confirm landscape half-page size; tweak print CSS if needed.</p>
   </article></div>
     </section><section class="day-block">
       <h2 class="day-title">Tuesday, Aug 18, 2026</h2>
@@ -737,9 +948,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs root and Macro App both behind origin/main by 3 commits — pull before push may need collision check.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs root and Macro App both behind origin/main by 3 commits ΓÇö pull before push may need collision check.
     </div>
-    <p class="next"><strong>Next time:</strong> After restart: smoke-test Statistics EC apply/revert and Browser Home → My Courses All tab.</p>
+    <p class="next"><strong>Next time:</strong> After restart: smoke-test Statistics EC apply/revert and Browser Home ΓåÆ My Courses All tab.</p>
   </article></div>
     </section><section class="day-block">
       <h2 class="day-title">Monday, Aug 17, 2026</h2>
@@ -842,7 +1053,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> content_quiz_key_conditions.py is at 700 lines — at extract threshold.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> content_quiz_key_conditions.py is at 700 lines ΓÇö at extract threshold.
     </div>
     <p class="next"><strong>Next time:</strong> Live-test Set quiz key release conditions on a course with YouTube topics in quiz modules; confirm bulk-edit live browser + scroll after Macro App restart.</p>
   </article></div>
@@ -1004,7 +1215,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Playwright Locator.click() is unreliable on this D2L Content markup (raw textContent has tabs/newlines, and off-screen accessibility links fail viewport actionability checks) — plain page.evaluate() JS clicks are the proven pattern here.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Playwright Locator.click() is unreliable on this D2L Content markup (raw textContent has tabs/newlines, and off-screen accessibility links fail viewport actionability checks) ΓÇö plain page.evaluate() JS clicks are the proven pattern here.
     </div>
     <p class="next"><strong>Next time:</strong> Confirm with Chase whether Units 3-5 (Quiz 4/5/6) are missing key PDFs on purpose or still need uploading; restart Macro App to pick up the new button.</p>
   </article><article class="session-card">
@@ -1018,7 +1229,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Overlay Creator gained per-overlay through/block pointer policy end-to-end (registry, presets, runtime block gate, behavior popup, settings, Active tile badge) plus saved-group picker UX: individual Active tiles, Active · name title, Exit auto-save and deactivate-all, click-only tiles and mode popup, and header buttons that survive data refresh.</p>
+    <p class="summary-human">Overlay Creator gained per-overlay through/block pointer policy end-to-end (registry, presets, runtime block gate, behavior popup, settings, Active tile badge) plus saved-group picker UX: individual Active tiles, Active ┬╖ name title, Exit auto-save and deactivate-all, click-only tiles and mode popup, and header buttons that survive data refresh.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>11</dd>
@@ -1055,7 +1266,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Exit preset now closes all active overlays (supersedes original plan keep-on). renderAll must not clear header click handlers — only tile handlers.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Exit preset now closes all active overlays (supersedes original plan keep-on). renderAll must not clear header click handlers ΓÇö only tile handlers.
     </div>
     <p class="next"><strong>Next time:</strong> Live tune block-region geometry on tabletop overlays if click blocking feels misaligned.</p>
   </article><article class="session-card">
@@ -1157,7 +1368,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Live testing on MATH-2412 found toast text is Moved successfully not move successful; opening module subfolders caused bad nests — collapse-before-move is now mandatory. Unit 1 course tree may need manual cleanup from earlier test moves.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Live testing on MATH-2412 found toast text is Moved successfully not move successful; opening module subfolders caused bad nests ΓÇö collapse-before-move is now mandatory. Unit 1 course tree may need manual cleanup from earlier test moves.
     </div>
     <p class="next"><strong>Next time:</strong> Reload Macro App, verify Sort completes all units on MATH-2412 with toasts and no slot crash; confirm Content order matches Course Builder for Unit 1.</p>
   </article><article class="session-card">
@@ -1466,9 +1677,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Multiple rounds of 'fix, verify headlessly, ship' surfaced real latent bugs each time (courseSlug staleness, a resumeExistingSession race, and an unstable useMemo dependency) that were previously masked by slower disk I/O — each fix was correct and tested, but did not fully resolve what Chase is seeing live, since Claude cannot run the Electron GUI directly.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Multiple rounds of 'fix, verify headlessly, ship' surfaced real latent bugs each time (courseSlug staleness, a resumeExistingSession race, and an unstable useMemo dependency) that were previously masked by slower disk I/O ΓÇö each fix was correct and tested, but did not fully resolve what Chase is seeing live, since Claude cannot run the Electron GUI directly.
     </div>
-    <p class="next"><strong>Next time:</strong> Chase says the fix did not resolve it. Get a fresh console log / repro steps from him before making further changes — do not guess again. Consider asking him to describe exactly what's still wrong (crash? visual jank? stuck tab?) since his last message just said 'that didn't fix it' with no detail.</p>
+    <p class="next"><strong>Next time:</strong> Chase says the fix did not resolve it. Get a fresh console log / repro steps from him before making further changes ΓÇö do not guess again. Consider asking him to describe exactly what's still wrong (crash? visual jank? stuck tab?) since his last message just said 'that didn't fix it' with no detail.</p>
   </article></div>
     </section><section class="day-block">
       <h2 class="day-title">Wednesday, Aug 12, 2026</h2>
@@ -1577,7 +1788,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Found a genuinely dead, unused second auto-scaling engine (gradebookFitTieredScale.ts + gradebookFitMeasure.ts) with zero production callers and deleted it; also caught that a distribution-build config would silently leak a build machine's laptop/desktop profile into every fresh install (flagged, not fixed yet — Chase said hold off).
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Found a genuinely dead, unused second auto-scaling engine (gradebookFitTieredScale.ts + gradebookFitMeasure.ts) with zero production callers and deleted it; also caught that a distribution-build config would silently leak a build machine's laptop/desktop profile into every fresh install (flagged, not fixed yet ΓÇö Chase said hold off).
     </div>
     <p class="next"><strong>Next time:</strong> Reload the app to confirm the gradebook fix live, and re-check First Day Handout's roster-folder button and PDF export for MATH-2413/MATH-1324.</p>
   </article><article class="session-card">
@@ -1741,7 +1952,7 @@
     <div class="note-box">
       <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Discovered a genuine self-introduced bug during verification (exact-match short-circuit defeating the disambiguation logic) and fixed it before it shipped, via full test-suite + typecheck verification rather than trusting the design alone.
     </div>
-    <p class="next"><strong>Next time:</strong> Optional follow-up: same bug pattern exists server-side in my-calendar's templateLibraryService.js (resolveCourseMapKey) — flagged as a spawn_task suggestion, not yet implemented.</p>
+    <p class="next"><strong>Next time:</strong> Optional follow-up: same bug pattern exists server-side in my-calendar's templateLibraryService.js (resolveCourseMapKey) ΓÇö flagged as a spawn_task suggestion, not yet implemented.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2030,7 +2241,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Macro App: calendar Excel export borders, Bulk Edit fingerprint cache, gradebook timing, and related session work were already pushed earlier. This wrap added electron-toolbar quick drag while paused — F22 and the DRAG overlay arm one-shot Mode 2 even when dwell is explicitly paused, then restore Paused when the drag finishes; DRAG overlay now uses dwell_quick_drag instead of persistent F20.</p>
+    <p class="summary-human">Macro App: calendar Excel export borders, Bulk Edit fingerprint cache, gradebook timing, and related session work were already pushed earlier. This wrap added electron-toolbar quick drag while paused ΓÇö F22 and the DRAG overlay arm one-shot Mode 2 even when dwell is explicitly paused, then restore Paused when the drag finishes; DRAG overlay now uses dwell_quick_drag instead of persistent F20.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>15</dd>
@@ -2067,7 +2278,7 @@
   </details></div>
     
     
-    <p class="next"><strong>Next time:</strong> Live-test quick drag from paused (F17 → F22 or DRAG label hover → complete drag → confirm Paused); Macro App Bulk Edit second-open speed on unchanged Manage Grades.</p>
+    <p class="next"><strong>Next time:</strong> Live-test quick drag from paused (F17 ΓåÆ F22 or DRAG label hover ΓåÆ complete drag ΓåÆ confirm Paused); Macro App Bulk Edit second-open speed on unchanged Manage Grades.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2079,7 +2290,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Shipped Bulk Edit Gradebook-style change detection (in-browser fingerprint + userData scan cache, skips ~10s Python when Manage Grades unchanged). Same session: calendar Excel border frame after Mon–Thu collapse, Important Dates cleanup, gradebook D2L timing/logging.</p>
+    <p class="summary-human">Shipped Bulk Edit Gradebook-style change detection (in-browser fingerprint + userData scan cache, skips ~10s Python when Manage Grades unchanged). Same session: calendar Excel border frame after MonΓÇôThu collapse, Important Dates cleanup, gradebook D2L timing/logging.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>4</dd>
@@ -2128,7 +2339,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Removed semester-level Final Exams Start from Important Dates and FDH; improved calendar screenshot (Mon–Thu, higher resolution) and fixed Mon–Thu Excel export grid borders after column collapse. Also shipped Bulk Edit snapshot-first scanning and gradebook D2L timing/logging improvements.</p>
+    <p class="summary-human">Removed semester-level Final Exams Start from Important Dates and FDH; improved calendar screenshot (MonΓÇôThu, higher resolution) and fixed MonΓÇôThu Excel export grid borders after column collapse. Also shipped Bulk Edit snapshot-first scanning and gradebook D2L timing/logging improvements.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>19</dd>
@@ -2364,7 +2575,7 @@
   </details></div>
     
     
-    <p class="next"><strong>Next time:</strong> Restart Macro App; live-test Pearson Set Up Dates for Fall TTH 10–11:20 and Summer 6W2 — confirm no duplicate warning and scan works.</p>
+    <p class="next"><strong>Next time:</strong> Restart Macro App; live-test Pearson Set Up Dates for Fall TTH 10ΓÇô11:20 and Summer 6W2 ΓÇö confirm no duplicate warning and scan works.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2520,7 +2731,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> modal-shell.md and canvas-kit-target-size.md were almost moved under Math App Studio on Chase's first instinct — a grep for real consumers found 10 and 7 apps respectively, which stopped that before it happened.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> modal-shell.md and canvas-kit-target-size.md were almost moved under Math App Studio on Chase's first instinct ΓÇö a grep for real consumers found 10 and 7 apps respectively, which stopped that before it happened.
     </div><div class="capture-box">
       <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Consider a capture note: before moving a shared doc into one app's folder, grep the whole tree for its filename to count real consumers first.
     </div>
@@ -2591,7 +2802,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Reviewed and cleaned up the whole instructional-layer doc tree (agent docs/, cursor-patterns/), built a Stop/PreCompact hook that forces session-scorecard bumps to actually happen, then eliminated cursor-patterns/ entirely at Chase's direction — merging its surviving content into agent docs/recipes/ and rewriting references across ~15 sibling repos.</p>
+    <p class="summary-human">Reviewed and cleaned up the whole instructional-layer doc tree (agent docs/, cursor-patterns/), built a Stop/PreCompact hook that forces session-scorecard bumps to actually happen, then eliminated cursor-patterns/ entirely at Chase's direction ΓÇö merging its surviving content into agent docs/recipes/ and rewriting references across ~15 sibling repos.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>1</dd>
@@ -2630,7 +2841,7 @@
     <div class="note-box">
       <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Large cross-repo restructure (cursor-patterns/ retired, recipes/ moved under agent docs/) touching ~17 git repos. Used Plan mode for the big move given the blast radius.
     </div>
-    <p class="next"><strong>Next time:</strong> Chase wants the merged agent docs/recipes/ folder (now ~34 files, flat) sorted into topic subfolders — deferred deliberately, not started.</p>
+    <p class="next"><strong>Next time:</strong> Chase wants the merged agent docs/recipes/ folder (now ~34 files, flat) sorted into topic subfolders ΓÇö deferred deliberately, not started.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2685,9 +2896,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> useFirstDayHandoutWorkspace.ts now 745 lines — extract before more FDH workspace edits.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> useFirstDayHandoutWorkspace.ts now 745 lines ΓÇö extract before more FDH workspace edits.
     </div>
-    <p class="next"><strong>Next time:</strong> Live-test Macro App FDH: Preview↔Edit marker sync, ODR enrollment date with linked calendar class, marker bar values, click-to-copy on preview.</p>
+    <p class="next"><strong>Next time:</strong> Live-test Macro App FDH: PreviewΓåöEdit marker sync, ODR enrollment date with linked calendar class, marker bar values, click-to-copy on preview.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2699,7 +2910,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Fixed Assignment Assistant tab crash after git pull (workspace history bridge no longer mutates frozen window.macroApp), streamlined AA→Gradebook sync to paste points into working.csv only with cancel/layering fixes, and added split/rezip busy spinner on the log modal.</p>
+    <p class="summary-human">Fixed Assignment Assistant tab crash after git pull (workspace history bridge no longer mutates frozen window.macroApp), streamlined AAΓåÆGradebook sync to paste points into working.csv only with cancel/layering fixes, and added split/rezip busy spinner on the log modal.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>3</dd>
@@ -2736,9 +2947,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Pulled 6 commits mid-session with stash/pop — no conflicts. useAssignmentAssistantWorkflow.ts remains over 800-line cap (pre-existing, untouched).
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Pulled 6 commits mid-session with stash/pop ΓÇö no conflicts. useAssignmentAssistantWorkflow.ts remains over 800-line cap (pre-existing, untouched).
     </div>
-    <p class="next"><strong>Next time:</strong> Live-test AA tab load, extract→sync→Gradebook recalc path, and Split &amp; Rezip loading banner after app reload.</p>
+    <p class="next"><strong>Next time:</strong> Live-test AA tab load, extractΓåÆsyncΓåÆGradebook recalc path, and Split &amp; Rezip loading banner after app reload.</p>
   </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
@@ -2839,7 +3050,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Forgot to run --bump-file mid-session (the always-on bump rule) — this finalize is reconstructed from memory, not a running tally. Also found and left alone a pre-existing, unrelated tsconfig.json issue: ignoreDeprecations '6.0' is rejected by the installed TypeScript 5.9.3 (works with '5.0' override) — flagged to Chase, not fixed.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Forgot to run --bump-file mid-session (the always-on bump rule) ΓÇö this finalize is reconstructed from memory, not a running tally. Also found and left alone a pre-existing, unrelated tsconfig.json issue: ignoreDeprecations '6.0' is rejected by the installed TypeScript 5.9.3 (works with '5.0' override) ΓÇö flagged to Chase, not fixed.
     </div>
     <p class="next"><strong>Next time:</strong> Chase to click-test session create/switch/remove and sequential Next/Previous ordering in the running app (handed off as a checklist instead of me launching it).</p>
   </article><article class="session-card">
@@ -2853,7 +3064,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Diagnosed a Makeup Exam automation bug (E2005 iframe-not-found) through two rounds of user-corrected hypotheses — first wrongly blamed load timing, then correctly landed on a name-vs-id frame-matching mismatch combined with a silent false-success bug — and shipped both fixes plus richer failure diagnostics. Built two explainer infographics (revised in place as the diagnosis was corrected) and ran the end-of-session protocol twice this session.</p>
+    <p class="summary-human">Diagnosed a Makeup Exam automation bug (E2005 iframe-not-found) through two rounds of user-corrected hypotheses ΓÇö first wrongly blamed load timing, then correctly landed on a name-vs-id frame-matching mismatch combined with a silent false-success bug ΓÇö and shipped both fixes plus richer failure diagnostics. Built two explainer infographics (revised in place as the diagnosis was corrected) and ran the end-of-session protocol twice this session.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>8</dd>
@@ -2896,9 +3107,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> User corrected two consecutive wrong hypotheses with direct firsthand observation (frame visibly loaded/interactive for 2+ minutes; cursor already blinking in the field) — explicitly asked to be consulted for eyewitness facts before further theorizing. Concurrent Pearson/Exam3-harvest session (chase1971, no Claude co-author trailer) committed and pushed its own work (86c4e59) independently mid-session, confirming last session's two-session-collision finding.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> User corrected two consecutive wrong hypotheses with direct firsthand observation (frame visibly loaded/interactive for 2+ minutes; cursor already blinking in the field) ΓÇö explicitly asked to be consulted for eyewitness facts before further theorizing. Concurrent Pearson/Exam3-harvest session (chase1971, no Claude co-author trailer) committed and pushed its own work (86c4e59) independently mid-session, confirming last session's two-session-collision finding.
     </div><div class="capture-box">
-      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When diagnosing a bug from logs/screenshots and the user was present when it happened, ask what they directly observed (screen state, timing, visible cues) before proposing a root-cause theory — don't rely on log/code inference alone when a firsthand witness is available.
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When diagnosing a bug from logs/screenshots and the user was present when it happened, ask what they directly observed (screen state, timing, visible cues) before proposing a root-cause theory ΓÇö don't rely on log/code inference alone when a firsthand witness is available.
     </div>
     <p class="next"><strong>Next time:</strong> Chase declined a new distribution build this session; next build should bundle the E2005 fix (automation_core.py field-presence frame search + failure-instead-of-false-success) along with anything else pending.</p>
   </article><article class="session-card">
@@ -3004,7 +3215,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Two-machine/session collision at end-of-session: commit cdec9cb (chase1971, 17:20) already captured all of this session's Macro App edits bundled with unrelated concurrent work (BulkEditReorderPanel.tsx, embedded-session.js, etc.) and is already pushed to origin/main. A separate, still-in-progress Pearson/Exam3 harvest session is live right now in Macro App (AGENTS.md, docs/Automations/*) and School documents (exam3-exam-data.js, harvest/*) — left untouched, not committed.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Two-machine/session collision at end-of-session: commit cdec9cb (chase1971, 17:20) already captured all of this session's Macro App edits bundled with unrelated concurrent work (BulkEditReorderPanel.tsx, embedded-session.js, etc.) and is already pushed to origin/main. A separate, still-in-progress Pearson/Exam3 harvest session is live right now in Macro App (AGENTS.md, docs/Automations/*) and School documents (exam3-exam-data.js, harvest/*) ΓÇö left untouched, not committed.
     </div><div class="capture-box">
       <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Consider a rule for surfacing unexpectedly-changed git status mid-session (files dirty differently than last checked) as an explicit two-session collision signal, not just remote-ahead.
     </div>
@@ -3080,7 +3291,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Wired the Claude Code scorecard hook that never existed (Cursor had one, Claude Code had none), then reviewed Codex's continuation of the AGENTS.md restructure — fixed a launcher-rule scope mistake, restored a dropped app-precedence sentence, and verified the orchestrator rule survived intact.</p>
+    <p class="summary-human">Wired the Claude Code scorecard hook that never existed (Cursor had one, Claude Code had none), then reviewed Codex's continuation of the AGENTS.md restructure ΓÇö fixed a launcher-rule scope mistake, restored a dropped app-precedence sentence, and verified the orchestrator rule survived intact.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>14</dd>
@@ -3117,11 +3328,11 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> AGENTS.md § Where rules live was deleted same-day instead of after the week-long soak the plan called for, so the routing drill hasn't validated the index yet. Also: two always-on rules this session (modal backdrop, scorecard bump) were loaded every session and still didn't fire.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> AGENTS.md ┬º Where rules live was deleted same-day instead of after the week-long soak the plan called for, so the routing drill hasn't validated the index yet. Also: two always-on rules this session (modal backdrop, scorecard bump) were loaded every session and still didn't fire.
     </div><div class="capture-box">
       <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> An always-on rule that's loaded every session and still gets ignored is evidence to push it down the capture ladder, not reword it louder. Seen twice this session.
     </div>
-    <p class="next"><strong>Next time:</strong> Run the ten-phrase routing drill via cold subagents before trusting the deleted § Where rules live section, then continue the cursor-patterns merit review (plan Stage 2) at C:\Users\chase\.claude\plans\alright-so-what-i-deep-iverson.md.</p>
+    <p class="next"><strong>Next time:</strong> Run the ten-phrase routing drill via cold subagents before trusting the deleted ┬º Where rules live section, then continue the cursor-patterns merit review (plan Stage 2) at C:\Users\chase\.claude\plans\alright-so-what-i-deep-iverson.md.</p>
   </article></div>
     </section><section class="day-block">
       <h2 class="day-title">Tuesday, Aug 4, 2026</h2>
@@ -3222,9 +3433,9 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs root is ahead 1 and behind 1 — two-machine divergence before push.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs root is ahead 1 and behind 1 ΓÇö two-machine divergence before push.
     </div><div class="capture-box">
-      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> DOC_TRACKER.md at Programs root — single Chase-facing keyword index pointing at docs anywhere in the tree.
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> DOC_TRACKER.md at Programs root ΓÇö single Chase-facing keyword index pointing at docs anywhere in the tree.
     </div>
     <p class="next"><strong>Next time:</strong> Create DOC_TRACKER.md + homework-map recipe row, or mirror exam 3 map for unit 4.</p>
   </article></div>
@@ -3327,7 +3538,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hover sticky tooltips failed with dwell-mouse; click-toggle model solved it. Counts are incomplete — chat summarized before early bumps; hook tally started mid-session.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hover sticky tooltips failed with dwell-mouse; click-toggle model solved it. Counts are incomplete ΓÇö chat summarized before early bumps; hook tally started mid-session.
     </div><div class="capture-box">
       <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> For dwell-mouse UIs: prefer click-to-pin over hover-sticky; block accidental drag with movement threshold.
     </div>
@@ -3380,7 +3591,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Quasimorph Tracker has no git repo yet — changes are local only under Programs/.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Quasimorph Tracker has no git repo yet ΓÇö changes are local only under Programs/.
     </div>
     <p class="next"><strong>Next time:</strong> Restart toolbar + Quasimorph to verify Ctrl overlay and sticky tooltips; init git for Quasimorph Tracker if Chase wants GitHub backup.</p>
   </article><article class="session-card">
@@ -3394,7 +3605,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">Finished exam2-review-map: Pearson print harvest for homework 3.6–3.10 and Exam 2 Review, updated review to 18 questions, added six review-only problem texts, and enabled hover tooltips on the right panel. Also updated PEARSON_BROWSER_AUTOMATION.md and peer-review agent letter work earlier in the session.</p>
+    <p class="summary-human">Finished exam2-review-map: Pearson print harvest for homework 3.6ΓÇô3.10 and Exam 2 Review, updated review to 18 questions, added six review-only problem texts, and enabled hover tooltips on the right panel. Also updated PEARSON_BROWSER_AUTOMATION.md and peer-review agent letter work earlier in the session.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>4</dd>
@@ -3431,7 +3642,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs meta remote fetch failed (repository not found) — local commits may not push until remote is fixed.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Programs meta remote fetch failed (repository not found) ΓÇö local commits may not push until remote is fixed.
     </div>
     <p class="next"><strong>Next time:</strong> Open exam2-review-map via docs server; optional: fix parameterized-ID tooltip mismatch for shared review/homework IDs.</p>
   </article><article class="session-card">
@@ -3586,7 +3797,7 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Quasimorph mod source lives on Desktop (mod-dev), not Programs git — deploy is LocalUserPresets DLL copy on build.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Quasimorph mod source lives on Desktop (mod-dev), not Programs git ΓÇö deploy is LocalUserPresets DLL copy on build.
     </div>
     <p class="next"><strong>Next time:</strong> Test v1.0.3 on corpse loot compare flow; optionally save-edit ItemsStackSize to X2 or build stack-size mod if Chase wants bigger stacks on existing items.</p>
   </article><article class="session-card">
@@ -3652,7 +3863,7 @@
       </div>
       <div class="model">—</div>
     </header>
-    <p class="summary-human">A long architecture session in Claude Code: harvested Pearson question IDs for seven homeworks and turned the flow into a reusable script plus recipe docs, then spent most of the session on the instruction layer itself — fixing a root .gitignore that silently made tree-wide Grep return nothing, collapsing six copies of the dwell timing down to one, teaching check-docs.js to flag bare timing values, and adding a doc-vs-code phase to the audit. Also built a working Electron drag-handle reference overlay to test whether the docs were sufficient to build from, and wrote a peer-review summary of the whole setup as HTML, an artifact link, and a PDF.</p>
+    <p class="summary-human">A long architecture session in Claude Code: harvested Pearson question IDs for seven homeworks and turned the flow into a reusable script plus recipe docs, then spent most of the session on the instruction layer itself ΓÇö fixing a root .gitignore that silently made tree-wide Grep return nothing, collapsing six copies of the dwell timing down to one, teaching check-docs.js to flag bare timing values, and adding a doc-vs-code phase to the audit. Also built a working Electron drag-handle reference overlay to test whether the docs were sufficient to build from, and wrote a peer-review summary of the whole setup as HTML, an artifact link, and a PDF.</p>
     <div class="metric-grid metric-grid-activity"><div class="metric metric-warn">
     <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
     <dd>46</dd>
@@ -3689,64 +3900,11 @@
   </details></div>
     
     <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> No bumps were logged during this session, so all counts are reconstructed at the end and are rough — treat them as order-of-magnitude only. Notably: 4 corrections, all caught by Chase pushing back rather than by any check. I twice asserted tool behavior (Grep/Glob honoring .gitignore; check-file-size.js not being wired up) without testing it, and both were wrong. Also found docs/ and scripts/ at the Programs root were entirely outside git, so the audit doc, the check-docs robot, and the session scorecard system itself existed on one machine only.
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> No bumps were logged during this session, so all counts are reconstructed at the end and are rough ΓÇö treat them as order-of-magnitude only. Notably: 4 corrections, all caught by Chase pushing back rather than by any check. I twice asserted tool behavior (Grep/Glob honoring .gitignore; check-file-size.js not being wired up) without testing it, and both were wrong. Also found docs/ and scripts/ at the Programs root were entirely outside git, so the audit doc, the check-docs robot, and the session scorecard system itself existed on one machine only.
     </div><div class="capture-box">
-      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Never assert what a tool ignores, skips, or loads without testing it in this repo first — extension-based assumptions about .gitignore, .ignore, and .mdc loading were wrong three times in one session. Verify, then claim.
+      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Never assert what a tool ignores, skips, or loads without testing it in this repo first ΓÇö extension-based assumptions about .gitignore, .ignore, and .mdc loading were wrong three times in one session. Verify, then claim.
     </div>
     <p class="next"><strong>Next time:</strong> Split electron-toolbar's ghost-drag into overlay-drag-constants.js + overlay-ghost-drag.js and migrate one window-manager as a trial. Then decide the sync story for the 788 vendored files in Macro App (ExcelWorkspace.tsx is 2,140 vs 1,865 lines across two trees).</p>
-  </article><article class="session-card">
-    <header class="session-head">
-      <div class="pills">
-        <span class="time">5:05 PM</span>
-        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
-        <span class="pill p3" title="Chat was summarized AND the agent never ran --bump-file. Counts are a partial hook tally at best — treat as incomplete.">Counts incomplete — summarized, no bumps</span><span class="pill p2" title="The numbers may be wrong because Cursor summarized away the start of this chat — counts are best-guess.">Low confidence counts</span>
-        
-        
-      </div>
-      <div class="model">Composer (session default)</div>
-    </header>
-    <p class="summary-human">We spent most of this session learning the capture ladder — what each rung means, when to use it, and how docs vs rules work. We also built the instruction-layer audit doc, the session scorecard pipeline, and ran the first end-of-session wrap as a test.</p>
-    <div class="metric-grid metric-grid-activity"><div class="metric metric-warn">
-    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
-    <dd>35</dd>
-  </div><div class="metric metric-warn">
-    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
-    <dd>12</dd>
-  </div><div class="metric">
-    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
-    <dd>0</dd>
-  </div><details class="metric metric-expandable">
-    <summary class="metric-summary">
-      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
-      <dd>8</dd>
-    </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="path-mdc" title=".cursor/rules/html-infographic-delivery.mdc">html-infographic-delivery.mdc</code></li><li><code class="path-doc" title="AGENTS end-of-session">AGENTS end-of-session</code></li><li><code class="path-doc" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="capture-costs HTML">capture-costs HTML</code></li><li><code class="path-doc" title="docs/context-engineering-capture-costs.html">context-engineering-capture-costs.html</code></li><li><code class="path-doc" title="html-infographic rule">html-infographic rule</code></li><li><code class="path-doc" title="SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="path-doc" title="docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li></ul></div>
-  </details><details class="metric metric-expandable">
-    <summary class="metric-summary">
-      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
-      <dd>2</dd>
-    </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="" title="scripts/append-session-scorecard.js">append-session-scorecard.js</code></li><li><code class="" title="scripts/check-docs.js">check-docs.js</code></li></ul></div>
-  </details><details class="metric metric-expandable">
-    <summary class="metric-summary">
-      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
-      <dd>6</dd>
-    </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="path-mdc" title=".cursor/rules/html-infographic-delivery.mdc">html-infographic-delivery.mdc</code></li><li><code class="path-doc" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="docs/context-engineering-capture-costs.html">context-engineering-capture-costs.html</code></li><li><code class="path-doc" title="docs/INSTRUCTION_LAYER_AUDIT.md">INSTRUCTION_LAYER_AUDIT.md</code></li><li><code class="path-doc" title="docs/SESSION_SCORECARD.md">SESSION_SCORECARD.md</code></li><li><code class="path-doc" title="docs/session-scorecards-log.html">session-scorecards-log.html</code></li></ul></div>
-  </details><details class="metric metric-expandable">
-    <summary class="metric-summary">
-      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
-      <dd>1</dd>
-    </summary>
-    <div class="metric-panel"><ul class="path-list"><li><code class="" title="scripts/append-session-scorecard.js">append-session-scorecard.js</code></li></ul></div>
-  </details></div>
-    
-    <div class="note-box">
-      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> This was a long Q&amp;A chat that got summarized partway through, so search/read counts for the first hour are probably lower than reality.
-    </div><div class="capture-box">
-      <strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When you rename docs/ to agent-docs, update paths in the append script and docs server. Optional: add scripts/ and docs/ to the Programs meta git allowlist so scorecards sync across machines.
-    </div>
-    <p class="next"><strong>Next time:</strong> Rename docs to agent-docs; keep logging scorecards to build your normal baseline.</p>
   </article></div>
     </section>
     <p class="footer">Generated by <code>scripts/append-session-scorecard.js</code> ·

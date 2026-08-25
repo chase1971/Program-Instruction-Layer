@@ -82,13 +82,13 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>157</dd></div>
+      <div><dt>Total tasks</dt><dd>162</dd></div>
       <div><dt>Tasks today</dt><dd>2</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 93 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>1</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">2% (14/562 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>17%</dd></div>
-      <div><dt>Avg steps</dt><dd>6.0</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 99 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>2</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (15/587 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>18%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.9</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">3:57 PM · Tuesday, Aug 25, 2026</dd></div>
     </div>
     <section class="index-failures-block">
@@ -96,13 +96,23 @@
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      <span class="index-fail-task">3:43 PM — Explained layout-switch pain; Electron falls back to dist; layout banner + verify script</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed via seating-chart AGENTS from prior context</span>
+      <span class="index-fail-task">3:37 PM — Room layout select now reseats roster; F219 draw + name normalize</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">No row for course history — it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
+      <span class="nav-note">No row for course history ΓÇö it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
       <span class="index-fail-task">3:08 PM — Course History: retire-with-archive now records durable per-offering statistics; repeat-student badge + pooled historical averages in gradebook tooltips and Class Summary</span>
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Routed to Macro App AGENTS → FIRST_DAY_HANDOUT.md</span>
+      <span class="nav-note">Routed to Macro App AGENTS ΓåÆ FIRST_DAY_HANDOUT.md</span>
       <span class="index-fail-task">1:06 PM — Online First Day Handout exam ranges from My Calendar tags</span>
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
@@ -177,23 +187,13 @@
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No seating row — used APP_LOCATIONS</span>
+      <span class="nav-note">No seating row ΓÇö used APP_LOCATIONS</span>
       <span class="index-fail-task">10:37 AM — Seating Chart Macro integration: filter online courses, fix config/prefs paths, auto-fill seats when no saved chart</span>
     </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
       <span class="nav-note">Wrong path School Scrips\Seating-Chart; live app is School Scripts\seating-chart</span>
       <span class="index-fail-task">10:37 AM — Seating Chart Macro integration: filter online courses, fix config/prefs paths, auto-fill seats when no saved chart</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Routed to Macro App AGENTS</span>
-      <span class="index-fail-task">9:50 AM — Completion retry no-op: wizard overlay blocked sidebar; 4.6 unzip was empty Google Drive \\?\ extract</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No Idle-stuck row — routed via electron-toolbar AGENTS.md</span>
-      <span class="index-fail-task">9:38 AM — Fixed dwell overlay stuck on Idle — gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit</span>
     </li></ul>
   </section>
     <section class="day-block">
@@ -310,7 +310,7 @@
     </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">13 tasks</span></h2>
+      <h2 class="day-title">Sunday, Aug 23, 2026 <span class="day-count">19 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">4:02 PM — Course History: removed the last dependence on the D2L course id — offeringId now keys on courseKey + label slug; added tests proving two different D2L ids pool under one M1314 — 4 steps · 2m 57s</span>
@@ -356,6 +356,47 @@
       
       <code class="nav-target" title="renderer/src/utils/gradebook/courseBackupSlug.ts">renderer/src/utils/gradebook/courseBackupSlug.ts</code>
       <span class="nav-note">Reused slugFromCourseLabel so two sections retired the same day stay distinct without the id</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:01 PM — Fix Save seating when dropdown has course but chart.courseCode empty — 3 steps · 12m 17s</span>
+      <span class="pill p2">5 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 12m 17s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · 5 not in path · coverage 60%
+        <br>Wall-clock gap since previous task: 12m 41s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user screenshot save error">user screenshot save error</code>
+      <span class="nav-note">F219 works; save said no course</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="saveSeatingArrangement">saveSeatingArrangement</code>
+      <span class="nav-note">Only checked chart.courseCode, not dropdown</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="ensureCourseBound + save override">ensureCourseBound + save override</code>
+      
       
     </li></ul>
     </div>
@@ -450,7 +491,7 @@
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">1</span>
       
-      <code class="nav-target" title="user clarification — in-tab not separate window">user clarification — in-tab not separate window</code>
+      <code class="nav-target" title="user clarification ΓÇö in-tab not separate window">user clarification ΓÇö in-tab not separate window</code>
       <span class="nav-note">Managing Dates uses d2l slot; popups were merging into primary browser slot</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
@@ -458,7 +499,7 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="browser-slot-popups.js">browser-slot-popups.js</code>
-      <span class="nav-note">visibleSlotId === slotId → load popup URL in that embedded view</span>
+      <span class="nav-note">visibleSlotId === slotId ΓåÆ load popup URL in that embedded view</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -560,6 +601,171 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
+      <span class="track-title">3:49 PM — Fixed initAppData re-run stomping F219; added on-screen debug log — 4 steps · 5m 54s</span>
+      <span class="pill p2">3 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 5m 54s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 3 search(es), 0 doc read(s) · 3 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 6m 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user screenshot">user screenshot</code>
+      <span class="nav-note">F214 + 0 named after F219 click</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="SeatingWorkspace initAppData effect">SeatingWorkspace initAppData effect</code>
+      <span class="nav-note">Effect depended on initAppData which changed every render</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="useSeatingChart initAppData">useSeatingChart initAppData</code>
+      <span class="nav-note">setLayoutId(disk) without restoring seats</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="debugLog + DebugLogPanel">debugLog + DebugLogPanel</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:43 PM — Explained layout-switch pain; Electron falls back to dist; layout banner + verify script — 5 steps · 5m 18s · 1 dead-end</span>
+      <span class="pill p2">16 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 5m 18s active tool time
+        <br>5 steps · first helpful at #2 · 3 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 16 search(es), 2 doc read(s) · 16 not in path · coverage 24%
+        <br>Wall-clock gap since previous task: 5m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/hooks/useSeatingChart.ts">School Scripts/seating-chart/src/hooks/useSeatingChart.ts</code>
+      <span class="nav-note">applyRoomLayout exists; stale UI more likely than missing code</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/electron/main.js">School Scripts/seating-chart/electron/main.js</code>
+      <span class="nav-note">Unpackaged Electron always hit Vite URL ΓÇö blank/stale if Vite down</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="localhost:5329">localhost:5329</code>
+      <span class="nav-note">Vite not running when diagnosed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="scripts/verify-room-layouts.mjs">scripts/verify-room-layouts.mjs</code>
+      <span class="nav-note">Headless F219 geometry OK</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:37 PM — Room layout select now reseats roster; F219 draw + name normalize — 6 steps · 1h 7m</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 1h 7m active tool time
+        <br>6 steps · first helpful at #2 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 1 doc read(s) · 8 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 1h 7m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed via seating-chart AGENTS from prior context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/hooks/useSeatingChart.ts">School Scripts/seating-chart/src/hooks/useSeatingChart.ts</code>
+      <span class="nav-note">Root cause: setLayoutId alone left layout1_* seat keys</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/components/SeatingGrid.tsx">School Scripts/seating-chart/src/components/SeatingGrid.tsx</code>
+      <span class="nav-note">Middle group only when row has _middle_ seats</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/utils/nameFormat.ts">School Scripts/seating-chart/src/utils/nameFormat.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/services/seatingChartService.ts">School Scripts/seating-chart/src/services/seatingChartService.ts</code>
+      <span class="nav-note">Normalize roster on load</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/src/components/SeatingWorkspace.tsx">School Scripts/seating-chart/src/components/SeatingWorkspace.tsx</code>
+      <span class="nav-note">Wire RoomLayoutModal to applyRoomLayout</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
       <span class="track-title">3:13 PM — Fix First Day Handout autosave losing Edit-tab typing — 3 steps · 5m</span>
       <span class="pill p2">17 searches not in path</span><span class="pill p2">Hunted before doc — 17 searches first</span>
     </summary>
@@ -622,14 +828,14 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">INDEX → School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">No row for course history — it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
+      <span class="nav-note">No row for course history ΓÇö it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="electron-app/retire-course-io.js">electron-app/retire-course-io.js</code>
-      <span class="nav-note">Retire already writes manifest.json with normalizedKey students — write-only, nothing read it back</span>
+      <span class="nav-note">Retire already writes manifest.json with normalizedKey students ΓÇö write-only, nothing read it back</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -657,7 +863,7 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="renderer/src/services/categoryWeightHistoryService.ts">renderer/src/services/categoryWeightHistoryService.ts</code>
-      <span class="nav-note">KEY FIND — a cross-course, storage-root-level store already exists keyed by course template code</span>
+      <span class="nav-note">KEY FIND ΓÇö a cross-course, storage-root-level store already exists keyed by course template code</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -678,7 +884,7 @@
       <span class="nav-step-num">9</span>
       
       <code class="nav-target" title="electron-app/macro-storage-tree.js">electron-app/macro-storage-tree.js</code>
-      <span class="nav-note">retired-courses/ is in CLEANUP_FOLDER_NAMES — proved the store must NOT live inside the archives</span>
+      <span class="nav-note">retired-courses/ is in CLEANUP_FOLDER_NAMES ΓÇö proved the store must NOT live inside the archives</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -713,20 +919,20 @@
       <span class="nav-step-num">14</span>
       
       <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookReadApi.ts">renderer/src/hooks/gradebook/gradebookReadApi.ts</code>
-      <span class="nav-note">Thin guard only — no per-course read helper; the real path was gradebookSessionService.loadWorkingGradebook</span>
+      <span class="nav-note">Thin guard only ΓÇö no per-course read helper; the real path was gradebookSessionService.loadWorkingGradebook</span>
       
     </li><li class="nav-step nav-dead" style="--nav-depth:0">
       <span class="nav-marker" title="dead-end">✗</span>
       <span class="nav-step-num">15</span>
       
       <code class="nav-target" title="Programs root (Glob for 'Macro App')">Programs root (Glob for 'Macro App')</code>
-      <span class="nav-note">App is under School Scrips/, not Programs root — cost three subagents a path correction</span>
+      <span class="nav-note">App is under School Scrips/, not Programs root ΓÇö cost three subagents a path correction</span>
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">2:51 PM — First Day Handout — insert/edit links in editor ribbon — 3 steps · 1m 50s</span>
+      <span class="track-title">2:51 PM — First Day Handout ΓÇö insert/edit links in editor ribbon — 3 steps · 1m 50s</span>
       <span class="pill p2">16 searches not in path</span><span class="pill p2">Hunted before doc — 16 searches first</span>
     </summary>
     <div class="track-panel">
@@ -767,6 +973,95 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
+      <span class="track-title">2:30 PM — Seating Chart: desktop/laptop Drive prefs like Macro; Room layout modal with F214 + F219 — 4 steps · 1h 5m</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 1h 5m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 1 doc read(s) · 9 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 1h 6m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Macro-App/electron-app/rosters-paths.js">Macro-App/electron-app/rosters-paths.js</code>
+      <span class="nav-note">C/G/D findRostersBasePath</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Macro-App/electron-app/machine-profile.js">Macro-App/electron-app/machine-profile.js</code>
+      <span class="nav-note">profiled gradebook-storage-prefs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="seating-chart/src/layouts/layout1Definition.ts">seating-chart/src/layouts/layout1Definition.ts</code>
+      <span class="nav-note">F214 baseline</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/recipes/modal-shell.md">agent docs/recipes/modal-shell.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:24 PM — Seating Chart: fix course switch; archive writes attendance+chart under Rosters etc/Seating Chart/archived/ — 3 steps · 72h 47m</span>
+      <span class="pill p2">29 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:32 PM
+         · 72h 47m active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 29 search(es), 1 doc read(s) · 29 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 72h 47m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="seating-chart/src/components/SeatingWorkspace.tsx">seating-chart/src/components/SeatingWorkspace.tsx</code>
+      <span class="nav-note">Controlled select awaited save before switch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="seating-chart/electron/seating-drive-io.js">seating-chart/electron/seating-drive-io.js</code>
+      <span class="nav-note">New Seating Chart/ + archived/ layout</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="macro-roster-bridge.js">macro-roster-bridge.js</code>
+      <span class="nav-note">Filter archived from course list</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
       <span class="track-title">1:06 PM — Online First Day Handout exam ranges from My Calendar tags — 5 steps · 47s</span>
       
     </summary>
@@ -788,7 +1083,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Routed to Macro App AGENTS → FIRST_DAY_HANDOUT.md</span>
+      <span class="nav-note">Routed to Macro App AGENTS ΓåÆ FIRST_DAY_HANDOUT.md</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1057,21 +1352,21 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="renderer/src/hooks/browser/useEmbeddedBrowserModal.ts">renderer/src/hooks/browser/useEmbeddedBrowserModal.ts</code>
-      <span class="nav-note">Single owner for freeze/unfreeze state — the right place for the guard</span>
+      <span class="nav-note">Single owner for freeze/unfreeze state ΓÇö the right place for the guard</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="grep: count freeze/unfreeze call sites">grep: count freeze/unfreeze call sites</code>
-      <span class="nav-note">47 unfreeze + 62 freeze across 18 files — ruled out threading an owner key through call sites as too invasive</span>
+      <span class="nav-note">47 unfreeze + 62 freeze across 18 files ΓÇö ruled out threading an owner key through call sites as too invasive</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="renderer/src/hooks/pearson/usePearsonUnits.ts">renderer/src/hooks/pearson/usePearsonUnits.ts</code>
-      <span class="nav-note">backToSetup freezes without a matching unfreeze — proves a naive ++/-- refcount would leak and strand the browser detached</span>
+      <span class="nav-note">backToSetup freezes without a matching unfreeze ΓÇö proves a naive ++/-- refcount would leak and strand the browser detached</span>
       
     </li><li class="nav-step nav-partial" style="--nav-depth:0">
       <span class="nav-marker" title="partial">~</span>
@@ -1085,7 +1380,7 @@
       <span class="nav-step-num">5</span>
       
       <code class="nav-target" title="grep: overlay className census">grep: overlay className census</code>
-      <span class="nav-note">All 43 overlays carry courses-modal-overlay and closed modals return null — DOM is ground truth for 'is a modal on screen'</span>
+      <span class="nav-note">All 43 overlays carry courses-modal-overlay and closed modals return null ΓÇö DOM is ground truth for 'is a modal on screen'</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1101,7 +1396,7 @@
       <h2 class="day-title">Saturday, Aug 22, 2026 <span class="day-count">10 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">6:57 PM — Diagnosed + fixed: browser reattaching over an open modal (Pearson Set Up Dates) — scrollBy was recovering the live browser from modal detach — 9 steps · 42s</span>
+      <span class="track-title">6:57 PM — Diagnosed + fixed: browser reattaching over an open modal (Pearson Set Up Dates) ΓÇö scrollBy was recovering the live browser from modal detach — 9 steps · 42s</span>
       
     </summary>
     <div class="track-panel">
@@ -1136,7 +1431,7 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="grep for backdrop-dismiss handlers across renderer">grep for backdrop-dismiss handlers across renderer</code>
-      <span class="nav-note">Zero onClick/onMouseDown on any modal overlay — ruled out Chase's initial theory that the click dismissed it</span>
+      <span class="nav-note">Zero onClick/onMouseDown on any modal overlay ΓÇö ruled out Chase's initial theory that the click dismissed it</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1157,14 +1452,14 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="renderer/src/hooks/browser/useEmbeddedBrowserModal.ts">renderer/src/hooks/browser/useEmbeddedBrowserModal.ts</code>
-      <span class="nav-note">freezeForModal ignores captureBrowserSnapshot's false return — detaches with snapshotDataUrl still null</span>
+      <span class="nav-note">freezeForModal ignores captureBrowserSnapshot's false return ΓÇö detaches with snapshotDataUrl still null</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">7</span>
       
       <code class="nav-target" title="electron-app/browser-slot-modal.js">electron-app/browser-slot-modal.js</code>
-      <span class="nav-note">reattach() is a plain toggle, no refcount — one stray call defeats any open modal</span>
+      <span class="nav-note">reattach() is a plain toggle, no refcount ΓÇö one stray call defeats any open modal</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1178,7 +1473,7 @@
       <span class="nav-step-num">9</span>
       
       <code class="nav-target" title="renderer/src/components/browser/BrowserVerticalScrollRail.tsx">renderer/src/components/browser/BrowserVerticalScrollRail.tsx</code>
-      <span class="nav-note">Rail scrolls on onMouseEnter — hover alone, no click, and it was gated on snapshotDataUrl not on being detached</span>
+      <span class="nav-note">Rail scrolls on onMouseEnter ΓÇö hover alone, no click, and it was gated on snapshotDataUrl not on being detached</span>
       
     </li></ul>
     </div>
@@ -1371,7 +1666,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">6:40 PM — Column shift is one continuous move — ending a paging session no longer freezes and re-animates a glide already bound for a column edge — 4 steps · 14m 10s</span>
+      <span class="track-title">6:40 PM — Column shift is one continuous move ΓÇö ending a paging session no longer freezes and re-animates a glide already bound for a column edge — 4 steps · 14m 10s</span>
       
     </summary>
     <div class="track-panel">
@@ -1392,28 +1687,28 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code>
-      <span class="nav-note">cancelActiveScroll did scrollTo(current,'auto') then a smooth snap — literally two animations, the lurch-then-correct Chase described</span>
+      <span class="nav-note">cancelActiveScroll did scrollTo(current,'auto') then a smooth snap ΓÇö literally two animations, the lurch-then-correct Chase described</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookHorizontalArrowGuard.ts">renderer/src/hooks/gradebook/useGradebookHorizontalArrowGuard.ts</code>
-      <span class="nav-note">LEAVE_GRACE_MS 150 — with a dwell mouse the pointer leaves the arrow mid-glide constantly, so the interrupt path was the common path, not the edge case</span>
+      <span class="nav-note">LEAVE_GRACE_MS 150 ΓÇö with a dwell mouse the pointer leaves the arrow mid-glide constantly, so the interrupt path was the common path, not the edge case</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="renderer/src/utils/gradebook/gradebookColumnSnap.ts">renderer/src/utils/gradebook/gradebookColumnSnap.ts</code>
-      <span class="nav-note">Confirmed resolvePageTarget only ever returns an aligned offset or maxScrollLeft — that invariant is what makes letting the glide finish safe</span>
+      <span class="nav-note">Confirmed resolvePageTarget only ever returns an aligned offset or maxScrollLeft ΓÇö that invariant is what makes letting the glide finish safe</span>
       
     </li><li class="nav-step nav-partial" style="--nav-depth:0">
       <span class="nav-marker" title="partial">~</span>
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookHoverPage.ts">renderer/src/hooks/gradebook/useGradebookHoverPage.ts</code>
-      <span class="nav-note">Checked repeat pacing as an alternative cause — it gates on idle, so pages never overlap; ruled out</span>
+      <span class="nav-note">Checked repeat pacing as an alternative cause ΓÇö it gates on idle, so pages never overlap; ruled out</span>
       
     </li></ul>
     </div>
@@ -1461,7 +1756,7 @@
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="renderer/src/utils/gradebook/gradebookFontSizes.ts">renderer/src/utils/gradebook/gradebookFontSizes.ts</code>
-      <span class="nav-note">DEFAULT_GRADE_FONT_SIZE = 22 — needed to compute the real floor before asking Chase</span>
+      <span class="nav-note">DEFAULT_GRADE_FONT_SIZE = 22 ΓÇö needed to compute the real floor before asking Chase</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1475,7 +1770,7 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="renderer/src/components/gradebook/GradebookSelectedStudentsTable.tsx">renderer/src/components/gradebook/GradebookSelectedStudentsTable.tsx</code>
-      <span class="nav-note">Checked for a sticky-calculated fallback regression — it only uses the base sticky class, so none</span>
+      <span class="nav-note">Checked for a sticky-calculated fallback regression ΓÇö it only uses the base sticky class, so none</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1717,7 +2012,7 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookScrollPaging.ts">renderer/src/hooks/gradebook/useGradebookScrollPaging.ts</code>
-      <span class="nav-note">cancelActiveScroll froze the glide mid-column — root cause of the erratic feel</span>
+      <span class="nav-note">cancelActiveScroll froze the glide mid-column ΓÇö root cause of the erratic feel</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -1731,7 +2026,7 @@
       <span class="nav-step-num">5</span>
       
       <code class="nav-target" title="renderer/src/utils/gradebook/gradebookCategoryFilterColumns.ts">renderer/src/utils/gradebook/gradebookCategoryFilterColumns.ts</code>
-      <span class="nav-note">Column ORDER was already correct — ruled out an ordering fix</span>
+      <span class="nav-note">Column ORDER was already correct ΓÇö ruled out an ordering fix</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -2694,7 +2989,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">11:51 AM — My Calendar assignment Schedule times — 6 AM pinned for category start times — 3 steps · 19m 22s</span>
+      <span class="track-title">11:51 AM — My Calendar assignment Schedule times ΓÇö 6 AM pinned for category start times — 3 steps · 19m 22s</span>
       <span class="pill p2">20 searches not in path</span><span class="pill p2">Hunted before doc — 21 searches first</span>
     </summary>
     <div class="track-panel">
@@ -2735,7 +3030,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">11:31 AM — First Day Handout copy — trim title before Welcome, normalize bold for D2L/Word paste — 2 steps · 22m 9s</span>
+      <span class="track-title">11:31 AM — First Day Handout copy ΓÇö trim title before Welcome, normalize bold for D2L/Word paste — 2 steps · 22m 9s</span>
       <span class="pill p2">26 searches not in path</span>
     </summary>
     <div class="track-panel">
@@ -2797,7 +3092,7 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="gradebookStatisticsThresholdBump.ts">gradebookStatisticsThresholdBump.ts</code>
-      <span class="nav-note">OVERALL_REACH_TOLERANCE 0.05 caused 89.95→display 90</span>
+      <span class="nav-note">OVERALL_REACH_TOLERANCE 0.05 caused 89.95ΓåÆdisplay 90</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -2810,7 +3105,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">12:51 AM — Built Bloodletter Click-to-Play BepInEx mod — installed BepInEx 5.4.23.5, Harmony patches, deployed DLL to D:\Games\BLOODLETTER\BepInEx\plugins — 6 steps · 21m 13s · 1 dead-end</span>
+      <span class="track-title">12:51 AM — Built Bloodletter Click-to-Play BepInEx mod ΓÇö installed BepInEx 5.4.23.5, Harmony patches, deployed DLL to D:\Games\BLOODLETTER\BepInEx\plugins — 6 steps · 21m 13s · 1 dead-end</span>
       <span class="pill p2">17 searches not in path</span>
     </summary>
     <div class="track-panel">
@@ -2852,7 +3147,7 @@
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="BepInEx NuGet packages">BepInEx NuGet packages</code>
-      <span class="nav-note">Not on nuget.org — referenced BepInEx\core DLLs instead</span>
+      <span class="nav-note">Not on nuget.org ΓÇö referenced BepInEx\core DLLs instead</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -2872,7 +3167,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">12:30 AM — Investigated Blood Letter (D:\Games\BLOODLETTER) modding — click-to-hold card play is feasible via BepInEx; controller two-click path already exists in code — 7 steps · 25h 54m · 1 dead-end</span>
+      <span class="track-title">12:30 AM — Investigated Blood Letter (D:\Games\BLOODLETTER) modding ΓÇö click-to-hold card play is feasible via BepInEx; controller two-click path already exists in code — 7 steps · 25h 54m · 1 dead-end</span>
       <span class="pill p2">60 searches not in path</span>
     </summary>
     <div class="track-panel">
@@ -2900,7 +3195,7 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="D:\ drive glob *Blood*Letter*">D:\ drive glob *Blood*Letter*</code>
-      <span class="nav-note">Timed out — too broad</span>
+      <span class="nav-note">Timed out ΓÇö too broad</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -2944,7 +3239,7 @@
       <h2 class="day-title">Thursday, Aug 20, 2026 <span class="day-count">11 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">12:36 PM — CDP probe: D2L Enter Grades uses header/item Final and label Final value for… (not Final Points Grade); itemsMatch exact-only fix for wrong-column push — 3 steps · 3m 56s</span>
+      <span class="track-title">12:36 PM — CDP probe: D2L Enter Grades uses header/item Final and label Final value forΓÇª (not Final Points Grade); itemsMatch exact-only fix for wrong-column push — 3 steps · 3m 56s</span>
       <span class="pill p2">18 searches not in path</span><span class="pill p2">Hunted before doc — 18 searches first</span>
     </summary>
     <div class="track-panel">
@@ -2965,14 +3260,14 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="CDP port 9224 Enter Grades page">CDP port 9224 Enter Grades page</code>
-      <span class="nav-note">Headers Final; d2l-input-number label Final value for…; Cell: Final vs Final Adjusted Grade</span>
+      <span class="nav-note">Headers Final; d2l-input-number label Final value forΓÇª; Cell: Final vs Final Adjusted Grade</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="modules/d2l/grades_enter_import_scripts.py itemsMatch">modules/d2l/grades_enter_import_scripts.py itemsMatch</code>
-      <span class="nav-note">Reverse prefix pi.startsWith(ei+' ') matched Final→Final Adjusted Grade in findGradeControlIds</span>
+      <span class="nav-note">Reverse prefix pi.startsWith(ei+' ') matched FinalΓåÆFinal Adjusted Grade in findGradeControlIds</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3096,13 +3391,13 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="renderer/.../gradebookBlankRosterExcel.ts">renderer/.../gradebookBlankRosterExcel.ts</code>
-      <span class="nav-note">Title/filename only — no row height</span>
+      <span class="nav-note">Title/filename only ΓÇö no row height</span>
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">10:43 AM — First Day Handout copy — page breaks become one blank line, not Page break text — 5m 48s · no path logged</span>
+      <span class="track-title">10:43 AM — First Day Handout copy ΓÇö page breaks become one blank line, not Page break text — 5m 48s · no path logged</span>
       <span class="pill p2">No navigation path</span><span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 13 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3143,7 +3438,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No seating row — used APP_LOCATIONS</span>
+      <span class="nav-note">No seating row ΓÇö used APP_LOCATIONS</span>
       
     </li><li class="nav-step nav-partial" style="--nav-depth:0">
       <span class="nav-marker" title="partial">~</span>
@@ -3184,7 +3479,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">10:16 AM — Quiz key automation cleanup — dismiss stray Content editors and return to Course Builder so D2L does not block navigation — 18m 49s · no path logged</span>
+      <span class="track-title">10:16 AM — Quiz key automation cleanup ΓÇö dismiss stray Content editors and return to Course Builder so D2L does not block navigation — 18m 49s · no path logged</span>
       <span class="pill p2">No navigation path</span><span class="pill p2">27 searches not in path</span><span class="pill p2">Hunted before doc — 27 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3224,7 +3519,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:44 AM — Quiz key release conditions — accept Link-type key topics; fix action-menu timing for rows without Edit restrictions shortcut — 4 steps · 10m 53s</span>
+      <span class="track-title">9:44 AM — Quiz key release conditions ΓÇö accept Link-type key topics; fix action-menu timing for rows without Edit restrictions shortcut — 4 steps · 10m 53s</span>
       <span class="pill p2">30 searches not in path</span><span class="pill p2">Hunted before doc — 30 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3272,7 +3567,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:33 AM — Manage tabs modal — two-column layout via CSS columns; linear order + arrow reorder unchanged — 3 steps · 13m 52s</span>
+      <span class="track-title">9:33 AM — Manage tabs modal ΓÇö two-column layout via CSS columns; linear order + arrow reorder unchanged — 3 steps · 13m 52s</span>
       <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3293,7 +3588,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="renderer/src/components/shell/ManageWorkspaceTabsModal.tsx">renderer/src/components/shell/ManageWorkspaceTabsModal.tsx</code>
-      <span class="nav-note">Single ul maps draft.order — reorder logic untouched</span>
+      <span class="nav-note">Single ul maps draft.order ΓÇö reorder logic untouched</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3313,7 +3608,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:20 AM — Makeup exam campus pick — search assessment-center grid for institution.campus (Montgomery) instead of hardcoded $11 — 5 steps · 6m 25s</span>
+      <span class="track-title">9:20 AM — Makeup exam campus pick ΓÇö search assessment-center grid for institution.campus (Montgomery) instead of hardcoded $11 — 5 steps · 6m 25s</span>
       <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3334,7 +3629,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="modules/makeup-exam/backend/automation_core.py">modules/makeup-exam/backend/automation_core.py</code>
-      <span class="nav-note">Hardcoded TCRSELECTCAMPU $11 → Magnolia after Magnolia row inserted</span>
+      <span class="nav-note">Hardcoded TCRSELECTCAMPU $11 ΓåÆ Magnolia after Magnolia row inserted</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3348,7 +3643,7 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="Playwright CDP inspect">Playwright CDP inspect</code>
-      <span class="nav-note">Montgomery at $12; wrapper tr rows contain all LSC- names — filter lsc- count == 1</span>
+      <span class="nav-note">Montgomery at $12; wrapper tr rows contain all LSC- names ΓÇö filter lsc- count == 1</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3368,7 +3663,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:13 AM — Pulled Macro-App (v0.1.12 + Schedule/EC revert); merged exam_history conflict; traced makeup-exam college checkbox — hardcoded TCRSELECTCAMPU $11, not dynamic — 7 steps · 43h 17m</span>
+      <span class="track-title">9:13 AM — Pulled Macro-App (v0.1.12 + Schedule/EC revert); merged exam_history conflict; traced makeup-exam college checkbox ΓÇö hardcoded TCRSELECTCAMPU $11, not dynamic — 7 steps · 43h 17m</span>
       <span class="pill p2">52 searches not in path</span>
     </summary>
     <div class="track-panel">
@@ -3389,7 +3684,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="School Scripts/Macro-App">School Scripts/Macro-App</code>
-      <span class="nav-note">git fetch — 5 commits behind, local wizard + exam_history dirty</span>
+      <span class="nav-note">git fetch ΓÇö 5 commits behind, local wizard + exam_history dirty</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3403,14 +3698,14 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="modules/makeup-exam/exam_history.jsonl">modules/makeup-exam/exam_history.jsonl</code>
-      <span class="nav-note">Stash-pop conflict — kept remote Aug-19 + local Aug-20 entries</span>
+      <span class="nav-note">Stash-pop conflict ΓÇö kept remote Aug-19 + local Aug-20 entries</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="modules/makeup-exam/backend/automation_core.py">modules/makeup-exam/backend/automation_core.py</code>
-      <span class="nav-note">institution.campus_code → #LSC_TCRFORMS_LSC_CAMPUS; college grid hardcoded #LSC_TCRFORMCAMP_LSC_TCRSELECTCAMPU\$11</span>
+      <span class="nav-note">institution.campus_code ΓåÆ #LSC_TCRFORMS_LSC_CAMPUS; college grid hardcoded #LSC_TCRFORMCAMP_LSC_TCRSELECTCAMPU\$11</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -3424,14 +3719,14 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="modules/makeup-exam/backend/makeup_exam_cdp.py">modules/makeup-exam/backend/makeup_exam_cdp.py</code>
-      <span class="nav-note">CDP attach only — no college logic</span>
+      <span class="nav-note">CDP attach only ΓÇö no college logic</span>
       
     </li><li class="nav-step nav-partial" style="--nav-depth:0">
       <span class="nav-marker" title="partial">~</span>
       <span class="nav-step-num">7</span>
       
       <code class="nav-target" title="renderer/src/modules/d2l-assignment-assistant/modals/AssignmentProcessingWizardModal.tsx">renderer/src/modules/d2l-assignment-assistant/modals/AssignmentProcessingWizardModal.tsx</code>
-      <span class="nav-note">Local uncommitted WIP preserved after pull — not part of college fix</span>
+      <span class="nav-note">Local uncommitted WIP preserved after pull ΓÇö not part of college fix</span>
       
     </li></ul>
     </div>
@@ -3440,7 +3735,7 @@
       <h2 class="day-title">Wednesday, Aug 19, 2026 <span class="day-count">4 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">5:44 PM — Schedule door poster — table layout like reference image, landscape half-page print, FDH office hours — 6 steps · 16m 42s</span>
+      <span class="track-title">5:44 PM — Schedule door poster ΓÇö table layout like reference image, landscape half-page print, FDH office hours — 6 steps · 16m 42s</span>
       <span class="pill p2">41 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3502,7 +3797,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">5:28 PM — Schedule tab — FDH section office hours (not hardcoded default) + Online M2413 section — 3 steps · 195ms</span>
+      <span class="track-title">5:28 PM — Schedule tab ΓÇö FDH section office hours (not hardcoded default) + Online M2413 section — 3 steps · 195ms</span>
       
     </summary>
     <div class="track-panel">
@@ -3543,7 +3838,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">5:11 PM — Schedule tab — door-postable MW/TTH card from fall F2F courses + FDH office hours; replaced My Due Dates — 6 steps · 4m 35s</span>
+      <span class="track-title">5:11 PM — Schedule tab ΓÇö door-postable MW/TTH card from fall F2F courses + FDH office hours; replaced My Due Dates — 6 steps · 4m 35s</span>
       <span class="pill p2">28 searches not in path</span><span class="pill p2">Hunted before doc — 21 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3605,7 +3900,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">5:05 PM — Planned Schedule tab (replaces My Due Dates) — door-postable MW/TTH day-group card from fall F2F course schedules + FDH office hours — 8 steps · 10m 3s</span>
+      <span class="track-title">5:05 PM — Planned Schedule tab (replaces My Due Dates) ΓÇö door-postable MW/TTH day-group card from fall F2F course schedules + FDH office hours — 8 steps · 10m 3s</span>
       <span class="pill p2">23 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3684,7 +3979,7 @@
       <h2 class="day-title">Tuesday, Aug 18, 2026 <span class="day-count">9 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">7:41 PM — Statistics extra credit — revert button, applied badges, change-log detection blocks re-apply — 5 steps · 5h 25m</span>
+      <span class="track-title">7:41 PM — Statistics extra credit ΓÇö revert button, applied badges, change-log detection blocks re-apply — 5 steps · 5h 25m</span>
       <span class="pill p2">19 searches not in path</span><span class="pill p2">Hunted before doc — 20 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3739,7 +4034,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">2:15 PM — Fixed extra-credit-to-lowest-exam cap — exams can exceed 100% when EC pushes points above max — 4 steps · 5m 5s</span>
+      <span class="track-title">2:15 PM — Fixed extra-credit-to-lowest-exam cap ΓÇö exams can exceed 100% when EC pushes points above max — 4 steps · 5m 5s</span>
       <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 14 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3787,7 +4082,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">2:10 PM — Fixed extra-credit-to-lowest-exam cap — exams can exceed 100% when EC pushes points above max — 4 steps · 15h 18m</span>
+      <span class="track-title">2:10 PM — Fixed extra-credit-to-lowest-exam cap ΓÇö exams can exceed 100% when EC pushes points above max — 4 steps · 15h 18m</span>
       <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
     </summary>
     <div class="track-panel">
@@ -3835,7 +4130,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">10:40 AM — Added Sync to gradebook for drop-lowest-quiz statistics — blanks eligible quiz cells, persists markers with hover tooltip — 5 steps · 1m 18s</span>
+      <span class="track-title">10:40 AM — Added Sync to gradebook for drop-lowest-quiz statistics ΓÇö blanks eligible quiz cells, persists markers with hover tooltip — 5 steps · 1m 18s</span>
       
     </summary>
     <div class="track-panel">
@@ -3884,13 +4179,13 @@
       <span class="nav-step-num">5</span>
       
       <code class="nav-target" title="GradebookExamReplacementMarker.tsx">GradebookExamReplacementMarker.tsx</code>
-      <span class="nav-note">∅ badge + quiz-drop tooltip</span>
+      <span class="nav-note">Γêà badge + quiz-drop tooltip</span>
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">10:19 AM — Fix browser panel flash on AA modal close — reattach before clearing snapshot; drop redundant ensure on unfreeze — 4 steps · 11m 12s</span>
+      <span class="track-title">10:19 AM — Fix browser panel flash on AA modal close ΓÇö reattach before clearing snapshot; drop redundant ensure on unfreeze — 4 steps · 11m 12s</span>
       
     </summary>
     <div class="track-panel">
@@ -4089,7 +4384,7 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
-      <span class="nav-note">Button does nothing → overlay; added Process Completion row</span>
+      <span class="nav-note">Button does nothing ΓåÆ overlay; added Process Completion row</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4276,7 +4571,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:38 AM — Fixed dwell overlay stuck on Idle — gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit — 5 steps · 2m 37s</span>
+      <span class="track-title">9:38 AM — Fixed dwell overlay stuck on Idle ΓÇö gyro mouse never resets Windows idle, so 15m pause bricked clicks and quit — 5 steps · 2m 37s</span>
       
     </summary>
     <div class="track-panel">
@@ -4297,7 +4592,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No Idle-stuck row — routed via electron-toolbar AGENTS.md</span>
+      <span class="nav-note">No Idle-stuck row ΓÇö routed via electron-toolbar AGENTS.md</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4686,7 +4981,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="My Drive/Rosters etc/accessible-docx-to-pdf.py">My Drive/Rosters etc/accessible-docx-to-pdf.py</code>
-      <span class="nav-note">Confirmed PDF path opened Word COM — caused poor Ally scores</span>
+      <span class="nav-note">Confirmed PDF path opened Word COM ΓÇö caused poor Ally scores</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4734,7 +5029,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No ADA PDF row — grepped tree for accessible/ADA</span>
+      <span class="nav-note">No ADA PDF row ΓÇö grepped tree for accessible/ADA</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4806,7 +5101,7 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="shell-tabs.css .shell-header-d2l-row">shell-tabs.css .shell-header-d2l-row</code>
-      <span class="nav-note">align-items: flex-end on the row drags shorter siblings to the bottom — fixed with align-self: flex-start, but this was not the full bug</span>
+      <span class="nav-note">align-items: flex-end on the row drags shorter siblings to the bottom ΓÇö fixed with align-self: flex-start, but this was not the full bug</span>
       
     </li><li class="nav-step nav-dead" style="--nav-depth:0">
       <span class="nav-marker" title="dead-end">✗</span>
@@ -4827,7 +5122,7 @@
       <span class="nav-step-num">5</span>
       
       <code class="nav-target" title="layout/shell-chrome.css .app-shell">layout/shell-chrome.css .app-shell</code>
-      <span class="nav-note">display:flex; flex-direction:column — a taller header pushes every sibling below it down</span>
+      <span class="nav-note">display:flex; flex-direction:column ΓÇö a taller header pushes every sibling below it down</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4875,14 +5170,14 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="d2l_manage_dates_export.py wait_for_assignments_table">d2l_manage_dates_export.py wait_for_assignments_table</code>
-      <span class="nav-note">Returns fast on 0 rows — not the hang</span>
+      <span class="nav-note">Returns fast on 0 rows ΓÇö not the hang</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="d2l_processor.py connect(cdp_url) call">d2l_processor.py connect(cdp_url) call</code>
-      <span class="nav-note">Hang is before any command-specific log line — must be the CDP attach itself</span>
+      <span class="nav-note">Hang is before any command-specific log line ΓÇö must be the CDP attach itself</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -4896,7 +5191,7 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="modules/d2l/course_builder_session.py">modules/d2l/course_builder_session.py</code>
-      <span class="nav-note">Already has the fix (close_known_playwright_cdp_blockers + bounded wait_for) — just never applied to the shared connect()</span>
+      <span class="nav-note">Already has the fix (close_known_playwright_cdp_blockers + bounded wait_for) ΓÇö just never applied to the shared connect()</span>
       
     </li></ul>
     </div>
@@ -4950,7 +5245,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">2:58 PM — Explained why the 'Log in to D2L' button appears missing — it was moved (not deleted) from the embedded-browser toolbar to the Home side panel in an earlier commit, and only renders when isD2LLoggedIn is false — 4 steps · 57m 14s · 1 dead-end</span>
+      <span class="track-title">2:58 PM — Explained why the 'Log in to D2L' button appears missing ΓÇö it was moved (not deleted) from the embedded-browser toolbar to the Home side panel in an earlier commit, and only renders when isD2LLoggedIn is false — 4 steps · 57m 14s · 1 dead-end</span>
       <span class="pill p2">10 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
     </summary>
     <div class="track-panel">
@@ -4971,7 +5266,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="Macro App directory (DTL grep)">Macro App directory (DTL grep)</code>
-      <span class="nav-note">Speech-to-text mis-heard 'D2L' as 'DTL' — zero hits</span>
+      <span class="nav-note">Speech-to-text mis-heard 'D2L' as 'DTL' ΓÇö zero hits</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -5814,7 +6109,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">3:55 PM — Overlay pointer policy (through/block) + saved-group picker redesign — registry/presets, block gate runtime, picker Exit/title UX, docs/recipes, headless test — 10 steps · 16m 11s</span>
+      <span class="track-title">3:55 PM — Overlay pointer policy (through/block) + saved-group picker redesign ΓÇö registry/presets, block gate runtime, picker Exit/title UX, docs/recipes, headless test — 10 steps · 16m 11s</span>
       <span class="pill p2">76 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
     </summary>
     <div class="track-panel">
@@ -5834,7 +6129,7 @@
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">1</span>
       
-      <code class="nav-target" title="agent docs/INDEX.md → recipes/INDEX.md">agent docs/INDEX.md → recipes/INDEX.md</code>
+      <code class="nav-target" title="agent docs/INDEX.md ΓåÆ recipes/INDEX.md">agent docs/INDEX.md ΓåÆ recipes/INDEX.md</code>
       <span class="nav-note">Cross-app recipe placement</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
@@ -5979,7 +6274,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">1:34 PM — Unit folder sort — homework modules now sort after video assignments, before quizzes — 3 steps · 2m 35s</span>
+      <span class="track-title">1:34 PM — Unit folder sort ΓÇö homework modules now sort after video assignments, before quizzes — 3 steps · 2m 35s</span>
       
     </summary>
     <div class="track-panel">
@@ -6020,7 +6315,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">1:32 PM — Course Builder unit sort — new tier order, duplicate-name DOM reorder, Cancel sort button, fixed promote pulling nested quiz/practice links out, restored Units 1–4 on live course — 9 steps · 58m 45s</span>
+      <span class="track-title">1:32 PM — Course Builder unit sort ΓÇö new tier order, duplicate-name DOM reorder, Cancel sort button, fixed promote pulling nested quiz/practice links out, restored Units 1ΓÇô4 on live course — 9 steps · 58m 45s</span>
       <span class="pill p2">39 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
     </summary>
     <div class="track-panel">
@@ -6421,7 +6716,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">12:07 PM — Session tracking hook verification — timeline, reconcile stats, HTML report — 6 steps · 1m 14s</span>
+      <span class="track-title">12:07 PM — Session tracking hook verification ΓÇö timeline, reconcile stats, HTML report — 6 steps · 1m 14s</span>
       <span class="pill p2">7 searches not in path</span>
     </summary>
     <div class="track-panel">
@@ -6635,7 +6930,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">11:26 AM — Pulled Macro App from GitHub — fast-forwarded 3 commits on main — 1 step · 24h 34m</span>
+      <span class="track-title">11:26 AM — Pulled Macro App from GitHub ΓÇö fast-forwarded 3 commits on main — 1 step · 24h 34m</span>
       
     </summary>
     <div class="track-panel">
@@ -7319,7 +7614,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">8:02 PM — Gradebook tab-switch smoothness/performance — many rounds of fixes (tab height, remount removal, disk-scan skip, no-scan session resume, per-course async state flashes, two race-condition crashes); final crash reported still unresolved at session end — 11 steps · 22h 27m</span>
+      <span class="track-title">8:02 PM — Gradebook tab-switch smoothness/performance ΓÇö many rounds of fixes (tab height, remount removal, disk-scan skip, no-scan session resume, per-course async state flashes, two race-condition crashes); final crash reported still unresolved at session end — 11 steps · 22h 27m</span>
       
     </summary>
     <div class="track-panel">
@@ -7410,7 +7705,7 @@
       <span class="nav-step-num">11</span>
       
       <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookHomeworkDueBatch.ts</code>
-      <span class="nav-note">Fixed a genuine unstable-useMemo-dependency infinite-render-loop bug (confirmed via diagnostic stack trace), but Chase reports the crash/issue is still not resolved after this fix — root cause of remaining issue not yet found</span>
+      <span class="nav-note">Fixed a genuine unstable-useMemo-dependency infinite-render-loop bug (confirmed via diagnostic stack trace), but Chase reports the crash/issue is still not resolved after this fix ΓÇö root cause of remaining issue not yet found</span>
       
     </li></ul>
     </div>
@@ -7444,14 +7739,14 @@
       <span class="nav-step-num">2</span>
       
       <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
-      <span class="nav-note">Makeup exam row → CDP doc + reload lives in useMakeupExamAutomation</span>
+      <span class="nav-note">Makeup exam row ΓåÆ CDP doc + reload lives in useMakeupExamAutomation</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="renderer/src/hooks/makeup-exam/useMakeupExamAutomation.ts">renderer/src/hooks/makeup-exam/useMakeupExamAutomation.ts</code>
-      <span class="nav-note">Moved reload from complete → next Start Automation</span>
+      <span class="nav-note">Moved reload from complete ΓåÆ next Start Automation</span>
       
     </li><li class="nav-step nav-dead" style="--nav-depth:0">
       <span class="nav-marker" title="dead-end">✗</span>
@@ -7464,7 +7759,7 @@
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">8:25 AM — Pulled Macro App from GitHub — fast-forwarded 5 commits on main — 3 steps · 69h 40m</span>
+      <span class="track-title">8:25 AM — Pulled Macro App from GitHub ΓÇö fast-forwarded 5 commits on main — 3 steps · 69h 40m</span>
       
     </summary>
     <div class="track-panel">
@@ -8620,7 +8915,7 @@
       <span class="nav-step-num">1</span>
       
       <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No row for calendar course-locking — routed via APP_LOCATIONS to Macro App</span>
+      <span class="nav-note">No row for calendar course-locking ΓÇö routed via APP_LOCATIONS to Macro App</span>
       
     </li><li class="nav-step nav-partial" style="--nav-depth:0">
       <span class="nav-marker" title="partial">~</span>
@@ -8654,7 +8949,7 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="my-calendar/src/utils/matchTemplateToD2LCourses.ts">my-calendar/src/utils/matchTemplateToD2LCourses.ts</code>
-      <span class="nav-note">templateKeysMatch strict equality — root cause</span>
+      <span class="nav-note">templateKeysMatch strict equality ΓÇö root cause</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:1">
       <span class="nav-marker" title="helpful">✓</span>
@@ -8697,14 +8992,14 @@
       <span class="nav-step-num">7</span>
       
       <code class="nav-target" title="renderer/src/utils/d2l/matchD2LTemplate.ts">renderer/src/utils/d2l/matchD2LTemplate.ts</code>
-      <span class="nav-note">Found parallel sibling bug in resolveCourseKey() — spawned follow-up task instead of bundling</span>
+      <span class="nav-note">Found parallel sibling bug in resolveCourseKey() ΓÇö spawned follow-up task instead of bundling</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">8</span>
       
       <code class="nav-target" title="config/d2l-courses.json">config/d2l-courses.json</code>
-      <span class="nav-note">M2413 follow-up: only a Summer online section on record, no Fall entry — explains empty Detail sections panel</span>
+      <span class="nav-note">M2413 follow-up: only a Summer online section on record, no Fall entry ΓÇö explains empty Detail sections panel</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -9491,14 +9786,14 @@
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
-      <code class="nav-target" title="guidelines/Guidelines.md § Modals">guidelines/Guidelines.md § Modals</code>
+      <code class="nav-target" title="guidelines/Guidelines.md ┬º Modals">guidelines/Guidelines.md ┬º Modals</code>
       
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">9:24 AM — Investigated MATH-1314 6W2 pull conflict — only Blake conflicted because D2L had 0 not blank — 3 steps · 12m 34s</span>
+      <span class="track-title">9:24 AM — Investigated MATH-1314 6W2 pull conflict ΓÇö only Blake conflicted because D2L had 0 not blank — 3 steps · 12m 34s</span>
       
     </summary>
     <div class="track-panel">
@@ -9635,10 +9930,10 @@
     </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Sunday, Aug 9, 2026 <span class="day-count">2 tasks</span></h2>
+      <h2 class="day-title">Sunday, Aug 9, 2026 <span class="day-count">1 task</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">5:07 PM — Session tracking split — per-task JSONL + collapsible HTML; metrics renamed to session-metrics-log — 7 steps · 1m 27s</span>
+      <span class="track-title">5:07 PM — Session tracking split ΓÇö per-task JSONL + collapsible HTML; metrics renamed to session-metrics-log — 7 steps · 1m 27s</span>
       
     </summary>
     <div class="track-panel">
@@ -9673,14 +9968,14 @@
       <span class="nav-step-num">3</span>
       
       <code class="nav-target" title="scripts/session-tracking-store.js">scripts/session-tracking-store.js</code>
-      <span class="nav-note">New — session-tracking.jsonl append</span>
+      <span class="nav-note">New ΓÇö session-tracking.jsonl append</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">4</span>
       
       <code class="nav-target" title="scripts/session-tracking-html.js">scripts/session-tracking-html.js</code>
-      <span class="nav-note">New — collapsible task rows</span>
+      <span class="nav-note">New ΓÇö collapsible task rows</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -9694,7 +9989,7 @@
       <span class="nav-step-num">6</span>
       
       <code class="nav-target" title="agent docs/SESSION_TRACKING.md + SESSION_METRICS.md">agent docs/SESSION_TRACKING.md + SESSION_METRICS.md</code>
-      <span class="nav-note">Split docs; SESSION_SCORECARD → pointer</span>
+      <span class="nav-note">Split docs; SESSION_SCORECARD ΓåÆ pointer</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
@@ -9702,61 +9997,6 @@
       
       <code class="nav-target" title="AGENTS.md, INDEX.md, hooks, index.html">AGENTS.md, INDEX.md, hooks, index.html</code>
       <span class="nav-note">Updated URLs and keywords</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">5:05 PM — Quick drag (F22 / DRAG overlay) works while paused; returns to paused when drag finishes — 5 steps · 14m 37s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 4:50 PM
-         · 14m 37s since previous task
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        
-        
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="User asked: quick drag while paused, return to paused after">User asked: quick drag while paused, return to paused after</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Read dwell_hotkeys activate_quick_drag + explicit_user_pause gate">Read dwell_hotkeys activate_quick_drag + explicit_user_pause gate</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Read dwell_mode2 quick drag completion path">Read dwell_mode2 quick drag completion path</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Add quick_drag_return_to_pause restore flags + complete_quick_drag()">Add quick_drag_return_to_pause restore flags + complete_quick_drag()</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="Wire DRAG overlay to dwell_quick_drag (F22) not dwell_toggle_mode">Wire DRAG overlay to dwell_quick_drag (F22) not dwell_toggle_mode</code>
-      
       
     </li></ul>
     </div>
