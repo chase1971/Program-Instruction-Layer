@@ -149,7 +149,61 @@
       <div><dt>Total sessions</dt><dd>73</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">1:15 PM · Sunday, Aug 30, 2026</dd></div>
     </div>
+    <section class="day-block">
+      <h2 class="day-title">Current session (live tally)</h2>
+      <div class="day-sessions"><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">12:51 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p0" title="Counts logged after each task; safe if chat summarizes later.">In progress — tallies update as tasks finish</span>
+        <span class="pill p3" title="Hook tally started on this tool call — any reads/searches before that are not in the counts.">Missing early work — hook started late</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        <span class="pill p1" title="Updated after each completed task — survives summarize.">Live tally</span>
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Session in progress…</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>3</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>47</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-daily-attendance.json">.scorecard-bump-seating-daily-attendance.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>9</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/legacy/js/attendance.js">attendance.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx">AttendanceHistoryModal.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx">AttendanceHistoryModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/layout-registry.js">layout-registry.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/legacy/script.js">script.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatCell.tsx">SeatCell.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/seating.css">seating.css</code></li><li><code class="" title="School Scripts/seating-chart/src/components/SeatingToolbar.tsx">SeatingToolbar.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/TitleBar.tsx">TitleBar.tsx</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>1</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/.scorecard-bump-seating-daily-attendance.json">.scorecard-bump-seating-daily-attendance.json</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>16</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/electron/attendance-day.js">attendance-day.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx">AttendanceHistoryModal.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx">AttendanceHistoryModal.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/utils/attendanceUtils.ts">attendanceUtils.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/state/chartReducer.ts">chartReducer.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/state/chartReducer.ts">chartReducer.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/config/courseLayoutMap.ts">courseLayoutMap.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/layouts/layoutF219Definition.ts">layoutF219Definition.ts</code></li><li><code class="" title="School Scripts/seating-chart/src/layouts/layoutF219Definition.ts">layoutF219Definition.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingModals.tsx">SeatingModals.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingToolbar.tsx">SeatingToolbar.tsx</code></li><li><code class="" title="School Scripts/seating-chart/src/components/SeatingToolbar.tsx">SeatingToolbar.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/components/SeatingWorkspace.tsx">SeatingWorkspace.tsx</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/src/hooks/useChartStore.ts">useChartStore.ts</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/scripts/verify-persistence.mjs">verify-persistence.mjs</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scripts/seating-chart/scripts/verify-room-layouts.mjs">verify-room-layouts.mjs</code></li></ul></div>
+  </details></div>
     
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Hook tally missing pre-hook work — bump tasks as you go. Tasks logged so far: 1 (last: Seating chart daily attendance reset, F219 side column, date/status toolbar, history edit; synced repos) Hook auto-tally active.
+    </div>
+    
+  </article></div>
+    </section>
     <section class="day-block">
       <h2 class="day-title">Sunday, Aug 30, 2026</h2>
       <div class="day-sessions"><article class="session-card">
