@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-30 — Guildrun Stats last-battle toolbox + INDEX rows
+
+**Files changed:** `agent docs/INDEX.md` (+12 pointer rows); `APP_LOCATIONS.md` (Guildrun row). App code is local-only under `Guildrun Stats/` — see `Guildrun Stats/docs/sessions/SESSIONS.md`.
+
+**What worked:** Indexed trigger dropdowns, attack/ability scaling, last-battle casts, Hermit vs Poisonous Attacks, grown-this-fight, and “is end-of-combat Magic stored.”
+
+**Current state:** Green — INDEX matches the session; Guildrun sheet is local.
+
+**File size flag:** None in this repo.
+
+**Next session:** Guildrun Stats work continues from that app’s `docs/sessions/SESSIONS.md`.
+
+---
+
 ## 2026-08-30 — Modal-over-browser freeze mandatory in recipes
 
 **Files changed:** `agent docs/recipes/modal-shell.md`, `agent docs/recipes/INDEX.md`. Macro App app work logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.

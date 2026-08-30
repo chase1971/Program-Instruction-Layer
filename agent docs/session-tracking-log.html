@@ -82,19 +82,54 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>183</dd></div>
-      <div><dt>Tasks today</dt><dd>0</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 120 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>2</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (31/699 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>18%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.9</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:32 PM · Saturday, Aug 29, 2026</dd></div>
+      <div><dt>Total tasks</dt><dd>208</dd></div>
+      <div><dt>Tasks today</dt><dd>25</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 145 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">5% (37/808 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.7</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:11 PM · Sunday, Aug 30, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No rank-upgrade row yet</span>
+      <span class="index-fail-task">12:35 PM — Sal Rank A upgrade is Hermit, not Poisonous Attacks — used rank slot as id</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No overrides row — added after</span>
+      <span class="index-fail-task">11:12 AM — Guildrun Stats: Chase-confirmed ? values persist in data/overrides.json; Shard Pouch is Gain 12 Shards</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No save-runs row — added after</span>
+      <span class="index-fail-task">11:01 AM — Guildrun Stats: one saved HTML sheet per RunId plus a clickable past-runs list; freezes when the live save disappears</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No Guildrun row — routed via APP_LOCATIONS, then added one</span>
+      <span class="index-fail-task">10:35 AM — Guildrun Stats: hover-only item tooltips, sticky vertical synergy lists with per-hit rates, live grants fix Rogue's Cowl wiki drift, Omnivamp on the bar, class-tinted names, quest-done on stat chips</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Guildrun Stats was missing; added after the work</span>
+      <span class="index-fail-task">10:35 AM — Guildrun Stats: hover-only item tooltips, sticky vertical synergy lists with per-hit rates, live grants fix Rogue's Cowl wiki drift, Omnivamp on the bar, class-tinted names, quest-done on stat chips</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">No scroll-rail recipe exists; only scroll-zone-click-block, which is electron-toolbar dwell pause and unrelated</span>
+      <span class="index-fail-task">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Only mentions modal scroll arrows, not the vertical rail</span>
+      <span class="index-fail-task">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat">School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat</code>
       <span class="nav-note">That delegation convention is for apps.json Node apps; the applicable rule here is only 'never a visible console' -&gt; used pythonw + VBS Run(...,0,False)</span>
@@ -159,44 +194,1275 @@
       <code title="School Scrips/Macro App/docs/MODAL_CATALOG.md">School Scrips/Macro App/docs/MODAL_CATALOG.md</code>
       <span class="nav-note">Useful for updating modal fixtures, not the runtime delay itself.</span>
       <span class="index-fail-task">6:57 PM — Fixed Managing Grades Bulk Edit modal return timing and hidden category labels</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
-      <span class="nav-note">Confirmed Bulk Edit automation commands and Manage Grades context</span>
-      <span class="index-fail-task">6:11 PM — Macro App: restored Bulk Edit scanning modal over snapshot and sped up picker return after live actions</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md">School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code>
-      <span class="nav-note">Confirmed Managing Grades automation flow context</span>
-      <span class="index-fail-task">6:04 PM — Macro App: fixed Bulk Edit picker browser stacking and softened workspace tabs</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
-      <span class="nav-note">Confirmed workspace tabs are distinct from browser slots; no slot behavior change needed</span>
-      <span class="index-fail-task">5:44 PM — Restyled Macro App workspace tabs to match the trapezoid reference, including the selected tab treatment</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md">School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code>
-      <span class="nav-note">Confirmed this was workspace-tab/browser layout territory, not browser slot behavior</span>
-      <span class="index-fail-task">5:36 PM — Moved one-line Macro App workspace tabs up by removing the two-row reservation in the split browser layout</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
-      <span class="nav-note">Checked browser slot/AA modal context; no freeze behavior change was needed</span>
-      <span class="index-fail-task">5:01 PM — Moved the Assignment Assistant browser panel back to the normal Browser-tab main position</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked UI/code-shape routing; no narrower recipe was needed for compacting existing cards</span>
-      <span class="index-fail-task">4:17 PM — Compacted Assignment Assistant sidebar cards by moving selected assignment/PDF labels and picker buttons into card headers</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked UI/code-shape routing; no narrower recipe was needed for this header icon move</span>
-      <span class="index-fail-task">3:20 PM — Returned Assignment Assistant sidebar to one column under Select Class and moved Show Log into the header icon group</span>
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Sunday, Aug 30, 2026 <span class="day-count">25 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:11 PM — Confirmed end-of-combat Magic/AS is not in the save — only live during the fight — 4 steps · 1m 14s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 1m 14s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 1 doc read(s) · 7 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 1m 23s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to growth / README gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="BattleHistory StatsGrantedToSelf">BattleHistory StatsGrantedToSelf</code>
+      <span class="nav-note">Key exists, empty every fight</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="localization HighestNonMaxHpStat">localization HighestNonMaxHpStat</code>
+      <span class="nav-note">End-screen labels; not in the live Run save</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Hero PermanentStatBonuses">Hero PermanentStatBonuses</code>
+      <span class="nav-note">Permanent only (Funke Magic); combat-only gains gone</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:10 PM — Grown this fight used stacks and Burn ticks as hits — now uses inflicts and swings — 3 steps · 13m 54s</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 13m 54s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 2 doc read(s) · 11 not in path · coverage 23%
+        <br>Wall-clock gap since previous task: 14m 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to growth.py</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/growth.py">Guildrun Stats/grstats/growth.py</code>
+      <span class="nav-note">2025 stacks × 4 and 27876 ticks × 3</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Sal extras probe">Sal extras probe</code>
+      <span class="nav-note">Breezy +5 Magic; Spellblade +1/swing; Hermit 33% of Magic</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:55 PM — Grown stats sit in Last battle as a second column; item timing documented — 4 steps · 10m 25s</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 10m 25s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 0 doc read(s) · 8 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 10m 34s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to README / watch.py for update timing</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/README.md">Guildrun Stats/README.md</code>
+      <span class="nav-note">Save writes after battle, floor, shop</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Guildrun Stats/watch.py">Guildrun Stats/watch.py</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/measured.py">Guildrun Stats/grstats/measured.py</code>
+      <span class="nav-note">battlesplit wrap</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:45 PM — Last battle Grown this fight: start / estimated gain / end / avg — 4 steps · 9m 51s</span>
+      <span class="pill p2">21 searches not in path</span><span class="pill p2">Hunted before doc — 21 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 9m 51s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 21 search(es), 0 doc read(s) · 21 not in path · coverage 19%
+        <br>Wall-clock gap since previous task: 10m 1s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to last battle / measured</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="BattleHistory Stats keys">BattleHistory Stats keys</code>
+      <span class="nav-note">StatsGrantedToSelf always empty; no end-of-fight snapshot</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="AppliedEffects The Breezy">AppliedEffects The Breezy</code>
+      <span class="nav-note">Only flat +20 AS; per-debuff is combat-only</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/growth.py">Guildrun Stats/grstats/growth.py</code>
+      <span class="nav-note">New estimate box</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:35 PM — Sal Rank A upgrade is Hermit, not Poisonous Attacks — used rank slot as id — 4 steps · 2m 47s</span>
+      <span class="pill p2">17 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 2m 47s active tool time
+        <br>4 steps · first helpful at #2 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 1 doc read(s) · 17 not in path · coverage 21%
+        <br>Wall-clock gap since previous task: 2m 53s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No rank-upgrade row yet</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/model.py">Guildrun Stats/grstats/model.py</code>
+      <span class="nav-note">RankModifiers keys used as ids</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Guildrun Stats/cache/localization.json">Guildrun Stats/cache/localization.json</code>
+      <span class="nav-note">id 3 Poisonous Attacks; id 272 Hermit</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="live save RankModifiers">live save RankModifiers</code>
+      <span class="nav-note">{3: {RankModifierSequentialId: 272}}</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:32 PM — Computed attack/ability damage; casts and trigger counts from this run — 8 steps · 13m 3s</span>
+      <span class="pill p2">19 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 13m 3s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 22 search(es), 3 doc read(s) · 19 not in path · coverage 32%
+        <br>Wall-clock gap since previous task: 13m 9s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to README, measured, triggers</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/README.md">Guildrun Stats/README.md</code>
+      <span class="nav-note">BattleHistory keys; no trigger-tick log</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="https://guildrun.net/gameplay/stats/">Web: https://guildrun.net/gameplay/stats/</code>
+      <span class="nav-note">Base AD increased by Attack; Magic scales abilities</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="https://guildrun.net/heroes/funke/">Web: https://guildrun.net/heroes/funke/</code>
+      <span class="nav-note">Wildfire 175 (+200% Magic)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="https://guildrun.net/heroes/dragomir/">Web: https://guildrun.net/heroes/dragomir/</code>
+      <span class="nav-note">Devour 250 (+200% Magic, +1000% Omnivamp)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Guildrun Stats/data/descriptions.json">Guildrun Stats/data/descriptions.json</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/measured.py">Guildrun Stats/grstats/measured.py</code>
+      <span class="nav-note">AbilitiesCast already in last-battle rows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/scaling.py">Guildrun Stats/grstats/scaling.py</code>
+      <span class="nav-note">New coefficient math</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:19 PM — Triggers are horizontal Kill (2) chips; click pins that list open — 4 steps · 15m 40s</span>
+      <span class="pill p2">12 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 15m 40s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 1 doc read(s) · 12 not in path · coverage 31%
+        <br>Wall-clock gap since previous task: 15m 46s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Guildrun Stats/grstats/triggers.py</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/triggers.py">Guildrun Stats/grstats/triggers.py</code>
+      <span class="nav-note">Finished buttons/panes after mid-edit</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/render.py">Guildrun Stats/grstats/render.py</code>
+      <span class="nav-note">TRIG_JS + wider trigger column</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Guildrun Stats/README.md">Guildrun Stats/README.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:03 PM — One Triggers box grouped by cause; Devour Kill is +60 Mana and Stealth 4s, separate from a plain kill — 2 steps · 3m 12s</span>
+      <span class="pill p2">12 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 3m 12s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 0 doc read(s) · 12 not in path · coverage 17%
+        <br>Wall-clock gap since previous task: 3m 20s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="descriptions.json The Sanguine">descriptions.json The Sanguine</code>
+      <span class="nav-note">On Devour kill, 60 Mana and Stealth for 4 seconds</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="gains.cause_key was just Kill">gains.cause_key was just Kill</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:00 PM — All tab: every hero's main stat block stacked; Damage tab kept — 2 steps · 12m 1s</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 12m 1s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 0 doc read(s) · 8 not in path · coverage 25%
+        <br>Wall-clock gap since previous task: 12m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="render.PARTY_TABS">render.PARTY_TABS</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="panels.hero_stats">panels.hero_stats</code>
+      <span class="nav-note">Split off hero_stat_block for reuse</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:47 AM — Stall 15 → +268 Shield: Rush/Stall thresholds on the chip, percents computed from the hero's stat, 33% only in the tooltip — 2 steps · 2m 46s</span>
+      <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 13 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 2m 46s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 0 doc read(s) · 13 not in path · coverage 15%
+        <br>Wall-clock gap since previous task: 2m 54s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="descriptions.json Shield Bastion">descriptions.json Shield Bastion</code>
+      <span class="nav-note">After Stall (15), lasting 33% Max HP Shield</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="gains._cause / evaluate_stat_amount">gains._cause / evaluate_stat_amount</code>
+      <span class="nav-note">33% was shown as flat +33</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:44 AM — Hero Stats: main numbers on top, last-battle and trigger boxes packed in two columns underneath — 3 steps · 4m 51s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 4m 51s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · 7 not in path · coverage 43%
+        <br>Wall-clock gap since previous task: 4m 59s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="panels.hero_stats order">panels.hero_stats order</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="render .outbox inline-block min-width">render .outbox inline-block min-width</code>
+      <span class="nav-note">Caused the empty gaps</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:39 AM — Conditionals as Cause → Effect (Burn → +Magic, Cast → +Burn); The Stoked trailing-whenever now parses and lands on mages — 4 steps · 4m 9s · 1 dead-end</span>
+      <span class="pill p2">14 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 4m 9s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 14 search(es), 1 doc read(s) · 14 not in path · coverage 27%
+        <br>Wall-clock gap since previous task: 4m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="descriptions.json The Stoked">descriptions.json The Stoked</code>
+      <span class="nav-note">Mages gain Magic whenever enemy in range takes Burn</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="clauses._trigger_of leading comma only">clauses._trigger_of leading comma only</code>
+      <span class="nav-note">Missed trailing whenever</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="last-battle AbilityDamage vs this passive">last-battle AbilityDamage vs this passive</code>
+      <span class="nav-note">The Stoked is a stat grant, not Wildfire combat damage</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:35 AM — Last-battle box replaces run totals: damage, named ability, status, plus/minus vs previous fight — 4 steps · 5m 36s</span>
+      <span class="pill p2">14 searches not in path</span><span class="pill p2">Hunted before doc — 14 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 5m 36s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 14 search(es), 0 doc read(s) · 14 not in path · coverage 29%
+        <br>Wall-clock gap since previous task: 5m 44s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="model._apply_combat / BattleHistory.Stats">model._apply_combat / BattleHistory.Stats</code>
+      <span class="nav-note">Already per-battle; sheet was summing the run</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="TotalEffectDamageByBalancingOriginPerCharacter">TotalEffectDamageByBalancingOriginPerCharacter</code>
+      <span class="nav-note">ActiveAbility seq id -&gt; Wildfire / Permafrost / Devour</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="DamageDealtByAbilities">DamageDealtByAbilities</code>
+      <span class="nav-note">Per-target hits, not a named ability total</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:29 AM — Gains per trigger: usage-based stats (Breezy per Debuff, on kill, Stall) as purple chips with theme pips, not folded into totals — 6 steps · 10m 30s · 1 dead-end</span>
+      <span class="pill p2">31 searches not in path</span><span class="pill p2">Hunted before doc — 10 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 10m 30s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 31 search(es), 2 doc read(s) · 31 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 10m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed to Guildrun Stats README</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/README.md">Guildrun Stats/README.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="descriptions.json The Breezy">descriptions.json The Breezy</code>
+      <span class="nav-note">0 (+1 per rank) AS and Magic per Debuff; +20 AS is ClassDescription</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="clauses.STAT_GRANT">clauses.STAT_GRANT</code>
+      <span class="nav-note">Missed parenthetical per-rank amounts</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="last run e96a2ec8">last run e96a2ec8</code>
+      <span class="nav-note">Poisonous Acceleration, The Warband, Adrenal Eye, Assassin's Glyph</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Brawler Ledger / missing-health conversions">Brawler Ledger / missing-health conversions</code>
+      <span class="nav-note">Standing per-X conversions not parsed this pass</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:19 AM — Starter Kit: Instant Shards is Gain 7; one-time shard relics stay off the Shards synergy count — 2 steps · 1m 42s</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 1m 42s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 2 doc read(s) · 11 not in path · coverage 15%
+        <br>Wall-clock gap since previous task: 1m 50s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="data/overrides.json">data/overrides.json</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="clauses.is_oneshot_text + Instant Shards name">clauses.is_oneshot_text + Instant Shards name</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:17 AM — Guildrun Stats: one-time grants (Shard Pouch 12 shards) stay on Relics only — not on characters or synergy counts — 2 steps · 4m 22s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 4m 22s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · 7 not in path · coverage 29%
+        <br>Wall-clock gap since previous task: 4m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="grstats/clauses.py is_oneshot">grstats/clauses.py is_oneshot</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/panels.py _read_hero + synergy.bar">grstats/panels.py _read_hero + synergy.bar</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:12 AM — Guildrun Stats: Chase-confirmed ? values persist in data/overrides.json; Shard Pouch is Gain 12 Shards — 3 steps · 11m 19s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 11m 19s active tool time
+        <br>3 steps · first helpful at #2 · 2 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 2 doc read(s) · 7 not in path · coverage 30%
+        <br>Wall-clock gap since previous task: 11m 25s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No overrides row — added after</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="localization Relic_6003 Shard Pouch">localization Relic_6003 Shard Pouch</code>
+      <span class="nav-note">Gain [{0} Shards] — wiki listed a different name so the hole stayed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="data/overrides.json">data/overrides.json</code>
+      <span class="nav-note">New file; beats wiki and leftover ?</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:01 AM — Guildrun Stats: one saved HTML sheet per RunId plus a clickable past-runs list; freezes when the live save disappears — 4 steps · 22m 18s</span>
+      <span class="pill p2">12 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 22m 18s active tool time
+        <br>4 steps · first helpful at #2 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 5 doc read(s) · 12 not in path · coverage 21%
+        <br>Wall-clock gap since previous task: 22m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No save-runs row — added after</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/save.py archive">grstats/save.py archive</code>
+      <span class="nav-note">Already snapshots every write; 121 files, one RunId</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="RunSessionDto.RunId">RunSessionDto.RunId</code>
+      <span class="nav-note">Stable key so one run is one HTML, not one file per battle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="grstats/history.py">grstats/history.py</code>
+      <span class="nav-note">New: save_sheet + index + backfill</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:38 AM — Guildrun Stats: synergy lists stay closed until a count is clicked — display:flex had been overriding hidden — 2 steps · 3m 14s</span>
+      <span class="pill p2">5 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 3m 14s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · 5 not in path · coverage 40%
+        <br>Wall-clock gap since previous task: 3m 25s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="grstats/render.py .synpane CSS">grstats/render.py .synpane CSS</code>
+      <span class="nav-note">display:flex beat [hidden], so every list rendered at once</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/synergy.py brief()">grstats/synergy.py brief()</code>
+      <span class="nav-note">Quest-only Burn mentions now prefer the Reward clause</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:35 AM — Guildrun Stats: hover-only item tooltips, sticky vertical synergy lists with per-hit rates, live grants fix Rogue's Cowl wiki drift, Omnivamp on the bar, class-tinted names, quest-done on stat chips — 7 steps · 18m 57s · 1 dead-end</span>
+      <span class="pill p2">21 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 18m 57s active tool time
+        <br>7 steps · first helpful at #3 · 4 ✓ · 2 ~ · 1 ✗
+        <br>Hook saw 22 search(es), 7 doc read(s) · 21 not in path · coverage 23%
+        <br>Wall-clock gap since previous task: 19m 2s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No Guildrun row — routed via APP_LOCATIONS, then added one</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Guildrun Stats was missing; added after the work</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="data/item_stats.json vs descriptions.json">data/item_stats.json vs descriptions.json</code>
+      <span class="nav-note">Japanese wiki still has Cowl as AS 20 / Crit 30; English wiki has Magic 25 / Crit 25</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="AppliedEffects on Rogue's Cowl">AppliedEffects on Rogue's Cowl</code>
+      <span class="nav-note">Save applies +25 Atk +30 Crit +20 AS — website text drifted, not a labeling bug</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="grstats/synergy.py">grstats/synergy.py</code>
+      <span class="nav-note">New module for click-to-open lists and per-hit/sec briefs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="grstats/panels.py + render.py">grstats/panels.py + render.py</code>
+      <span class="nav-note">Hover-only tips; class tint; quest badges on source chips</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="community Attack Speed formula">Web: community Attack Speed formula</code>
+      <span class="nav-note">APS = BaseAS * (1 + AS/100), cap 5 — not in the save, marked approx</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:16 AM — Guildrun Stats: standing synergy bar, per-character status split with per-swing rates, conditional bonuses evaluated against the roster, quest state from the save, pinnable tooltips — 8 steps · 32m 44s</span>
+      <span class="pill p2">19 searches not in path</span><span class="pill p2">Hunted before doc — 20 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 32m 44s active tool time
+        <br>8 steps · first helpful at #2 · 7 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 20 search(es), 1 doc read(s) · 19 not in path · coverage 36%
+        <br>Wall-clock gap since previous task: 32m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="guildrun.net/gameplay/stats/">Web: guildrun.net/gameplay/stats/</code>
+      <span class="nav-note">Confirmed Mana Lock is undocumented — hid it rather than guess</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="tools/probe_cond.py (throwaway)">tools/probe_cond.py (throwaway)</code>
+      <span class="nav-note">Found EffectsDto.CompletedItemQuests/CompletedRelicQuests + customDataTracking1 fixed-point counter; surveyed real condition wording</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/model.py">grstats/model.py</code>
+      <span class="nav-note">Quest state, status_by_hero, guid plumbing; also fixed spec entries dropping wiki text</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="grstats/basestats.py">grstats/basestats.py</code>
+      <span class="nav-note">HIDDEN set for Base Attack Speed / Max Mana / Mana Lock / Projectile Speed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="grstats/clauses.py">grstats/clauses.py</code>
+      <span class="nav-note">New module; three passes to kill false positives (per-N rates, paren scaling, flat-prefix cutting 'Attack Speed' in half)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="grstats/panels.py">grstats/panels.py</code>
+      <span class="nav-note">Top bar, applies-per-trigger, status split, conditional chips</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="grstats/render.py">grstats/render.py</code>
+      <span class="nav-note">Tooltip with 600ms grace + click-to-pin for gyro mouse</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="AutoAttackCountPerCharacter in BattleHistory">AutoAttackCountPerCharacter in BattleHistory</code>
+      <span class="nav-note">Enabled per-swing rates; TimeSinceStartRaw was a dead end for DPS since it includes shopping</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:43 AM — Guildrun sheet: filled every runtime '?' by scraping guildrun.net's resolved descriptions (items/relics JSON, rank modifiers, hero actives+specializations) into data/descriptions.json with a name-exact overlay — Rush/Stall thresholds and status amounts now read as real numbers for 100% of the party's kit — 6 steps · 8h 41m</span>
+      <span class="pill p2">14 searches not in path</span><span class="pill p2">Hunted before doc — 17 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 8h 41m active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 0 doc read(s) · 14 not in path · coverage 35%
+        <br>Wall-clock gap since previous task: 8h 41m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="guildrun.net/heroes/reyna/">Web: guildrun.net/heroes/reyna/</code>
+      <span class="nav-note">Renders descriptions filled in: 'Every 3 auto attacks... inflict 3 (+1 per 5 Attack Speed) Burn', 'For Rush (5)'</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="guildrun.net/sitemap.xml">Web: guildrun.net/sitemap.xml</code>
+      <span class="nav-note">Found /wiki/items/, /wiki/relics/, /wiki/rank-modifiers/ index pages</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Next.js payload of /wiki/items/">Web: Next.js payload of /wiki/items/</code>
+      <span class="nav-note">Embedded JSON: 162 items with effect/rarity/price/type/tags; 316 relics same shape</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="raw localization templates via catalog">raw localization templates via catalog</code>
+      <span class="nav-note">Holes are positional {0}..{n}, not per-rank tiers, so wiki text maps cleanly</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="tools/scrape_descriptions.py">tools/scrape_descriptions.py</code>
+      <span class="nav-note">First pass missed heroes whose base ability is a passive (Tilly's Luxurious) and specializations granting an active (The Elegant); fixed by routing on the captured label</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="grstats/stats.py learn_stat_names">grstats/stats.py learn_stat_names</code>
+      <span class="nav-note">Checked for regression — reads raw class_description/description, so the overlay can't corrupt enum proving</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:02 AM — Guildrun sheet: replaced useless mechanic-count chips with measured per-hero status output (Burn/Frost/Poison/Shield stacks + damage from BattleHistory), proved status ids 1/2/3/4/45, rebuilt UI as hero tabs x Stats/Abilities/Items with two-column stats, text a step smaller — 6 steps · 14m 58s</span>
+      <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 13 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 14m 58s active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 1 doc read(s) · 13 not in path · coverage 43%
+        <br>Wall-clock gap since previous task: 15m 7s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="tools/probe_amounts.py (effect payload values)">tools/probe_amounts.py (effect payload values)</code>
+      <span class="nav-note">Real amounts do exist: Warband 1 Crit/2 Attack/4 AS, Snowpiercer Frost Base 3 +2/rank, Grace shield 200/rank</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="BattleHistory Stats keys">BattleHistory Stats keys</code>
+      <span class="nav-note">StatusStacksAppliedPerCharacter / DamageDealt are [hero, statusId, value] — measured beats interpreting ability text</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="status id cross-check vs ShieldAppliedToAlliesPerCharacter">status id cross-check vs ShieldAppliedToAlliesPerCharacter</code>
+      <span class="nav-note">45 = Shield exactly; 2/3 from effect data; 4 = Stun via Trigger Synchrony Activator text</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="grstats/model.py">grstats/model.py</code>
+      <span class="nav-note">Added STATUS_TYPES, _triples, _status_output, hero_status, status_totals; caught enemy rows leaking into party totals</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="grstats/panels.py">grstats/panels.py</code>
+      <span class="nav-note">Rewrote: per-hero views, measured status block, two-column stat grid; dropped the count chips</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="grstats/render.py">grstats/render.py</code>
+      <span class="nav-note">Two-level tab state in localStorage (who x what), type down a step from 16px to 15px base</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering — 8 steps · 14m 45s · 1 dead-end</span>
+      <span class="pill p2">17 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 14m 45s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 17 search(es), 3 doc read(s) · 17 not in path · coverage 33%
+        <br>Wall-clock gap since previous task: 14m 50s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Row for 'building an interaction - drag, dwell, hover, overlay, scroll' routed to recipes/INDEX.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">No scroll-rail recipe exists; only scroll-zone-click-block, which is electron-toolbar dwell pause and unrelated</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Only mentions modal scroll arrows, not the vertical rail</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/LocalVerticalScrollRail.tsx">School Scrips/Macro App/renderer/src/components/LocalVerticalScrollRail.tsx</code>
+      <span class="nav-note">The exemplar: hover = continuous scroll, click = nudge; replicated across 5 component trees</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/browser/useViewportSmoothScroll.ts">renderer/src/hooks/browser/useViewportSmoothScroll.ts</code>
+      <span class="nav-note">setInterval loop, scrollBy behavior auto</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/utils/browser/browserScrollSpeed.ts">renderer/src/utils/browser/browserScrollSpeed.ts</code>
+      <span class="nav-note">DELAY 8ms, speed 90 x scale = 9px per tick; reused verbatim</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/styles/browser-panel.css">renderer/src/styles/browser-panel.css</code>
+      <span class="nav-note">Rail geometry: 52px rail, 44px buttons, 24px triangle icons; sized up for this page</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="grstats/tagging.py clean_text">grstats/tagging.py clean_text</code>
+      <span class="nav-note">Found the '#' Chase saw was my own placeholder substitution, not game data</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:32 AM — Guildrun Stats: sourced hero base stats from community wiki, solved the StatType enum via an item stat table, and rebuilt the sheet as lateral hero rows with tabs — 7 steps · 5m 23s · 2 dead-end</span>
+      <span class="pill p2">20 searches not in path</span><span class="pill p2">Hunted before doc — 17 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:26 AM
+         · 5m 23s active tool time
+        <br>7 steps · first helpful at #4 · 4 ✓ · 1 ~ · 2 ✗
+        <br>Hook saw 22 search(es), 4 doc read(s) · 20 not in path · coverage 27%
+        <br>Wall-clock gap since previous task: 5m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="GameAssembly.dll / shipped assets (prior session)">GameAssembly.dll / shipped assets (prior session)</code>
+      <span class="nav-note">Base stats are compiled into native code; searched named assets only, ~7400 unnamed MonoBehaviours never opened</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="UI.Stat.*.Title in localization bundles">UI.Stat.*.Title in localization bundles</code>
+      <span class="nav-note">Gave the 16 canonical stat names, but keyed by name so no enum ids; key order does not match the enum</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Items.Item_*.Description in localization">Items.Item_*.Description in localization</code>
+      <span class="nav-note">Stat-stick items ship with empty descriptions, so no local text names their stats</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="guildrun.net hero pages">Web: guildrun.net hero pages</code>
+      <span class="nav-note">Server-rendered full Rank C stat line plus per-rank package; scraped all 25 heroes with stdlib</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="gamerch.com Guildrun item list">Web: gamerch.com Guildrun item list</code>
+      <span class="nav-note">Only complete item-&gt;stat table; Japanese labels mapped back to the game's own stat names</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="archive/run-20260830 save probe">archive/run-20260830 save probe</code>
+      <span class="nav-note">Proved HeroRank is 1-based and resolved ids 1/4/6/9/11/13 against real modifier values</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="grstats/stats.py, model.py, render.py">grstats/stats.py, model.py, render.py</code>
+      <span class="nav-note">Extended the existing learner rather than adding a parallel one; removed model.py's duplicate STAT_TYPES map</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Saturday, Aug 29, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
