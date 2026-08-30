@@ -121,21 +121,23 @@ Toolbar tiles: `electron-toolbar/docs/LAUNCHER_PANEL.md`.
 Sibling repos under Programs, **not** a monorepo. Chase cannot rely on remembering; the agent
 drives this. Skip frozen apps.
 
-**Start** (first substantive request, "what's the state", "where did we leave off", "pull"):
-scan repos, `git status --short` + `git fetch`. Clean + behind → `git pull --ff-only`.
-Dirty + remote ahead, or a merge conflict → **STOP and surface it** (two-machine collision);
-never auto-resolve.
+**Start** (first substantive request, "what's the state", "where did we leave off", "pull",
+"pull Macro App", "same as my PC/laptop"): scan repos, `git status --short` + `git fetch`.
+Clean + behind → `git pull --ff-only`. **Do not ask which repos or which files** — you already
+know the skip list and the scan. Machine-local dirty only (e.g. `config/d2l-courses.json`) →
+**stash those paths, pull, restore** — never skip the whole repo or quiz Chase. Real source
+dirty + remote ahead, or a merge conflict → **STOP and surface it**; never auto-resolve.
 
 **End / "put on GitHub":** commit and push **every dirty repo**, one commit per repo — not
 only the active app. Sister pair: Macro App ↔ `assignment-assistant-engine`. Skip unless
-asked: `.env`, credentials, `config/d2l-courses.json` backups, Calendar `server-port.json`.
+asked: `.env`, credentials, `config/d2l-courses.json`, Calendar `server-port.json`.
 **Do include** `Macro App/modules/makeup-exam/exam_history.jsonl`. No tests or builds unless
 Chase asks — sync only.
 
 **Mid-session:** do not commit or push unless Chase explicitly asks; wait for "put on GitHub"
 or end-of-session.
 
-Detail: `agent docs/rules/multi-repo-git-push.md`.
+Detail + machine-local list: `agent docs/rules/multi-repo-git-push.md`.
 
 ---
 
