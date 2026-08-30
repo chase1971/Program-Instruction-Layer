@@ -1,6 +1,6 @@
 # Modal/Dialog Pattern
 
-> **You might say:** "new modal", "make it look like that modal", "the modal is too wide", "it closes when I click outside"
+> **You might say:** "new modal", "make it look like that modal", "the modal is too wide", "it closes when I click outside", "modal over the browser", "PAUSED stuck", "snapshot/freeze"
 > **What it is:** The standard modal/dialog/wizard shell: max-w-md, no backdrop dismiss, design to fit without scrolling.
 
 **Exemplar files — read these before writing new code:**
@@ -9,6 +9,40 @@
 - `School Scrips/Macro App/renderer/src/components/ModalPortal.tsx` — the real portal component (not `portals/PortalLayer`, which doesn't exist)
 - `School Scrips/Macro App/renderer/src/components/ViewportScrollFrame.tsx` — for genuinely unbounded lists
 - `School Scrips/Macro App/renderer/src/components/gradebook/CategoryWeightsModal.tsx` — multi-column, fits without a scrollbar
+
+---
+
+## Macro App: modal over the embedded browser (read first)
+
+**If the modal appears while the Browser tab / embedded D2L view is visible, sizing and
+`ModalContainer` alone are not enough.** You must also follow the snapshot/freeze pattern or
+the user can get stuck with **PAUSED** on the browser and **no way to close anything** except
+restarting the app.
+
+**Before writing or changing that modal, read:**
+
+`School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md`
+
+That doc is the owner for freeze order, `unfreeze()` on every close path, and why nothing may
+reattach the live browser while a modal overlay is open.
+
+### Mandatory checklist (Macro App browser-panel modals)
+
+1. **Read** `EMBEDDED_BROWSER_AND_MODALS.md` § Seamless snapshot modals.
+2. **Freeze before open** — `await freezeBrowserBeforeOverlay(browserModal, 'label')` then
+   `flushSync(() => setModalOpen(true))`. Never `setModalOpen(true)` first and freeze in
+   `useEffect`.
+3. **Unfreeze on every close path** — Cancel, OK, error, and handoff to live browser work.
+   Pair with `useStableBrowserModalFreeze({ preFrozenOnOpen: true })` when you pre-freeze on
+   open.
+4. **Exemplars:** `useManageWorkspaceTabsModal.ts`, `useRenameCoursesModal.ts`,
+   `useMacroAppTabHandlers.ts` (setup/retire/clear).
+5. **Live browser during the flow** — close the modal and `unfreeze()` before visible D2L
+   navigation (bulk pull, setup export). Show progress in the side panel banner instead of
+   keeping the modal open over a frozen browser.
+6. **Then** apply the sizing / no-backdrop-dismiss rules in the rest of this file.
+
+Skipping step 1–5 produces modals that look fine in code review but brick the app in use.
 
 ---
 
@@ -215,6 +249,11 @@ The Macro App renderer does **not** use the Tailwind template above. It uses sha
 
 Before adding a modal there, read **`School Scrips/Macro App/guidelines/Guidelines.md` § Modals**
 and copy an exemplar (`GradesBackupModal.tsx`, `GradebookHistoryModal.tsx`).
+
+**If the modal opens over the embedded Browser tab**, also read
+**`School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md`** (see § Macro App: modal over
+the embedded browser above). That is not optional — missing freeze/unfreeze requires an app
+restart to recover.
 
 ---
 

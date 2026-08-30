@@ -36,6 +36,7 @@ into new code.
 | "is this file too long" · how big can a file get · 800 lines · split it | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § File Size Enforcement |
 | "App.tsx is doing too much" · "main.py is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Entry File as Orchestrator |
 | "make it look like the other modals" · modal width · modal sizing | [modal-shell.md](./modal-shell.md) |
+| "modal over the browser" · snapshot · freeze browser · PAUSED stuck · can't close modal | [modal-shell.md](./modal-shell.md) § Macro App embedded browser → then `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
 | "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
@@ -57,6 +58,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | You might say | Recipe | Status | Used by |
 |---|---|---|---|
 | "new modal", "make it look like that modal", "the modal scrolls wrong" | [modal-shell.md](./modal-shell.md) | ✅ | ~10 apps — genuinely universal |
+| Macro App modal while Browser tab visible · snapshot/freeze · PAUSED stuck | [modal-shell.md](./modal-shell.md) § Macro App embedded browser + `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` | ✅ | Macro App only |
 | "the button is too small to click", "target size", "rectPct minimum" | [canvas-kit-target-size.md](./canvas-kit-target-size.md) | ✅ | canvas-kit + 6 consuming apps |
 | "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ | 5 independent live math apps share the CSS class |
 | "click through overlay", "block clicks under pill", "pointer policy" | [overlay-pointer-policy.md](./overlay-pointer-policy.md) | ✅ | electron-toolbar overlay-creator (key pills, tabletop) |

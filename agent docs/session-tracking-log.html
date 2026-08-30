@@ -82,19 +82,29 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>175</dd></div>
-      <div><dt>Tasks today</dt><dd>6</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 112 tasks)</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>1.5</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (17/634 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>19%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.8</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:37 AM · Thursday, Aug 27, 2026</dd></div>
+      <div><dt>Total tasks</dt><dd>183</dd></div>
+      <div><dt>Tasks today</dt><dd>0</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 120 tasks)</dd></div>
+      <div><dt>Searches before first doc (median)</dt><dd>2</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (31/699 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>18%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.9</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:32 PM · Saturday, Aug 29, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Where the index failed</h2>
     <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat">School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat</code>
+      <span class="nav-note">That delegation convention is for apps.json Node apps; the applicable rule here is only 'never a visible console' -&gt; used pythonw + VBS Run(...,0,False)</span>
+      <span class="index-fail-task">11:10 PM — Added Guildrun Stats auto-update: save-file watcher (console-free VBS launcher) + self-reloading page via stamp polling; extracted shared build module</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row for game data capture / telemetry - nothing exists in tree yet</span>
+      <span class="index-fail-task">9:22 PM — Assessed Guildrun (Unity IL2CPP) data capture feasibility - save file is unencrypted MessagePack, full combat/hero/item/currency stats readable</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="docs/GRADE_IMPORT_INTEGRATION.md">docs/GRADE_IMPORT_INTEGRATION.md</code>
       <span class="nav-note">Push path; no debug flag mentioned</span>
@@ -184,19 +194,630 @@
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">Checked UI/code-shape routing; no narrower recipe was needed for this header icon move</span>
       <span class="index-fail-task">3:20 PM — Returned Assignment Assistant sidebar to one column under Select Class and moved Show Log into the header icon group</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked UI/code-shape routing; no narrower recipe was needed for adding a header icon action</span>
-      <span class="index-fail-task">3:15 PM — Combined Assignment Assistant Clear Data into the Select Class header as a red trash icon and removed its sidebar/settings entry</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked UI/code-shape routing; no narrower recipe was needed for moving a header action</span>
-      <span class="index-fail-task">3:13 PM — Moved Assignment Assistant settings from its sidebar card into a gear button on the Select Class header</span>
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Saturday, Aug 29, 2026 <span class="day-count">7 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:32 PM — Guildrun Stats: added per-hero stat-bonus breakdown traced to granting item/relic/passive, ability descriptions on cards; fixed EquipmentSequentialId bug that hid all equipped items — 9 steps · 21m 21s · 3 dead-end</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 21m 21s active tool time
+        <br>9 steps · first helpful at #1 · 5 ✓ · 1 ~ · 3 ✗
+        <br>Hook saw 12 search(es), 0 doc read(s) · 11 not in path · coverage 75%
+        <br>Wall-clock gap since previous task: 21m 32s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="live Run save (mid-run, 3 heroes)">live Run save (mid-run, 3 heroes)</code>
+      <span class="nav-note">Watcher had auto-captured it; real items/relics/effects to work against at last</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun_Data/Logs/*.log">Guildrun_Data/Logs/*.log</code>
+      <span class="nav-note">BattleSimulationService.LogBattle dumps full battle config JSON (heroes, classes, items, relics, shards) - useful but contains NO stat numbers</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="log call-site enumeration (ModifyPermanentStat, CreateItemEffects, RefreshConstantEffects)">log call-site enumeration (ModifyPermanentStat, CreateItemEffects, RefreshConstantEffects)</code>
+      <span class="nav-note">All warnings/errors, no stat dumps</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="asset scan for hero/item stat database">asset scan for hero/item stat database</code>
+      <span class="nav-note">Only EnemyDatabase/StageDatabase/EnemyResultDatabase exist; hero base stats are not in any asset container</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="StatsIconAtlas MonoBehaviour">StatsIconAtlas MonoBehaviour</code>
+      <span class="nav-note">Sprite-ordered atlas, preceding int always 0 - does not encode StatType enum order</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="EffectsDto.AppliedEffects.StatModifiers">EffectsDto.AppliedEffects.StatModifiers</code>
+      <span class="nav-note">THE answer for attribution: TargetEntityGuid + TargetStat + ValueRaw, joins by EffectId to origin item/relic/passive</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="GameRegistryDto.Equipment">GameRegistryDto.Equipment</code>
+      <span class="nav-note">BUG FOUND - field is EquipmentSequentialId, not ItemSeqId; every equipped item was silently dropped</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="PassiveAbility_10303 vs effect value">PassiveAbility_10303 vs effect value</code>
+      <span class="nav-note">Second independent confirmation of StatType 9 = Attack Speed; seeded the auto-inference approach</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="watcher process restart">watcher process restart</code>
+      <span class="nav-note">Long-running pythonw had old modules loaded - had to restart for new code to take effect</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:10 PM — Added Guildrun Stats auto-update: save-file watcher (console-free VBS launcher) + self-reloading page via stamp polling; extracted shared build module — 5 steps · 55m 31s</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 55m 31s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 0 doc read(s) · 11 not in path · coverage 42%
+        <br>Wall-clock gap since previous task: 55m 43s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Guildrun Stats file-size check before editing">Guildrun Stats file-size check before editing</code>
+      <span class="nav-note">All modules well under cap (largest model.py 285) - safe to extend</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat">School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat</code>
+      <span class="nav-note">That delegation convention is for apps.json Node apps; the applicable rule here is only 'never a visible console' -&gt; used pythonw + VBS Run(...,0,False)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/build.py (new)">grstats/build.py (new)</code>
+      <span class="nav-note">Extracted shared build path so watch.py and generate.py don't duplicate the render mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="grstats/render.py">grstats/render.py</code>
+      <span class="nav-note">Added stamp-poll reload JS so an open tab refreshes itself without user input</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="stamp endpoint over 127.0.0.1:8765">stamp endpoint over 127.0.0.1:8765</code>
+      <span class="nav-note">Serves 200 as octet-stream; fetch().text() is unaffected</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:14 PM — Built Guildrun Stats: reads MessagePack save + extracts names from Unity Localization bundles, renders single-screen tag-categorised HTML run sheet — 12 steps · 52m 44s · 6 dead-end</span>
+      <span class="pill p2">24 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 52m 44s active tool time
+        <br>12 steps · first helpful at #1 · 5 ✓ · 1 ~ · 6 ✗
+        <br>Hook saw 24 search(es), 1 doc read(s) · 24 not in path · coverage 48%
+        <br>Wall-clock gap since previous task: 52m 54s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Output must land under a served root -&gt; agent docs/scratch/, link via 127.0.0.1:8765</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="AppData/LocalLow/Leyline/Guildrun/Saves">AppData/LocalLow/Leyline/Guildrun/Saves</code>
+      <span class="nav-note">Run + Run.bak both GONE - game deletes run save when a run ends; no cloud copy in Steam userdata either</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Steam userdata/10378388/4425970">Steam userdata/10378388/4425970</code>
+      <span class="nav-note">Only remotecache.vdf, no recoverable Run save</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Profile save (msgpack)">Profile save (msgpack)</code>
+      <span class="nav-note">Has level/XP/runs but ChallengeRunHistory arrays empty - no completed-run summary</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="resources.assets object-name scan (UnityPy)">resources.assets object-name scan (UnityPy)</code>
+      <span class="nav-note">Only fonts + Enemy/Stage databases; hero/item ScriptableObjects not there</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="StreamingAssets/MASTER.strings.bank">StreamingAssets/MASTER.strings.bank</code>
+      <span class="nav-note">FMOD event paths carry no hero names</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="StreamingAssets/aa localization bundles">StreamingAssets/aa localization bundles</code>
+      <span class="nav-note">BREAKTHROUGH - keys are Heroes.Hero_3.Name, keyed by the same seq ids the save uses</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="hexdump SharedTableData + StringTable">hexdump SharedTableData + StringTable</code>
+      <span class="nav-note">Layout: hdr28, strings len+pad4, entries [id:u64, str, meta]</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="first parse attempt (fixed 4-byte metadata)">first parse attempt (fixed 4-byte metadata)</code>
+      <span class="nav-note">Desynced on Items/Relics/ActiveAbilities/PassiveAbilities/UI - metadata is count + 8*count, and StringTable header width varies with it</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="global-metadata.dat StatType enum scan">global-metadata.dat StatType enum scan</code>
+      <span class="nav-note">Strings globally de-duplicated so enum declaration order has gaps - not recoverable this way; used description tags for categorisation instead</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="PassiveAbility_102201 vs effect JSON">PassiveAbility_102201 vs effect JSON</code>
+      <span class="nav-note">Anchored StatType 9 = Attack Speed and confirmed 16.16 fixed point (1310720/65536=20)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="EffectsDto.SerializedEffectJson">EffectsDto.SerializedEffectJson</code>
+      <span class="nav-note">ModifyStatAction gives concrete stat+value with OriginEntryPrefix/SeqId back-reference to the granting item/relic/passive</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:22 PM — Assessed Guildrun (Unity IL2CPP) data capture feasibility - save file is unencrypted MessagePack, full combat/hero/item/currency stats readable — 12 steps · 5h 15m · 3 dead-end</span>
+      <span class="pill p2">46 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 5h 15m active tool time
+        <br>12 steps · first helpful at #2 · 8 ✓ · 1 ~ · 3 ✗
+        <br>Hook saw 48 search(es), 13 doc read(s) · 46 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 5h 15m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row for game data capture / telemetry - nothing exists in tree yet</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="D:\ drive scan for Guildrun">D:\ drive scan for Guildrun</code>
+      <span class="nav-note">Found D:/SteamLibrary/steamapps/common/Guildrun Demo</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Guildrun Demo/ root + Guildrun_Data">Guildrun Demo/ root + Guildrun_Data</code>
+      <span class="nav-note">Unity 6000.0.64f1, IL2CPP (GameAssembly.dll + global-metadata.dat), ships sqlite3.dll + sentry</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Guildrun_Data/app.info">Guildrun_Data/app.info</code>
+      <span class="nav-note">Publisher Leyline -&gt; located save dir</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="AppData/LocalLow/Leyline/Guildrun/Saves">AppData/LocalLow/Leyline/Guildrun/Saves</code>
+      <span class="nav-note">Profile + Run files; Run rewritten live during play, Run.bak = rotating previous state</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Run save byte header probe">Run save byte header probe</code>
+      <span class="nav-note">0x85 0xA7 'Version' = MessagePack fixmap, plain string keys, no encryption or compression</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="python msgpack parse of Run + Profile">python msgpack parse of Run + Profile</code>
+      <span class="nav-note">Nested Payload is a second msgpack blob; recursive decode yields full object graph</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="BattleHistory[].Stats">BattleHistory[].Stats</code>
+      <span class="nav-note">~40 per-character stat categories incl. damage dealt/taken/mitigated, crits, killing blows, overkill, plus attacker-&gt;target damage matrix</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="StreamingAssets/MASTER.strings.bank">StreamingAssets/MASTER.strings.bank</code>
+      <span class="nav-note">FMOD event paths do not contain hero names</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="StreamingAssets/aa localization bundles">StreamingAssets/aa localization bundles</code>
+      <span class="nav-note">English string table bundle is LZ4 UnityFS - names recoverable but needs UnityPy/AssetStudio (not installed, did not install)</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">11</span>
+      
+      <code class="nav-target" title="rg across 8GB of .assets">rg across 8GB of .assets</code>
+      <span class="nav-note">Too slow, killed - scoped probes were the right call instead</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">12</span>
+      
+      <code class="nav-target" title="save file write-frequency poll (27s)">save file write-frequency poll (27s)</code>
+      <span class="nav-note">Writes at gameplay checkpoints (~30s cadence), not continuous mid-combat</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:06 PM — Browser tab bulk D2L grade pull — modal, visible Enter Grades navigation, pullCourseFromD2L per course — 5 steps · 10m 14s</span>
+      <span class="pill p2">32 searches not in path</span><span class="pill p2">Hunted before doc — 32 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 10m 14s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 32 search(es), 0 doc read(s) · 32 not in path · coverage 9%
+        <br>Wall-clock gap since previous task: 10m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/gradebookPullCourse.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/gradebookPullCourse.ts</code>
+      <span class="nav-note">Extracted per-course full pull flow</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/gradebookD2LBackupSync.ts">School Scrips/Macro App/renderer/src/services/gradebookD2LBackupSync.ts</code>
+      <span class="nav-note">visible mode + waitForEnterGradesSlotReady</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkGradePull.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkGradePull.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/shell/BulkPullGradesModal.tsx">School Scrips/Macro App/renderer/src/components/shell/BulkPullGradesModal.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx">School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      <span class="nav-note">Pull all grades button</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:55 PM — Push to D2L: dropped-student routing fix — all-unmatched opens GradebookStudentDropModal instead of verification error — 4 steps · 1h 12m</span>
+      <span class="pill p2">39 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 1h 12m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 39 search(es), 1 doc read(s) · 39 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 1h 12m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/gradebookImportMachine.ts">School Scrips/Macro App/renderer/src/services/gradebookImportMachine.ts</code>
+      <span class="nav-note">Root cause: verificationOk checked before all-unmatched</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/gradebookService.ts">School Scrips/Macro App/renderer/src/services/gradebookService.ts</code>
+      <span class="nav-note">parseImportGradesResult inferred verificationOk from ok:false</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_enter_import_tasks.py">School Scrips/Macro App/modules/d2l/grades_enter_import_tasks.py</code>
+      <span class="nav-note">Python already emits failureKind all-unmatched</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookImport.ts">School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookImport.ts</code>
+      <span class="nav-note">promptStudentDropsForImport already wired</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:43 PM — Assignment Grading pad layout (full-width grid + compact Clear Grade/Max column); removed interjection UI; per-course student nicknames (gradebook right-click, Email, Makeup Exam) — 9 steps · 18h 48m</span>
+      <span class="pill p2">79 searches not in path</span><span class="pill p2">Hunted before doc — 48 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:54 PM
+         · 18h 48m active tool time
+        <br>9 steps · first helpful at #1 · 9 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 79 search(es), 2 doc read(s) · 79 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 18h 48m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
+      <span class="nav-note">Bump format for session end</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/side-panels/discussion-grading/DiscussionGradingGradePad.tsx">School Scrips/Macro App/renderer/src/components/side-panels/discussion-grading/DiscussionGradingGradePad.tsx</code>
+      <span class="nav-note">Grid left, side actions right; swapped Clear Grade above Max</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/styles/index.css">School Scrips/Macro App/renderer/src/styles/index.css</code>
+      <span class="nav-note">Pad sizing — narrower side column, larger number keys</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/side-panels/discussion-grading/DiscussionGradingMessages.tsx">School Scrips/Macro App/renderer/src/components/side-panels/discussion-grading/DiscussionGradingMessages.tsx</code>
+      <span class="nav-note">Interjection UI removed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/discussion-grading/useDiscussionGradingMessages.ts">School Scrips/Macro App/renderer/src/hooks/discussion-grading/useDiscussionGradingMessages.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/studentNicknameService.ts">School Scrips/Macro App/renderer/src/services/studentNicknameService.ts</code>
+      <span class="nav-note">student-nicknames.json per course</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx">School Scrips/Macro App/renderer/src/components/gradebook/GradebookView.tsx</code>
+      <span class="nav-note">Right-click first name → nickname modal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/email/useEmailTabStudents.ts">School Scrips/Macro App/renderer/src/hooks/email/useEmailTabStudents.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/makeup-exam/MakeupExamStudentList.tsx">School Scrips/Macro App/renderer/src/components/makeup-exam/MakeupExamStudentList.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Friday, Aug 28, 2026 <span class="day-count">1 task</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:29 PM — Rebuilt slim distribution on top of Chase's two remote commits (AA hang / download-trap / gradebook push slot, roster-export reporting fix) — committed slim work, merged, ci:local green, rebuilt to dist-slim v0.1.15 #29 — 9 steps · 75h 14m · 2 dead-end</span>
+      <span class="pill p2">59 searches not in path</span><span class="pill p2">Hunted before doc — 49 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 4:00 PM
+         · 75h 14m active tool time
+        <br>9 steps · first helpful at #1 · 7 ✓ · 0 ~ · 2 ✗
+        <br>Hook saw 60 search(es), 6 doc read(s) · 59 not in path · coverage 9%
+        <br>Wall-clock gap since previous task: 75h 14m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="git status + git fetch (Macro App)">git status + git fetch (Macro App)</code>
+      <span class="nav-note">Local tree unchanged since 8/25 build; Chase's edits were on the remote, not this machine</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="find -newermt over source tree">find -newermt over source tree</code>
+      <span class="nav-note">Zero local files changed since the last build — ruled out local edits before checking the remote</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Sister repos (assignment-assistant-engine, makeup-exam-standalone)">Sister repos (assignment-assistant-engine, makeup-exam-standalone)</code>
+      <span class="nav-note">AA engine is vendored in-repo, not a separate repo; makeup-exam-standalone untouched since 8/03</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Programs/AGENTS.md § Git — pull at start">Programs/AGENTS.md § Git — pull at start</code>
+      <span class="nav-note">Dirty + remote ahead = surface, never auto-resolve; asked before touching it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="git diff --name-only HEAD origin/main vs local modified set">git diff --name-only HEAD origin/main vs local modified set</code>
+      <span class="nav-note">Exactly one overlapping file, different hunks — clean merge predicted and confirmed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="git reflog after commit">git reflog after commit</code>
+      <span class="nav-note">A pull --ff-only fired during the pre-commit hook; verified both sides survived rather than assuming</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="npm run ci:local">npm run ci:local</code>
+      <span class="nav-note">210 files / 1257 tests green on the merged tree</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="scripts/build-embedded-python.cjs --verify-only">scripts/build-embedded-python.cjs --verify-only</code>
+      <span class="nav-note">App running again and holding greenlet .pyd; deps unchanged, so verified + skipped re-provision</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="npm run build:slim">npm run build:slim</code>
+      <span class="nav-note">dist-slim/win-unpacked, v0.1.15 build #29</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Thursday, Aug 27, 2026 <span class="day-count">6 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

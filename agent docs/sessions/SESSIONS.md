@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-08-30 — Modal-over-browser freeze mandatory in recipes
+
+**Files changed:** `agent docs/recipes/modal-shell.md`, `agent docs/recipes/INDEX.md`. Macro App app work logged in `School Scrips/Macro App/docs/sessions/SESSIONS.md`.
+
+**What worked:** Added § Macro App embedded browser to `modal-shell.md` — freeze before open, unfreeze on every close path, close modal before live D2L navigation. Indexed rows for PAUSED-stuck / snapshot / freeze. Cross-linked `EMBEDDED_BROWSER_AND_MODALS.md` ↔ modal-shell. Macro App `AGENTS.md` "new modal" row now requires both docs when Browser tab is visible.
+
+**Current state:** Green — doc-only for this repo; Macro App bulk-pull freeze fix shipped in sibling repo.
+
+**File size flag:** None.
+
+**Next session:** None for docs unless another modal-over-browser feature is added without reading the checklist.
+
+---
+
 ## 2026-08-14 — Session tracking hook verification
 
 **Files changed:** `scripts/session-tracking-stats.js` (new), `scripts/scorecard-hook-tally.js`, `scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`, `scripts/append-session-scorecard.js`, `scripts/scorecard-navigation-path.js`; `agent docs/SESSION_TRACKING.md`; generated `session-tracking-log.html`, `session-tracking.jsonl`, `session-metrics-log.html`.
