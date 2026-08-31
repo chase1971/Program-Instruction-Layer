@@ -7,10 +7,13 @@
 
 const path = require('path');
 
-const NAV_OUTCOMES = new Set(['helpful', 'dead-end', 'partial']);
+// 'routed' = the doc did its job by sending you onward, or by confirming no narrower owner
+// exists. Renders like partial but is NOT an index gap — see collectIndexFailures().
+const NAV_OUTCOMES = new Set(['helpful', 'dead-end', 'partial', 'routed']);
 
 const NAV_TIP =
-  'Order the agent looked things up — docs, greps, code. ✓ helped, ✗ dead end, ~ partial. '
+  'Order the agent looked things up — docs, greps, code. ✓ helped, → routed onward, '
+  + '~ partial, ✗ dead end. '
   + 'Use this to see whether INDEX.md and app AGENTS.md are creating short routes.';
 
 function normalizeOutcome(raw) {
@@ -30,6 +33,7 @@ function normalizeStep(raw, index) {
     if (r === '✓' || r.toLowerCase() === 'ok') outcome = 'helpful';
     else if (r === '✗' || r.toLowerCase() === 'x') outcome = 'dead-end';
     else if (r === '~') outcome = 'partial';
+    else if (r === '→' || r === '->') outcome = 'routed';
   }
 
   const step = {
@@ -62,12 +66,14 @@ function mergeNavigationPaths(existing, incoming) {
 function outcomeIcon(outcome) {
   if (outcome === 'dead-end') return '✗';
   if (outcome === 'partial') return '~';
+  if (outcome === 'routed') return '→';
   return '✓';
 }
 
 function outcomeClass(outcome) {
   if (outcome === 'dead-end') return 'nav-dead';
   if (outcome === 'partial') return 'nav-partial';
+  if (outcome === 'routed') return 'nav-routed';
   return 'nav-helpful';
 }
 
@@ -121,7 +127,9 @@ function navigationPathHtml(steps, tipText = NAV_TIP) {
   const helpful = countOutcomes(normalized, 'helpful');
   const dead = countOutcomes(normalized, 'dead-end');
   const partial = countOutcomes(normalized, 'partial');
-  const summary = `${normalized.length} step(s) — ${helpful} helpful, ${partial} partial, ${dead} dead-end`;
+  const routed = countOutcomes(normalized, 'routed');
+  const summary = `${normalized.length} step(s) — ${helpful} helpful, ${routed} routed, `
+    + `${partial} partial, ${dead} dead-end`;
 
   return `<details class="nav-path-block">
     <summary><abbr class="tip" title="${escapeHtml(tipText)}">Doc navigation path</abbr>
@@ -129,6 +137,7 @@ function navigationPathHtml(steps, tipText = NAV_TIP) {
     </summary>
     <p class="muted-inline nav-legend">
       <span class="nav-helpful-pill">✓ helpful</span>
+      <span class="nav-routed-pill">→ routed onward</span>
       <span class="nav-partial-pill">~ partial</span>
       <span class="nav-dead-pill">✗ dead end</span>
       — order the agent looked; nested lists are sub-agent branches.
@@ -160,7 +169,7 @@ function summarizeNavigationPath(steps) {
   const flat = flattenSteps(normalized);
   let stepsToFirstHelpful = 0;
   for (let i = 0; i < flat.length; i += 1) {
-    if (flat[i].outcome === 'helpful') {
+    if (flat[i].outcome === 'helpful' || flat[i].outcome === 'routed') {
       stepsToFirstHelpful = i + 1;
       break;
     }
@@ -170,6 +179,7 @@ function summarizeNavigationPath(steps) {
     stepsToFirstHelpful: stepsToFirstHelpful || (flat.length ? flat.length : 0),
     helpfulCount: countOutcomes(normalized, 'helpful'),
     partialCount: countOutcomes(normalized, 'partial'),
+    routedCount: countOutcomes(normalized, 'routed'),
     deadEndCount: countOutcomes(normalized, 'dead-end'),
   };
 }
@@ -194,7 +204,8 @@ function navigationPathStyles() {
     .nav-path-block summary::-webkit-details-marker { display: none; }
     .nav-path-summary { font-weight: 400; color: var(--muted); font-size: 0.88rem; }
     .nav-legend { margin: 0.35rem 0 0.5rem; font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
-    .nav-helpful-pill, .nav-partial-pill, .nav-dead-pill { font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 6px; }
+    .nav-helpful-pill, .nav-routed-pill, .nav-partial-pill, .nav-dead-pill { font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 6px; }
+    .nav-routed-pill { background: #1e3350; color: var(--accent); }
     .nav-helpful-pill { background: #264032; color: var(--accent2); }
     .nav-partial-pill { background: #4a3818; color: var(--warn); }
     .nav-dead-pill { background: #3d2020; color: var(--danger); }
@@ -205,6 +216,7 @@ function navigationPathStyles() {
     .nav-marker { font-weight: 800; width: 1.1rem; text-align: center; flex-shrink: 0; }
     .nav-step.nav-helpful .nav-marker { color: var(--accent2); }
     .nav-step.nav-partial .nav-marker { color: var(--warn); }
+    .nav-step.nav-routed .nav-marker { color: var(--accent); }
     .nav-step.nav-dead .nav-marker { color: var(--danger); }
     .nav-step-num { color: var(--muted); font-size: 0.75rem; min-width: 1.1rem; }
     .nav-branch { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); background: #1e3350; padding: 0.1rem 0.35rem; border-radius: 4px; }

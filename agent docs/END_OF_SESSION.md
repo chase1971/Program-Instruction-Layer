@@ -78,8 +78,20 @@ anything on Chase's screen without asking.
    not only the active app. Sibling repos are separate git repos; committing the root does not
    commit them.
 
-6. **`node scripts/check-docs.js`** — report the summary line. Fix dead links, and add an index
-   row for any recipe or doc this session created.
+6. **Close your own index gaps, then `node scripts/check-docs.js`.**
+
+   - Add an index row for any recipe or doc this session created.
+   - **Re-read the `navigationPath` steps you logged this session.** Every doc step you marked
+     `partial` or `dead-end` is a claim that a row is missing — resolve each one now: add the
+     keyword row to the owning `AGENTS.md` (or `agent docs/INDEX.md` / `recipes/INDEX.md` if it
+     is genuinely cross-app), or write the doc that should have existed.
+   - If a step doesn't warrant a row after all, **change it to `routed`** rather than leaving it
+     on the gap list. Steps where the index correctly routed you onward should already be
+     `routed` — see [SESSION_TRACKING.md](./SESSION_TRACKING.md) § `routed` vs `partial`.
+   - **Don't over-index.** A keyword row Chase would never say out loud is noise. App-specific
+     vocabulary belongs in that app's `AGENTS.md`, never in `agent docs/INDEX.md` — that file
+     names owners, owners name their contents.
+   - Report the check-docs summary line and fix dead links.
 
 7. **Report back in one short line:** what was logged, commit/push result, check-docs summary,
    anything left broken. **Do not ask Chase to run anything.**

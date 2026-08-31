@@ -61,8 +61,25 @@ Give Chase: **`http://127.0.0.1:8765/session-tracking-log.html`**
 | `outcome` | Marker | Meaning |
 |-----------|--------|---------|
 | `helpful` | ✓ | Got you closer to the answer |
-| `partial` | ~ | Some value, not a direct hit |
+| `routed` | → | **The index worked.** It sent you to the right next doc, *or* it correctly told you no narrower owner exists and you stayed scoped |
+| `partial` | ~ | Some value, not a direct hit — and it didn't route you either |
 | `dead-end` | ✗ | Checked but didn't help |
+
+### `routed` vs `partial` — this distinction is the whole point
+
+`partial` and `dead-end` on a **doc** step feed the **Real index gaps** panel. That panel is a
+to-do list, so only put something there when a row really is missing.
+
+| Situation | Outcome |
+|---|---|
+| `INDEX.md` had no exact row but its branch table sent you to `APP_LOCATIONS.md` → app `AGENTS.md`, and that worked | `routed` |
+| Read `recipes/INDEX.md`, confirmed no narrower recipe exists, built it the normal way | `routed` |
+| Opened an app doc for context; it wasn't the answer but it wasn't supposed to be | `routed` |
+| A row **should** have existed for this and didn't — you had to grep the tree | `partial` / `dead-end` |
+| The doc's content was wrong, stale, or pointed at a file that doesn't exist | `dead-end` |
+
+**If you log a doc step `partial` or `dead-end`, you own the fix** — add the row, or say in the
+`note` why no row is warranted. See [END_OF_SESSION.md](./END_OF_SESSION.md) step 6.
 
 Nested **`steps`** array = Task sub-agent branch. Use `branch` label on the parent step.
 
@@ -70,7 +87,7 @@ Legacy shorthand `{ "step": "…", "result": "✓" }` still parses.
 
 ### Honesty rule
 
-Log every lookup that did not help as `dead-end` or `partial`. The hook records searches independently; the tracking page compares hook counts to your path and shows **"N searches not in path"** when the gap is ≥3. Omitting dead ends makes coverage look better than it was — the page now catches that.
+Log every lookup that did not help as `dead-end` or `partial` (or `routed` — see above). The hook records searches independently; the tracking page compares hook counts to your path and shows **"N searches not in path"** when the gap is ≥3. Omitting dead ends makes coverage look better than it was — the page now catches that.
 
 ### Bump granularity
 

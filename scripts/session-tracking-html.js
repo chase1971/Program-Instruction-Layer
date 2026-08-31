@@ -169,8 +169,11 @@ function indexFailuresSection(entries) {
   }).join('');
 
   return `<section class="index-failures-block">
-    <h2 class="day-title">Where the index failed</h2>
-    <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
+    <h2 class="day-title">Real index gaps</h2>
+    <p class="muted-inline">Doc steps logged <code>partial</code> or <code>dead-end</code> — the doc was
+    opened and did not answer, and did not route onward either. Each one should have become an index row
+    or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
+    correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list">${rows}</ul>
   </section>`;
 }

@@ -23,18 +23,6 @@ never touches this file.
 | building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
 | school HTML — exam maps, review maps, teaching documents | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
-| "save the run" · past Guildrun runs · old run | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) |
-| "when does it update" · after purchase · when is an item learned | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) · [Guildrun Stats/watch.py](../Guildrun%20Stats/watch.py) |
-| "that's always 12" · question marks · shard pouch · fill in a ? | [Guildrun Stats/data/overrides.json](../Guildrun%20Stats/data/overrides.json) · [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) |
-| "per debuff" · gains per trigger · The Breezy · conditional stats | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) · [Guildrun Stats/grstats/gains.py](../Guildrun%20Stats/grstats/gains.py) |
-| "last battle" · per combat · plus or minus vs last fight | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) · [Guildrun Stats/grstats/measured.py](../Guildrun%20Stats/grstats/measured.py) |
-| "grown this fight" · stats during combat · breezy magic · where magic ended | [Guildrun Stats/grstats/growth.py](../Guildrun%20Stats/grstats/growth.py) · [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) |
-| "end of combat magic" · is the 790 stored · peak stats after the fight | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) |
-| "all stats" · combined · everyone's health | [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) · [Guildrun Stats/grstats/panels.py](../Guildrun%20Stats/grstats/panels.py) |
-| "devour kill" · trigger groups · kill vs devour kill · trigger dropdowns · Kill (2) | [Guildrun Stats/grstats/triggers.py](../Guildrun%20Stats/grstats/triggers.py) |
-| "attack damage" · auto attack formula · 37% of 35 · Wildfire 175 · Magic percent | [Guildrun Stats/grstats/scaling.py](../Guildrun%20Stats/grstats/scaling.py) · [Guildrun Stats/README.md](../Guildrun%20Stats/README.md) |
-| "how many casts" · ability went off · last fight casts | [Guildrun Stats/grstats/measured.py](../Guildrun%20Stats/grstats/measured.py) · [Guildrun Stats/grstats/panels.py](../Guildrun%20Stats/grstats/panels.py) |
-| "poisonous attacks" · hermit · wrong rank upgrade · class upgrade mislabel | [Guildrun Stats/grstats/model.py](../Guildrun%20Stats/grstats/model.py) |
 
 ## The detail behind an always-on rule
 

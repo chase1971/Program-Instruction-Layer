@@ -36,6 +36,7 @@ into new code.
 | "is this file too long" · how big can a file get · 800 lines · split it | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § File Size Enforcement |
 | "App.tsx is doing too much" · "main.py is doing too much" · orchestrator · it should just wire things up | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Entry File as Orchestrator |
 | "make it look like the other modals" · modal width · modal sizing | [modal-shell.md](./modal-shell.md) |
+| "add a scroll rail" · hover to scroll · the scrollbar is too small to click · click to nudge | [vertical-scroll-rail.md](./vertical-scroll-rail.md) |
 | "modal over the browser" · snapshot · freeze browser · PAUSED stuck · can't close modal | [modal-shell.md](./modal-shell.md) § Macro App embedded browser → then `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
@@ -63,6 +64,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "make the word flash", "blue pulse", "vocabulary highlight" | [tutorial-flash-vocabulary.md](./tutorial-flash-vocabulary.md) | ✅ | 5 independent live math apps share the CSS class |
 | "click through overlay", "block clicks under pill", "pointer policy" | [overlay-pointer-policy.md](./overlay-pointer-policy.md) | ✅ | electron-toolbar overlay-creator (key pills, tabletop) |
 | "block clicks under scroll zone", "dwell pause scroll zone" | [scroll-zone-click-block.md](./scroll-zone-click-block.md) | ✅ | electron-toolbar scroll zones (Python dwell pause) |
+| "it needs a scroll rail", "hover to scroll", "the scrollbar is too small", "click to nudge" | [vertical-scroll-rail.md](./vertical-scroll-rail.md) | ✅ | Macro App (×3), Math App Studio, Guildrun Stats |
 
 ## Where everything else went (2026-08-08)
 

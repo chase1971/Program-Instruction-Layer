@@ -56,7 +56,8 @@
     .nav-path-block summary::-webkit-details-marker { display: none; }
     .nav-path-summary { font-weight: 400; color: var(--muted); font-size: 0.88rem; }
     .nav-legend { margin: 0.35rem 0 0.5rem; font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
-    .nav-helpful-pill, .nav-partial-pill, .nav-dead-pill { font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 6px; }
+    .nav-helpful-pill, .nav-routed-pill, .nav-partial-pill, .nav-dead-pill { font-size: 0.78rem; padding: 0.1rem 0.4rem; border-radius: 6px; }
+    .nav-routed-pill { background: #1e3350; color: var(--accent); }
     .nav-helpful-pill { background: #264032; color: var(--accent2); }
     .nav-partial-pill { background: #4a3818; color: var(--warn); }
     .nav-dead-pill { background: #3d2020; color: var(--danger); }
@@ -67,6 +68,7 @@
     .nav-marker { font-weight: 800; width: 1.1rem; text-align: center; flex-shrink: 0; }
     .nav-step.nav-helpful .nav-marker { color: var(--accent2); }
     .nav-step.nav-partial .nav-marker { color: var(--warn); }
+    .nav-step.nav-routed .nav-marker { color: var(--accent); }
     .nav-step.nav-dead .nav-marker { color: var(--danger); }
     .nav-step-num { color: var(--muted); font-size: 0.75rem; min-width: 1.1rem; }
     .nav-branch { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); background: #1e3350; padding: 0.1rem 0.35rem; border-radius: 4px; }
@@ -82,19 +84,27 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>208</dd></div>
-      <div><dt>Tasks today</dt><dd>25</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 145 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>213</dd></div>
+      <div><dt>Tasks today</dt><dd>30</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 150 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">5% (37/808 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.7</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">1:11 PM · Sunday, Aug 30, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">5% (38/831 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>21%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.6</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:11 PM · Sunday, Aug 30, 2026</dd></div>
     </div>
     <section class="index-failures-block">
-    <h2 class="day-title">Where the index failed</h2>
-    <p class="muted-inline">Partial or dead-end doc steps from recent tasks — a backlog of missing index rows.</p>
-    <ul class="index-failures-list"><li class="index-fail nav-partial">
+    <h2 class="day-title">Real index gaps</h2>
+    <p class="muted-inline">Doc steps logged <code>partial</code> or <code>dead-end</code> — the doc was
+    opened and did not answer, and did not route onward either. Each one should have become an index row
+    or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
+    correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
+    <ul class="index-failures-list"><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">12 Guildrun rows sat in the four-branches table, against its own 'index names owners' rule</span>
+      <span class="index-fail-task">1:57 PM — Index-gap audit: Guildrun Stats AGENTS.md (12 rows out of the global index), scroll-rail recipe, scoped the launcher rule, added a 'routed' nav outcome so the gap panel stops showing correct negatives</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No rank-upgrade row yet</span>
@@ -189,16 +199,272 @@
       <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
       <span class="nav-note">Confirmed modal/browser constraints; not directly responsible for the missing dropdown label.</span>
       <span class="index-fail-task">12:28 PM — Fixed hidden labels in Bulk Edit dropdowns and cache fingerprint</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/MODAL_CATALOG.md">School Scrips/Macro App/docs/MODAL_CATALOG.md</code>
-      <span class="nav-note">Useful for updating modal fixtures, not the runtime delay itself.</span>
-      <span class="index-fail-task">6:57 PM — Fixed Managing Grades Bulk Edit modal return timing and hidden category labels</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Aug 30, 2026 <span class="day-count">25 tasks</span></h2>
+      <h2 class="day-title">Sunday, Aug 30, 2026 <span class="day-count">30 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:11 PM — Stall-speed relics subtract from Stall (N) everywhere: triggers, timelines, stat chips, ability text, hovers — 4 steps · 49m 44s</span>
+      <span class="pill p2">66 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:15 PM
+         · 49m 44s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 66 search(es), 2 doc read(s) · 66 not in path · coverage 6%
+        <br>Wall-clock gap since previous task: 49m 53s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Guildrun Stats stall adjustment</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/stall_mod.py">grstats/stall_mod.py</code>
+      <span class="nav-note">new module + double-count fixes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/gains.py panels.py timeline.py triggers.py scaling.py">grstats/gains.py panels.py timeline.py triggers.py scaling.py</code>
+      <span class="nav-note">wire stall_reduction through</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="python generate.py">python generate.py</code>
+      <span class="nav-note">regenerated scratch HTML</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:21 PM — Hero guide HTML in scratch + link from run sheet header — 3 steps · 3m 40s</span>
+      <span class="pill p2">10 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:15 PM
+         · 3m 40s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 10 search(es), 4 doc read(s) · 10 not in path · coverage 21%
+        <br>Wall-clock gap since previous task: 3m 48s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Downloads/preview.html">Downloads/preview.html</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/scratch/guildrun-hero-guide.html">agent docs/scratch/guildrun-hero-guide.html</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/panels.py summary headlinks">grstats/panels.py summary headlinks</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:17 PM — Rush/Stall three-way trigger split + Triggers column layout — 4 steps · 1h 30m</span>
+      <span class="pill p2">18 searches not in path</span><span class="pill p2">Hunted before doc — 18 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:15 PM
+         · 1h 30m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 18 search(es), 0 doc read(s) · 18 not in path · coverage 22%
+        <br>Wall-clock gap since previous task: 1h 30m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="plan rush_splits + layout">plan rush_splits + layout</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/gains.py cause_key rush_fx">grstats/gains.py cause_key rush_fx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/render.py toolbox grid">grstats/render.py toolbox grid</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="python generate.py">python generate.py</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:47 PM — Abilities/Items live stat grants + Rush threshold vs On Rush chips — 4 steps · 3h 49m</span>
+      <span class="pill p2">75 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:15 PM
+         · 3h 49m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 75 search(es), 7 doc read(s) · 75 not in path · coverage 5%
+        <br>Wall-clock gap since previous task: 3h 49m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Guildrun Stats/AGENTS.md">Guildrun Stats/AGENTS.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="grstats/scaling.py enrich_html">grstats/scaling.py enrich_html</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grstats/panels.py hero_abilities/items">grstats/panels.py hero_abilities/items</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="python generate.py">python generate.py</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:57 PM — Index-gap audit: Guildrun Stats AGENTS.md (12 rows out of the global index), scroll-rail recipe, scoped the launcher rule, added a 'routed' nav outcome so the gap panel stops showing correct negatives — 8 steps · 42m 4s · 1 dead-end</span>
+      <span class="pill p2">48 searches not in path</span><span class="pill p2">Hunted before doc — 16 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 1:15 PM
+         · 42m 4s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 49 search(es), 127 doc read(s) · 48 not in path · coverage 5%
+        <br>Wall-clock gap since previous task: 42m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/session-tracking.jsonl">agent docs/session-tracking.jsonl</code>
+      <span class="nav-note">54 doc-kind partial/dead-end steps; classified them by note text</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="scripts/session-tracking-stats.js">scripts/session-tracking-stats.js</code>
+      <span class="nav-note">collectIndexFailures() is what feeds the panel</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">12 Guildrun rows sat in the four-branches table, against its own 'index names owners' rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-toolbar/AGENTS.md">electron-toolbar/AGENTS.md</code>
+      <span class="nav-note">Exemplar for the app AGENTS.md keyword-table shape</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Grep LocalVerticalScrollRail">Grep LocalVerticalScrollRail</code>
+      <span class="nav-note">5 independent implementations across 3 apps - real recipe gap</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Confirmed no scroll-rail row existed and the 'shared home earns its keep' bar was met</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/browser/useViewportSmoothScroll.ts">School Scrips/Macro App/renderer/src/hooks/browser/useViewportSmoothScroll.ts</code>
+      <span class="nav-note">The actual mechanism; rail is just two buttons on it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="agent docs/END_OF_SESSION.md">agent docs/END_OF_SESSION.md</code>
+      <span class="nav-note">Step 6 was the hook point for closing gaps</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">1:11 PM — Confirmed end-of-combat Magic/AS is not in the save — only live during the fight — 4 steps · 1m 14s</span>
       <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>

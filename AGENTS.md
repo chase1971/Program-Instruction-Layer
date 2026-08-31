@@ -105,10 +105,16 @@ rule, or the modal rule.
 **Applies to every launcher, everywhere** — App Dashboard, the electron-toolbar **Launcher Panel**,
 and any standalone `.bat`. Launchers are how Chase opens everything, so this one is not optional.
 
-**Never spawn a visible detached `cmd.exe`.** Closing that window kills the app, and it steals
-focus when it appears. Per-app `.bat` files **delegate** to
-`App Dashboard/scripts/launch-app-invoke.bat` — never inline `npm run`. Electron hosts spawning
-`electron-vite`: piped stdio, `windowsHide: false`, **not** `detached`.
+**The rule is: never spawn a visible detached `cmd.exe`.** Closing that window kills the app,
+and it steals focus when it appears. *That* part is universal.
+
+**How you satisfy it depends on what the app is:**
+
+| App | Launcher shape |
+|---|---|
+| Node app registered in App Dashboard `apps.json` | Per-app `.bat` **delegates** to `App Dashboard/scripts/launch-app-invoke.bat` — never inline `npm run` |
+| Electron host spawning `electron-vite` | Piped stdio, `windowsHide: false`, **not** `detached` |
+| Python, or anything not in `apps.json` | `pythonw` (never `python`) launched from a `.vbs` with `Run(…, 0, False)`. Exemplar: `Guildrun Stats/Start Guildrun Stats.vbs`. The `launch-app-invoke.bat` delegation does **not** apply here |
 
 Exemplar: `App Dashboard/electron/processManager.ts`.
 Detail: `School Scrips/App Dashboard/docs/LAUNCHER.md` ·
@@ -148,7 +154,9 @@ every tool call — run
 the generated HTML logs; give Chase **`http://127.0.0.1:8765/session-tracking-log.html`**.
 
 **Every bump must include `navigationPath`** — ordered steps showing where you looked first,
-what helped (✓), what was a dead end (✗), and nested `steps` for Task sub-agents.
+what helped (✓), what routed you onward (→), what was a dead end (✗), and nested `steps` for
+Task sub-agents. **`partial` / `dead-end` on a doc step means you owe an index row** — close it
+before the session ends. Index did its job → `routed`, not `partial`.
 
 End-of-session **metrics** finalize: **`agent docs/SESSION_METRICS.md`** →
 `http://127.0.0.1:8765/session-metrics-log.html`.

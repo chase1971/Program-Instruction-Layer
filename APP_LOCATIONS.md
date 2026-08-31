@@ -5,8 +5,24 @@
 
 **Workspace root:** `C:\Users\chase\Documents\Programs\`
 
-Most school/teaching apps live under **`School Scrips\`** (note spelling: *Scrips*, not Scripts).
-That folder is **not** a separate workspace — it is inside Programs.
+Most school/teaching apps live under **`School Scrips\`**. That folder is **not** a separate
+workspace — it is inside Programs.
+
+> ### The folder names differ between Chase's two machines
+>
+> **On the desktop — this file's canonical spelling — it is `School Scrips`: *Scrips*, no T.**
+> It was a typo years ago and it stuck. On the laptop the same folder is spelled correctly,
+> `School Scripts`, and a few apps inside it differ too (`Macro-App` vs `Macro App`,
+> `seating-chart` vs `Seating-Chart`).
+>
+> **Leave it alone.** Renaming it would touch launchers, `apps.json`, `.bat` files, vendored
+> paths, and every doc in the tree — not worth the breakage. This is a known, accepted split.
+>
+> **What that means for you:** every path in this file is the **desktop** spelling. If a path
+> from here doesn't exist, you are on the laptop — **list the parent folder and use what's
+> actually there.** Do not conclude the app is missing, do not create the misspelled folder,
+> and do not "fix" a path in this file to the laptop's spelling. Paths written into code or
+> config must never hardcode either spelling.
 
 ---
 
@@ -38,7 +54,7 @@ That folder is **not** a separate workspace — it is inside Programs.
 | **Agent Browser**, agent browser | `Agent Browser` | *(local)* | **`C:\Users\chase\Documents\Programs\Agent Browser\`** — Personal Electron + embedded Chromium for agent experiments. CDP **9227**. **Cursor MCP:** `Programs/.cursor/mcp.json` → server `agent-browser` (Playwright MCP + CDP). Launch: Launcher Panel tile `agent-browser` (monitor-aware) or **Shift+F20** (primary monitor). Not connected to Macro App. Docs: `Agent Browser\CLAUDE.md`. |
 | **Hearthstone Overlay 3.0**, HS Overlay 3.0, go face, hearthstone overlay | `Hearthstone Overlay 3.0` | *(local)* | **`C:\Users\chase\Documents\Programs\Hearthstone Overlay 3.0\`** — Electron + Python log service. Launch: `launch.bat` or toolbar Launcher Panel tile **`hearthstone-overlay-3`**. Go Face / combat robot: `electron/play-actions.js`, `electron/robot-worker.js`, `electron/go-face-window.js`. Session log: `docs/sessions/SESSIONS.md`. Daily driver (2.0 is legacy Tk overlay). |
 | **Quasimorph Tracker**, QM Tracker | `Quasimorph Tracker` | *(local)* | Electron + React companion dashboard for Quasimorph; reads `QM_FactionDump` JSON. Launcher Panel tile `quasimorph-tracker` -> `launch.bat`. |
-| **Guildrun Stats**, Guild Run, guildrun | `Guildrun Stats` | *(local)* | HTML run sheet from Guildrun save files. View: `http://127.0.0.1:8765/scratch/guildrun-stats.html`. Docs: `Guildrun Stats/README.md`. |
+| **Guildrun Stats**, Guild Run, guildrun | `Guildrun Stats` | *(local)* | Python. HTML run sheet built from Guildrun save files. View: `http://127.0.0.1:8765/scratch/guildrun-stats.html`, past runs `.../guildrun-runs.html`. **Keyword routing: `Guildrun Stats/AGENTS.md`**; mechanics: `Guildrun Stats/README.md`. |
 | **CourseAgent** | `CourseAgent` | ccarlozzi/CourseAgent | |
 | **Programs patterns / standards / recipes** | `agent docs\recipes\` | *(Programs root repo)* | `CODING_STANDARDS.md`, `INIT_NEW_APP.md`, and every interaction recipe live here |
 
