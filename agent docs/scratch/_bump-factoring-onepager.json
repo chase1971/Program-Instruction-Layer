@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Factoring guess-and-check one-pager HTML + PDF for 6x²−11x−10",
+  "navigationPath": [
+    { "step": "agent docs/INDEX.md", "outcome": "routed", "note": "→ factoring-app AGENTS.md" },
+    { "step": "School Scrips/factoring-app TutorialManager.tsx", "outcome": "routed", "note": "tutorial terminology + problem" },
+    { "step": "School Scrips/School documents/assignment-assistant-one-pager.html", "outcome": "routed", "note": "one-page print layout pattern" },
+    { "step": "School Scrips/School documents/factoring-guess-check-one-pager.html", "outcome": "routed", "note": "authored handout" }
+  ]
+}

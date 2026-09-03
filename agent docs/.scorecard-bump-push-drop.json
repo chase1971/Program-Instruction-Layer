@@ -1,0 +1,17 @@
+{
+  "chunkNote": "Push to D2L: dropped-student routing fix — all-unmatched opens GradebookStudentDropModal instead of verification error",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scrips/Macro App/renderer/src/services/gradebookImportMachine.ts", "kind": "code", "outcome": "helpful", "note": "Root cause: verificationOk checked before all-unmatched" },
+    { "target": "School Scrips/Macro App/renderer/src/services/gradebookService.ts", "kind": "code", "outcome": "helpful", "note": "parseImportGradesResult inferred verificationOk from ok:false" },
+    { "target": "School Scrips/Macro App/modules/d2l/grades_enter_import_tasks.py", "kind": "code", "outcome": "helpful", "note": "Python already emits failureKind all-unmatched" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookImport.ts", "kind": "code", "outcome": "helpful", "note": "promptStudentDropsForImport already wired" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/src/services/gradebookService.ts",
+    "School Scrips/Macro App/renderer/src/services/gradebookImportMachine.ts",
+    "School Scrips/Macro App/renderer/src/services/gradebookImportMachine.test.ts"
+  ],
+  "docsRulesOpened": []
+}

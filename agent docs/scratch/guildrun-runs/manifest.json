@@ -1,0 +1,321 @@
+{
+  "runs": [
+    {
+      "id": "0ecb66cf-5f5e-40d7-a592-b4c3325a1c04",
+      "file": "2026-09-02-0ecb66cf.html",
+      "heroes": [
+        "Fiona",
+        "Kai",
+        "Reyna"
+      ],
+      "floor": 9,
+      "act": 1,
+      "battles_won": 8,
+      "battles": 9,
+      "relics": 12,
+      "shards": 7,
+      "updated": "2026-09-02T21:17:16",
+      "live": false
+    },
+    {
+      "id": "232859d7-e77a-4c0b-b66b-6618f4133e3f",
+      "file": "2026-09-02-232859d7.html",
+      "heroes": [
+        "Kai",
+        "Niklas",
+        "Yuuna"
+      ],
+      "floor": 4,
+      "act": 1,
+      "battles_won": 3,
+      "battles": 4,
+      "relics": 5,
+      "shards": 7,
+      "updated": "2026-09-02T20:55:53",
+      "live": false
+    },
+    {
+      "id": "d958e29f-0f2c-40b7-8656-5d5de8f7dc4e",
+      "file": "2026-09-02-d958e29f.html",
+      "heroes": [
+        "Irini",
+        "Rowan",
+        "Dragomir",
+        "Niklas"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 14,
+      "battles": 15,
+      "relics": 13,
+      "shards": 27,
+      "updated": "2026-09-02T17:26:13",
+      "live": false
+    },
+    {
+      "id": "864ac83d-1fd7-43c5-8792-aa727bb35cd6",
+      "file": "2026-09-02-864ac83d.html",
+      "heroes": [
+        "Gustav",
+        "Kai",
+        "Logan"
+      ],
+      "floor": 8,
+      "act": 1,
+      "battles_won": 7,
+      "battles": 9,
+      "relics": 10,
+      "shards": 3,
+      "updated": "2026-09-02T16:47:30",
+      "live": false
+    },
+    {
+      "id": "c24ede63-12e0-43de-abf3-4750ec05b1b2",
+      "file": "2026-09-02-c24ede63.html",
+      "heroes": [
+        "Yuuna",
+        "Zuri",
+        "Tilly",
+        "Grace"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 23,
+      "battles": 24,
+      "relics": 15,
+      "shards": 391,
+      "updated": "2026-09-02T05:18:49",
+      "live": false
+    },
+    {
+      "id": "9ce9eb30-c2ab-48eb-b5d9-ff6d40fa2172",
+      "file": "2026-09-01-9ce9eb30.html",
+      "heroes": [
+        "Irini",
+        "Karsu",
+        "Rip",
+        "Grace"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 20,
+      "battles": 22,
+      "relics": 16,
+      "shards": 28,
+      "updated": "2026-09-01T22:07:54",
+      "live": false
+    },
+    {
+      "id": "6ce26521-632b-45a6-8ed7-8d355a4749ee",
+      "file": "2026-09-01-6ce26521.html",
+      "heroes": [
+        "Skorn",
+        "Gustav",
+        "Karsu"
+      ],
+      "floor": 8,
+      "act": 1,
+      "battles_won": 7,
+      "battles": 9,
+      "relics": 11,
+      "shards": 4,
+      "updated": "2026-09-01T21:19:18",
+      "live": false
+    },
+    {
+      "id": "e531ef91-f22f-468c-84d1-bfe4a757ce5c",
+      "file": "2026-09-01-e531ef91.html",
+      "heroes": [
+        "Niklas",
+        "Funke",
+        "Nyx"
+      ],
+      "floor": 11,
+      "act": 1,
+      "battles_won": 10,
+      "battles": 12,
+      "relics": 10,
+      "shards": 7,
+      "updated": "2026-09-01T21:03:22",
+      "live": false
+    },
+    {
+      "id": "7c698b18-2422-41e8-afd0-e28bb82e2e79",
+      "file": "2026-09-01-7c698b18.html",
+      "heroes": [
+        "Irini",
+        "Nyx",
+        "Zuri"
+      ],
+      "floor": 3,
+      "act": 1,
+      "battles_won": 3,
+      "battles": 3,
+      "relics": 5,
+      "shards": 29,
+      "updated": "2026-09-01T19:53:46",
+      "live": true
+    },
+    {
+      "id": "b439615a-2be4-4908-b6d6-89ed66414dfa",
+      "file": "2026-09-01-b439615a.html",
+      "heroes": [
+        "Pimenta",
+        "Nyx",
+        "Yuuna"
+      ],
+      "floor": 9,
+      "act": 1,
+      "battles_won": 8,
+      "battles": 10,
+      "relics": 7,
+      "shards": 1,
+      "updated": "2026-09-01T19:46:56",
+      "live": false
+    },
+    {
+      "id": "1cb64020-0867-42fa-aa87-9016133ac015",
+      "file": "2026-09-01-1cb64020.html",
+      "heroes": [
+        "Nyx",
+        "Reyna",
+        "Rip"
+      ],
+      "floor": 5,
+      "act": 1,
+      "battles_won": 4,
+      "battles": 4,
+      "relics": 8,
+      "shards": 7,
+      "updated": "2026-09-01T18:35:46",
+      "live": false
+    },
+    {
+      "id": "b6a7cb6f-760b-4176-b015-ec1a43ab6645",
+      "file": "2026-08-31-b6a7cb6f.html",
+      "heroes": [
+        "Grace",
+        "Kai",
+        "Pollen"
+      ],
+      "floor": 4,
+      "act": 1,
+      "battles_won": 4,
+      "battles": 4,
+      "relics": 3,
+      "shards": 34,
+      "updated": "2026-08-31T20:57:41",
+      "live": true
+    },
+    {
+      "id": "464797ab-e21a-448f-8f24-74c4b31920fe",
+      "file": "2026-08-31-464797ab.html",
+      "heroes": [
+        "Pimenta",
+        "Irini",
+        "Rowan",
+        "Grace",
+        "Tilly"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 18,
+      "battles": 19,
+      "relics": 12,
+      "shards": 0,
+      "updated": "2026-08-31T20:46:26",
+      "live": false
+    },
+    {
+      "id": "8ba09641-b19d-443c-bcd0-ba5ac6790048",
+      "file": "2026-08-31-8ba09641.html",
+      "heroes": [
+        "Aria",
+        "Grace",
+        "Rowan",
+        "Sal"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 25,
+      "battles": 25,
+      "relics": 20,
+      "shards": 0,
+      "updated": "2026-08-31T18:21:59",
+      "live": false
+    },
+    {
+      "id": "6f7155ff-518e-49f2-8ea4-4c8775df727a",
+      "file": "2026-08-30-6f7155ff.html",
+      "heroes": [
+        "Gustav",
+        "Pimenta",
+        "Skorn",
+        "Pollen",
+        "Aria",
+        "Sal"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 21,
+      "battles": 22,
+      "relics": 11,
+      "shards": 188,
+      "updated": "2026-08-30T20:27:21",
+      "live": false
+    },
+    {
+      "id": "4a57818d-1f1e-493c-85bc-f1b120710ca4",
+      "file": "2026-08-30-4a57818d.html",
+      "heroes": [
+        "Ming",
+        "Rip",
+        "Grace"
+      ],
+      "floor": 9,
+      "act": 1,
+      "battles_won": 9,
+      "battles": 10,
+      "relics": 12,
+      "shards": 4,
+      "updated": "2026-08-30T19:17:29",
+      "live": false
+    },
+    {
+      "id": "598e673b-6fc3-4b1a-8ddf-3096a7a06593",
+      "file": "2026-08-30-598e673b.html",
+      "heroes": [
+        "Sal",
+        "Dragomir",
+        "Funke",
+        "Aria"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 12,
+      "battles": 14,
+      "relics": 13,
+      "shards": 6,
+      "updated": "2026-08-30T13:11:25",
+      "live": false
+    },
+    {
+      "id": "e96a2ec8-8680-4ff3-9982-bf47e6dc898c",
+      "file": "2026-08-30-e96a2ec8.html",
+      "heroes": [
+        "Reyna",
+        "Karsu",
+        "Tilly",
+        "Grace"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 21,
+      "battles": 23,
+      "relics": 19,
+      "shards": 93,
+      "updated": "2026-08-30T11:35:09",
+      "live": false
+    }
+  ]
+}
