@@ -13,7 +13,11 @@ const path = require('path');
 const PORT = 8765;
 const DOCS = path.join(__dirname, '..', 'docs');
 const AGENT_DOCS = path.join(__dirname, '..', 'agent docs');
-const SCHOOL_DOCS = path.join(__dirname, '..', 'School Scrips', 'School documents');
+const SCHOOL_DOCS_CANDIDATES = [
+  path.join(__dirname, '..', 'School Scrips', 'School documents'),
+  path.join(__dirname, '..', 'School Scripts', 'School documents'),
+];
+const SCHOOL_DOCS = SCHOOL_DOCS_CANDIDATES.find((dir) => fs.existsSync(dir)) || SCHOOL_DOCS_CANDIDATES[0];
 // School documents first so teaching HTML (exam maps) wins over agent-docs stubs
 const SERVE_ROOTS = [SCHOOL_DOCS, DOCS, AGENT_DOCS];
 
@@ -24,6 +28,7 @@ const MIME = {
   '.json': 'application/json; charset=utf-8',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
+  '.pdf': 'application/pdf',
 };
 
 function resolveFile(rel) {

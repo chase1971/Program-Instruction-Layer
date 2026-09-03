@@ -20,10 +20,10 @@ never touches this file.
 |---|---|
 | any app by name · "where does X live" · which folder is that in | [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
 | anything inside one app — its subsystems, its docs, "Pearson", "the gradebook", "the launcher panel" | that app's `AGENTS.md` — find the folder via [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
-| seating chart save · wipe on reopen · sticky room · attendance save · persistence | [School Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md](../School%20Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md) |
+| seating chart save · wipe on reopen · sticky room · attendance save · persistence | [School Scripts/seating-chart/docs/PERSISTENCE_INTEGRATION.md](../School%20Scripts/seating-chart/docs/PERSISTENCE_INTEGRATION.md) |
 | building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
-| school HTML — exam maps, review maps, teaching documents | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
+| school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
 
 ## The detail behind an always-on rule
 
