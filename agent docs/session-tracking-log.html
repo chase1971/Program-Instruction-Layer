@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>235</dd></div>
-      <div><dt>Tasks today</dt><dd>15</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 172 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>240</dd></div>
+      <div><dt>Tasks today</dt><dd>5</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 177 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/911 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/939 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
       <div><dt>Avg steps</dt><dd>5.5</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:11 PM · Wednesday, Sep 2, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:40 PM · Friday, Sep 4, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -99,7 +99,12 @@
     opened and did not answer, and did not route onward either. Each one should have become an index row
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
-    <ul class="index-failures-list"><li class="index-fail nav-dead">
+    <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">No row for student-portal — had to grep to find it. Row added this task</span>
+      <span class="index-fail-task">7:18 PM — Located the student-facing dashboard (student-portal) + its tracking backend; added missing APP_LOCATIONS row</span>
+    </li><li class="index-fail nav-dead">
       <span class="nav-marker">✗</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">12 Guildrun rows sat in the four-branches table, against its own 'index names owners' rule</span>
@@ -194,14 +199,308 @@
       <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
       <span class="nav-note">Checked general recipe routing; app-specific browser docs were the useful source.</span>
       <span class="index-fail-task">12:50 PM — Added embedded browser scroll and reset diagnostics, with live reattach hardening</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
-      <span class="nav-note">Confirmed modal/browser constraints; not directly responsible for the missing dropdown label.</span>
-      <span class="index-fail-task">12:28 PM — Fixed hidden labels in Bulk Edit dropdowns and cache fingerprint</span>
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Friday, Sep 4, 2026 <span class="day-count">5 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:40 PM — Student sign-in-by-link end to end: Supabase project provisioned, 002 code/claim migration, portal identity layer, generator script, deployed live to mathappsclass — 5 steps · 1h</span>
+      <span class="pill p2">15 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:12 PM
+         · 1h active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 15 search(es), 4 doc read(s) · 15 not in path · coverage 22%
+        <br>Wall-clock gap since previous task: 1h (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/package.json">School Scrips/student-portal/package.json</code>
+      <span class="nav-note">No Supabase dep — clean slate</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/tsconfig.json">School Scrips/student-portal/tsconfig.json</code>
+      <span class="nav-note">Pre-existing TS6310 from tsconfig.node.json composite+noEmit; build unaffected, left alone (config change needs Chase's OK)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/001_initial.sql">School Scrips/student-session-kit/supabase/migrations/001_initial.sql</code>
+      <span class="nav-note">Never actually run — 42P01 proved it; made policies drop-if-exists so it is re-runnable</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">Local id-map is the name store — confirms no name column belongs in Supabase</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/app/components/AppTile.tsx">School Scrips/student-portal/src/app/components/AppTile.tsx</code>
+      <span class="nav-note">TILE_BASE constant — matched that shape for BADGE_BASE</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:40 PM — Explained anonymous student-identity options (per-student code/link, cross-device via Supabase); built dwell-friendly Supabase setup walkthrough page — 7 steps · 21m 43s</span>
+      <span class="pill p2">5 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:12 PM
+         · 21m 43s active tool time
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 4 doc read(s) · 5 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 21m 50s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/app/components/AppGrid.tsx">School Scrips/student-portal/src/app/components/AppGrid.tsx</code>
+      <span class="nav-note">Already responsive 1/2/3 col — phone work is polish, not a rebuild</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/index.html">School Scrips/student-portal/index.html</code>
+      <span class="nav-note">Viewport meta already correct incl. viewport-fit=cover</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md">School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md</code>
+      <span class="nav-note">Confirms emailing students is already the sanctioned channel; local-only student records posture</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/netlify.toml">School Scrips/student-portal/netlify.toml</code>
+      <span class="nav-note">SPA fallback already present, so pretty /s/&lt;code&gt; URLs need zero new Netlify config</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/src/client.ts">School Scrips/student-session-kit/src/client.ts</code>
+      <span class="nav-note">Reads VITE_SUPABASE_ANON_KEY — the one Netlify env var needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/config/student-progress.example.json">School Scrips/Macro App/config/student-progress.example.json</code>
+      <span class="nav-note">Service-role config shape for deferred teacher-side setup</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">scratch/ + dated banner + verify 200, link only</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:18 PM — Located the student-facing dashboard (student-portal) + its tracking backend; added missing APP_LOCATIONS row — 8 steps · 5h 42m</span>
+      <span class="pill p2">13 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:12 PM
+         · 5h 42m active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 8 doc read(s) · 13 not in path · coverage 32%
+        <br>Wall-clock gap since previous task: 5h 42m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Branch table sent me to APP_LOCATIONS.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">No row for student-portal — had to grep to find it. Row added this task</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">Names the app, the apps.ts source of truth, and the 'Planned (not built)' login gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/docs/sessions/SESSIONS.md">School Scrips/student-portal/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Netlify live at mathappsclass.netlify.app; GitHub repo never wired</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/001_initial.sql">School Scrips/student-session-kit/supabase/migrations/001_initial.sql</code>
+      <span class="nav-note">sections/students/attempts schema; students.claimed_at is the placeholder for the access mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/services/studentProgressService.ts">School Scrips/Macro App/renderer/src/services/studentProgressService.ts</code>
+      <span class="nav-note">Teacher-side reader exists, IPC to main process</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/sessions/SESSIONS-archive-2026-08-17.md">School Scrips/Macro App/docs/sessions/SESSIONS-archive-2026-08-17.md</code>
+      <span class="nav-note">2026-07-27 entry records the product decision: portal is the goal, Progress tab is optional reader</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/scripts/session_codec.py">School Scrips/transformations-app/scripts/session_codec.py</code>
+      <span class="nav-note">Existing offline session-code path — relevant prior art for the access mechanism</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:36 PM — Assignment Assistant email opens embedded Email tab (same flow as Makeup Exam/Statistics) — 4 steps · 4h 30m</span>
+      <span class="pill p2">15 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:12 PM
+         · 4h 30m active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 15 search(es), 5 doc read(s) · 15 not in path · coverage 10%
+        <br>Wall-clock gap since previous task: 4h 31m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Browser tab integration pointer</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/src/components/EmailStudentsModal.tsx">assignment-assistant-engine/src/components/EmailStudentsModal.tsx</code>
+      <span class="nav-note">launch-firefox-outlook external browser</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useStatisticsEmailCompose.ts">renderer/src/hooks/gradebook/useStatisticsEmailCompose.ts</code>
+      <span class="nav-note">Exemplar embedded Outlook flow</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/services/outlookComposeService.ts">renderer/src/services/outlookComposeService.ts</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:05 AM — Recovered Chase's missing Word edits: two 3.6 files in Drive (.docx vs later .docm), no recent AutoRecover copy; explained laptop last-write-wins — 4 steps · 34h 51m</span>
+      <span class="pill p2">29 searches not in path</span><span class="pill p2">Hunted before doc — 14 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:12 PM
+         · 34h 51m active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 29 search(es), 10 doc read(s) · 29 not in path · coverage 10%
+        <br>Wall-clock gap since previous task: 34h 52m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No Programs owner — Word/Drive recovery is machine-local, not an app in this tree</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="%APPDATA%\Microsoft\Word and UnsavedFiles">%APPDATA%\Microsoft\Word and UnsavedFiles</code>
+      <span class="nav-note">Only AutoRecover leftover was Aug 2025 — not this document</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Office Recent / Word File MRU">Office Recent / Word File MRU</code>
+      <span class="nav-note">Opened 3.6.docx then 3.6.docm this morning</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="My Drive/M2413/Unit 2 Derivatives/Blank/3.6.docx + 3.6.docm">My Drive/M2413/Unit 2 Derivatives/Blank/3.6.docx + 3.6.docm</code>
+      <span class="nav-note">docx Sep 1 / smaller; docm Sep 3 / larger — the work was in the .docm</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Wednesday, Sep 2, 2026 <span class="day-count">15 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

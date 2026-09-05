@@ -42,6 +42,7 @@ workspace — it is inside Programs.
 | **Probability** | `School Scrips\Probability App` | chase1971/Probability-App | |
 | **Statistics** | `School Scrips\Statistics app` | chase1971/Statistics-app | |
 | **Transformations** | `School Scrips\transformations-app` | chase1971/transformations-app | Guided practice app; **code reader GUI:** `scripts\session_codec.py` (Launcher Panel: Transformations Code Reader) |
+| **Student Portal**, the dashboard students go to, the website with all the apps on it | `School Scrips\student-portal` | *(create repo)* | Public Netlify landing page — tile grid linking out to each math app. Live: **https://mathappsclass.netlify.app**. Tile list: `src\config\apps.ts`. No login/backend yet |
 | **student-session-kit** | `School Scrips\student-session-kit` | *(create repo)* | Shared Supabase client for math app session submission + Macro App review |
 | **Math App Studio** | `School Scrips\Math App Studio` | chase1971/annotation-studio | Electron embed + visual design/pin layer for math apps (launcher id `annotation-studio`) |
 | **School documents**, school docs | `School Scrips\School documents` | chase1971/School-Documents | Miscellaneous teaching HTML/docs (exam maps, Pearson comparisons); not app code. **Tell AI to save new school HTML here.** |

@@ -1,6 +1,126 @@
 {
   "runs": [
     {
+      "id": "7ffeaeaf-6abd-4f6c-9aab-3d156330d3bf",
+      "file": "2026-09-04-7ffeaeaf.html",
+      "heroes": [
+        "Dragomir",
+        "Hoyoung",
+        "Pimenta",
+        "Yuuna"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 23,
+      "battles": 24,
+      "relics": 20,
+      "shards": 457,
+      "updated": "2026-09-04T16:46:37",
+      "live": false
+    },
+    {
+      "id": "4ee68262-d9de-4d0d-b05f-1bc311506723",
+      "file": "2026-09-04-4ee68262.html",
+      "heroes": [
+        "Funke"
+      ],
+      "floor": 2,
+      "act": 1,
+      "battles_won": 1,
+      "battles": 2,
+      "relics": 4,
+      "shards": 30,
+      "updated": "2026-09-04T16:08:34",
+      "live": false
+    },
+    {
+      "id": "07d4da13-105f-48a7-93eb-9620829be306",
+      "file": "2026-09-04-07d4da13.html",
+      "heroes": [
+        "Karsu",
+        "Rip",
+        "Aria"
+      ],
+      "floor": 11,
+      "act": 1,
+      "battles_won": 11,
+      "battles": 12,
+      "relics": 11,
+      "shards": 6,
+      "updated": "2026-09-04T14:04:49",
+      "live": false
+    },
+    {
+      "id": "d6c730e6-563c-490f-83ed-e695a4b5357c",
+      "file": "2026-09-04-d6c730e6.html",
+      "heroes": [
+        "Tilly",
+        "Funke",
+        "Skorn"
+      ],
+      "floor": 4,
+      "act": 1,
+      "battles_won": 3,
+      "battles": 4,
+      "relics": 2,
+      "shards": 12,
+      "updated": "2026-09-04T13:43:13",
+      "live": false
+    },
+    {
+      "id": "594bce32-0b8b-4c4d-a4ce-5cb2b1d35c4b",
+      "file": "2026-09-03-594bce32.html",
+      "heroes": [
+        "Rowan",
+        "Grace",
+        "Ratna",
+        "Nyx"
+      ],
+      "floor": 8,
+      "act": 1,
+      "battles_won": 7,
+      "battles": 8,
+      "relics": 7,
+      "shards": 8,
+      "updated": "2026-09-03T21:18:41",
+      "live": false
+    },
+    {
+      "id": "e4cb49b3-9757-414c-a132-c30c4dc75c54",
+      "file": "2026-09-03-e4cb49b3.html",
+      "heroes": [
+        "Nyx",
+        "Rip",
+        "Dragomir"
+      ],
+      "floor": 9,
+      "act": 1,
+      "battles_won": 8,
+      "battles": 10,
+      "relics": 8,
+      "shards": 15,
+      "updated": "2026-09-03T20:58:19",
+      "live": false
+    },
+    {
+      "id": "b02dee32-bf2c-4f4a-97eb-203c6127cecf",
+      "file": "2026-09-03-b02dee32.html",
+      "heroes": [
+        "Pimenta",
+        "Reyna",
+        "Sal",
+        "Tilly"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 16,
+      "battles": 16,
+      "relics": 18,
+      "shards": 22,
+      "updated": "2026-09-03T20:14:48",
+      "live": false
+    },
+    {
       "id": "0ecb66cf-5f5e-40d7-a592-b4c3325a1c04",
       "file": "2026-09-02-0ecb66cf.html",
       "heroes": [
