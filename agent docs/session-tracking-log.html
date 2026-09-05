@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>240</dd></div>
-      <div><dt>Tasks today</dt><dd>5</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 177 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>230</dd></div>
+      <div><dt>Tasks today</dt><dd>9</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 167 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/939 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/888 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>21%</dd></div>
       <div><dt>Avg steps</dt><dd>5.5</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:40 PM · Friday, Sep 4, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:51 PM · Saturday, Sep 5, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -101,9 +101,14 @@
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
-      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
-      <span class="nav-note">No row for student-portal — had to grep to find it. Row added this task</span>
-      <span class="index-fail-task">7:18 PM — Located the student-facing dashboard (student-portal) + its tracking backend; added missing APP_LOCATIONS row</span>
+      <code title="Macro-App/AGENTS.md">Macro-App/AGENTS.md</code>
+      <span class="nav-note">No stats-email keyword; grepped statistics Email</span>
+      <span class="index-fail-task">11:01 AM — Statistics Email: First assignment message checkbox fills Outlook subject/body for missing or below-threshold filters</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="docs/ROSTER_PIPELINE_INTEGRATION.md">docs/ROSTER_PIPELINE_INTEGRATION.md</code>
+      <span class="nav-note">Symptom table had no C→G row yet; confirmed owner is path resolution</span>
+      <span class="index-fail-task">10:19 AM — Laptop G:\My Drive detection remaps PC C:\Users\...\My Drive paths for storage, Zoom/open, and AA folders</span>
     </li><li class="index-fail nav-dead">
       <span class="nav-marker">✗</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
@@ -194,15 +199,382 @@
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">Routed to Macro App AGENTS ΓåÆ FIRST_DAY_HANDOUT.md</span>
       <span class="index-fail-task">1:06 PM — Online First Day Handout exam ranges from My Calendar tags</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked general recipe routing; app-specific browser docs were the useful source.</span>
-      <span class="index-fail-task">12:50 PM — Added embedded browser scroll and reset diagnostics, with live reattach hardening</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Sep 4, 2026 <span class="day-count">5 tasks</span></h2>
+      <h2 class="day-title">Saturday, Sep 5, 2026 <span class="day-count">9 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:51 PM — Statistics grade filter treats blank grades as 0% for numeric thresholds — 2 steps · 7m 44s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 7m 44s since previous task
+        <br>2 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 7m 44s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Grades / statistics</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookStatisticsFilter.ts">renderer/src/utils/gradebook/gradebookStatisticsFilter.ts</code>
+      <span class="nav-note">null skipped numeric filter — coerce to 0</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:43 PM — Fixed Outlook subject fill for first-assignment email (React-safe insertText) — 2 steps · 1m 42s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 1m 42s since previous task
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1m 42s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/outlook/outlook_compose_cdp.py">modules/outlook/outlook_compose_cdp.py</code>
+      <span class="nav-note">fill_subject used plain .value — React ignored it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="scripts/outlook_compose_full.py">scripts/outlook_compose_full.py</code>
+      <span class="nav-note">Proven focus + Input.insertText pattern</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:41 PM — Blank line between first-assignment body and Outlook signature — 1 step · 1m 28s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 1m 28s since previous task
+        <br>1 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="modules/outlook/outlook_compose_signature.py">modules/outlook/outlook_compose_signature.py</code>
+      <span class="nav-note">Inserted &lt;p&gt;&lt;br&gt;&lt;/p&gt; spacer</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:40 PM — Fixed first-assignment Outlook compose wiping instructor signature (append after body) — 3 steps · 1m 38s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 1m 38s since previous task
+        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Statistics / Outlook email</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="modules/outlook/outlook_compose_cdp.py">modules/outlook/outlook_compose_cdp.py</code>
+      <span class="nav-note">body_html or signature replaced signature</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="modules/outlook/outlook_compose_signature.py">modules/outlook/outlook_compose_signature.py</code>
+      <span class="nav-note">compose_body_html_with_signature appends</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:38 PM — First-assignment email: bare homework name + M1324 course code (not Homework: / D2L COURSE_) — 4 steps · 5m 35s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 5m 35s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 5m 35s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Grades / statistics email</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/statisticsFirstAssignmentEmail.ts">renderer/src/utils/gradebook/statisticsFirstAssignmentEmail.ts</code>
+      <span class="nav-note">Fixed course # + assignment name</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/utils/d2l/matchD2LTemplate.ts">renderer/src/utils/d2l/matchD2LTemplate.ts</code>
+      <span class="nav-note">d2lLabelToTemplateCourseCode → M1324</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookStatisticsMode.ts">renderer/src/hooks/gradebook/useGradebookStatisticsMode.ts</code>
+      <span class="nav-note">Pass assignment-only label into compose</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:33 PM — Gradebook subtotals always round to 2 decimals like D2L (8.846… → 8.85, not 8.80) — 2 steps · 1h 32m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 1h 32m since previous task
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1h 32m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="gradebookRecalculateRow.ts">gradebookRecalculateRow.ts</code>
+      <span class="nav-note">MIN_INFERRED was 1; scrape 8.8 forced one-place rounding</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="23/26*10 math">23/26*10 math</code>
+      <span class="nav-note">Confirmed D2L 8.85 vs app 8.8</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:01 AM — Statistics Email: First assignment message checkbox fills Outlook subject/body for missing or below-threshold filters — 3 steps · 23m 15s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 23m 15s since previous task
+        <br>3 steps · first helpful at #2 · 2 ✓ · 1 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 23m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Macro-App/AGENTS.md">INDEX → Macro-App/AGENTS.md</code>
+      <span class="nav-note">No stats-email keyword; grepped statistics Email</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="useStatisticsEmailCompose + outlookComposeService">useStatisticsEmailCompose + outlookComposeService</code>
+      <span class="nav-note">Compose already supports subject/bodyHtml</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="StatisticsCopyEmailsButton usages">StatisticsCopyEmailsButton usages</code>
+      <span class="nav-note">Wrapped with StatisticsEmailActions + shared checkbox state</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:37 AM — E1030 on laptop: remap C: My Drive inside import_file_handler + save-working-grades (workspace history paths) — 4 steps · 18m 8s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 18m 8s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 18m 8s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="docs/ROSTER_PIPELINE_INTEGRATION.md">docs/ROSTER_PIPELINE_INTEGRATION.md</code>
+      <span class="nav-note">E1030 row + laptop remap gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="import_file_handler.load_import_file">import_file_handler.load_import_file</code>
+      <span class="nav-note">E1030 logged when workspace C: path missed remap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="useOption2Actions saveWorkingGrades">useOption2Actions saveWorkingGrades</code>
+      <span class="nav-note">Grade screen open posts stored C: rosterFolderPath</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="my_drive_paths.py + _resolve_course_and_gradebook_dirs">my_drive_paths.py + _resolve_course_and_gradebook_dirs</code>
+      <span class="nav-note">Central Python remap; verified 28-student load via C: path</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:19 AM — Laptop G:\My Drive detection remaps PC C:\Users\...\My Drive paths for storage, Zoom/open, and AA folders — 6 steps · 2m 44s</span>
+      <span class="pill p2">12 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:02 PM
+         · 2m 44s active tool time
+        <br>6 steps · first helpful at #1 · 4 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 0 doc read(s) · 12 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 46h 17m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Macro-App/AGENTS.md">INDEX → Macro-App/AGENTS.md</code>
+      <span class="nav-note">E1030/roster → ROSTER_PIPELINE; added laptop keyword row</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="docs/ROSTER_PIPELINE_INTEGRATION.md">docs/ROSTER_PIPELINE_INTEGRATION.md</code>
+      <span class="nav-note">Symptom table had no C→G row yet; confirmed owner is path resolution</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/rosters-paths.js">electron-app/rosters-paths.js</code>
+      <span class="nav-note">C/G/D discover exists but stored absolute paths bypassed it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-app/shell-ipc.js">electron-app/shell-ipc.js</code>
+      <span class="nav-note">Path not found for Zoom came from openPath with no remap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="assignment-assistant-engine/server/helpers/file-paths.js">assignment-assistant-engine/server/helpers/file-paths.js</code>
+      <span class="nav-note">findClassFolder trusted C: rosterFolderPath with no G fallback</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="electron-app/my-drive-paths.js">electron-app/my-drive-paths.js</code>
+      <span class="nav-note">New owner: G:\My Drive ⇒ laptop remap</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Thursday, Sep 3, 2026 <span class="day-count">3 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">8:40 PM — Student sign-in-by-link end to end: Supabase project provisioned, 002 code/claim migration, portal identity layer, generator script, deployed live to mathappsclass — 5 steps · 1h</span>
