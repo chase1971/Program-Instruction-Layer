@@ -1,6 +1,21 @@
 {
   "runs": [
     {
+      "id": "717a016d-c4bc-4fa1-969c-518b7aff7bfb",
+      "file": "2026-09-05-717a016d.html",
+      "heroes": [
+        "Aria"
+      ],
+      "floor": 1,
+      "act": 1,
+      "battles_won": 0,
+      "battles": 0,
+      "relics": 2,
+      "shards": 27,
+      "updated": "2026-09-05T16:27:36",
+      "live": true
+    },
+    {
       "id": "c136e01a-bdbd-403f-8780-f2755a89b636",
       "file": "2026-09-05-c136e01a.html",
       "heroes": [
