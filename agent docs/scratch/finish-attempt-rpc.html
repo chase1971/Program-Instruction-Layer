@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Finish Attempt RPC — Supabase</title>
+<style>
+  body { font: 18px/1.6 system-ui, sans-serif; max-width: 720px; margin: 32px auto; padding: 0 20px 80px; }
+  .btn { display: block; width: 100%; margin: 20px 0; padding: 24px; background: #1d4ed8; color: #fff; border: none; border-radius: 14px; font: 600 20px system-ui, sans-serif; cursor: pointer; }
+  .btn.done { background: #15803d; }
+  code { background: #e2e8f0; padding: 2px 8px; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <h1>Check App — finish_attempt RPC</h1>
+  <p>Paste this once in the Supabase SQL editor and run it. After that, clicking <strong>Done</strong> on the quiz saves the grade correctly.</p>
+  <button class="btn" id="copyBtn" type="button">Copy SQL to my clipboard</button>
+  <p>Open <a href="https://supabase.com/dashboard/project/xdpegfmsauxwspswlmmj/sql/new" target="_blank" rel="noopener">Supabase SQL editor</a>, paste, click Run.</p>
+<script>
+const SQL = String.raw`create or replace function finish_attempt(
+  p_attempt_id uuid,
+  p_score numeric,
+  p_max_score numeric
+)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  update attempts
+     set status = 'completed',
+         score = p_score,
+         max_score = p_max_score,
+         completed_at = now()
+   where id = p_attempt_id
+     and status = 'in_progress';
+
+  if not found then
+    raise exception 'Attempt not found or already completed';
+  end if;
+end;
+$$;
+
+revoke all on function finish_attempt(uuid, numeric, numeric) from public;
+grant execute on function finish_attempt(uuid, numeric, numeric) to anon;`;
+
+document.getElementById('copyBtn').addEventListener('click', function () {
+  const done = function () {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied — paste in Supabase SQL editor';
+    btn.classList.add('done');
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(SQL).then(done);
+  }
+});
+</script>
+</body>
+</html>

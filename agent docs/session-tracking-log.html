@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>240</dd></div>
-      <div><dt>Tasks today</dt><dd>5</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 177 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>248</dd></div>
+      <div><dt>Tasks today</dt><dd>7</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 185 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/939 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/987 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
       <div><dt>Avg steps</dt><dd>5.5</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:40 PM · Friday, Sep 4, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">3:59 PM · Saturday, Sep 5, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -100,6 +100,16 @@
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
+      <span class="index-fail-task">1:38 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
+      <span class="index-fail-task">1:34 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
       <span class="nav-note">No row for student-portal — had to grep to find it. Row added this task</span>
@@ -189,21 +199,510 @@
       <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
       <span class="nav-note">No row for course history ΓÇö it did not exist; routed me to gradebook/roster docs only. Added a row at the end.</span>
       <span class="index-fail-task">3:08 PM — Course History: retire-with-archive now records durable per-offering statistics; repeat-student badge + pooled historical averages in gradebook tooltips and Class Summary</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Routed to Macro App AGENTS ΓåÆ FIRST_DAY_HANDOUT.md</span>
-      <span class="index-fail-task">1:06 PM — Online First Day Handout exam ranges from My Calendar tags</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">Checked general recipe routing; app-specific browser docs were the useful source.</span>
-      <span class="index-fail-task">12:50 PM — Added embedded browser scroll and reset diagnostics, with live reattach hardening</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Sep 4, 2026 <span class="day-count">5 tasks</span></h2>
+      <h2 class="day-title">Saturday, Sep 5, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:59 PM — Added multi-attempt Student Progress columns and locked each portal device to its original student code — 8 steps · 10m 47s</span>
+      <span class="pill p2">23 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 10m 47s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 23 search(es), 3 doc read(s) · 23 not in path · coverage 30%
+        <br>Wall-clock gap since previous task: 10m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed app work to Macro App AGENTS</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Confirmed Student Progress belongs in the renderer with IPC reads in electron-app</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Macro App Student Progress result flow">Macro App Student Progress result flow</code>
+      
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="electron-app/student-progress-io.js">electron-app/student-progress-io.js</code>
+      <span class="nav-note">Found newest-attempt-only deduplication</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/student-progress/useStudentProgressResults.ts">renderer/src/hooks/student-progress/useStudentProgressResults.ts</code>
+      <span class="nav-note">Found one-result-per-student map</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/components/student-progress/StudentProgressRosterTable.tsx">renderer/src/components/student-progress/StudentProgressRosterTable.tsx</code>
+      <span class="nav-note">Found fixed Grade column</span>
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-portal/src/hooks/useStudentIdentity.ts">student-portal/src/hooks/useStudentIdentity.ts</code>
+      <span class="nav-note">Extended existing stored-code identity mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Supabase SPARE-2/SPARE-3 attempts">Supabase SPARE-2/SPARE-3 attempts</code>
+      <span class="nav-note">Confirmed SPARE-3 scores were 2/3, 2/3, then 3/3</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:48 PM — Redesigned Check App Quiz as one-question flow with themed results and deployed to Netlify — 3 steps · 57m 6s</span>
+      <span class="pill p2">87 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 57m 6s active tool time
+        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 87 search(es), 10 doc read(s) · 87 not in path · coverage 2%
+        <br>Wall-clock gap since previous task: 57m 9s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Confirmed no narrower quiz-layout recipe; routed to coding standards</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/recipes/CODING_STANDARDS.md">agent docs/recipes/CODING_STANDARDS.md</code>
+      <span class="nav-note">Verified file-size, orchestrator, and React state constraints</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="student-portal/src/features/check-app">student-portal/src/features/check-app</code>
+      <span class="nav-note">Extended existing quiz hook and views</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:51 PM — Monitor Config App: traced the overnight layout scramble to Windows' per-monitor-set topology database (not our app) — confirmed via GraphicsDrivers registry; found both dual-stack panels are EDID-identical to the DisplayConfig API and the top one's DP bandwidth story explains the replug — 6 steps · 17m 40s</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 10 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 17m 40s active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 10 search(es), 1 doc read(s) · 9 not in path · coverage 32%
+        <br>Wall-clock gap since previous task: 17m 47s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md">Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md</code>
+      <span class="nav-note">Empty-device_path quirk on the top InnoView is the documented degraded-EDID state Chase is describing</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/poll_innoview.py">Monitor Configuration App/poll_innoview.py</code>
+      <span class="nav-note">Existing flap detector — prior session already suspected InnoView connect/disconnect instability</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep DISPLAYCHANGE across Programs">grep DISPLAYCHANGE across Programs</code>
+      <span class="nav-note">Ruled our code out: every display-change handler only repositions windows, none calls SetDisplayConfig</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="HKLM/SYSTEM/CurrentControlSet/Control/GraphicsDrivers/ScaleFactors">HKLM/SYSTEM/CurrentControlSet/Control/GraphicsDrivers/ScaleFactors</code>
+      <span class="nav-note">Configuration + Connectivity need admin, but ScaleFactors exposes the same key scheme — one entry per SET of connected monitors, EDID signatures joined by ^</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="HKLM/SYSTEM/CurrentControlSet/Enum/DISPLAY/YCT3FFB">HKLM/SYSTEM/CurrentControlSet/Enum/DISPLAY/YCT3FFB</code>
+      <span class="nav-note">Raw EDIDs differ: top panel carries demoset-1, bottom demoset-2 — a descriptor DisplayConfigGetDeviceInfo never exposes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/check_layout.py">Monitor Configuration App/check_layout.py</code>
+      <span class="nav-note">Two 4K60 panels need ~34 Gbps combined; over DP 1.4's ~26 Gbps ceiling if daisy-chained on one cable</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:33 PM — Monitor Config App: traced the overnight layout scramble to Windows' per-monitor-set topology database (not our app) — confirmed via GraphicsDrivers registry; found both dual-stack panels are EDID-identical to the DisplayConfig API and the top one's DP bandwidth story explains the replug — 6 steps · 19m 20s</span>
+      <span class="pill p2">14 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 19m 20s active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 15 search(es), 3 doc read(s) · 14 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 19m 24s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md">Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md</code>
+      <span class="nav-note">Empty-device_path quirk on the top InnoView is the documented degraded-EDID state Chase is describing</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/poll_innoview.py">Monitor Configuration App/poll_innoview.py</code>
+      <span class="nav-note">Existing flap detector — prior session already suspected InnoView connect/disconnect instability</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep DISPLAYCHANGE across Programs">grep DISPLAYCHANGE across Programs</code>
+      <span class="nav-note">Ruled our code out: every display-change handler only repositions windows, none calls SetDisplayConfig</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="HKLM/SYSTEM/CurrentControlSet/Control/GraphicsDrivers/ScaleFactors">HKLM/SYSTEM/CurrentControlSet/Control/GraphicsDrivers/ScaleFactors</code>
+      <span class="nav-note">Configuration + Connectivity need admin, but ScaleFactors exposes the same key scheme — one entry per SET of connected monitors, EDID signatures joined by ^</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="HKLM/SYSTEM/CurrentControlSet/Enum/DISPLAY/YCT3FFB">HKLM/SYSTEM/CurrentControlSet/Enum/DISPLAY/YCT3FFB</code>
+      <span class="nav-note">Raw EDIDs differ: top panel carries demoset-1, bottom demoset-2 — a descriptor DisplayConfigGetDeviceInfo never exposes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/check_layout.py">Monitor Configuration App/check_layout.py</code>
+      <span class="nav-note">Two 4K60 panels need ~34 Gbps combined; over DP 1.4's ~26 Gbps ceiling if daisy-chained on one cable</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:14 PM — Student Progress tab — course tabs, portal roster with codes, side panel copy SQL/links — 3 steps · 35m 30s</span>
+      <span class="pill p2">18 searches not in path</span><span class="pill p2">Hunted before doc — 18 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 35m 30s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 18 search(es), 0 doc read(s) · 18 not in path · coverage 8%
+        <br>Wall-clock gap since previous task: 35m 34s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/student-progress/">School Scrips/Macro App/renderer/src/components/student-progress/</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-code-maps.js">School Scrips/Macro App/electron-app/student-code-maps.js</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/gradebook/GradebookCourseTabsBar.tsx">School Scrips/Macro App/renderer/src/components/gradebook/GradebookCourseTabsBar.tsx</code>
+      <span class="nav-note">Reused for course tabs</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:38 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone — 9 steps · 4m 25s</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 4m 25s active tool time
+        <br>9 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 2 doc read(s) · 11 not in path · coverage 60%
+        <br>Wall-clock gap since previous task: 4m 32s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No monitor-specific row by design; branch table routes app-internal work to the app's AGENTS.md, which is where the answer lived</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/AGENTS.md">Monitor Configuration App/AGENTS.md</code>
+      <span class="nav-note">Keyword table + 'never launch this app to test' + architecture layer map</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_IDENTITY_CONTRACT.md">Monitor Configuration App/docs/DISPLAY_IDENTITY_CONTRACT.md</code>
+      <span class="nav-note">Ruled out the identity heuristics as the cause — matching by device_path worked fine</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md">Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md</code>
+      <span class="nav-note">Empty-device_path quirk was the obvious suspect and turned out not to be it</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/display_profile_layout.py">Monitor Configuration App/display_profile_layout.py</code>
+      <span class="nav-note">_source_cells_from_saved skips unmatched monitors; apply_topology_pass passed groups:None so display_safety could not catch a bad clone group</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/display_safety.py">Monitor Configuration App/display_safety.py</code>
+      <span class="nav-note">Confirmed why the corruption verified as success and got persisted</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/check_layout.py">Monitor Configuration App/check_layout.py</code>
+      <span class="nav-note">Existing read-only report — showed the live layout was already correct</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/profiles/*.json">Monitor Configuration App/profiles/*.json</code>
+      <span class="nav-note">Root cause: living_room.json captured_at 2026-08-20 holds Acer + no UID4629; good copy survived as living_room_backup_2026-08-20_13-37-31.json</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:34 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone — 9 steps · 15h 15m</span>
+      <span class="pill p2">47 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 15h 15m active tool time
+        <br>9 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 47 search(es), 19 doc read(s) · 47 not in path · coverage 10%
+        <br>Wall-clock gap since previous task: 15h 15m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No monitor-specific row by design; branch table routes app-internal work to the app's AGENTS.md, which is where the answer lived</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/AGENTS.md">Monitor Configuration App/AGENTS.md</code>
+      <span class="nav-note">Keyword table + 'never launch this app to test' + architecture layer map</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_IDENTITY_CONTRACT.md">Monitor Configuration App/docs/DISPLAY_IDENTITY_CONTRACT.md</code>
+      <span class="nav-note">Ruled out the identity heuristics as the cause — matching by device_path worked fine</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md">Monitor Configuration App/docs/DISPLAY_WIN32_QUIRKS.md</code>
+      <span class="nav-note">Empty-device_path quirk was the obvious suspect and turned out not to be it</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/display_profile_layout.py">Monitor Configuration App/display_profile_layout.py</code>
+      <span class="nav-note">_source_cells_from_saved skips unmatched monitors; apply_topology_pass passed groups:None so display_safety could not catch a bad clone group</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/display_safety.py">Monitor Configuration App/display_safety.py</code>
+      <span class="nav-note">Confirmed why the corruption verified as success and got persisted</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/check_layout.py">Monitor Configuration App/check_layout.py</code>
+      <span class="nav-note">Existing read-only report — showed the live layout was already correct</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/profiles/*.json">Monitor Configuration App/profiles/*.json</code>
+      <span class="nav-note">Root cause: living_room.json captured_at 2026-08-20 holds Acer + no UID4629; good copy survived as living_room_backup_2026-08-20_13-37-31.json</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Friday, Sep 4, 2026 <span class="day-count">6 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:18 PM — Registered Lone Wolf's Bow as positional — hexes-of-holder hint + no-heroes-within-N pattern — 4 steps · 1h 25m</span>
+      <span class="pill p2">21 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:52 PM
+         · 1h 25m active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 21 search(es), 5 doc read(s) · 21 not in path · coverage 15%
+        <br>Wall-clock gap since previous task: 1h 25m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">→ APP_LOCATIONS / app AGENTS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/AGENTS.md">Guildrun Stats/AGENTS.md</code>
+      <span class="nav-note">position_mod.py for Position tab</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Guildrun Stats/grstats/position_mod.py">Guildrun Stats/grstats/position_mod.py</code>
+      <span class="nav-note">_POS_HINT missed hexes of the holder</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Guildrun Stats/data/descriptions.json">Guildrun Stats/data/descriptions.json</code>
+      <span class="nav-note">Lone Wolf's Bow effect text</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">8:40 PM — Student sign-in-by-link end to end: Supabase project provisioned, 002 code/claim migration, portal identity layer, generator script, deployed live to mathappsclass — 5 steps · 1h</span>
       <span class="pill p2">15 searches not in path</span>

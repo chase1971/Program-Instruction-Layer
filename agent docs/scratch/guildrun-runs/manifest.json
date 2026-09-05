@@ -1,6 +1,61 @@
 {
   "runs": [
     {
+      "id": "c136e01a-bdbd-403f-8780-f2755a89b636",
+      "file": "2026-09-05-c136e01a.html",
+      "heroes": [
+        "Skorn",
+        "Dragomir",
+        "Irini",
+        "Pimenta",
+        "Grace",
+        "Tilly"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 26,
+      "battles": 26,
+      "relics": 20,
+      "shards": 144,
+      "updated": "2026-09-05T13:59:54",
+      "live": false
+    },
+    {
+      "id": "3d57aa79-1002-4b05-ab22-71dc4e67fe8e",
+      "file": "2026-09-04-3d57aa79.html",
+      "heroes": [
+        "Sal",
+        "Dragomir",
+        "Gustav",
+        "Grace"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 16,
+      "battles": 17,
+      "relics": 17,
+      "shards": 63,
+      "updated": "2026-09-04T22:26:48",
+      "live": false
+    },
+    {
+      "id": "22eda58b-7335-4fc4-9a63-134a0b9ca53a",
+      "file": "2026-09-04-22eda58b.html",
+      "heroes": [
+        "Grace",
+        "Karsu",
+        "Niklas"
+      ],
+      "floor": 4,
+      "act": 1,
+      "battles_won": 3,
+      "battles": 4,
+      "relics": 3,
+      "shards": 5,
+      "updated": "2026-09-04T21:53:44",
+      "live": false
+    },
+    {
       "id": "7ffeaeaf-6abd-4f6c-9aab-3d156330d3bf",
       "file": "2026-09-04-7ffeaeaf.html",
       "heroes": [
