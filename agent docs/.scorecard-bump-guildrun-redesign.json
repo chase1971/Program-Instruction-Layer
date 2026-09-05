@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Guildrun sheet redesign: slim stats, merge abilities, party position templates",
+  "navigationPath": [
+    {"step": "Guildrun Stats/AGENTS.md", "outcome": "routed", "note": "routed to panels.py, position_mod.py, position.py"},
+    {"step": "grstats/panels.py hero_stats slim + abilities merge", "outcome": "helpful"},
+    {"step": "grstats/render_assets.py extract CSS/JS", "outcome": "helpful"},
+    {"step": "grstats/position_mod.py forbid marks + party rules", "outcome": "helpful"},
+    {"step": "grstats/position.py template cards", "outcome": "helpful"},
+    {"step": "python generate.py", "outcome": "helpful"}
+  ]
+}

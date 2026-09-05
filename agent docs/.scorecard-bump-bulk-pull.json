@@ -1,0 +1,29 @@
+{
+  "chunkNote": "Browser tab bulk D2L grade pull — modal, visible Enter Grades navigation, pullCourseFromD2L per course",
+  "addGreps": 6,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scrips/Macro App/renderer/src/hooks/gradebook/gradebookPullCourse.ts", "kind": "code", "outcome": "helpful", "note": "Extracted per-course full pull flow" },
+    { "target": "School Scrips/Macro App/renderer/src/services/gradebookD2LBackupSync.ts", "kind": "code", "outcome": "helpful", "note": "visible mode + waitForEnterGradesSlotReady" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkGradePull.ts", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Macro App/renderer/src/components/shell/BulkPullGradesModal.tsx", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx", "kind": "code", "outcome": "helpful", "note": "Pull all grades button" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/src/services/gradebookD2LBackupSync.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/gradebookPullCourse.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookArchiveSync.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookBackupLoader.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebook.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useGradebookTypes.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/bulkGradePullQueue.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/useBulkGradePull.ts",
+    "School Scrips/Macro App/renderer/src/hooks/gradebook/bulkGradePullQueue.test.ts",
+    "School Scrips/Macro App/renderer/src/components/shell/BulkPullGradesModal.tsx",
+    "School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx",
+    "School Scrips/Macro App/renderer/src/components/shell/AppSidePanel.tsx",
+    "School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShell.ts",
+    "School Scrips/Macro App/renderer/src/App.tsx"
+  ],
+  "docsRulesOpened": []
+}

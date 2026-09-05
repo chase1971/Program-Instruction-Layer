@@ -1,0 +1,29 @@
+{
+  "chunkNote": "Index-gap audit: Guildrun Stats AGENTS.md (12 rows out of the global index), scroll-rail recipe, scoped the launcher rule, added a 'routed' nav outcome so the gap panel stops showing correct negatives",
+  "addGreps": 6,
+  "navigationPath": [
+    { "target": "agent docs/session-tracking.jsonl", "kind": "doc", "outcome": "helpful", "note": "54 doc-kind partial/dead-end steps; classified them by note text" },
+    { "target": "scripts/session-tracking-stats.js", "kind": "code", "outcome": "helpful", "note": "collectIndexFailures() is what feeds the panel" },
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "dead-end", "note": "12 Guildrun rows sat in the four-branches table, against its own 'index names owners' rule" },
+    { "target": "electron-toolbar/AGENTS.md", "kind": "agents", "outcome": "helpful", "note": "Exemplar for the app AGENTS.md keyword-table shape" },
+    { "target": "Grep LocalVerticalScrollRail", "kind": "grep", "outcome": "helpful", "note": "5 independent implementations across 3 apps - real recipe gap" },
+    { "target": "agent docs/recipes/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "Confirmed no scroll-rail row existed and the 'shared home earns its keep' bar was met" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/browser/useViewportSmoothScroll.ts", "kind": "code", "outcome": "helpful", "note": "The actual mechanism; rail is just two buttons on it" },
+    { "target": "agent docs/END_OF_SESSION.md", "kind": "doc", "outcome": "helpful", "note": "Step 6 was the hook point for closing gaps" }
+  ],
+  "filesEdited": [
+    "Guildrun Stats/AGENTS.md",
+    "Guildrun Stats/CLAUDE.md",
+    "agent docs/INDEX.md",
+    "APP_LOCATIONS.md",
+    "agent docs/recipes/vertical-scroll-rail.md",
+    "agent docs/recipes/INDEX.md",
+    "School Scrips/Macro App/AGENTS.md",
+    "AGENTS.md",
+    "agent docs/SESSION_TRACKING.md",
+    "agent docs/END_OF_SESSION.md",
+    "scripts/scorecard-navigation-path.js",
+    "scripts/session-tracking-html.js"
+  ],
+  "docsRulesOpened": ["agent docs/SESSION_TRACKING.md", "agent docs/END_OF_SESSION.md", "agent docs/recipes/INDEX.md"]
+}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guildrun Beginner Tier & Item Reference</title>
+  <style>
+    :root{--ink:#18212b;--muted:#5d6b78;--paper:#f7f8fa;--card:#fff;--line:#d9e0e7;--s:#e75b52;--a:#ed9d3c;--b:#d8bf3e;--c:#65aa70;--blue:#316da6;--violet:#7658a8}
+    *{box-sizing:border-box} body{margin:0;background:#e8edf2;color:var(--ink);font:15px/1.42 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:980px;margin:24px auto;background:var(--paper);padding:34px 40px;box-shadow:0 8px 30px #26374722}
+    h1{font-size:32px;line-height:1.08;margin:0 0 8px} h2{font-size:22px;margin:28px 0 12px;border-bottom:2px solid var(--line);padding-bottom:6px} h3{font-size:17px;margin:18px 0 6px}
+    p{margin:7px 0}.subtitle,.note{color:var(--muted)} .note{font-size:12px}.callout{background:#eaf2fa;border-left:5px solid var(--blue);padding:12px 15px;margin:16px 0;border-radius:5px}
+    .tiers{display:grid;gap:9px}.tier{display:grid;grid-template-columns:54px 1fr;border:1px solid var(--line);background:var(--card);border-radius:7px;overflow:hidden}.badge{display:flex;align-items:center;justify-content:center;color:white;font-size:27px;font-weight:800}.s{background:var(--s)}.a{background:var(--a)}.b{background:var(--b)}.c{background:var(--c)}.names{padding:12px 14px;font-size:16px;font-weight:650}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:13px 15px}.card h3{margin-top:0;color:var(--blue)}
+    table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px}th,td{border:1px solid var(--line);padding:8px 9px;vertical-align:top}th{background:#e9eef3;text-align:left}ul{margin:7px 0 8px;padding-left:20px}li{margin:3px 0}.tag{display:inline-block;border-radius:12px;padding:2px 8px;background:#e8edf6;color:#334b69;font-size:12px;font-weight:700}.avoid{background:#f8e8e6;color:#8a3932}.good{background:#e4f2e7;color:#266136}.sources a{color:#245f98;word-break:break-word}.pagebreak{break-before:page}
+    @media(max-width:700px){main{margin:0;padding:24px 18px}.grid2{grid-template-columns:1fr}}
+    @media print{@page{size:letter;margin:.48in}body{background:white;font-size:11.5px}main{max-width:none;margin:0;padding:0;box-shadow:none;background:white}h1{font-size:25px}h2{font-size:17px;margin-top:18px}h3{font-size:13px}.tier{break-inside:avoid}.card{break-inside:avoid}a{color:inherit;text-decoration:none}.subtitle{font-size:11px}.callout{padding:8px 10px}table{font-size:10px}th,td{padding:5px 6px}.navtop{display:none}}
+    .navtop{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+    .navtop a{font-size:14px;font-weight:650;color:var(--blue);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 16px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+    .navtop a:hover{background:#eef4fa}
+  </style>
+</head>
+<body><main>
+  <nav class="navtop">
+    <a href="guildrun-stats.html">Run sheet</a>
+    <a href="guildrun-runs.html">Past runs</a>
+  </nav>
+  <h1>Guildrun Beginner Tier & Item Reference</h1>
+  <p class="subtitle">Printable guide • researched August 30, 2026 • Demo-era rankings change frequently with patches</p>
+
+  <div class="callout"><strong>How to use this:</strong> Tier does not mean “always buy.” Rank, specialization, items, boss matchup, and whether the hero fills your missing role can matter more. For a new player, first secure <strong>one durable frontline + one real damage dealer</strong>; use the third field slot and backups for support and synergy.</div>
+
+  <h2>Published Red Rift hero tier list</h2>
+  <p>This is the complete Mobalytics ranking updated August 19, 2026. It ranks reliability and flexibility in <strong>Red Rift</strong>, not maximum Endless potential.</p>
+  <div class="tiers">
+    <div class="tier"><div class="badge s">S</div><div class="names">Grace · Sal</div></div>
+    <div class="tier"><div class="badge a">A</div><div class="names">Funke · Aria · Tilly · Gustav · Pimenta · Rowan · Niklas · Karsu · Kai · Ratna</div></div>
+    <div class="tier"><div class="badge b">B</div><div class="names">Irini · Pollen · Nyx · Yuuna · Dragomir · Ming · Fiona · Zuri · Rip</div></div>
+    <div class="tier"><div class="badge c">C</div><div class="names">Logan · Skorn · Reyna · Hoyoung</div></div>
+  </div>
+
+  <h2>What the letters hide</h2>
+  <div class="grid2">
+    <section class="card"><h3>Excellent general pickups</h3><ul><li><strong>Grace:</strong> unusually flexible support; Selfless is a strong Backup shield option.</li><li><strong>Sal:</strong> Frost is valuable for both survival and damage support.</li><li><strong>Funke:</strong> reliable hallway/AoE carry; current Burn scaling rewards Magic.</li><li><strong>Pimenta / Rowan:</strong> flexible frontlines that connect with several class plans.</li></ul></section>
+    <section class="card"><h3>Strong, but needs a condition</h3><ul><li><strong>Irini / Nyx / Rip:</strong> much stronger with Rush, Stall, Duelist, or Attack Speed engines.</li><li><strong>Karsu:</strong> valuable boss/Frost solution, less reliable in ordinary hallway fights.</li><li><strong>Ratna:</strong> much better when acquired and scaled early, or found already ranked.</li><li><strong>Pollen / Gustav:</strong> need time and mana/support conditions to show their value.</li></ul></section>
+  </div>
+  <p class="note">High-level players disagree with the published ordering. Aesah’s patch-0.5.2 guide rated Funke first and Tilly second, emphasized B-rank tank by the first boss and A-rank by the last boss, and treated Karsu/Irini/Sal/Nyx as important boss-scaling options. That disagreement is a reminder to rank heroes by the job your run needs.</p>
+
+  <div class="pagebreak"></div>
+  <h2>Beginner item priorities (more useful than a universal item tier list)</h2>
+  <p>No reliable, current written source ranks every item. Item value is too dependent on holder, trigger, and matchup. Use these priority bands while learning.</p>
+  <table>
+    <thead><tr><th>Priority</th><th>What to buy</th><th>Examples / reason</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag good">High</span></td><td><strong>Immediate frontline durability</strong></td><td>Defense plus HP, shields, or HP/s. Even a plain <strong>Bulwark (+30 Defense)</strong> can be a major early upgrade. Tank items buy time for every carry.</td></tr>
+      <tr><td><span class="tag good">High</span></td><td><strong>Correct primary stat for your carry</strong></td><td>Attack/Attack Speed/Crit for auto attackers; Magic and appropriate mana stats for spell carries. Read the exact ability formula first.</td></tr>
+      <tr><td><span class="tag good">High</span></td><td><strong>Starting Mana when first cast is late</strong></td><td>Often useful even late. It can move a fight-winning heal, shield, or nuke ahead of enemy burst.</td></tr>
+      <tr><td><span class="tag good">High</span></td><td><strong>Frost application or amplification</strong></td><td>Frost lowers enemy Defense and Attack Speed, supporting both offense and survival.</td></tr>
+      <tr><td><span class="tag">Situational</span></td><td><strong>Omnivamp</strong></td><td>Excellent when a carry survives long enough to deal large, repeated damage. Weak if the holder dies before acting.</td></tr>
+      <tr><td><span class="tag">Situational</span></td><td><strong>Burn/Poison amplifiers</strong></td><td>Excellent only after your team reliably applies meaningful stacks. Do not buy the amplifier before the engine exists.</td></tr>
+      <tr><td><span class="tag">Situational</span></td><td><strong>Rush/Stall/Shard trigger items</strong></td><td>Powerful when the trigger occurs repeatedly. Count likely triggers; do not value the fantasy version of the item.</td></tr>
+      <tr><td><span class="tag avoid">Usually skip</span></td><td><strong>Wrong-stat or unreliable-trigger items</strong></td><td>Magic on a hero whose useful effects do not scale with Magic; On-Crit effects with very low Crit; Stall effects when fights end before activation.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Named items worth recognizing</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Best use</th><th>Beginner interpretation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Deadeye Hood</strong></td><td>Attack-speed carry positioned alone in the back row</td><td>A high-level guide specifically favored it over Duelist’s Foil in Red Rift because its positional condition can deliver much more immediate Attack Speed.</td></tr>
+      <tr><td><strong>Squire’s Helm</strong></td><td>Main tank</td><td>Worth using for its defensive value even when you do not activate every part of its effect. Basic stats can be enough.</td></tr>
+      <tr><td><strong>Bulwark</strong></td><td>Any early frontline</td><td>Cheap, uncomplicated Defense. A good example of why common items should not be ignored.</td></tr>
+      <tr><td><strong>Chalice</strong></td><td>Established damage dealer</td><td>Flat Omnivamp: useful when the holder already produces enough damage to heal substantially.</td></tr>
+      <tr><td><strong>Bloodfang / Fang</strong></td><td>Carry needing sustain without abandoning offense</td><td>Hybrid offensive + Omnivamp items can be more slot-efficient than a pure defensive item.</td></tr>
+      <tr><td><strong>Freezing Wand / Tome</strong></td><td>Caster on a team needing Frost</td><td>Reliable Frost application on cast; confirm the holder casts early and often enough.</td></tr>
+      <tr><td><strong>Searing Contract</strong></td><td>Established Burn carry</td><td>Do not buy merely because it says Burn. The holder must already apply substantial Burn to earn and exploit the amplifier.</td></tr>
+      <tr><td><strong>Crown of Haste</strong></td><td>Repeated-Rush engine</td><td>Can scale Attack and HP throughout a run, but it is a build item—not generic power.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagebreak"></div>
+  <h2>Ten-second shop test</h2>
+  <ol>
+    <li><strong>Name the recipient.</strong> If you cannot, the purchase is probably not urgent.</li>
+    <li><strong>Check the base stats.</strong> Are they useful even if the special effect fails?</li>
+    <li><strong>Check the trigger.</strong> Will your current team activate it repeatedly?</li>
+    <li><strong>Check the problem.</strong> Does it prevent frontline collapse, speed a key cast, or raise inadequate damage?</li>
+    <li><strong>Check the slot.</strong> Is it better than the weakest item already on that hero?</li>
+  </ol>
+
+  <h2>Simple allocation plan</h2>
+  <div class="grid2">
+    <section class="card"><h3>Main tank</h3><p>Give the first strong defensive items here. Mix Defense with HP/shields/healing rather than chasing elaborate effects.</p></section>
+    <section class="card"><h3>Main carry</h3><p>Concentrate matching offense here. Add Omnivamp if damage is sustained; add HP/Defense/shields if the carry dies before dealing damage.</p></section>
+    <section class="card"><h3>Third field hero</h3><p>Usually receives leftovers unless one item enables a critical heal, shield, Frost application, or cast timing.</p></section>
+    <section class="card"><h3>Backups</h3><p>Buy for the Backup effect and class contribution. Do not spend heavily itemizing a hero who will not enter combat.</p></section>
+  </div>
+
+  <h2>Sources and scope</h2>
+  <div class="sources note">
+    <p><strong>Hero list:</strong> <a href="https://mobalytics.gg/gamebase/guides/guildrun-tier-list">Mobalytics — Guildrun Red Rift Tier List</a>, updated Aug. 19, 2026.</p>
+    <p><strong>High-level strategy and item priorities:</strong> <a href="https://www.reddit.com/r/Guildrun/comments/1vb9c8u/guildrun_red_rift_guide_by_aesah_27_streak_pb/">Aesah — 27-streak Red Rift guide</a>, patch 0.5.2.</p>
+    <p><strong>Early shopping and common-item guidance:</strong> <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3766939266">Steam Community — General Red Rift Guide</a>.</p>
+    <p><strong>Item data:</strong> <a href="https://gamesref.com/game/guildrun/items">GamesRef — Guildrun Items Database</a>.</p>
+    <p><strong>Build examples:</strong> <a href="https://games.gg/guildrun/guides/guildrun-item-tier-list/">GAMES.GG — Builds and Team Compositions</a>, updated Jul. 28, 2026.</p>
+    <p>This sheet is a learning aid, not an official Leyline ranking. The hero tier table reproduces the source’s grouping; the item section synthesizes guide advice and does not claim to be a formal universal tier list.</p>
+  </div>
+</main></body></html>

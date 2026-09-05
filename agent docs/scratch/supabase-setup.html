@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Supabase Setup — Student Progress</title>
+<style>
+  :root {
+    --ink: #0f172a;
+    --muted: #475569;
+    --line: #cbd5e1;
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --blue: #1d4ed8;
+    --blue-dark: #1e3a8a;
+    --green: #15803d;
+    --amber: #b45309;
+    --amber-bg: #fffbeb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 20px 90px;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; }
+  .back {
+    display: inline-block; margin-bottom: 22px; padding: 12px 20px;
+    background: #fff; border: 2px solid var(--line); border-radius: 12px;
+    color: var(--blue); text-decoration: none; font-weight: 600;
+  }
+  h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
+  .sub { color: var(--muted); font-size: 18px; margin: 0 0 10px; }
+  .banner {
+    background: var(--amber-bg); border: 2px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; margin: 18px 0 30px; color: var(--amber); font-weight: 600;
+  }
+  .step {
+    background: var(--card); border: 2px solid var(--line); border-radius: 16px;
+    padding: 26px 28px; margin-bottom: 22px;
+  }
+  .step h2 { font-size: 23px; margin: 0 0 14px; display: flex; align-items: center; gap: 14px; }
+  .num {
+    flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--blue-dark); color: #fff; font-size: 21px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 26px; }
+  li { margin-bottom: 9px; }
+  .field {
+    display: inline-block; background: #e2e8f0; border-radius: 7px;
+    padding: 3px 10px; font-weight: 600; font-size: 16px;
+  }
+  code {
+    background: #e2e8f0; border-radius: 6px; padding: 2px 8px;
+    font-family: Consolas, ui-monospace, monospace; font-size: 15px;
+  }
+  .btn {
+    display: block; width: 100%; margin: 20px 0 6px; padding: 26px 24px;
+    background: var(--blue); color: #fff; border: none; border-radius: 14px;
+    font: 600 21px/1.3 system-ui, sans-serif; cursor: pointer; text-align: center;
+  }
+  .btn:active { background: var(--blue-dark); }
+  .btn.done { background: var(--green); }
+  .link-btn {
+    display: block; margin: 16px 0 4px; padding: 24px;
+    background: #fff; border: 3px solid var(--blue); border-radius: 14px;
+    color: var(--blue); text-decoration: none; text-align: center;
+    font-weight: 700; font-size: 20px;
+  }
+  .expect {
+    background: #f0fdf4; border-left: 6px solid var(--green);
+    border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 16px 0 0;
+  }
+  .expect strong { color: var(--green); }
+  .warn {
+    background: #fef2f2; border-left: 6px solid #b91c1c;
+    border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 16px 0 0;
+  }
+  .warn strong { color: #b91c1c; }
+  .bring {
+    background: #eef2ff; border: 2px solid #a5b4fc; border-radius: 14px;
+    padding: 22px 26px; margin-top: 26px;
+  }
+  .bring h2 { font-size: 23px; margin: 0 0 12px; }
+  .note { color: var(--muted); font-size: 15.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="/">&larr; All pages</a>
+
+  <h1>Supabase setup — student progress tracking</h1>
+  <p class="sub">Six steps, all in your browser. The only real typing is a project name.</p>
+  <div class="banner">One-off scratch page &middot; written 2026-09-04 &middot; will go stale</div>
+
+  <div class="step">
+    <h2><span class="num">1</span> Sign in and see if you already have a project</h2>
+    <p>If you signed up before, any projects you made will be listed on the dashboard after you
+       sign in. If the list is empty, you have an account but no project &mdash; that's fine,
+       step 2 makes one.</p>
+    <a class="link-btn" href="https://supabase.com/dashboard" target="_blank" rel="noopener">
+      Open the Supabase dashboard &rarr;
+    </a>
+    <p class="note">Sign in with whichever method you used originally &mdash; GitHub is the most
+       common. If nothing works, just sign up fresh; the free tier is plenty for this.</p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">2</span> Create the project</h2>
+    <p>Click <span class="field">New project</span>. Four things to fill in:</p>
+    <ul>
+      <li><span class="field">Name</span> &mdash; type <code>student-progress</code></li>
+      <li><span class="field">Database Password</span> &mdash; click the
+          <strong>Generate a password</strong> link so you don't have to type one.
+          Save it somewhere, but you will almost certainly never need it &mdash; the apps
+          authenticate with API keys, not this password.</li>
+      <li><span class="field">Region</span> &mdash; pick the closest US one
+          (East US or Central US)</li>
+      <li><span class="field">Plan</span> &mdash; Free</li>
+    </ul>
+    <p>Then click <span class="field">Create new project</span>.</p>
+    <div class="expect">
+      <strong>Expect:</strong> a progress spinner for roughly two minutes while it builds the
+      database. You can leave the tab and come back.
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">3</span> Copy the setup SQL</h2>
+    <p>This creates the tables that hold practice attempts. It's already written and sitting in
+       your repo &mdash; this button just puts it on your clipboard so you don't have to select
+       it by hand.</p>
+    <button class="btn" id="copySql" onclick="copySql()">Copy the SQL to my clipboard</button>
+    <p class="note">Source: <code>School Scrips\student-session-kit\supabase\migrations\001_initial.sql</code></p>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">4</span> Paste it into the SQL editor and run it</h2>
+    <ul>
+      <li>In your new project, click <span class="field">SQL Editor</span> in the left sidebar</li>
+      <li>Click <span class="field">New query</span></li>
+      <li>Click in the big empty text area and paste (<code>Ctrl+V</code>)</li>
+      <li>Click the green <span class="field">Run</span> button at the bottom right</li>
+    </ul>
+    <div class="expect">
+      <strong>Expect:</strong> a green message reading
+      <em>&ldquo;Success. No rows returned&rdquo;</em>. That's what success looks like &mdash;
+      it created tables rather than fetching anything, so there's nothing to show.
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">5</span> Find the two values I need</h2>
+    <p>In the left sidebar go to <span class="field">Project Settings</span> (the gear at the
+       bottom), then <span class="field">API</span>. Two things on that page:</p>
+    <ul>
+      <li><span class="field">Project URL</span> &mdash; looks like
+          <code>https://abcdefgh.supabase.co</code></li>
+      <li><span class="field">anon public</span> key &mdash; a very long string of characters
+          starting with <code>eyJ</code></li>
+    </ul>
+    <p>Each has a copy icon next to it, so no selecting by hand.</p>
+    <div class="expect">
+      <strong>Both of these are safe to paste to me in chat.</strong> The anon key is designed to
+      be public &mdash; it ships inside the JavaScript that every student's browser downloads.
+      The database is locked down so that key can only add practice results, never read anything.
+    </div>
+    <div class="warn">
+      <strong>Do not paste the <code>service_role</code> key to me.</strong> That one is on the
+      same page and it bypasses every security rule. You don't need it yet at all &mdash; it's
+      only for the teacher-side reader in Macro App, which has nothing to read until students
+      start using the apps. We'll set it up later, and it goes straight into a file that is
+      already gitignored, never into a chat message.
+    </div>
+  </div>
+
+  <div class="step">
+    <h2><span class="num">6</span> Send me the Project URL and the anon key</h2>
+    <p>Paste them both into chat and I'll wire up the rest: the student code system, the link
+       generator that produces one link per student for you to email, and the Netlify
+       environment variable.</p>
+  </div>
+
+  <div class="bring">
+    <h2>What you'll have when this is done</h2>
+    <p>A database in the cloud that can record &ldquo;code <code>7F3K9Q</code> practiced
+       Transformations and scored 8 of 10&rdquo; &mdash; and which contains no student name, no
+       email, and no way to identify anybody. The only thing on earth that connects a code to a
+       real student is a file on your own PC.</p>
+  </div>
+
+</div>
+
+<script>
+const SQL = String.raw`-- Student progress backend — plumbing phase
+-- Run in Supabase SQL editor or via supabase db push.
+
+create table if not exists activities (
+  id            text primary key,
+  app           text not null,
+  mode          text not null,
+  title         text not null,
+  total_items   int
+);
+
+create table if not exists sections (
+  id    uuid primary key default gen_random_uuid(),
+  code  text not null,
+  term  text not null
+);
+
+create table if not exists students (
+  id          uuid primary key default gen_random_uuid(),
+  section_id  uuid references sections(id) on delete set null,
+  claimed_at  timestamptz
+);
+
+create table if not exists attempts (
+  id                 uuid primary key default gen_random_uuid(),
+  activity_id        text not null references activities(id),
+  student_id         uuid references students(id) on delete set null,
+  seed               text,
+  generator_version  text,
+  status             text not null default 'in_progress'
+    check (status in ('in_progress', 'completed', 'abandoned')),
+  current_index      int not null default 0,
+  progress           jsonb,
+  score              numeric,
+  max_score          numeric,
+  started_at         timestamptz not null default now(),
+  completed_at       timestamptz
+);
+
+create table if not exists attempt_items (
+  id            bigserial primary key,
+  attempt_id    uuid not null references attempts(id) on delete cascade,
+  slot          text not null,
+  item_kind     text,
+  outcome       text not null,
+  attempt_count int not null default 1,
+  points        numeric,
+  mistake_kind  text
+);
+
+create index if not exists attempts_activity_completed_idx
+  on attempts (activity_id, completed_at desc nulls last);
+
+create index if not exists attempt_items_attempt_id_idx
+  on attempt_items (attempt_id);
+
+insert into activities (id, app, mode, title, total_items) values
+  ('transformations/identifying', 'transformations', 'identifying', 'Identifying Transformations', 10),
+  ('transformations/graphing', 'transformations', 'graphing', 'Graphing Transformations', 6),
+  ('logic/problems', 'logic', 'problems', 'Logic Problems', null),
+  ('probability/conditional', 'probability', 'conditional', 'Conditional Probability', 5)
+on conflict (id) do nothing;
+
+alter table attempts enable row level security;
+alter table attempt_items enable row level security;
+
+-- Anon (public apps): insert only, no reads.
+create policy attempts_anon_insert on attempts
+  for insert to anon
+  with check (true);
+
+create policy attempt_items_anon_insert on attempt_items
+  for insert to anon
+  with check (true);
+
+-- Anon may update own in-progress attempt to mark completed (same session, no select).
+create policy attempts_anon_update on attempts
+  for update to anon
+  using (status = 'in_progress')
+  with check (status in ('in_progress', 'completed', 'abandoned'));
+
+-- Service role bypasses RLS by default in Supabase.
+`;
+
+function markCopied() {
+  const btn = document.getElementById('copySql');
+  btn.textContent = 'Copied — now go paste it in the SQL editor';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = 'Copy the SQL to my clipboard';
+    btn.classList.remove('done');
+  }, 6000);
+}
+
+function fallbackCopy() {
+  const area = document.createElement('textarea');
+  area.value = SQL;
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  try { document.execCommand('copy'); markCopied(); }
+  catch (err) { alert('Copy failed. The SQL is in the repo at student-session-kit/supabase/migrations/001_initial.sql'); }
+  document.body.removeChild(area);
+}
+
+function copySql() {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(SQL).then(markCopied, fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+}
+</script>
+</body>
+</html>
