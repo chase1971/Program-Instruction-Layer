@@ -1,19 +1,41 @@
 {
   "runs": [
     {
+      "id": "b8e1de3f-63af-4a7c-8844-5913ea0fb01d",
+      "file": "2026-09-05-b8e1de3f.html",
+      "heroes": [
+        "Logan",
+        "Rip",
+        "Dragomir",
+        "Grace"
+      ],
+      "floor": 9,
+      "act": 1,
+      "battles_won": 10,
+      "battles": 11,
+      "relics": 9,
+      "shards": 38,
+      "updated": "2026-09-05T18:54:14",
+      "live": true
+    },
+    {
       "id": "717a016d-c4bc-4fa1-969c-518b7aff7bfb",
       "file": "2026-09-05-717a016d.html",
       "heroes": [
-        "Aria"
+        "Hoyoung",
+        "Pimenta",
+        "Zuri",
+        "Aria",
+        "Grace"
       ],
-      "floor": 1,
+      "floor": 11,
       "act": 1,
-      "battles_won": 0,
-      "battles": 0,
-      "relics": 2,
-      "shards": 27,
-      "updated": "2026-09-05T16:27:36",
-      "live": true
+      "battles_won": 11,
+      "battles": 13,
+      "relics": 9,
+      "shards": 7,
+      "updated": "2026-09-05T16:53:52",
+      "live": false
     },
     {
       "id": "c136e01a-bdbd-403f-8780-f2755a89b636",

@@ -42,8 +42,8 @@ workspace — it is inside Programs.
 | **Probability** | `School Scrips\Probability App` | chase1971/Probability-App | |
 | **Statistics** | `School Scrips\Statistics app` | chase1971/Statistics-app | |
 | **Transformations** | `School Scrips\transformations-app` | chase1971/transformations-app | Guided practice app; **code reader GUI:** `scripts\session_codec.py` (Launcher Panel: Transformations Code Reader) |
-| **Student Portal**, the dashboard students go to, the website with all the apps on it | `School Scrips\student-portal` | *(create repo)* | Public Netlify landing page — tile grid linking out to each math app. Live: **https://mathappsclass.netlify.app**. Tile list: `src\config\apps.ts`. No login/backend yet |
-| **student-session-kit** | `School Scrips\student-session-kit` | *(create repo)* | Shared Supabase client for math app session submission + Macro App review |
+| **Student Portal**, the dashboard students go to, the website with all the apps on it | `School Scrips\student-portal` | chase1971/student-portal | Netlify site students sign into with a code in their link. Live: **https://mathappsclass.netlify.app**. Apps live **inside** it as feature folders (exemplar: Check App Quiz), not as separate sites. Tile list: `src\config\apps.ts`. **Whole pipeline: `student-session-kit\docs\STUDENT_PROGRESS_PIPELINE.md`** |
+| **student-session-kit**, the database, the Supabase schema, student attempts | `School Scrips\student-session-kit` | chase1971/student-session-kit | **Owner of the Supabase schema** — the contract where student-portal (writes) and Macro App Student Progress (reads) meet. `supabase\migrations\`. **Start here: `docs\STUDENT_PROGRESS_PIPELINE.md`**. Its `src\` TypeScript client is dormant — nothing imports it |
 | **Math App Studio** | `School Scrips\Math App Studio` | chase1971/annotation-studio | Electron embed + visual design/pin layer for math apps (launcher id `annotation-studio`) |
 | **School documents**, school docs | `School Scrips\School documents` | chase1971/School-Documents | Miscellaneous teaching HTML/docs (exam maps, Pearson comparisons); not app code. **Tell AI to save new school HTML here.** |
 | **Makeup Exam** | `School Scrips\makeup-exam-standalone` | chase1971/makeup-exam-standalone | Python + Electron |
@@ -110,6 +110,7 @@ All superseded copies below live under **`Deprecated apps\`** (safe to delete th
 | `android-auto-scroll` | chase1971/android-auto-scroll | |
 | `spire-overlay` | chase1971/spire-overlay | Slay the Spire overlay |
 | `sts2-dwell-targeting` | chase1971/Dwell-Targeting | STS2 dwell targeting |
+| `mt2-dwell-floors` | *(local)* | Monster Train 2 BepInEx/Harmony mod — stops dwell clicks changing floors; arrows still work. Game on D:, keyword routing in its `AGENTS.md` |
 | `Video Player` | *(local git)* | See **Quick lookup** — not in App Dashboard; toolbar Launcher Panel + Shift+F19 |
 | `Agent Browser` | *(local)* | See **Quick lookup** — personal Electron + embedded Chromium; CDP **9227**; toolbar Launcher Panel + Shift+F20; not in App Dashboard |
 | `poe-stats-overlay` | | Path of Exile overlay |

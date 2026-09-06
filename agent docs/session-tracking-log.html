@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>261</dd></div>
-      <div><dt>Tasks today</dt><dd>16</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 198 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>267</dd></div>
+      <div><dt>Tasks today</dt><dd>2</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 204 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (38/1024 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>22%</dd></div>
-      <div><dt>Avg steps</dt><dd>5.3</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">3:59 PM · Saturday, Sep 5, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (40/1072 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
+      <div><dt>Avg steps</dt><dd>5.4</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:34 AM · Sunday, Sep 6, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -100,6 +100,31 @@
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row existed for the student pipeline at all — added one this session pointing at STUDENT_PROGRESS_PIPELINE.md</span>
+      <span class="index-fail-task">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
+      <span class="nav-note">Both rows said (create repo) and the portal row still described a tile grid linking out to separate sites; both corrected</span>
+      <span class="index-fail-task">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="School Scrips/student-portal/README.md + guidelines/Guidelines.md">School Scrips/student-portal/README.md + guidelines/Guidelines.md</code>
+      <span class="nav-note">Both still described the July static version — 'no login, no database', 'frontend only, no API calls'. Rewritten rather than consulted</span>
+      <span class="index-fail-task">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md">School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md</code>
+      <span class="nav-note">Claimed all student records are local and nothing is uploaded; untrue since 2026-09-04. Corrected with a Supabase safeguards section</span>
+      <span class="index-fail-task">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No keyword row for the Student Progress tab despite it shipping 2026-09-05; added keyword + on-demand rows</span>
+      <span class="index-fail-task">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
       <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
@@ -174,36 +199,470 @@
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No row for game data capture / telemetry - nothing exists in tree yet</span>
       <span class="index-fail-task">9:22 PM — Assessed Guildrun (Unity IL2CPP) data capture feasibility - save file is unencrypted MessagePack, full combat/hero/item/currency stats readable</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="docs/GRADE_IMPORT_INTEGRATION.md">docs/GRADE_IMPORT_INTEGRATION.md</code>
-      <span class="nav-note">Push path; no debug flag mentioned</span>
-      <span class="index-fail-task">10:37 AM — Restored Gradebook Push to background slot — debug live-browser flag was left on</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="docs/GRADE_IMPORT_INTEGRATION.md">docs/GRADE_IMPORT_INTEGRATION.md</code>
-      <span class="nav-note">Push path; no debug flag mentioned</span>
-      <span class="index-fail-task">10:37 AM — Restored Gradebook Push to background slot — debug live-browser flag was left on</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="docs/EMBEDDED_BROWSER_AND_MODALS.md">docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
-      <span class="nav-note">Freeze/modal pattern — not the hang cause</span>
-      <span class="index-fail-task">10:07 AM — Fixed AA tab Not Responding — roster CSV header-only read + non-blocking course sync</span>
-    </li><li class="index-fail nav-dead">
-      <span class="nav-marker">✗</span>
-      <code title="agent docs/rules/multi-repo-git-pull.md">agent docs/rules/multi-repo-git-pull.md</code>
-      <span class="nav-note">Owner is multi-repo-git-push.md</span>
-      <span class="index-fail-task">7:42 AM — Capture: pull without asking; stash machine-local files and always sync</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      <span class="index-fail-task">3:43 PM — Explained layout-switch pain; Electron falls back to dist; layout banner + verify script</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Saturday, Sep 5, 2026 <span class="day-count">16 tasks</span></h2>
+      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">2 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record — 8 steps · 28m 55s · 2 dead-end</span>
+      <span class="pill p2">15 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 28m 55s active tool time
+        <br>8 steps · first helpful at #3 · 2 ✓ · 3 ~ · 2 ✗
+        <br>Hook saw 15 search(es), 5 doc read(s) · 15 not in path · coverage 40%
+        <br>Wall-clock gap since previous task: 29m 1s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row existed for the student pipeline at all — added one this session pointing at STUDENT_PROGRESS_PIPELINE.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Both rows said (create repo) and the portal row still described a tile grid linking out to separate sites; both corrected</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="git credential fill + GitHub REST API">git credential fill + GitHub REST API</code>
+      <span class="nav-note">Stored token with repo scope created both private repos with no interactive login and no browser</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/README.md + guidelines/Guidelines.md">School Scrips/student-portal/README.md + guidelines/Guidelines.md</code>
+      <span class="nav-note">Both still described the July static version — 'no login, no database', 'frontend only, no API calls'. Rewritten rather than consulted</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md">School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md</code>
+      <span class="nav-note">Claimed all student records are local and nothing is uploaded; untrue since 2026-09-04. Corrected with a Supabase safeguards section</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">No keyword row for the Student Progress tab despite it shipping 2026-09-05; added keyword + on-demand rows</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Math App Studio/AGENTS.md">School Scrips/Math App Studio/AGENTS.md</code>
+      <span class="nav-note">Correctly scoped to layout only; added one row routing downstream questions to the pipeline doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="scripts/check-docs.js">scripts/check-docs.js</code>
+      <span class="nav-note">Confirmed 0 dead links and 0 broken chain after the new doc and four new pointer rows</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:05 AM — Monster Train 2 modding assessment + built mt2-dwell-floors BepInEx mod: dwell clicks no longer change floors, arrows preserved — 9 steps · 11m 19s</span>
+      <span class="pill p2">16 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 11m 19s active tool time
+        <br>9 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 16 search(es), 6 doc read(s) · 16 not in path · coverage 36%
+        <br>Wall-clock gap since previous task: 11m 25s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No game-modding row; branch table sent me to APP_LOCATIONS.md, which is where an app belongs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Found two Harmony-mod precedents: Quasimorph mod-dev and sts2-dwell-targeting</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md">Desktop/games/Quasimorph-GoldBerg/mod-dev/AGENTS.md</code>
+      <span class="nav-note">Exemplar for headless build + post-build deploy + never-launch rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/src/QM_StickyTooltips.csproj">Desktop/games/Quasimorph-GoldBerg/mod-dev/QM_StickyTooltips/src/QM_StickyTooltips.csproj</code>
+      <span class="nav-note">csproj shape modeled on this</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="sts2-dwell-targeting/AGENTS.md">sts2-dwell-targeting/AGENTS.md</code>
+      <span class="nav-note">Closest accessibility analog; confirmed placement of a game mod inside Programs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="D:/SteamLibrary/steamapps/common/Monster Train 2/MonsterTrain2_Data/Managed">D:/SteamLibrary/steamapps/common/Monster Train 2/MonsterTrain2_Data/Managed</code>
+      <span class="nav-note">Mono + unobfuscated Assembly-CSharp.dll, Unity 2022.3.62f2 -&gt; BepInEx 5 viable</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="decompiled RoomUI.cs (ilspycmd scratch)">decompiled RoomUI.cs (ilspycmd scratch)</code>
+      <span class="nav-note">ApplyScreenInput Clicked branch is the culprit; arrows arrive via triggeredMappingID ScrollUp/Down in the same method</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="decompiled PreferencesManager.cs / SettingsDialog.cs">decompiled PreferencesManager.cs / SettingsDialog.cs</code>
+      <span class="nav-note">Vanilla RoomDragScroll toggle only gates hover auto-scroll, NOT clicking</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="mt2-dwell-floors/RoomUI_ClickToSelectFloorPatch.cs">mt2-dwell-floors/RoomUI_ClickToSelectFloorPatch.cs</code>
+      <span class="nav-note">Harmony prefix; verified param names against vanilla with Mono.Cecil</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Saturday, Sep 5, 2026 <span class="day-count">20 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:53 PM — Built the Student Portal pipeline infographic — how Studio, portal, Supabase, and Macro App connect, plus seven ranked weak spots including client-side grading — 8 steps · 3h 31m</span>
+      <span class="pill p2">45 searches not in path</span><span class="pill p2">Hunted before doc — 29 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 3h 31m active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 45 search(es), 4 doc read(s) · 45 not in path · coverage 13%
+        <br>Wall-clock gap since previous task: 3h 31m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Gave the folder table, the 8765 workflow, and the never-paste-a-C-drive-path rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/index.html">agent docs/index.html</code>
+      <span class="nav-note">Course Setup Map card set the precedent for a durable workflow explainer in instructional-layer-htmls rather than scratch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="student-session-kit/supabase/migrations/001-005">student-session-kit/supabase/migrations/001-005</code>
+      <span class="nav-note">Established the real security posture: RLS on all five tables, anon locked out of students/sections, three SECURITY DEFINER functions as the only doors</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-portal/src/services/studentIdentity.ts">student-portal/src/services/studentIdentity.ts</code>
+      <span class="nav-note">Confirmed code-in-link identity, localStorage persistence, and URL stripping</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="student-portal/src/features/check-app/checkAppQuestions.ts">student-portal/src/features/check-app/checkAppQuestions.ts</code>
+      <span class="nav-note">Confirmed the answer key ships in the browser bundle and scoring happens client-side before finish_attempt is called</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="student-portal/scripts/lib/roster-codes.mjs">student-portal/scripts/lib/roster-codes.mjs</code>
+      <span class="nav-note">Gave the 32-character alphabet and 6-character length for the brute-force math, and showed droppedAt is tracked on Drive but never revokes the Supabase row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Macro App electron-app/student-progress-io.js">Macro App electron-app/student-progress-io.js</code>
+      <span class="nav-note">Confirmed service-role reads and the hardcoded check-app/quiz activity filter</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="git credential fill + GitHub API">git credential fill + GitHub API</code>
+      <span class="nav-note">Verified a stored token with repo scope exists, so repo creation needs no interactive login</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:22 PM — Audited Student Portal, Math App Studio, shared session kit, and Macro App documentation for the app-to-grading workflow — 9 steps · 1h 59m</span>
+      <span class="pill p2">25 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 1h 59m active tool time
+        <br>9 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 25 search(es), 11 doc read(s) · 25 not in path · coverage 24%
+        <br>Wall-clock gap since previous task: 1h 59m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed app names through APP_LOCATIONS and each app's AGENTS file</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Located Student Portal, student-session-kit, Math App Studio, and Macro App and established their intended roles</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/INSTRUCTION_LAYER_AUDIT.md">agent docs/INSTRUCTION_LAYER_AUDIT.md</code>
+      <span class="nav-note">Provided the robot-first and semantic contradiction audit procedure</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">Contains the current identity, Supabase, planned progress, and Macro review architecture</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/README.md and guidelines/Guidelines.md">School Scrips/student-portal/README.md and guidelines/Guidelines.md</code>
+      <span class="nav-note">Found stale claims that the live portal has no backend, login, API calls, or environment variables</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/README.md and migrations">School Scrips/student-session-kit/README.md and migrations</code>
+      <span class="nav-note">Confirmed the shared attempt schema and API but found no app-level keyword router or full integration contract</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Math App Studio/AGENTS.md and design handoff plan">School Scrips/Math App Studio/AGENTS.md and design handoff plan</code>
+      <span class="nav-note">Confirmed Studio owns visual/spec handoff, not portal identity or grading transport, and lacks a route to the downstream integration contract</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md, FERPA_DATA_HANDLING.md, and Student Progress code">School Scrips/Macro App/AGENTS.md, FERPA_DATA_HANDLING.md, and Student Progress code</code>
+      <span class="nav-note">Confirmed teacher review is implemented but unrouted; FERPA documentation still incorrectly says all student records remain local</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="scripts/check-docs.js">scripts/check-docs.js</code>
+      <span class="nav-note">Reported zero dead links but broader known duplicates, unrouted docs, stale plans, and orphans</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:22 PM — Diagnosed false Calculus pending-grade count after Pull All — fresh D2L backup was correct, but the working session reverted to the prior 12:53 snapshot and produced six false pushes — 10 steps · 1m 43s</span>
+      <span class="pill p2">8 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 1m 43s active tool time
+        <br>10 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 5 doc read(s) · 8 not in path · coverage 67%
+        <br>Wall-clock gap since previous task: 1m 49s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed Macro App gradebook work through APP_LOCATIONS and the app AGENTS keyword table</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Routed gradebook sync to GRADE_SYNC_PLAYBOOK and GRADE_IMPORT_INTEGRATION</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/GRADE_SYNC_PLAYBOOK.md">School Scrips/Macro App/docs/GRADE_SYNC_PLAYBOOK.md</code>
+      <span class="nav-note">Established baseline-versus-working pending semantics and expected pull behavior</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Calculus current-session CSVs and 09-05 18-08 backup">Calculus current-session CSVs and 09-05 18-08 backup</code>
+      <span class="nav-note">Proved the D2L scrape contains the missing grades and identified the exact six baseline/working differences</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Calculus change-log.jsonl and grade-history.jsonl">Calculus change-log.jsonl and grade-history.jsonl</code>
+      <span class="nav-note">Confirmed fresh session start at 18:08 followed by only one recorded cell commit at 18:10</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useBulkGradePull.ts → gradebookPullCourse.ts">renderer/src/hooks/gradebook/useBulkGradePull.ts → gradebookPullCourse.ts</code>
+      <span class="nav-note">Traced bulk selection and per-course pull application</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookArchiveSync.ts → useGradebookBackupLoader.ts">renderer/src/hooks/gradebook/useGradebookArchiveSync.ts → useGradebookBackupLoader.ts</code>
+      <span class="nav-note">Confirmed a no-pending pull rebuilds baseline and working from the fresh archive</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookSelectCourse.ts → gradebookCourseSessionCache.ts">renderer/src/hooks/gradebook/useGradebookSelectCourse.ts → gradebookCourseSessionCache.ts</code>
+      <span class="nav-note">Found tab revisits trust the in-memory cache and successful pulls do not invalidate that cache</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      <span class="nav-branch" title="Parallel branch">Independent sync-flow review</span>
+      <code class="nav-target" title="Grade sync trace">Grade sync trace</code>
+      
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Pull gate, merge, persistence, and replay paths">Pull gate, merge, persistence, and replay paths</code>
+      <span class="nav-note">Corroborated stale-cache and flush/replay mechanisms that can preserve old working values after a pull</span>
+      
+    </li></ul>
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:17 PM — Monitor Config App: built a clickable read-only status report — monitor_status.py computes a replug-vs-hotkey verdict, status_page.py renders it to a served HTML page, Monitor Status Report.vbs runs it console-free via pythonw — 4 steps · 1h 53m</span>
+      <span class="pill p2">41 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 4:24 PM
+         · 1h 53m active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 41 search(es), 9 doc read(s) · 41 not in path · coverage 7%
+        <br>Wall-clock gap since previous task: 1h 53m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Confirmed agent docs/ is a served root and subfolders resolve, so scratch/monitor-status.html works; also the no-browser-opening and dwell-target rules</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Guildrun Stats/Start Guildrun Stats.vbs">Guildrun Stats/Start Guildrun Stats.vbs</code>
+      <span class="nav-note">Launcher exemplar named by root AGENTS.md — pythonw via WScript.Shell.Run with window style 0</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/launch.bat">Monitor Configuration App/launch.bat</code>
+      <span class="nav-note">Confirmed the app's existing pythonw preference; the .vbs path is the one root AGENTS.md mandates for non-apps.json Python</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Monitor Configuration App/display_profile_layout.py">Monitor Configuration App/display_profile_layout.py</code>
+      <span class="nav-note">Reused index_current_monitors / match_saved_to_current / extract_saved_positions / unclaimed_active_monitors rather than adding a second matching mechanism</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">3:59 PM — Added multi-attempt Student Progress columns and locked each portal device to its original student code — 8 steps · 10m 47s</span>
       <span class="pill p2">23 searches not in path</span>

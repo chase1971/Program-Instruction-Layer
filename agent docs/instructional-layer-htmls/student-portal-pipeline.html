@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Portal — how it all connects</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--red:#f87171;--purple:#a78bfa;
+        --border:#334155;--radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-size:18px}
+  .page{max-width:980px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+  a.back{display:inline-block;text-decoration:none;color:var(--accent);font-size:1rem;
+         padding:.6rem 1rem;border:1px solid var(--border);border-radius:10px;margin-bottom:1.5rem}
+  a.back:hover,a.back:focus{background:var(--panel-alt);outline:none}
+
+  header{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.7rem,5vw,2.4rem);font-weight:700;letter-spacing:-.02em}
+  header p{color:var(--muted);margin-top:.7rem;font-size:1.05rem}
+
+  .banner{background:#1e293b;border:1px solid var(--border);border-left:5px solid var(--amber);
+          border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:2rem;font-size:.95rem;color:var(--muted)}
+  .banner b{color:var(--text)}
+
+  h2{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:3rem 0 .8rem;color:var(--accent);padding-top:.5rem}
+  h2.amber{color:var(--amber)} h2.green{color:var(--green)} h2.red{color:var(--red)}
+  h3{font-size:1.2rem;font-weight:700;margin:1.8rem 0 .5rem}
+
+  p{margin-bottom:1rem}
+  .lede{font-size:1.1rem}
+  ul{margin:0 0 1rem 1.3rem} li{margin-bottom:.5rem}
+
+  .box{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+       padding:1.2rem 1.4rem;margin-bottom:1rem}
+  .box.accent{border-left:5px solid var(--accent)}
+  .box.green{border-left:5px solid var(--green)}
+  .box.amber{border-left:5px solid var(--amber)}
+  .box.red{border-left:5px solid var(--red)}
+  .box.purple{border-left:5px solid var(--purple)}
+  .box .t{font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
+  .box .sub{font-family:Consolas,monospace;font-size:.8rem;color:var(--muted);margin-bottom:.6rem}
+
+  code{background:var(--panel-alt);color:var(--accent);padding:.1rem .35rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  pre{background:#0b1017;border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem;
+      overflow-x:auto;margin-bottom:1rem;font-size:.85rem;font-family:Consolas,monospace;color:#cbd5e1}
+
+  /* ---- flow diagram ---- */
+  .flow{margin:1.5rem 0 2rem}
+  .node{background:var(--panel);border:2px solid var(--border);border-radius:12px;
+        padding:1rem 1.2rem;text-align:center}
+  .node .n{font-size:1.1rem;font-weight:700}
+  .node .w{font-size:.88rem;color:var(--muted);margin-top:.3rem}
+  .node.blue{border-color:var(--accent)} .node.green{border-color:var(--green)}
+  .node.purple{border-color:var(--purple)} .node.amber{border-color:var(--amber)}
+  .arrow{text-align:center;color:var(--accent);font-size:1.6rem;line-height:1;margin:.45rem 0}
+  .arrow .lbl{display:block;font-size:.82rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
+
+  /* ---- numbered walkthrough ---- */
+  .step{display:flex;gap:1rem;background:var(--panel);border:1px solid var(--border);
+        border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.7rem}
+  .step .num{flex:0 0 2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:#0f1419;
+             font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1rem}
+  .step .body .t{font-weight:700;margin-bottom:.2rem}
+  .step .body .d{color:var(--muted);font-size:.95rem}
+
+  /* ---- risk cards ---- */
+  .risk{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+        padding:1.3rem 1.5rem;margin-bottom:1.1rem}
+  .risk.high{border-left:6px solid var(--red)}
+  .risk.med{border-left:6px solid var(--amber)}
+  .risk.low{border-left:6px solid var(--muted)}
+  .risk .head{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin-bottom:.6rem}
+  .risk .head .t{font-size:1.18rem;font-weight:700}
+  .chip{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+        padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+  .chip.high{background:#7f1d1d;color:#fecaca}
+  .chip.med{background:#78350f;color:#fde68a}
+  .chip.low{background:#334155;color:#cbd5e1}
+  .chip.ok{background:#065f46;color:#a7f3d0}
+  .risk .lab{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+             font-weight:700;margin:.9rem 0 .25rem}
+  .risk p{margin-bottom:.4rem}
+  .risk p:last-child{margin-bottom:0}
+
+  table{width:100%;border-collapse:collapse;margin-bottom:1.2rem;font-size:.95rem}
+  th,td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--accent);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+
+  footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--border);
+         color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="back" href="../index.html">&larr; All pages</a>
+
+<header>
+  <h1>Student Portal — how it all connects</h1>
+  <p>Plain-language walkthrough of the grading pipeline you started building: what each piece does,
+     how a student's answers reach your desk, and every weak spot worth knowing about before you build on it.</p>
+</header>
+
+<div class="banner">
+  <b>Written 2026-09-05.</b> Describes the system as it exists tonight: one working app (the Check App Quiz),
+  gated portal live at <code>mathappsclass.netlify.app</code>, Student Progress tab reading results in Macro App.
+  Standalone apps like Transformations are deliberately left out — they will be rebuilt into this pattern later.
+</div>
+
+<!-- ============================================================ -->
+<h2>The short version</h2>
+
+<p class="lede">
+  You have four pieces. <b>Math App Studio</b> is where you design an app. The <b>Student Portal</b> is the
+  website students visit, and each app now lives <i>inside</i> it rather than being its own separate site.
+  <b>Supabase</b> is a database on the internet that stores who did what. <b>Macro App</b> is where you read
+  the results, next to real student names.
+</p>
+
+<p>
+  The clever part of the design — and it really is the right call — is that the database never learns anybody's
+  name. It only knows anonymous codes. The list matching a code to a human being lives on your PC and your
+  Google Drive, and nowhere else.
+</p>
+
+<!-- ============================================================ -->
+<h2>The four parts</h2>
+
+<div class="box purple">
+  <div class="t">1. Math App Studio</div>
+  <div class="sub">School Scrips\Math App Studio</div>
+  <p>Where you lay out what an app looks like — buttons, boxes, wording — by dragging instead of describing
+     positions out loud. It produces a design file; an AI turns that into a working app. It has nothing to do
+     with grades or students. It stops once the app exists.</p>
+</div>
+
+<div class="box accent">
+  <div class="t">2. Student Portal</div>
+  <div class="sub">School Scrips\student-portal &rarr; mathappsclass.netlify.app</div>
+  <p>The website students open. It checks their code, shows the tiles, runs the app, and sends the results.
+     The Check App Quiz proved the pattern: an app is a folder inside this website, reached by a link like
+     <code>#/check-app</code>, not a separate site you link out to.</p>
+</div>
+
+<div class="box green">
+  <div class="t">3. Supabase (the database)</div>
+  <div class="sub">School Scrips\student-session-kit\supabase\migrations</div>
+  <p>A database hosted on the internet, holding five tables: the list of apps, the class sections, the student
+     codes, one row per quiz attempt, and one row per question answered. The SQL files in that folder are the
+     blueprint that built it. This is the meeting point — the portal writes here, Macro App reads from here.</p>
+</div>
+
+<div class="box amber">
+  <div class="t">4. Macro App — Student Progress tab</div>
+  <div class="sub">School Scrips\Macro App\electron-app\student-progress-io.js</div>
+  <p>Your side. Reads the attempts out of the database with a master key, then swaps each anonymous code for a
+     real name using the roster files on your Drive. Shows Attempt 1, 2, 3 per student, and you can click any
+     score to see which questions they missed.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>How information flows</h2>
+
+<div class="flow">
+  <div class="node purple">
+    <div class="n">Math App Studio</div>
+    <div class="w">you design the screens</div>
+  </div>
+  <div class="arrow">&#9660;<span class="lbl">an AI builds it as a folder inside the portal</span></div>
+
+  <div class="node blue">
+    <div class="n">Student Portal</div>
+    <div class="w">student opens their personal link, takes the quiz</div>
+  </div>
+  <div class="arrow">&#9660;<span class="lbl">sends: anonymous ID, which app, which questions right or wrong, the score</span></div>
+
+  <div class="node green">
+    <div class="n">Supabase database</div>
+    <div class="w">stores the attempt — <b>no names, no emails, ever</b></div>
+  </div>
+  <div class="arrow">&#9660;<span class="lbl">Macro App reads it with the master key</span></div>
+
+  <div class="node amber">
+    <div class="n">Macro App &mdash; Student Progress</div>
+    <div class="w">anonymous ID swapped for a real name, using files on your Drive</div>
+  </div>
+  <div class="arrow">&#9660;<span class="lbl">eventually: into the gradebook</span></div>
+
+  <div class="node">
+    <div class="n">Your gradebook / D2L</div>
+    <div class="w">not connected yet</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>Follow one student, start to finish</h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <div class="t">You generate the codes</div>
+  <div class="d">You run the code generator against a D2L roster. It invents a random ID and a six-character
+    code for each student, writes <code>student-portal-codes.json</code> into that course's Drive folder,
+    and prints a block of SQL.</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <div class="t">You paste that SQL into Supabase</div>
+  <div class="d">It loads only the IDs and the codes. Deliberately no names. The database now knows
+    "code <code>K7RM2P</code> is a valid student" and nothing more about them.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <div class="t">The student gets a personal link</div>
+  <div class="d">Something like <code>mathappsclass.netlify.app/?s=K7RM2P</code>. The code in the link is the
+    entire login. No password, no account to create.</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <div class="t">The portal checks the code</div>
+  <div class="d">It asks the database "is this real?" If yes, it gets back the anonymous ID, saves the code on
+    that device so they don't need the link again, and wipes the code out of the address bar so a screenshot
+    doesn't leak it. If the code is wrong, they see a locked page instead of the tiles.</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <div class="t">They take the quiz</div>
+  <div class="d">One question at a time. When they finish, the portal writes an attempt row, a row per question
+    answered, and marks it complete with a score.</div>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <div class="t">They can see their own grades</div>
+  <div class="d">The Grades tab shows their history — but only theirs. Students have no permission to read the
+    attempts table directly; a single locked-down database function hands back just their own rows.</div>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <div class="t">You open Student Progress in Macro App</div>
+  <div class="d">Macro App pulls the attempts using the master key, loads the Drive files to turn each anonymous
+    ID back into a name, and shows you the roster with each attempt in its own column.</div>
+</div></div>
+
+<!-- ============================================================ -->
+<h2 class="green">What this design already gets right</h2>
+
+<div class="box green">
+  <div class="t">No student names or emails in the cloud &mdash; at all</div>
+  <p>The <code>students</code> table has an ID, a code, and two timestamps. That's it. Even if the entire
+     database were handed to a stranger, it would be a pile of anonymous codes and scores with no way to tell
+     who anyone is. The translation list never leaves your PC and your Drive. This is the strongest thing
+     about the whole design and it is worth protecting.</p>
+</div>
+
+<div class="box green">
+  <div class="t">Students are locked out of every table by default</div>
+  <p>The public key that ships inside the website can't read the student list, can't read the section list,
+     and can't read other people's attempts. The only things it can do are call three specific, tightly
+     scoped functions. That's the right shape.</p>
+</div>
+
+<div class="box green">
+  <div class="t">Made-up codes do nothing</div>
+  <p>The check function only ever looks a code up — it never creates one. A stranger typing random codes into
+     the address bar can't conjure themselves an account.</p>
+</div>
+
+<div class="box green">
+  <div class="t">Guessing codes isn't realistic</div>
+  <p>Six characters from a 32-letter alphabet, with the confusable ones like I, O, 0 and 1 removed, is about
+     <b>1.07 billion</b> combinations. With roughly 35 codes live, a random guess hits about once in 30 million
+     tries. Not a practical way in.</p>
+</div>
+
+<div class="box green">
+  <div class="t">No keys are sitting in your code repositories</div>
+  <p>I checked every tracked file in both projects. Only example files with placeholder text. The real keys
+     live in Netlify's settings and in a single ignored file on your PC.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="red">Weak spots, worst first</h2>
+
+<p>None of these are on fire. But you asked where the problems are before you build on top of it, and this is
+   exactly the right moment to ask, because two of them get much more expensive to fix later.</p>
+
+<div class="risk high">
+  <div class="head">
+    <div class="t">1. The student's browser decides its own grade</div>
+    <span class="chip high">Serious &mdash; if it counts for points</span>
+  </div>
+  <p class="lab">What's actually happening</p>
+  <p>The quiz is marked on the student's own computer, and then their computer <i>tells</i> the database what
+     score to record. The database writes down whatever number it's handed. It has never seen the questions
+     and has no idea what the right answers are.</p>
+  <p class="lab">What that means in practice</p>
+  <p>A student who knows how to open the browser's developer tools can report a perfect score without
+     answering anything. Separately, the correct answers are shipped inside the webpage itself, so a curious
+     student can simply read the answer key before starting.</p>
+  <p class="lab">How much you should care</p>
+  <p>For a "did you find the portal and click through it" check, not at all. The moment any of this counts
+     toward a real grade, this is the whole problem &mdash; everything else on this page is a footnote next to it.</p>
+  <p class="lab">What fixing it looks like</p>
+  <p>The answer key moves into the database, and the app sends <i>what the student picked</i> instead of
+     <i>what they scored</i>. The server marks it. That's a new table for questions and answers, a new server
+     function, and a change to how apps submit. Worth designing now, while there's one app, rather than after
+     there are eight.</p>
+</div>
+
+<div class="risk med">
+  <div class="head">
+    <div class="t">2. Nothing checks that you are who you claim when saving a result</div>
+    <span class="chip med">Moderate</span>
+  </div>
+  <p class="lab">What's actually happening</p>
+  <p>The rule that lets the portal save an attempt is literally "allow it." The student's ID is just part of
+     the message being sent, and nothing verifies it matches the code that was actually used to get in. The
+     same is true when reading grades back: the function hands over whatever student's history you ask for,
+     without checking it's yours.</p>
+  <p class="lab">What that means in practice</p>
+  <p>If someone got hold of another student's internal ID, they could file results under that person's name,
+     or read their grade history. Those IDs are long random values that never appear in the link, so this
+     isn't something anyone stumbles into &mdash; it needs deliberate effort and a leaked ID.</p>
+  <p class="lab">What fixing it looks like</p>
+  <p>Tie the session to the code that was claimed, so the database enforces "you may only write and read your
+     own rows" instead of trusting the message. Naturally solved at the same time as problem 1, since both
+     come down to the server not verifying what it's told.</p>
+</div>
+
+<div class="risk med">
+  <div class="head">
+    <div class="t">3. A student who drops keeps their access</div>
+    <span class="chip med">Moderate &mdash; will actually happen</span>
+  </div>
+  <p class="lab">What's actually happening</p>
+  <p>When you regenerate codes after a drop, the roster file on your Drive marks that person as dropped. But
+     their row in the database is untouched, so their code still works and their saved link still opens the
+     portal. There's also no way to turn a code off, and nothing stops a student forwarding their link to
+     somebody else.</p>
+  <p class="lab">What fixing it looks like</p>
+  <p>Small: add an "active" switch to the student row, have the check function refuse inactive ones, and have
+     the generator turn off anyone marked dropped. This one is cheap and worth doing early, because unlike
+     the others it's guaranteed to come up every semester.</p>
+</div>
+
+<div class="risk med">
+  <div class="head">
+    <div class="t">4. Your FERPA document no longer matches reality</div>
+    <span class="chip med">Moderate &mdash; paperwork, not technology</span>
+  </div>
+  <p class="lab">What's actually happening</p>
+  <p>That document is the thing your college would read to decide whether your setup is acceptable. It
+     currently states that all student records stay on your machine and that nothing is uploaded to cloud
+     storage. Since yesterday, quiz scores go to Supabase.</p>
+  <p class="lab">Why this is fixable on paper alone</p>
+  <p>Your actual design is <i>stronger</i> than the document describes, not weaker &mdash; what went to the cloud
+     is anonymous, and the identifying half never left your PC. The document just has to say so. The risk
+     isn't the system; it's being asked about it and handing over a description that's out of date.</p>
+</div>
+
+<div class="risk med">
+  <div class="head">
+    <div class="t">5. Neither project is backed up anywhere</div>
+    <span class="chip med">Moderate &mdash; being fixed next</span>
+  </div>
+  <p class="lab">What's actually happening</p>
+  <p>Both the portal and the database blueprint exist only on this PC. No GitHub, so no off-machine copy, no
+     history you can roll back, and no way to work on them from the laptop. Everything else you own is backed
+     up; these two are not.</p>
+  <p class="lab">What fixing it looks like</p>
+  <p>Exactly what we're about to do &mdash; two private repositories, pushed. Minutes of work.</p>
+</div>
+
+<div class="risk low">
+  <div class="head">
+    <div class="t">6. Anyone could flood the database with junk</div>
+    <span class="chip low">Low</span>
+  </div>
+  <p>The public key is inside the website's code, which is normal and unavoidable for this kind of site. With
+     it, somebody could write endless meaningless attempt rows. They still couldn't read anything. The damage
+     would be a cluttered database and possibly hitting the free plan's limits &mdash; annoying, not dangerous.
+     Worth a rate limit eventually, not now.</p>
+</div>
+
+<div class="risk low">
+  <div class="head">
+    <div class="t">7. The master key is stored as plain text</div>
+    <span class="chip low">Low &mdash; but inconsistent</span>
+  </div>
+  <p>Macro App keeps the Supabase master key in <code>config.local.json</code> in readable text. That key
+     bypasses every protection in the database. It's correctly excluded from version control, and it's on an
+     encrypted, password-locked machine, so this is defensible. It's just noticeably weaker than how you treat
+     your Google Vision key, which is properly encrypted. Same idea, two standards.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="amber">Problems that aren't about security</h2>
+
+<div class="box amber">
+  <div class="t">Macro App only looks for one specific app</div>
+  <p>The roster table asks the database for the Check App Quiz <i>by name</i>. The moment you add a second
+     app, its results will land in the database correctly and simply not appear on your screen. This is the
+     first thing to fix when app number two exists, and it will be confusing if you hit it unprepared.</p>
+</div>
+
+<div class="box amber">
+  <div class="t">Adding an app currently means editing five separate files</div>
+  <p>A database entry, a tile in the app list, the app folder itself, a line in the portal's routing, and an
+     entry in the grade-labels file. Nothing enforces that you did all five, and two of them are lists that
+     will quietly fall out of step. Worth simplifying once there are two or three apps and the real pattern
+     is obvious.</p>
+</div>
+
+<div class="box amber">
+  <div class="t">The submit code exists twice</div>
+  <p>There's a shared copy in the database project and a hand-typed duplicate inside the portal. The portal's
+     own comment explains why: the shared one had no GitHub repository to pull from. Once we create that
+     repository, the reason disappears and one copy should go &mdash; otherwise they drift apart and you get bugs
+     that only show up in one app.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="green">The design decided 2026-09-06</h2>
+
+<p>Worked out in conversation after the problems above came to light. Written up in full in
+   <code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>.</p>
+
+<h3>Questions stop being code and become data</h3>
+<p>Today the questions live in a TypeScript file, which is why adding an app takes five edits and
+   why you can't write a quiz without an AI writing code for you. Move them into the database and
+   both problems dissolve at once &mdash; and the answer key becomes just another column sitting next
+   to the question, which is what makes server-side marking nearly free.</p>
+
+<h3>Three grading modes, one switch &mdash; not two systems</h3>
+<table>
+  <tr><th>Mode</th><th>Answer key</th><th>What it's for</th></tr>
+  <tr><td><b>None</b></td><td>There isn't one</td><td>Exit tickets, confidence checks, free-response feedback. Nothing to cheat because nothing is scored</td></tr>
+  <tr><td><b>Browser</b></td><td>Exists, marked on the device</td><td>In-class warm-ups. You're in the room, and dishonesty earns one participation point in front of you</td></tr>
+  <tr><td><b>Server</b></td><td>Stays in the database</td><td>Homework and anything carrying real points</td></tr>
+</table>
+<p>One field on the activity. You can flip a quiz from browser-marked to server-marked later
+   without touching a line of app code. A question with <b>no options</b> under it is a free-response
+   box &mdash; easy to collect, so don't try to auto-mark it, which puts it naturally in the first mode.</p>
+
+<h3>Writing a quiz by pasting</h3>
+<p>The app has no AI in it. It has a <b>format</b> and a <b>parser</b>; whatever LLM you like does the
+   converting outside. Deliberately not JSON &mdash; one missing bracket kills the whole paste, and
+   LLMs love wrapping output in code fences. A star marks the correct answer:</p>
+<pre>Q: What is the vertex of $y = (x-3)^2 + 4$?
+* (3, 4)
+- (-3, 4)
+- (3, -4)
+
+Q: How confident do you feel about completing the square?
+- Got it
+- Shaky
+- Lost</pre>
+<p>The format carries the grading mode by itself: stars present means marked, no stars means
+   feedback. Equations use KaTeX, which is already a dependency in six of your projects, so
+   nothing new gets introduced. <b>Always preview before saving</b> &mdash; render it exactly as students
+   will see it and list any lines that didn't parse. A silent misparse means a broken quiz in
+   front of a class. And the single most valuable piece is a <b>button that copies the prompt to
+   give your AI</b>; that's what makes the whole thing usable without typing.</p>
+
+<h3>Where authoring lives</h3>
+<p>Macro App, not the portal. It's private, it already holds the master key, and it's already
+   where you go to look at results. The app itself is the login, so there's nothing to build.</p>
+
+<h2 class="green">Letting other teachers use it</h2>
+
+<div class="box green">
+  <div class="t">The shape that keeps the privacy design intact</div>
+  <p>Every teacher runs Macro App with their own roster files, so <b>no student name ever enters the
+     database for anyone</b> &mdash; not just for you. One shared database, with every row recording who
+     it belongs to. That owner column is nearly free to add now and a painful migration later, so
+     it goes in from the start even while you're the only teacher.</p>
+  <p>Separate Netlify addresses are optional, not required &mdash; who you are is decided at sign-in.
+     Handing over the desktop half is already a solved problem: Macro App has a slim
+     distribution build meant for exactly that.</p>
+</div>
+
+<div class="box amber">
+  <div class="t">Two things that bite when the second teacher arrives</div>
+  <p><b>Emailing personal links is half built.</b> The code generator already writes a CSV with each
+     student's email and their own link, and Macro App already drives Outlook. But the existing
+     path puts everyone in Bcc, which is the wrong shape when every link differs &mdash; it needs a
+     mail-merge, one message per student.</p>
+  <p><b>Codes have to be unique across the whole database</b>, but the generator only checks the
+     codes in your own local roster file. Two teachers can mint the same one, and the second
+     person's paste fails. It fails loudly rather than corrupting anything, and the fix is to
+     check the database instead of the file.</p>
+</div>
+
+<div class="box amber">
+  <div class="t">One thing to be deliberate about</div>
+  <p>The moment you host another instructor's student records, you personally become the
+     custodian of them. At a college that's normally something the institution signs off on
+     rather than something an instructor arranges privately. Not a reason to avoid it &mdash; a reason
+     not to end up there by accident.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>If it were up to me, in this order</h2>
+
+<table>
+  <tr><th>When</th><th>What</th><th>Why then</th></tr>
+  <tr>
+    <td><b>Done 2026-09-06</b></td>
+    <td>Both projects onto GitHub, privately</td>
+    <td>They were unbacked-up, and it unblocks removing the duplicated code</td>
+  </tr>
+  <tr>
+    <td><b>Done 2026-09-06</b></td>
+    <td>Wrote down how the four pieces connect; corrected the FERPA document</td>
+    <td>The paperwork was wrong, and none of this was written anywhere a future session would find it</td>
+  </tr>
+  <tr>
+    <td><b>Next session</b></td>
+    <td>Questions as data, with the owner column</td>
+    <td>The foundation under everything below &mdash; grading modes, exit tickets, and multi-teacher all sit on it</td>
+  </tr>
+  <tr>
+    <td><b>Before it counts for a grade</b></td>
+    <td>Move the marking to the server (problems 1 and 2)</td>
+    <td>Cheap with one app. Expensive once every app submits its own score</td>
+  </tr>
+  <tr>
+    <td><b>Before next semester</b></td>
+    <td>A switch to turn a code off (problem 3)</td>
+    <td>Guaranteed to come up the first time somebody drops</td>
+  </tr>
+  <tr>
+    <td><b>When app number two arrives</b></td>
+    <td>Stop Macro App looking for one hardcoded app</td>
+    <td>Otherwise the new app's results silently never show up</td>
+  </tr>
+</table>
+
+<div class="box accent">
+  <div class="t">The one thing to take away</div>
+  <p>The privacy design is genuinely good, and better than most things a school would buy &mdash; no student's name
+     ever reaches the internet. What isn't built yet is <b>trust</b>: the system currently believes whatever a
+     student's browser tells it. That's completely fine for a click-through check, and it's the thing to fix
+     before a single point of anybody's grade depends on it.</p>
+</div>
+
+<footer>
+  Written 2026-09-05 &middot; <code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code><br />
+  Update this page whenever the pipeline changes &mdash; it is meant to stay true.
+</footer>
+
+</div>
+</body>
+</html>

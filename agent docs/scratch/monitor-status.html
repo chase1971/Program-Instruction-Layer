@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Monitor status</title><style>
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px; background: #f4f6f8; color: #14181c;
+       font: 20px/1.55 "Segoe UI", system-ui, sans-serif; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 34px; margin: 0 0 4px; }
+.stamp { font-size: 18px; color: #4a5560; margin-bottom: 26px; }
+.verdict { border-radius: 16px; padding: 26px 30px; margin-bottom: 30px;
+           border-left: 14px solid; }
+.verdict .tag { display: inline-block; font-size: 15px; font-weight: 700;
+                letter-spacing: 1.4px; padding: 5px 14px; border-radius: 999px;
+                background: rgba(255,255,255,.75); margin-bottom: 12px; }
+.verdict h2 { font-size: 30px; margin: 0 0 12px; }
+.verdict p { font-size: 21px; margin: 0 0 12px; }
+.verdict .do { font-size: 23px; font-weight: 600; margin: 0;
+               padding-top: 14px; border-top: 2px solid rgba(0,0,0,.12); }
+h3 { font-size: 25px; margin: 34px 0 14px; }
+.cards { display: grid; gap: 16px;
+         grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+.card { background: #fff; border: 3px solid #d5dde5; border-radius: 14px;
+        padding: 20px 22px; }
+.card.on { border-color: #2e7d32; }
+.card.off { opacity: .68; }
+.card.bad { border-color: #c62828; background: #fff5f5; }
+.card .who { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.card .state { font-size: 17px; font-weight: 700; letter-spacing: 1px;
+               margin-bottom: 12px; }
+.card.on .state { color: #2e7d32; }
+.card.off .state { color: #616e7a; }
+.card.bad .state { color: #c62828; }
+.row { display: flex; justify-content: space-between; gap: 14px;
+       padding: 5px 0; font-size: 18px; border-top: 1px solid #eef2f5; }
+.row span:first-child { color: #55626d; }
+.row span:last-child { font-weight: 600; text-align: right; }
+.warn { margin-top: 12px; padding: 12px 14px; border-radius: 10px;
+        background: #ffebee; color: #b71c1c; font-size: 18px; font-weight: 600; }
+.group { background: #fff; border: 3px solid #d5dde5; border-radius: 14px;
+         padding: 18px 22px; margin-bottom: 14px; font-size: 21px; }
+.group b { color: #0d47a1; }
+.prof { background: #fff; border: 3px solid #d5dde5; border-radius: 14px;
+        padding: 18px 22px; margin-bottom: 14px; }
+.prof .nm { font-size: 23px; font-weight: 700; margin-bottom: 8px; }
+.prof .line { font-size: 18px; padding: 3px 0; }
+.yes { color: #1b5e20; font-weight: 700; }
+.no { color: #b71c1c; font-weight: 700; }
+.foot { margin-top: 40px; padding-top: 20px; border-top: 3px solid #d5dde5;
+        font-size: 18px; color: #4a5560; }
+.foot code { background: #e8edf2; padding: 3px 8px; border-radius: 6px;
+             font-size: 17px; }
+</style></head>
+<body><div class="wrap">
+<h1>Monitor status</h1>
+<div class="stamp">Read Saturday September 05, 2026 at 06:17:22 PM &middot; 4 of
+5 monitors on &middot; nothing was changed</div>
+
+    <div class="verdict" style="background:#e8f5e9;border-left-color:#1b5e20;">
+      <div class="tag" style="color:#1b5e20;">OK</div>
+      <h2 style="color:#1b5e20;">Everything matches your saved bedroom layout</h2>
+      <p>Same monitors on, same duplicate grouping, same positions.</p>
+      <p class="do">Nothing to do.</p>
+    </div>
+<h3>Each monitor</h3>
+<div class="cards">
+      <div class="card on">
+        <div class="who">Acer KG281K</div>
+        <div class="state">ON</div>
+        <div class="row"><span>Port</span><span>UID4353</span></div><div class="row"><span>Connection</span><span>DisplayPort</span></div><div class="row"><span>Resolution</span><span>3840 x 2160</span></div><div class="row"><span>Position</span><span>-3840, 0</span></div><div class="row"><span>Desktop group</span><span>3</span></div><div class="row"><span>Target ID</span><span>4353</span></div>
+      </div>
+      <div class="card on">
+        <div class="who">FireTV</div>
+        <div class="state">ON</div>
+        <div class="row"><span>Port</span><span>UID4358</span></div><div class="row"><span>Connection</span><span>DVI</span></div><div class="row"><span>Resolution</span><span>3840 x 2160</span></div><div class="row"><span>Position</span><span>0, 0</span></div><div class="row"><span>Desktop group</span><span>1</span></div><div class="row"><span>Target ID</span><span>67113222</span></div>
+      </div>
+      <div class="card on">
+        <div class="who">HISENSE</div>
+        <div class="state">ON</div>
+        <div class="row"><span>Port</span><span>UID4352</span></div><div class="row"><span>Connection</span><span>HDMI</span></div><div class="row"><span>Resolution</span><span>3840 x 2160</span></div><div class="row"><span>Position</span><span>0, 0</span></div><div class="row"><span>Desktop group</span><span>1</span></div><div class="row"><span>Target ID</span><span>4352</span></div>
+      </div>
+      <div class="card on">
+        <div class="who">InnoView</div>
+        <div class="state">ON</div>
+        <div class="row"><span>Port</span><span>UID4630</span></div><div class="row"><span>Connection</span><span>DisplayPort</span></div><div class="row"><span>Resolution</span><span>3840 x 2160</span></div><div class="row"><span>Position</span><span>-3840, 0</span></div><div class="row"><span>Desktop group</span><span>3</span></div><div class="row"><span>Target ID</span><span>16781846</span></div>
+      </div>
+      <div class="card off">
+        <div class="who">InnoView</div>
+        <div class="state">OFF</div>
+        <div class="row"><span>Port</span><span>UID4629</span></div><div class="row"><span>Connection</span><span>DisplayPort</span></div><div class="row"><span>Target ID</span><span>4629</span></div>
+      </div></div>
+<h3>What is duplicated, what is extended</h3>
+<div class="group"><b>FireTV, HISENSE</b> — showing the same image (duplicated)</div><div class="group"><b>Acer KG281K, InnoView</b> — showing the same image (duplicated)</div>
+<h3>Against your saved profiles</h3>
+<div class="prof"><div class="nm">Bedroom</div><div class="line">Monitors on: <span class="yes">match</span></div><div class="line">Positions: <span class="yes">correct</span></div><div class="line">Saved on 2026-06-26T20:55:13</div></div><div class="prof"><div class="nm">Living Room</div><div class="line">Monitors on: <span class="no">do not match</span></div><div class="line no">On but not in this profile: Acer KG281K</div><div class="line">Saved on 2026-07-26T14:11:55</div></div>
+<div class="foot">
+  This page is a snapshot, not live. Click <b>Monitor Status Report</b> again and
+  reload to refresh it. Generated by <code>status_page.py</code> — a read-only
+  query that never changes your display.
+</div>
+</div></body></html>
