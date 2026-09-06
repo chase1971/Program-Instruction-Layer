@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>In-progress app tile — design concepts</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+    body { max-width: 52rem; margin: 0 auto; padding: 1.5rem; line-height: 1.5; }
+    a { color: #93c5fd; }
+    .banner { background: #334155; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    section { margin-bottom: 2.5rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.15rem; margin: 0 0 0.5rem; color: #f8fafc; }
+    p.note { color: #94a3b8; font-size: 0.95rem; margin: 0 0 0.75rem; }
+    img { width: 100%; max-width: 24rem; border-radius: 0.75rem; border: 2px solid #334155; display: block; }
+    ul { margin: 0.5rem 0 0 1.25rem; color: #cbd5e1; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <p><a href="/index.html">← All pages</a></p>
+  <div class="banner">Scratch page · 2026-09-06 · In-progress quiz indicator mockups for student portal AppTile</div>
+
+  <h1>In-progress app tile — 5 concepts</h1>
+  <p class="note">Tap the tile to continue; each concept shows restart/abandon differently. Pick a direction for implementation.</p>
+
+  <section>
+    <h2>1 — Badge on icon + subtitle</h2>
+    <p class="note">Amber dot on icon; “Question 2 of 3” under title. Single tap target; restart elsewhere.</p>
+    <img src="/scratch/portal-in-progress-mockups/concept-1-badge-on-icon.png" alt="Concept 1: badge on icon" />
+    <ul><li>Minimal change</li><li>Abandon not on tile</li></ul>
+  </section>
+
+  <section>
+    <h2>2 — Progress ring on icon</h2>
+    <p class="note">Ring shows 2/3; pill + progress bar under title.</p>
+    <img src="/scratch/portal-in-progress-mockups/concept-2-progress-ring.png" alt="Concept 2: progress ring" />
+    <ul><li>Progress obvious at a glance</li><li>Busier layout</li></ul>
+  </section>
+
+  <section>
+    <h2>3 — Split tile (Continue | Start over)</h2>
+    <p class="note">Two tap zones on one card — needs confirm before abandon.</p>
+    <img src="/scratch/portal-in-progress-mockups/concept-3-split-tile.png" alt="Concept 3: split tile" />
+    <ul><li>Both actions on tile</li><li>Risk of mis-tap on restart</li></ul>
+  </section>
+
+  <section>
+    <h2>4 — Taller tile with two buttons</h2>
+    <p class="note">Continue + Abandon as equal buttons inside the card.</p>
+    <img src="/scratch/portal-in-progress-mockups/concept-4-buttons-in-tile.png" alt="Concept 4: buttons in tile" />
+    <ul><li>Best for dwell-click</li><li>Taller tile</li></ul>
+  </section>
+
+  <section>
+    <h2>5 — Icon overlay + restart below</h2>
+    <p class="note">Pause/2/3 on icon; separate “Start new attempt” pill below tile.</p>
+    <img src="/scratch/portal-in-progress-mockups/concept-5-icon-overlay.png" alt="Concept 5: icon overlay" />
+    <ul><li>Status on icon</li><li>Restart separated from continue</li></ul>
+  </section>
+</body>
+</html>

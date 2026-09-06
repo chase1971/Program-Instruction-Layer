@@ -76,6 +76,18 @@ remote debugging for automation), **before** writing `package.json` or `browser-
 
 Skip this step only if the app has no embedded browser.
 
+### Step 4d: `chrome-vite` launcher — window size + registry (REQUIRED)
+
+If the app is a **Vite app launched in Chrome** (most `educational-math` sister apps):
+
+1. Read **`School Scrips/App Dashboard/docs/LAUNCHER.md`** § **Chrome window geometries**.
+2. Pick **horizontal (812×460)** or **vertical (460×812)** — do not invent other sizes.
+3. Add an entry to **`School Scrips/App Dashboard/apps.json`** with `kind: "chrome-vite"`, matching `chromeWindow`, unique `devRouting.upstreamPort`, and `strictPort: true` in `vite.config.ts`.
+4. Create **`launch.bat`** (three lines) delegating to `launch-app-invoke.bat`.
+5. Run **`npm run audit:launch-registry`** from App Dashboard.
+
+Skip if the app is Electron-only, Python-only, or not registered in the school launcher.
+
 ### Step 5: Install Dependencies (ASK FIRST)
 
 Don't run `npm install` automatically. Ask:
@@ -102,7 +114,7 @@ Tell Chase:
 **Stack:** React 18 + Vite + TypeScript + Tailwind CSS + Radix UI
 
 **Defining traits:**
-- Mobile-first, landscape orientation
+- Mobile-first — pick **horizontal (812×460)** or **vertical (460×812)** Chrome window per [LAUNCHER.md § Chrome window geometries](../../School%20Scrips/App%20Dashboard/docs/LAUNCHER.md#chrome-window-geometries-chrome-vite)
 - Tutorial overlay pattern (draggable windows, step-by-step)
 - Blue educational color theme
 - Interactive math visualizations
@@ -286,7 +298,7 @@ date, files changed, what worked, file-size flags, next session note.
 For `educational-math`:
 ```
 - Stack: React 18 + Vite + TypeScript + Tailwind + Radix UI
-- Mobile-first, LANDSCAPE orientation. Show rotation prompt on portrait.
+- Chrome launcher: horizontal 812×460 OR vertical 460×812 — see App Dashboard docs/LAUNCHER.md § Chrome window geometries; register in apps.json.
 - Blue educational theme (see guidelines/Guidelines.md for palette).
 - Tutorial system: draggable overlay window with step-by-step progression.
 - All transformation/math math goes in `src/utils/mathHelpers.ts`.

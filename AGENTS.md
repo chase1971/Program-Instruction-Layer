@@ -91,6 +91,10 @@ directory, or `;` in one invocation. No `curl` — use `Invoke-WebRequest -UseBa
 **React apps also:** API calls go through a service layer — never an inline `fetch()` in a
 component; over 5 `useState` or 300 lines → extract a hook.
 
+6. **No ephemeral success feedback.** Do not add "Copied!", toasts, or inline confirmation
+   text after actions unless Chase asked. Errors and button loading state are fine.
+   Recipe: `agent docs/recipes/no-ephemeral-feedback.md`.
+
 Full standards, and where each of these is spelled out: **`agent docs/recipes/INDEX.md`** —
 a reference, not something to load every turn.
 

@@ -44,6 +44,7 @@ into new code.
 | "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |
 | what not to do · common mistakes · god file · bare except · silent failure | [anti-patterns.md](./anti-patterns.md) |
 | "initialize a new app" · scaffold a project · start something new | [INIT_NEW_APP.md](./INIT_NEW_APP.md) |
+| chrome window size · horizontal 812×460 · vertical 460×812 · portrait launcher · landscape launcher | [App Dashboard/docs/LAUNCHER.md](../../School%20Scrips/App%20Dashboard/docs/LAUNCHER.md) § Chrome window geometries |
 | the window opened on the wrong monitor · display scaling · the Display button | [INIT_NEW_APP.md](./INIT_NEW_APP.md) § Step 4b |
 | hidden `.bat` launcher · no visible cmd window · spawn from Electron | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) |
 | "am I done" · final build checklist · ready to ship | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Final Build Checklist |
@@ -65,6 +66,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "click through overlay", "block clicks under pill", "pointer policy" | [overlay-pointer-policy.md](./overlay-pointer-policy.md) | ✅ | electron-toolbar overlay-creator (key pills, tabletop) |
 | "block clicks under scroll zone", "dwell pause scroll zone" | [scroll-zone-click-block.md](./scroll-zone-click-block.md) | ✅ | electron-toolbar scroll zones (Python dwell pause) |
 | "it needs a scroll rail", "hover to scroll", "the scrollbar is too small", "click to nudge" | [vertical-scroll-rail.md](./vertical-scroll-rail.md) | ✅ | Macro App (×3), Math App Studio, Guildrun Stats |
+| "don't add confirmation text", "no copied message", "stop adding feedback after click" | [no-ephemeral-feedback.md](./no-ephemeral-feedback.md) | ✅ | All UI — unless Chase asks for it |
 
 ## Where everything else went (2026-08-08)
 

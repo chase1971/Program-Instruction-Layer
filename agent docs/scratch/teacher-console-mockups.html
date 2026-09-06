@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Console — 5 interface concepts</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; background: #f1f5f9; color: #0f172a; }
+    body { max-width: 68rem; margin: 0 auto; padding: 1.5rem; line-height: 1.55; }
+    a { color: #2563eb; }
+    .banner { background: #dbeafe; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #93c5fd; }
+    section { margin-bottom: 3rem; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.2rem; margin: 0 0 0.35rem; }
+    p.note { color: #475569; font-size: 0.95rem; margin: 0 0 0.4rem; }
+    p.verdict { font-size: 0.9rem; margin: 0 0 0.85rem; color: #0f172a; background: #fff; border-left: 4px solid #1e3a5f; padding: 0.55rem 0.8rem; border-radius: 0 0.4rem 0.4rem 0; }
+    img { width: 100%; border-radius: 0.75rem; border: 2px solid #cbd5e1; display: block; box-shadow: 0 4px 14px rgb(15 23 42 / 0.10); }
+    .foot { background: #fff; border: 1px solid #cbd5e1; border-radius: 0.6rem; padding: 1rem 1.2rem; font-size: 0.93rem; }
+    .foot h2 { margin-top: 0; }
+    ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+    li { margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+  <p><a href="/scratch/portal-dashboard-v4-light.html">← Student portal light variants</a> · <a href="/index.html">All pages</a></p>
+  <div class="banner">
+    Scratch · 2026-09-06 · <strong>Teacher Console</strong> — Macro App's Student Progress tab grown into a
+    full teacher surface. Five different information architectures, same visual language
+    (white cards on pale gray-blue, navy accents) borrowed from mockup&nbsp;4&nbsp;variant&nbsp;E.
+  </div>
+
+  <h1>Teacher Console — five interface concepts</h1>
+  <p class="note">
+    All five assume the same sidebar vocabulary: Dashboard / Exit Tickets / Apps / Reports /
+    Announcements / Settings. No messaging, no notes, no bookmarks, no upgrade CTA.
+    What differs is <strong>what the home screen is</strong> and <strong>where the course lives</strong>.
+  </p>
+
+  <section>
+    <h2>A — Course-first console</h2>
+    <p class="note">Course pills pinned across the top; everything below belongs to the selected class. Home shows the live app tiles for that class with per-tile toggles, plus recent exit tickets and a class snapshot.</p>
+    <p class="verdict"><strong>Strength:</strong> you can never act on the wrong class by accident — the course is always visible. Closest to how you already work with course tabs. <strong>Weakness:</strong> nothing is comparable across classes; to see what MATH 2412 has you have to switch.</p>
+    <img src="/scratch/teacher-console-mockups/console-a-course-first.png" alt="Concept A — course-first console" />
+  </section>
+
+  <section>
+    <h2>B — Task-first console</h2>
+    <p class="note">Home is four oversized action cards: Create Exit Ticket, Assign Apps, Post Announcement, View Results. Course gets chosen inside whichever task you pick.</p>
+    <p class="verdict"><strong>Strength:</strong> biggest possible click targets and zero learning curve — you never wonder where anything is. <strong>Weakness:</strong> it's a menu, not a dashboard. You get no information at a glance, and every task is one extra click deep.</p>
+    <img src="/scratch/teacher-console-mockups/console-b-task-first.png" alt="Concept B — task-first console" />
+  </section>
+
+  <section>
+    <h2>C — Split builder</h2>
+    <p class="note">The authoring screen itself. Paste from AI on the left with a "Copy AI Prompt" button beside it, parsed questions listed beneath with the correct answer highlighted, live student preview on the right, and an assign-to-class row with Publish along the bottom.</p>
+    <p class="verdict"><strong>Strength:</strong> this is the actual feature you said you'd use every day, and preview-before-publish is built into the layout rather than bolted on. Paste → check → assign is one screen. <strong>Weakness:</strong> it's one screen, not a whole console — it belongs <em>inside</em> A, D, or E rather than replacing them.</p>
+    <img src="/scratch/teacher-console-mockups/console-c-split-builder.png" alt="Concept C — split builder with live preview" />
+  </section>
+
+  <section>
+    <h2>D — Assignment matrix</h2>
+    <p class="note">Apps and exit tickets as rows, your four courses as columns, one big toggle per cell. Publish changes in the corner.</p>
+    <p class="verdict"><strong>Strength:</strong> solves "not all classes get the same apps" better than anything else here — the whole assignment state is one glance, and mistakes are visible instead of hidden behind a tab. <strong>Weakness:</strong> only answers one question. It's a great Apps screen, not a great home screen.</p>
+    <img src="/scratch/teacher-console-mockups/console-d-assignment-matrix.png" alt="Concept D — app-to-class assignment matrix" />
+  </section>
+
+  <section>
+    <h2>E — Live portal mirror</h2>
+    <p class="note">Home is a mirror of the real student portal for the selected course, with an edit rail beside it: eye icons to hide, arrows to reorder, "Add exit ticket", and an announcement box underneath.</p>
+    <p class="verdict"><strong>Strength:</strong> directly answers "it would be nice to actually view the app here." You edit in terms of what students see, so hiding something is unambiguous. <strong>Weakness:</strong> the most work to build, and the mirror has to stay honest or it becomes a lie you trust.</p>
+    <img src="/scratch/teacher-console-mockups/console-e-portal-mirror.png" alt="Concept E — live student portal mirror with edit rail" />
+  </section>
+
+  <div class="foot">
+    <h2>These aren't really five rivals</h2>
+    <p>
+      B is a front door, and C and D are individual screens. Only <strong>A</strong> and
+      <strong>E</strong> are competing answers to "what is the home screen."
+    </p>
+    <p>The combination that seems to fit what you described:</p>
+    <ul>
+      <li><strong>E as the Dashboard</strong> — the live mirror, so you always see the current state of the app</li>
+      <li><strong>C as the Exit Tickets screen</strong> — paste, preview, assign, publish</li>
+      <li><strong>D as the Apps screen</strong> — the class-by-app toggle grid</li>
+      <li><strong>A's course pills as a persistent top bar</strong> everywhere except D, which is already all-courses</li>
+      <li>Reports and Announcements as their own screens; today's roster and grades tables move under Reports</li>
+    </ul>
+  </div>
+</body>
+</html>

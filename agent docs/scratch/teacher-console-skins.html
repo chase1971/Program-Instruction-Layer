@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Console — Macro App skin mockups</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; background: #f1f5f9; color: #0f172a; }
+    body { max-width: 68rem; margin: 0 auto; padding: 1.5rem; line-height: 1.55; }
+    a { color: #2563eb; }
+    .banner { background: #dbeafe; padding: 0.75rem 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem; border: 1px solid #93c5fd; }
+    section { margin-bottom: 3rem; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.2rem; margin: 0 0 0.35rem; }
+    p.note { color: #475569; font-size: 0.95rem; margin: 0 0 0.85rem; }
+    p.verdict { font-size: 0.9rem; margin: 0 0 0.85rem; background: #fff; border-left: 4px solid #1e3a5f; padding: 0.55rem 0.8rem; border-radius: 0 0.4rem 0.4rem 0; }
+    img { width: 100%; border-radius: 0.75rem; border: 2px solid #cbd5e1; display: block; box-shadow: 0 4px 14px rgb(15 23 42 / 0.10); }
+    .foot { background: #fff; border: 1px solid #cbd5e1; border-radius: 0.6rem; padding: 1rem 1.2rem; font-size: 0.93rem; }
+    .foot h2 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <p><a href="/scratch/teacher-console-mockups.html">← Original console layout mockups</a> · <a href="/index.html">All pages</a></p>
+  <div class="banner">
+    Scratch · 2026-09-06 · <strong>Teacher Console skins inside Macro App</strong> — five color treatments.
+    Each mockup keeps the Macro App utility bar and workspace tabs visible; only the Teacher Console
+    interior (left nav + main dashboard) gets a new white / glossy look.
+  </div>
+
+  <h1>Teacher Console — five Macro App skins</h1>
+  <p class="note">
+    Same layout as the shell you have now: sidebar nav, course pills, Dashboard cards (Recent exit
+    tickets, Class snapshot, Announcements). What differs is color, shadow, and how “new” the
+    console feels compared to the rest of Macro App.
+  </p>
+
+  <section>
+    <h2>A — Frost white cards</h2>
+    <p class="note">Pale gray workspace, white glossy cards, soft shadows. Blue only on active nav and selected course. Safest “modern dashboard” look.</p>
+    <p class="verdict"><strong>Best if:</strong> you want it to feel clean without fighting Macro App’s existing tab bar.</p>
+    <img src="/scratch/teacher-console-skins/macro-console-skin-a-frost-white.png" alt="Skin A — frost white" />
+  </section>
+
+  <section>
+    <h2>B — Navy header band</h2>
+    <p class="note">Dark navy strip across the top of the console main area (like the student portal header), then white content below. Sidebar stays white with a navy left-border active indicator.</p>
+    <p class="verdict"><strong>Best if:</strong> you want the student portal’s dark-blue / light-content pairing echoed on the teacher side.</p>
+    <img src="/scratch/teacher-console-skins/macro-console-skin-b-navy-band.png" alt="Skin B — navy band" />
+  </section>
+
+  <section>
+    <h2>C — Sidebar contrast</h2>
+    <p class="note">Light blue-gray sidebar vs pure white main canvas. Active nav is a solid blue button. Minimal shadows — very flat and airy.</p>
+    <p class="verdict"><strong>Best if:</strong> you want the sidebar to read clearly separate from the content at a glance.</p>
+    <img src="/scratch/teacher-console-skins/macro-console-skin-c-sidebar-contrast.png" alt="Skin C — sidebar contrast" />
+  </section>
+
+  <section>
+    <h2>D — Glossy elevated panel</h2>
+    <p class="note">Whole console floats as one white rounded panel inside Macro App. Gradient blue active nav, strong card shadows — most “SaaS app” feel.</p>
+    <p class="verdict"><strong>Best if:</strong> you want the biggest visual break from old Macro App styling.</p>
+    <img src="/scratch/teacher-console-skins/macro-console-skin-d-glossy-elevated.png" alt="Skin D — glossy elevated" />
+  </section>
+
+  <section>
+    <h2>E — Portal color match</h2>
+    <p class="note">Pale blue workspace tint, white cards with blue accent lines, pill nav matching the student portal mockup you liked. Closest family resemblance to what students see.</p>
+    <p class="verdict"><strong>Best if:</strong> teacher and student surfaces should feel like the same product.</p>
+    <img src="/scratch/teacher-console-skins/macro-console-skin-e-portal-match.png" alt="Skin E — portal match" />
+  </section>
+
+  <div class="foot">
+    <h2>Implementation note</h2>
+    <p>
+      These apply only when <code>activeModuleId === 'student-progress'</code> — scoped CSS on
+      <code>.teacher-console-*</code> classes, no change to Gradebook or other tabs. Pick a letter
+      (or mix: e.g. E sidebar + A cards) and that becomes the CSS pass on the shell you already have.
+    </p>
+  </div>
+</body>
+</html>
