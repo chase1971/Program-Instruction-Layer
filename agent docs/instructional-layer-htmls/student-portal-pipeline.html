@@ -73,6 +73,7 @@
   .risk.high{border-left:6px solid var(--red)}
   .risk.med{border-left:6px solid var(--amber)}
   .risk.low{border-left:6px solid var(--muted)}
+  .risk.done{border-left:6px solid var(--green)}
   .risk .head{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin-bottom:.6rem}
   .risk .head .t{font-size:1.18rem;font-weight:700}
   .chip{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
@@ -307,6 +308,12 @@
      <i>what they scored</i>. The server marks it. That's a new table for questions and answers, a new server
      function, and a change to how apps submit. Worth designing now, while there's one app, rather than after
      there are eight.</p>
+  <p class="lab">Position taken 2026-09-06</p>
+  <p><b>Accepted for anything ungraded; fixed before anything is graded.</b> This becomes the three grading
+     modes described further down. A warm-up or a self-check can keep marking in the browser, where the worst
+     case is a student fooling themselves. Anything worth points keeps its answer key in the database, where
+     the browser never sees it &mdash; so there is nothing to read and nothing to edit. The judgement that few
+     students will think to try this is reasonable, but it is not what the graded path relies on.</p>
 </div>
 
 <div class="risk med">
@@ -327,6 +334,12 @@
   <p>Tie the session to the code that was claimed, so the database enforces "you may only write and read your
      own rows" instead of trusting the message. Naturally solved at the same time as problem 1, since both
      come down to the server not verifying what it's told.</p>
+  <p class="lab">Position taken 2026-09-06</p>
+  <p>Worth separating the two halves, because only one is fixable. The <b>technical</b> half &mdash; the server
+     trusting an ID it was handed &mdash; is a real bug and gets fixed alongside problem 1. The <b>human</b> half
+     &mdash; a student simply giving their link to someone else &mdash; is <b>not solvable and is accepted</b>. It is
+     the same exposure every homework platform has, where a student can hand over their password. Nothing short
+     of proctoring closes it, so it isn't treated as a defect here.</p>
 </div>
 
 <div class="risk med">
@@ -343,34 +356,45 @@
   <p>Small: add an "active" switch to the student row, have the check function refuse inactive ones, and have
      the generator turn off anyone marked dropped. This one is cheap and worth doing early, because unlike
      the others it's guaranteed to come up every semester.</p>
+  <p class="lab">Position taken 2026-09-06</p>
+  <p>Agreed and queued &mdash; a dropped student's code just gets switched off. Worth noting the one wrinkle:
+     prefer <i>deactivating</i> the row to deleting it, so the attempts that student already submitted stay
+     attached to something and their past scores don't turn into orphans.</p>
 </div>
 
-<div class="risk med">
+<div class="risk done">
   <div class="head">
     <div class="t">4. Your FERPA document no longer matches reality</div>
-    <span class="chip med">Moderate &mdash; paperwork, not technology</span>
+    <span class="chip ok">Fixed &mdash; 2026-09-06</span>
   </div>
-  <p class="lab">What's actually happening</p>
+  <p class="lab">What was happening</p>
   <p>That document is the thing your college would read to decide whether your setup is acceptable. It
-     currently states that all student records stay on your machine and that nothing is uploaded to cloud
-     storage. Since yesterday, quiz scores go to Supabase.</p>
-  <p class="lab">Why this is fixable on paper alone</p>
-  <p>Your actual design is <i>stronger</i> than the document describes, not weaker &mdash; what went to the cloud
-     is anonymous, and the identifying half never left your PC. The document just has to say so. The risk
-     isn't the system; it's being asked about it and handing over a description that's out of date.</p>
+     stated that all student records stay on your machine and that nothing is uploaded to cloud
+     storage. As of this week, quiz scores go to Supabase.</p>
+  <p class="lab">Why it was fixable on paper alone</p>
+  <p>Your actual design is <i>stronger</i> than the document described, not weaker &mdash; what goes to the cloud
+     is anonymous, and the identifying half never leaves your PC. The document just had to say so. The risk
+     was never the system; it was being asked about it and handing over a description that's out of date.</p>
+  <p class="lab">What was done</p>
+  <p><code>Macro App\docs\FERPA_DATA_HANDLING.md</code> now describes the split accurately: de-identified
+     scores in Supabase, every identifiable record still local. It also lists the safeguards behind that
+     &mdash; row-level security, the locked-down database functions, and how the master key is stored &mdash;
+     and records "student names in Supabase" as a hard constraint that is never to be crossed.</p>
 </div>
 
-<div class="risk med">
+<div class="risk done">
   <div class="head">
     <div class="t">5. Neither project is backed up anywhere</div>
-    <span class="chip med">Moderate &mdash; being fixed next</span>
+    <span class="chip ok">Fixed &mdash; 2026-09-06</span>
   </div>
-  <p class="lab">What's actually happening</p>
-  <p>Both the portal and the database blueprint exist only on this PC. No GitHub, so no off-machine copy, no
-     history you can roll back, and no way to work on them from the laptop. Everything else you own is backed
-     up; these two are not.</p>
-  <p class="lab">What fixing it looks like</p>
-  <p>Exactly what we're about to do &mdash; two private repositories, pushed. Minutes of work.</p>
+  <p class="lab">What was happening</p>
+  <p>Both the portal and the database blueprint existed only on this PC. No GitHub, so no off-machine copy, no
+     history to roll back to, and no way to work on them from the laptop. Everything else you own was backed
+     up; these two were not.</p>
+  <p class="lab">What was done</p>
+  <p>Two <b>private</b> repositories now exist and both are pushed:
+     <code>chase1971/student-portal</code> and <code>chase1971/student-session-kit</code>. Same treatment as
+     every other app in the tree &mdash; they pull at the start of a session and push at the end.</p>
 </div>
 
 <div class="risk low">
@@ -384,15 +408,46 @@
      Worth a rate limit eventually, not now.</p>
 </div>
 
-<div class="risk low">
+<div class="box accent">
+  <div class="t">Why that one key can't be made private</div>
+  <p>This trips everyone up, so it's worth being precise. There are <b>two different keys</b>, and only one of
+     them is public.</p>
+  <p>The <b>public key</b> (Supabase calls it the <i>anon key</i>) is the address the student's browser dials to
+     reach the database. The student's browser has to know it, or the quiz can't submit anything. Anything a
+     browser knows, a student can read &mdash; it's sitting in the downloaded page. There is no version of a
+     website where the browser can talk to a server without knowing how to reach it. So the anon key being
+     visible isn't a mistake or a shortcut; <b>it's what the key is for.</b> Supabase designed it that way,
+     which is why it's paired with row-level security: the key gets you to the door, and the door decides what
+     you're allowed to do. Right now that door allows "write an attempt" and nothing else. It does not allow
+     reading anyone's data.</p>
+  <p>The <b>master key</b> (the <i>service role key</i>) is the opposite: it ignores every door. It only ever
+     lives on your PC inside Macro App, is never sent to a browser, and as of today is encrypted at rest.</p>
+  <p><b>None of this is about GitHub.</b> That's the part worth separating out, because the two got tangled
+     together. Both repositories are private, and they should stay private. The anon key would be visible to
+     students even if your code were locked in a vault, because it ships inside the website they load. Making
+     the repository public or private changes nothing about it either way.</p>
+  <p>The one place a genuine public-versus-private question came up was the Transformations app, whose build
+     script downloads <code>student-session-kit</code> anonymously during deployment &mdash; an anonymous
+     download can't reach a private repository. But you've said Transformations is out of scope and will be
+     rebuilt inside the portal, so that requirement is dead. <b>Everything stays private.</b></p>
+</div>
+
+<div class="risk done">
   <div class="head">
     <div class="t">7. The master key is stored as plain text</div>
-    <span class="chip low">Low &mdash; but inconsistent</span>
+    <span class="chip ok">Fixed &mdash; 2026-09-06</span>
   </div>
-  <p>Macro App keeps the Supabase master key in <code>config.local.json</code> in readable text. That key
-     bypasses every protection in the database. It's correctly excluded from version control, and it's on an
-     encrypted, password-locked machine, so this is defensible. It's just noticeably weaker than how you treat
-     your Google Vision key, which is properly encrypted. Same idea, two standards.</p>
+  <p class="lab">What was happening</p>
+  <p>Macro App kept the Supabase master key in <code>config.local.json</code> in readable text. That key
+     bypasses every protection in the database. It was correctly excluded from version control and sat on an
+     encrypted, password-locked machine, so it was defensible &mdash; just noticeably weaker than how you treat
+     your Google Vision key. Same idea, two standards.</p>
+  <p class="lab">What was done</p>
+  <p>The master key now uses <b>exactly the same mechanism as the Google Vision key</b>: Windows DPAPI, tied to
+     your Windows account, no passphrase to remember. On the next launch Macro App reads the plaintext key once,
+     encrypts it to <code>student-progress-key.enc</code>, and from then on prefers the encrypted copy. After
+     that first run the plaintext line can be deleted from <code>config.local.json</code> and everything keeps
+     working. A copy of that file taken off this machine is then useless to whoever has it.</p>
 </div>
 
 <!-- ============================================================ -->
@@ -413,12 +468,18 @@
      is obvious.</p>
 </div>
 
-<div class="box amber">
-  <div class="t">The submit code exists twice</div>
-  <p>There's a shared copy in the database project and a hand-typed duplicate inside the portal. The portal's
-     own comment explains why: the shared one had no GitHub repository to pull from. Once we create that
-     repository, the reason disappears and one copy should go &mdash; otherwise they drift apart and you get bugs
-     that only show up in one app.</p>
+<div class="box green">
+  <div class="t">The submit code existed twice &mdash; resolved 2026-09-06</div>
+  <p>There was a shared copy in the database project and a hand-typed duplicate inside the portal, because the
+     shared one had no GitHub repository to pull from at the time.</p>
+  <p>It turned out to be simpler than "merge them." <b>The shared copy was written for the Transformations
+     app</b> &mdash; in fact this whole database was originally built for Transformations, which is why the very
+     first migration lists it before anything else. That attempt never worked: back then there were no student
+     codes at all, so nothing recorded <i>who</i> was playing, and the results would have landed attached to
+     nobody. The Google Form stayed the real path the entire time.</p>
+  <p>So the shared copy had exactly one consumer, and that consumer never needed it. It's now deleted, along
+     with all the database wiring inside Transformations, which goes back to running purely on its completion
+     code and Google Form. <b>The portal's copy is the only one left</b>, and it's the only one anything uses.</p>
 </div>
 
 <!-- ============================================================ -->
@@ -489,16 +550,26 @@ Q: How confident do you feel about completing the square?
      mail-merge, one message per student.</p>
   <p><b>Codes have to be unique across the whole database</b>, but the generator only checks the
      codes in your own local roster file. Two teachers can mint the same one, and the second
-     person's paste fails. It fails loudly rather than corrupting anything, and the fix is to
-     check the database instead of the file.</p>
+     person's paste fails. It fails loudly rather than corrupting anything.</p>
+  <p><b>Decided 2026-09-06 &mdash; give each teacher their own prefix.</b> Rather than asking the
+     database every time a code is minted, each teacher gets a short tag that leads every code they
+     issue. Two teachers then <i>cannot</i> collide, because the prefixes differ before the random
+     part even starts. It needs no network call, it keeps code generation working entirely offline,
+     and it makes any code self-identifying at a glance. The only thing it costs is that prefixes
+     have to be handed out centrally &mdash; a one-line list, not a system.</p>
 </div>
 
 <div class="box amber">
-  <div class="t">One thing to be deliberate about</div>
+  <div class="t">The blocker, named &mdash; and not being solved yet</div>
   <p>The moment you host another instructor's student records, you personally become the
      custodian of them. At a college that's normally something the institution signs off on
      rather than something an instructor arranges privately. Not a reason to avoid it &mdash; a reason
      not to end up there by accident.</p>
+  <p><b>Position as of 2026-09-06:</b> this is the real obstacle to a second teacher, and it is
+     understood as such. Prefixes solve collisions; they don't solve the fact that a shared database
+     you control means you can read their rows. Solving it properly means either a separate database
+     per teacher or restrictions that apply to you too. <b>Deliberately deferred</b> &mdash; nothing
+     should be built toward multi-teacher beyond the owner column until this gets an answer.</p>
 </div>
 
 <!-- ============================================================ -->
@@ -515,6 +586,11 @@ Q: How confident do you feel about completing the square?
     <td><b>Done 2026-09-06</b></td>
     <td>Wrote down how the four pieces connect; corrected the FERPA document</td>
     <td>The paperwork was wrong, and none of this was written anywhere a future session would find it</td>
+  </tr>
+  <tr>
+    <td><b>Done 2026-09-06</b></td>
+    <td>Encrypted the master key at rest, the same way as the Google Vision key</td>
+    <td>It was the one credential held to a weaker standard than the rest, and the fix was an afternoon</td>
   </tr>
   <tr>
     <td><b>Next session</b></td>

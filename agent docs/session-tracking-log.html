@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>267</dd></div>
-      <div><dt>Tasks today</dt><dd>2</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 204 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>270</dd></div>
+      <div><dt>Tasks today</dt><dd>5</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 207 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (40/1072 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (41/1094 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>23%</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">12:34 AM · Sunday, Sep 6, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:13 PM · Sunday, Sep 6, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -99,7 +99,12 @@
     opened and did not answer, and did not route onward either. Each one should have become an index row
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
-    <ul class="index-failures-list"><li class="index-fail nav-partial">
+    <ul class="index-failures-list"><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="agent docs/instructional-layer-htmls/student-portal-pipeline.html">agent docs/instructional-layer-htmls/student-portal-pipeline.html</code>
+      <span class="nav-note">MY BUG: risk cards 4/5/7 still described the pre-fix state after last session's work landed, so Chase re-raised issues already closed. Fixed the cards; the lesson is that a status-bearing HTML must be updated in the same turn as the fix it describes</span>
+      <span class="index-fail-task">12:33 PM — Encrypted the Supabase service role key with DPAPI (mirrors vision-key-store); recorded Chase's 2026-09-06 positions on client-side grading, link sharing, dropped students, repo privacy, and per-teacher code prefixes; de-staled the pipeline infographic</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No row existed for the student pipeline at all — added one this session pointing at STUDENT_PROGRESS_PIPELINE.md</span>
@@ -194,16 +199,225 @@
       <code title="School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat">School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat</code>
       <span class="nav-note">That delegation convention is for apps.json Node apps; the applicable rule here is only 'never a visible console' -&gt; used pythonw + VBS Run(...,0,False)</span>
       <span class="index-fail-task">11:10 PM — Added Guildrun Stats auto-update: save-file watcher (console-free VBS launcher) + self-reloading page via stamp polling; extracted shared build module</span>
-    </li><li class="index-fail nav-dead">
-      <span class="nav-marker">✗</span>
-      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">No row for game data capture / telemetry - nothing exists in tree yet</span>
-      <span class="index-fail-task">9:22 PM — Assessed Guildrun (Unity IL2CPP) data capture feasibility - save file is unencrypted MessagePack, full combat/hero/item/currency stats readable</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">2 tasks</span></h2>
+      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">5 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:13 PM — Fixed the two stale IdentifyingTransformationsView tests (suite green, 25/25) and recorded the A/B-testing instrumentation ambition in the pipeline doc; then traced the resume/checkpoint design and found attempts.status/current_index/progress/seed already exist and are unused — 6 steps · 17m 47s</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 17m 47s active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 0 doc read(s) · 9 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 17m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/src/app/components/IdentifyingTransformations/IdentifyingTransformationsView.tsx">School Scrips/transformations-app/src/app/components/IdentifyingTransformations/IdentifyingTransformationsView.tsx</code>
+      <span class="nav-note">sessionStats is LOCAL state fed by an async decodeSession, not a hook value — so the mock hook could never supply it. That's why the test failed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/src/engine/session/session_types.ts">School Scrips/transformations-app/src/engine/session/session_types.ts</code>
+      <span class="nav-note">Stats shape for the test stub</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/001_initial.sql">School Scrips/student-session-kit/supabase/migrations/001_initial.sql</code>
+      <span class="nav-note">KEY: attempts already has status/current_index/progress/seed/generator_version — the resume plumbing was designed in and never used</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/services/attemptSubmission.ts">School Scrips/student-portal/src/services/attemptSubmission.ts</code>
+      <span class="nav-note">Inserts in_progress then finishes immediately — the in-progress state exists for milliseconds today</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/004_finish_attempt.sql">School Scrips/student-session-kit/supabase/migrations/004_finish_attempt.sql</code>
+      <span class="nav-note">Anon has no SELECT on attempts, so resume needs a SECURITY DEFINER lookup — same pattern as finish_attempt</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">listStudentResults does NOT filter on status, so resume would make in-progress rows appear in the roster table</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:55 PM — Collapsed the duplicated submit code to one owner: deleted student-session-kit/src and stripped all Supabase wiring from transformations-app (Google Form path untouched); traced that the DB was originally built for transformations and could never attribute a student — 8 steps · 21m 13s</span>
+      <span class="pill p2">23 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 21m 13s active tool time
+        <br>8 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 23 search(es), 8 doc read(s) · 23 not in path · coverage 17%
+        <br>Wall-clock gap since previous task: 21m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/src/services/attemptService.ts">School Scrips/transformations-app/src/services/attemptService.ts</code>
+      <span class="nav-note">Never passed a studentId — the reason the Supabase path could not replace the Google Form</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/001_initial.sql">School Scrips/student-session-kit/supabase/migrations/001_initial.sql</code>
+      <span class="nav-note">KEY FINDING: seeds transformations/* as the first activities and has no code column on students. The database was built FOR transformations; codes only arrived in 002</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/src/app/hooks/useIdentifyingTransformations.ts">School Scrips/transformations-app/src/app/hooks/useIdentifyingTransformations.ts</code>
+      <span class="nav-note">Submit was fire-and-forget with errors swallowed — a failure would never have surfaced</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/vite.config.ts">School Scrips/transformations-app/vite.config.ts</code>
+      <span class="nav-note">Alias resolved the kit from the sibling folder, else the shim — both removed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/package.json">School Scrips/transformations-app/package.json</code>
+      <span class="nav-note">Removing a dep REQUIRES regenerating package-lock or Netlify's npm ci fails on the mismatch. Nearly missed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/transformations-app/src/app/components/IdentifyingTransformations/IdentifyingTransformationsView.test.tsx">School Scrips/transformations-app/src/app/components/IdentifyingTransformations/IdentifyingTransformationsView.test.tsx</code>
+      <span class="nav-note">2 failures are PRE-EXISTING: the mock hook omits sessionStats, which the view began requiring. Test mocks the whole hook, so this cleanup cannot affect it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/scripts/verify-rls.mjs">School Scrips/student-session-kit/scripts/verify-rls.mjs</code>
+      <span class="nav-note">Checked before deleting src/ — imports supabase-js directly, no dependency on src</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">Closed the duplicate-code gap and recorded why item_kind/points/mistake_kind columns must not be pruned</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:33 PM — Encrypted the Supabase service role key with DPAPI (mirrors vision-key-store); recorded Chase's 2026-09-06 positions on client-side grading, link sharing, dropped students, repo privacy, and per-teacher code prefixes; de-staled the pipeline infographic — 8 steps · 11h 59m · 1 dead-end</span>
+      <span class="pill p2">20 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 6:21 PM
+         · 11h 59m active tool time
+        <br>8 steps · first helpful at #1 · 7 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 20 search(es), 3 doc read(s) · 20 not in path · coverage 30%
+        <br>Wall-clock gap since previous task: 11h 59m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/vision-key-store.js">School Scrips/Macro App/electron-app/vision-key-store.js</code>
+      <span class="nav-note">Exemplar Chase named — 'do it like the Google Vision key'. Copied shape exactly</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/assignment-assistant-vision-config.js">School Scrips/Macro App/electron-app/assignment-assistant-vision-config.js</code>
+      <span class="nav-note">Showed the seed-then-prefer-encrypted lifecycle to mirror</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/.eslintrc.cjs">School Scrips/Macro App/electron-app/.eslintrc.cjs</code>
+      <span class="nav-note">New DPAPI store needs a writeFileSync allowlist entry — would have failed lint otherwise</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">readStudentProgressConfig was the single read point for the key</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/instructional-layer-htmls/student-portal-pipeline.html">agent docs/instructional-layer-htmls/student-portal-pipeline.html</code>
+      <span class="nav-note">MY BUG: risk cards 4/5/7 still described the pre-fix state after last session's work landed, so Chase re-raised issues already closed. Fixed the cards; the lesson is that a status-bearing HTML must be updated in the same turn as the fix it describes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">Owner of the architecture — added a 'Positions taken 2026-09-06' section so these decisions are not re-litigated</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md">School Scrips/Macro App/docs/FERPA_DATA_HANDLING.md</code>
+      <span class="nav-note">Listed key encryption as a future step; now records it as done</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="scripts/serve-programs-docs.js">scripts/serve-programs-docs.js</code>
+      <span class="nav-note">Confirmed serve root order — infographic URL is /instructional-layer-htmls/&lt;name&gt;.html, not bare /&lt;name&gt;.html</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">12:34 AM — Put student-portal and student-session-kit on GitHub (private), wrote STUDENT_PROGRESS_PIPELINE.md as the single owner of the chain, and corrected the portal docs and the FERPA record — 8 steps · 28m 55s · 2 dead-end</span>
       <span class="pill p2">15 searches not in path</span><span class="pill p2">Hunted before doc — 6 searches first</span>
