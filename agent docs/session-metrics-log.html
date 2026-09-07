@@ -146,13 +146,64 @@
     <p class="muted-inline">+ 2 more in <code>agent docs/mdc-read-stats.json</code></p>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>88</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">2:27 PM · Monday, Sep 7, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>89</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">5:08 PM · Monday, Sep 7, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Monday, Sep 7, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">5:08 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: Pearson, coding, Q&amp;A, mixed, etc.">Mixed (talk + edits)</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+        <span class="pill p3" title="Chat was summarized before bumps/hooks captured the start. File lists and search counts understate what actually happened.">Summarized — early work missing</span><span class="pill p2" title="Some counts were logged (hook or late bumps) but the chat was summarized — early reads/searches are probably missing.">Partial counts</span>
+        <span class="pill p1" title="Cursor postToolUse hook auto-counted reads, edits, and searches into the running file. Greps/files are more trustworthy; task boundaries still need agent bumps with chunkNote.">Hook tallied</span>
+        
+      </div>
+      <div class="model">—</div>
+    </header>
+    <p class="summary-human">Traced a hung sub-agent to a stale Cursor workspace root (a deleted D2L Assignment Assistant folder) that made every Grep call fail before searching, then confirmed the Macro App slim build already ships exactly the three tabs Chase wanted and already isolates its settings per profile. Fixed the stale APP_LOCATIONS row the deleted folder left behind and added a MISSING PATHS check to check-docs.js, since its path regex only ever matched .md/.mdc names and could never have caught a bare folder path.</p>
+    <div class="metric-grid metric-grid-activity"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this chat. Rough proxy for how long the session ran.">Your messages</abbr></dt>
+    <dd>19</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many times the agent searched the tree (grep, glob, file hunt). High usually means re-exploring instead of using a doc or rule.">Searches</abbr></dt>
+    <dd>88</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;, &quot;third time&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files read (.md, .mdc, .html, etc.).">Markdowns read</abbr></dt>
+      <dd>38</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="School Scrips/Matrix app/AGENTS.md">AGENTS.md — Matrix app</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/272951.txt">272951.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/447412.txt">447412.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/447413.txt">447413.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/447414.txt">447414.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/447415.txt">447415.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/447416.txt">447416.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/783825.txt">783825.txt</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/projects/c-Users-chase-Documents-Programs/terminals/783826.txt">783826.txt</code></li><li><code class="path-doc" title="AGENTS.md">AGENTS.md — Programs root</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="path-doc" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/build-profiles/slim/build.config.json">build.config.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/build-profiles/aa-makeup-test/build.config.json">build.config.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/build-profiles/teacher-minimal/build.config.json">build.config.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/build-profiles/slim/build.config.json">build.config.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/build-profiles/teacher-minimal/build.config.json">build.config.json</code></li><li><code class="path-doc" title="School Scrips/Macro App/build-profiles/aa-makeup-test/build.config.json">build.config.json</code></li><li><code class="path-doc" title="C:/Users/chase/Documents/Programs/agent docs/recipes/canvas-kit-target-size.md">canvas-kit-target-size.md</code></li><li><code class="path-doc" title="agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/END_OF_SESSION.md">END_OF_SESSION.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/rules/html-delivery.md">html-delivery.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="agent docs/INDEX.md">INDEX.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/SESSION_METRICS.md">SESSION_METRICS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="agent docs/SESSION_TRACKING.md">SESSION_TRACKING.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="C:/Users/chase/.cursor/skills-cursor/canvas/SKILL.md">SKILL.md</code></li><li><code class="path-doc" title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">SLIM_DISTRIBUTION_BUILD.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Matrix app/tsconfig.json">tsconfig.json</code></li><li><code class="path-doc" title="School Scrips/Matrix app/tsconfig.json">tsconfig.json</code></li><li><code class="path-doc" title="School Scrips/student-portal/tsconfig.json">tsconfig.json</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files read (.ts, .js, .py, etc.).">Code read</abbr></dt>
+      <dd>7</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/check-docs.js">check-docs.js</code></li><li><code class="" title="scripts/check-docs.js">check-docs.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/App Dashboard/scripts/launchers/launch-chrome-vite.ps1">launch-chrome-vite.ps1</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/App Dashboard/scripts/launch-common.ps1">launch-common.ps1</code></li><li><code class="" title="School Scrips/Macro App/electron-app/main.js">main.js</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/transformations-app/open-chrome-mobile.ps1">open-chrome-mobile.ps1</code></li><li><code class="" title="C:/Users/chase/Documents/Programs/School Scrips/App Dashboard/electron/processManager.ts">processManager.ts</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Document/instruction files changed.">Markdowns edited</abbr></dt>
+      <dd>9</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="School Scrips/Macro App/AGENTS.md">AGENTS.md — Macro App</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-bump.json">.scorecard-bump.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/agent docs/.scorecard-final.json">.scorecard-final.json</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="path-doc" title="APP_LOCATIONS.md">APP_LOCATIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Macro App/docs/sessions/SESSIONS.md">SESSIONS.md</code></li><li><code class="path-doc" title="c:/Users/chase/Documents/Programs/School Scrips/Matrix app/tsconfig.json">tsconfig.json</code></li><li><code class="path-doc" title="School Scrips/Matrix app/tsconfig.json">tsconfig.json</code></li></ul></div>
+  </details><details class="metric metric-expandable">
+    <summary class="metric-summary">
+      <dt><abbr class="tip" title="Source code files changed.">Code edited</abbr></dt>
+      <dd>2</dd>
+    </summary>
+    <div class="metric-panel"><ul class="path-list"><li><code class="" title="c:/Users/chase/Documents/Programs/scripts/check-docs.js">check-docs.js</code></li><li><code class="" title="scripts/check-docs.js">check-docs.js</code></li></ul></div>
+  </details></div>
+    
+    <div class="note-box">
+      <strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> The doc checker had a blind spot exactly where it mattered most: APP_LOCATIONS.md is the directory-of-record, but its backticked folder paths were the one thing CODE_PATH_RE never examined. Also worth knowing the Grep tool fails wholesale when any registered workspace root is missing - rg via Shell is the workaround.
+    </div>
+    <p class="next"><strong>Next time:</strong> If Grep still errors with 'Path does not exist: ...D2L Assignment Assistant', the stale root is still registered in Cursor state (no .code-workspace file exists) - fall back to rg via Shell and remind Chase to remove the folder from the workspace.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">2:27 PM</span>

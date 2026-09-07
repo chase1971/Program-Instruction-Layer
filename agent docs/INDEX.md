@@ -69,7 +69,7 @@ never touches this file.
 
 | You might say | Read this |
 |---|---|
-| check the docs are healthy · dead links · orphans · is anything unrouted | [scripts/check-docs.js](../scripts/check-docs.js) |
+| check the docs are healthy · dead links · orphans · is anything unrouted · is anything out of date · does that folder still exist | [scripts/check-docs.js](../scripts/check-docs.js) |
 | serve a page Chase can click · start the docs server · port 8765 | [scripts/serve-programs-docs.js](../scripts/serve-programs-docs.js) |
 | bump task tracking or finalize session metrics | [scripts/append-session-scorecard.js](../scripts/append-session-scorecard.js) |
 | archive old plans · sweep `docs/plans/` | [scripts/archive-stale-plans.js](../scripts/archive-stale-plans.js) |
@@ -97,7 +97,8 @@ When it warns, the fix is to branch a section into its own index — not to trim
 **What the robot checks** (`node scripts/check-docs.js`):
 - every doc is reachable from this file within two hops
 - this file still names every branch — if it stops, the check hard-fails
-- no doc has grown past the line cap
+- every absolute path in [APP_LOCATIONS.md](../APP_LOCATIONS.md) still exists on disk
+- dead links, duplicate docs, orphans, unindexed `.mdc`, restated constants, stale plans
 
 It will suggest keyword rows for anything unrouted. It never writes them — the words have to
 be Chase's.

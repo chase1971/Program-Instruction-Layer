@@ -2,6 +2,24 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-07 — Stale workspace root broke Grep; APP_LOCATIONS path check added
+
+**Files changed:** `scripts/check-docs.js` (+~45 lines — new MISSING PATHS check, `LOCATIONS_DOC`, header item 7, summary and `--strict` wiring); `APP_LOCATIONS.md` (D2L Assignment Assistant row repointed); `School Scrips/Macro App/AGENTS.md` (slim build row said four tabs, ships three).
+
+**What worked:** A sub-agent had spun and died looking for how the app launches in prod-renderer mode. The cause was not the search — Chase deleted `Documents\D2L Assignment Assistant` today, Cursor still has it registered as a workspace root, and the `Grep` tool fails wholesale with "Path does not exist" when any root is missing, so it never searched anything. `rg` through Shell was the workaround and answered the original question immediately: `electron-app/main.js:330`, `app.isPackaged || MACRO_APP_PROD_RENDERER === '1'` chooses `loadFile` on `renderer/dist/index.html` over the dev server. The failed task's own "no references found" output was a false negative — it was killed at 46s mid-scan because `Get-ChildItem -Recurse -Exclude` enumerates `node_modules` before filtering.
+
+Chase's separate question — a slim hand-off build with only Browser, Makeup Exam, and Email — needed no work. `build-profiles/slim/build.config.json` already excludes all three calendar tabs and sets `memoryPill: false`, and profile builds already relocate to `%APPDATA%\macro-app-<profile>`, so the shared-settings risk he was worried about was solved on 2026-09-07 in `51420e9`. Per-recipient tab configs are not warranted for two users who want the same three tabs; a fourth profile folder is ~5 minutes when someone wants something different.
+
+The deleted folder left a stale row in `APP_LOCATIONS.md`, and Chase asked why the doc checker never flagged it. It could not have, at any point: `CODE_PATH_RE` only matches backticked names ending `.md`/`.mdc`, so a bare folder path was never examined, and even a match would have been suppressed by the `kind === 'link'` gate. The gate is right in general — backticked paths elsewhere are often prose — but `APP_LOCATIONS.md` is the one doc where a path is a claim about the disk. Added a check scoped to that file only, verified by appending two probe rows (one caught with line number, one correctly silenced by the new `<!-- path-ok: -->` hatch) and reverting.
+
+**Current state:** Green — `check-docs.js`: 0 dead links · 0 broken chain · 0 missing paths · 90/99 unrouted. Warning-only by design: these are absolute machine paths and the laptop legitimately lacks the desktop's `My Drive` root, so a hard failure would go red on every laptop run.
+
+**File size flag:** None. `scripts/check-docs.js` is 450 lines.
+
+**Next session:** Nothing pending in the repo. The Cursor workspace root itself is unfixable from here — there is no `.code-workspace` file, so it lives in Cursor's own state and only Chase can remove it. Until he does, `Grep` stays broken workspace-wide and `rg` via Shell is the fallback.
+
+---
+
 ## 2026-09-07 — Gradebook sync fixes, Matrix tutorial, and MT2 tools
 
 **Files changed:** Macro App gradebook pull/cache and two-decimal average calculation with regression tests; Matrix tutorial navigation/checking and Auto Solve gating; Electron Toolbar scripts panel; new local `mt2-dwell-floors` plugin; Programs routing, scratch pages, and generated session tracking.

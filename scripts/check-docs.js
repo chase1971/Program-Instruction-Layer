@@ -3,7 +3,7 @@
  * PURPOSE: Health check for the instruction layer (AGENTS.md / CLAUDE.md /
  *          .cursor/rules/*.mdc / agent docs/recipes/ / per-app docs).
  *
- * Catches the four ways this system decayed historically:
+ * Catches the ways this system decayed historically:
  *   1. DEAD LINK      — a relative link that resolves to nothing
  *   2. ORPHAN         — a doc no other doc links to (functionally deleted)
  *   3. DUPLICATE      — byte-identical copies in two places (two sources of truth)
@@ -13,6 +13,7 @@
  *                       instead of naming it (AGENTS.md § One content home)
  *   6. STALE PLAN     — a docs/plans/ file untouched past STALE_PLAN_DAYS.
  *                       Reported only; scripts/archive-stale-plans.js moves them.
+ *   7. MISSING PATH   — APP_LOCATIONS.md naming a folder that is not on disk
  *
  * Usage:
  *   node scripts/check-docs.js            # report (exit 0 unless dead links)
@@ -59,6 +60,9 @@ const ENTRY_POINTS = new Set([
 // The master router. Every doc should be reachable from here in <= 2 hops:
 // either INDEX names it, or INDEX names a second-tier index that names it.
 const INDEX_DOC = 'agent docs/INDEX.md';
+
+// The directory-of-record — the one doc whose backticked paths are never prose.
+const LOCATIONS_DOC = 'APP_LOCATIONS.md';
 
 // Second-tier indexes INDEX must name by hand. Every <app>/AGENTS.md is also a
 // second-tier index, but INDEX reaches those generically (via APP_LOCATIONS.md),
@@ -330,6 +334,37 @@ for (const planDir of findPlanDirs(ROOT)) {
 }
 stalePlans.sort((a, b) => b.days - a.days);
 
+// ---------- missing APP_LOCATIONS paths ----------
+// Everywhere else, a backticked path may be prose, so `check()` above deliberately
+// reports only markdown links as dead. APP_LOCATIONS.md is the one doc where that
+// exemption is backwards: its entire job is mapping an app name to a real folder, so
+// a path there is a claim about the disk, not illustration.
+//
+// Found 2026-09-07: the table still listed `Documents\D2L Assignment Assistant` after
+// the folder was deleted (that engine now lives vendored inside Macro App). Nothing
+// flagged it — CODE_PATH_RE only matches names ending .md/.mdc, so a bare folder path
+// was never examined at all, in any run.
+//
+// Warning, never a failure. These are absolute machine paths and the laptop genuinely
+// lacks some of the desktop's roots — see the My Drive remap in Macro App's
+// docs/ROSTER_PIPELINE_INTEGRATION.md. A check that goes red on every laptop run is a
+// check people learn to scroll past. Mark a per-machine row to silence it:
+//     | **Rosters etc** | `C:\...` | ... |   <!-- path-ok: desktop only -->
+const PATH_OK_RE = /<!--\s*path-ok/i;
+const ABS_PATH_RE = /`([A-Za-z]:\\[^`\n]+?)`/g;
+
+const missingPaths = [];
+stripCodeFences(content.get(LOCATIONS_DOC) || '').split('\n').forEach((ln, i) => {
+  if (PATH_OK_RE.test(ln)) return;
+  let m;
+  while ((m = ABS_PATH_RE.exec(ln))) {
+    // Trailing separator is style (`%APPDATA%\Foo\`), not part of the name.
+    if (!fs.existsSync(m[1].replace(/[\\/]+$/, ''))) {
+      missingPaths.push({ line: i + 1, target: m[1] });
+    }
+  }
+});
+
 // ---------- report ----------
 const line = (s) => { if (!quiet) console.log(s); };
 
@@ -341,6 +376,13 @@ if (deadLinks.length) {
   if (deadLinks.length > 40) line(`   …and ${deadLinks.length - 40} more`);
   line('');
 } else line('✅ No dead links\n');
+
+if (missingPaths.length) {
+  line(`⚠️  MISSING PATHS (${missingPaths.length}) — ${LOCATIONS_DOC} names folders that are not on disk:`);
+  for (const p of missingPaths.slice(0, 25)) line(`   ${LOCATIONS_DOC}:${p.line}  →  ${p.target}`);
+  if (missingPaths.length > 25) line(`   …and ${missingPaths.length - 25} more`);
+  line('   → repoint the row, or mark it <!-- path-ok: <machine> only --> if it is per-machine\n');
+} else line(`✅ Every path in ${LOCATIONS_DOC} exists\n`);
 
 if (duplicates.length) {
   line(`⚠️  DUPLICATES (${duplicates.length}) — same content in two places:`);
@@ -405,7 +447,7 @@ console.log(
   `Summary: ${deadLinks.length} dead links · ${brokenChain.length} broken chain · ` +
   `${uncovered.length}/${COVERAGE_BUDGET} unrouted · ${duplicates.length} duplicate sets · ` +
   `${unindexedRules.length} unindexed rules · ${bareValues.length} bare values · ` +
-  `${recipeValues.length} recipe values · ` +
+  `${recipeValues.length} recipe values · ${missingPaths.length} missing paths · ` +
   `${stalePlans.length} stale plans · ${orphans.length} orphans`
 );
 
@@ -413,5 +455,5 @@ const fail = deadLinks.length > 0
   || brokenChain.length > 0
   || uncovered.length > COVERAGE_BUDGET
   || (strict && (duplicates.length || orphans.length || unindexedRules.length
-      || bareValues.length || recipeValues.length));
+      || bareValues.length || recipeValues.length || missingPaths.length));
 process.exit(fail ? 1 : 0);
