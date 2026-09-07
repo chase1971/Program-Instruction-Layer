@@ -1,0 +1,20 @@
+{
+  "chunkNote": "Closed the index debt for the portal orientation work — keyword row + 'Orientation: one layout, two scales' rule in student-portal/AGENTS.md; confirmed dev server on 5340 and handed Chase the test link",
+  "addGreps": 0,
+  "navigationPath": [
+    { "target": "agent docs/SESSION_TRACKING.md", "kind": "doc", "outcome": "helpful", "note": "Bump format + the rule that a partial doc step owes an index row" },
+    { "target": "School Scrips/student-portal/AGENTS.md", "kind": "doc", "outcome": "helpful", "note": "Added the row and the single-owner orientation rule so the next session extends the --quiz-* variables instead of building a second layout" },
+    { "target": "School Scrips/student-portal/vite.config.ts", "kind": "code", "outcome": "helpful", "note": "strictPort 5340 — confirms the dev URL is stable" }
+  ],
+  "filesRead": [
+    "agent docs/SESSION_TRACKING.md",
+    "School Scrips/student-portal/vite.config.ts"
+  ],
+  "filesEdited": [
+    "School Scrips/student-portal/AGENTS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/SESSION_TRACKING.md",
+    "School Scrips/student-portal/AGENTS.md"
+  ]
+}

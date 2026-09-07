@@ -111,6 +111,7 @@ All superseded copies below live under **`Deprecated apps\`** (safe to delete th
 | `spire-overlay` | chase1971/spire-overlay | Slay the Spire overlay |
 | `sts2-dwell-targeting` | chase1971/Dwell-Targeting | STS2 dwell targeting |
 | `mt2-dwell-floors` | *(local)* | Monster Train 2 BepInEx/Harmony mod — stops dwell clicks changing floors; arrows still work. Game on D:, keyword routing in its `AGENTS.md` |
+| `mt2-run-export` | *(local)* | Monster Train 2 live run data → JSON; page **http://127.0.0.1:8765/scratch/mt2-run.html** (deck split by type, ability chips, ember curve, upgrades, relics, gold, hand). Read-only, no Harmony. Sister of `mt2-dwell-floors` |
 | `Video Player` | *(local git)* | See **Quick lookup** — not in App Dashboard; toolbar Launcher Panel + Shift+F19 |
 | `Agent Browser` | *(local)* | See **Quick lookup** — personal Electron + embedded Chromium; CDP **9227**; toolbar Launcher Panel + Shift+F20; not in App Dashboard |
 | `poe-stats-overlay` | | Path of Exile overlay |

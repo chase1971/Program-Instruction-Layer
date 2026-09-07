@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>313</dd></div>
-      <div><dt>Tasks today</dt><dd>28</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 250 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>314</dd></div>
+      <div><dt>Tasks today</dt><dd>29</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 251 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (46/1326 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (46/1331 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>24%</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">1:45 PM · Monday, Sep 7, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">2:18 PM · Monday, Sep 7, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,63 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Monday, Sep 7, 2026 <span class="day-count">28 tasks</span></h2>
+      <h2 class="day-title">Monday, Sep 7, 2026 <span class="day-count">29 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:18 PM — Fixed false calculated-average mismatches by retaining two-decimal precision for calculated-final numerators even when D2L's displayed percentage has one decimal — 5 steps · 13m 16s</span>
+      <span class="pill p2">38 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 2:05 PM
+         · 13m 16s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 38 search(es), 25 doc read(s) · 38 not in path · coverage 7%
+        <br>Wall-clock gap since previous task: 13m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Calculated averages differ screenshot">Calculated averages differ screenshot</code>
+      <span class="nav-note">Isolated the 1.8% app versus 1.82% D2L precision-only mismatch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookCalculatedAverageVerify.ts">renderer/src/utils/gradebook/gradebookCalculatedAverageVerify.ts</code>
+      <span class="nav-note">Confirmed verification compares recalculated numerators using the inferred precision map</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookRecalculateRow.ts">renderer/src/utils/gradebook/gradebookRecalculateRow.ts</code>
+      <span class="nav-note">Found final precision was inferred directly from the one-decimal scheme percentage without the existing two-decimal minimum</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookRecalculateRow.test.ts">renderer/src/utils/gradebook/gradebookRecalculateRow.test.ts</code>
+      <span class="nav-note">Added a 1.818... to 1.82 regression matching the reported failure</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="docs/GRADE_SYNC_PLAYBOOK.md">docs/GRADE_SYNC_PLAYBOOK.md</code>
+      <span class="nav-note">Recorded the precision mismatch and fix in the existing grade-sync owner</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">1:45 PM — Check above matrix; Auto Solve locked until tutorial Finish + tip — 2 steps · 9m 42s</span>
       <span class="pill p2">5 searches not in path</span>

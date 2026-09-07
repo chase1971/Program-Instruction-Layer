@@ -42,6 +42,9 @@
 /agent docs/.session-scorecard-running.json
 /agent docs/.scorecard-bump.json
 /agent docs/.scorecard-final.json
+# Live Monster Train 2 run snapshot, rewritten while the game runs (mt2-run-export plugin).
+/agent docs/scratch/.mt2-run.json
+/agent docs/scratch/.mt2-run.json.tmp
 node_modules
 
 # Local Netlify folder

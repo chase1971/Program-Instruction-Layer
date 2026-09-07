@@ -122,7 +122,7 @@ and it steals focus when it appears. *That* part is universal.
 
 Exemplar: `App Dashboard/electron/processManager.ts`.
 Detail: `School Scrips/App Dashboard/docs/LAUNCHER.md` ·
-Toolbar tiles: `electron-toolbar/docs/LAUNCHER_PANEL.md`.
+Toolbar tiles: `electron-toolbar/docs/recipes/LAUNCHER_PANEL.md`.
 
 ---
 

@@ -1,0 +1,35 @@
+{
+  "chunkNote": "Added a horizontal 812x460 Student Portal launcher as an apps.json view variant, wired it into the Launcher Panel grid, and fixed the dead LAUNCHER_PANEL.md path in root AGENTS.md",
+  "addGreps": 8,
+  "navigationPath": [
+    { "target": "agent docs/recipes/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "Row for 'chrome window size / horizontal 812x460 / landscape launcher' pointed straight at App Dashboard/docs/LAUNCHER.md" },
+    { "target": "School Scrips/App Dashboard/docs/LAUNCHER.md", "kind": "doc", "outcome": "helpful", "note": "Gave the two presets and the view-variant recipe (viewOf + own chromeWindow + own .bat), exemplar factoring-1080p" },
+    { "target": "electron-toolbar/docs/LAUNCHER_PANEL.md", "kind": "doc", "outcome": "dead-end", "note": "Path in root AGENTS.md line 125 does not exist — the file is at docs/recipes/LAUNCHER_PANEL.md. Fixed the link in root AGENTS.md." },
+    { "target": "electron-toolbar/docs/recipes/LAUNCHER_PANEL.md", "kind": "doc", "outcome": "helpful", "note": "The key fact: apps.json + school-launchers.js alone do NOT create a tile; scripts-panel.html requiredIds is required" },
+    { "target": "School Scrips/App Dashboard/scripts/launchers/launch-chrome-vite.ps1", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/App Dashboard/scripts/launch-common.ps1", "kind": "code", "outcome": "helpful", "note": "Start-SchoolChromeWindow uses --user-data-dir + --window-size, which is why profileDir choice decides whether geometry is honored" },
+    { "target": "School Scrips/student-portal/src/services/studentIdentity.ts", "kind": "code", "outcome": "helpful", "note": "Identity is localStorage-only, so a fresh Chrome profile would hit PortalGate — drove sharing the parent's profileDir" }
+  ],
+  "filesRead": [
+    "School Scrips/App Dashboard/docs/LAUNCHER.md",
+    "electron-toolbar/docs/recipes/LAUNCHER_PANEL.md",
+    "electron-toolbar/electron-app/src/school-launchers.js",
+    "electron-toolbar/electron-app/src/scripts-panel.html",
+    "School Scrips/App Dashboard/apps.json",
+    "School Scrips/student-portal/launch.bat"
+  ],
+  "filesEdited": [
+    "School Scrips/App Dashboard/apps.json",
+    "School Scrips/App Dashboard/docs/LAUNCHER.md",
+    "School Scrips/student-portal/launch-horizontal.bat",
+    "electron-toolbar/electron-app/src/school-launchers.js",
+    "electron-toolbar/electron-app/src/scripts-panel.html",
+    "AGENTS.md"
+  ],
+  "docsRulesOpened": [
+    "School Scrips/App Dashboard/docs/LAUNCHER.md",
+    "electron-toolbar/docs/recipes/LAUNCHER_PANEL.md",
+    "School Scrips/App Dashboard/AGENTS.md",
+    "electron-toolbar/AGENTS.md"
+  ]
+}

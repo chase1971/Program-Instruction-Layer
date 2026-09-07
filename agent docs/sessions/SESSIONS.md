@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-07 — Gradebook sync fixes, Matrix tutorial, and MT2 tools
+
+**Files changed:** Macro App gradebook pull/cache and two-decimal average calculation with regression tests; Matrix tutorial navigation/checking and Auto Solve gating; Electron Toolbar scripts panel; new local `mt2-dwell-floors` plugin; Programs routing, scratch pages, and generated session tracking.
+
+**What worked:** Repaired six false Calculus pending grades without pushing to D2L, invalidated stale gradebook caches after successful pulls, corrected the manual-pull regression, and matched D2L's two-decimal calculated-final precision. Matrix tutorial navigation and completion gating were completed. MT2 dwell-floor and run-report tooling was added and routed.
+
+**Current state:** Green — Macro renderer typecheck passed; gradebook precision and cache tests passed.
+
+**File size flag:** `School Scrips/Matrix app/src/components/matrix-solver.tsx` is 753 lines and must be extracted before future edits.
+
+**Next session:** Continue the next requested teaching-app task; extract `matrix-solver.tsx` first if Matrix work resumes.
+
+---
+
 ## 2026-09-06 — Phone-to-desktop agent worker (My Machines)
 
 **Files changed:** `agent docs/PHONE_AGENT_ACCESS.md` (new, ~95 lines); `agent docs/INDEX.md` (+1 row); `scripts/cursor-worker-start.ps1` (new, ~111 lines); `scripts/Start Cursor Worker.vbs` (new, ~16 lines).

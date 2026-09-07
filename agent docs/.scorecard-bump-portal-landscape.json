@@ -1,0 +1,32 @@
+{
+  "chunkNote": "Student Portal: header hidden during a quiz with a Back button in its place, plus a landscape/short-viewport compact layout driven by CSS variables",
+  "addGreps": 4,
+  "navigationPath": [
+    { "target": "School Scrips/student-portal/AGENTS.md", "kind": "doc", "outcome": "routed", "note": "No orientation/responsive row existed; confirmed generic-quiz is the exemplar feature" },
+    { "target": "agent docs/recipes/INDEX.md", "kind": "doc-index", "outcome": "partial", "note": "Grepped for landscape/orientation — only Chrome window geometries in LAUNCHER.md. No recipe owns per-orientation layout; this is the first one in the tree. Row owed if the pattern spreads to a second app." },
+    { "target": "src/app/App.tsx", "kind": "code", "outcome": "helpful", "note": "quizActivityId already gates tabs and menu — reused it for focus mode" },
+    { "target": "src/styles/index.css", "kind": "code", "outcome": "helpful", "note": "All quiz sizing was hardcoded here; converted to variables so one media query re-scales it" },
+    { "target": "src/hooks/usePortalRoute.ts", "kind": "code", "outcome": "helpful", "note": "navigatePortalRoute('classwork') is the existing back mechanism, same as the result screen's Exit" }
+  ],
+  "filesRead": [
+    "School Scrips/student-portal/AGENTS.md",
+    "School Scrips/student-portal/src/features/generic-quiz/GenericQuizView.tsx",
+    "School Scrips/student-portal/src/features/generic-quiz/GenericQuizResult.tsx",
+    "School Scrips/student-portal/src/app/components/PortalMenu.tsx",
+    "School Scrips/student-portal/src/app/components/PortalLogo.tsx",
+    "School Scrips/student-portal/src/hooks/usePortalRoute.ts",
+    "School Scrips/student-portal/package.json"
+  ],
+  "filesEdited": [
+    "School Scrips/student-portal/src/styles/index.css",
+    "School Scrips/student-portal/src/app/App.tsx",
+    "School Scrips/student-portal/src/app/components/PortalShell.tsx",
+    "School Scrips/student-portal/src/app/components/PortalHeader.tsx",
+    "School Scrips/student-portal/src/app/components/PortalContentPanel.tsx",
+    "School Scrips/student-portal/src/features/generic-quiz/GenericQuizQuestionCard.tsx"
+  ],
+  "docsRulesOpened": [
+    "School Scrips/student-portal/AGENTS.md",
+    "agent docs/SESSION_TRACKING.md"
+  ]
+}

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monster Train 2 — Current Run</title>
+<style>
+  :root {
+    --bg: #14121c;
+    --panel: #1e1b2a;
+    --panel-2: #262236;
+    --line: #3a3450;
+    --text: #ece9f5;
+    --dim: #a49dbd;
+    --gold: #ffcf5c;
+    --accent: #8f7bff;
+    --good: #63d68b;
+    --status: #6fb8ff;
+    --trigger: #ff9d6f;
+    --subtype: #63d68b;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    padding: 10px 14px;
+    background: var(--bg);
+    color: var(--text);
+    font: 13px/1.35 "Segoe UI", system-ui, sans-serif;
+    overflow: hidden;
+  }
+  a { color: var(--accent); }
+  .app {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    gap: 8px;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+
+  /* top strip */
+  .top {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  .sub { color: var(--dim); font-size: 12px; }
+
+  .banner {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+  }
+  .banner.ok { border-left-color: var(--good); }
+  .banner.warn { border-left-color: var(--gold); }
+  .banner .headline { font-size: 13px; font-weight: 600; }
+  .banner .beat { font-variant-numeric: tabular-nums; color: var(--gold); }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px; }
+  .fact {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .fact b { color: var(--text); font-weight: 600; }
+  .fact.no b { color: var(--gold); }
+  .readerr { color: var(--gold); font-size: 12px; width: 100%; }
+
+  /* compact run stats + curve on one row */
+  .runbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+  }
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 3px 9px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .stat .label {
+    color: var(--dim);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .stat .value { font-size: 14px; font-weight: 600; }
+  .stat.gold .value { color: var(--gold); }
+
+  .curvebox {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 10px 6px;
+    min-width: 220px;
+  }
+  .curvebox .lbl {
+    color: var(--dim);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 2px;
+  }
+  .curvebox .lbl b { color: var(--gold); font-weight: 600; text-transform: none; letter-spacing: 0; }
+  .curve { display: flex; align-items: flex-end; gap: 5px; height: 42px; }
+  .curve .col { text-align: center; flex: 1 1 0; min-width: 22px; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+  .curve .bar {
+    background: linear-gradient(180deg, var(--accent), #5a48b8);
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.1;
+    padding-top: 1px;
+  }
+  .curve .bar.zero { background: var(--panel-2); color: var(--dim); }
+  .curve .tick { color: var(--dim); font-size: 10px; margin-top: 2px; }
+  .curve .tick b { color: var(--gold); font-weight: 600; }
+
+  /* three columns */
+  .cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.75fr) minmax(180px, 0.55fr);
+    gap: 8px;
+    min-height: 0;
+  }
+  .col-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .col-head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel-2);
+  }
+  .col-head h2 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .col-head .count { color: var(--dim); font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0; }
+  .col-body {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 6px 8px;
+    min-height: 0;
+  }
+
+  /* deck rows — dense; tags sit under the name */
+  .sec {
+    color: var(--dim);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 6px 0 3px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sec:first-child { margin-top: 0; }
+  .crow {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 4px 6px;
+    align-items: start;
+    padding: 3px 4px;
+    border-radius: 3px;
+  }
+  .crow:nth-child(even) { background: rgba(255,255,255,.03); }
+  .crow .cost {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 12px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    padding-top: 1px;
+  }
+  .crow .body { min-width: 0; }
+  .crow .topline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+  }
+  .crow .name { font-size: 13px; font-weight: 600; }
+  .crow .qty { color: var(--dim); font-size: 11px; font-weight: 400; }
+  .crow .ustats {
+    color: var(--dim);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 0 6px;
+  }
+  .crow .ustats b { color: var(--gold); font-weight: 700; }
+  .crow .tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px; }
+  .tag {
+    border-radius: 3px;
+    padding: 0 5px;
+    font-size: 10px;
+    border: 1px solid var(--line);
+    line-height: 1.5;
+    white-space: nowrap;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+  }
+  .tag.up { background: rgba(143,123,255,.16); border-color: var(--accent); color: var(--accent); cursor: default; }
+  .tag.k-status { border-color: var(--status); color: var(--status); }
+  .tag.k-trigger { border-color: var(--trigger); color: var(--trigger); }
+  .tag.k-subtype { border-color: var(--subtype); color: var(--subtype); }
+  .tag.on { box-shadow: 0 0 0 2px rgba(143,123,255,.45); background: var(--panel-2); }
+
+  /* pinned tooltip — click, not hover (dwell-friendly) */
+  .tip {
+    margin-top: 4px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 11px;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .tip .tip-name { font-weight: 700; margin-right: 6px; }
+  .tip .tip-kind { color: var(--dim); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
+  .tip .tip-body { margin-top: 3px; color: var(--dim); }
+
+  /* abilities — one wrap of tiny chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .chip-group {
+    color: var(--dim);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    flex: 0 0 100%;
+    margin-top: 4px;
+  }
+  .chip-group:first-child { margin-top: 0; }
+  .chip {
+    font: inherit;
+    font-size: 11px;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 8px;
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .chip b { margin-left: 4px; font-size: 11px; }
+  .chip.k-status { border-color: var(--status); }
+  .chip.k-trigger { border-color: var(--trigger); }
+  .chip.k-subtype { border-color: var(--subtype); }
+  .chip.on { background: var(--panel-2); box-shadow: 0 0 0 2px rgba(143,123,255,.45); }
+  .pane {
+    margin-top: 6px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 4px 8px;
+  }
+  .pane .row { padding: 2px 0; font-size: 12px; }
+  .pane .row .n { font-weight: 600; }
+  .pane .row .t { color: var(--dim); margin-left: 6px; }
+  .pane .blurb { color: var(--dim); font-size: 11px; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid var(--line); }
+
+  /* relics */
+  .relics { display: flex; flex-direction: column; gap: 2px; }
+  .relic {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  .empty { color: var(--dim); font-style: italic; padding: 4px 0; font-size: 12px; }
+  .live { color: var(--good); }
+  .stale { color: var(--gold); }
+
+  /* combat strip at bottom — only when present */
+  .combat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 10px;
+    display: none;
+  }
+  .combat.on { display: block; }
+  .combat .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    align-items: center;
+  }
+  .combat .lbl {
+    color: var(--dim);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-right: 2px;
+  }
+  .combat .hand {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .combat .hand .pill {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+  }
+  .combat .hand .pill b { color: var(--gold); margin-right: 4px; }
+
+  @media (max-width: 1100px) {
+    body { overflow: auto; }
+    .app { height: auto; }
+    .cols { grid-template-columns: 1fr; }
+    .col-panel { max-height: 40vh; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <h1>Monster Train 2 — Current Run</h1>
+    <div class="sub"><a href="/index.html">&larr; All pages</a></div>
+  </div>
+
+  <div class="banner" id="status">Waiting for data…</div>
+
+  <div class="runbar">
+    <div class="stats" id="stats"></div>
+    <div class="curvebox">
+      <div class="lbl">Ember curve <b id="curve-count"></b></div>
+      <div class="curve" id="curve"></div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <section class="col-panel">
+      <div class="col-head">
+        <h2>Deck</h2>
+        <span class="count" id="deck-count"></span>
+      </div>
+      <div class="col-body" id="deck"></div>
+    </section>
+
+    <section class="col-panel">
+      <div class="col-head">
+        <h2>Abilities</h2>
+        <span class="count">click a chip · tribes ≠ keywords</span>
+      </div>
+      <div class="col-body">
+        <div class="chips" id="chips"></div>
+        <div id="pane"></div>
+      </div>
+    </section>
+
+    <section class="col-panel">
+      <div class="col-head">
+        <h2>Relics</h2>
+        <span class="count" id="relic-count"></span>
+      </div>
+      <div class="col-body relics" id="relics"></div>
+    </section>
+  </div>
+
+  <div class="combat" id="combat"></div>
+</div>
+
+<script>
+const SOURCE = '/scratch/.mt2-run.json';
+const POLL_MS = 1500;
+
+const SECTIONS = [
+  ['Monster', 'Units'],
+  ['Spell', 'Spells'],
+  ['Equipment', 'Equipment'],
+  ['Blight', 'Blights'],
+  ['Junk', 'Junk'],
+  ['TrainRoomAttachment', 'Rooms'],
+];
+const KIND_ORDER = ['status', 'trigger', 'subtype'];
+const KIND_LABEL = { status: 'Statuses', trigger: 'Triggers', subtype: 'Tribes' };
+const STALE_AFTER_S = 8;
+
+// From the Monster Train 2 wiki (monstertrain2.miraheze.org/wiki/Status_Effects).
+// Game localization often returns empty tip text for these; the wiki definitions are the ones
+// Chase actually wants when he clicks a tag.
+const WIKI = {
+  // Buffs / statuses
+  Armor: 'Damage is dealt to Armor before health. Each point of Armor blocks one point of damage and is then removed.',
+  Buffet: 'This unit can be Eaten multiple times.',
+  Burst: 'Attacks an additional time per stack. Remove 1 stack after each attack made this way.',
+  Cardless: "This unit was not summoned from a unit card. It won't go to the Consume pile and can't gain Endless.",
+  Dualism: 'Doubles the stacks of Armor and Buff and Debuff status effects applied by this unit.',
+  Endless: 'When this unit dies, return its card to the top of the draw pile.',
+  Fragile: 'If this unit loses health, it dies.',
+  Graft: 'Unit has equipment grafted. When they die, the graft is severed for the rest of combat and the equipment goes into your hand.',
+  Haste: 'Moves directly from the first floor to the third floor.',
+  Immobile: "Can't move between floors or change position on this floor.",
+  Inert: 'This unit cannot attack unless it has Fuel.',
+  Mageblade: '+1 damage per stack for each Magic Power on the floor.',
+  Multistrike: 'Attacks an additional time per stack.',
+  Quick: 'Attacks before enemy units during combat.',
+  Silence: 'Disables Triggers and Abilities.',
+  Sniper: 'Prioritizes attacking the back enemy unit.',
+  Spikes: 'When a unit with Spikes is attacked, the attacker takes 1 damage per stack.',
+  Stealth: 'Not a target in combat. Decreases each turn.',
+  Sweep: 'Attacks all enemy units.',
+  Titanite: 'Incoming damage reduced by half.',
+  Titanskin: '1 damage reduction per stack.',
+  Trample: 'When attacking, excess damage is applied to the subsequent enemy unit.',
+  Conduit: '+1 Magic Power on this floor per stack.',
+  'Damage Shield': 'Nullify the next source of damage.',
+  Fuel: 'Negates the effects of Inert. Loses 1 stack every turn.',
+  Lifesteal: 'When a unit with Lifesteal attacks, it restores health equal to the damage dealt.',
+  Rage: '+2 Attack per stack. Decreases every turn.',
+  Reanimate: 'When killed, revive with 1 Health and lose 1 stack of Reanimate.',
+  Regen: 'Restores 1 health per stack at the end of turn. Decreases every turn.',
+  'Spell Shield': 'Nullify the next damage from a spell or ability.',
+  Troop: 'Gains bonus Attack and Health per stack. Losing enough Health removes a stack.',
+  Valor: '+1 Attack per stack. Raise Armor to stack count if this is the front unit after combat.',
+  Corruption: 'Takes 1 damage per stack at the end of turn. Stacks remain across turns.',
+  Dazed: "Can't attack or use Action or Resolve abilities while Dazed.",
+  Decay: 'Takes 3 damage per stack at the end of turn. Decreases every turn.',
+  Frostbite: 'Takes 1 damage per stack at the end of turn. Decreases every turn.',
+  Mute: 'Disables Triggers and Abilities. Decreases every turn.',
+  Pyregel: '+1 incoming damage per stack.',
+  Rooted: 'Prevents the next time a unit would move between floors. Bosses are immune.',
+  Sap: '-2 Attack per stack. Decreases every turn.',
+  // Triggers
+  Action: "Triggers at the start of this unit's turn.",
+  Enchant: 'Other units on the same floor gain a bonus.',
+  Extinguish: 'Triggers on death.',
+  Harvest: 'Triggers when a unit on this floor dies.',
+  Incant: 'Triggers when you play a spell on this floor.',
+  Mooncycle: 'Triggers when the moon changes phases.',
+  'Full Moon': 'Active only during the Full Moon.',
+  'New Moon': 'Active only during the New Moon.',
+  Rally: 'Triggers when a friendly unit is summoned on this floor.',
+  Resolve: 'Triggers after combat.',
+  Revenge: 'Triggers when being hit.',
+  Celebrate: 'Triggers after defeating a boss.',
+  Shift: 'Triggers whenever this unit moves.',
+  Slay: 'Triggers after dealing a killing blow.',
+  Strike: 'Triggers when attacking.',
+  Summon: 'Triggers when played.',
+  // Tribes
+  Chosen: 'Tribe tag (not a printed keyword). Cards that say Chosen target units with this tag.',
+  Shroom: 'Tribe tag (not a printed keyword). Used by Underlegion / Funguy synergies.',
+  Steward: 'Tribe tag (not a printed keyword). Common on starter unit cards.',
+  Funguy: 'Tribe tag (not a printed keyword). Underlegion troop units.',
+  Fae: 'Tribe tag (not a printed keyword). Luna Coven units.',
+  Champion: 'Your champion unit for this run.',
+};
+
+function tipText(name, kind, fromGame) {
+  if (WIKI[name]) return WIKI[name];
+  // Case-insensitive fallback
+  const hit = Object.keys(WIKI).find(k => k.toLowerCase() === String(name || '').toLowerCase());
+  if (hit) return WIKI[hit];
+  if (fromGame) return fromGame;
+  if (kind === 'subtype') {
+    return 'Tribe tag (not a printed keyword). Cards that name this tribe target units with this tag.';
+  }
+  return 'No definition found yet for "' + name + '".';
+}
+
+let selected = null;       // ability chip key
+let openTipKey = null;     // deck-tag tip key (kind|name)
+let lastDataKey = null;
+let lastData = null;
+
+const $ = (id) => document.getElementById(id);
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function ageSeconds(stamp) {
+  const t = Date.parse(String(stamp).replace(' ', 'T'));
+  return isNaN(t) ? null : (Date.now() - t) / 1000;
+}
+
+function tipHtml(name, kind, description) {
+  const body = tipText(name, kind, description);
+  return '<div class="tip">'
+    + '<span class="tip-name">' + esc(name) + '</span>'
+    + '<span class="tip-kind">' + esc(KIND_LABEL[kind] || kind || '') + '</span>'
+    + '<div class="tip-body">' + esc(body) + '</div>'
+    + '</div>';
+}
+
+function stat(label, value, cls) {
+  return '<div class="stat ' + (cls || '') + '"><span class="label">' + esc(label) + '</span>'
+    + '<span class="value">' + esc(value) + '</span></div>';
+}
+
+function groupCards(cards) {
+  const groups = new Map();
+  for (const card of cards) {
+    const key = card.title + '|' + card.cost + '|' + (card.upgrades || []).join(',');
+    if (groups.has(key)) groups.get(key).qty++;
+    else groups.set(key, { card, qty: 1 });
+  }
+  return [...groups.values()].sort((a, b) =>
+    a.card.cost - b.card.cost || (a.card.title || '').localeCompare(b.card.title || ''));
+}
+
+function cardRow(card, qty) {
+  const upgrades = (card.upgrades || []).map(u =>
+    '<span class="tag up">' + esc(u) + '</span>').join('');
+  const mechTags = (card.mechanics || []).map(m => {
+    const key = m.kind + '|' + m.name;
+    return '<button type="button" class="tag k-' + esc(m.kind)
+      + (openTipKey === key ? ' on' : '')
+      + '" data-tip-key="' + esc(key) + '"'
+      + ' data-tip-name="' + esc(m.name) + '"'
+      + ' data-tip-kind="' + esc(m.kind) + '"'
+      + ' data-tip-desc="' + esc(m.description || '') + '">'
+      + esc(m.name) + '</button>';
+  }).join('');
+
+  const power = (card.attack != null || card.health != null)
+    ? '<span class="ustats">ATK <b>' + esc(card.attack == null ? '—' : card.attack)
+      + '</b> · HP <b>' + esc(card.health == null ? '—' : card.health) + '</b></span>'
+    : '';
+
+  const tip = openTipKey && (card.mechanics || []).some(m => (m.kind + '|' + m.name) === openTipKey)
+    ? (() => {
+        const m = card.mechanics.find(x => (x.kind + '|' + x.name) === openTipKey);
+        return tipHtml(m.name, m.kind, m.description);
+      })()
+    : '';
+
+  return '<div class="crow">'
+    + '<span class="cost">' + esc(card.cost) + '</span>'
+    + '<div class="body">'
+    + '<div class="topline">'
+    + '<span class="name">' + esc(card.title)
+    + (qty > 1 ? '<span class="qty"> ×' + qty + '</span>' : '')
+    + '</span>'
+    + power
+    + '</div>'
+    + ((upgrades || mechTags) ? '<div class="tags">' + upgrades + mechTags + '</div>' : '')
+    + tip
+    + '</div></div>';
+}
+
+function renderDeck(cards) {
+  if (!cards || !cards.length) {
+    $('deck').innerHTML = '<div class="empty">No cards yet.</div>';
+    return;
+  }
+  const known = new Set(SECTIONS.map(s => s[0]));
+  const extras = [...new Set(cards.map(c => c.type).filter(t => !known.has(t)))];
+  const order = SECTIONS.concat(extras.map(t => [t, t || 'Other']));
+
+  let html = '';
+  for (const [type, label] of order) {
+    const inSection = cards.filter(c => c.type === type);
+    if (!inSection.length) continue;
+    html += '<div class="sec">' + esc(label) + ' — ' + inSection.length + '</div>'
+      + groupCards(inSection).map(g => cardRow(g.card, g.qty)).join('');
+  }
+  $('deck').innerHTML = html;
+}
+
+function renderCurve(cards) {
+  const el = $('curve');
+  if (!cards || !cards.length) {
+    el.innerHTML = '<div class="empty">—</div>';
+    $('curve-count').textContent = '';
+    return;
+  }
+  const counts = new Map();
+  for (const c of cards) counts.set(c.cost, (counts.get(c.cost) || 0) + 1);
+  const max = Math.max(...counts.values());
+  const top = Math.max(...counts.keys());
+  const total = cards.reduce((sum, c) => sum + (c.cost || 0), 0);
+
+  let html = '';
+  for (let cost = 0; cost <= top; cost++) {
+    const n = counts.get(cost) || 0;
+    const height = n ? Math.round(8 + (n / max) * 28) : 2;
+    html += '<div class="col">'
+      + '<div class="bar' + (n ? '' : ' zero') + '" style="height:' + height + 'px">' + (n || '') + '</div>'
+      + '<div class="tick"><b>' + cost + '</b></div></div>';
+  }
+  el.innerHTML = html;
+  $('curve-count').textContent = 'avg ' + (total / cards.length).toFixed(2);
+}
+
+function indexMechanics(cards) {
+  const index = new Map();
+  for (const card of cards || []) {
+    for (const m of card.mechanics || []) {
+      const key = m.kind + '|' + m.name;
+      if (!index.has(key)) {
+        index.set(key, { name: m.name, kind: m.kind, description: m.description || '', cards: [] });
+      }
+      index.get(key).cards.push(card);
+    }
+  }
+  return index;
+}
+
+function renderChips(cards) {
+  const index = indexMechanics(cards);
+  if (!index.size) {
+    $('chips').innerHTML = '<div class="empty">No abilities yet.</div>';
+    $('pane').innerHTML = '';
+    return;
+  }
+  const entries = [...index.entries()].sort((a, b) =>
+    KIND_ORDER.indexOf(a[1].kind) - KIND_ORDER.indexOf(b[1].kind)
+    || b[1].cards.length - a[1].cards.length
+    || a[1].name.localeCompare(b[1].name));
+
+  let html = '';
+  let kind = null;
+  for (const [key, entry] of entries) {
+    if (entry.kind !== kind) {
+      kind = entry.kind;
+      html += '<div class="chip-group">' + esc(KIND_LABEL[kind] || kind) + '</div>';
+    }
+    html += '<button type="button" class="chip k-' + esc(entry.kind) + '" data-key="' + esc(key) + '">'
+      + esc(entry.name) + '<b>' + entry.cards.length + '</b></button>';
+  }
+  $('chips').innerHTML = html;
+
+  if (selected && !index.has(selected)) selected = null;
+  applySelection(index);
+}
+
+function applySelection(index) {
+  for (const chip of document.querySelectorAll('#chips .chip')) {
+    chip.classList.toggle('on', chip.dataset.key === selected);
+  }
+  const entry = selected ? index.get(selected) : null;
+  if (!entry) {
+    $('pane').innerHTML = '';
+    return;
+  }
+  const seen = new Map();
+  for (const c of entry.cards) seen.set(c.title, (seen.get(c.title) || 0) + 1);
+  $('pane').innerHTML = '<div class="pane">'
+    + '<div class="blurb">' + esc(tipText(entry.name, entry.kind, entry.description)) + '</div>'
+    + [...seen.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([title, n]) => '<div class="row"><span class="n">' + esc(title) + '</span>'
+        + (n > 1 ? '<span class="t">&times;' + n + '</span>' : '') + '</div>').join('')
+    + '</div>';
+}
+
+$('chips').addEventListener('click', (ev) => {
+  const chip = ev.target.closest('.chip');
+  if (!chip) return;
+  selected = chip.dataset.key === selected ? null : chip.dataset.key;
+  applySelection(indexMechanics((lastData && lastData.deck) || []));
+});
+
+// Click a tag under a unit — pin the tip under that unit. Click again to close.
+// Click (not hover) because dwell wobble makes hover tooltips unusable.
+$('deck').addEventListener('click', (ev) => {
+  const tag = ev.target.closest('.tag[data-tip-key]');
+  if (!tag) return;
+  openTipKey = tag.dataset.tipKey === openTipKey ? null : tag.dataset.tipKey;
+  renderDeck((lastData && lastData.deck) || []);
+});
+
+function renderCombat(combat) {
+  const el = $('combat');
+  if (!combat) {
+    el.className = 'combat';
+    el.innerHTML = '';
+    return;
+  }
+  el.className = 'combat on';
+  const hand = groupCards(combat.hand || []);
+  el.innerHTML = '<div class="row">'
+    + '<span><span class="lbl">Turn</span><b>' + esc(combat.turn) + '</b></span>'
+    + '<span><span class="lbl">Yours</span><b>' + (combat.playerActionPhase ? 'yes' : 'no') + '</b></span>'
+    + '<span><span class="lbl">Draw</span><b>' + esc(combat.drawPileCount) + '</b></span>'
+    + '<span><span class="lbl">Discard</span><b>' + esc(combat.discardPileCount) + '</b></span>'
+    + '<span><span class="lbl">Exhaust</span><b>' + esc(combat.exhaustPileCount) + '</b></span>'
+    + '<span><span class="lbl">Hand</span><b>' + hand.reduce((n, g) => n + g.qty, 0) + '</b></span>'
+    + '</div>'
+    + (hand.length
+      ? '<div class="hand">' + hand.map(g =>
+          '<span class="pill"><b>' + esc(g.card.cost) + '</b>' + esc(g.card.title)
+          + (g.qty > 1 ? ' ×' + g.qty : '') + '</span>').join('') + '</div>'
+      : '');
+}
+
+function fact(label, value, ok) {
+  return '<span class="fact' + (ok === false ? ' no' : '') + '">' + esc(label)
+    + ' <b>' + esc(value) + '</b></span>';
+}
+
+function renderStatus(data) {
+  const link = data.link || {};
+  const age = ageSeconds(data.generatedAt);
+  const reading = link.heartbeat > 0 && age !== null && age <= STALE_AFTER_S;
+
+  let headline;
+  if (!reading) {
+    headline = '<span class="stale">Not reading the game.</span> '
+      + (age === null ? 'No timestamp yet.'
+        : 'Last tick ' + Math.round(age) + 's ago.');
+  } else if (data.inRun) {
+    headline = '<span class="live">Reading the game — run in progress.</span>';
+  } else {
+    headline = '<span class="live">Reading the game.</span> No run yet.';
+  }
+
+  const beat = link.heartbeat
+    ? ' <span class="beat">tick #' + esc(link.heartbeat) + '</span>'
+    : '';
+
+  $('status').className = 'banner ' + (reading ? 'ok' : 'warn');
+  $('status').innerHTML = '<div class="headline">' + headline + beat + '</div>'
+    + '<div class="facts">'
+    + fact('plugin', link.plugin || '—')
+    + fact('scene', link.scene || '—')
+    + fact('phase', link.gameSequence || '—')
+    + fact('SaveManager', link.saveManagerSeen ? 'yes' : 'no', !!link.saveManagerSeen)
+    + fact('AllGameManagers', link.allGameManagersSeen ? 'yes' : 'no', !!link.allGameManagersSeen)
+    + fact('updated', data.generatedAt || '—')
+    + '</div>'
+    + (link.readError
+      ? '<div class="readerr">Read error: ' + esc(link.readError) + '</div>'
+      : '');
+}
+
+function render(data) {
+  lastData = data;
+
+  const run = data.run || {};
+  $('stats').innerHTML =
+    stat('Gold', run.gold == null ? '—' : run.gold, 'gold')
+    + stat('Deck', run.deckSize == null ? '—' : run.deckSize)
+    + stat('Cov', run.covenantRank == null ? '—' : run.covenantRank)
+    + stat('Main', run.mainClass || '—')
+    + stat('Ally', run.subClass || '—')
+    + stat('Phase', run.phase || '—');
+
+  const deck = data.deck || [];
+  $('deck-count').textContent = deck.length + ' cards';
+  $('relic-count').textContent = (data.relics || []).length;
+  renderCurve(deck);
+  renderChips(deck);
+  renderDeck(deck);
+  renderCombat(data.combat);
+
+  $('relics').innerHTML = (data.relics || []).length
+    ? data.relics.map(r => '<div class="relic">' + esc(r) + '</div>').join('')
+    : '<div class="empty">No relics yet.</div>';
+}
+
+async function poll() {
+  try {
+    const res = await fetch(SOURCE + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = (await res.text()).replace(/^\uFEFF/, '');
+    const data = JSON.parse(text);
+
+    renderStatus(data);
+
+    const dataKey = JSON.stringify([data.run, data.deck, data.relics, data.combat]);
+    if (dataKey !== lastDataKey) {
+      lastDataKey = dataKey;
+      render(data);
+    }
+  } catch (err) {
+    $('status').className = 'banner warn';
+    $('status').innerHTML =
+      '<span class="stale">No snapshot file yet.</span> Launch Monster Train 2 with the '
+      + 'MT2RunExport plugin installed. (' + esc(err.message) + ')';
+  } finally {
+    setTimeout(poll, POLL_MS);
+  }
+}
+
+poll();
+</script>
+</body>
+</html>

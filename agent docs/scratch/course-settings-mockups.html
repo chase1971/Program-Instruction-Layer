@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Course Settings — 5 combined modal concepts</title>
+  <style>
+    :root {
+      --bg: #e8eef5;
+      --panel: #ffffff;
+      --text: #1a1d23;
+      --muted: #5b6575;
+      --accent: #1e3a5f;
+      --border: #c5d0de;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.25rem 1.1rem;
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 650;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 48rem;
+    }
+    .banner {
+      margin-top: 0.75rem;
+      padding: 0.55rem 0.75rem;
+      background: #fff8e6;
+      border: 1px solid #e0c56a;
+      border-radius: 8px;
+      color: #5a4a10;
+      font-size: 0.9rem;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0.55rem 0.9rem;
+      border-radius: 10px;
+      background: #eef3f9;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    nav a:focus-visible,
+    nav a:active {
+      outline: 3px solid #3b82f6;
+      outline-offset: 2px;
+    }
+    main {
+      padding: 1.25rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .card-head {
+      padding: 0.9rem 1rem 0.5rem;
+    }
+    .card-head h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+    .card-head p {
+      margin: 0.3rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .card a.img-link {
+      display: block;
+      padding: 0.4rem 0.75rem 0.75rem;
+      text-decoration: none;
+    }
+    .card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f4f7fb;
+    }
+    .card .open {
+      margin: 0 1rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 650;
+      text-decoration: none;
+    }
+    footer {
+      padding: 0.5rem 1.25rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Course Settings — 5 combined concepts</h1>
+    <p>
+      One main modal only. Each concept lists your courses and offers rename, schedule, and
+      retire/delete (trash can open a follow-up). Style matches Macro App’s current modals —
+      organization is what differs. Pick A–E.
+    </p>
+    <div class="banner">
+      Redone 2026-09-07 after first pass. Side panel cleanup is out of scope here — this page is the combined modal only.
+    </div>
+    <nav aria-label="Jump to concept">
+      <a href="#a">A — Row buttons</a>
+      <a href="#b">B — Inline rename</a>
+      <a href="#c">C — Select then act</a>
+      <a href="#d">D — Icons</a>
+      <a href="#e">E — List + Schedules tab</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="card" id="a">
+      <div class="card-head">
+        <h2>A — Row actions</h2>
+        <p>Each course row: <strong>Rename</strong> · <strong>Schedule</strong> · trash. Closest to what you described.</p>
+      </div>
+      <a class="img-link" href="course-settings-mockups/combined-a-row-actions.png" target="_blank" rel="noopener">
+        <img src="course-settings-mockups/combined-a-row-actions.png" alt="Concept A: course rows with Rename, Schedule, and trash buttons" />
+      </a>
+      <a class="open" href="course-settings-mockups/combined-a-row-actions.png" target="_blank" rel="noopener">Open full size</a>
+    </article>
+
+    <article class="card" id="b">
+      <div class="card-head">
+        <h2>B — Inline rename</h2>
+        <p>Name fields on the list (like today’s Rename modal). Schedule + trash still per row. Save names on the footer.</p>
+      </div>
+      <a class="img-link" href="course-settings-mockups/combined-b-inline-rename.png" target="_blank" rel="noopener">
+        <img src="course-settings-mockups/combined-b-inline-rename.png" alt="Concept B: inline rename fields with Schedule and trash" />
+      </a>
+      <a class="open" href="course-settings-mockups/combined-b-inline-rename.png" target="_blank" rel="noopener">Open full size</a>
+    </article>
+
+    <article class="card" id="c">
+      <div class="card-head">
+        <h2>C — Select, then act</h2>
+        <p>Tap a course, then one of three big actions: Rename, Schedule, Retire or delete. Fewest controls per row.</p>
+      </div>
+      <a class="img-link" href="course-settings-mockups/combined-c-select-then-act.png" target="_blank" rel="noopener">
+        <img src="course-settings-mockups/combined-c-select-then-act.png" alt="Concept C: select a course then choose Rename, Schedule, or Retire or delete" />
+      </a>
+      <a class="open" href="course-settings-mockups/combined-c-select-then-act.png" target="_blank" rel="noopener">Open full size</a>
+    </article>
+
+    <article class="card" id="d">
+      <div class="card-head">
+        <h2>D — Icon actions</h2>
+        <p>Same as A, but pencil / calendar / trash icons instead of text buttons — denser, still dwell-sized.</p>
+      </div>
+      <a class="img-link" href="course-settings-mockups/combined-d-icon-actions.png" target="_blank" rel="noopener">
+        <img src="course-settings-mockups/combined-d-icon-actions.png" alt="Concept D: course rows with icon actions" />
+      </a>
+      <a class="open" href="course-settings-mockups/combined-d-icon-actions.png" target="_blank" rel="noopener">Open full size</a>
+    </article>
+
+    <article class="card" id="e">
+      <div class="card-head">
+        <h2>E — List + Schedules tab</h2>
+        <p>Main list handles rename + trash. A <strong>Schedules</strong> tab inside the same modal jumps to schedule editing.</p>
+      </div>
+      <a class="img-link" href="course-settings-mockups/combined-e-list-with-schedules-tab.png" target="_blank" rel="noopener">
+        <img src="course-settings-mockups/combined-e-list-with-schedules-tab.png" alt="Concept E: Course list tab with Schedules tab" />
+      </a>
+      <a class="open" href="course-settings-mockups/combined-e-list-with-schedules-tab.png" target="_blank" rel="noopener">Open full size</a>
+    </article>
+  </main>
+
+  <footer>
+    Reply with A, B, C, D, or E. Trash → Retire vs Delete is a follow-up modal either way.
+  </footer>
+</body>
+</html>
