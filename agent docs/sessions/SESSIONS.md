@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-06 — Phone-to-desktop agent worker (My Machines)
+
+**Files changed:** `agent docs/PHONE_AGENT_ACCESS.md` (new, ~95 lines); `agent docs/INDEX.md` (+1 row); `scripts/cursor-worker-start.ps1` (new, ~111 lines); `scripts/Start Cursor Worker.vbs` (new, ~16 lines).
+
+**What worked:** Chase wanted to send a task from his phone and have it run here — "commit and push so I can pull at work." That's Cursor's My Machines worker, so the job was turning it on, not building anything. Two things blocked it. Build `2026.09.02-c22c1a3` ships Node 24 but a `better_sqlite3.node` compiled for Node 22, so the bundled runtime dies with `ERR_DLOPEN_FAILED` (ABI 127 vs 137) and the worker cannot start at all; the launcher now probes that exact `require` and falls back to system Node 22, which self-heals when Cursor fixes the build. And a worker started from the agent's terminal dies when that terminal is torn down — that was the `exit_code=4294967295` notification — so a `.vbs` starts it windowless and a PowerShell loop supervises it, with a `shell:startup` shortcut for login. Also passes `--idle-release-timeout 0`, since the CLI's 3600 default silently drops the machine off the phone's picker after an hour idle.
+
+**Current state:** Green — Chase confirmed `desktop` appears under cloud/remote machines on his phone. One supervisor + one worker running after clearing duplicates and an orphan.
+
+**File size flag:** None.
+
+**Next session:** Nothing pending. The runtime probe reverts to bundled Node on its own once a corrected build ships.
+
+---
+
 ## 2026-08-30 — Guildrun Stats last-battle toolbox + INDEX rows
 
 **Files changed:** `agent docs/INDEX.md` (+12 pointer rows); `APP_LOCATIONS.md` (Guildrun row). App code is local-only under `Guildrun Stats/` — see `Guildrun Stats/docs/sessions/SESSIONS.md`.

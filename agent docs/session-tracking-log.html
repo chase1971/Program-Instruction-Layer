@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>277</dd></div>
-      <div><dt>Tasks today</dt><dd>12</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 214 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>279</dd></div>
+      <div><dt>Tasks today</dt><dd>14</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 216 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (41/1134 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>22%</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (42/1144 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>21%</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">5:23 PM · Sunday, Sep 6, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:00 PM · Sunday, Sep 6, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -100,6 +100,11 @@
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row for phone/mobile/remote access to this tree. Owe a row once the worker is running.</span>
+      <span class="index-fail-task">6:34 PM — Researched phone-to-desktop Cursor access; installed agent CLI (2026.09.02-c22c1a3) on this machine. My Machines worker is the fit; blocked on Chase running `agent login`.</span>
+    </li><li class="index-fail nav-dead">
       <span class="nav-marker">✗</span>
       <code title="agent docs/instructional-layer-htmls/student-portal-pipeline.html">agent docs/instructional-layer-htmls/student-portal-pipeline.html</code>
       <span class="nav-note">MY BUG: risk cards 4/5/7 still described the pre-fix state after last session's work landed, so Chase re-raised issues already closed. Fixed the cards; the lesson is that a status-bearing HTML must be updated in the same turn as the fix it describes</span>
@@ -194,16 +199,121 @@
       <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
       <span class="nav-note">Only mentions modal scroll arrows, not the vertical rail</span>
       <span class="index-fail-task">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat">School Scrips/App Dashboard/AGENTS.md + launch-app-invoke.bat</code>
-      <span class="nav-note">That delegation convention is for apps.json Node apps; the applicable rule here is only 'never a visible console' -&gt; used pythonw + VBS Run(...,0,False)</span>
-      <span class="index-fail-task">11:10 PM — Added Guildrun Stats auto-update: save-file watcher (console-free VBS launcher) + self-reloading page via stamp polling; extracted shared build module</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">12 tasks</span></h2>
+      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">14 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:00 PM — Phone-to-desktop worker live: diagnosed the shipped Node 24 vs better_sqlite3 ABI-127 mismatch, fell back to system Node 22, detached the worker from the agent terminal, registered login autostart, de-duped supervisors. Chase confirmed 'desktop' appears on his phone. — 5 steps · 25m 54s</span>
+      <span class="pill p2">43 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:23 PM
+         · 25m 54s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 43 search(es), 31 doc read(s) · 43 not in path · coverage 7%
+        <br>Wall-clock gap since previous task: 25m 59s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/END_OF_SESSION.md">agent docs/END_OF_SESSION.md</code>
+      <span class="nav-note">Seven steps; agent-only wrap-up, never ask Chase to run anything</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent worker --help">agent worker --help</code>
+      <span class="nav-note">Confirmed --idle-release-timeout 3600 default and that `worker debug` exists; no `worker list` subcommand</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="node.exe -e require(better_sqlite3.node)">node.exe -e require(better_sqlite3.node)</code>
+      <span class="nav-note">Hard evidence for the bug: bundled node 24 ERR_DLOPEN_FAILED (needs ABI 137, file is 127); system node 22 loads it OK</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Win32_Process CommandLine filter">Win32_Process CommandLine filter</code>
+      <span class="nav-note">Only reliable way to spot duplicate/orphaned supervisors; the launcher log is exclusively locked while running</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Gap logged as dead-end in the prior bump is now closed - added the phone-access row pointing at the new PHONE_AGENT_ACCESS.md</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:34 PM — Researched phone-to-desktop Cursor access; installed agent CLI (2026.09.02-c22c1a3) on this machine. My Machines worker is the fit; blocked on Chase running `agent login`. — 5 steps · 1h 11m · 1 dead-end</span>
+      <span class="pill p2">30 searches not in path</span><span class="pill p2">Hunted before doc — 16 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:23 PM
+         · 1h 11m active tool time
+        <br>5 steps · first helpful at #2 · 4 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 30 search(es), 44 doc read(s) · 30 not in path · coverage 7%
+        <br>Wall-clock gap since previous task: 1h 11m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No row for phone/mobile/remote access to this tree. Owe a row once the worker is running.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="cursor-guide sub-agent">cursor-guide sub-agent</code>
+      <span class="nav-note">Confirmed My Machines vs Remote Control vs cloud agents; Android has no native app (PWA only)</span>
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="cursor.com/docs/cloud-agent/self-hosted-guides/my-machines">cursor.com/docs/cloud-agent/self-hosted-guides/my-machines</code>
+      
+      
+    </li></ul>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent worker --help">agent worker --help</code>
+      <span class="nav-note">Confirmed My Machines needs no Enterprise plan; --idle-release-timeout defaults to 3600 and must be 0 for an all-day worker</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-toolbar/launch-toolbar-desktop.vbs">electron-toolbar/launch-toolbar-desktop.vbs</code>
+      <span class="nav-note">Hidden-launcher exemplar: sh.Run &quot;...&quot;, 0, False — for worker autostart with no console</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">5:23 PM — Student Portal light theme — snug header, segmented tabs, white panel, local Chrome launcher on 5340 — 5 steps · 24m 32s</span>
       <span class="pill p2">45 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>

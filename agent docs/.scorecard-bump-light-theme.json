@@ -1,0 +1,35 @@
+{
+  "chunkNote": "Student Portal light theme — snug header, segmented tabs, white panel, local Chrome launcher on 5340",
+  "navigationPath": [
+    {
+      "target": "School Scrips/student-portal/src/styles/index.css",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Light theme tokens, portal-content-panel, portal-tab segmented control"
+    },
+    {
+      "target": "School Scrips/student-portal/src/app/components/PortalContentPanel.tsx",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "White rounded card wraps tabs + body"
+    },
+    {
+      "target": "School Scrips/student-portal/src/app/components/PortalHeader.tsx",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Snug navy header, tabs moved into content panel"
+    },
+    {
+      "target": "School Scrips/App Dashboard/apps.json",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "student-portal chrome-vite entry, vertical 460×812"
+    },
+    {
+      "target": "School Scrips/App Dashboard/docs/LAUNCHER.md",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Chrome window geometries table — horizontal vs vertical"
+    }
+  ]
+}
