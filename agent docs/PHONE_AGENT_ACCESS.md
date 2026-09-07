@@ -46,20 +46,29 @@ The `.lnk` lives in `shell:startup`. If it's gone, recreate it pointing `wscript
 hour idle the worker exits and the machine silently vanishes from the phone's picker —
 exactly when Chase would reach for it. The script passes `0`.
 
-**Runtime mismatch (build `2026.09.02-c22c1a3`).** The package ships Node 24 but its
-`better_sqlite3.node` was compiled for Node 22 (`NODE_MODULE_VERSION 127` vs `137`), so the
-bundled runtime cannot start the worker at all:
+**Runtime mismatch (build `2026.09.02-c22c1a3`).** The package ships Node 24, but its bundled
+`better_sqlite3.node` is a **stale prebuilt dated 2026-06-15** — compiled for Node 22 and
+never rebuilt when the pipeline bumped to 24. The worker dies starting its exec-daemon:
 
 ```powershell
-# reproduce
 $v = "$env:LOCALAPPDATA\cursor-agent\versions\<version>"
-& "$v\node.exe" -e "require(process.argv[1])" "$v\node_modules\better-sqlite3\build\Release\better_sqlite3.node"
-# ERR_DLOPEN_FAILED ... requires NODE_MODULE_VERSION 137
+& "$v\node.exe" "$v\index.js" worker start --name abi-test --data-dir "$env:TEMP\abi-test"
+# Error starting exec-daemon: ... better_sqlite3.node
+# compiled against ... NODE_MODULE_VERSION 127. This version requires 137.
 ```
 
-The script probes that exact `require` and falls back to system Node (22.x) when it fails.
-**This self-heals** — once Cursor ships a corrected build the probe passes and it goes back to
-the bundled runtime. Don't hand-pin a Node version.
+**Test it this way, not with a standalone `require` probe.** Two traps: `node_sqlite3.node`
+sits at the top of the version dir and loads fine under Node 24, so it's easy to test the
+wrong file; and grepping `index.js` for `better-sqlite3` finds nothing because the reference
+lives in the chunk files (`9249.index.js`, `9277.index.js`).
+
+**Scope is narrow** — this is why the bug can survive in a shipped build. Normal CLI commands
+work fine under the bundled runtime (`index.js --version` exits 0); only the worker's
+exec-daemon path breaks. Prebuilt binaries are per-platform, so other OSes may be unaffected.
+
+The launcher falls back to system Node (22.x) when the runtime can't start the worker. **This
+self-heals** — once a corrected build ships, the probe passes and it returns to the bundled
+runtime. Don't hand-pin a Node version.
 
 ## When the machine isn't in the phone's picker
 
