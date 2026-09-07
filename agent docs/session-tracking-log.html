@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>280</dd></div>
-      <div><dt>Tasks today</dt><dd>15</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 217 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>313</dd></div>
+      <div><dt>Tasks today</dt><dd>28</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 250 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (43/1150 steps)</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>21%</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (46/1326 steps)</dd></div>
+      <div><dt>Path coverage (median)</dt><dd>24%</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:13 PM · Sunday, Sep 6, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:45 PM · Monday, Sep 7, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -99,7 +99,22 @@
     opened and did not answer, and did not route onward either. Each one should have become an index row
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
-    <ul class="index-failures-list"><li class="index-fail nav-dead">
+    <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
+      <span class="nav-note">Gotchas cover an aborted build leaving slim build.config.json behind, but never say the slim build SHARES %APPDATA%/macro-app with the main app. That is the actual hazard and it cost a day of broken gradebooks. Owed doc row - added below.</span>
+      <span class="index-fail-task">12:08 PM — Macro App: found slim build shared userData and clobbered the gradebook storage root; restored courses + root, isolated userData per build profile (Makeup Exam profile stays shared), added [boot] startup timing</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="electron-toolbar/docs/LAUNCHER_PANEL.md">electron-toolbar/docs/LAUNCHER_PANEL.md</code>
+      <span class="nav-note">Path in root AGENTS.md line 125 does not exist — the file is at docs/recipes/LAUNCHER_PANEL.md. Fixed the link in root AGENTS.md.</span>
+      <span class="index-fail-task">11:38 AM — Added a horizontal 812x460 Student Portal launcher as an apps.json view variant, wired it into the Launcher Panel grid, and fixed the dead LAUNCHER_PANEL.md path in root AGENTS.md</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Grepped for landscape/orientation — only Chrome window geometries in LAUNCHER.md. No recipe owns per-orientation layout; this is the first one in the tree. Row owed if the pattern spreads to a second app.</span>
+      <span class="index-fail-task">8:27 AM — Student Portal: header hidden during a quiz with a Back button in its place, plus a landscape/short-viewport compact layout driven by CSS variables</span>
+    </li><li class="index-fail nav-dead">
       <span class="nav-marker">✗</span>
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No row for phone/mobile/remote access to this tree. Owe a row once the worker is running.</span>
@@ -184,26 +199,1906 @@
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">No Guildrun row — routed via APP_LOCATIONS, then added one</span>
       <span class="index-fail-task">10:35 AM — Guildrun Stats: hover-only item tooltips, sticky vertical synergy lists with per-hit rates, live grants fix Rogue's Cowl wiki drift, Omnivamp on the bar, class-tinted names, quest-done on stat chips</span>
-    </li><li class="index-fail nav-dead">
-      <span class="nav-marker">✗</span>
-      <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
-      <span class="nav-note">Guildrun Stats was missing; added after the work</span>
-      <span class="index-fail-task">10:35 AM — Guildrun Stats: hover-only item tooltips, sticky vertical synergy lists with per-hit rates, live grants fix Rogue's Cowl wiki drift, Omnivamp on the bar, class-tinted names, quest-done on stat chips</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
-      <span class="nav-note">No scroll-rail recipe exists; only scroll-zone-click-block, which is electron-toolbar dwell pause and unrelated</span>
-      <span class="index-fail-task">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering</span>
-    </li><li class="index-fail nav-dead">
-      <span class="nav-marker">✗</span>
-      <code title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">Only mentions modal scroll arrows, not the vertical rail</span>
-      <span class="index-fail-task">12:47 AM — Guildrun Stats: replaced shrink-to-fit with full-size type plus a dwell-friendly left scroll rail modelled on Macro App's LocalVerticalScrollRail; added per-hero mechanic list and honest placeholder rendering</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">15 tasks</span></h2>
+      <h2 class="day-title">Monday, Sep 7, 2026 <span class="day-count">28 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:45 PM — Check above matrix; Auto Solve locked until tutorial Finish + tip — 2 steps · 9m 42s</span>
+      <span class="pill p2">5 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 9m 42s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 2 doc read(s) · 5 not in path · coverage 20%
+        <br>Wall-clock gap since previous task: 10m 4s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="correct-check-flash.tsx">correct-check-flash.tsx</code>
+      <span class="nav-note">moved above matrix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="App.tsx + matrix-solver.tsx">App.tsx + matrix-solver.tsx</code>
+      <span class="nav-note">hasCompletedTutorial unlocks Auto Solve</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:35 PM — Part 3: green check flash on correct picks; Step 9 G/H wording — 3 steps · 4s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 4s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 2 search(es), 0 doc read(s) · 2 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 23s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/recipes/no-ephemeral-feedback.md">agent docs/recipes/no-ephemeral-feedback.md</code>
+      <span class="nav-note">Chase explicitly asked for checkmarks</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="correct-check-flash.tsx">correct-check-flash.tsx</code>
+      <span class="nav-note">new shared flash</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="matrix-solver-part-3.tsx">matrix-solver-part-3.tsx</code>
+      <span class="nav-note">flash on steps 1–4,6–8 correct</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:34 PM — Fixed manual gradebook pulls crashing after the cache hotfix — removed the unwired activeCourseCodeRef access while retaining successful-pull cache invalidation — 4 steps · 10m 27s</span>
+      <span class="pill p2">11 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 10m 27s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 3 doc read(s) · 11 not in path · coverage 29%
+        <br>Wall-clock gap since previous task: 10m 46s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Browser console stack at gradebookPullCourse.ts:129">Browser console stack at gradebookPullCourse.ts:129</code>
+      <span class="nav-note">Identified undefined activeCourseCodeRef as the exception before scrape startup</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookArchiveSync.ts">renderer/src/hooks/gradebook/useGradebookArchiveSync.ts</code>
+      <span class="nav-note">Confirmed the pull wrapper does not pass activeCourseCodeRef into runPullCourseFromD2L</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookPullCourse.ts">renderer/src/hooks/gradebook/gradebookPullCourse.ts</code>
+      <span class="nav-note">Restored selectedCourseCode visibility logic; preserved stale-cache invalidation</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookPullCourse.test.ts">renderer/src/hooks/gradebook/gradebookPullCourse.test.ts</code>
+      <span class="nav-note">Adjusted regression to cover the actual cache guarantee without an unsupported dependency</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:23 PM — Back button: single goNext history path; Part 2 no cell-skip; Next gated — 2 steps · 19m 56s</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 7 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 19m 56s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · 7 not in path · coverage 18%
+        <br>Wall-clock gap since previous task: 20m 12s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="use-matrix-tutorial-part-2.ts">use-matrix-tutorial-part-2.ts</code>
+      <span class="nav-note">cell click + stale history caused skip-to-1</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="use-matrix-tutorial.ts + solvers">use-matrix-tutorial.ts + solvers</code>
+      <span class="nav-note">goNext + historyRef; gate App Next</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:03 PM — Browser side panel: Setup separated, App settings divider, collapsible Status (no Open log) — 3 steps · 12s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 12s active tool time
+        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 36s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Macro App home panel</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/makeup-exam/MakeupExamLogPanel.tsx">School Scrips/Macro App/renderer/src/components/makeup-exam/MakeupExamLogPanel.tsx</code>
+      <span class="nav-note">Collapsible log exemplar</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx">School Scrips/Macro App/renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:03 PM — Fixed Pull All stale gradebook cache and repaired the six false Calculus pending grades from the verified D2L baseline — 7 steps · 20m 11s</span>
+      <span class="pill p2">22 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 20m 11s active tool time
+        <br>7 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 22 search(es), 5 doc read(s) · 22 not in path · coverage 21%
+        <br>Wall-clock gap since previous task: 20m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/recipes/CODING_STANDARDS.md">agent docs/recipes/CODING_STANDARDS.md</code>
+      <span class="nav-note">Confirmed size, minimal-change, test, and lesson-writeback requirements</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookPullCourse.ts">renderer/src/hooks/gradebook/gradebookPullCourse.ts</code>
+      <span class="nav-note">Changed visible-course authority to the synchronous active ref and invalidated stale cache after successful pull</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/services/gradebookCourseSessionCache.ts">renderer/src/services/gradebookCourseSessionCache.ts</code>
+      <span class="nav-note">Reused the existing per-course invalidation mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/gradebookPullCourse.test.ts">renderer/src/hooks/gradebook/gradebookPullCourse.test.ts</code>
+      <span class="nav-note">Regression proves stale selected state cannot hide the active pull and the pre-pull cache is removed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Macro App renderer session API">Macro App renderer session API</code>
+      <span class="nav-note">Repaired working.csv from the verified baseline, cleared false pending metadata, and dispatched the existing external-update event</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Calculus baseline.csv vs working.csv">Calculus baseline.csv vs working.csv</code>
+      <span class="nav-note">Verified zero pending Points Grade differences after repair</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="docs/GRADE_SYNC_PLAYBOOK.md">docs/GRADE_SYNC_PLAYBOOK.md</code>
+      <span class="nav-note">Captured the Pull All plus stale tab-cache failure mode in the existing grade-sync owner</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:42 PM — Fixed Back across Parts 1–3: restore step-start matrix/rowIds, replay UI — 4 steps · 15m 59s</span>
+      <span class="pill p2">8 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 15m 59s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 1 doc read(s) · 8 not in path · coverage 22%
+        <br>Wall-clock gap since previous task: 16m 14s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/docs/MATRIX_APP_GUIDE.md">School Scrips/Matrix app/docs/MATRIX_APP_GUIDE.md</code>
+      <span class="nav-note">step numbering context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="use-matrix-tutorial.ts">use-matrix-tutorial.ts</code>
+      <span class="nav-note">Back restored flags wrong; rowIds unused</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="matrix-solver-part-2.tsx">matrix-solver-part-2.tsx</code>
+      <span class="nav-note">nextStep without save on button paths</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="use-matrix-tutorial*.ts + solvers">use-matrix-tutorial*.ts + solvers</code>
+      <span class="nav-note">history + replayKey fix</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:26 PM — Macro App startup: removed both startup double-fires — single-flight guard on calendar + my-calendar startServer (was killing the server it just spawned), and in-flight dedupe on listGradebookBackups (was walking the course tree twice over Google Drive) — 6 steps · 8m 27s</span>
+      <span class="pill p2">10 searches not in path</span><span class="pill p2">Hunted before doc — 10 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 8m 27s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 10 search(es), 0 doc read(s) · 10 not in path · coverage 38%
+        <br>Wall-clock gap since previous task: 8m 43s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useAutoPruneMissingCourses.ts">renderer/src/hooks/gradebook/useAutoPruneMissingCourses.ts</code>
+      <span class="nav-note">Confirmed second listGradebookBackups call at mount, independent of useGradebook's refreshBackups</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/modules/calendar/CalendarView.tsx">renderer/src/modules/calendar/CalendarView.tsx</code>
+      <span class="nav-note">Awaits startServer on mount; main.js also preloads it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/calendar-host.js startServer">electron-app/calendar-host.js startServer</code>
+      <span class="nav-note">No in-flight guard — second caller probes the just-spawned server, misses the export route, calls it stale and kills it. Log: up 16:31:15.239, killed .910, respawned 16:31:16.504</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-app/makeup-exam-host.js startInFlight">electron-app/makeup-exam-host.js startInFlight</code>
+      <span class="nav-note">Existing single-flight owner in this tree — extended the pattern instead of inventing one (root AGENTS rule 4)</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/services/gradebookCourseSessionPrehydrate.ts">renderer/src/services/gradebookCourseSessionPrehydrate.ts</code>
+      <span class="nav-note">Existing in-flight dedupe idiom (Map + .finally cleanup) — mirrored it in gradebookService</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="npx vitest run (full renderer suite)">npx vitest run (full renderer suite)</code>
+      <span class="nav-note">1279 pass, 1 fail — modal-catalog-drift on CourseSettingsModal.tsx. NOT from this chat: that file plus App.tsx, AppSidePanel, useCourseSettingsModal and 5 more were written 11:50-11:58 by concurrent work in the same tree. Left untouched and surfaced to Chase.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:17 PM — Worksheet prompts: Part 2 B/C/D steps; Part 3 E–H + final matrix text — 5 steps · 9m</span>
+      <span class="pill p2">11 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 9m active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 3 doc read(s) · 11 not in path · coverage 19%
+        <br>Wall-clock gap since previous task: 9m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/AGENTS.md">School Scrips/Matrix app/AGENTS.md</code>
+      <span class="nav-note">Part 2/3 1-based steps</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="matrix-solver-part-2.tsx">matrix-solver-part-2.tsx</code>
+      <span class="nav-note">yellow tips Part B/C</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="matrix-tutorial-overlay-part-2.tsx">matrix-tutorial-overlay-part-2.tsx</code>
+      <span class="nav-note">Step 7 Part D; Step 8 conclude</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="matrix-tutorial-overlay-part-3.tsx">matrix-tutorial-overlay-part-3.tsx</code>
+      <span class="nav-note">Steps 5/9/10 E–H + final</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="TUTORIAL_TEXT.md">TUTORIAL_TEXT.md</code>
+      <span class="nav-note">synced worksheet letters</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:08 PM — Macro App: found slim build shared userData and clobbered the gradebook storage root; restored courses + root, isolated userData per build profile (Makeup Exam profile stays shared), added [boot] startup timing — 15 steps · 3m 58s</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 8 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 3m 58s active tool time
+        <br>15 steps · first helpful at #1 · 11 ✓ · 2 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 1 doc read(s) · 8 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 4m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Branch table sent me to the app AGENTS.md for 'the gradebook'</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Keyword row 'Slim build, distribution build' -&gt; SLIM_DISTRIBUTION_BUILD.md</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
+      <span class="nav-note">Gotchas cover an aborted build leaving slim build.config.json behind, but never say the slim build SHARES %APPDATA%/macro-app with the main app. That is the actual hazard and it cost a day of broken gradebooks. Owed doc row - added below.</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="git status + git diff config/d2l-courses.json">git status + git diff config/d2l-courses.json</code>
+      <span class="nav-note">Red herring: the 3 removed courses date from 8/28, unrelated to today</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="%APPDATA%/macro-app/*.json mtimes">%APPDATA%/macro-app/*.json mtimes</code>
+      <span class="nav-note">This was the break - pearson 11:01, d2l-courses 11:03, storage-prefs 11:05 today</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="electron-app/gradebook-storage-prefs-io.js">electron-app/gradebook-storage-prefs-io.js</code>
+      <span class="nav-note">Always userData, never repo-scoped - that is why the slim build's answer leaked into dev</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/course-config-io.js">electron-app/course-config-io.js</code>
+      <span class="nav-note">dev reads config/, packaged reads userData - explains why the course list survived but the root did not</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="%APPDATA%/macro-app/logs/macro-app.log">%APPDATA%/macro-app/logs/macro-app.log</code>
+      <span class="nav-note">Proved root was My Drive/Rosters etc at 15:57Z with all 4 courses hasInitialGradebook:true</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="electron-builder.config.cjs">electron-builder.config.cjs</code>
+      <span class="nav-note">appId/productName hardcoded - the root cause of shared userData</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="electron-app/makeup-exam-host.js getDataDir">electron-app/makeup-exam-host.js getDataDir</code>
+      <span class="nav-note">Makeup Exam settings.json is under userData, so isolation had to exempt it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">11</span>
+      <span class="nav-branch" title="Parallel branch">28-second startup investigation</span>
+      <code class="nav-target" title="Task(explore): trace Macro App startup timing">Task(explore): trace Macro App startup timing</code>
+      
+      <ul class="nav-tree nav-nested"><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="electron-app/main.js boot sequence">electron-app/main.js boot sequence</code>
+      <span class="nav-note">loadSubsystems ~30 sync requires, two awaited cookie restores, 6s SPLASH_SLOT_GRACE_MS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/gradebook/useGradebookStartupPrehydrate.ts">renderer/src/hooks/gradebook/useGradebookStartupPrehydrate.ts</code>
+      <span class="nav-note">Background, 4-wide - not on the splash critical path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/grades-backup-paths.js collectAllGradebookBackups">electron-app/grades-backup-paths.js collectAllGradebookBackups</code>
+      <span class="nav-note">Sync readdirSync tree walk called twice at mount, over Google Drive</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:1">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="calendar-host.js / my-calendar-host.js double startServer">calendar-host.js / my-calendar-host.js double startServer</code>
+      <span class="nav-note">Preload + view mount both start; log shows stale-route kill and respawn</span>
+      
+    </li></ul>
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:04 PM — Part 1: insert Step 13 write-down for Part A; Finished becomes Step 14 — 5 steps · 5m 27s</span>
+      <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 12 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 5m 27s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 1 doc read(s) · 13 not in path · coverage 17%
+        <br>Wall-clock gap since previous task: 5m 41s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/AGENTS.md">School Scrips/Matrix app/AGENTS.md</code>
+      <span class="nav-note">0-based step numbering</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="matrix-tutorial-overlay.tsx">matrix-tutorial-overlay.tsx</code>
+      <span class="nav-note">new step 12 text + Finished→13</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="matrix-solver.tsx">matrix-solver.tsx</code>
+      <span class="nav-note">last-step + Matrix B range through 13</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="use-matrix-tutorial.ts">use-matrix-tutorial.ts</code>
+      <span class="nav-note">step 13 comment</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="TUTORIAL_TEXT.md">TUTORIAL_TEXT.md</code>
+      <span class="nav-note">synced Part 1 end steps</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:58 AM — Implemented Course Settings (Concept D): simplified Browser side panel + icon-row modal with inline rename, schedule handoff, retire trash — 5 steps · 5m 29s</span>
+      <span class="pill p2">11 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 5m 29s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 11 search(es), 3 doc read(s) · 11 not in path · coverage 24%
+        <br>Wall-clock gap since previous task: 5m 35s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">→ Macro App AGENTS → modal-shell / embedded browser docs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/recipes/modal-shell.md">agent docs/recipes/modal-shell.md</code>
+      <span class="nav-note">Freeze before open; max-w-md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/AppHomeSidePanel.tsx">renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      <span class="nav-note">Simplified to Setup / Manage tabs / Course settings</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/shell/useCourseSettingsModal.ts">renderer/src/hooks/shell/useCourseSettingsModal.ts</code>
+      <span class="nav-note">New combined modal hook</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:52 AM — Extracted Matrix tutorial text into numbered HTML by Parts 1–3 — 6 steps · 5m 2s</span>
+      <span class="pill p2">17 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:47 AM
+         · 5m 2s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 5 doc read(s) · 17 not in path · coverage 15%
+        <br>Wall-clock gap since previous task: 5m 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">→ APP_LOCATIONS / html-delivery</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">scratch HTML on 8765</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/AGENTS.md">School Scrips/Matrix app/AGENTS.md</code>
+      <span class="nav-note">tutorial overlays + step numbering</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/TUTORIAL_TEXT.md">School Scrips/Matrix app/TUTORIAL_TEXT.md</code>
+      <span class="nav-note">starting extract; verified against overlays</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="matrix-tutorial-overlay*.tsx">matrix-tutorial-overlay*.tsx</code>
+      <span class="nav-note">Parts 1–3 live text including Part 3 Step 11</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="agent docs/scratch/matrix-tutorial-text-2026-09-07.html">agent docs/scratch/matrix-tutorial-text-2026-09-07.html</code>
+      <span class="nav-note">delivered page</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:38 AM — Added a horizontal 812x460 Student Portal launcher as an apps.json view variant, wired it into the Launcher Panel grid, and fixed the dead LAUNCHER_PANEL.md path in root AGENTS.md — 7 steps · 5m 17s · 1 dead-end</span>
+      <span class="pill p2">16 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:10 AM
+         · 5m 17s active tool time
+        <br>7 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 16 search(es), 4 doc read(s) · 16 not in path · coverage 29%
+        <br>Wall-clock gap since previous task: 5m 25s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Row for 'chrome window size / horizontal 812x460 / landscape launcher' pointed straight at App Dashboard/docs/LAUNCHER.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/docs/LAUNCHER.md">School Scrips/App Dashboard/docs/LAUNCHER.md</code>
+      <span class="nav-note">Gave the two presets and the view-variant recipe (viewOf + own chromeWindow + own .bat), exemplar factoring-1080p</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-toolbar/docs/LAUNCHER_PANEL.md">electron-toolbar/docs/LAUNCHER_PANEL.md</code>
+      <span class="nav-note">Path in root AGENTS.md line 125 does not exist — the file is at docs/recipes/LAUNCHER_PANEL.md. Fixed the link in root AGENTS.md.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-toolbar/docs/recipes/LAUNCHER_PANEL.md">electron-toolbar/docs/recipes/LAUNCHER_PANEL.md</code>
+      <span class="nav-note">The key fact: apps.json + school-launchers.js alone do NOT create a tile; scripts-panel.html requiredIds is required</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/scripts/launchers/launch-chrome-vite.ps1">School Scrips/App Dashboard/scripts/launchers/launch-chrome-vite.ps1</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/scripts/launch-common.ps1">School Scrips/App Dashboard/scripts/launch-common.ps1</code>
+      <span class="nav-note">Start-SchoolChromeWindow uses --user-data-dir + --window-size, which is why profileDir choice decides whether geometry is honored</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/services/studentIdentity.ts">School Scrips/student-portal/src/services/studentIdentity.ts</code>
+      <span class="nav-note">Identity is localStorage-only, so a fresh Chrome profile would hit PortalGate — drove sharing the parent's profileDir</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:32 AM — Slim profile now three tabs in Chase's order (Browser, Makeup Exam, Email) with Assignment Assistant dropped and the RAM pill off; added tabOrder + ui keys to build.config.json and rebuilt to dist-slim v0.1.22 #36 — 8 steps · 2m 14s</span>
+      <span class="pill p2">4 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:10 AM
+         · 2m 14s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 2 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 1 doc read(s) · 4 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 2m 21s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="grep formatMemoryMb / AppMemoryPill">grep formatMemoryMb / AppMemoryPill</code>
+      <span class="nav-note">RAM pill is components/chrome/AppMemoryPill.tsx, rendered from both D2LWorkspaceHeader and MinimalShellHeader</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="hooks/shared/useAppMemorySnapshot.ts">hooks/shared/useAppMemorySnapshot.ts</code>
+      <span class="nav-note">Polls every 2s and already takes an `enabled` flag — gated on that so removal stops the poll, not just the render</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/vite.config.ts loadBuildTabs">renderer/vite.config.ts loadBuildTabs</code>
+      <span class="nav-note">Widened to loadBuildConfig so tabOrder/ui ride the existing build.config.json plumbing instead of a parallel mechanism</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="modules/moduleContracts.ts D2L_WORKSPACE_TABS">modules/moduleContracts.ts D2L_WORKSPACE_TABS</code>
+      <span class="nav-note">Ordering here also fixes the default Manage Tabs layout, since DEFAULT_WORKSPACE_TAB_ORDER derives from it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="scripts/build-embedded-python.cjs pip --target">scripts/build-embedded-python.cjs pip --target</code>
+      <span class="nav-note">Confirmed it never uninstalls, so dropping AA does not strip docx2pdf/pywin32 from the shared dev runtime</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="modules/d2l-assignment-assistant/shell/AssignmentAssistantClassPicker.tsx">modules/d2l-assignment-assistant/shell/AssignmentAssistantClassPicker.tsx</code>
+      <span class="nav-note">Email tab's picker is Macro-side with no @d2l-assignment-platform imports — safe with AA excluded</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="scripts/write-build-manifest.cjs">scripts/write-build-manifest.cjs</code>
+      <span class="nav-note">Stamped only `tabs`; under-reported the profile — added tabOrder/ui, which cost a rebuild</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="npm run build:slim">npm run build:slim</code>
+      <span class="nav-note">Second attempt failed — app relaunched mid-session and locked the runtime; verified then skipped re-provision. Version drifted 0.1.19 -&gt; 0.1.22 across attempts</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:30 AM — Closed the index debt for the portal orientation work — keyword row + 'Orientation: one layout, two scales' rule in student-portal/AGENTS.md; confirmed dev server on 5340 and handed Chase the test link — 3 steps · 10s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:10 AM
+         · 10s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 1 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 26s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
+      <span class="nav-note">Bump format + the rule that a partial doc step owes an index row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">Added the row and the single-owner orientation rule so the next session extends the --quiz-* variables instead of building a second layout</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/vite.config.ts">School Scrips/student-portal/vite.config.ts</code>
+      <span class="nav-note">strictPort 5340 — confirms the dev URL is stable</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:30 AM — Generated Course Settings mockups: 5 current-state refs + 5 combined modal options for Chase to pick — 4 steps · 19m 31s</span>
+      <span class="pill p2">55 searches not in path</span><span class="pill p2">Hunted before doc — 16 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:10 AM
+         · 19m 31s active tool time
+        <br>4 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 55 search(es), 7 doc read(s) · 55 not in path · coverage 4%
+        <br>Wall-clock gap since previous task: 19m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">→ Macro App AGENTS for modal/side-panel owners</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">→ EMBEDDED_BROWSER_AND_MODALS / modal shell</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/AppHomeSidePanel.tsx">renderer/src/components/shell/AppHomeSidePanel.tsx</code>
+      <span class="nav-note">Current Browser setup panel structure for mockups</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="course_settings_mockups plan">course_settings_mockups plan</code>
+      <span class="nav-note">Executed image generation only — no code changes</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:05 AM — Fresh slim unpacked build for testing — v0.1.19 build #33 to dist-slim/win-unpacked (no installer); flagged that Teacher Console ships under the excluded student-progress tab id — 5 steps · 1h 15m · 1 dead-end</span>
+      <span class="pill p2">3 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 1h 15m active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 3 search(es), 0 doc read(s) · 3 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 1h 17m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="git status + git fetch (Macro App)">git status + git fetch (Macro App)</code>
+      <span class="nav-note">In sync with origin; dirty tree carrying uncommitted teacher-console / exit-ticket work, 4 deleted components</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/modules/moduleContracts.ts ALL_D2L_WORKSPACE_TABS">renderer/src/modules/moduleContracts.ts ALL_D2L_WORKSPACE_TABS</code>
+      <span class="nav-note">No new tab ids since the profile was written, but student-progress is now labelled 'Teacher Console' and d2l-discussion-grading is 'Assignment Grading' — slim excludes both</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="build-profiles/slim/build.config.json">build-profiles/slim/build.config.json</code>
+      <span class="nav-note">Absent keys default to included, so a genuinely new tab id would have shipped silently — checked rather than assumed</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="npm run ci:local">npm run ci:local</code>
+      <span class="nav-note">Started to de-risk the 4 deleted components; Chase interrupted to go straight to the build</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="npm run build:slim">npm run build:slim</code>
+      <span class="nav-note">App not running this time, so the full build:python re-provision ran clean</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:48 AM — Fixed false Extinguish on Ekka (hidden OnDeath triggers now filtered like the card UI). Wiki glossary baked into the page for Conduit/Enchant/Revenge/etc. ATK/HP were missing because the game was still running the pre-stats DLL — redeployed; needs restart. Tips work on refresh via wiki defs even before restart. — 3 steps · 5m 4s</span>
+      <span class="pill p2">5 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 5m 4s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · 5 not in path · coverage 60%
+        <br>Wall-clock gap since previous task: 5m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="monstertrain2.miraheze.org/wiki/Status_Effects">monstertrain2.miraheze.org/wiki/Status_Effects</code>
+      <span class="nav-note">authoritative Conduit/Enchant/Extinguish/Revenge definitions — not Wikipedia, the MT2 wiki</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="live JSON vs DLL timestamps">live JSON vs DLL timestamps</code>
+      <span class="nav-note">game started 8:26, stats DLL 8:42 — explains empty atk/hp and empty tip descriptions</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="CharacterTriggerData.GetHideVisualAndIgnoreSilence">CharacterTriggerData.GetHideVisualAndIgnoreSilence</code>
+      <span class="nav-note">same filter CardTooltipHelper uses; Ekka false Extinguish was a hidden OnDeath hook</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:42 AM — Explained Extinguish (real OnDeath trigger on Ekka) vs Chosen (tribe/subtype, not a printed keyword). Tags now sit under unit names with ATK/HP; click-to-pin tips show game tooltip text (or a tribe blurb). Abilities column splits Statuses / Triggers / Tribes. — 4 steps · 11m 34s</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 11m 34s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 0 doc read(s) · 9 not in path · coverage 44%
+        <br>Wall-clock gap since previous task: 11m 40s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="live .mt2-run.json unit mechanics">live .mt2-run.json unit mechanics</code>
+      <span class="nav-note">Ekka has Extinguish+Champion; Prickly Puffball has Revenge+Chosen+Shroom — confirmed Chosen is kind=subtype</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="CharacterTriggerData.GetTooltipText / StatusEffectManager card tooltip keys">CharacterTriggerData.GetTooltipText / StatusEffectManager card tooltip keys</code>
+      <span class="nav-note">game already has localized tip text for statuses and triggers</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="SubtypeData.cs">SubtypeData.cs</code>
+      <span class="nav-note">subtypes are name-only tribe tags with no tooltip key — explained with a fixed blurb</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="click tips instead of hover">click tips instead of hover</code>
+      <span class="nav-note">AGENTS no-hover-only rule; matches existing ability-chip pattern</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:31 AM — Compacted the MT2 run page into a one-viewport layout: thin status + tiny run pills with curve on the side, then three independent-scroll columns (Deck / Abilities / Relics). Dense deck rows replace padded cards; ability chips are one wrap of small pills. — 3 steps · 17s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 17s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 2 search(es), 0 doc read(s) · 2 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 34s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">app-specific layout change -&gt; mt2-run-export docs, not a new recipe</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Chase screenshot + layout complaint">Chase screenshot + layout complaint</code>
+      <span class="nav-note">vertical stack + wide max-width left empty side space; three-column grid uses full width</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="headless render against live .mt2-run.json">headless render against live .mt2-run.json</code>
+      <span class="nav-note">6 pills, 8 deck rows, 11 chips, 3 relics - confirmed IDs and render still work after the restructure</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:30 AM — Fixed student-portal type errors: TS6310 composite+noEmit in tsconfig.node.json, and unused saveAttemptProgress import duplicating the save_attempt_progress RPC — 7 steps · 2m 46s · 1 dead-end</span>
+      <span class="pill p2">7 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 2m 46s active tool time
+        <br>7 steps · first helpful at #2 · 4 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 7 search(es), 3 doc read(s) · 7 not in path · coverage 70%
+        <br>Wall-clock gap since previous task: 2m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/tsconfig.json">School Scrips/student-portal/tsconfig.json</code>
+      <span class="nav-note">Focused file was clean; the 10|/20| markers were reader line-number artifacts, JSON parsed fine</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="ReadLints + npx tsc --noEmit">ReadLints + npx tsc --noEmit</code>
+      <span class="nav-note">Editor lints were empty; tsc surfaced the real errors</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">Auto-loaded; its Sister apps section pointed at the tsconfig exemplars</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Solving Quadratics App/tsconfig.node.json">School Scrips/Solving Quadratics App/tsconfig.node.json</code>
+      <span class="nav-note">Exemplar: same file without noEmit — confirmed the fix shape</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="git show HEAD:src/features/generic-quiz/GenericQuizView.tsx">git show HEAD:src/features/generic-quiz/GenericQuizView.tsx</code>
+      <span class="nav-note">Recovered pre-extraction markup rather than inventing the question card UI</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="src/services/attemptProgress.ts + hooks/useResumableAttempt.ts">src/services/attemptProgress.ts + hooks/useResumableAttempt.ts</code>
+      <span class="nav-note">Confirmed saveAttemptProgress is the sole owner of the save_attempt_progress RPC</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="src/features/generic-quiz/GenericQuizQuestionCard.tsx">src/features/generic-quiz/GenericQuizQuestionCard.tsx</code>
+      <span class="nav-note">Empty at 08:24, written by concurrent work at 08:26 — its TS2306 resolved itself, no edit needed</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:27 AM — Student Portal: header hidden during a quiz with a Back button in its place, plus a landscape/short-viewport compact layout driven by CSS variables — 5 steps · 2m</span>
+      <span class="pill p2">8 searches not in path</span><span class="pill p2">Hunted before doc — 3 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 2m active tool time
+        <br>5 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 2 doc read(s) · 8 not in path · coverage 50%
+        <br>Wall-clock gap since previous task: 2m 11s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">No orientation/responsive row existed; confirmed generic-quiz is the exemplar feature</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/recipes/INDEX.md">agent docs/recipes/INDEX.md</code>
+      <span class="nav-note">Grepped for landscape/orientation — only Chrome window geometries in LAUNCHER.md. No recipe owns per-orientation layout; this is the first one in the tree. Row owed if the pattern spreads to a second app.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="src/app/App.tsx">src/app/App.tsx</code>
+      <span class="nav-note">quizActivityId already gates tabs and menu — reused it for focus mode</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="src/styles/index.css">src/styles/index.css</code>
+      <span class="nav-note">All quiz sizing was hardcoded here; converted to variables so one media query re-scales it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="src/hooks/usePortalRoute.ts">src/hooks/usePortalRoute.ts</code>
+      <span class="nav-note">navigatePortalRoute('classwork') is the existing back mechanism, same as the result screen's Exit</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:25 AM — Added proof-of-life so Chase never has to start a run to test: link block (heartbeat, scene, phase, manager visibility, read error) written every 2s regardless of change, and a page banner that goes green at the main menu. Also switched state reads to the SaveManager the hook provides, since AllGameManagers.Instance is null at the menu and was reporting no-run unconditionally. — 4 steps · 7m 16s</span>
+      <span class="pill p2">10 searches not in path</span><span class="pill p2">Hunted before doc — 10 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 7m 16s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 10 search(es), 1 doc read(s) · 10 not in path · coverage 36%
+        <br>Wall-clock gap since previous task: 7m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Chase's constraint: restarting the game to test is expensive">Chase's constraint: restarting the game to test is expensive</code>
+      <span class="nav-note">reframed the fix as a main-menu-visible signal rather than another mid-run test cycle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="RunSnapshotBuilder early-return on AllGameManagers.Instance == null">RunSnapshotBuilder early-return on AllGameManagers.Instance == null</code>
+      <span class="nav-note">second real bug: at the main menu nothing was read at all, so the page could never show progress pre-run</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="TickPatch __instance passthrough">TickPatch __instance passthrough</code>
+      <span class="nav-note">the hook already holds the SaveManager, so no dependency on AllGameManagers for run/deck/relics</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="headless harness over 5 page states (menu ticking, tick stopped, startup-only, read error, in run)">headless harness over 5 page states (menu ticking, tick stopped, startup-only, read error, in run)</code>
+      <span class="nav-note">verified banner wording and colour plus deck sections in one pass, no game launch</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:18 AM — Third round, actual fix: in MT2 no Unity callback reaches anything this plugin owns - not a created GameObject, not a root DontDestroyOnLoad object, not even Update on the BaseUnityPlugin component itself, all silently. Harmony works, so the tick now rides a postfix on SaveManager.Update (Cecil-verified). Rail stays a MonoBehaviour but attaches to SaveManager's own GameObject so it gets OnGUI. — 5 steps · 20m 1s</span>
+      <span class="pill p2">9 searches not in path</span><span class="pill p2">Hunted before doc — 9 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 20m 1s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 0 doc read(s) · 9 not in path · coverage 56%
+        <br>Wall-clock gap since previous task: 20m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="log after restart: Awake lines present, both heartbeats absent, log untouched for 2 min">log after restart: Awake lines present, both heartbeats absent, log untouched for 2 min</code>
+      <span class="nav-note">ruled out plugin-component Update as well - eliminated the last self-owned hosting option</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Update on BaseUnityPlugin subclass">Update on BaseUnityPlugin subclass</code>
+      <span class="nav-note">standard BepInEx pattern, does not fire in MT2 even though Awake runs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep decompiled managers for per-frame Update">grep decompiled managers for per-frame Update</code>
+      <span class="nav-note">SaveManager.Update is a real MonoBehaviour Update and lives exactly as long as there is save state</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Mono.Cecil from BepInEx core to verify the target">Mono.Cecil from BepInEx core to verify the target</code>
+      <span class="nav-note">SaveManager.Update private/instance/0 params - per this app's rule, verify before claiming a patch works</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="rewrote AGENTS.md capture a second time">rewrote AGENTS.md capture a second time</code>
+      <span class="nav-note">now records all three failed approaches as a table so none get retried</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:57 AM — Second round on the same root cause: a self-created GameObject gets no Update/OnGUI in MT2 even as a root DontDestroyOnLoad object. Made both workers plain classes driven from BaseUnityPlugin's own Update/OnGUI, and corrected the captured lesson, which had recorded the fix that did not work. — 5 steps · 7m 19s</span>
+      <span class="pill p2">4 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 7m 19s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 4 search(es), 0 doc read(s) · 4 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 7m 35s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="BepInEx log: Awake lines present, Update heartbeat absent">BepInEx log: Awake lines present, Update heartbeat absent</code>
+      <span class="nav-note">isolated it to callbacks never arriving, not the write path - the startup WriteNow proved writing works</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="snapshot contents (inRun=false, deck=0, frozen at startup timestamp)">snapshot contents (inRun=false, deck=0, frozen at startup timestamp)</code>
+      <span class="nav-note">file frozen at the main-menu state explains 'never fills in' exactly</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="root GameObject + DontDestroyOnLoad">root GameObject + DontDestroyOnLoad</code>
+      <span class="nav-note">activeInHierarchy=True and enabled=True, still no Update - hosting on any self-created GameObject is the problem, not parenting</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="moved work onto BaseUnityPlugin Update/OnGUI, workers became plain classes">moved work onto BaseUnityPlugin Update/OnGUI, workers became plain classes</code>
+      <span class="nav-note">BepInEx adds that component itself and its Awake demonstrably runs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="corrected mt2-dwell-floors/AGENTS.md capture">corrected mt2-dwell-floors/AGENTS.md capture</code>
+      <span class="nav-note">it had recorded the failed fix as the rule; a wrong captured lesson is worse than none</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:50 AM — Real root cause of the MT2 page 404: both plugins hosted their MonoBehaviour as a child of the plugin's own GameObject, so Unity never called Update/OnGUI - silent, no exception, 'plugin loaded' in the log looked like success. Switched both to root DontDestroyOnLoad hosts, added an Update heartbeat log and a write-at-startup, captured the lesson. — 5 steps · 7h 20m</span>
+      <span class="pill p2">5 searches not in path</span><span class="pill p2">Hunted before doc — 5 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 7h 20m active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · 5 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 7h 20m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="assumed my own test cleanup deleted the file (previous chunk)">assumed my own test cleanup deleted the file (previous chunk)</code>
+      <span class="nav-note">wrong - timestamps showed the file never existed even while the game ran with the plugin loaded</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="BepInEx LogOutput.log">BepInEx LogOutput.log</code>
+      <span class="nav-note">showed load + correct path + zero errors, which is exactly what the silent-inactive-host failure looks like; misleading on its own</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scratch dir listing with -Force">scratch dir listing with -Force</code>
+      <span class="nav-note">no .tmp stranded either, so the write was never even attempted - narrowed it to Update never running</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="read Plugin.cs / RunSnapshotService.cs instead of trusting summary notes">read Plugin.cs / RunSnapshotService.cs instead of trusting summary notes</code>
+      <span class="nav-note">found host.transform.SetParent(gameObject.transform) as the shared defect in both plugins</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="captured to mt2-dwell-floors/AGENTS.md">captured to mt2-dwell-floors/AGENTS.md</code>
+      <span class="nav-note">owns BepInEx notes; mt2-run-export/AGENTS.md gets a keyword row pointing at it</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:30 AM — Added deck scroll rail (hover-to-scroll arrows) to mt2-dwell-floors; found the game already ships a deck sort dropdown — 7 steps · 1h 7m</span>
+      <span class="pill p2">15 searches not in path</span><span class="pill p2">Hunted before doc — 15 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 1h 7m active tool time
+        <br>7 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 15 search(es), 0 doc read(s) · 15 not in path · coverage 44%
+        <br>Wall-clock gap since previous task: 1h 7m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="sts2-dwell-targeting/HoverScrollStripOverlay.cs">sts2-dwell-targeting/HoverScrollStripOverlay.cs</code>
+      <span class="nav-note">Exemplar Chase asked for: left rail, two big arrows, scroll on HOVER not click</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="sts2-dwell-targeting/HoverScrollPacer.cs + MapScrollService.cs">sts2-dwell-targeting/HoverScrollPacer.cs + MapScrollService.cs</code>
+      <span class="nav-note">STS2 paces discrete synthetic wheel ticks; MT2 has a real ScrollRect so continuous px/sec is simpler</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="decompiled DeckScreen.cs">decompiled DeckScreen.cs</code>
+      <span class="nav-note">Plain Unity ScrollRect via GetComponentInChildren; Mode.ApplyUpgrade means upgrade-picking is the SAME screen, so one rail covers both asks</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="decompiled DeckScreen.SortOrder + TryEnableSortDropdown">decompiled DeckScreen.SortOrder + TryEnableSortDropdown</code>
+      <span class="nav-note">Game already has a sort dropdown incl. CardType - do not build sorting before Chase tries it</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="decompiled ScreenManager/ScreenName">decompiled ScreenManager/ScreenName</code>
+      <span class="nav-note">Enumerated scrollable surfaces; only 3 screens declare a ScrollRect, so a generic topmost-ScrollRect hunt was rejected as unpredictable</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="decompiled UIScreen.cs">decompiled UIScreen.cs</code>
+      <span class="nav-note">IsInteractable() is the public gate for 'screen is really open'</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="mt2-dwell-floors/AGENTS.md">mt2-dwell-floors/AGENTS.md</code>
+      <span class="nav-note">Own decompile notes; extended this plugin rather than adding a third MT2 project</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">20 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:22 PM — Fixed the 404 Chase hit on the MT2 run page: change detection meant a deleted snapshot was never recreated. Service now also rewrites when the target file is missing. Root cause was my own test-data cleanup deleting the file mid-run. — 3 steps · 18m 50s</span>
+      <span class="pill p2">4 searches not in path</span><span class="pill p2">Hunted before doc — 4 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 18m 50s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 4 search(es), 0 doc read(s) · 4 not in path · coverage 75%
+        <br>Wall-clock gap since previous task: 19m 4s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Get-Process MonsterTrain2 + snapshot file timestamps">Get-Process MonsterTrain2 + snapshot file timestamps</code>
+      <span class="nav-note">game started 10:54, mechanics DLL deployed 10:58 - running game had the older build</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="BepInEx LogOutput.log">BepInEx LogOutput.log</code>
+      <span class="nav-note">both plugins loaded clean, correct output path, no exceptions - ruled out a plugin fault</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="RunSnapshotService.cs change detection">RunSnapshotService.cs change detection</code>
+      <span class="nav-note">payload == _lastPayload short-circuit never checked file existence</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:03 PM — MT2 run page: deck split into Units/Spells/Equipment sections, ability chips (statuses/triggers/subtypes) with click-to-list, and an ember cost curve. Abilities read from the game's own vocabulary, not a hardcoded keyword list. — 6 steps · 19m 21s</span>
+      <span class="pill p2">17 searches not in path</span><span class="pill p2">Hunted before doc — 17 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 19m 21s active tool time
+        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 0 doc read(s) · 17 not in path · coverage 35%
+        <br>Wall-clock gap since previous task: 19m 37s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Guildrun Stats grstats/synergy.py">Guildrun Stats grstats/synergy.py</code>
+      <span class="nav-note">exemplar for the synergy bar: count chips + click-to-open list, not hover</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="decompiled Assembly-CSharp: TooltipGenerator.cs">decompiled Assembly-CSharp: TooltipGenerator.cs</code>
+      <span class="nav-note">public API needs live managers + stat adjustments; too much context for a read-only exporter</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="StatusEffectManager.cs">StatusEffectManager.cs</code>
+      <span class="nav-note">StatusIdToLocalizationExpression is the full 96-status vocabulary; GetLocalizedName(statusId) is public static</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="CharacterTriggerData.cs / CharacterData.cs / SubtypeData.cs">CharacterTriggerData.cs / CharacterData.cs / SubtypeData.cs</code>
+      <span class="nav-note">GetKeywordText() gives displayed trigger names (Spawn); GetSubtypes() adds Demon/Dragon/Imp</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="CardUpgradeData.GetStatusEffectUpgrades()">CardUpgradeData.GetStatusEffectUpgrades()</code>
+      <span class="nav-note">closes the undercount: upgrade-granted Conduit is still Conduit</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="headless render harness (stub DOM + synthetic snapshot)">headless render harness (stub DOM + synthetic snapshot)</code>
+      <span class="nav-note">verified sections, chip counts, curve math, duplicate grouping without launching game or browser</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:43 PM — Added deck scroll rail (hover-to-scroll arrows) to mt2-dwell-floors; found the game already ships a deck sort dropdown — 7 steps · 58m 12s</span>
+      <span class="pill p2">13 searches not in path</span><span class="pill p2">Hunted before doc — 13 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 58m 12s active tool time
+        <br>7 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 0 doc read(s) · 13 not in path · coverage 39%
+        <br>Wall-clock gap since previous task: 58m 21s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="sts2-dwell-targeting/HoverScrollStripOverlay.cs">sts2-dwell-targeting/HoverScrollStripOverlay.cs</code>
+      <span class="nav-note">Exemplar Chase asked for: left rail, two big arrows, scroll on HOVER not click</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="sts2-dwell-targeting/HoverScrollPacer.cs + MapScrollService.cs">sts2-dwell-targeting/HoverScrollPacer.cs + MapScrollService.cs</code>
+      <span class="nav-note">STS2 paces discrete synthetic wheel ticks; MT2 has a real ScrollRect so continuous px/sec is simpler</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="decompiled DeckScreen.cs">decompiled DeckScreen.cs</code>
+      <span class="nav-note">Plain Unity ScrollRect via GetComponentInChildren; Mode.ApplyUpgrade means upgrade-picking is the SAME screen, so one rail covers both asks</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="decompiled DeckScreen.SortOrder + TryEnableSortDropdown">decompiled DeckScreen.SortOrder + TryEnableSortDropdown</code>
+      <span class="nav-note">Game already has a sort dropdown incl. CardType - do not build sorting before Chase tries it</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="decompiled ScreenManager/ScreenName">decompiled ScreenManager/ScreenName</code>
+      <span class="nav-note">Enumerated scrollable surfaces; only 3 screens declare a ScrollRect, so a generic topmost-ScrollRect hunt was rejected as unpredictable</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="decompiled UIScreen.cs">decompiled UIScreen.cs</code>
+      <span class="nav-note">IsInteractable() is the public gate for 'screen is really open'</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="mt2-dwell-floors/AGENTS.md">mt2-dwell-floors/AGENTS.md</code>
+      <span class="nav-note">Own decompile notes; extended this plugin rather than adding a third MT2 project</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:45 PM — Built mt2-run-export: live MT2 run state (gold/deck/upgrades/relics/hand) -&gt; JSON -&gt; self-refreshing page on 8765 — 10 steps · 2h 4m</span>
+      <span class="pill p2">67 searches not in path</span><span class="pill p2">Hunted before doc — 54 searches first</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 2h 4m active tool time
+        <br>10 steps · first helpful at #1 · 7 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 67 search(es), 2 doc read(s) · 67 not in path · coverage 13%
+        <br>Wall-clock gap since previous task: 2h 4m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="mt2-dwell-floors/AGENTS.md">mt2-dwell-floors/AGENTS.md</code>
+      <span class="nav-note">Own decompile instructions from last session got me straight back into Assembly-CSharp</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="decompiled SaveManager.cs">decompiled SaveManager.cs</code>
+      <span class="nav-note">GetGold/GetDeckState/GetAllRelics/GetMainClass + goldChangedSignal etc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="decompiled CardManager.cs / CombatManager.cs">decompiled CardManager.cs / CombatManager.cs</code>
+      <span class="nav-note">Hand + piles + turn/phase; confirmed combat managers are nullable outside battle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="decompiled AllGameManagers.cs">decompiled AllGameManagers.cs</code>
+      <span class="nav-note">Single nullable static Instance is the access root</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="decompiled LocalizationExtensions.cs">decompiled LocalizationExtensions.cs</code>
+      <span class="nav-note">CardUpgradeData only exposes a title KEY; .Localize() has an optional context so it is callable directly</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="MT2 save-singlePlayer.json">MT2 save-singlePlayer.json</code>
+      <span class="nav-note">Ruled out the no-mod path: checkpoint-only, no hand/board, and card IDs are raw GUIDs needing an asset-bundle lookup</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Serve roots + scratch placement + never paste a C:\ path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="scripts/serve-programs-docs.js">scripts/serve-programs-docs.js</code>
+      <span class="nav-note">Confirmed agent docs/ is a serve root, JSON mime present, no dotfile filter - so no server change needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title=".gitignore">.gitignore</code>
+      <span class="nav-note">Existing 'transient scratch files rewritten constantly' pattern; followed it for the snapshot</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Added row for the new project</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:40 PM — Answered: can exit tickets be published without a Netlify/Supabase deploy, and how instant feedback would work — found client-mode scoring bug (always marks incorrect) — 8 steps · 27m 27s</span>
+      <span class="pill p2">4 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 27m 27s active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 4 search(es), 3 doc read(s) · 4 not in path · coverage 100%
+        <br>Wall-clock gap since previous task: 27m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Exact row: 'student portal · exit tickets · custom quiz' → pipeline doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">Three grading modes + paste-to-create design already settled 2026-09-06</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
+      <span class="nav-note">Resolved Macro App + student-portal folders</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-session-kit/supabase/migrations/007_exit_ticket_foundation.sql">student-session-kit/supabase/migrations/007_exit_ticket_foundation.sql</code>
+      <span class="nav-note">publish_exit_ticket + get_quiz_questions; key stored but deliberately not returned to client</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="student-portal/src/features/generic-quiz/scoreQuiz.ts">student-portal/src/features/generic-quiz/scoreQuiz.ts</code>
+      <span class="nav-note">BUG: no branch returns 'correct' — client mode always scores 0</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="student-portal/src/services/quizContentService.ts">student-portal/src/services/quizContentService.ts</code>
+      <span class="nav-note">Confirms correct_option_id never reaches the browser</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Macro App/renderer/src/utils/exit-ticket/parseQuizPaste.ts">Macro App/renderer/src/utils/exit-ticket/parseQuizPaste.ts</code>
+      <span class="nav-note">Any starred answer sets gradingMode='client' — triggers the bug</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="student-portal/docs/netlify-deploy-counter.json">student-portal/docs/netlify-deploy-counter.json</code>
+      <span class="nav-note">Deploy 2 'Classwork tabs and exit tickets live' — renderer already in production</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:13 PM — Post-finalize: Chase doubted the ABI bug was real (a 4-day universal outage seemed implausible). Re-tested properly by starting the worker under the bundled runtime instead of a standalone require probe, then confirmed against three Cursor forum threads with staff acknowledgement. Bug is real, Windows-only, open since 2026-08-10 (~4 weeks, not 4 days), and shipped broken in 08.04 / 08.11 / 09.02. Sharpened PHONE_AGENT_ACCESS.md with the real repro and the two traps that made the first diagnosis shaky. — 6 steps · 12m 34s · 1 dead-end</span>
       <span class="pill p2">14 searches not in path</span>
