@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>279</dd></div>
-      <div><dt>Tasks today</dt><dd>14</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 216 tasks)</dd></div>
+      <div><dt>Total tasks</dt><dd>280</dd></div>
+      <div><dt>Tasks today</dt><dd>15</dd></div>
+      <div><dt>Index-first rate</dt><dd style="font-size:1rem">0% (of 217 tasks)</dd></div>
       <div><dt>Searches before first doc (median)</dt><dd>4</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (42/1144 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (43/1150 steps)</dd></div>
       <div><dt>Path coverage (median)</dt><dd>21%</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:00 PM · Sunday, Sep 6, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:13 PM · Sunday, Sep 6, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,70 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">14 tasks</span></h2>
+      <h2 class="day-title">Sunday, Sep 6, 2026 <span class="day-count">15 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:13 PM — Post-finalize: Chase doubted the ABI bug was real (a 4-day universal outage seemed implausible). Re-tested properly by starting the worker under the bundled runtime instead of a standalone require probe, then confirmed against three Cursor forum threads with staff acknowledgement. Bug is real, Windows-only, open since 2026-08-10 (~4 weeks, not 4 days), and shipped broken in 08.04 / 08.11 / 09.02. Sharpened PHONE_AGENT_ACCESS.md with the real repro and the two traps that made the first diagnosis shaky. — 6 steps · 12m 34s · 1 dead-end</span>
+      <span class="pill p2">14 searches not in path</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:00 PM
+         · 12m 34s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 15 search(es), 22 doc read(s) · 14 not in path · coverage 16%
+        <br>Wall-clock gap since previous task: 12m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="AppData/Local/cursor-agent/cursor-agent.ps1">AppData/Local/cursor-agent/cursor-agent.ps1</code>
+      <span class="nav-note">Ruled out the possibility that I had invoked the CLI in an unsupported way - the official launcher also runs `node.exe index.js`, so the invocation was correct</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="versions/&lt;v&gt;/index.js grep for better-sqlite3">versions/&lt;v&gt;/index.js grep for better-sqlite3</code>
+      <span class="nav-note">TRAP - returned 0 matches and briefly convinced me the dependency was vestigial. The reference lives in the chunk files 9249.index.js / 9277.index.js, not index.js. Do not grep index.js alone.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="node.exe index.js worker start --name abi-test">node.exe index.js worker start --name abi-test</code>
+      <span class="nav-note">The definitive test I should have run first: fails with 'Error starting exec-daemon' + NODE_MODULE_VERSION 127 vs 137. Confirms the bug end to end.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="index.js --version under bundled node 24">index.js --version under bundled node 24</code>
+      <span class="nav-note">Exit 0 - establishes the narrow blast radius. Only the worker exec-daemon path breaks, not the CLI generally.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="forum.cursor.com - three threads on 127 vs 137">Web: forum.cursor.com - three threads on 127 vs 137</code>
+      <span class="nav-note">Staff (deanrie) acknowledged on all three; Windows-only, Linux build fine, WSL is the official workaround. Oldest thread 2026-08-10.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="agent docs/PHONE_AGENT_ACCESS.md">agent docs/PHONE_AGENT_ACCESS.md</code>
+      <span class="nav-note">Doc I wrote earlier this session; rewrote the bug section with the real repro, the stale 2026-06-15 prebuilt date, and the scope note</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:00 PM — Phone-to-desktop worker live: diagnosed the shipped Node 24 vs better_sqlite3 ABI-127 mismatch, fell back to system Node 22, detached the worker from the agent terminal, registered login autostart, de-duped supervisors. Chase confirmed 'desktop' appears on his phone. — 5 steps · 25m 54s</span>
       <span class="pill p2">43 searches not in path</span><span class="pill p2">Hunted before doc — 11 searches first</span>

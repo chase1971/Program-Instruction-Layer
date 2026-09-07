@@ -1,0 +1,54 @@
+{
+  "chunkNote": "Post-finalize: Chase doubted the ABI bug was real (a 4-day universal outage seemed implausible). Re-tested properly by starting the worker under the bundled runtime instead of a standalone require probe, then confirmed against three Cursor forum threads with staff acknowledgement. Bug is real, Windows-only, open since 2026-08-10 (~4 weeks, not 4 days), and shipped broken in 08.04 / 08.11 / 09.02. Sharpened PHONE_AGENT_ACCESS.md with the real repro and the two traps that made the first diagnosis shaky.",
+  "addGreps": 8,
+  "addTurns": 4,
+  "addCorrections": 2,
+  "navigationPath": [
+    {
+      "target": "AppData/Local/cursor-agent/cursor-agent.ps1",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Ruled out the possibility that I had invoked the CLI in an unsupported way - the official launcher also runs `node.exe index.js`, so the invocation was correct"
+    },
+    {
+      "target": "versions/<v>/index.js grep for better-sqlite3",
+      "kind": "code",
+      "outcome": "dead-end",
+      "note": "TRAP - returned 0 matches and briefly convinced me the dependency was vestigial. The reference lives in the chunk files 9249.index.js / 9277.index.js, not index.js. Do not grep index.js alone."
+    },
+    {
+      "target": "node.exe index.js worker start --name abi-test",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "The definitive test I should have run first: fails with 'Error starting exec-daemon' + NODE_MODULE_VERSION 127 vs 137. Confirms the bug end to end."
+    },
+    {
+      "target": "index.js --version under bundled node 24",
+      "kind": "code",
+      "outcome": "helpful",
+      "note": "Exit 0 - establishes the narrow blast radius. Only the worker exec-daemon path breaks, not the CLI generally."
+    },
+    {
+      "target": "forum.cursor.com - three threads on 127 vs 137",
+      "kind": "web",
+      "outcome": "helpful",
+      "note": "Staff (deanrie) acknowledged on all three; Windows-only, Linux build fine, WSL is the official workaround. Oldest thread 2026-08-10."
+    },
+    {
+      "target": "agent docs/PHONE_AGENT_ACCESS.md",
+      "kind": "doc",
+      "outcome": "helpful",
+      "note": "Doc I wrote earlier this session; rewrote the bug section with the real repro, the stale 2026-06-15 prebuilt date, and the scope note"
+    }
+  ],
+  "filesRead": [
+    "AppData/Local/cursor-agent/cursor-agent.ps1",
+    "agent docs/PHONE_AGENT_ACCESS.md"
+  ],
+  "filesEdited": [
+    "agent docs/PHONE_AGENT_ACCESS.md"
+  ],
+  "docsRulesOpened": [
+    "agent docs/PHONE_AGENT_ACCESS.md"
+  ]
+}
