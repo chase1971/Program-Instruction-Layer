@@ -4,6 +4,8 @@
 
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
+$logPath = Join-Path $PSScriptRoot 'setup.log'
+Start-Transcript -Path $logPath -Append | Out-Null
 
 function Write-Step($Message) {
     Write-Host ""
@@ -116,14 +118,18 @@ function Run-VerifyRender($TexBin) {
     & (Join-Path $PSScriptRoot 'render.ps1')
 }
 
-Ensure-Python
-Ensure-Uv
-Ensure-Ffmpeg
-$texBin = Ensure-Miktex
-Sync-ProjectVenv
-Run-HealthCheck -TexBin $texBin
-Run-VerifyRender -TexBin $texBin
+try {
+    Ensure-Python
+    Ensure-Uv
+    Ensure-Ffmpeg
+    $texBin = Ensure-Miktex
+    Sync-ProjectVenv
+    Run-HealthCheck -TexBin $texBin
+    Run-VerifyRender -TexBin $texBin
 
-Write-Step 'Setup complete'
-Write-Host 'Manim Trial is ready. Scenes live in this folder; use render.ps1 for headless renders.'
-Write-Host 'Style guide: ANIMATION_STYLE_RECIPE.md'
+    Write-Step 'Setup complete'
+    Write-Host 'Manim Trial is ready. Scenes live in this folder; use render.ps1 for headless renders.'
+    Write-Host 'Style guide: ANIMATION_STYLE_RECIPE.md'
+} finally {
+    Stop-Transcript | Out-Null
+}

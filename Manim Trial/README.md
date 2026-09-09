@@ -22,7 +22,10 @@ Pull Programs on the laptop if this folder is missing.
 
 ### First time on a new laptop
 
-Run **`setup.ps1`** from this folder. It installs or verifies:
+Dwell-click **`Setup Manim Trial.vbs`** in this folder (no console, no typing).
+Progress and errors go to `setup.log`.
+
+Or run **`setup.ps1`** directly. It installs or verifies:
 
 | Tool | Purpose |
 |---|---|
