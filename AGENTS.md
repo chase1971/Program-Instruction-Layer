@@ -237,6 +237,13 @@ Where the file goes, which folders are served, and how: `agent docs/rules/html-d
 `node_modules` hits and can time out. Scope `Glob` to one app folder; use `Grep` for content —
 it respects them automatically and needs no special handling.
 
+**Never pass the workspace root as `Grep`'s `path` — just omit `path`.** It already searches
+every registered root. Passing `C:\Users\chase\Documents\Programs` fails with
+`IO error for operation on :` (note the empty path) because Cursor registers the root with a
+lowercase `c:` and matches case-sensitively; lowercase works, and subfolders work either way.
+Command-line `rg` is unaffected. **This is not a broken workspace** — do not go hunting for a
+stale root, and do not fall back to `rg` for everything.
+
 **`/.ignore` is what makes tree-wide search work — do not delete it.** Root `.gitignore` is a
 strict allowlist, so without `/.ignore` a Grep from Programs root returns **zero hits for code
 that exists**. Nothing found ≠ nothing there: read `/.ignore` before concluding code is missing.

@@ -1,7 +1,7 @@
 /**
  * FILE: scripts/build-doc-index.js
- * PURPOSE: Regenerate agent docs/index.html — the front door served at
- *          127.0.0.1:8765 — by scanning the served roots and merging
+ * PURPOSE: Regenerate agent docs/pages.html — the front door served at
+ *          127.0.0.1:8765/pages.html — by scanning the served roots and merging
  *          agent docs/page-manifest.json for grouping and descriptions.
  *
  * Anything not matched by a manifest group lands in "Unsorted", so a new page
@@ -17,7 +17,7 @@ const { renderIndexHtml } = require('./doc-index-html');
 
 const ROOT = path.resolve(__dirname, '..');
 const MANIFEST = path.join(ROOT, 'agent docs', 'page-manifest.json');
-const OUT = path.join(ROOT, 'agent docs', 'index.html');
+const OUT = path.join(ROOT, 'agent docs', 'pages.html');
 
 // Mirrors SERVE_ROOTS in serve-programs-docs.js. School documents wins ties,
 // which is why it is scanned first.
@@ -39,7 +39,10 @@ function scanRoot(root) {
       }
       if (!e.name.endsWith('.html')) continue;
       const rel = path.relative(root, path.join(dir, e.name)).split(path.sep).join('/');
-      if (rel === 'index.html') continue;
+      // Skip the front door itself, and School documents' own index.html — that
+      // one shadows anything named index.html because its root is scanned first,
+      // which is exactly why this page is called pages.html instead.
+      if (rel === 'index.html' || rel === 'pages.html') continue;
       found.push({ rel, abs: path.join(dir, e.name) });
     }
   };
@@ -142,7 +145,7 @@ function main() {
   const unsorted = (groups.find((g) => g.id === 'unsorted') || { items: [] }).items.length;
   process.stdout.write(`Index rebuilt — ${filed} pages in ${groups.length} groups`
     + `${unsorted ? `, ${unsorted} unsorted` : ''}.\n`);
-  process.stdout.write('View: http://127.0.0.1:8765/\n');
+  process.stdout.write('View: http://127.0.0.1:8765/pages.html\n');
 }
 
 if (require.main === module) main();

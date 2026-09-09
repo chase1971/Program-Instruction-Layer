@@ -59,7 +59,7 @@ function renderIndexHtml(groups, totalPages) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Programs — pages</title>
+<title>HTML Docs</title>
 <style>
   :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
         --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--purple:#a78bfa;--red:#f87171;
@@ -145,7 +145,7 @@ function renderIndexHtml(groups, totalPages) {
 <div class="page">
 
 <header>
-  <h1>Programs — pages</h1>
+  <h1>HTML Docs</h1>
   <p>${totalPages} pages served on <code>127.0.0.1:8765</code>.
      Tap ☆ on any card to pin it to the top — pins and open sections are remembered on this machine.</p>
 </header>
