@@ -38,6 +38,10 @@
 !/agent docs/
 !/scripts/
 
+# Manim animation sources. The folder's own .gitignore keeps .venv/, media/, and
+# render logs out — only the scenes, the style recipe, and the lockfile are tracked.
+!/Manim Trial/
+
 # …but not the scorecard's transient scratch files (rewritten constantly).
 /agent docs/.session-scorecard-running.json
 /agent docs/.scorecard-bump.json

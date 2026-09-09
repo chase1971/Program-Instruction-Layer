@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why an ellipse is an ellipse</title>
+<style>
+body{margin:0;background:#101c30;color:#f2f5fa;font:20px Segoe UI,sans-serif;text-align:center}
+main{max-width:1150px;margin:20px auto;padding:16px}video{width:100%;border-radius:12px}
+button{font:inherit;padding:18px 30px;margin:12px 6px;border:0;border-radius:10px;background:#ffc66d;color:#101c30;cursor:pointer;min-width:145px}
+a{color:#86c8ff}p{line-height:1.6}small{color:#b2c0d4}
+</style>
+<main>
+<h1>Why an ellipse is an ellipse</h1>
+<video id="movie" playsinline preload="metadata" controls><source src="VIDEO_DATA" type="video/mp4"></video>
+<div><button id="play">Play / Pause</button><button id="replay">Replay</button></div>
+<p>Follow the two distances from the foci. Their lengths change; their sum stays 10.</p>
+<p><small>Animation study · September 8, 2026</small></p>
+<p>Teaching references: <a href="https://openstax.org/books/algebra-and-trigonometry-2e/pages/12-1-the-ellipse">OpenStax: the ellipse and string construction</a> · <a href="https://www.geogebra.org/m/wjbbywjp">GeoGebra: constant sum demonstration</a></p>
+<a href="/">← All pages</a>
+</main>
+<script>
+const movie=document.getElementById('movie');
+document.getElementById('play').onclick=()=>{if(movie.paused)movie.play();else movie.pause()};
+document.getElementById('replay').onclick=()=>{movie.currentTime=0;movie.play()};
+</script>
+</html>

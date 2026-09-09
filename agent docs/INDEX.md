@@ -24,6 +24,7 @@ never touches this file.
 | student portal · student codes · exit tickets · custom quiz · "can students cheat" · Student Progress tab · how an app becomes a grade | [School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md](../School%20Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md) |
 | **deploy the portal** · push to netlify · **update supabase** · push migration · ship student site · netlify credits · deploy budget | pipeline doc § Shipping changes to production · `student-portal/docs/netlify-deploy-counter.json` |
 | building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |
+| manim · "animate solving an equation" · math explainer video · the animation guide we wrote | [Manim Trial/ANIMATION_STYLE_RECIPE.md](../Manim%20Trial/ANIMATION_STYLE_RECIPE.md) — scenes and render command in that folder's [README](../Manim%20Trial/README.md) |
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
 | school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
 | "do this from my phone" · send a task from my phone · my PC isn't showing up · desktop missing from the machine list | [PHONE_AGENT_ACCESS.md](./PHONE_AGENT_ACCESS.md) |
