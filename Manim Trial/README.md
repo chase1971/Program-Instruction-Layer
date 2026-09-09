@@ -17,8 +17,37 @@ Reusable style guidance: [ANIMATION_STYLE_RECIPE.md](ANIMATION_STYLE_RECIPE.md).
 
 ## Setup
 
+The project lives in Programs at `Manim Trial/` (same repo as the instruction layer).
+Pull Programs on the laptop if this folder is missing.
+
+### First time on a new laptop
+
+Run **`setup.ps1`** from this folder. It installs or verifies:
+
+| Tool | Purpose |
+|---|---|
+| Python 3.12+ | runtime |
+| uv (`python -m uv`) | virtualenv + locked deps from `uv.lock` |
+| FFmpeg | encodes frames to MP4 |
+| MiKTeX | LaTeX for `MathTex` equations |
+| Manim Community 0.21.0 | Python package in `.venv` |
+
+`setup.ps1` uses winget for FFmpeg and MiKTeX when they are missing. After winget
+installs, you may need a **new terminal** before PATH updates; rerun setup if checkhealth
+still fails.
+
+Manual fallback if winget is unavailable:
+
+- Python: https://www.python.org/downloads/ (check **Add to PATH**)
+- FFmpeg: `winget install Gyan.FFmpeg` or https://www.gyan.dev/ffmpeg/builds/
+- MiKTeX: https://miktex.org/download (per-user install under
+  `%LOCALAPPDATA%/Programs/MiKTeX`)
+- Then: `python -m pip install uv` and `python -m uv sync` in this folder
+
+### Already set up
+
 - Python 3.12: existing per-user Python installation.
-- uv 0.12.10: installed with Python pip; invoke as `python -m uv`.
+- uv: invoke as `python -m uv`.
 - Manim Community 0.21.0: project `.venv`; dependencies pinned in `uv.lock`.
 - MiKTeX: per-user installation under `%LOCALAPPDATA%/Programs/MiKTeX`.
 
