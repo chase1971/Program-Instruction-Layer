@@ -1,5 +1,5 @@
 # Wires Manim Trial setup into electron-toolbar Launcher Panel (📚 grid).
-# Idempotent — safe to rerun from setup.ps1 or on its own.
+# Idempotent — run via Wire Manim Toolbar.vbs or setup.ps1 after deps install.
 
 $ErrorActionPreference = 'Stop'
 
@@ -34,34 +34,41 @@ function Ensure-LauncherBat {
         throw "Missing setup VBS: $setupVbs"
     }
     $batPath = Join-Path $launcherDir $launcherBatName
-    $vbsRelative = '..\..\Manim Trial\Setup Manim Trial.vbs'
     @(
         '@echo off',
-        "wscript.exe //B ""%~dp0$vbsRelative""",
+        'wscript.exe //B "%~dp0..\..\Manim Trial\Setup Manim Trial.vbs"',
         'exit /b 0'
     ) | Set-Content -Path $batPath -Encoding ascii
     Write-Log "Wrote $batPath"
 }
 
-function Add-Tile-To-ScriptsPanel {
-    $panelPath = Resolve-ToolbarFile 'electron-app/src/scripts-panel.html'
-    $text = Get-Content -Path $panelPath -Raw -Encoding utf8
+function Add-Tile-To-TextFile {
+    param(
+        [string]$FilePath,
+        [string[]]$Exemplars
+    )
+
+    $text = Get-Content -Path $FilePath -Raw -Encoding utf8
     if ($text -match [regex]::Escape($tileId)) {
-        Write-Log "scripts-panel.html already lists $tileId"
+        Write-Log "$(Split-Path $FilePath -Leaf) already lists $tileId"
         return $false
     }
 
-    $exemplars = @('guildrun-stats', 'video-player', 'agent-browser', 'quasimorph-tracker')
-    $exemplar = $exemplars | Where-Object { $text -match [regex]::Escape("'$_'") -or $text -match [regex]::Escape('"$_"') } | Select-Object -First 1
+    $exemplar = $Exemplars | Where-Object {
+        $text -match [regex]::Escape("'$_'") -or $text -match [regex]::Escape('"$_"')
+    } | Select-Object -First 1
     if (-not $exemplar) {
-        throw 'Could not find a non-school launcher exemplar in scripts-panel.html'
+        throw "Could not find launcher exemplar in $(Split-Path $FilePath -Leaf)"
     }
+
+    $changed = $false
 
     if ($text -match "(?m)^(?<indent>\s*)\{\s*id:\s*['""]$exemplar['""]") {
         $indent = $Matches['indent']
         $objectLine = "${indent}{ id: '$tileId', label: '$tileLabel' },"
         $pattern = "(?m)^$([regex]::Escape($indent))\{\s*id:\s*['""]$exemplar['""][^\n]*\n"
         $text = [regex]::Replace($text, $pattern, { param($m) "$m`n$objectLine" }, 1)
+        $changed = $true
     }
 
     if ($text -match "(?m)^(?<indent>\s*)['""]$exemplar['""],\s*$") {
@@ -69,20 +76,48 @@ function Add-Tile-To-ScriptsPanel {
         $idLine = "${indent}'$tileId',"
         $pattern = "(?m)^$([regex]::Escape($indent))['""]$exemplar['""],\s*$"
         $text = [regex]::Replace($text, $pattern, { param($m) "$m`n$idLine" }, 1)
+        $changed = $true
     } elseif ($text -match "requiredIds\s*=\s*\[") {
-        $text = [regex]::Replace(
-            $text,
-            "(['""]$exemplar['""])",
-            "`$1, '$tileId'",
-            1
-        )
-    } else {
-        throw 'Could not locate requiredIds entry point in scripts-panel.html'
+        $text = [regex]::Replace($text, "(['""]$exemplar['""])", "`$1, '$tileId'", 1)
+        $changed = $true
     }
 
-    Set-Content -Path $panelPath -Value $text -Encoding utf8 -NoNewline
-    Write-Log "Added $tileId to scripts-panel.html (cloned from $exemplar)"
+    if (-not $changed) {
+        throw "Could not patch $(Split-Path $FilePath -Leaf) using exemplar $exemplar"
+    }
+
+    Set-Content -Path $FilePath -Value $text -Encoding utf8 -NoNewline
+    Write-Log "Added $tileId to $(Split-Path $FilePath -Leaf) (cloned from $exemplar)"
     return $true
+}
+
+function Add-Tile-To-ScriptsPanel {
+    $panelPath = Resolve-ToolbarFile 'electron-app/src/scripts-panel.html'
+    return Add-Tile-To-TextFile -FilePath $panelPath -Exemplars @(
+        'guildrun-stats', 'video-player', 'agent-browser', 'quasimorph-tracker'
+    )
+}
+
+function Add-Tile-To-Profiles {
+    $profileDir = Join-Path $toolbarRoot 'config/profiles'
+    if (-not (Test-Path $profileDir)) { return $false }
+
+    $any = $false
+    Get-ChildItem -Path $profileDir -Filter '*.json' | ForEach-Object {
+        $raw = Get-Content -Path $_.FullName -Raw -Encoding utf8
+        if ($raw -notmatch 'requiredIds|guildrun-stats|video-player') { return }
+        if ($raw -match [regex]::Escape($tileId)) { return }
+        try {
+            if (Add-Tile-To-TextFile -FilePath $_.FullName -Exemplars @(
+                'guildrun-stats', 'video-player', 'agent-browser', 'quasimorph-tracker'
+            )) {
+                $any = $true
+            }
+        } catch {
+            Write-Log "Skipped profile $($_.Name): $($_.Exception.Message)"
+        }
+    }
+    return $any
 }
 
 function Add-Tile-To-PackagedLaunchers {
@@ -98,7 +133,9 @@ function Add-Tile-To-PackagedLaunchers {
     }
 
     $exemplars = @('guildrun-stats', 'video-player', 'agent-browser', 'quasimorph-tracker')
-    $exemplar = $exemplars | Where-Object { $raw -match [regex]::Escape('"$_"') -or $raw -match [regex]::Escape("'$_'") } | Select-Object -First 1
+    $exemplar = $exemplars | Where-Object {
+        $raw -match [regex]::Escape('"$_"') -or $raw -match [regex]::Escape("'$_'")
+    } | Select-Object -First 1
     if (-not $exemplar) {
         throw 'Could not find a packaged launcher exemplar in packaged-launchers.json'
     }
@@ -134,15 +171,21 @@ function Commit-ToolbarRepo {
     }
 }
 
-if (-not (Test-Path $toolbarRoot)) {
-    throw "electron-toolbar not found at $toolbarRoot"
-}
+try {
+    if (-not (Test-Path $toolbarRoot)) {
+        throw "electron-toolbar not found at $toolbarRoot"
+    }
 
-Write-Log 'Starting Manim Trial launcher wiring'
-Ensure-LauncherBat
-$panelChanged = Add-Tile-To-ScriptsPanel
-$packagedChanged = Add-Tile-To-PackagedLaunchers
-if ($panelChanged -or $packagedChanged) {
-    Commit-ToolbarRepo
+    Write-Log 'Starting Manim Trial launcher wiring'
+    Ensure-LauncherBat
+    $panelChanged = Add-Tile-To-ScriptsPanel
+    $profileChanged = Add-Tile-To-Profiles
+    $packagedChanged = Add-Tile-To-PackagedLaunchers
+    if ($panelChanged -or $profileChanged -or $packagedChanged) {
+        Commit-ToolbarRepo
+    }
+    Write-Log 'Launcher Panel wiring complete — restart electron-toolbar if the tile is not visible'
+} catch {
+    Write-Log "ERROR: $($_.Exception.Message)"
+    throw
 }
-Write-Log 'Launcher Panel wiring complete'

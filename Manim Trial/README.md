@@ -22,10 +22,12 @@ Pull Programs on the laptop if this folder is missing.
 
 ### First time on a new laptop
 
-Dwell-click **`Setup Manim Trial.vbs`** in this folder (no console, no typing).
-Progress and errors go to `setup.log`. Setup also adds a **Manim Setup** tile to the
-electron-toolbar Launcher Panel (📚 grid) when `electron-toolbar` is present as a sibling
-folder under Programs.
+**Toolbar tile (separate from install):** dwell **`Wire Manim Toolbar.vbs`** once. That
+patches the sibling `electron-toolbar` repo and adds **Manim Setup** to the 📚 Launcher Panel.
+Log: `wire-launcher.log`. Restart electron-toolbar if the tile does not appear.
+
+**Install Manim deps:** dwell **`Setup Manim Trial.vbs`** (no console). Log: `setup.log`.
+Setup also runs the toolbar wire step when it finishes successfully.
 
 Or run **`setup.ps1`** directly. It installs or verifies:
 

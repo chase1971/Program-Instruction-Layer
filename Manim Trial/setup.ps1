@@ -131,11 +131,16 @@ try {
     Write-Host 'Manim Trial is ready. Scenes live in this folder; use render.ps1 for headless renders.'
     Write-Host 'Style guide: ANIMATION_STYLE_RECIPE.md'
 
-    $wireScript = Join-Path $PSScriptRoot 'wire-electron-toolbar-launcher.ps1'
-    if (Test-Path $wireScript) {
-        Write-Step 'Wiring Manim Setup into electron-toolbar Launcher Panel'
-        & $wireScript
-    }
 } finally {
     Stop-Transcript | Out-Null
+}
+
+$wireScript = Join-Path $PSScriptRoot 'wire-electron-toolbar-launcher.ps1'
+if (Test-Path $wireScript) {
+    try {
+        Write-Step 'Wiring Manim Setup into electron-toolbar Launcher Panel'
+        & $wireScript
+    } catch {
+        Write-Host "Toolbar wiring failed (see wire-launcher.log). Dwell Wire Manim Toolbar.vbs to retry."
+    }
 }
