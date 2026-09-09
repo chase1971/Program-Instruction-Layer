@@ -23,7 +23,9 @@ Pull Programs on the laptop if this folder is missing.
 ### First time on a new laptop
 
 Dwell-click **`Setup Manim Trial.vbs`** in this folder (no console, no typing).
-Progress and errors go to `setup.log`.
+Progress and errors go to `setup.log`. Setup also adds a **Manim Setup** tile to the
+electron-toolbar Launcher Panel (📚 grid) when `electron-toolbar` is present as a sibling
+folder under Programs.
 
 Or run **`setup.ps1`** directly. It installs or verifies:
 
