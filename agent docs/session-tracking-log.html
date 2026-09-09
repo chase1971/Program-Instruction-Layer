@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>325</dd></div>
-      <div><dt>Tasks today</dt><dd>9</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">12.2M (of 1 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>284k</dd></div>
-      <div><dt>Total billed</dt><dd>12.2M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1378 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>327</dd></div>
+      <div><dt>Tasks today</dt><dd>2</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">11.5M (of 3 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>172k</dd></div>
+      <div><dt>Total billed</dt><dd>31.4M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1393 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:26 PM · Tuesday, Sep 8, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">6:28 PM · Wednesday, Sep 9, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,6 +202,154 @@
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">2 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:28 PM — Stitched the four two-dice parts into one 4:27 video via a reusable combine_parts.py (lossless stream copy), merged their pause marks into the combined timeline, and delivered it as a served page — 5 steps · 7m 24s</span>
+      <span class="pill p0">7.7M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:54 PM
+         · 7m 24s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 16 search(es), 1 doc read(s) · 7.7M tokens over 45 turn(s) · 172k/turn
+        <br>Wall-clock gap since previous task: 7m 45s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Manim Trial/media/videos">Manim Trial/media/videos</code>
+      <span class="nav-note">Probed all four renders first — already 1920x1080 at 30 fps, so -c copy concat was safe with no re-encode</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Manim Trial/build_page.py">Manim Trial/build_page.py</code>
+      <span class="nav-note">Extended the existing PAGES mechanism rather than adding a second one; named the output folder combine_parts so the glob AND the source-credit footer both come out right</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scripts/serve-programs-docs.js">scripts/serve-programs-docs.js</code>
+      <span class="nav-note">Checked whether serving the mp4 directly would beat base64 inlining — no .mp4 MIME entry and no Range support, so kept the proven inlining and left shared infra alone</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Manim Trial/README.md">Manim Trial/README.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/page-manifest.json">agent docs/page-manifest.json</code>
+      <span class="nav-note">Filed dice-series under explainers</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:20 PM — Built Manim two-dice part 4 (dice_products.py) from PART4_PLAN.md — product-of-two-dice population, sampling distribution goes normal, CLT landing; rendered 1080p30 and delivered as a served page — 10 steps · 15m 6s</span>
+      <span class="pill p0">11.5M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:54 PM
+         · 15m 6s active tool time
+        <br>10 steps · first helpful at #1 · 10 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 14 search(es), 0 doc read(s) · 11.5M tokens over 95 turn(s) · 121k/turn
+        <br>Wall-clock gap since previous task: 15m 26s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Manim Trial/PART4_PLAN.md">Manim Trial/PART4_PLAN.md</code>
+      <span class="nav-note">Chase named the folder; the handoff doc carried numbers, seed, beats, pitfalls — nothing had to be re-derived</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Manim Trial/dice_sampling.py">Manim Trial/dice_sampling.py</code>
+      <span class="nav-note">Part 3 — reused rain(), drop(), results(), predict() structure per the plan's instruction not to redesign it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Manim Trial/dice_stats.py">Manim Trial/dice_stats.py</code>
+      <span class="nav-note">BASE_Y, HOLD, SLIDE so all four parts share one floor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Manim Trial/scene_style.py">Manim Trial/scene_style.py</code>
+      <span class="nav-note">Narrated mixin, palette, CAPTION_Y, PACE, marks</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Manim Trial/dice.py">Manim Trial/dice.py</code>
+      <span class="nav-note">die() — wrote a local times_row() since pair() has no operator slot</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Manim Trial/ANIMATION_STYLE_RECIPE.md">Manim Trial/ANIMATION_STYLE_RECIPE.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Manim Trial/build_page.py">Manim Trial/build_page.py</code>
+      <span class="nav-note">Added the dice-products row; also fixed its back-link from href=/ to /pages.html — the shadowing e15605a fixed elsewhere had survived here</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Caught the /pages.html back-link rule and the manifest filing step</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="agent docs/page-manifest.json">agent docs/page-manifest.json</code>
+      <span class="nav-note">Filed all four dice pages under explainers — parts 1-3 had been sitting in Unsorted</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Tuesday, Sep 8, 2026 <span class="day-count">9 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

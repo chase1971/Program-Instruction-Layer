@@ -1,0 +1,66 @@
+[
+  {
+    "name": "part 2: distribution_question",
+    "time": 36.59
+  },
+  {
+    "name": "part 2: expected_value_question",
+    "time": 42.72
+  },
+  {
+    "name": "part 2: part3_leadin",
+    "time": 69.43
+  },
+  {
+    "name": "part 3: definition",
+    "time": 82.98
+  },
+  {
+    "name": "part 3: spread_question",
+    "time": 104.35
+  },
+  {
+    "name": "part 3: sigma_question",
+    "time": 126.73
+  },
+  {
+    "name": "part 3: prediction_fixed",
+    "time": 136.98
+  },
+  {
+    "name": "part 3: part4_leadin",
+    "time": 147.1
+  },
+  {
+    "name": "part 4: the_switch",
+    "time": 154.36
+  },
+  {
+    "name": "part 4: the_gaps",
+    "time": 175.02
+  },
+  {
+    "name": "part 4: shape_question",
+    "time": 194.57
+  },
+  {
+    "name": "part 4: the_bell",
+    "time": 215.81
+  },
+  {
+    "name": "part 4: the_honest_tail",
+    "time": 226.19
+  },
+  {
+    "name": "part 4: sigma_question",
+    "time": 242.02
+  },
+  {
+    "name": "part 4: prediction_holds",
+    "time": 252.11
+  },
+  {
+    "name": "part 4: the_theorem",
+    "time": 259.9
+  }
+]

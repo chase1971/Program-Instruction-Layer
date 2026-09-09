@@ -104,6 +104,11 @@
       "accent": "amber",
       "open": false,
       "match": [
+        "scratch/dice-series.html",
+        "scratch/dice-sums.html",
+        "scratch/dice-stats.html",
+        "scratch/dice-sampling.html",
+        "scratch/dice-products.html",
         "scratch/ellipse-definition.html",
         "scratch/gcf-division.html",
         "scratch/two-step-equation.html",
@@ -123,7 +128,9 @@
         "scratch/mt2-run.html",
         "^scratch/guildrun-runs/"
       ],
-      "collapsePatterns": ["^scratch/guildrun-runs/"]
+      "collapsePatterns": [
+        "^scratch/guildrun-runs/"
+      ]
     },
     {
       "id": "retired",
@@ -131,7 +138,9 @@
       "blurb": "The old cursor-patterns/ set, kept for history. These were merged into recipes/ on 2026-08-07 — do not treat as current guidance.",
       "accent": "grey",
       "open": false,
-      "match": ["^instructional-layer-htmls/cursor-patterns/"]
+      "match": [
+        "^instructional-layer-htmls/cursor-patterns/"
+      ]
     }
   ],
   "descriptions": {
@@ -157,6 +166,11 @@
     "instructional-layer-htmls/electron-toolbar-docs-review.html": "All 39 markdowns under electron-toolbar/ checked against live code. 11 of 16 flagged files deleted.",
     "instructional-layer-htmls/app-dashboard-docs-review.html": "First app in the conformance-pass series. All 12 App Dashboard markdowns checked; 5 deleted, 2 fixed.",
     "instructional-layer-htmls/recipes-review.html": "The 26 interaction recipes checked against live code and split by owning app — only 3 were genuinely cross-app.",
-    "instructional-layer-htmls/cursor-patterns-review.html": "Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted."
+    "instructional-layer-htmls/cursor-patterns-review.html": "Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted.",
+    "scratch/dice-sums.html": "Two dice, part 1 — every ordered roll behind each sum from 2 to 12, ending on 36.",
+    "scratch/dice-stats.html": "Two dice, part 2 — the chart tips into a histogram, a normal curve lays over it, then mu = 7 and sigma = 2.42.",
+    "scratch/dice-sampling.html": "Two dice, part 3 — 100 sample means of four rolls rain onto the same axis, and sigma / root n predicts the spread.",
+    "scratch/dice-products.html": "Two dice, part 4 — the product is spiky and gap-riddled, yet its sampling distribution still goes normal. The Central Limit Theorem.",
+    "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem."
   }
 }
