@@ -65,18 +65,21 @@ Give Chase: **`http://127.0.0.1:8765/session-tracking-log.html`**
 | `partial` | ~ | Some value, not a direct hit — and it didn't route you either |
 | `dead-end` | ✗ | Checked but didn't help |
 
-### `routed` vs `partial` — this distinction is the whole point
+### `routed` vs `partial` — the one call that matters
 
 `partial` and `dead-end` on a **doc** step feed the **Real index gaps** panel. That panel is a
 to-do list, so only put something there when a row really is missing.
 
-| Situation | Outcome |
-|---|---|
-| `INDEX.md` had no exact row but its branch table sent you to `APP_LOCATIONS.md` → app `AGENTS.md`, and that worked | `routed` |
-| Read `recipes/INDEX.md`, confirmed no narrower recipe exists, built it the normal way | `routed` |
-| Opened an app doc for context; it wasn't the answer but it wasn't supposed to be | `routed` |
-| A row **should** have existed for this and didn't — you had to grep the tree | `partial` / `dead-end` |
-| The doc's content was wrong, stale, or pointed at a file that doesn't exist | `dead-end` |
+**Use this one test.** After reading the doc, did you have to *grep the tree* to find the answer?
+
+- **No** — the doc named the next file, or correctly told you no narrower owner exists → **`routed`**
+- **Yes** — you were left hunting → **`partial`**, or **`dead-end`** if the doc was wrong or stale
+
+> **This is the most-violated field in the log.** A 2026-09-08 audit of 342 bumps found **41% of
+> flagged gaps were mislabeled** — notes reading *"no narrower recipe was needed"* and *"routed via
+> APP_LOCATIONS"* logged as `partial`. Those are the definition of `routed`. The mislabels made
+> `recipes/INDEX.md` look like it failed 79% of the time when it was working correctly.
+> **Confirming that nothing narrower exists is the index succeeding, not failing.**
 
 **If you log a doc step `partial` or `dead-end`, you own the fix** — add the row, or say in the
 `note` why no row is warranted. See [END_OF_SESSION.md](./END_OF_SESSION.md) step 6.
@@ -87,7 +90,8 @@ Legacy shorthand `{ "step": "…", "result": "✓" }` still parses.
 
 ### Honesty rule
 
-Log every lookup that did not help as `dead-end` or `partial` (or `routed` — see above). The hook records searches independently; the tracking page compares hook counts to your path and shows **"N searches not in path"** when the gap is ≥3. Omitting dead ends makes coverage look better than it was — the page now catches that.
+Log every lookup that did not help as `dead-end` or `partial` (or `routed` — see above). The
+navigation path is a record of where you looked, not a highlight reel.
 
 ### Bump granularity
 
@@ -97,19 +101,32 @@ One bump per **deliverable** (a fix, a feature chunk, a doc update), not per cha
 
 ## Hook-verified fields (automatic)
 
-Each bump compares the agent's `navigationPath` to the hook's `toolTimeline` for that task window. You do not set these — they appear on [session tracking](http://127.0.0.1:8765/session-tracking-log.html):
+You do not set these. The hook records the tool timeline and the transcript path; the bump slices
+both for the task window. They appear on [session tracking](http://127.0.0.1:8765/session-tracking-log.html):
 
 | Field | Meaning |
 |-------|---------|
-| `activeMs` / `activeLabel` | First-to-last tool event in the task window (excludes idle gaps) |
-| `durationMs` / `durationLabel` | Wall-clock since previous bump (includes idle — kept for back-compat) |
-| `indexFirst` | First nav event was an index-like doc read before any search |
-| `searchesBeforeFirstDoc` | Searches that ran before the first doc read |
-| `observedSearches` | Hook-counted searches in the window |
-| `unexplainedSearches` | Observed searches not logged in the path |
-| `pathCoverage` | Logged steps ÷ observed nav events (low = path is a summary, not a record) |
+| `billedTokens` | **Real tokens billed for this task** — cache read + cache write + input + output |
+| `tokensPerTurn` | Context dragged along per assistant turn. Rises with session length, not task difficulty |
+| `tokenTurns` | Assistant turns in the window |
+| `activeMs` / `activeLabel` | First-to-last tool event in the window (excludes idle gaps) |
+| `observedSearches` / `observedDocReads` | Hook-counted searches and doc reads in the window |
+| `durationMs` / `durationLabel` | Wall-clock since previous bump — **includes idle; p90 was 9.6h.** Ignore it |
 
-Pre-change entries lack these fields and are excluded from aggregate rates on the summary bar.
+### Removed 2026-09-08 — do not re-add
+
+An audit of the first 342 bumps found three metrics were measuring their own instrumentation:
+
+- **`indexFirst`** — scored 0/233 tasks. It watched the tool timeline, but `AGENTS.md` and
+  `CLAUDE.md` are auto-loaded by the harness and never pass through a Read tool. It was blind to
+  the most-used index in the tree.
+- **`unexplainedSearches`** — flagged 99.2% of searches. It only recognised a logged step as a
+  search when `kind` was `grep|glob|web|search`; agents used **59 different `kind` values**. It
+  measured vocabulary drift.
+- **`pathCoverage`** — median 0.24, but a bump covers a whole deliverable, so it mostly measured
+  how long it had been since the last bump.
+
+**Cost per task replaced all three.** Greps are free; tokens are not.
 
 ---
 

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matrix app — Student Portal theme mockups</title>
+  <style>
+    :root {
+      --portal-navy: #002d5b;
+      --portal-royal: #0066ff;
+      --portal-sky-muted: #5b8fd4;
+      --portal-panel-blue: #e8f2fc;
+      --portal-orange: #f59e0b;
+      --doc-bg: #0f172a;
+      --doc-text: #e2e8f0;
+      --doc-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--doc-bg);
+      color: var(--doc-text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .doc-wrap {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    a { color: #93c5fd; }
+
+    .banner {
+      background: #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.15rem; margin: 0 0 0.35rem; color: #f8fafc; }
+    h3 { font-size: 0.95rem; margin: 1rem 0 0.35rem; color: #cbd5e1; font-weight: 600; }
+
+    .intro { color: var(--doc-muted); margin: 0 0 1.5rem; font-size: 0.95rem; }
+
+    section { margin-bottom: 2.75rem; }
+
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1.5rem;
+    }
+
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 0.45rem;
+      background: #1e293b;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+
+    .swatch-dot {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.2rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      flex-shrink: 0;
+    }
+
+    .mockup-frame {
+      border: 2px solid #334155;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      background: #1e293b;
+      margin: 0.75rem 0;
+    }
+
+    .mockup-label {
+      padding: 0.45rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      background: #0f172a;
+      border-bottom: 1px solid #334155;
+    }
+
+    .notes {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 1rem;
+      background: #1e293b;
+      border-radius: 0.65rem;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .notes ul { margin: 0.35rem 0 0 1.1rem; padding: 0; }
+    .notes li { margin-bottom: 0.25rem; }
+    .notes strong { color: #f1f5f9; }
+
+    .impl-box {
+      margin-top: 2rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid #475569;
+      border-radius: 0.75rem;
+      background: #1e293b;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .impl-box ul { margin: 0.5rem 0 0 1.1rem; }
+
+    /* ── Shared matrix primitives ── */
+    .matrix-wrap {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .bracket {
+      width: 6px;
+      align-self: stretch;
+      position: relative;
+    }
+
+    .bracket::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border: 2px solid currentColor;
+    }
+
+    .bracket-l::before {
+      left: 2px;
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .bracket-r::before {
+      right: 2px;
+      border-left: none;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .matrix-rows { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    .matrix-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cell {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #e4e4e7;
+      border-radius: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      background: #fff;
+      color: #09090b;
+    }
+
+    .divider {
+      width: 2px;
+      height: 3rem;
+      background: #e4e4e7;
+      margin: 0 0.35rem;
+    }
+
+    .hex-logo {
+      width: 2rem;
+      height: 2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Mockup 1: Portal Panel ── */
+    .m1-shell {
+      background: var(--portal-navy);
+      min-height: 22rem;
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .m1-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .m1-header h4 {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .m1-panel {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      padding: 1.5rem 1.25rem 1.25rem;
+      max-width: 36rem;
+    }
+
+    .m1-workspace { padding-left: 0.25rem; }
+
+    .m1-actions {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+      padding-left: 0.25rem;
+    }
+
+    .btn-royal {
+      min-height: 2.25rem;
+      padding: 0.45rem 1.1rem;
+      border: none;
+      border-radius: 0.85rem;
+      background: var(--portal-royal);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .btn-outline {
+      min-height: 2.25rem;
+      padding: 0.45rem 1.1rem;
+      border: 2px solid #93c5fd;
+      border-radius: 0.85rem;
+      background: #fff;
+      color: var(--portal-navy);
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    /* ── Mockup 2: Quiz Card ── */
+    .m2-shell {
+      background: var(--portal-navy);
+      min-height: 24rem;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .m2-quiz {
+      width: 100%;
+      max-width: 32rem;
+      border-radius: 1rem;
+      border: 1px solid #c5daf0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .m2-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: var(--portal-navy);
+      color: #fff;
+    }
+
+    .m2-back {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .m2-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .m2-progress {
+      font-size: 0.8rem;
+      color: #bfdbfe;
+      font-weight: 500;
+    }
+
+    .m2-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 11rem;
+      padding: 1.5rem 1rem;
+    }
+
+    .m2-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.65rem;
+      min-height: 3.5rem;
+      padding: 0.65rem 1rem;
+      border-top: 1px solid #c5daf0;
+      background: var(--portal-panel-blue);
+    }
+
+    /* ── Mockup 3: Tile Launcher ── */
+    .m3-shell {
+      background: var(--portal-navy);
+      min-height: 26rem;
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .m3-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .m3-header h4 {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .m3-panel {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      padding: 1.25rem;
+      max-width: 28rem;
+    }
+
+    .m3-preview {
+      display: flex;
+      justify-content: center;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 0.85rem;
+      background: var(--portal-panel-blue);
+      border: 1px solid #c5daf0;
+    }
+
+    .m3-preview .cell {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 0.85rem;
+      border-color: #93c5fd;
+    }
+
+    .m3-preview .divider { height: 2.25rem; }
+
+    .m3-tiles { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .app-tile {
+      display: flex;
+      min-height: 5.75rem;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .app-tile--locked { opacity: 0.7; }
+
+    .tile-icon {
+      display: flex;
+      width: 5.5rem;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 1.2;
+      padding: 0.5rem;
+    }
+
+    .tile-icon--blue { background: linear-gradient(135deg, #38bdf8, #2563eb); }
+    .tile-icon--orange { background: linear-gradient(135deg, #fbbf24, #f97316); }
+
+    .tile-body {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      min-width: 0;
+    }
+
+    .tile-body h5 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .tile-body p {
+      margin: 0.15rem 0 0;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .tile-chevron {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #3b82f6;
+      line-height: 1;
+    }
+
+    .tile-soon {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    /* ── Mockup 4: Pale-Blue Workspace ── */
+    .m4-shell {
+      background: var(--portal-panel-blue);
+      min-height: 20rem;
+      padding: 1.25rem;
+    }
+
+    .m4-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--portal-navy);
+      margin-bottom: 1rem;
+    }
+
+    .m4-workspace { color: var(--portal-navy); }
+
+    .m4-workspace .cell {
+      border-color: #93c5fd;
+      color: var(--portal-navy);
+      box-shadow: 0 1px 3px rgba(0, 45, 91, 0.06);
+    }
+
+    .m4-workspace .divider { background: #93c5fd; }
+
+    .m4-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn-navy {
+      min-height: 2rem;
+      padding: 0.35rem 0.85rem;
+      border: none;
+      border-radius: 0.65rem;
+      background: var(--portal-navy);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .btn-navy--disabled {
+      background: #cbd5e1;
+      color: #64748b;
+    }
+
+    /* ── Mockup 5: Portal Tabs Header ── */
+    .m5-shell {
+      background: var(--portal-navy);
+      min-height: 24rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .m5-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .m5-header h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .m5-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0 1rem 0.65rem;
+    }
+
+    .portal-tab {
+      flex: 1;
+      min-height: 2.75rem;
+      border-radius: 0.65rem;
+      border: 1.5px solid #93c5fd;
+      background: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--portal-navy);
+    }
+
+    .portal-tab--active {
+      border-color: var(--portal-royal);
+      background: var(--portal-royal);
+      color: #fff;
+    }
+
+    .m5-panel {
+      flex: 1;
+      margin: 0 1rem;
+      background: #fff;
+      border-radius: 1.25rem 1.25rem 0 0;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+      padding: 1.25rem;
+    }
+
+    .m5-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      background: var(--portal-panel-blue);
+      border-top: 1px solid #c5daf0;
+    }
+
+    .m5-footer-group { display: flex; gap: 0.5rem; }
+
+    .btn-tab-action {
+      min-height: 2.75rem;
+      min-width: 4.5rem;
+      padding: 0 1rem;
+      border-radius: 0.65rem;
+      border: 1.5px solid #93c5fd;
+      background: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--portal-navy);
+    }
+
+    .btn-tab-action--primary {
+      border-color: var(--portal-royal);
+      background: var(--portal-royal);
+      color: #fff;
+    }
+
+    .btn-tab-action--danger {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .btn-tab-action:disabled {
+      opacity: 0.45;
+    }
+
+    .current-vs {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.75rem 0;
+      font-size: 0.8rem;
+      color: var(--doc-muted);
+    }
+
+    .current-vs span {
+      padding: 0.2rem 0.5rem;
+      background: #0f172a;
+      border-radius: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-wrap">
+    <p><a href="/index.html">← All pages</a></p>
+
+    <div class="banner">
+      Scratch page · 2026-09-07 · Five Student Portal theme directions for the Matrix app opening screen.
+      Static mockups only — no app code changed.
+    </div>
+
+    <h1>Matrix app first screen — five portal theme mockups</h1>
+    <p class="intro">
+      Each mockup shows the real opening content: Gauss-Jordan title, the 2×3 augmented matrix
+      <strong>[4, 1 | 9; −2, 3 | −1]</strong>, and the Start Tutorial / Auto Solve actions.
+      Pick a direction; the follow-up session implements it in the Matrix app.
+    </p>
+
+    <h3>Portal tokens used across all five</h3>
+    <div class="palette">
+      <div class="swatch"><span class="swatch-dot" style="background:#002d5b"></span> navy #002d5b</div>
+      <div class="swatch"><span class="swatch-dot" style="background:#0066ff"></span> royal #0066ff</div>
+      <div class="swatch"><span class="swatch-dot" style="background:#e8f2fc"></span> panel-blue #e8f2fc</div>
+      <div class="swatch"><span class="swatch-dot" style="background:#93c5fd"></span> border #93c5fd</div>
+      <div class="swatch"><span class="swatch-dot" style="background:#f59e0b"></span> orange #f59e0b</div>
+    </div>
+
+    <!-- ═══ MOCKUP 1 ═══ -->
+    <section id="mockup-1">
+      <h2>1 — Portal Panel</h2>
+      <p class="intro" style="margin-bottom:0.5rem">
+        Literal port: navy field + white rounded panel. Matrix layout unchanged; only chrome and buttons swap.
+      </p>
+      <div class="mockup-frame">
+        <div class="mockup-label">Opening screen · landscape phone frame</div>
+        <div class="m1-shell">
+          <div class="m1-header">
+            <svg class="hex-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M18 2L32 10v16L18 34 4 26V10L18 2z" stroke="#5eb3ff" stroke-width="1.5" fill="rgba(0,102,255,0.35)"/>
+              <path d="M18 9L26 14v10L18 29l-8-5V14l8-5z" stroke="#93c5fd" stroke-width="1" fill="rgba(147,197,253,0.25)"/>
+            </svg>
+            <h4>Gauss-Jordan Method</h4>
+          </div>
+          <div class="m1-panel">
+            <div class="m1-workspace">
+              <div class="matrix-wrap" style="color:#09090b">
+                <div class="bracket bracket-l"></div>
+                <div class="matrix-rows">
+                  <div class="matrix-row">
+                    <div class="cell">4</div><div class="cell">1</div>
+                    <div class="divider"></div>
+                    <div class="cell">9</div>
+                  </div>
+                  <div class="matrix-row">
+                    <div class="cell">−2</div><div class="cell">3</div>
+                    <div class="divider"></div>
+                    <div class="cell">−1</div>
+                  </div>
+                </div>
+                <div class="bracket bracket-r"></div>
+              </div>
+            </div>
+            <div class="m1-actions">
+              <button type="button" class="btn-royal">Start Tutorial</button>
+              <button type="button" class="btn-outline">Auto Solve</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <strong>Tokens:</strong> <code>.portal-shell</code>, <code>.portal-content-panel</code>,
+        <code>.portal-quiz__next-btn</code>, <code>.portal-quiz__option</code>, hex logo.<br />
+        <strong>Code:</strong> wrap <code>App.tsx</code> in a navy shell; move title from absolute top-left into
+        <code>PortalHeader</code>-style bar; restyle bottom buttons in <code>matrix-solver.tsx</code>.<br />
+        <strong>Dwell:</strong> buttons stay ~36px tall (same as today at <code>scale-75</code>); panel adds visual
+        grouping without shrinking targets.
+      </div>
+    </section>
+
+    <!-- ═══ MOCKUP 2 ═══ -->
+    <section id="mockup-2">
+      <h2>2 — Quiz-Card Clone</h2>
+      <p class="intro" style="margin-bottom:0.5rem">
+        Matrix app reads as a portal assignment: navy header strip inside the card, centered matrix, pale-blue footer.
+      </p>
+      <div class="mockup-frame">
+        <div class="mockup-label">Opening screen · centered quiz card</div>
+        <div class="m2-shell">
+          <div class="m2-quiz">
+            <div class="m2-header">
+              <span class="m2-back">← Back</span>
+              <h3 class="m2-title">Gauss-Jordan Method</h3>
+              <span class="m2-progress">Part 1 of 3</span>
+            </div>
+            <div class="m2-body">
+              <div class="matrix-wrap" style="color:#002d5b">
+                <div class="bracket bracket-l"></div>
+                <div class="matrix-rows">
+                  <div class="matrix-row">
+                    <div class="cell">4</div><div class="cell">1</div>
+                    <div class="divider"></div>
+                    <div class="cell">9</div>
+                  </div>
+                  <div class="matrix-row">
+                    <div class="cell">−2</div><div class="cell">3</div>
+                    <div class="divider"></div>
+                    <div class="cell">−1</div>
+                  </div>
+                </div>
+                <div class="bracket bracket-r"></div>
+              </div>
+            </div>
+            <div class="m2-footer">
+              <button type="button" class="btn-royal">Start Tutorial</button>
+              <button type="button" class="btn-outline">Auto Solve</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <strong>Tokens:</strong> full <code>.portal-quiz</code> block — header, body, footer.<br />
+        <strong>Code:</strong> new <code>MatrixQuizShell</code> component; center-align workspace (biggest layout
+        change); wire Back to portal or exit; progress label from <code>currentPart</code> in <code>App.tsx</code>.<br />
+        <strong>Dwell:</strong> footer buttons ~36px; Back arrow gets a 40px tap zone — much better than today's
+        20px part tabs.
+      </div>
+    </section>
+
+    <!-- ═══ MOCKUP 3 ═══ -->
+    <section id="mockup-3">
+      <h2>3 — Tile Launcher</h2>
+      <p class="intro" style="margin-bottom:0.5rem">
+        Opening screen becomes a portal landing page: small matrix preview + two large AppTile cards.
+      </p>
+      <div class="mockup-frame">
+        <div class="mockup-label">Opening screen · tile picker</div>
+        <div class="m3-shell">
+          <div class="m3-header">
+            <svg class="hex-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M18 2L32 10v16L18 34 4 26V10L18 2z" stroke="#5eb3ff" stroke-width="1.5" fill="rgba(0,102,255,0.35)"/>
+              <path d="M18 9L26 14v10L18 29l-8-5V14l8-5z" stroke="#93c5fd" stroke-width="1" fill="rgba(147,197,253,0.25)"/>
+            </svg>
+            <h4>Gauss-Jordan Method</h4>
+          </div>
+          <div class="m3-panel">
+            <div class="m3-preview">
+              <div class="matrix-wrap" style="color:#002d5b">
+                <div class="bracket bracket-l"></div>
+                <div class="matrix-rows">
+                  <div class="matrix-row">
+                    <div class="cell">4</div><div class="cell">1</div>
+                    <div class="divider"></div>
+                    <div class="cell">9</div>
+                  </div>
+                  <div class="matrix-row">
+                    <div class="cell">−2</div><div class="cell">3</div>
+                    <div class="divider"></div>
+                    <div class="cell">−1</div>
+                  </div>
+                </div>
+                <div class="bracket bracket-r"></div>
+              </div>
+            </div>
+            <div class="m3-tiles">
+              <div class="app-tile">
+                <div class="tile-icon tile-icon--blue">Tutorial</div>
+                <div class="tile-body">
+                  <div>
+                    <h5>Learn the Method</h5>
+                    <p>Step-by-step Gauss-Jordan</p>
+                  </div>
+                  <span class="tile-chevron" aria-hidden="true">›</span>
+                </div>
+              </div>
+              <div class="app-tile app-tile--locked">
+                <div class="tile-icon tile-icon--orange">Auto</div>
+                <div class="tile-body">
+                  <div>
+                    <h5 style="color:#64748b">Auto Solve</h5>
+                    <p>Complete the tutorial first</p>
+                  </div>
+                  <span class="tile-soon">Locked</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <strong>Tokens:</strong> <code>AppTile</code> shape, <code>appTileTheme.ts</code> gradients,
+        <code>.portal-section-light</code> preview box.<br />
+        <strong>Code:</strong> replace bottom <code>Button</code> pair with a new <code>MatrixModePicker</code>;
+        matrix shrinks to decorative preview until a mode is chosen.<br />
+        <strong>Dwell:</strong> best of the five — two 92px-tall full-width targets vs today's two ~24px buttons.
+      </div>
+    </section>
+
+    <!-- ═══ MOCKUP 4 ═══ -->
+    <section id="mockup-4">
+      <h2>4 — Pale-Blue Workspace</h2>
+      <p class="intro" style="margin-bottom:0.5rem">
+        Token swap only: panel-blue background, navy cells and brackets, navy action pills. No layout movement.
+      </p>
+      <div class="mockup-frame">
+        <div class="mockup-label">Opening screen · in-place recolor</div>
+        <div class="m4-shell">
+          <div class="m4-title">Gauss-Jordan Method</div>
+          <div class="m4-workspace">
+            <div class="matrix-wrap">
+              <div class="bracket bracket-l"></div>
+              <div class="matrix-rows">
+                <div class="matrix-row">
+                  <div class="cell">4</div><div class="cell">1</div>
+                  <div class="divider"></div>
+                  <div class="cell">9</div>
+                </div>
+                <div class="matrix-row">
+                  <div class="cell">−2</div><div class="cell">3</div>
+                  <div class="divider"></div>
+                  <div class="cell">−1</div>
+                </div>
+              </div>
+              <div class="bracket bracket-r"></div>
+            </div>
+          </div>
+          <div class="m4-actions">
+            <button type="button" class="btn-navy">Start Tutorial</button>
+            <button type="button" class="btn-navy btn-navy--disabled">Auto Solve</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <strong>Tokens:</strong> <code>--portal-panel-blue</code>, <code>.portal-tile-light</code> cell borders,
+        <code>--portal-navy</code> text, <code>--portal-royal</code> pulse ring.<br />
+        <strong>Code:</strong> add <code>portal-theme.css</code> with CSS variables; map shadcn tokens in
+        <code>theme.css</code>; recolor <code>bg-black</code> row-op buttons to navy. Cheapest to ship.<br />
+        <strong>Dwell:</strong> unchanged target sizes; visual cohesion only.
+      </div>
+    </section>
+
+    <!-- ═══ MOCKUP 5 ═══ -->
+    <section id="mockup-5">
+      <h2>5 — Portal Tabs Header</h2>
+      <p class="intro" style="margin-bottom:0.5rem">
+        Fixes the worst dwell offender: tiny Part 1/2/3 tabs and Back/Next/Exit become portal-sized controls.
+      </p>
+      <div class="current-vs">
+        <span>Today: Part tabs 20×20px, Back/Next/Exit 20px tall</span>
+        <span>After: tabs 44px min-height, footer actions 44px</span>
+      </div>
+      <div class="mockup-frame">
+        <div class="mockup-label">During tutorial · part selector + nav footer</div>
+        <div class="m5-shell">
+          <div class="m5-header">
+            <svg class="hex-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M18 2L32 10v16L18 34 4 26V10L18 2z" stroke="#5eb3ff" stroke-width="1.5" fill="rgba(0,102,255,0.35)"/>
+              <path d="M18 9L26 14v10L18 29l-8-5V14l8-5z" stroke="#93c5fd" stroke-width="1" fill="rgba(147,197,253,0.25)"/>
+            </svg>
+            <h4>Gauss-Jordan Method</h4>
+          </div>
+          <div class="m5-tabs">
+            <button type="button" class="portal-tab portal-tab--active">Part 1</button>
+            <button type="button" class="portal-tab">Part 2</button>
+            <button type="button" class="portal-tab">Part 3</button>
+          </div>
+          <div class="m5-panel">
+            <div class="matrix-wrap" style="color:#002d5b">
+              <div class="bracket bracket-l"></div>
+              <div class="matrix-rows">
+                <div class="matrix-row">
+                  <div class="cell" style="border-color:#0066ff;box-shadow:0 0 0 3px rgba(0,102,255,0.35)">4</div>
+                  <div class="cell">1</div>
+                  <div class="divider"></div>
+                  <div class="cell">9</div>
+                </div>
+                <div class="matrix-row">
+                  <div class="cell">−2</div><div class="cell">3</div>
+                  <div class="divider"></div>
+                  <div class="cell">−1</div>
+                </div>
+              </div>
+              <div class="bracket bracket-r"></div>
+            </div>
+          </div>
+          <div class="m5-footer">
+            <div class="m5-footer-group">
+              <button type="button" class="btn-tab-action" disabled>Back</button>
+              <button type="button" class="btn-tab-action btn-tab-action--primary">Next</button>
+            </div>
+            <button type="button" class="btn-tab-action btn-tab-action--danger">Exit tutorial</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <strong>Tokens:</strong> <code>.portal-tab</code>, <code>.portal-tab--active</code>,
+        <code>.portal-quiz__footer</code>, hex header.<br />
+        <strong>Code:</strong> extract lines 101–175 of <code>App.tsx</code> into
+        <code>MatrixTutorialChrome.tsx</code>; replace <code>w-5 h-5 text-[10px]</code> tabs with
+        <code>.portal-tab</code> row; move nav to fixed footer strip.<br />
+        <strong>Dwell:</strong> biggest accessibility win — part selector goes from 20px to 44px targets.
+      </div>
+    </section>
+
+    <div class="impl-box">
+      <strong>If you pick one — what the follow-up session should know</strong>
+      <ul>
+        <li><code>matrix-solver.tsx</code> is 715 lines (past the 700 extract threshold). Real work extracts
+          first-screen chrome + a shared <code>portal-theme.css</code> rather than editing in place.</li>
+        <li><code>App.tsx</code> is 194 lines; mockups 1, 2, and 5 all move the header/part-selector out,
+          which also fixes the orchestrator rule.</li>
+        <li>Portal tokens live in one CSS file so <code>transformations-app</code> can adopt the same palette later.</li>
+        <li>Mockups 3 and 5 can combine: tile launcher for the opening screen + portal tabs once tutorial starts.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

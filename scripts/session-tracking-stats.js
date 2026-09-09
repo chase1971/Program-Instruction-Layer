@@ -1,27 +1,15 @@
 /**
  * FILE: scripts/session-tracking-stats.js
- * PURPOSE: Reconcile hook-observed tool timeline against agent navigationPath.
+ * PURPOSE: Summarise the hook-observed tool timeline for a task window, and
+ *          roll up the two signals that survived the 2026-09-08 audit:
+ *          real token cost, and doc steps that failed to route.
  */
 'use strict';
 
-const path = require('path');
 const { flattenSteps, normalizeNavigationPath } = require('./scorecard-navigation-path');
 
 const TIMELINE_CAP = 600;
-const SEARCH_KINDS = new Set(['grep', 'glob', 'web', 'search']);
 const DOC_KINDS = new Set(['doc', 'doc-index']);
-
-function isIndexLike(filePath) {
-  const norm = String(filePath || '').replace(/\\/g, '/').toLowerCase();
-  if (!norm) return false;
-  const base = path.basename(norm);
-  return (
-    base === 'index.md'
-    || base === 'agents.md'
-    || base === 'claude.md'
-    || base === 'app_locations.md'
-  );
-}
 
 function pushTimelineEvent(running, event) {
   if (!running.toolTimeline) running.toolTimeline = [];
@@ -55,34 +43,23 @@ function navEventsInWindow(events) {
   return (events || []).filter((ev) => ev.k === 'search' || ev.k === 'doc-read' || ev.k === 'read');
 }
 
+// NOTE (2026-09-08 trim): `indexFirst` and `searchesBeforeFirstDoc` were removed.
+// They read the hook's tool timeline to decide whether the agent consulted an
+// index first — but AGENTS.md and CLAUDE.md are auto-loaded into context by the
+// harness and never pass through a Read tool. The hook therefore could not see
+// the most-used index at all, and `indexFirst` scored 0/233 across the whole log
+// while `agent docs/INDEX.md` was the single most-visited doc in it. A metric
+// that reports 0% for something happening constantly is worse than no metric.
 function observeWindow(events) {
   const nav = navEventsInWindow(events);
   let observedSearches = 0;
   let observedDocReads = 0;
   let observedReads = 0;
-  let searchesBeforeFirstDoc = 0;
-  let indexFirst = false;
-  let sawDoc = false;
-  let firstNavDecided = false;
 
   for (const ev of nav) {
-    if (ev.k === 'search') {
-      observedSearches += 1;
-      if (!sawDoc) searchesBeforeFirstDoc += 1;
-      if (!firstNavDecided) {
-        indexFirst = false;
-        firstNavDecided = true;
-      }
-    } else if (ev.k === 'doc-read') {
-      observedDocReads += 1;
-      if (!firstNavDecided) {
-        indexFirst = isIndexLike(ev.p);
-        firstNavDecided = true;
-      }
-      sawDoc = true;
-    } else if (ev.k === 'read') {
-      observedReads += 1;
-    }
+    if (ev.k === 'search') observedSearches += 1;
+    else if (ev.k === 'doc-read') observedDocReads += 1;
+    else if (ev.k === 'read') observedReads += 1;
   }
 
   let activeMs = 0;
@@ -102,35 +79,22 @@ function observeWindow(events) {
     observedDocReads,
     observedReads,
     observedNavEvents,
-    searchesBeforeFirstDoc,
-    indexFirst,
     activeMs,
     hasObservedData: nav.length > 0,
   };
 }
 
-function countLoggedSearchSteps(navigationPath) {
-  const flat = flattenSteps(normalizeNavigationPath(navigationPath));
-  return flat.filter((s) => SEARCH_KINDS.has(String(s.kind || '').toLowerCase())).length;
-}
-
-function reconcile(observed, navigationPath) {
-  const stepCount = flattenSteps(normalizeNavigationPath(navigationPath)).length;
-  const loggedSearches = countLoggedSearchSteps(navigationPath);
-  const unexplainedSearches = Math.max(
-    0,
-    (observed.observedSearches || 0) - loggedSearches,
-  );
-  const pathCoverage = observed.observedNavEvents > 0
-    ? Math.min(1, stepCount / observed.observedNavEvents)
-    : (stepCount > 0 ? 1 : 0);
-
-  return {
-    unexplainedSearches,
-    pathCoverage,
-    loggedSearches,
-  };
-}
+// NOTE (2026-09-08 trim): `reconcile()` computed `unexplainedSearches` and
+// `pathCoverage`. Both were artifacts.
+//   - unexplainedSearches counted a logged step as a search only when `kind` was
+//     grep/glob/web/search. Agents invented 59 distinct `kind` values across the
+//     log, so 4,775 of 4,813 searches (99.2%) scored "unexplained". It measured
+//     vocabulary drift, not honesty.
+//   - pathCoverage divided logged steps by observed tool events. Because a bump
+//     covers a whole deliverable (median 17min, p90 9.6h), it mostly measured how
+//     long it had been since the last bump. Median 0.24 was window length, not
+//     a summarising agent.
+// Real cost per task now comes from session-token-cost.js instead.
 
 function hasObservedFields(entry) {
   return entry && (
@@ -154,23 +118,22 @@ function pct(n, total) {
 
 function rollup(entries) {
   const observed = (entries || []).filter(hasObservedFields);
-  const indexFirstCount = observed.filter((e) => e.indexFirst).length;
   const deadEndSteps = observed.reduce((s, e) => s + (e.deadEndCount || 0), 0);
   const totalSteps = observed.reduce((s, e) => s + (e.stepCount || 0), 0);
-  const coverageValues = observed
-    .filter((e) => (e.observedNavEvents || 0) > 0)
-    .map((e) => e.pathCoverage ?? 0);
-  const searchesBeforeDocValues = observed.map((e) => e.searchesBeforeFirstDoc ?? 0);
+
+  const costed = (entries || []).filter((e) => Number.isFinite(e.billedTokens));
+  const billedValues = costed.map((e) => e.billedTokens);
+  const perTurnValues = costed.map((e) => e.tokensPerTurn).filter(Number.isFinite);
 
   return {
     observedTaskCount: observed.length,
-    indexFirstRate: pct(indexFirstCount, observed.length),
-    indexFirstCount,
     deadEndRate: pct(deadEndSteps, totalSteps),
     deadEndSteps,
     totalSteps,
-    medianSearchesBeforeDoc: median(searchesBeforeDocValues),
-    medianPathCoverage: median(coverageValues),
+    costedTaskCount: costed.length,
+    medianBilledTokens: median(billedValues),
+    totalBilledTokens: billedValues.reduce((a, b) => a + b, 0),
+    medianTokensPerTurn: median(perTurnValues),
   };
 }
 
@@ -199,12 +162,10 @@ function collectIndexFailures(entries, limit = 20) {
 
 module.exports = {
   TIMELINE_CAP,
-  isIndexLike,
   pushTimelineEvent,
   sliceTimeline,
   consumeTimelineUpTo,
   observeWindow,
-  reconcile,
   hasObservedFields,
   rollup,
   collectIndexFailures,

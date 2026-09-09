@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Probe baseline — controlled index test</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--red:#f87171;--border:#334155;
+        --radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:18px}
+  .page{max-width:940px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  header{margin-bottom:1.5rem;padding-bottom:1.3rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.6rem,4.6vw,2.2rem);letter-spacing:-.02em;line-height:1.25}
+  header p{color:var(--muted);margin-top:.6rem;font-size:1rem}
+  h2{font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:2.4rem 0 .4rem;color:var(--accent)}
+  h2.amber{color:var(--amber)}
+  .lede{color:var(--muted);font-size:.94rem;margin-bottom:.9rem}
+  .lede b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+         padding:1.2rem 1.3rem;margin-bottom:.9rem}
+  .panel.amber{border-left:5px solid var(--amber)}
+  .panel.accent{border-left:5px solid var(--accent)}
+  .panel h3{font-size:1.05rem;margin-bottom:.45rem}
+  .panel p{font-size:.94rem;color:var(--muted);margin-bottom:.4rem}
+  .panel p b{color:var(--text)}
+  .cmd{font-family:Consolas,monospace;background:#0c1118;border:1px solid var(--border);
+       border-radius:8px;padding:.6rem .8rem;color:var(--green);font-size:.86rem;
+       overflow-x:auto;white-space:nowrap;margin:.4rem 0}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-bottom:.6rem}
+  .tile{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem}
+  .tile .v{font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+  .tile .k{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+  .v.green{color:var(--green)} .v.amber{color:var(--amber)} .v.accent{color:var(--accent)}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--panel);
+        border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:.9rem}
+  th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border)}
+  th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+     font-weight:700;background:var(--panel-alt)}
+  tr:last-child td{border-bottom:none}
+  td.n{font-family:Consolas,monospace;white-space:nowrap}
+  td.mono{font-family:Consolas,monospace;color:var(--accent)}
+  .muted2{color:var(--muted);font-size:.85em}
+  .good{color:var(--green)} .bad{color:var(--red)}
+  .pill{display:inline-block;padding:.14rem .5rem;border-radius:999px;font-size:.72rem;font-weight:700}
+  .pill.ok{background:#12332a;color:var(--green)}
+  .pill.no{background:#3a1c1c;color:var(--red)}
+  code{background:var(--panel-alt);color:var(--accent);padding:.08rem .34rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  a.back{display:block;text-align:center;margin-top:2.4rem;padding:1rem;background:var(--panel);
+         border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);
+         text-decoration:none;font-weight:600;min-height:56px}
+  a.back:hover,a.back:focus{background:var(--panel-alt);outline:none}
+  footer{margin-top:1.4rem;color:var(--muted);font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Probe baseline</h1>
+  <p>20 fixed questions, each answered in its own fresh read-only session.
+     Because the questions never change, any difference between runs is caused by what you changed —
+     not by the tasks being different.</p>
+</header>
+
+
+    <div class="tiles">
+      <div class="tile"><div class="v green">100%</div><div class="k">Latest correct — baseline</div></div>
+      <div class="tile"><div class="v accent">867k</div><div class="k">Tokens for the sweep</div></div>
+      <div class="tile"><div class="v amber">43k</div><div class="k">Per question</div></div>
+      <div class="tile"><div class="v green">1</div><div class="k">Runs recorded</div></div>
+    </div>
+
+    <h2>Runs — newest first</h2>
+    <p class="lede">Δ compares each run to the one below it. <b>Green is the direction you want:</b>
+       more correct, fewer tokens. Only compare runs on the same model.</p>
+    <table>
+    <tr><th>Run</th><th>Model</th><th>When</th><th>Correct</th><th>Δ</th><th>Tokens</th><th>Δ</th></tr>
+    <tr>
+        <td><b>baseline</b></td>
+        <td class="mono">auto</td>
+        <td class="n">2026-09-09 03:37</td>
+        <td class="n">20/20 <span class="muted2">(100%)</span></td>
+        <td class="n">—</td>
+        <td class="n">867k</td>
+        <td class="n">—</td>
+      </tr>
+  </table>
+
+    <h2 class="amber">Latest run by tier</h2>
+    <p class="lede">
+      <b>always-on</b> is answerable from <code>AGENTS.md</code>, which loads automatically every
+      session — it tests whether the agent uses what it already has.
+      <b>routed</b> requires navigating from an index to an owning doc — <b>this is the tier your
+      indexing actually moves.</b> If routed costs far more per question than always-on, the gap is
+      the price of navigation.
+    </p>
+    <table>
+    <tr><th>Tier</th><th>Correct</th><th>Tokens</th><th>Avg per question</th></tr>
+    <tr>
+      <td><b>always-on</b></td>
+      <td class="n">6/6 <span class="muted2">(100%)</span></td>
+      <td class="n">177k</td>
+      <td class="n">29k</td>
+    </tr><tr>
+      <td><b>routed</b></td>
+      <td class="n">14/14 <span class="muted2">(100%)</span></td>
+      <td class="n">690k</td>
+      <td class="n">49k</td>
+    </tr>
+  </table>
+
+    <h2 class="amber">What navigation actually cost — your improvement list</h2>
+  <p class="lede">The cheapest question in this run cost <b>19k</b>. That is the floor:
+     answered from context already loaded, no searching. Everything below paid more than that,
+     and the multiple is what the agent spent hunting. <b>These are the questions worth making
+     easier to answer</b> — a clearer index row should pull them toward the floor on the next run.</p>
+  <table>
+    <tr><th>Probe</th><th>Tokens</th><th>vs floor</th><th>Time</th></tr>
+    <tr>
+      <td class="mono">python-launcher</td>
+      <td class="n">133k</td>
+      <td class="n bad">6.9×</td>
+      <td class="n">32.0s</td>
+    </tr><tr>
+      <td class="mono">node-launcher</td>
+      <td class="n">68k</td>
+      <td class="n ">3.5×</td>
+      <td class="n">21.9s</td>
+    </tr><tr>
+      <td class="mono">cursor-rules-retired</td>
+      <td class="n">67k</td>
+      <td class="n ">3.5×</td>
+      <td class="n">23.2s</td>
+    </tr><tr>
+      <td class="mono">ignore-file</td>
+      <td class="n">64k</td>
+      <td class="n ">3.3×</td>
+      <td class="n">21.7s</td>
+    </tr><tr>
+      <td class="mono">react-api-layer</td>
+      <td class="n">61k</td>
+      <td class="n ">3.2×</td>
+      <td class="n">17.0s</td>
+    </tr><tr>
+      <td class="mono">session-bump</td>
+      <td class="n">40k</td>
+      <td class="n ">2.1×</td>
+      <td class="n">13.5s</td>
+    </tr><tr>
+      <td class="mono">html-delivery-folder</td>
+      <td class="n">40k</td>
+      <td class="n ">2.1×</td>
+      <td class="n">13.6s</td>
+    </tr><tr>
+      <td class="mono">html-delivery-port</td>
+      <td class="n">40k</td>
+      <td class="n ">2.1×</td>
+      <td class="n">13.3s</td>
+    </tr>
+  </table>
+
+    <h2>Every probe in the latest run</h2>
+    <table>
+    <tr><th>Probe</th><th>Tier</th><th>Result</th><th>Tokens</th><th>Time</th></tr>
+    <tr>
+      <td class="mono">file-size-cap</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">19k</td>
+      <td class="n">10.3s</td>
+    </tr><tr>
+      <td class="mono">modal-backdrop</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">39k</td>
+      <td class="n">15.3s</td>
+    </tr><tr>
+      <td class="mono">frozen-app</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">19k</td>
+      <td class="n">10.1s</td>
+    </tr><tr>
+      <td class="mono">entry-file-role</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">39k</td>
+      <td class="n">16.6s</td>
+    </tr><tr>
+      <td class="mono">powershell-chaining</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">20k</td>
+      <td class="n">15.2s</td>
+    </tr><tr>
+      <td class="mono">ephemeral-feedback</td>
+      <td class="muted2">always-on</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">16.5s</td>
+    </tr><tr>
+      <td class="mono">html-delivery-port</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">13.3s</td>
+    </tr><tr>
+      <td class="mono">html-delivery-folder</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">13.6s</td>
+    </tr><tr>
+      <td class="mono">python-launcher</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">133k</td>
+      <td class="n">32.0s</td>
+    </tr><tr>
+      <td class="mono">node-launcher</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">68k</td>
+      <td class="n">21.9s</td>
+    </tr><tr>
+      <td class="mono">guildrun-launcher</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">14.5s</td>
+    </tr><tr>
+      <td class="mono">student-pipeline</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">39k</td>
+      <td class="n">13.0s</td>
+    </tr><tr>
+      <td class="mono">git-multi-repo</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">19k</td>
+      <td class="n">9.2s</td>
+    </tr><tr>
+      <td class="mono">sister-repos</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">19k</td>
+      <td class="n">10.1s</td>
+    </tr><tr>
+      <td class="mono">capture-skill</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">14.7s</td>
+    </tr><tr>
+      <td class="mono">session-bump</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">40k</td>
+      <td class="n">13.5s</td>
+    </tr><tr>
+      <td class="mono">cursor-rules-retired</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">67k</td>
+      <td class="n">23.2s</td>
+    </tr><tr>
+      <td class="mono">ignore-file</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">64k</td>
+      <td class="n">21.7s</td>
+    </tr><tr>
+      <td class="mono">react-api-layer</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">61k</td>
+      <td class="n">17.0s</td>
+    </tr><tr>
+      <td class="mono">recipes-index</td>
+      <td class="muted2">routed</td>
+      <td><span class="pill ok">PASS</span></td>
+      <td class="n">19k</td>
+      <td class="n">10.9s</td>
+    </tr>
+  </table>
+
+<h2>How to use this</h2>
+<div class="panel accent">
+  <h3>1 — Take a baseline before touching anything</h3>
+  <p class="cmd">node scripts/run-probes.js --label "baseline"</p>
+  <h3>2 — Change exactly one thing</h3>
+  <p>Reword <code>INDEX.md</code>, split a doc, shorten <code>AGENTS.md</code>. One change, so the
+     delta has one cause.</p>
+  <h3>3 — Re-run with a name that says what you changed</h3>
+  <p class="cmd">node scripts/run-probes.js --label "index-rewrite"</p>
+  <h3>4 — Compare a model, if you want that answer too</h3>
+  <p class="cmd">node scripts/run-probes.js --label "opus" --model claude-opus-5-thinking-high</p>
+  <p>Same questions, different model — the only fair way to see whether the expensive one earns it.</p>
+</div>
+
+<div class="panel amber">
+  <h3>Rules that keep this honest</h3>
+  <p><b>Never edit an existing question.</b> Comparability is the whole point — a reworded question
+     silently invalidates every earlier run. Append new ones instead.</p>
+  <p><b>Only compare runs on the same model.</b> A model change and an index change in the same
+     delta cannot be told apart.</p>
+  <p><b>Grading is keyword matching</b>, so it is approximate — it can mark a good answer wrong if
+     it phrased things differently. Open the run JSON and read the answer before believing a
+     surprising FAIL.</p>
+</div>
+
+<a class="back" href="index.html">← All pages</a>
+<footer>Generated by <code>scripts/probe-report.js</code> ·
+  2026-09-09 03:37</footer>
+
+</div>
+</body>
+</html>

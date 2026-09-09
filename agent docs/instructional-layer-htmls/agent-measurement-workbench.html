@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agent measurement workbench — what exists and what to try next</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--red:#f87171;--purple:#a78bfa;
+        --border:#334155;--radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:18px}
+  .page{max-width:940px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+  header{margin-bottom:1.8rem;padding-bottom:1.4rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.6rem,4.6vw,2.2rem);letter-spacing:-.02em;line-height:1.25}
+  header p{color:var(--muted);margin-top:.7rem;font-size:1rem}
+  .stamp{display:inline-block;margin-top:.9rem;font-family:Consolas,monospace;font-size:.78rem;
+         color:var(--muted);background:var(--panel);border:1px solid var(--border);
+         border-radius:999px;padding:.3rem .8rem}
+
+  h2{font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:2.8rem 0 .5rem;color:var(--accent)}
+  h2.green{color:var(--green)} h2.amber{color:var(--amber)} h2.purple{color:var(--purple)}
+  .lede{color:var(--muted);font-size:.96rem;margin-bottom:1.1rem}
+  .lede b{color:var(--text)}
+
+  a.card{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--border);
+         border-left:5px solid var(--accent);border-radius:var(--radius);
+         padding:1.1rem 1.25rem;margin-bottom:.8rem;min-height:78px;color:inherit}
+  a.card:hover,a.card:focus{background:var(--panel-alt);border-color:var(--accent);outline:none}
+  a.card .t{font-size:1.1rem;font-weight:700;color:var(--text)}
+  a.card .d{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+  a.card.green{border-left-color:var(--green)}
+  a.card.amber{border-left-color:var(--amber)}
+
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+         padding:1.2rem 1.3rem;margin-bottom:.9rem}
+  .panel.green{border-left:5px solid var(--green)}
+  .panel.amber{border-left:5px solid var(--amber)}
+  .panel.red{border-left:5px solid var(--red)}
+  .panel.purple{border-left:5px solid var(--purple)}
+  .panel h3{font-size:1.06rem;margin-bottom:.5rem}
+  .panel p{font-size:.94rem;color:var(--muted);margin-bottom:.5rem}
+  .panel p:last-child{margin-bottom:0}
+  .panel p b{color:var(--text)}
+
+  .cmd{font-family:Consolas,monospace;background:#0c1118;border:1px solid var(--border);
+       border-radius:8px;padding:.65rem .85rem;color:var(--green);font-size:.85rem;
+       overflow-x:auto;white-space:nowrap;margin:.5rem 0}
+
+  .exp{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+       padding:1.15rem 1.3rem;margin-bottom:.85rem;border-left:5px solid var(--purple)}
+  .exp .rank{display:inline-block;background:var(--purple);color:var(--bg);font-weight:800;
+             border-radius:999px;width:1.7rem;height:1.7rem;text-align:center;line-height:1.7rem;
+             font-size:.85rem;margin-right:.5rem}
+  .exp h3{display:inline;font-size:1.06rem}
+  .exp .why{font-size:.92rem;color:var(--muted);margin:.6rem 0 .2rem}
+  .exp .why b{color:var(--text)}
+  .exp .watch{font-size:.88rem;color:var(--amber);margin-top:.5rem}
+
+  table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--panel);
+        border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:.9rem}
+  th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border)}
+  th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+     font-weight:700;background:var(--panel-alt)}
+  tr:last-child td{border-bottom:none}
+  td.n{font-family:Consolas,monospace;color:var(--accent);white-space:nowrap}
+  td.mono{font-family:Consolas,monospace;color:var(--muted)}
+  .bad{color:var(--red)} .good{color:var(--green)}
+
+  code{background:var(--panel-alt);color:var(--accent);padding:.08rem .34rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  a.back{display:block;text-align:center;margin-top:2.5rem;padding:1rem;background:var(--panel);
+         border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);
+         text-decoration:none;font-weight:600;min-height:56px}
+  a.back:hover,a.back:focus{background:var(--panel-alt);outline:none}
+  footer{margin-top:1.5rem;color:var(--muted);font-size:.82rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Agent measurement workbench</h1>
+  <p>Everything built on 2026-09-08 for measuring whether your context engineering actually works,
+     plus the experiments left to run. <b>Start here when you come back to this.</b></p>
+  <span class="stamp">Baseline set 2026-09-08 · 20/20 correct · 867k tokens</span>
+</header>
+
+
+<!-- ===== THE THREE PAGES ===== -->
+<h2>The three pages</h2>
+<p class="lede">All served on <code>127.0.0.1:8765</code>. If the server isn't up, run
+   <code>node scripts/serve-programs-docs.js</code>.</p>
+
+<a class="card green" href="../probe-baseline-log.html">
+  <div class="t">Probe baseline — the controlled test</div>
+  <div class="d">20 fixed questions, fresh read-only session each. The only thing here that can prove
+    a change helped. Shows run-over-run deltas and the navigation-cost list.</div>
+</a>
+
+<a class="card green" href="../token-usage-log.html">
+  <div class="t">Token usage — where they actually went</div>
+  <div class="d">Real billed tokens from your Claude Code history and Cursor's local database.
+    What costs a lot, and how badly long sessions scale.</div>
+</a>
+
+<a class="card" href="measuring-agent-efficiency.html">
+  <div class="t">Why the old tracking was garbage</div>
+  <div class="d">The plain-language explanation of what went wrong with the original metrics and
+    why real work can never be a baseline. Read this if the rest stops making sense.</div>
+</a>
+
+
+<!-- ===== THE COMMANDS ===== -->
+<h2 class="green">The commands</h2>
+<p class="lede">These are the whole interface. Nothing here opens a window or needs a browser.</p>
+
+<div class="panel green">
+  <h3>Run the probe set</h3>
+  <p>Label it with <b>what you changed</b> — that label is how you'll read the delta later.</p>
+  <div class="cmd">node scripts/run-probes.js --label "what-i-changed"</div>
+  <p>Takes about 5 minutes and ~870k tokens. Read-only — it cannot edit anything.</p>
+
+  <h3 style="margin-top:1rem">Rebuild the probe report</h3>
+  <div class="cmd">node scripts/probe-report.js</div>
+
+  <h3 style="margin-top:1rem">Rebuild the token report</h3>
+  <div class="cmd">node scripts/token-report.js</div>
+  <p>Add <code>--cursor</code> to rescan Cursor's database — a few minutes, cached afterward.</p>
+
+  <h3 style="margin-top:1rem">Test a different model on the same questions</h3>
+  <div class="cmd">node scripts/run-probes.js --label "opus" --model claude-opus-5-thinking-high</div>
+
+  <h3 style="margin-top:1rem">Try just a couple of probes</h3>
+  <div class="cmd">node scripts/run-probes.js --label "quick" --only python-launcher,node-launcher</div>
+</div>
+
+
+<!-- ===== EXPERIMENT QUEUE ===== -->
+<h2 class="purple">The experiment queue — ranked</h2>
+<p class="lede">
+  Each of these changes <b>one thing</b>, then re-runs the same 20 questions. One change per run,
+  or you won't know which one caused the difference.
+</p>
+
+<div class="exp">
+  <span class="rank">1</span><h3>Consolidate the Python launcher docs</h3>
+  <p class="why">Your worst lookup by a wide margin: <b>133k tokens, 6.9× the floor.</b> The answer is
+     scattered across the AGENTS.md launcher table, an exemplar <code>.vbs</code>, and two separate
+     docs. Put the whole answer in one place and point everything else at it.</p>
+  <div class="cmd">node scripts/run-probes.js --label "launcher-docs-consolidated"</div>
+  <p class="watch">Watch: does <code>python-launcher</code> drop from 133k toward the 19k floor?</p>
+</div>
+
+<div class="exp">
+  <span class="rank">2</span><h3>Is the expensive model worth it?</h3>
+  <p class="why">The question you actually wanted answered. Same 20 questions, different model, so
+     difficulty is held constant. <b>This is the only fair version of that comparison</b> — and it
+     costs 5 minutes instead of the big experiment I talked you out of.</p>
+  <div class="cmd">node scripts/run-probes.js --label "opus" --model claude-opus-5-thinking-high</div>
+  <p class="watch">Watch: does correctness rise at all? If it stays 20/20, the cheap model is
+     already sufficient for retrieval and you should keep using auto.</p>
+</div>
+
+<div class="exp">
+  <span class="rank">3</span><h3>Add harder questions</h3>
+  <p class="why">Everything passed. That's good news about your docs, but it means <b>correctness
+     has nowhere to move</b> — right now only token cost can improve. Add 8–10 questions that
+     span two or three docs, or that have a subtle right answer.</p>
+  <p class="why"><b>Rule:</b> append new ones with new ids. Never reword an existing question —
+     that silently invalidates every earlier run.</p>
+  <p class="watch">Edit: <code>agent docs/probes/retrieval-probes.json</code></p>
+</div>
+
+<div class="exp">
+  <span class="rank">4</span><h3>Try shortening AGENTS.md</h3>
+  <p class="why">The always-on tier averages <b>29.5k</b> per question. If a shorter AGENTS.md keeps
+     6/6 correct at lower cost, that's a free win. If correctness drops, you've found the floor and
+     should put the text back — which is worth knowing either way.</p>
+  <div class="cmd">node scripts/run-probes.js --label "agents-md-trimmed"</div>
+  <p class="watch">Watch the <b>always-on</b> tier specifically. The routed tier shouldn't move much.</p>
+</div>
+
+<div class="exp">
+  <span class="rank">5</span><h3>Restructure the four-branch table in INDEX.md</h3>
+  <p class="why">14 of the 20 questions are routing questions averaging <b>49.3k</b> each — 1.7×
+     the always-on tier. That gap is the price of navigation, and INDEX.md is the thing standing
+     in the middle of it.</p>
+  <div class="cmd">node scripts/run-probes.js --label "index-restructured"</div>
+  <p class="watch">Watch the routed tier average. Anything under 45k is a real improvement.</p>
+</div>
+
+
+<!-- ===== WHAT WE ALREADY KNOW ===== -->
+<h2 class="amber">Settled facts — don't re-derive these</h2>
+<p class="lede">Measured 2026-09-08 from 36 Claude Code sessions and Cursor's local database.</p>
+
+<table>
+  <tr><th>Finding</th><th>Number</th><th>What it means</th></tr>
+  <tr>
+    <td><b>Reading vs writing</b></td>
+    <td class="n">34% vs 8.5%</td>
+    <td>Reading files costs 4.1× what editing them costs. Time on screen tracks output tokens, which are a thin slice of the bill.</td>
+  </tr>
+  <tr>
+    <td><b>Long-session penalty</b></td>
+    <td class="n bad">8.1×</td>
+    <td>A turn in a 600+ turn session costs 8× a turn in a short one. Superlinear — every turn re-reads everything before it.</td>
+  </tr>
+  <tr>
+    <td><b>Always-on doc cost</b></td>
+    <td class="n">1.2%</td>
+    <td>AGENTS.md + CLAUDE.md + MEMORY.md are 1.2% of billed tokens. Trimming them is a <b>quality</b> lever, not a cost one.</td>
+  </tr>
+  <tr>
+    <td><b>Indexing still matters</b></td>
+    <td class="n">via Read</td>
+    <td>Bad routing causes extra file reads, and Read is the largest cost line. The index is a cost lever — through what it prevents, not its own size.</td>
+  </tr>
+  <tr>
+    <td><b>Cursor model attribution</b></td>
+    <td class="n bad">98% blank</td>
+    <td>Cursor records tokens locally but omits <code>modelName</code> on 98% of requests. No passive answer to the model question exists — it needs the probe set.</td>
+  </tr>
+  <tr>
+    <td><b>Navigation premium</b></td>
+    <td class="n">1.7×</td>
+    <td>Routed questions cost 49.3k vs 29.5k for always-on. That gap is what your index is fighting.</td>
+  </tr>
+</table>
+
+<div class="panel red">
+  <h3>The single biggest lever, if you only do one thing</h3>
+  <p><b>Start new chats more often.</b> Not because the model forgets — it doesn't anymore, which is
+     exactly the problem. The symptom that used to tell you to start fresh is gone, but the cost
+     didn't go away. It just got quiet.</p>
+  <p>A new chat at a natural task boundary saves more than any doc change on this page.</p>
+</div>
+
+
+<!-- ===== RULES ===== -->
+<h2>Rules that keep the data honest</h2>
+<div class="panel amber">
+  <p><b>Never edit an existing probe question.</b> Comparability is the entire point. Append new ones
+     with new ids instead.</p>
+  <p><b>One change per run.</b> Two changes in one delta can't be told apart.</p>
+  <p><b>Only compare runs on the same model.</b> Otherwise you're measuring the model, not the docs.</p>
+  <p><b>Grading is keyword matching</b>, so it's approximate. Before believing a surprising FAIL,
+     open the run JSON in <code>agent docs/probes/runs/</code> and read what the agent actually said.</p>
+</div>
+
+
+<!-- ===== WHERE THINGS LIVE ===== -->
+<h2>Where things live</h2>
+<table>
+  <tr><th>File</th><th>What it is</th></tr>
+  <tr><td class="mono">agent docs/probes/retrieval-probes.json</td><td>The 20 questions and their expected answers</td></tr>
+  <tr><td class="mono">agent docs/probes/runs/*.json</td><td>One file per run — full answers, tokens, timings</td></tr>
+  <tr><td class="mono">scripts/run-probes.js</td><td>The runner</td></tr>
+  <tr><td class="mono">scripts/probe-report.js</td><td>Builds the probe report page</td></tr>
+  <tr><td class="mono">scripts/token-report.js</td><td>Builds the token report page</td></tr>
+  <tr><td class="mono">scripts/cursor-token-scan.py</td><td>Reads Cursor's local token counts</td></tr>
+  <tr><td class="mono">agent docs/SESSION_TRACKING.md</td><td>Bump procedure — now records real token cost per task</td></tr>
+</table>
+
+<a class="back" href="../index.html">← All pages</a>
+<footer>Built 2026-09-08 · Baseline run: <code>agent docs/probes/runs/</code></footer>
+
+</div>
+</body>
+</html>

@@ -14,8 +14,8 @@ const {
 const {
   sliceTimeline,
   observeWindow,
-  reconcile,
 } = require('./session-tracking-stats');
+const { readTranscriptUsage } = require('./session-token-cost');
 
 function trackingDataPath(root) {
   return path.join(root, 'agent docs', 'session-tracking.jsonl');
@@ -66,7 +66,7 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
 
   const windowEvents = sliceTimeline(running.toolTimeline, prevAt, timestamp);
   const observed = observeWindow(windowEvents);
-  const reconciled = reconcile(observed, navigationPath);
+  const cost = readTranscriptUsage(running.transcriptPath, prevAt, timestamp) || {};
 
   return {
     id: timestamp,
@@ -80,7 +80,7 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
     missingNavigationPath: navigationPath.length === 0,
     ...stats,
     ...observed,
-    ...reconciled,
+    ...cost,
     navigationPath,
   };
 }

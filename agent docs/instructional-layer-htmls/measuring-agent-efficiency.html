@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Measuring agent efficiency — what went wrong and what to measure instead</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--red:#f87171;--purple:#a78bfa;
+        --border:#334155;--radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:18px}
+  .page{max-width:940px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+  header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.6rem,4.6vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.25}
+  header p{color:var(--muted);margin-top:.7rem;font-size:1.02rem}
+  .stamp{display:inline-block;margin-top:.9rem;font-family:Consolas,monospace;font-size:.78rem;
+         color:var(--muted);background:var(--panel);border:1px solid var(--border);
+         border-radius:999px;padding:.3rem .8rem}
+
+  h2{font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:3rem 0 .4rem;color:var(--accent)}
+  h2.amber{color:var(--amber)} h2.green{color:var(--green)} h2.red{color:var(--red)}
+  .lede{color:var(--muted);font-size:.98rem;margin-bottom:1.2rem}
+  .lede b{color:var(--text)}
+
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+         padding:1.3rem 1.4rem;margin-bottom:.9rem}
+  .panel.red{border-left:5px solid var(--red)}
+  .panel.green{border-left:5px solid var(--green)}
+  .panel.amber{border-left:5px solid var(--amber)}
+  .panel.accent{border-left:5px solid var(--accent)}
+  .panel h3{font-size:1.1rem;margin-bottom:.5rem}
+  .panel p{font-size:.95rem;color:var(--muted);margin-bottom:.5rem}
+  .panel p:last-child{margin-bottom:0}
+  .panel p b{color:var(--text)}
+
+  .big{font-size:clamp(2rem,6vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+  .big.red{color:var(--red)} .big.green{color:var(--green)} .big.amber{color:var(--amber)}
+  .big.accent{color:var(--accent)}
+  .caption{font-size:.85rem;color:var(--muted);margin-top:.3rem}
+
+  .two{display:grid;grid-template-columns:1fr;gap:.9rem}
+  @media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+
+  .vs{display:grid;grid-template-columns:1fr;gap:0}
+  .vs .claim,.vs .truth{padding:1rem 1.2rem}
+  .vs .claim{background:var(--panel-alt);border-radius:var(--radius) var(--radius) 0 0}
+  .vs .truth{background:var(--panel);border-radius:0 0 var(--radius) var(--radius);
+             border-top:2px dashed var(--border)}
+  .tag{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+       font-weight:700;padding:.18rem .55rem;border-radius:999px;margin-bottom:.45rem}
+  .tag.said{background:#3b2a13;color:var(--amber)}
+  .tag.real{background:#3a1c1c;color:var(--red)}
+  .tag.fix{background:#12332a;color:var(--green)}
+
+  svg{display:block;max-width:100%;height:auto}
+  .figure{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+          padding:1.3rem 1.1rem;margin-bottom:.9rem}
+  .figure .fcap{font-size:.86rem;color:var(--muted);margin-top:.8rem;text-align:center}
+  .figure .fcap b{color:var(--text)}
+
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:.4rem}
+  th,td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  td.n{font-family:Consolas,monospace;color:var(--accent);white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+
+  code{background:var(--panel-alt);color:var(--accent);padding:.08rem .34rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  .quote{border-left:3px solid var(--border);padding-left:1rem;color:var(--muted);
+         font-style:italic;margin:.7rem 0}
+
+  ol.steps{list-style:none;counter-reset:s;margin-top:.5rem}
+  ol.steps li{counter-increment:s;position:relative;padding-left:2.6rem;margin-bottom:.9rem;font-size:.95rem}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:-.1rem;width:1.8rem;height:1.8rem;
+    background:var(--accent);color:var(--bg);border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:.9rem}
+  ol.steps li b{color:var(--text)}
+  ol.steps li{color:var(--muted)}
+
+  a.back{display:block;text-align:center;margin-top:2.5rem;padding:1rem;background:var(--panel);
+         border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);
+         text-decoration:none;font-weight:600;min-height:56px}
+  a.back:hover,a.back:focus{background:var(--panel-alt);outline:none}
+  footer{margin-top:1.5rem;color:var(--muted);font-size:.82rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>What the session tracking was actually measuring — and how to build a real baseline</h1>
+  <p>You asked whether the tracking data is worth keeping. Short answer: one part of it was real,
+     three parts were measuring themselves. Here is the whole thing without the code.</p>
+  <span class="stamp">Audit of 342 task bumps · 67 sessions · Aug 9 – Sep 9, 2026</span>
+</header>
+
+
+<!-- ============ 1. THE BROKEN METERS ============ -->
+<h2 class="red">Part 1 — Three of the four gauges were broken</h2>
+<p class="lede">
+  Not "slightly off." Each one was reporting on something it physically could not see.
+  Here's each gauge, what it claimed, and what it was really doing.
+</p>
+
+<div class="panel red">
+  <div class="vs">
+    <div class="claim">
+      <span class="tag said">The gauge said</span>
+      <h3>"Index-first rate: 0%"</h3>
+      <p>Meaning: the agent <b>never once</b> checked your index before going hunting. Across all 233 tasks.</p>
+    </div>
+    <div class="truth">
+      <span class="tag real">What was really happening</span>
+      <p>The agent reads <code>AGENTS.md</code> on <b>every single turn</b> — but it arrives automatically,
+         loaded into memory before the agent does anything. It never gets "opened" like a file.</p>
+      <p>The gauge only counted files that get <b>opened</b>. So it was watching a door that nobody
+         uses, and reporting the room was empty.</p>
+      <p><b>Meanwhile:</b> <code>agent docs/INDEX.md</code> was the single most-opened document in the
+         entire log — <b>102 visits</b>. Your index is being used constantly. The meter just couldn't see it.</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel red">
+  <div class="vs">
+    <div class="claim">
+      <span class="tag said">The gauge said</span>
+      <h3>"99.2% of searches unexplained"</h3>
+      <p>Meaning: the agent ran 4,813 searches and hid almost all of them from you. Sounds like dishonesty.</p>
+    </div>
+    <div class="truth">
+      <span class="tag real">What was really happening</span>
+      <p>Every logged step has a label saying what kind of thing it was. The gauge only recognised
+         four labels: <code>grep</code>, <code>glob</code>, <code>web</code>, <code>search</code>.</p>
+      <p>Agents invented <b>59 different labels</b> — 21 of them used exactly once. They'd log a search
+         as <code>code</code> or <code>other</code>, because that's what they were searching <i>for</i>.</p>
+      <p>So the gauge wasn't catching lies. It was catching <b>spelling differences</b>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel red">
+  <div class="vs">
+    <div class="claim">
+      <span class="tag said">The gauge said</span>
+      <h3>"Path coverage: 24%"</h3>
+      <p>Meaning: the agent only wrote down a quarter of where it looked. Another honesty alarm.</p>
+    </div>
+    <div class="truth">
+      <span class="tag real">What was really happening</span>
+      <p>It compared <i>steps written down</i> against <i>everything that happened since the last log entry</i>.</p>
+      <p>But you log once per finished deliverable. Half the time that's 17 minutes.
+         Sometimes it's <b>9 hours</b>. One entry covered <b>44 hours</b>.</p>
+      <p>A 5-step summary of a two-hour stretch scores terribly — and it should. The gauge was
+         measuring <b>how long since you last logged</b>, dressed up as an honesty score.</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel green">
+  <span class="tag fix">The one that worked</span>
+  <h3>The index-gap list</h3>
+  <p>When an agent opened one of your docs and it <i>didn't</i> answer the question, that got recorded.
+     That list is real, and it has already paid for itself — it's why rows for Guildrun and the
+     student pipeline got added to <code>INDEX.md</code>.</p>
+  <p><b>One catch:</b> about <b>41%</b> of the flagged "gaps" weren't gaps. Notes like
+     <i>"no narrower recipe was needed"</i> got filed as failures. But confirming that nothing more
+     specific exists is the index <b>succeeding</b>. I've sharpened that rule in the procedure doc.</p>
+</div>
+
+
+<!-- ============ 2. WHERE THE TOKENS GO ============ -->
+<h2 class="amber">Part 2 — The surprise: where your tokens actually go</h2>
+<p class="lede">
+  This is the part that changes how you should think about all of it. I measured the real,
+  billed token usage sitting in your session transcripts — data that was on your disk the whole
+  time, unused.
+</p>
+
+<div class="figure">
+  <svg viewBox="0 0 880 250" role="img" aria-label="Bar chart showing always-on documents are 1.2 percent of context per turn">
+    <text x="10" y="26" fill="#e8edf4" font-size="19" font-weight="700" font-family="Segoe UI, sans-serif">
+      What gets re-read on every single turn
+    </text>
+    <text x="10" y="50" fill="#94a3b8" font-size="14" font-family="Segoe UI, sans-serif">
+      Average context per assistant turn: 296,000 tokens
+    </text>
+
+    <!-- the full bar -->
+    <rect x="10" y="72" width="860" height="62" rx="8" fill="#243044" stroke="#334155"/>
+    <!-- always-on sliver: 1.2% of 860 = ~10px -->
+    <rect x="10" y="72" width="10" height="62" rx="3" fill="#fbbf24"/>
+
+    <!-- pointer to sliver -->
+    <line x1="15" y1="145" x2="15" y2="176" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="15" y1="176" x2="70" y2="176" stroke="#fbbf24" stroke-width="2"/>
+    <text x="78" y="171" fill="#fbbf24" font-size="14" font-weight="700" font-family="Segoe UI, sans-serif">
+      AGENTS.md + CLAUDE.md + MEMORY.md
+    </text>
+    <text x="78" y="190" fill="#94a3b8" font-size="13" font-family="Segoe UI, sans-serif">
+      3,483 tokens — this is the part you have been tuning
+    </text>
+
+    <text x="430" y="100" fill="#e8edf4" font-size="15" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">
+      Everything else — the conversation so far
+    </text>
+    <text x="430" y="120" fill="#94a3b8" font-size="13" text-anchor="middle" font-family="Segoe UI, sans-serif">
+      every file read, every search result, every reply — all of it, re-billed each turn
+    </text>
+
+    <text x="870" y="222" fill="#f87171" font-size="26" font-weight="800" text-anchor="end" font-family="Segoe UI, sans-serif">
+      98.8%
+    </text>
+    <text x="10" y="222" fill="#fbbf24" font-size="26" font-weight="800" font-family="Segoe UI, sans-serif">
+      1.2%
+    </text>
+  </svg>
+  <p class="fcap"><b>Cutting AGENTS.md in half would save you about 0.6% of your token cost.</b></p>
+</div>
+
+<div class="panel accent">
+  <h3>Why this happens</h3>
+  <p>Every time the agent replies, it re-reads <b>the entire conversation up to that point</b>.
+     Not just your instructions — every file it opened, every search result, every previous answer.</p>
+  <p>So the real formula for what a session costs isn't about how good your index is. It's:</p>
+  <div style="text-align:center;margin:1.2rem 0 .6rem">
+    <span class="big accent">how big the conversation got &nbsp;×&nbsp; how many turns it took</span>
+  </div>
+  <p style="text-align:center">Your instruction docs are a rounding error inside the first number.</p>
+</div>
+
+<div class="two">
+  <div class="panel">
+    <div class="big red">3.8B</div>
+    <p class="caption">Tokens billed across your last 36 sessions</p>
+  </div>
+  <div class="panel">
+    <div class="big amber">296k</div>
+    <p class="caption">Average context re-read on every turn</p>
+  </div>
+</div>
+
+<div class="panel amber">
+  <h3>What this does <i>not</i> mean</h3>
+  <p>It does <b>not</b> mean AGENTS.md doesn't matter. A shorter, sharper instruction doc probably
+     gets <b>followed</b> better — that's a quality argument, and a good one.</p>
+  <p>It only means: <b>tightening your docs is not a cost lever.</b> You'd been treating it as one.
+     The cost levers are how long sessions run and how much the agent reads along the way.</p>
+</div>
+
+
+<!-- ============ 3. THE BASELINE PROBLEM ============ -->
+<h2>Part 3 — Why this data can never be a baseline</h2>
+<p class="lede">
+  Even with perfect gauges, the old approach couldn't answer <b>"did my change help?"</b>
+  Here's the reason, and it's not a bug you can patch.
+</p>
+
+<div class="figure">
+  <svg viewBox="0 0 880 300" role="img" aria-label="Diagram showing tasks of wildly different difficulty all counted as one task each">
+    <text x="10" y="24" fill="#e8edf4" font-size="18" font-weight="700" font-family="Segoe UI, sans-serif">
+      Every one of these counted as &#8220;1 task&#8221;
+    </text>
+
+    <!-- task 1 -->
+    <rect x="10" y="44" width="120" height="40" rx="7" fill="#243044" stroke="#334155"/>
+    <text x="20" y="69" fill="#94a3b8" font-size="13" font-family="Segoe UI, sans-serif">Fixed a typo</text>
+    <text x="145" y="69" fill="#34d399" font-size="13" font-family="Consolas, monospace">2 searches</text>
+
+    <rect x="10" y="96" width="330" height="40" rx="7" fill="#243044" stroke="#334155"/>
+    <text x="20" y="121" fill="#94a3b8" font-size="13" font-family="Segoe UI, sans-serif">Moved a header icon</text>
+    <text x="355" y="121" fill="#34d399" font-size="13" font-family="Consolas, monospace">12 searches</text>
+
+    <rect x="10" y="148" width="600" height="40" rx="7" fill="#243044" stroke="#334155"/>
+    <text x="20" y="173" fill="#94a3b8" font-size="13" font-family="Segoe UI, sans-serif">Rebuilt seating-chart persistence</text>
+    <text x="625" y="173" fill="#fbbf24" font-size="13" font-family="Consolas, monospace">68 searches</text>
+
+    <rect x="10" y="200" width="820" height="40" rx="7" fill="#243044" stroke="#334155"/>
+    <text x="20" y="225" fill="#94a3b8" font-size="13" font-family="Segoe UI, sans-serif">Chased a console-window bug across two apps</text>
+    <text x="845" y="225" fill="#f87171" font-size="13" font-family="Consolas, monospace" text-anchor="end">180</text>
+
+    <text x="10" y="274" fill="#f87171" font-size="15" font-weight="700" font-family="Segoe UI, sans-serif">
+      Averaging these together tells you nothing about your index.
+    </text>
+    <text x="10" y="293" fill="#94a3b8" font-size="13.5" font-family="Segoe UI, sans-serif">
+      The difference between tasks is 90× bigger than any change you could make to a doc.
+    </text>
+  </svg>
+</div>
+
+<div class="panel red">
+  <h3>The trap this creates</h3>
+  <p>Here's a real number from your log that shows how badly this misleads:</p>
+  <table>
+    <tr><th>When the agent…</th><th>Average searches</th></tr>
+    <tr><td>Started at your index</td><td class="n">25.4</td></tr>
+    <tr><td>Skipped the index</td><td class="n">17.4</td></tr>
+  </table>
+  <p style="margin-top:.8rem">Read literally, that says <b>your index makes things worse.</b> It doesn't.
+     The agent reaches for the index <i>exactly when the task is unfamiliar</i>. Hard tasks send you
+     to the index <b>and</b> cost more searches — the index didn't cause the cost, the difficulty did.</p>
+  <p><b>You cannot separate those two things by watching real work.</b> No amount of extra logging fixes it.</p>
+</div>
+
+
+<!-- ============ 4. THE FIX ============ -->
+<h2 class="green">Part 4 — How you get a real baseline</h2>
+<p class="lede">
+  You fix it by <b>holding the task still.</b> If the question never changes, then any difference
+  between runs has to come from what you changed.
+</p>
+
+<div class="figure">
+  <svg viewBox="0 0 880 290" role="img" aria-label="Diagram of running the same fixed questions before and after a change">
+    <!-- track A -->
+    <text x="10" y="26" fill="#38bdf8" font-size="15" font-weight="700" font-family="Segoe UI, sans-serif">RUN 1 — today, before you change anything</text>
+    <rect x="10" y="40" width="860" height="54" rx="10" fill="#1a2332" stroke="#334155"/>
+    <circle cx="46" cy="67" r="15" fill="#243044" stroke="#38bdf8"/>
+    <text x="46" y="72" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q1</text>
+    <circle cx="96" cy="67" r="15" fill="#243044" stroke="#38bdf8"/>
+    <text x="96" y="72" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q2</text>
+    <circle cx="146" cy="67" r="15" fill="#243044" stroke="#38bdf8"/>
+    <text x="146" y="72" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q3</text>
+    <text x="185" y="72" fill="#94a3b8" font-size="14" font-family="Segoe UI, sans-serif">… 20 fixed questions, each in a brand-new session</text>
+    <text x="860" y="72" fill="#e8edf4" font-size="17" font-weight="800" text-anchor="end" font-family="Consolas, monospace">BASELINE</text>
+
+    <!-- change -->
+    <rect x="10" y="112" width="860" height="48" rx="10" fill="#2a2313" stroke="#fbbf24"/>
+    <text x="440" y="142" fill="#fbbf24" font-size="15" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">
+      Now change ONE thing — reword the index, split a doc, shorten AGENTS.md
+    </text>
+
+    <!-- track B -->
+    <text x="10" y="196" fill="#34d399" font-size="15" font-weight="700" font-family="Segoe UI, sans-serif">RUN 2 — same 20 questions, nothing else different</text>
+    <rect x="10" y="210" width="860" height="54" rx="10" fill="#1a2332" stroke="#334155"/>
+    <circle cx="46" cy="237" r="15" fill="#243044" stroke="#34d399"/>
+    <text x="46" y="242" fill="#34d399" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q1</text>
+    <circle cx="96" cy="237" r="15" fill="#243044" stroke="#34d399"/>
+    <text x="96" y="242" fill="#34d399" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q2</text>
+    <circle cx="146" cy="237" r="15" fill="#243044" stroke="#34d399"/>
+    <text x="146" y="242" fill="#34d399" font-size="13" font-weight="700" text-anchor="middle" font-family="Segoe UI, sans-serif">Q3</text>
+    <text x="185" y="242" fill="#94a3b8" font-size="14" font-family="Segoe UI, sans-serif">… identical questions, so difficulty is held constant</text>
+    <text x="860" y="242" fill="#34d399" font-size="17" font-weight="800" text-anchor="end" font-family="Consolas, monospace">THE DELTA</text>
+  </svg>
+  <p class="fcap"><b>The difference between the two runs is caused by your change. Nothing else moved.</b></p>
+</div>
+
+<div class="panel green">
+  <h3>What a "question" looks like</h3>
+  <p>Plain retrieval questions about your own tree, where you already know the right answer:</p>
+  <div class="quote">"Which file owns the rule for launching a Python app without a visible console?"</div>
+  <div class="quote">"Where does Guildrun Stats store saved runs?"</div>
+  <div class="quote">"What's the rule about modals and clicking outside them?"</div>
+  <p>Each one runs in a <b>fresh session</b> — no leftover conversation — and the agent is only allowed
+     to look, not edit. Three things get scored:</p>
+  <ol class="steps">
+    <li><b>Did it get the right answer?</b> — the thing that actually matters</li>
+    <li><b>How many tokens did it burn getting there?</b> — the real cost</li>
+    <li><b>How many looks did it take?</b> — how directly your docs pointed at it</li>
+  </ol>
+</div>
+
+<div class="panel accent">
+  <h3>Why this is cheap</h3>
+  <p>Fresh sessions start nearly empty, so each question costs very little. A full 20-question sweep
+     runs roughly the cost of <b>one mid-sized task</b> — and unlike a real task, you can run it
+     again next month and the comparison actually means something.</p>
+</div>
+
+<div class="panel">
+  <h3>Two things worth watching on real work too</h3>
+  <table>
+    <tr><th>Signal</th><th>Why it's honest</th></tr>
+    <tr>
+      <td><b>Redirect count</b><br><span style="color:var(--muted);font-size:.88rem">How often you have to say "no, wrong file"</span></td>
+      <td>It's the most direct routing-failure signal there is, and it barely depends on task difficulty. Nothing captures it today.</td>
+    </tr>
+    <tr>
+      <td><b>Context growth curve</b><br><span style="color:var(--muted);font-size:.88rem">Tokens per turn, plotted against how far into a session you are</span></td>
+      <td>Tells you empirically when a session has gotten expensive enough that clearing it is worth it.</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ============ 5. ALREADY DONE ============ -->
+<h2>Part 5 — What already changed today</h2>
+<div class="panel green">
+  <table>
+    <tr><th>Was</th><th>Now</th></tr>
+    <tr><td>Index-first rate</td><td>Removed — it was blind</td></tr>
+    <tr><td>Unexplained searches</td><td>Removed — it measured spelling</td></tr>
+    <tr><td>Path coverage</td><td>Removed — it measured elapsed time</td></tr>
+    <tr><td>—</td><td><b>Tokens per task</b> — real billed cost, pulled from the session transcript</td></tr>
+    <tr><td>—</td><td><b>Context per turn</b> — how heavy the session has gotten</td></tr>
+    <tr><td>Index-gap list</td><td>Kept, with a sharper rule for what counts as a gap</td></tr>
+  </table>
+  <p style="margin-top:.9rem">Verified working — the entry logged while writing this recorded
+     <b>7.4M tokens over 65 turns</b>, about <b>114k per turn</b>.</p>
+</div>
+
+
+<!-- ============ 6. THE DECISION ============ -->
+<h2 class="amber">Part 6 — The one thing to decide</h2>
+<p class="lede">
+  The tracking now measures real cost honestly. The open question is whether to build the
+  fixed-question set that turns it into something you can experiment against.
+</p>
+
+<div class="panel accent">
+  <h3>Option A — Retrieval only <span style="color:var(--green);font-size:.8rem">← my recommendation</span></h3>
+  <p>15–20 "where does this live / what's the rule for that" questions. Cleanest possible signal:
+     it isolates your indexing from everything else, and it's cheap to re-run.</p>
+  <p><b>Limit:</b> it tells you whether the agent can <i>find</i> your rules — not whether it then
+     <i>follows</i> them.</p>
+</div>
+
+<div class="panel">
+  <h3>Option B — Retrieval plus a few small build tasks</h3>
+  <p>Adds 3–4 fixed little jobs ("add a button to X the house way") scored on whether your rules
+     were actually obeyed. Catches more, but the results are noisier and it costs more, because
+     building the same thing twice never goes identically.</p>
+</div>
+
+<div class="panel">
+  <h3>Option C — No probe set; just watch real work more carefully</h3>
+  <p>Add redirect-count and context-growth to real sessions and wait. Cheapest to build. But
+     because of Part 3, you'd need many months before any trend is readable — and it still
+     can't isolate a single doc change.</p>
+</div>
+
+<a class="back" href="../index.html">← All pages</a>
+<footer>Built 2026-09-08 · Audit source: <code>agent docs/session-tracking.jsonl</code> (342 entries)
+  and 36 Claude Code session transcripts</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Token usage — where they actually went</title>
+<style>
+  :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--red:#f87171;--border:#334155;
+        --radius:14px;--font:"Segoe UI",system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:18px}
+  .page{max-width:940px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  header{margin-bottom:1.6rem;padding-bottom:1.4rem;border-bottom:2px solid var(--border)}
+  header h1{font-size:clamp(1.6rem,4.6vw,2.2rem);letter-spacing:-.02em;line-height:1.25}
+  header p{color:var(--muted);margin-top:.6rem;font-size:1rem}
+  h2{font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+     margin:2.6rem 0 .4rem;color:var(--accent)}
+  h2.amber{color:var(--amber)} h2.red{color:var(--red)} h2.green{color:var(--green)}
+  .lede{color:var(--muted);font-size:.96rem;margin-bottom:1rem}
+  .lede b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+         padding:1.2rem 1.3rem;margin-bottom:.9rem}
+  .panel.red{border-left:5px solid var(--red)}
+  .panel.green{border-left:5px solid var(--green)}
+  .panel.amber{border-left:5px solid var(--amber)}
+  .panel h3{font-size:1.06rem;margin-bottom:.45rem}
+  .panel p{font-size:.94rem;color:var(--muted)}
+  .panel p b{color:var(--text)}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-bottom:.9rem}
+  .tile{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem}
+  .tile .v{font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+  .tile .k{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+  .v.red{color:var(--red)} .v.amber{color:var(--amber)} .v.accent{color:var(--accent)} .v.green{color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--panel);
+        border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:.9rem}
+  th,td{text-align:left;padding:.62rem .8rem;border-bottom:1px solid var(--border)}
+  th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+     font-weight:700;background:var(--panel-alt)}
+  tr:last-child td{border-bottom:none}
+  td.n{font-family:Consolas,monospace;color:var(--accent);white-space:nowrap}
+  td.mono{font-family:Consolas,monospace;color:var(--muted)}
+  .barcell{width:34%;min-width:130px}
+  .bar{background:var(--panel-alt);border-radius:999px;height:12px;overflow:hidden;display:inline-block;
+       width:calc(100% - 52px);vertical-align:middle}
+  .fill{height:100%;border-radius:999px}
+  .pctlab{font-family:Consolas,monospace;font-size:.78rem;color:var(--muted);margin-left:.5rem}
+  code{background:var(--panel-alt);color:var(--accent);padding:.08rem .34rem;border-radius:4px;
+       font-size:.85em;font-family:Consolas,monospace}
+  .muted{color:var(--muted);font-size:.92rem;margin-bottom:.7rem}
+  a.back{display:block;text-align:center;margin-top:2.4rem;padding:1rem;background:var(--panel);
+         border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);
+         text-decoration:none;font-weight:600;min-height:56px}
+  a.back:hover,a.back:focus{background:var(--panel-alt);outline:none}
+  footer{margin-top:1.4rem;color:var(--muted);font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>Where the tokens actually went</h1>
+  <p>Real billed usage from 36 Claude Code sessions. Not estimates — the numbers
+     the transcripts recorded at the time.</p>
+</header>
+
+<div class="tiles">
+  <div class="tile"><div class="v red">4.0B</div><div class="k">Total billed</div></div>
+  <div class="tile"><div class="v amber">304k</div><div class="k">Average per turn</div></div>
+  <div class="tile"><div class="v accent">12,987</div><div class="k">Assistant turns</div></div>
+  <div class="tile"><div class="v green">36</div><div class="k">Sessions</div></div>
+</div>
+
+<h2 class="red">1 — Reading costs far more than writing</h2>
+<p class="lede">
+  Every tool result stays in the conversation and is <b>re-billed on every later turn</b>.
+  So the true price of a tool call is what it added, multiplied by how many turns came after it.
+  That is the last column.
+</p>
+<table>
+    <tr><th>Tool</th><th>Calls</th><th>Avg added</th><th>Real cost once re-billed</th><th>Share</th></tr>
+    <tr>
+      <td><b>Read</b></td>
+      <td class="n">1,177</td>
+      <td class="n">3k</td>
+      <td class="n">1.2B</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:34.4%;background:#f87171"></div></div><span class="pctlab">34.4%</span></td>
+    </tr><tr>
+      <td><b>Bash</b></td>
+      <td class="n">2,339</td>
+      <td class="n">1k</td>
+      <td class="n">663.5M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:19.3%;background:#fb923c"></div></div><span class="pctlab">19.3%</span></td>
+    </tr><tr>
+      <td><b>(no tool — plain reply)</b></td>
+      <td class="n">358</td>
+      <td class="n">4k</td>
+      <td class="n">409.0M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:11.9%;background:#fbbf24"></div></div><span class="pctlab">11.9%</span></td>
+    </tr><tr>
+      <td><b>Grep</b></td>
+      <td class="n">635</td>
+      <td class="n">1k</td>
+      <td class="n">292.4M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:8.5%;background:#a3e635"></div></div><span class="pctlab">8.5%</span></td>
+    </tr><tr>
+      <td><b>Edit</b></td>
+      <td class="n">1,247</td>
+      <td class="n">903</td>
+      <td class="n">292.0M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:8.5%;background:#34d399"></div></div><span class="pctlab">8.5%</span></td>
+    </tr><tr>
+      <td><b>Write</b></td>
+      <td class="n">294</td>
+      <td class="n">3k</td>
+      <td class="n">289.5M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:8.4%;background:#38bdf8"></div></div><span class="pctlab">8.4%</span></td>
+    </tr><tr>
+      <td><b>Agent</b></td>
+      <td class="n">42</td>
+      <td class="n">8k</td>
+      <td class="n">110.9M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:3.2%;background:#818cf8"></div></div><span class="pctlab">3.2%</span></td>
+    </tr><tr>
+      <td><b>PowerShell</b></td>
+      <td class="n">171</td>
+      <td class="n">1k</td>
+      <td class="n">45.7M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:1.3%;background:#a78bfa"></div></div><span class="pctlab">1.3%</span></td>
+    </tr><tr>
+      <td><b>ExitPlanMode</b></td>
+      <td class="n">22</td>
+      <td class="n">6k</td>
+      <td class="n">42.5M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:1.2%;background:#f472b6"></div></div><span class="pctlab">1.2%</span></td>
+    </tr><tr>
+      <td><b>AskUserQuestion</b></td>
+      <td class="n">45</td>
+      <td class="n">3k</td>
+      <td class="n">42.0M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:1.2%;background:#94a3b8"></div></div><span class="pctlab">1.2%</span></td>
+    </tr><tr>
+      <td><b>Glob</b></td>
+      <td class="n">36</td>
+      <td class="n">2k</td>
+      <td class="n">29.3M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:0.9%;background:#f87171"></div></div><span class="pctlab">0.9%</span></td>
+    </tr><tr>
+      <td><b>ToolSearch</b></td>
+      <td class="n">25</td>
+      <td class="n">3k</td>
+      <td class="n">20.5M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:0.6%;background:#fb923c"></div></div><span class="pctlab">0.6%</span></td>
+    </tr><tr>
+      <td><b>TaskCreate</b></td>
+      <td class="n">20</td>
+      <td class="n">1k</td>
+      <td class="n">8.2M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:0.4%;background:#fbbf24"></div></div><span class="pctlab">0.2%</span></td>
+    </tr><tr>
+      <td><b>mcp__ccd_session__mark_chapter</b></td>
+      <td class="n">18</td>
+      <td class="n">520</td>
+      <td class="n">5.9M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:0.4%;background:#a3e635"></div></div><span class="pctlab">0.2%</span></td>
+    </tr><tr>
+      <td><b>TaskUpdate</b></td>
+      <td class="n">54</td>
+      <td class="n">463</td>
+      <td class="n">3.7M</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:0.4%;background:#34d399"></div></div><span class="pctlab">0.1%</span></td>
+    </tr>
+  </table>
+<div class="panel red">
+  <h3>The intuition worth correcting</h3>
+  <p>Writing code looks expensive because it takes a long time and fills the screen.
+     It isn't. <b>Edit</b> accounts for <b>8.5%</b> of cost,
+     while <b>Read</b> accounts for <b>34.4%</b> —
+     about <b>4.0× more</b>.</p>
+  <p>Time on screen tracks <i>output</i> tokens, which are a small slice of the bill.
+     Cost tracks how much got <i>pulled in and carried forward</i>.</p>
+</div>
+
+<h2 class="amber">2 — Long sessions get expensive faster than you'd think</h2>
+<p class="lede">
+  Cost per turn is <b>not constant</b>. A turn late in a long session costs several times what an
+  early turn costs, because it re-reads everything before it.
+</p>
+<table>
+    <tr><th>Session length</th><th>Sessions</th><th>Avg total cost</th><th>Cost per turn</th><th></th></tr>
+    <tr>
+      <td><b>Under 50 turns</b></td>
+      <td class="n">3</td>
+      <td class="n">1.2M</td>
+      <td class="n">55k</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:12.4%;background:#fbbf24"></div></div></td>
+    </tr><tr>
+      <td><b>50 – 150 turns</b></td>
+      <td class="n">4</td>
+      <td class="n">10.9M</td>
+      <td class="n">112k</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:25.1%;background:#fbbf24"></div></div></td>
+    </tr><tr>
+      <td><b>150 – 300 turns</b></td>
+      <td class="n">6</td>
+      <td class="n">31.5M</td>
+      <td class="n">157k</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:35.0%;background:#fbbf24"></div></div></td>
+    </tr><tr>
+      <td><b>300 – 600 turns</b></td>
+      <td class="n">18</td>
+      <td class="n">106.5M</td>
+      <td class="n">262k</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:58.6%;background:#fbbf24"></div></div></td>
+    </tr><tr>
+      <td><b>Over 600 turns</b></td>
+      <td class="n">5</td>
+      <td class="n">360.1M</td>
+      <td class="n">448k</td>
+      <td class="barcell"><div class="bar"><div class="fill" style="width:100.0%;background:#fbbf24"></div></div></td>
+    </tr>
+  </table>
+<div class="panel amber">
+  <h3>What this means in practice</h3>
+  <p>A turn in a <b>over 600</b>-turn session costs
+     <b>8.1×</b> what a turn in a
+     <b>under 50</b>-turn session costs
+     (448k vs 55k).</p>
+  <p>Models stopped visibly forgetting things in long chats — which removed the symptom that used
+     to tell you to start fresh. <b>The cost didn't go away, it just got quiet.</b>
+     Starting a new chat at a natural task boundary is the single largest lever here.</p>
+</div>
+
+<h2>3 — Most expensive sessions</h2>
+<table>
+    <tr><th>Session</th><th>Started</th><th>Turns</th><th>Billed</th><th>Per turn</th></tr>
+    <tr>
+      <td class="mono">33ac7dc0</td>
+      <td class="n">2026-08-21</td>
+      <td class="n">1,205</td>
+      <td class="n">620.0M</td>
+      <td class="n">514k</td>
+    </tr><tr>
+      <td class="mono">c35639f3</td>
+      <td class="n">2026-08-07</td>
+      <td class="n">876</td>
+      <td class="n">501.6M</td>
+      <td class="n">573k</td>
+    </tr><tr>
+      <td class="mono">7607c9bc</td>
+      <td class="n">2026-08-12</td>
+      <td class="n">616</td>
+      <td class="n">234.3M</td>
+      <td class="n">380k</td>
+    </tr><tr>
+      <td class="mono">2ff1c460</td>
+      <td class="n">2026-08-04</td>
+      <td class="n">604</td>
+      <td class="n">229.3M</td>
+      <td class="n">380k</td>
+    </tr><tr>
+      <td class="mono">1601db44</td>
+      <td class="n">2026-08-01</td>
+      <td class="n">720</td>
+      <td class="n">215.3M</td>
+      <td class="n">299k</td>
+    </tr><tr>
+      <td class="mono">70b6bb18</td>
+      <td class="n">2026-08-08</td>
+      <td class="n">498</td>
+      <td class="n">201.9M</td>
+      <td class="n">405k</td>
+    </tr><tr>
+      <td class="mono">e8b3cd8d</td>
+      <td class="n">2026-08-12</td>
+      <td class="n">549</td>
+      <td class="n">193.4M</td>
+      <td class="n">352k</td>
+    </tr><tr>
+      <td class="mono">09a8e7cf</td>
+      <td class="n">2026-07-17</td>
+      <td class="n">557</td>
+      <td class="n">164.6M</td>
+      <td class="n">296k</td>
+    </tr><tr>
+      <td class="mono">4d46c935</td>
+      <td class="n">2026-08-08</td>
+      <td class="n">455</td>
+      <td class="n">146.0M</td>
+      <td class="n">321k</td>
+    </tr><tr>
+      <td class="mono">d0140945</td>
+      <td class="n">2026-08-25</td>
+      <td class="n">444</td>
+      <td class="n">124.4M</td>
+      <td class="n">280k</td>
+    </tr><tr>
+      <td class="mono">6d668116</td>
+      <td class="n">2026-08-30</td>
+      <td class="n">492</td>
+      <td class="n">117.3M</td>
+      <td class="n">238k</td>
+    </tr><tr>
+      <td class="mono">44253342</td>
+      <td class="n">2026-08-10</td>
+      <td class="n">495</td>
+      <td class="n">117.2M</td>
+      <td class="n">237k</td>
+    </tr><tr>
+      <td class="mono">29d6a7c2</td>
+      <td class="n">2026-08-06</td>
+      <td class="n">363</td>
+      <td class="n">102.7M</td>
+      <td class="n">283k</td>
+    </tr><tr>
+      <td class="mono">1776db56</td>
+      <td class="n">2026-08-14</td>
+      <td class="n">381</td>
+      <td class="n">101.5M</td>
+      <td class="n">266k</td>
+    </tr><tr>
+      <td class="mono">a173669c</td>
+      <td class="n">2026-08-22</td>
+      <td class="n">391</td>
+      <td class="n">100.6M</td>
+      <td class="n">257k</td>
+    </tr>
+  </table>
+
+<h2 class="green">4 — Cursor</h2>
+<div class="panel red">
+    <h3>Cursor records the tokens, but usually not which model spent them</h3>
+    <p><b>98%</b> of Cursor's recorded input tokens carry no
+       <code>modelName</code> field, so they cannot be attributed to a model. The token totals below
+       are trustworthy; the per-model split is only meaningful for the small labelled slice.</p>
+    <p><b>What that means for you:</b> Cursor's local data can tell you how much you spent overall,
+       but it cannot answer "was Opus worth it" — not even in principle, because the model isn't
+       written down for most requests. That comparison needs a deliberate test.</p>
+  </div><p class="muted">From Cursor's own local database. Input includes the whole
+    conversation resent each turn, same as Claude Code. Scanned .</p>
+  <table>
+    <tr><th>Model</th><th>Requests</th><th>Input</th><th>Output</th><th>Avg input / request</th></tr>
+    <tr>
+      <td><b>(not recorded)</b></td>
+      <td class="n">4,621</td>
+      <td class="n">478.5M</td>
+      <td class="n">16.3M</td>
+      <td class="n">104k</td>
+    </tr><tr>
+      <td><b>default</b></td>
+      <td class="n">104</td>
+      <td class="n">7.0M</td>
+      <td class="n">50k</td>
+      <td class="n">67k</td>
+    </tr><tr>
+      <td><b>claude-4-sonnet</b></td>
+      <td class="n">19</td>
+      <td class="n">2.5M</td>
+      <td class="n">8k</td>
+      <td class="n">132k</td>
+    </tr><tr>
+      <td><b>claude-4.5-sonnet-thinking</b></td>
+      <td class="n">2</td>
+      <td class="n">5k</td>
+      <td class="n">440</td>
+      <td class="n">2k</td>
+    </tr><tr>
+      <td><b>claude-4.5-opus-high-thinking</b></td>
+      <td class="n">1</td>
+      <td class="n">1k</td>
+      <td class="n">18</td>
+      <td class="n">1k</td>
+    </tr>
+  </table>
+
+<a class="back" href="index.html">← All pages</a>
+<footer>Generated by <code>scripts/token-report.js</code> ·
+  2026-09-09 02:32</footer>
+
+</div>
+</body>
+</html>

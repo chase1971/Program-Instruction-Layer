@@ -2,6 +2,29 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-08 — Agent measurement workbench + session-tracking trim
+
+**Files changed:** `scripts/session-tracking-stats.js`, `session-token-cost.js`, `scorecard-hook-tally.js`,
+`session-tracking-store.js`, `session-tracking-html.js`; `scripts/token-report.js`, `token-report-data.js`,
+`cursor-token-scan.py`; `scripts/run-probes.js`, `probe-report.js`; `agent docs/probes/retrieval-probes.json`;
+`agent docs/instructional-layer-htmls/agent-measurement-workbench.html`; `agent docs/SESSION_TRACKING.md`;
+`agent docs/index.html`; generated HTML logs.
+
+**What worked:** Removed measurement artifacts from session tracking (`indexFirst`,
+`unexplainedSearches`, `pathCoverage`); added per-task token cost from transcript. Built regenerable
+token usage report (Read ~34% of cost vs Edit ~8.5%). Built 20-question retrieval probe set with
+baseline 20/20. Added measurement workbench landing page linking all three reports + experiment queue.
+Also: Manim two-step equation animation delivered to scratch HTML.
+
+**Current state:** Green — reports regenerate via documented commands on port 8765.
+
+**File size flag:** None.
+
+**Next session:** Run probe experiments from workbench queue; optional Manim index row if that tree
+gets more animation work.
+
+---
+
 ## 2026-09-07 — Stale workspace root broke Grep; APP_LOCATIONS path check added
 
 **Files changed:** `scripts/check-docs.js` (+~45 lines — new MISSING PATHS check, `LOCATIONS_DOC`, header item 7, summary and `--strict` wiring); `APP_LOCATIONS.md` (D2L Assignment Assistant row repointed); `School Scrips/Macro App/AGENTS.md` (slim build row said four tabs, ships three).

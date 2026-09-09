@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "note": "Fixed retrieval questions with known answers. NEVER edit a question once a baseline has been run against it — a changed question breaks comparability, which is the entire point. To add questions, append new ones with new ids and note the run where they first appear.",
+  "scoring": "An answer counts as correct when it contains ALL of `mustInclude` (case-insensitive). Keep those keys short and unambiguous so the grader stays honest.",
+  "tiers": {
+    "always-on": "Answerable from AGENTS.md alone, which is auto-loaded every session. Tests whether the agent USES the context it already has. If these fail, the always-on file is too long or too vague — not an indexing problem.",
+    "routed": "Requires navigating from an index to an owning doc. THIS IS THE TIER THAT MEASURES YOUR INDEXING. Changes to INDEX.md, APP_LOCATIONS.md, recipes/INDEX.md or app AGENTS.md files should move these numbers."
+  },
+  "probes": [
+    {
+      "id": "file-size-cap",
+      "tier": "always-on",
+      "question": "What is the hard maximum line count for a source file in this repo, and at what line count should you extract instead?",
+      "mustInclude": ["800", "700"]
+    },
+    {
+      "id": "modal-backdrop",
+      "tier": "always-on",
+      "question": "In this repo, what happens when a user clicks outside a modal? State the rule and the reason.",
+      "mustInclude": ["dwell"]
+    },
+    {
+      "id": "frozen-app",
+      "tier": "always-on",
+      "question": "Which app in this tree is frozen and must not be touched?",
+      "mustInclude": ["Calendar 2.0"]
+    },
+    {
+      "id": "entry-file-role",
+      "tier": "always-on",
+      "question": "What is the rule for entry files like App.tsx or main.py in this repo, and roughly what line count should they stay under?",
+      "mustInclude": ["100"]
+    },
+    {
+      "id": "powershell-chaining",
+      "tier": "always-on",
+      "question": "Can I use && to chain commands in this environment? If not, what should I use instead?",
+      "mustInclude": ["invalid"]
+    },
+    {
+      "id": "ephemeral-feedback",
+      "tier": "always-on",
+      "question": "Should I add a 'Copied!' confirmation message after a copy button in this repo? Name the rule.",
+      "mustInclude": ["no"]
+    },
+    {
+      "id": "html-delivery-port",
+      "tier": "routed",
+      "question": "Chase asks for an HTML page he can click from chat. What URL form do I give him, and which port?",
+      "mustInclude": ["8765"]
+    },
+    {
+      "id": "html-delivery-folder",
+      "tier": "routed",
+      "question": "I am building a one-off 'show me what this does' HTML page for Chase. Which exact folder does it go in?",
+      "mustInclude": ["scratch"]
+    },
+    {
+      "id": "python-launcher",
+      "tier": "routed",
+      "question": "How do I launch a Python app in this tree without showing a console window? Name the launcher file type, the python executable to use, and an exemplar file.",
+      "mustInclude": ["vbs", "pythonw"]
+    },
+    {
+      "id": "node-launcher",
+      "tier": "routed",
+      "question": "A Node app is registered in App Dashboard apps.json. What exactly should its per-app .bat file do?",
+      "mustInclude": ["launch-app-invoke"]
+    },
+    {
+      "id": "guildrun-launcher",
+      "tier": "routed",
+      "question": "What is the exact filename that launches Guildrun Stats?",
+      "mustInclude": ["Start Guildrun Stats.vbs"]
+    },
+    {
+      "id": "student-pipeline",
+      "tier": "routed",
+      "question": "Which document describes the student progress pipeline? Give the file path.",
+      "mustInclude": ["STUDENT_PROGRESS_PIPELINE"]
+    },
+    {
+      "id": "git-multi-repo",
+      "tier": "routed",
+      "question": "Which document holds the detail on the multi-repo git push rule? Give its path.",
+      "mustInclude": ["multi-repo-git-push"]
+    },
+    {
+      "id": "sister-repos",
+      "tier": "routed",
+      "question": "Macro App is paired with which other repo for git sync purposes?",
+      "mustInclude": ["assignment-assistant-engine"]
+    },
+    {
+      "id": "capture-skill",
+      "tier": "routed",
+      "question": "Chase says 'remember: always X'. What should I run, and where does that skill live?",
+      "mustInclude": ["capture"]
+    },
+    {
+      "id": "session-bump",
+      "tier": "routed",
+      "question": "What is the exact command to log a completed task to session tracking?",
+      "mustInclude": ["append-session-scorecard"]
+    },
+    {
+      "id": "cursor-rules-retired",
+      "tier": "routed",
+      "question": "Are .cursor/rules/*.mdc files still used in this repo? When did that change, and why?",
+      "mustInclude": ["2026-08-02"]
+    },
+    {
+      "id": "ignore-file",
+      "tier": "routed",
+      "question": "What does the /.ignore file at the repo root do, and what breaks if it is deleted?",
+      "mustInclude": ["grep"]
+    },
+    {
+      "id": "react-api-layer",
+      "tier": "routed",
+      "question": "In a React app in this tree, where do API calls belong, and what is explicitly forbidden in a component?",
+      "mustInclude": ["service"]
+    },
+    {
+      "id": "recipes-index",
+      "tier": "routed",
+      "question": "Where do I look first to find out how to build something we have built before? Give the exact path.",
+      "mustInclude": ["recipes/INDEX.md"]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ const {
   escapeHtml,
 } = require('./scorecard-navigation-path');
 const { rollup, collectIndexFailures } = require('./session-tracking-stats');
+const { formatTokens } = require('./session-token-cost');
 
 function dayKey(iso) {
   const d = new Date(iso || Date.now());
@@ -39,14 +40,9 @@ function formatPctOrDash(value) {
   return `${value}%`;
 }
 
-function formatMedianOrDash(value) {
+function formatTokensOrDash(value) {
   if (value == null || Number.isNaN(value)) return '—';
-  return Number.isInteger(value) ? String(value) : value.toFixed(1);
-}
-
-function formatCoverageOrDash(value) {
-  if (value == null || Number.isNaN(value)) return '—';
-  return `${Math.round(value * 100)}%`;
+  return formatTokens(value);
 }
 
 function summaryStats(entries) {
@@ -62,14 +58,14 @@ function summaryStats(entries) {
     total: entries.length,
     today: todayEntries.length,
     avgSteps,
-    indexFirstRate: roll.indexFirstRate,
-    indexFirstCount: roll.indexFirstCount,
     observedTaskCount: roll.observedTaskCount,
     deadEndRate: roll.deadEndRate,
     deadEndSteps: roll.deadEndSteps,
     totalSteps: roll.totalSteps,
-    medianSearchesBeforeDoc: roll.medianSearchesBeforeDoc,
-    medianPathCoverage: roll.medianPathCoverage,
+    costedTaskCount: roll.costedTaskCount,
+    medianBilledTokens: roll.medianBilledTokens,
+    totalBilledTokens: roll.totalBilledTokens,
+    medianTokensPerTurn: roll.medianTokensPerTurn,
   };
 }
 
@@ -88,16 +84,16 @@ function taskSummaryLine(entry) {
   return parts.filter(Boolean).join(' — ');
 }
 
-function coveragePills(entry) {
+// Cost pills replace the old coverage pills. Context re-read per turn is the
+// number worth flagging: it grows with session length, not task difficulty, so
+// a high value means "this session got expensive", not "this task was hard".
+function costPills(entry) {
   let html = '';
-  if ((entry.unexplainedSearches || 0) >= 3) {
-    html += `<span class="pill p2">${entry.unexplainedSearches} searches not in path</span>`;
+  if (Number.isFinite(entry.billedTokens)) {
+    html += `<span class="pill p0">${formatTokens(entry.billedTokens)} tokens</span>`;
   }
-  if ((entry.searchesBeforeFirstDoc || 0) >= 3) {
-    html += `<span class="pill p2">Hunted before doc — ${entry.searchesBeforeFirstDoc} searches first</span>`;
-  }
-  if (entry.indexFirst) {
-    html += '<span class="pill p1">Index first</span>';
+  if ((entry.tokensPerTurn || 0) >= 250000) {
+    html += `<span class="pill p2">Heavy context — ${formatTokens(entry.tokensPerTurn)}/turn</span>`;
   }
   return html;
 }
@@ -120,8 +116,10 @@ function taskEntryHtml(entry) {
 
   const observedLine = entry.hasObservedData
     ? `Hook saw ${entry.observedSearches || 0} search(es), ${entry.observedDocReads || 0} doc read(s)`
-      + `${entry.unexplainedSearches ? ` · ${entry.unexplainedSearches} not in path` : ''}`
-      + `${entry.pathCoverage != null ? ` · coverage ${Math.round((entry.pathCoverage || 0) * 100)}%` : ''}`
+      + `${Number.isFinite(entry.billedTokens)
+        ? ` · ${formatTokens(entry.billedTokens)} tokens over ${entry.tokenTurns} turn(s)`
+          + ` · ${formatTokens(entry.tokensPerTurn)}/turn`
+        : ''}`
     : '';
 
   const idleNote = entry.durationLabel && entry.activeLabel && entry.durationMs !== entry.activeMs
@@ -131,7 +129,7 @@ function taskEntryHtml(entry) {
   return `<details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">${escapeHtml(taskSummaryLine(entry))}</span>
-      ${warnPill}${backfillPill}${coveragePills(entry)}
+      ${warnPill}${backfillPill}${costPills(entry)}
     </summary>
     <div class="track-panel">
       <p class="track-meta muted-inline">
@@ -181,15 +179,12 @@ function indexFailuresSection(entries) {
 function buildTrackingHtml(entries) {
   const sorted = [...entries].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   const stats = summaryStats(sorted);
-  const indexFirstLabel = stats.observedTaskCount
-    ? `${formatPctOrDash(stats.indexFirstRate)} (of ${stats.observedTaskCount} tasks)`
-    : '—';
   const deadEndLabel = stats.totalSteps
     ? `${formatPctOrDash(stats.deadEndRate)} (${stats.deadEndSteps}/${stats.totalSteps} steps)`
     : '—';
-  const coverageLabel = stats.observedTaskCount
-    ? formatCoverageOrDash(stats.medianPathCoverage)
-    : '—';
+  const costLabel = stats.costedTaskCount
+    ? `${formatTokensOrDash(stats.medianBilledTokens)} (of ${stats.costedTaskCount} costed)`
+    : '— (no cost data yet)';
 
   const byDay = new Map();
   for (const e of sorted) {
@@ -277,10 +272,10 @@ function buildTrackingHtml(entries) {
     <div class="summary-bar">
       <div><dt>Total tasks</dt><dd>${stats.total}</dd></div>
       <div><dt>Tasks today</dt><dd>${stats.today}</dd></div>
-      <div><dt>Index-first rate</dt><dd style="font-size:1rem">${escapeHtml(indexFirstLabel)}</dd></div>
-      <div><dt>Searches before first doc (median)</dt><dd>${escapeHtml(formatMedianOrDash(stats.medianSearchesBeforeDoc))}</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">${escapeHtml(costLabel)}</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>${escapeHtml(formatTokensOrDash(stats.medianTokensPerTurn))}</dd></div>
+      <div><dt>Total billed</dt><dd>${escapeHtml(formatTokensOrDash(stats.totalBilledTokens))}</dd></div>
       <div><dt>Dead-end rate</dt><dd style="font-size:1rem">${escapeHtml(deadEndLabel)}</dd></div>
-      <div><dt>Path coverage (median)</dt><dd>${escapeHtml(coverageLabel)}</dd></div>
       <div><dt>Avg steps</dt><dd>${escapeHtml(String(stats.avgSteps))}</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">${escapeHtml(last)}</dd></div>
     </div>

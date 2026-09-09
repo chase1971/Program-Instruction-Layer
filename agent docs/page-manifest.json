@@ -1,0 +1,162 @@
+{
+  "note": "Drives agent docs/index.html via scripts/build-doc-index.js. Groups are matched top-down by the first `match` prefix/regex that hits; anything unmatched lands in Unsorted, so new pages always appear. `desc` overrides are optional — without one, the page's own <title> is used.",
+  "groups": [
+    {
+      "id": "measurement",
+      "title": "Measurement & session tracking",
+      "blurb": "Whether the instruction layer actually works, and what it costs. Start with the workbench.",
+      "accent": "green",
+      "open": true,
+      "match": [
+        "instructional-layer-htmls/agent-measurement-workbench.html",
+        "probe-baseline-log.html",
+        "token-usage-log.html",
+        "session-tracking-log.html",
+        "session-metrics-log.html",
+        "instructional-layer-htmls/measuring-agent-efficiency.html"
+      ]
+    },
+    {
+      "id": "instruction-layer",
+      "title": "How the instruction layer works",
+      "blurb": "Why the docs are shaped the way they are, and the order an agent reads them in.",
+      "accent": "accent",
+      "open": true,
+      "match": [
+        "instructional-layer-htmls/doc-restructure-plan.html",
+        "instructional-layer-htmls/head-agents-md.html",
+        "context-engineering-infographic.html",
+        "context-engineering-capture-ladder.html",
+        "context-engineering-capture-costs.html",
+        "rule-architecture-infographic.html"
+      ]
+    },
+    {
+      "id": "app-maps",
+      "title": "App & pipeline maps",
+      "blurb": "How a specific app or data flow actually fits together.",
+      "accent": "accent",
+      "open": false,
+      "match": [
+        "instructional-layer-htmls/student-portal-pipeline.html",
+        "instructional-layer-htmls/course-setup-map.html",
+        "scratch/macro-app-launch-paths.html",
+        "scratch/gradebook-pull-timing-map.html",
+        "scratch/supabase-setup.html",
+        "scratch/finish-attempt-rpc.html",
+        "scratch/student-attempt-history-rpc.html",
+        "scratch/monitor-status.html"
+      ]
+    },
+    {
+      "id": "reviews",
+      "title": "Doc reviews & audits",
+      "blurb": "Point-in-time audits of a folder's markdowns against live code. Historical — the fixes already landed.",
+      "accent": "grey",
+      "open": false,
+      "match": [
+        "instructional-layer-htmls/agent-docs-review.html",
+        "instructional-layer-htmls/macro-app-docs-review.html",
+        "instructional-layer-htmls/electron-toolbar-docs-review.html",
+        "instructional-layer-htmls/app-dashboard-docs-review.html",
+        "instructional-layer-htmls/recipes-review.html",
+        "instructional-layer-htmls/cursor-patterns-review.html"
+      ]
+    },
+    {
+      "id": "mockups",
+      "title": "UI mockups & design concepts",
+      "blurb": "Scratch — design explorations. Assume they go stale; the shipped UI is the source of truth.",
+      "accent": "amber",
+      "open": false,
+      "match": [
+        "scratch/portal-dashboard-mockups.html",
+        "scratch/portal-dashboard-v4-light.html",
+        "scratch/portal-in-progress-mockups.html",
+        "scratch/portal-v4-mobile-patterns.html",
+        "scratch/teacher-console-mockups.html",
+        "scratch/teacher-console-skins.html",
+        "scratch/course-settings-mockups.html",
+        "scratch/matrix-portal-theme-mockups.html"
+      ]
+    },
+    {
+      "id": "teaching",
+      "title": "Teaching material",
+      "blurb": "Handouts and review maps from School documents. These get printed and handed out.",
+      "accent": "green",
+      "open": false,
+      "match": [
+        "exam2-review-map.html",
+        "exam3-homework-map.html",
+        "exam4-homework-map.html",
+        "factoring-guess-check-one-pager.html",
+        "factoring-handout-print.html",
+        "factoring-trinomials-page1.html",
+        "factoring-trinomials-page2.html",
+        "assignment-assistant-one-pager.html"
+      ]
+    },
+    {
+      "id": "explainers",
+      "title": "Math explainers & tutorial text",
+      "blurb": "Scratch — one-off visual explanations built for a specific lesson.",
+      "accent": "amber",
+      "open": false,
+      "match": [
+        "scratch/ellipse-definition.html",
+        "scratch/gcf-division.html",
+        "scratch/two-step-equation.html",
+        "scratch/matrix-tutorial-text-2026-09-07.html"
+      ]
+    },
+    {
+      "id": "games",
+      "title": "Game tracking",
+      "blurb": "Guildrun and Monster Train run sheets. The dated run archive is generated, one file per run.",
+      "accent": "grey",
+      "open": false,
+      "match": [
+        "scratch/guildrun-stats.html",
+        "scratch/guildrun-hero-guide.html",
+        "scratch/guildrun-runs.html",
+        "scratch/mt2-run.html",
+        "^scratch/guildrun-runs/"
+      ],
+      "collapsePatterns": ["^scratch/guildrun-runs/"]
+    },
+    {
+      "id": "retired",
+      "title": "Retired pattern breakdowns",
+      "blurb": "The old cursor-patterns/ set, kept for history. These were merged into recipes/ on 2026-08-07 — do not treat as current guidance.",
+      "accent": "grey",
+      "open": false,
+      "match": ["^instructional-layer-htmls/cursor-patterns/"]
+    }
+  ],
+  "descriptions": {
+    "instructional-layer-htmls/agent-measurement-workbench.html": "The front door to all the measurement tooling: the three report pages, every command, and a ranked queue of five experiments to run. Includes the settled facts so you don't re-derive them.",
+    "probe-baseline-log.html": "20 fixed questions, each answered in a fresh read-only session, so the tasks never vary and any difference between runs is caused by what you changed. Baseline: 20/20 correct, 867k tokens. Includes the navigation-cost list.",
+    "token-usage-log.html": "Real billed tokens from your Claude Code history plus Cursor's local counts. Reading files costs ~4× editing them; a turn in a 600+ turn session costs ~8× a turn in a short one.",
+    "session-tracking-log.html": "One row per completed task — expand to see the doc navigation path. Now records real token cost per task.",
+    "session-metrics-log.html": "Greps, files, and hook tallies — one card per finalized session.",
+    "instructional-layer-htmls/measuring-agent-efficiency.html": "Plain-language audit of 342 task bumps: three of the four old tracking gauges were measuring their own instrumentation. Read this if the measurement pages stop making sense.",
+    "instructional-layer-htmls/doc-restructure-plan.html": "What the agent reads and in what order to find anything. The two-kinds-of-guidance split, worked examples with read counts.",
+    "instructional-layer-htmls/head-agents-md.html": "Visual summary of the Programs-root always-on file: what each section does and what belongs elsewhere.",
+    "context-engineering-infographic.html": "Why the instruction layer is shaped the way it is.",
+    "context-engineering-capture-ladder.html": "The five rungs, and why a rule should be pushed as high as it goes.",
+    "context-engineering-capture-costs.html": "What each rung of the capture ladder costs per session.",
+    "rule-architecture-infographic.html": "How the guidance system works. Predates the index restructure, so parts may now be wrong.",
+    "instructional-layer-htmls/student-portal-pipeline.html": "Walkthrough of the grading pipeline: Math App Studio designs an app, the portal runs it, Supabase stores anonymous results, Macro App puts the names back. Includes seven weak spots ranked worst-first.",
+    "instructional-layer-htmls/course-setup-map.html": "Setup steps create information nodes; Macro App tabs pull from those nodes — course list, schedule, calendar link, roster, assignment calendar.",
+    "scratch/macro-app-launch-paths.html": "Why the .bat launch feels worse than the dashboard one, and how to fix it.",
+    "scratch/gradebook-pull-timing-map.html": "Timing map for the gradebook pull.",
+    "scratch/supabase-setup.html": "Supabase setup for student progress storage.",
+    "instructional-layer-htmls/agent-docs-review.html": "The 12 top-level instruction-layer markdowns in agent docs/ — dates, purpose, and a keep / update / remove call on each.",
+    "instructional-layer-htmls/macro-app-docs-review.html": "All 50 markdowns under Macro App checked against live code. 38 accurate as-is; drift concentrated in the ADR set.",
+    "instructional-layer-htmls/electron-toolbar-docs-review.html": "All 39 markdowns under electron-toolbar/ checked against live code. 11 of 16 flagged files deleted.",
+    "instructional-layer-htmls/app-dashboard-docs-review.html": "First app in the conformance-pass series. All 12 App Dashboard markdowns checked; 5 deleted, 2 fixed.",
+    "instructional-layer-htmls/recipes-review.html": "The 26 interaction recipes checked against live code and split by owning app — only 3 were genuinely cross-app.",
+    "instructional-layer-htmls/cursor-patterns-review.html": "Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted."
+  }
+}

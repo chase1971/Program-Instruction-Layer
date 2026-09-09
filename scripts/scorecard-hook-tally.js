@@ -188,7 +188,20 @@ function recordTurn() {
   writeRunning(running);
 }
 
+// Claude Code hands every hook the path to this session's transcript, which is
+// the only place real billed-token counts live. Stash it so the bump can slice
+// usage for the task window. See scripts/session-token-cost.js.
+function recordTranscriptPath(payload) {
+  const p = payload.transcript_path || payload.transcriptPath;
+  if (!p) return;
+  const running = readRunning() || emptyRunning();
+  if (running.transcriptPath === p) return;
+  running.transcriptPath = p;
+  writeRunning(running);
+}
+
 function recordToolUse(payload) {
+  recordTranscriptPath(payload);
   const toolName = String(payload.tool_name || payload.toolName || '').trim();
   if (!toolName) {
     const eventName = String(payload.hook_event_name || payload.hookEventName || '').trim();

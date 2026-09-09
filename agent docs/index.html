@@ -6,42 +6,83 @@
 <title>Programs — pages</title>
 <style>
   :root{--bg:#0f1419;--panel:#1a2332;--panel-alt:#243044;--text:#e8edf4;--muted:#94a3b8;
-        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--purple:#a78bfa;
+        --accent:#38bdf8;--green:#34d399;--amber:#fbbf24;--purple:#a78bfa;--red:#f87171;
         --border:#334155;--radius:14px;--font:"Segoe UI",system-ui,sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;font-size:18px}
-  .page{max-width:900px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  .page{max-width:960px;margin:0 auto;padding:2.2rem 1.25rem 4rem}
 
-  header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid var(--border)}
+  header{margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:2px solid var(--border)}
   header h1{font-size:clamp(1.7rem,5vw,2.3rem);font-weight:700;letter-spacing:-.02em}
-  header p{color:var(--muted);margin-top:.6rem;font-size:1.02rem}
+  header p{color:var(--muted);margin-top:.55rem;font-size:1rem}
+
+  /* ---- pinned ---- */
+  #pinned-section{margin-bottom:1.6rem}
+  #pinned-section h2{color:var(--amber)}
+  .pinned-empty{background:var(--panel);border:1px dashed var(--border);border-radius:var(--radius);
+    padding:1rem 1.15rem;color:var(--muted);font-size:.92rem}
+  .pinned-empty b{color:var(--text)}
 
   h2{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
-     margin:2.5rem 0 .5rem;color:var(--accent)}
-  h2.amber{color:var(--amber)} h2.grey{color:var(--muted)}
-  .rule{color:var(--muted);font-size:.9rem;margin-bottom:1.1rem}
-  .rule b{color:var(--text)}
+     margin:0 0 .6rem;color:var(--accent)}
 
-  /* Big dwell-friendly click targets — whole card is the link */
-  a.card{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--border);
-         border-left:5px solid var(--accent);border-radius:var(--radius);
-         padding:1.15rem 1.3rem;margin-bottom:.8rem;min-height:78px;color:inherit}
+  /* ---- groups ---- */
+  details.group{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    margin-bottom:.7rem;overflow:hidden}
+  details.group>summary{cursor:pointer;list-style:none;min-height:60px;padding:1rem 1.15rem;
+    display:flex;align-items:center;gap:.7rem;background:var(--panel-alt);font-weight:700;font-size:1.05rem}
+  details.group>summary::-webkit-details-marker{display:none}
+  details.group>summary::before{content:"▸";color:var(--accent);font-size:1.1rem;flex:0 0 auto;
+    transition:transform .12s}
+  details.group[open]>summary::before{transform:rotate(90deg)}
+  details.group>summary:hover,details.group>summary:focus{background:#2b3a52;outline:none}
+  .sumtitle{flex:1 1 auto}
+  .count{flex:0 0 auto;background:var(--bg);color:var(--muted);border-radius:999px;
+    padding:.15rem .6rem;font-size:.8rem;font-weight:700;font-family:Consolas,monospace}
+  .groupbody{padding:.9rem 1.15rem 1.1rem}
+  .blurb{color:var(--muted);font-size:.9rem;margin-bottom:.9rem}
+
+  /* ---- cards ---- */
+  .row{display:flex;gap:.55rem;align-items:stretch;margin-bottom:.7rem}
+  a.card{flex:1 1 auto;display:block;text-decoration:none;background:var(--bg);
+    border:1px solid var(--border);border-left:5px solid var(--accent);
+    border-radius:var(--radius);padding:.95rem 1.1rem;min-height:76px;color:inherit}
   a.card:hover,a.card:focus{background:var(--panel-alt);border-color:var(--accent);outline:none}
-  a.card .t{font-size:1.12rem;font-weight:700;color:var(--text)}
-  a.card .d{font-size:.92rem;color:var(--muted);margin-top:.28rem}
-  a.card .m{font-size:.76rem;color:var(--muted);margin-top:.45rem;font-family:Consolas,monospace}
-
+  a.card.green{border-left-color:var(--green)}
   a.card.amber{border-left-color:var(--amber)}
   a.card.grey{border-left-color:var(--border)}
-  a.card.green{border-left-color:var(--green)}
+  a.card.purple{border-left-color:var(--purple)}
+  a.card .t{font-size:1.06rem;font-weight:700;color:var(--text);line-height:1.35}
+  a.card .d{font-size:.9rem;color:var(--muted);margin-top:.28rem}
+  a.card .m{font-size:.74rem;color:#64748b;margin-top:.4rem;font-family:Consolas,monospace;
+    word-break:break-all}
 
-  .empty{background:var(--panel);border:1px dashed var(--border);border-radius:var(--radius);
-         padding:1.15rem 1.3rem;color:var(--muted);font-size:.92rem}
-  .empty b{color:var(--text)}
+  /* pin button — always visible, dwell-sized */
+  button.pin{flex:0 0 auto;width:60px;min-height:76px;background:var(--bg);
+    border:1px solid var(--border);border-radius:var(--radius);color:var(--muted);
+    font-size:1.6rem;cursor:pointer;display:grid;place-items:center;padding:0;font-family:inherit}
+  button.pin:hover,button.pin:focus{background:var(--panel-alt);border-color:var(--amber);
+    color:var(--amber);outline:none}
+  button.pin[data-pinned="1"]{color:var(--amber);border-color:var(--amber);background:#2a2313}
+
+  /* ---- collapsed sub-list ---- */
+  details.subgroup{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+    margin-top:.4rem;overflow:hidden}
+  details.subgroup>summary{cursor:pointer;list-style:none;min-height:52px;padding:.85rem 1rem;
+    display:flex;align-items:center;gap:.6rem;font-size:.95rem;color:var(--muted)}
+  details.subgroup>summary::-webkit-details-marker{display:none}
+  details.subgroup>summary::before{content:"▸";color:var(--accent);transition:transform .12s}
+  details.subgroup[open]>summary::before{transform:rotate(90deg)}
+  .sublist{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem 1rem}
+  a.mini{display:block;background:var(--panel-alt);border:1px solid var(--border);
+    border-radius:10px;padding:.55rem .8rem;min-height:44px;font-size:.85rem;
+    color:var(--accent);text-decoration:none;font-family:Consolas,monospace}
+  a.mini:hover,a.mini:focus{background:#2b3a52;outline:none}
+
+  footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--border);
+    color:var(--muted);font-size:.85rem;text-align:center}
   code{background:var(--panel-alt);color:var(--accent);padding:.08rem .32rem;border-radius:4px;
-       font-size:.85em;font-family:Consolas,monospace}
-  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--border);
-         color:var(--muted);font-size:.85rem;text-align:center}
+    font-size:.85em;font-family:Consolas,monospace}
 </style>
 </head>
 <body>
@@ -49,138 +90,770 @@
 
 <header>
   <h1>Programs — pages</h1>
-  <p>Everything served on <code>127.0.0.1:8765</code>. Grouped by <b>how long it stays true</b>, not by topic.</p>
+  <p>87 pages served on <code>127.0.0.1:8765</code>.
+     Tap ☆ on any card to pin it to the top — pins and open sections are remembered on this machine.</p>
 </header>
 
-<!-- ===== DURABLE ===== -->
-<h2>Instruction Layer HTMLs — maintained</h2>
-<p class="rule">
-  Visual pages for reviewing how the instruction layer is organized. <b>These get updated whenever the structure changes.</b>
-  If a page here disagrees with reality, that's a bug worth fixing.
-</p>
+<section id="pinned-section">
+  <h2>Pinned</h2>
+  <div id="pinned-list"></div>
+</section>
 
-<a class="card green" href="instructional-layer-htmls/student-portal-pipeline.html">
-  <div class="t">Student Portal — how it all connects</div>
-  <div class="d">Plain-language walkthrough of the grading pipeline: Math App Studio designs an app, the portal runs it, Supabase stores anonymous results, Macro App puts the names back. Includes the flow diagram, a start-to-finish walkthrough of one student, what the design already gets right, and seven weak spots ranked worst-first — chiefly that the student's browser currently decides its own grade.</div>
-  <div class="m">instructional-layer-htmls/student-portal-pipeline.html · written 2026-09-05</div>
-</a>
-
-<a class="card green" href="instructional-layer-htmls/course-setup-map.html">
-  <div class="t">Course Setup Map</div>
-  <div class="d">Plain-language guide plus flowcharts: setup steps create information nodes; Macro App tabs pull from those nodes (course list, schedule, calendar link, roster, assignment calendar).</div>
-  <div class="m">instructional-layer-htmls/course-setup-map.html · verified 2026-08-08</div>
-</a>
-
-<a class="card" href="instructional-layer-htmls/doc-restructure-plan.html">
-  <div class="t">The Index Tree</div>
-  <div class="d">What the agent reads and in what order, to find anything. The two-kinds-of-guidance split, worked examples with read counts, and the order of work.</div>
-  <div class="m">instructional-layer-htmls/doc-restructure-plan.html · verified 2026-08-05</div>
-</a>
-
-<a class="card" href="instructional-layer-htmls/head-agents-md.html">
-  <div class="t">Head AGENTS.md</div>
-  <div class="d">Stable visual summary of the Programs-root always-on file: what each section does, why it stays loaded, and what belongs elsewhere.</div>
-  <div class="m">instructional-layer-htmls/head-agents-md.html · verified 2026-08-05</div>
-</a>
-
-<a class="card" href="instructional-layer-htmls/agent-docs-review.html">
-  <div class="t">Agent Docs Review</div>
-  <div class="d">The 12 top-level instruction-layer markdowns in agent docs/ (rules/, sessions/, and this folder's own docs — not the recipes/ subfolder, reviewed separately) — created/modified dates, what each does, and a fine / needs-update / needs-removal call on each.</div>
-  <div class="m">instructional-layer-htmls/agent-docs-review.html · reviewed 2026-08-07</div>
-</a>
-
-<a class="card" href="instructional-layer-htmls/cursor-patterns-review.html">
-  <div class="t">Cursor Patterns Review (retired 2026-08-07)</div>
-  <div class="d">Historical record of the review that led to cursor-patterns/ being eliminated — its 6 surviving files merged into agent docs/recipes/, 11 deleted outright.</div>
-  <div class="m">instructional-layer-htmls/cursor-patterns-review.html · retired 2026-08-07</div>
-</a>
-
-<a class="card green" href="instructional-layer-htmls/recipes-review.html">
-  <div class="t">Recipes Review (resolved 2026-08-08)</div>
-  <div class="d">The 26 interaction recipes in agent docs/recipes/ checked against live code, then split by owning app. Outcome: 2 deleted, 11 moved to electron-toolbar/docs/, 8 to Math App Studio/docs/recipes/, 1 each to Video Player and School documents — only 3 genuinely cross-app recipes stayed shared. Current map: recipes/INDEX.md.</div>
-  <div class="m">instructional-layer-htmls/recipes-review.html · resolved 2026-08-08</div>
-</a>
-
-<a class="card green" href="instructional-layer-htmls/electron-toolbar-docs-review.html">
-  <div class="t">Electron Toolbar Docs Review (resolved 2026-08-08)</div>
-  <div class="d">All 39 markdowns under electron-toolbar/ checked against live code — the app-level companion to the Recipes Review above. Outcome: 11 of 16 flagged files deleted outright (including two now-empty tombstone folders), 2 kept and fixed in place (ARCHITECTURE_PATTERNS.md, root README.md), 1 pending a rewrite (LOGGING_SYSTEM.md).</div>
-  <div class="m">instructional-layer-htmls/electron-toolbar-docs-review.html · resolved 2026-08-08</div>
-</a>
-
-<a class="card green" href="instructional-layer-htmls/app-dashboard-docs-review.html">
-  <div class="t">App Dashboard Docs Review (mostly resolved 2026-08-08)</div>
-  <div class="d">First app in the School Scrips conformance-pass series (one app at a time, per APP_CONFORMANCE_PASS.md). All 12 markdowns under School Scrips/App Dashboard/ checked against live code. Outcome: 5 files deleted (Chase doesn't use this app much and didn't want the stale roadmap/notes docs), 2 fixed in place (README.md). Still open: an unguarded port collision on 5328 between Macro App and D2L Platform (Personal), invisible to audit:launch-registry.</div>
-  <div class="m">instructional-layer-htmls/app-dashboard-docs-review.html · mostly resolved 2026-08-08</div>
-</a>
-
-<a class="card" href="instructional-layer-htmls/macro-app-docs-review.html">
-  <div class="t">Macro App Docs Review</div>
-  <div class="d">Second app in the School Scrips conformance-pass series. All 50 markdowns under School Scrips/Macro App/ checked against live code (three parallel passes). Outcome: 38 of 50 files accurate as-is. 12 findings — drift concentrated in the ADR set (2 stale, 1 never written despite its component being live), two audits describing already-fixed problems as open, and one high-traffic doc (EMBEDDED_BROWSER_AND_MODALS.md) with several stale file paths and constants. Not yet reviewed by Chase.</div>
-  <div class="m">instructional-layer-htmls/macro-app-docs-review.html · reviewed 2026-08-09</div>
-</a>
-
-<!-- ===== SCRATCH ===== -->
-<h2 class="amber">Scratch — not maintained</h2>
-<p class="rule">
-  One-off visualizations. <b>Read once, then assume they go stale.</b> Every page here carries a dated
-  banner, because the code it describes will change and nothing will tell you.
-</p>
-
-<div class="empty">
-  <b>Empty.</b> Anything that answers "show me what this code is doing" right now — and that you'd never
-  open twice — goes in <code>agent docs/scratch/</code>. Never here in Architecture.
+<div id="groups">
+<details class="group" data-group="measurement" open>
+    <summary>
+      <span class="sumtitle">Measurement &amp; session tracking</span>
+      <span class="count">6</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Whether the instruction layer actually works, and what it costs. Start with the workbench.</p>
+      <div class="row" data-href="instructional-layer-htmls/agent-measurement-workbench.html">
+    <a class="card green" href="instructional-layer-htmls/agent-measurement-workbench.html">
+      <div class="t">Agent measurement workbench — what exists and what to try next</div>
+      <div class="d">The front door to all the measurement tooling: the three report pages, every command, and a ranked queue of five experiments to run. Includes the settled facts so you don't re-derive them.</div>
+      <div class="m">instructional-layer-htmls/agent-measurement-workbench.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/agent-measurement-workbench.html"
+      aria-label="Pin Agent measurement workbench — what exists and what to try next to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="probe-baseline-log.html">
+    <a class="card green" href="probe-baseline-log.html">
+      <div class="t">Probe baseline — controlled index test</div>
+      <div class="d">20 fixed questions, each answered in a fresh read-only session, so the tasks never vary and any difference between runs is caused by what you changed. Baseline: 20/20 correct, 867k tokens. Includes the navigation-cost list.</div>
+      <div class="m">probe-baseline-log.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="probe-baseline-log.html"
+      aria-label="Pin Probe baseline — controlled index test to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="token-usage-log.html">
+    <a class="card green" href="token-usage-log.html">
+      <div class="t">Token usage — where they actually went</div>
+      <div class="d">Real billed tokens from your Claude Code history plus Cursor's local counts. Reading files costs ~4× editing them; a turn in a 600+ turn session costs ~8× a turn in a short one.</div>
+      <div class="m">token-usage-log.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="token-usage-log.html"
+      aria-label="Pin Token usage — where they actually went to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="session-tracking-log.html">
+    <a class="card green" href="session-tracking-log.html">
+      <div class="t">Session tracking — task log</div>
+      <div class="d">One row per completed task — expand to see the doc navigation path. Now records real token cost per task.</div>
+      <div class="m">session-tracking-log.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="session-tracking-log.html"
+      aria-label="Pin Session tracking — task log to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="session-metrics-log.html">
+    <a class="card green" href="session-metrics-log.html">
+      <div class="t">Session metrics — running log</div>
+      <div class="d">Greps, files, and hook tallies — one card per finalized session.</div>
+      <div class="m">session-metrics-log.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="session-metrics-log.html"
+      aria-label="Pin Session metrics — running log to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/measuring-agent-efficiency.html">
+    <a class="card green" href="instructional-layer-htmls/measuring-agent-efficiency.html">
+      <div class="t">Measuring agent efficiency — what went wrong and what to measure instead</div>
+      <div class="d">Plain-language audit of 342 task bumps: three of the four old tracking gauges were measuring their own instrumentation. Read this if the measurement pages stop making sense.</div>
+      <div class="m">instructional-layer-htmls/measuring-agent-efficiency.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/measuring-agent-efficiency.html"
+      aria-label="Pin Measuring agent efficiency — what went wrong and what to measure instead to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="instruction-layer" open>
+    <summary>
+      <span class="sumtitle">How the instruction layer works</span>
+      <span class="count">6</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Why the docs are shaped the way they are, and the order an agent reads them in.</p>
+      <div class="row" data-href="instructional-layer-htmls/doc-restructure-plan.html">
+    <a class="card accent" href="instructional-layer-htmls/doc-restructure-plan.html">
+      <div class="t">The Index Tree — How Documentation Routing Works</div>
+      <div class="d">What the agent reads and in what order to find anything. The two-kinds-of-guidance split, worked examples with read counts.</div>
+      <div class="m">instructional-layer-htmls/doc-restructure-plan.html · 2026-08-05</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/doc-restructure-plan.html"
+      aria-label="Pin The Index Tree — How Documentation Routing Works to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/head-agents-md.html">
+    <a class="card accent" href="instructional-layer-htmls/head-agents-md.html">
+      <div class="t">Head AGENTS.md - Programs Root</div>
+      <div class="d">Visual summary of the Programs-root always-on file: what each section does and what belongs elsewhere.</div>
+      <div class="m">instructional-layer-htmls/head-agents-md.html · 2026-08-05</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/head-agents-md.html"
+      aria-label="Pin Head AGENTS.md - Programs Root to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="context-engineering-infographic.html">
+    <a class="card accent" href="context-engineering-infographic.html">
+      <div class="t">Programs — Context Engineering Map</div>
+      <div class="d">Why the instruction layer is shaped the way it is.</div>
+      <div class="m">context-engineering-infographic.html · 2026-08-01</div>
+    </a>
+    <button class="pin" type="button" data-href="context-engineering-infographic.html"
+      aria-label="Pin Programs — Context Engineering Map to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="context-engineering-capture-ladder.html">
+    <a class="card accent" href="context-engineering-capture-ladder.html">
+      <div class="t">Capture Ladder — Scenarios</div>
+      <div class="d">The five rungs, and why a rule should be pushed as high as it goes.</div>
+      <div class="m">context-engineering-capture-ladder.html · 2026-08-01</div>
+    </a>
+    <button class="pin" type="button" data-href="context-engineering-capture-ladder.html"
+      aria-label="Pin Capture Ladder — Scenarios to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="context-engineering-capture-costs.html">
+    <a class="card accent" href="context-engineering-capture-costs.html">
+      <div class="t">Capture Ladder — Cost &amp; How to Say It</div>
+      <div class="d">What each rung of the capture ladder costs per session.</div>
+      <div class="m">context-engineering-capture-costs.html · 2026-08-01</div>
+    </a>
+    <button class="pin" type="button" data-href="context-engineering-capture-costs.html"
+      aria-label="Pin Capture Ladder — Cost &amp; How to Say It to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="rule-architecture-infographic.html">
+    <a class="card accent" href="rule-architecture-infographic.html">
+      <div class="t">AI Guidance Architecture — How It Works</div>
+      <div class="d">How the guidance system works. Predates the index restructure, so parts may now be wrong.</div>
+      <div class="m">rule-architecture-infographic.html · 2026-08-01</div>
+    </a>
+    <button class="pin" type="button" data-href="rule-architecture-infographic.html"
+      aria-label="Pin AI Guidance Architecture — How It Works to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="app-maps">
+    <summary>
+      <span class="sumtitle">App &amp; pipeline maps</span>
+      <span class="count">8</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">How a specific app or data flow actually fits together.</p>
+      <div class="row" data-href="instructional-layer-htmls/student-portal-pipeline.html">
+    <a class="card accent" href="instructional-layer-htmls/student-portal-pipeline.html">
+      <div class="t">Student Portal — how it all connects</div>
+      <div class="d">Walkthrough of the grading pipeline: Math App Studio designs an app, the portal runs it, Supabase stores anonymous results, Macro App puts the names back. Includes seven weak spots ranked worst-first.</div>
+      <div class="m">instructional-layer-htmls/student-portal-pipeline.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/student-portal-pipeline.html"
+      aria-label="Pin Student Portal — how it all connects to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/course-setup-map.html">
+    <a class="card accent" href="instructional-layer-htmls/course-setup-map.html">
+      <div class="t">Macro App — How Course Setup Actually Works</div>
+      <div class="d">Setup steps create information nodes; Macro App tabs pull from those nodes — course list, schedule, calendar link, roster, assignment calendar.</div>
+      <div class="m">instructional-layer-htmls/course-setup-map.html · 2026-08-08</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/course-setup-map.html"
+      aria-label="Pin Macro App — How Course Setup Actually Works to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/macro-app-launch-paths.html">
+    <a class="card accent" href="scratch/macro-app-launch-paths.html">
+      <div class="t">Macro App — why the .bat launch feels worse, and how to fix it</div>
+      <div class="d">Why the .bat launch feels worse than the dashboard one, and how to fix it.</div>
+      <div class="m">scratch/macro-app-launch-paths.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/macro-app-launch-paths.html"
+      aria-label="Pin Macro App — why the .bat launch feels worse, and how to fix it to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/gradebook-pull-timing-map.html">
+    <a class="card accent" href="scratch/gradebook-pull-timing-map.html">
+      <div class="t">Gradebook Pull — timing map</div>
+      <div class="d">Timing map for the gradebook pull.</div>
+      <div class="m">scratch/gradebook-pull-timing-map.html · 2026-08-11</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/gradebook-pull-timing-map.html"
+      aria-label="Pin Gradebook Pull — timing map to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/supabase-setup.html">
+    <a class="card accent" href="scratch/supabase-setup.html">
+      <div class="t">Supabase Setup — Student Progress</div>
+      <div class="d">Supabase setup for student progress storage.</div>
+      <div class="m">scratch/supabase-setup.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/supabase-setup.html"
+      aria-label="Pin Supabase Setup — Student Progress to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/finish-attempt-rpc.html">
+    <a class="card accent" href="scratch/finish-attempt-rpc.html">
+      <div class="t">Finish Attempt RPC — Supabase</div>
+      <div class="d">Finish Attempt RPC — Supabase</div>
+      <div class="m">scratch/finish-attempt-rpc.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/finish-attempt-rpc.html"
+      aria-label="Pin Finish Attempt RPC — Supabase to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/student-attempt-history-rpc.html">
+    <a class="card accent" href="scratch/student-attempt-history-rpc.html">
+      <div class="t">Student Attempt History RPC — Supabase</div>
+      <div class="d">Student Attempt History RPC — Supabase</div>
+      <div class="m">scratch/student-attempt-history-rpc.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/student-attempt-history-rpc.html"
+      aria-label="Pin Student Attempt History RPC — Supabase to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/monitor-status.html">
+    <a class="card accent" href="scratch/monitor-status.html">
+      <div class="t">Monitor status</div>
+      <div class="d">Monitor status</div>
+      <div class="m">scratch/monitor-status.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/monitor-status.html"
+      aria-label="Pin Monitor status to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="reviews">
+    <summary>
+      <span class="sumtitle">Doc reviews &amp; audits</span>
+      <span class="count">6</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Point-in-time audits of a folder's markdowns against live code. Historical — the fixes already landed.</p>
+      <div class="row" data-href="instructional-layer-htmls/agent-docs-review.html">
+    <a class="card grey" href="instructional-layer-htmls/agent-docs-review.html">
+      <div class="t">Agent Docs Review - Programs Root</div>
+      <div class="d">The 12 top-level instruction-layer markdowns in agent docs/ — dates, purpose, and a keep / update / remove call on each.</div>
+      <div class="m">instructional-layer-htmls/agent-docs-review.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/agent-docs-review.html"
+      aria-label="Pin Agent Docs Review - Programs Root to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/macro-app-docs-review.html">
+    <a class="card grey" href="instructional-layer-htmls/macro-app-docs-review.html">
+      <div class="t">Macro App Docs Review</div>
+      <div class="d">All 50 markdowns under Macro App checked against live code. 38 accurate as-is; drift concentrated in the ADR set.</div>
+      <div class="m">instructional-layer-htmls/macro-app-docs-review.html · 2026-08-11</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/macro-app-docs-review.html"
+      aria-label="Pin Macro App Docs Review to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/electron-toolbar-docs-review.html">
+    <a class="card grey" href="instructional-layer-htmls/electron-toolbar-docs-review.html">
+      <div class="t">Electron Toolbar Docs Review (RESOLVED)</div>
+      <div class="d">All 39 markdowns under electron-toolbar/ checked against live code. 11 of 16 flagged files deleted.</div>
+      <div class="m">instructional-layer-htmls/electron-toolbar-docs-review.html · 2026-08-08</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/electron-toolbar-docs-review.html"
+      aria-label="Pin Electron Toolbar Docs Review (RESOLVED) to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/app-dashboard-docs-review.html">
+    <a class="card grey" href="instructional-layer-htmls/app-dashboard-docs-review.html">
+      <div class="t">App Dashboard Docs Review</div>
+      <div class="d">First app in the conformance-pass series. All 12 App Dashboard markdowns checked; 5 deleted, 2 fixed.</div>
+      <div class="m">instructional-layer-htmls/app-dashboard-docs-review.html · 2026-08-09</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/app-dashboard-docs-review.html"
+      aria-label="Pin App Dashboard Docs Review to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/recipes-review.html">
+    <a class="card grey" href="instructional-layer-htmls/recipes-review.html">
+      <div class="t">Recipes Review - agent docs/recipes/ (RESOLVED)</div>
+      <div class="d">The 26 interaction recipes checked against live code and split by owning app — only 3 were genuinely cross-app.</div>
+      <div class="m">instructional-layer-htmls/recipes-review.html · 2026-08-08</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/recipes-review.html"
+      aria-label="Pin Recipes Review - agent docs/recipes/ (RESOLVED) to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns-review.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns-review.html">
+      <div class="t">Cursor Patterns Review - Programs Root</div>
+      <div class="d">Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted.</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns-review.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns-review.html"
+      aria-label="Pin Cursor Patterns Review - Programs Root to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="mockups">
+    <summary>
+      <span class="sumtitle">UI mockups &amp; design concepts</span>
+      <span class="count">8</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Scratch — design explorations. Assume they go stale; the shipped UI is the source of truth.</p>
+      <div class="row" data-href="scratch/portal-dashboard-mockups.html">
+    <a class="card amber" href="scratch/portal-dashboard-mockups.html">
+      <div class="t">Student portal dashboard — layout mockups</div>
+      <div class="d">Student portal dashboard — layout mockups</div>
+      <div class="m">scratch/portal-dashboard-mockups.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/portal-dashboard-mockups.html"
+      aria-label="Pin Student portal dashboard — layout mockups to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/portal-dashboard-v4-light.html">
+    <a class="card amber" href="scratch/portal-dashboard-v4-light.html">
+      <div class="t">Dashboard mockup 4 — light color variants</div>
+      <div class="d">Dashboard mockup 4 — light color variants</div>
+      <div class="m">scratch/portal-dashboard-v4-light.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/portal-dashboard-v4-light.html"
+      aria-label="Pin Dashboard mockup 4 — light color variants to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/portal-in-progress-mockups.html">
+    <a class="card amber" href="scratch/portal-in-progress-mockups.html">
+      <div class="t">In-progress app tile — design concepts</div>
+      <div class="d">In-progress app tile — design concepts</div>
+      <div class="m">scratch/portal-in-progress-mockups.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/portal-in-progress-mockups.html"
+      aria-label="Pin In-progress app tile — design concepts to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/portal-v4-mobile-patterns.html">
+    <a class="card amber" href="scratch/portal-v4-mobile-patterns.html">
+      <div class="t">Mockup 4 — mobile color patterns (dark navy)</div>
+      <div class="d">Mockup 4 — mobile color patterns (dark navy)</div>
+      <div class="m">scratch/portal-v4-mobile-patterns.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/portal-v4-mobile-patterns.html"
+      aria-label="Pin Mockup 4 — mobile color patterns (dark navy) to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/teacher-console-mockups.html">
+    <a class="card amber" href="scratch/teacher-console-mockups.html">
+      <div class="t">Teacher Console — 5 interface concepts</div>
+      <div class="d">Teacher Console — 5 interface concepts</div>
+      <div class="m">scratch/teacher-console-mockups.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/teacher-console-mockups.html"
+      aria-label="Pin Teacher Console — 5 interface concepts to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/teacher-console-skins.html">
+    <a class="card amber" href="scratch/teacher-console-skins.html">
+      <div class="t">Teacher Console — Macro App skin mockups</div>
+      <div class="d">Teacher Console — Macro App skin mockups</div>
+      <div class="m">scratch/teacher-console-skins.html · 2026-09-06</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/teacher-console-skins.html"
+      aria-label="Pin Teacher Console — Macro App skin mockups to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/course-settings-mockups.html">
+    <a class="card amber" href="scratch/course-settings-mockups.html">
+      <div class="t">Course Settings — 5 combined modal concepts</div>
+      <div class="d">Course Settings — 5 combined modal concepts</div>
+      <div class="m">scratch/course-settings-mockups.html · 2026-09-07</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/course-settings-mockups.html"
+      aria-label="Pin Course Settings — 5 combined modal concepts to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/matrix-portal-theme-mockups.html">
+    <a class="card amber" href="scratch/matrix-portal-theme-mockups.html">
+      <div class="t">Matrix app — Student Portal theme mockups</div>
+      <div class="d">Matrix app — Student Portal theme mockups</div>
+      <div class="m">scratch/matrix-portal-theme-mockups.html · 2026-09-07</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/matrix-portal-theme-mockups.html"
+      aria-label="Pin Matrix app — Student Portal theme mockups to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="teaching">
+    <summary>
+      <span class="sumtitle">Teaching material</span>
+      <span class="count">8</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Handouts and review maps from School documents. These get printed and handed out.</p>
+      <div class="row" data-href="exam2-review-map.html">
+    <a class="card green" href="exam2-review-map.html">
+      <div class="t">Exam 2 Review vs Homework</div>
+      <div class="d">Exam 2 Review vs Homework</div>
+      <div class="m">exam2-review-map.html · 2026-08-11</div>
+    </a>
+    <button class="pin" type="button" data-href="exam2-review-map.html"
+      aria-label="Pin Exam 2 Review vs Homework to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="exam3-homework-map.html">
+    <a class="card green" href="exam3-homework-map.html">
+      <div class="t">Exam 3 Homework &amp; Review</div>
+      <div class="d">Exam 3 Homework &amp; Review</div>
+      <div class="m">exam3-homework-map.html · 2026-08-11</div>
+    </a>
+    <button class="pin" type="button" data-href="exam3-homework-map.html"
+      aria-label="Pin Exam 3 Homework &amp; Review to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="exam4-homework-map.html">
+    <a class="card green" href="exam4-homework-map.html">
+      <div class="t">Exam 4 Homework &amp; Review</div>
+      <div class="d">Exam 4 Homework &amp; Review</div>
+      <div class="m">exam4-homework-map.html · 2026-08-25</div>
+    </a>
+    <button class="pin" type="button" data-href="exam4-homework-map.html"
+      aria-label="Pin Exam 4 Homework &amp; Review to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="factoring-guess-check-one-pager.html">
+    <a class="card green" href="factoring-guess-check-one-pager.html">
+      <div class="t">Factoring — Double Bubble, Step by Step</div>
+      <div class="d">Factoring — Double Bubble, Step by Step</div>
+      <div class="m">factoring-guess-check-one-pager.html · 2026-09-02</div>
+    </a>
+    <button class="pin" type="button" data-href="factoring-guess-check-one-pager.html"
+      aria-label="Pin Factoring — Double Bubble, Step by Step to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="factoring-handout-print.html">
+    <a class="card green" href="factoring-handout-print.html">
+      <div class="t">Factoring a Trinomial — printable handout</div>
+      <div class="d">Factoring a Trinomial — printable handout</div>
+      <div class="m">factoring-handout-print.html · 2026-09-02</div>
+    </a>
+    <button class="pin" type="button" data-href="factoring-handout-print.html"
+      aria-label="Pin Factoring a Trinomial — printable handout to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="factoring-trinomials-page1.html">
+    <a class="card green" href="factoring-trinomials-page1.html">
+      <div class="t">Solving Quadratics by Factoring — I. Trinomials (page 1)</div>
+      <div class="d">Solving Quadratics by Factoring — I. Trinomials (page 1)</div>
+      <div class="m">factoring-trinomials-page1.html · 2026-09-03</div>
+    </a>
+    <button class="pin" type="button" data-href="factoring-trinomials-page1.html"
+      aria-label="Pin Solving Quadratics by Factoring — I. Trinomials (page 1) to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="factoring-trinomials-page2.html">
+    <a class="card green" href="factoring-trinomials-page2.html">
+      <div class="t">Solving Quadratics by Factoring — I. Trinomials (page 2)</div>
+      <div class="d">Solving Quadratics by Factoring — I. Trinomials (page 2)</div>
+      <div class="m">factoring-trinomials-page2.html · 2026-09-03</div>
+    </a>
+    <button class="pin" type="button" data-href="factoring-trinomials-page2.html"
+      aria-label="Pin Solving Quadratics by Factoring — I. Trinomials (page 2) to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="assignment-assistant-one-pager.html">
+    <a class="card green" href="assignment-assistant-one-pager.html">
+      <div class="t">Assignment Assistant — One Page Overview</div>
+      <div class="d">Assignment Assistant — One Page Overview</div>
+      <div class="m">assignment-assistant-one-pager.html · 2026-08-04</div>
+    </a>
+    <button class="pin" type="button" data-href="assignment-assistant-one-pager.html"
+      aria-label="Pin Assignment Assistant — One Page Overview to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="explainers">
+    <summary>
+      <span class="sumtitle">Math explainers &amp; tutorial text</span>
+      <span class="count">4</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Scratch — one-off visual explanations built for a specific lesson.</p>
+      <div class="row" data-href="scratch/ellipse-definition.html">
+    <a class="card amber" href="scratch/ellipse-definition.html">
+      <div class="t">Why an ellipse is an ellipse</div>
+      <div class="d">Why an ellipse is an ellipse</div>
+      <div class="m">scratch/ellipse-definition.html · 2026-09-08</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/ellipse-definition.html"
+      aria-label="Pin Why an ellipse is an ellipse to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/gcf-division.html">
+    <a class="card amber" href="scratch/gcf-division.html">
+      <div class="t">GCF division animation</div>
+      <div class="d">GCF division animation</div>
+      <div class="m">scratch/gcf-division.html · 2026-09-08</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/gcf-division.html"
+      aria-label="Pin GCF division animation to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/two-step-equation.html">
+    <a class="card amber" href="scratch/two-step-equation.html">
+      <div class="t">Solving a two-step equation</div>
+      <div class="d">Solving a two-step equation</div>
+      <div class="m">scratch/two-step-equation.html · 2026-09-09</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/two-step-equation.html"
+      aria-label="Pin Solving a two-step equation to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/matrix-tutorial-text-2026-09-07.html">
+    <a class="card amber" href="scratch/matrix-tutorial-text-2026-09-07.html">
+      <div class="t">Matrix App — Tutorial Text</div>
+      <div class="d">Matrix App — Tutorial Text</div>
+      <div class="m">scratch/matrix-tutorial-text-2026-09-07.html · 2026-09-07</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/matrix-tutorial-text-2026-09-07.html"
+      aria-label="Pin Matrix App — Tutorial Text to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
+<details class="group" data-group="games">
+    <summary>
+      <span class="sumtitle">Game tracking</span>
+      <span class="count">34</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">Guildrun and Monster Train run sheets. The dated run archive is generated, one file per run.</p>
+      <div class="row" data-href="scratch/guildrun-stats.html">
+    <a class="card grey" href="scratch/guildrun-stats.html">
+      <div class="t">Guildrun — run sheet</div>
+      <div class="d">Guildrun — run sheet</div>
+      <div class="m">scratch/guildrun-stats.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/guildrun-stats.html"
+      aria-label="Pin Guildrun — run sheet to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/guildrun-hero-guide.html">
+    <a class="card grey" href="scratch/guildrun-hero-guide.html">
+      <div class="t">Guildrun Beginner Tier &amp; Item Reference</div>
+      <div class="d">Guildrun Beginner Tier &amp; Item Reference</div>
+      <div class="m">scratch/guildrun-hero-guide.html · 2026-08-31</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/guildrun-hero-guide.html"
+      aria-label="Pin Guildrun Beginner Tier &amp; Item Reference to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/guildrun-runs.html">
+    <a class="card grey" href="scratch/guildrun-runs.html">
+      <div class="t">Guildrun — past runs</div>
+      <div class="d">Guildrun — past runs</div>
+      <div class="m">scratch/guildrun-runs.html · 2026-09-05</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/guildrun-runs.html"
+      aria-label="Pin Guildrun — past runs to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="scratch/mt2-run.html">
+    <a class="card grey" href="scratch/mt2-run.html">
+      <div class="t">Monster Train 2 — Current Run</div>
+      <div class="d">Monster Train 2 — Current Run</div>
+      <div class="m">scratch/mt2-run.html · 2026-09-07</div>
+    </a>
+    <button class="pin" type="button" data-href="scratch/mt2-run.html"
+      aria-label="Pin Monster Train 2 — Current Run to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      <details class="subgroup">
+        <summary><span class="sumtitle">Generated run archive</span>
+          <span class="count">30</span></summary>
+        <div class="sublist"><a class="mini" href="scratch/guildrun-runs/2026-09-05-c136e01a.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-05-b8e1de3f.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-05-717a016d.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-d6c730e6.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-7ffeaeaf.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-4ee68262.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-3d57aa79.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-22eda58b.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-04-07d4da13.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-03-e4cb49b3.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-03-b02dee32.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-03-594bce32.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-02-d958e29f.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-02-c24ede63.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-02-864ac83d.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-02-232859d7.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-02-0ecb66cf.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-e531ef91.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-b439615a.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-9ce9eb30.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-7c698b18.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-6ce26521.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-09-01-1cb64020.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-31-b6a7cb6f.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-31-8ba09641.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-31-464797ab.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-30-e96a2ec8.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-30-6f7155ff.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-30-598e673b.html">Guildrun — run sheet</a><a class="mini" href="scratch/guildrun-runs/2026-08-30-4a57818d.html">Guildrun — run sheet</a></div>
+      </details>
+    </div>
+  </details>
+<details class="group" data-group="retired">
+    <summary>
+      <span class="sumtitle">Retired pattern breakdowns</span>
+      <span class="count">7</span>
+    </summary>
+    <div class="groupbody">
+      <p class="blurb">The old cursor-patterns/ set, kept for history. These were merged into recipes/ on 2026-08-07 — do not treat as current guidance.</p>
+      <div class="row" data-href="instructional-layer-htmls/cursor-patterns/accessibility-patterns.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/accessibility-patterns.html">
+      <div class="t">accessibility-patterns.md Breakdown</div>
+      <div class="d">accessibility-patterns.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/accessibility-patterns.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/accessibility-patterns.html"
+      aria-label="Pin accessibility-patterns.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/anti-patterns.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/anti-patterns.html">
+      <div class="t">anti-patterns.md Breakdown</div>
+      <div class="d">anti-patterns.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/anti-patterns.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/anti-patterns.html"
+      aria-label="Pin anti-patterns.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/coding-standards.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/coding-standards.html">
+      <div class="t">CODING_STANDARDS.md Breakdown</div>
+      <div class="d">CODING_STANDARDS.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/coding-standards.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/coding-standards.html"
+      aria-label="Pin CODING_STANDARDS.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/dwell-and-head-mouse.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/dwell-and-head-mouse.html">
+      <div class="t">dwell-and-head-mouse.md Breakdown</div>
+      <div class="d">dwell-and-head-mouse.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/dwell-and-head-mouse.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/dwell-and-head-mouse.html"
+      aria-label="Pin dwell-and-head-mouse.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/electron-display-scaling.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/electron-display-scaling.html">
+      <div class="t">electron-per-monitor-display-scaling.md Breakdown</div>
+      <div class="d">electron-per-monitor-display-scaling.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/electron-display-scaling.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/electron-display-scaling.html"
+      aria-label="Pin electron-per-monitor-display-scaling.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/file-headers.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/file-headers.html">
+      <div class="t">file-headers.md Breakdown</div>
+      <div class="d">file-headers.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/file-headers.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/file-headers.html"
+      aria-label="Pin file-headers.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div><div class="row" data-href="instructional-layer-htmls/cursor-patterns/refactoring-checklist.html">
+    <a class="card grey" href="instructional-layer-htmls/cursor-patterns/refactoring-checklist.html">
+      <div class="t">refactoring-checklist.md Breakdown</div>
+      <div class="d">refactoring-checklist.md Breakdown</div>
+      <div class="m">instructional-layer-htmls/cursor-patterns/refactoring-checklist.html · 2026-08-07</div>
+    </a>
+    <button class="pin" type="button" data-href="instructional-layer-htmls/cursor-patterns/refactoring-checklist.html"
+      aria-label="Pin refactoring-checklist.md Breakdown to the top" title="Pin to top">
+      <span class="star">☆</span>
+    </button>
+  </div>
+      
+    </div>
+  </details>
 </div>
 
-<!-- ===== UNSORTED ===== -->
-<h2 class="grey">Not yet sorted</h2>
-<p class="rule">
-  Made before this split existed. Each one still needs a call: <b>maintained, scratch, or delete.</b>
-</p>
-
-<a class="card grey" href="rule-architecture-infographic.html">
-  <div class="t">AI Guidance Architecture</div>
-  <div class="d">How the guidance system works. Predates the index restructure, so parts may now be wrong.</div>
-  <div class="m">rule-architecture-infographic.html · 2026-08-01</div>
-</a>
-
-<a class="card grey" href="context-engineering-infographic.html">
-  <div class="t">Context engineering</div>
-  <div class="d">Why the instruction layer is shaped the way it is.</div>
-  <div class="m">context-engineering-infographic.html · 2026-08-01</div>
-</a>
-
-<a class="card grey" href="context-engineering-capture-ladder.html">
-  <div class="t">The capture ladder</div>
-  <div class="d">The five rungs, and why a rule should be pushed as high as it goes.</div>
-  <div class="m">context-engineering-capture-ladder.html · 2026-08-01</div>
-</a>
-
-<a class="card grey" href="context-engineering-capture-costs.html">
-  <div class="t">Capture costs</div>
-  <div class="d">What each rung costs per session.</div>
-  <div class="m">context-engineering-capture-costs.html · 2026-08-01</div>
-</a>
-
-<!-- ===== GENERATED ===== -->
-<h2 class="grey">Generated</h2>
-<p class="rule">Written by a script. <b>Never edit by hand.</b></p>
-
-<a class="card green" href="session-tracking-log.html">
-  <div class="t">Session tracking</div>
-  <div class="d">One row per completed task — expand to see doc navigation path (✓ ~ ✗).</div>
-  <div class="m">session-tracking-log.html</div>
-</a>
-
-<a class="card" href="session-metrics-log.html">
-  <div class="t">Session metrics</div>
-  <div class="d">Greps, files, hook tallies — one card per finalized session.</div>
-  <div class="m">session-metrics-log.html</div>
-</a>
-
 <footer>
-  Served by <code>scripts/serve-programs-docs.js</code> · also serves School documents (exam maps)
+  Regenerate with <code>node scripts/build-doc-index.js</code> ·
+  grouping lives in <code>agent docs/page-manifest.json</code>
 </footer>
 
 </div>
+<script>
+(function(){
+  var PIN_KEY = 'programs-index-pins';
+  var OPEN_KEY = 'programs-index-open';
+
+  function load(key, fallback){
+    try { var v = JSON.parse(localStorage.getItem(key)); return v || fallback; }
+    catch(e){ return fallback; }
+  }
+  function save(key, val){
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){}
+  }
+
+  var pins = load(PIN_KEY, []);
+  var pinnedList = document.getElementById('pinned-list');
+
+  function cardFor(href){
+    var row = document.querySelector('#groups .row[data-href="' + CSS.escape(href) + '"]');
+    return row ? row : null;
+  }
+
+  function renderPinned(){
+    pinnedList.innerHTML = '';
+    var live = pins.filter(function(h){ return cardFor(h); });
+    if (live.length !== pins.length){ pins = live; save(PIN_KEY, pins); }
+
+    if (!pins.length){
+      pinnedList.innerHTML = '<div class="pinned-empty">Nothing pinned yet. '
+        + 'Tap <b>☆</b> on any card to keep it up here.</div>';
+      return;
+    }
+    pins.forEach(function(href){
+      var clone = cardFor(href).cloneNode(true);
+      clone.setAttribute('data-pinned-clone','1');
+      pinnedList.appendChild(clone);
+    });
+    syncStars();
+  }
+
+  function syncStars(){
+    document.querySelectorAll('button.pin').forEach(function(btn){
+      var on = pins.indexOf(btn.getAttribute('data-href')) !== -1;
+      btn.setAttribute('data-pinned', on ? '1' : '0');
+      btn.querySelector('.star').textContent = on ? '★' : '☆';
+      btn.setAttribute('title', on ? 'Unpin' : 'Pin to top');
+    });
+  }
+
+  document.addEventListener('click', function(ev){
+    var btn = ev.target.closest ? ev.target.closest('button.pin') : null;
+    if (!btn) return;
+    ev.preventDefault();
+    var href = btn.getAttribute('data-href');
+    var i = pins.indexOf(href);
+    if (i === -1) pins.push(href); else pins.splice(i, 1);
+    save(PIN_KEY, pins);
+    renderPinned();
+  });
+
+  // Remember which sections are open.
+  var openState = load(OPEN_KEY, null);
+  document.querySelectorAll('details.group').forEach(function(d){
+    var id = d.getAttribute('data-group');
+    if (openState && Object.prototype.hasOwnProperty.call(openState, id)) d.open = !!openState[id];
+    d.addEventListener('toggle', function(){
+      var st = load(OPEN_KEY, {});
+      st[id] = d.open;
+      save(OPEN_KEY, st);
+    });
+  });
+
+  renderPinned();
+})();
+</script>
 </body>
 </html>
