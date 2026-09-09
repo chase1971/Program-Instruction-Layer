@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>350</dd></div>
-      <div><dt>Tasks today</dt><dd>16</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">7.4M (of 3 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>174k</dd></div>
-      <div><dt>Total billed</dt><dd>21.6M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (50/1512 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>323</dd></div>
+      <div><dt>Tasks today</dt><dd>7</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">— (no cost data yet)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>—</dd></div>
+      <div><dt>Total billed</dt><dd>—</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (48/1369 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:56 PM · Tuesday, Sep 8, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">3:17 PM · Tuesday, Sep 8, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -99,22 +99,7 @@
     opened and did not answer, and did not route onward either. Each one should have become an index row
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
-    <ul class="index-failures-list"><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">Said to hand-add a card to index.html - now stale since index is generated. Updated the rule in place.</span>
-      <span class="index-fail-task">10:56 PM — Rebuilt the front-door index as a generated page: 87 pages auto-scanned into 9 collapsible groups with localStorage pinning; unmatched pages fall into Unsorted so nothing goes missing</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
-      <span class="nav-note">Section on D2L_SESSION_OPTIONAL_TAB_IDS was stale — inline set listed 3 of 9 ids and claimed it 'only unlocks tab access'. Rewrote it to point at the file and document the new consumers</span>
-      <span class="index-fail-task">2:55 PM — Macro App: suppress all D2L session UI and allow hiding the Browser tab when no visible tab needs D2L (hand-off builds)</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="School Scrips/Matrix app/docs/sessions/SESSIONS.md">School Scrips/Matrix app/docs/sessions/SESSIONS.md</code>
-      <span class="nav-note">Latest entry does not mention the portal theming that is sitting uncommitted - log gap, not an index gap</span>
-      <span class="index-fail-task">7:07 PM — Matrix app phase 1 - optional onAnswer prop records the 7 Part 3 answers with choice, attempt, and timing; 27/27 tests pass, build clean</span>
-    </li><li class="index-fail nav-dead">
+    <ul class="index-failures-list"><li class="index-fail nav-dead">
       <span class="nav-marker">✗</span>
       <code title="APP_LOCATIONS.md">APP_LOCATIONS.md</code>
       <span class="nav-note">L131 pointed at C:\Users\chase\Documents\D2L Assignment Assistant, deleted today; AA engine is vendored in Macro App. Owned the fix: repointed the row.</span>
@@ -199,675 +184,37 @@
       <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
       <span class="nav-note">12 Guildrun rows sat in the four-branches table, against its own 'index names owners' rule</span>
       <span class="index-fail-task">1:57 PM — Index-gap audit: Guildrun Stats AGENTS.md (12 rows out of the global index), scroll-rail recipe, scoped the launcher rule, added a 'routed' nav outcome so the gap panel stops showing correct negatives</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No rank-upgrade row yet</span>
+      <span class="index-fail-task">12:35 PM — Sal Rank A upgrade is Hermit, not Poisonous Attacks — used rank slot as id</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No overrides row — added after</span>
+      <span class="index-fail-task">11:12 AM — Guildrun Stats: Chase-confirmed ? values persist in data/overrides.json; Shard Pouch is Gain 12 Shards</span>
+    </li><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">No save-runs row — added after</span>
+      <span class="index-fail-task">11:01 AM — Guildrun Stats: one saved HTML sheet per RunId plus a clickable past-runs list; freezes when the live save disappears</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Tuesday, Sep 8, 2026 <span class="day-count">16 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Sep 8, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">10:56 PM — Rebuilt the front-door index as a generated page: 87 pages auto-scanned into 9 collapsible groups with localStorage pinning; unmatched pages fall into Unsorted so nothing goes missing — 5 steps · 2m 7s</span>
+      <span class="track-title">3:17 PM — Makeup Exam: stop Tab/retry contact loop; abort on student ID fail; one post-campus commit — 3 steps · 3m 31s</span>
       
     </summary>
     <div class="track-panel">
       <p class="track-meta muted-inline">
-        Session 10:54 PM
-         · 2m 7s active tool time
-        <br>5 steps · first helpful at #2 · 4 ✓ · 1 ~ · 0 ✗
-        <br>Hook saw 14 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 2m 13s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">Said to hand-add a card to index.html - now stale since index is generated. Updated the rule in place.</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="scripts/serve-programs-docs.js">scripts/serve-programs-docs.js</code>
-      <span class="nav-note">SERVE_ROOTS order - School documents wins ties; mirrored in the scanner</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="agent docs/index.html (previous hand-written version)">agent docs/index.html (previous hand-written version)</code>
-      <span class="nav-note">Harvested 20 curated descriptions before regenerating</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="agent docs/page-manifest.json">agent docs/page-manifest.json</code>
-      <span class="nav-note">New - groups and descriptions</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="scripts/build-doc-index.js + doc-index-html.js">scripts/build-doc-index.js + doc-index-html.js</code>
-      <span class="nav-note">New - scanner and renderer, split to keep both under cap</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">10:53 PM — Matrix portal polish: tiny part nav overlay, classwork prefetch/two-phase load (no pop-in), exit-ticket subtitle fix; Matrix Part 3 isTargetCell wrong-answer highlight + popover widths — 5 steps · 4m 37s</span>
-      <span class="pill p0">1.2M tokens</span>
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 4m 37s active tool time
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 21 search(es), 6 doc read(s) · 1.2M tokens over 5 turn(s) · 233k/turn
-        <br>Wall-clock gap since previous task: 4m 48s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/features/matrix-tutorial/MatrixTutorialNav.tsx">School Scrips/student-portal/src/features/matrix-tutorial/MatrixTutorialNav.tsx</code>
-      <span class="nav-note">Portal-owned 1/2/3 tabs + Back/Next above matrix</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/services/classworkData.ts">School Scrips/student-portal/src/services/classworkData.ts</code>
-      <span class="nav-note">Session cache + prefetch on identify</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/styles/index.css">School Scrips/student-portal/src/styles/index.css</code>
-      <span class="nav-note">Nav button sizing; matrix-embed popover nudge</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/hooks/use-matrix-tutorial-part-3.ts">School Scrips/Matrix app/src/app/hooks/use-matrix-tutorial-part-3.ts</code>
-      <span class="nav-note">Fixed dead isTargetCell branches for steps 1 and 6</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx">School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx</code>
-      <span class="nav-note">Popover widths + nowrap on notation buttons</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">10:48 PM — Built the measurement workbench landing page: front door to the three report pages, every command, a ranked five-experiment queue, and the settled facts table so they don't get re-derived — 3 steps · 10m 15s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 10m 15s active tool time
-        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 7 search(es), 3 doc read(s)
-        <br>Wall-clock gap since previous task: 10m 20s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">instructional-layer-htmls for durable pages; card required on agent docs/index.html</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="agent docs/index.html">agent docs/index.html</code>
-      <span class="nav-note">Card markup pattern and design tokens</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="agent docs/instructional-layer-htmls/agent-measurement-workbench.html">agent docs/instructional-layer-htmls/agent-measurement-workbench.html</code>
-      <span class="nav-note">New landing page</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">10:37 PM — Built the retrieval probe set: 20 fixed questions run in fresh read-only cursor-agent sessions with per-probe token capture. Baseline 20/20 correct, 867k tokens; routed questions cost 49k vs 29k always-on, python-launcher 6.9x the floor — 5 steps · 1h 4m</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 1h 4m active tool time
-        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 17 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 1h 4m (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="cursor-agent --help">cursor-agent --help</code>
-      <span class="nav-note">-p --output-format json --mode ask --model; JSON includes usage tokens</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="agent docs/probes/retrieval-probes.json">agent docs/probes/retrieval-probes.json</code>
-      <span class="nav-note">New - 20 questions tiered always-on vs routed</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="scripts/run-probes.js">scripts/run-probes.js</code>
-      <span class="nav-note">New - fresh session per probe, keyword grading, token capture</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scripts/probe-report.js">scripts/probe-report.js</code>
-      <span class="nav-note">New - run-over-run deltas + navigation-cost list</span>
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">Confirmed 8765 link rule and index.html card requirement</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">9:32 PM — Built regenerable token usage report (scripts/token-report.js + cursor-token-scan.py): Read is 34% of cost vs Edit 8.5%; cost/turn scales 8x from short to 600+ turn sessions; confirmed Cursor stores tokens locally but omits modelName on 98% of requests — 5 steps · 33m 43s</span>
-      <span class="pill p0">13.0M tokens</span>
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 33m 43s active tool time
-        <br>5 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
-        <br>Hook saw 27 search(es), 0 doc read(s) · 13.0M tokens over 75 turn(s) · 174k/turn
-        <br>Wall-clock gap since previous task: 34m 4s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="~/.claude/projects/.../*.jsonl">~/.claude/projects/.../*.jsonl</code>
-      <span class="nav-note">36 transcripts carry real per-turn usage incl. cache_read</span>
-      
-    </li><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Cursor state.vscdb cursorDiskKV">Cursor state.vscdb cursorDiskKV</code>
-      <span class="nav-note">tokenCount present on 4747 bubbles, but modelName missing on 98% - model attribution not possible</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="scripts/token-report-data.js">scripts/token-report-data.js</code>
-      <span class="nav-note">New - context-growth attribution and compounded cost</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scripts/token-report.js">scripts/token-report.js</code>
-      <span class="nav-note">New - generates token-usage-log.html</span>
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">Named the folder and the 8765 link rule directly</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:58 PM — Built and delivered a Manim two-step equation animation (3x + 7 = 22) in the established solving style — 7 steps · 3m 51s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 3m 51s active tool time
-        <br>7 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 12 search(es), 1 doc read(s)
-        <br>Wall-clock gap since previous task: 4m 6s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="AGENTS.md">INDEX → AGENTS.md</code>
-      <span class="nav-note">HTML delivery section sent me to the rules doc; no Manim row needed yet</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/ANIMATION_STYLE_RECIPE.md">Manim Trial/ANIMATION_STYLE_RECIPE.md</code>
-      <span class="nav-note">Navy/gold/blue palette, work develops downward, completed lines never move again</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      <span class="nav-note">Single MathTex per line to preserve operator baselines; caption at y=-3.05</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Manim Trial/solve_factors.py">Manim Trial/solve_factors.py</code>
-      <span class="nav-note">Operation-beneath-both-sides pattern: fraction bars plus divisor, then TransformFromCopy downward</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="Manim Trial/render.ps1">Manim Trial/render.ps1</code>
-      <span class="nav-note">MiKTeX path set per process, no preview flag</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
-      <span class="nav-note">scratch/ folder, port 8765, one markdown link only</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">7</span>
-      
-      <code class="nav-target" title="agent docs/scratch/gcf-division.html">agent docs/scratch/gcf-division.html</code>
-      <span class="nav-note">Confirmed prior videos ship as base64 data URI in a single-line page</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:54 PM — Trimmed session tracking: removed indexFirst/unexplainedSearches/pathCoverage (all measurement artifacts); added real per-task token cost read from the Claude Code transcript — 6 steps · 9m 26s</span>
-      <span class="pill p0">7.4M tokens</span>
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 9m 26s active tool time
-        <br>6 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 21 search(es), 0 doc read(s) · 7.4M tokens over 65 turn(s) · 114k/turn
-        <br>Wall-clock gap since previous task: 9m 37s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="scripts/session-tracking-stats.js">scripts/session-tracking-stats.js</code>
-      <span class="nav-note">Stripped the three dead metrics; rollup now reports token cost</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="scripts/session-token-cost.js">scripts/session-token-cost.js</code>
-      <span class="nav-note">New - slices transcript usage by task window</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="scripts/scorecard-hook-tally.js">scripts/scorecard-hook-tally.js</code>
-      <span class="nav-note">Captures transcript_path from the hook payload</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scripts/session-tracking-store.js">scripts/session-tracking-store.js</code>
-      <span class="nav-note">Swapped reconcile() for readTranscriptUsage()</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="scripts/session-tracking-html.js">scripts/session-tracking-html.js</code>
-      <span class="nav-note">Dead tiles replaced with token cost tiles</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
-      <span class="nav-note">Documented removals + sharpened routed vs partial with the 41% mislabel finding</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:45 PM — Audited session-tracking.jsonl (342 bumps, 67 sessions): found indexFirst/unexplainedSearches/pathCoverage are measurement artifacts; doc-gap ledger is the only real signal, ~41% mislabeled routed-as-partial — 4 steps · 17m 9s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 8:27 PM
-         · 17m 9s active tool time
-        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 27 search(es), 5 doc read(s)
-        <br>Wall-clock gap since previous task: 18m 6s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
-      <span class="nav-note">Field definitions + routed vs partial rule table</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="agent docs/session-tracking.jsonl">agent docs/session-tracking.jsonl</code>
-      <span class="nav-note">342 entries, aggregate analysis</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="scripts/session-tracking-stats.js">scripts/session-tracking-stats.js</code>
-      <span class="nav-note">indexFirst computed from tool timeline only - blind to auto-loaded AGENTS.md</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scripts/scorecard-hook-tally.js">scripts/scorecard-hook-tally.js</code>
-      <span class="nav-note">doc-read vs read classification; SEARCH_KINDS never matches agent-invented kinds</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:22 PM — student-portal tsconfig: removed deprecated baseUrl (TS7 error); paths alias still resolves, tsc --noEmit clean — 3 steps · 3h 50m</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3h 50m active tool time
-        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 12 search(es), 2 doc read(s)
-        <br>Wall-clock gap since previous task: 3h 50m (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/tsconfig.json">School Scrips/student-portal/tsconfig.json</code>
-      <span class="nav-note">Lint error L21: baseUrl deprecated in TS 7.0</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src (grep for bare module imports)">School Scrips/student-portal/src (grep for bare module imports)</code>
-      <span class="nav-note">No non-relative imports depended on baseUrl, so removal is safe</span>
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/tsconfig.node.json">School Scrips/student-portal/tsconfig.node.json</code>
-      <span class="nav-note">Referenced project has no baseUrl — nothing to mirror</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">4:31 PM — Expanded the Matrix portal embed from Part 3 only to the full Gauss-Jordan tutorial (Parts 1–3 in sequence). Score is now 3 points (one per part completed); Part 3’s seven answer choices still land in attempt_items for teacher review. Activity renamed to matrix/gauss-jordan via migration 010; route is #/matrix-tutorial on the Assignments tab. Matrix app unchanged. — 3 steps · 1h 35m</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 1h 35m active tool time
-        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 16 search(es), 1 doc read(s)
-        <br>Wall-clock gap since previous task: 1h 36m (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="Attached plan full_matrix_tutorial_in_portal">Attached plan full_matrix_tutorial_in_portal</code>
-      <span class="nav-note">User confirmed implementation after prior explore subagent aborted.</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="matrix-solver.tsx + matrix-solver-part-2.tsx props">matrix-solver.tsx + matrix-solver-part-2.tsx props</code>
-      <span class="nav-note">Confirmed onGoToPart2/onGoToPart3 fire at part boundaries; Part 1 has no autoStart.</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="useResumableAttempt hydrate signature">useResumableAttempt hydrate signature</code>
-      <span class="nav-note">Fixed hydrate to (raw, savedIndex) =&gt; { currentIndex, progress }.</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">2:55 PM — Macro App: suppress all D2L session UI and allow hiding the Browser tab when no visible tab needs D2L (hand-off builds) — 8 steps · 33m 12s · 1 dead-end</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 33m 12s active tool time
-        <br>8 steps · first helpful at #1 · 5 ✓ · 1 ~ · 1 ✗
-        <br>Hook saw 17 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 33m 42s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">INDEX → School Scrips/Macro App/AGENTS.md</code>
-      <span class="nav-note">Slim build + embedded browser rows pointed at the two owner docs</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
-      <span class="nav-note">Confirmed the exact hand-off tab set (browser + makeup-exam + d2l-email) Chase was describing</span>
-      
-    </li><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md">School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
-      <span class="nav-note">Section on D2L_SESSION_OPTIONAL_TAB_IDS was stale — inline set listed 3 of 9 ids and claimed it 'only unlocks tab access'. Rewrote it to point at the file and document the new consumers</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="renderer/src/modules/moduleContracts.ts">renderer/src/modules/moduleContracts.ts</code>
-      <span class="nav-note">D2L_SESSION_OPTIONAL_TAB_IDS complement is exactly Chase's list — no new hardcoded list needed</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="renderer/src/utils/shell/workspaceTabLayout.ts">renderer/src/utils/shell/workspaceTabLayout.ts</code>
-      <span class="nav-note">Single owner of the browser-always-visible lock, four spots</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="renderer/src/components/chrome/D2LWorkspaceHeader.tsx">renderer/src/components/chrome/D2LWorkspaceHeader.tsx</code>
-      <span class="nav-note">Session pill = the top-left nag; tab spinners already gated correctly so no change</span>
-      
-    </li><li class="nav-step nav-dead" style="--nav-depth:0">
-      <span class="nav-marker" title="dead-end">✗</span>
-      <span class="nav-step-num">7</span>
-      
-      <code class="nav-target" title="renderer/src/hooks/shell/useAppWorkspaceOrchestration.ts">renderer/src/hooks/shell/useAppWorkspaceOrchestration.ts</code>
-      <span class="nav-note">Added an active-tab fallback effect here, then reverted it — useMacroAppShellWorkspaceTabGuard already owned that concept. Rule 4 violation caught by a late grep for visibleTabIds; should have grepped before writing</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">8</span>
-      
-      <code class="nav-target" title="renderer/src/hooks/shell/useMacroAppShellWorkspaceTabGuard.ts">renderer/src/hooks/shell/useMacroAppShellWorkspaceTabGuard.ts</code>
-      <span class="nav-note">Real owner — extended its hardcoded 'browser' fallback to the first visible tab</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">2:21 PM — Restored the D2L one-click login button to the Macro App Browser side panel (dropped in the 2026-09-07 panel cleanup) — 5 steps · 46m 32s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 46m 32s active tool time
-        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 30 search(es), 2 doc read(s)
-        <br>Wall-clock gap since previous task: 46m 48s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
-      <span class="nav-note">Resolved 'macro app' to School Scrips/Macro App after the root-level path guess failed</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/Macro App/docs/sessions/SESSIONS.md">School Scrips/Macro App/docs/sessions/SESSIONS.md</code>
-      <span class="nav-note">2026-09-07 entry named the exact removal: 'Browser panel no longer has ... login'</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="git show 51420e9 -- renderer/src/components/shell/AppHomeSidePanel.tsx">git show 51420e9 -- renderer/src/components/shell/AppHomeSidePanel.tsx</code>
-      <span class="nav-note">Exact deleted Sign In block plus the isD2LLoggedIn prop it was gated on</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="renderer/src/components/side-panels/D2LLoginButton.tsx">renderer/src/components/side-panels/D2LLoginButton.tsx</code>
-      <span class="nav-note">Component survived the cleanup — still used by MakeupExamSidePanel, so only the callsite needed restoring</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="renderer/src/components/shell/AppSidePanel.tsx">renderer/src/components/shell/AppSidePanel.tsx</code>
-      <span class="nav-note">gradebookD2L.isD2LLoggedIn still on the shell model; rewired the prop</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">1:34 PM — Pulled 3 Makeup Exam fix commits from GitHub (stash/pull --ff-only/restore around uncommitted student-progress work), then built the slim NSIS installer: Macro App Setup 0.1.25.exe, 170 MB, three-tab profile — 5 steps · 12m 30s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 12m 30s since previous task
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        Session 3:14 PM
+         · 3m 31s since previous task
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
         
-        <br>Wall-clock gap since previous task: 12m 30s (includes idle time)
+        <br>Wall-clock gap since previous task: 3m 31s (includes idle time)
       </p>
       <p class="muted-inline nav-legend">
         <span class="nav-helpful-pill">✓ helpful</span>
@@ -878,106 +225,37 @@
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">1</span>
       
-      <code class="nav-target" title="Programs/AGENTS.md - Git: pull at start">Programs/AGENTS.md - Git: pull at start</code>
-      <span class="nav-note">Machine-local dirty -&gt; stash those paths, pull, restore; real-source dirty + remote ahead -&gt; stop and surface</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="git diff --name-only HEAD origin/main vs local dirty set">git diff --name-only HEAD origin/main vs local dirty set</code>
-      <span class="nav-note">Zero overlap between the 3 incoming commits and the 3 dirty files, so a fast-forward was provably safe rather than a collision</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="electron-app/student-progress-io.js">electron-app/student-progress-io.js</code>
-      <span class="nav-note">Chase's uncommitted PROGRESS_ROSTER_APPS change (adds 'matrix'); verified it survived the stash/pop</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="moduleContracts ALL_D2L_WORKSPACE_TABS vs build-profiles/slim/build.config.json">moduleContracts ALL_D2L_WORKSPACE_TABS vs build-profiles/slim/build.config.json</code>
-      <span class="nav-note">Standing check before every slim build - a tab id absent from the map defaults to INCLUDED. All 15 still covered</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="scripts/build-profile.cjs slim --out dist-slim (no --dir)">scripts/build-profile.cjs slim --out dist-slim (no --dir)</code>
-      <span class="nav-note">NSIS installer path; app not running so build:python re-provisioned cleanly with AA reqs excluded</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">1:22 PM — Created ellipse definition video with example equation, foci, changing distances, constant-sum meter, inside/outside contrast and string tracing; checked numerical invariant and visual layout — 5 steps · 10m 7s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 10m 7s active tool time
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 23 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 15m 12s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="Manim Trial style recipe and README">Manim Trial style recipe and README</code>
+      <code class="nav-target" title="docs/MAKEUP_EXAM_CDP_INTEGRATION.md">docs/MAKEUP_EXAM_CDP_INTEGRATION.md</code>
       
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
-      <code class="nav-target" title="OpenStax ellipse chapter and GeoGebra focal-distance applets">OpenStax ellipse chapter and GeoGebra focal-distance applets</code>
-      
+      <code class="nav-target" title="modules/makeup-exam/backend/automation_core.py">modules/makeup-exam/backend/automation_core.py</code>
+      <span class="nav-note">Student ID empty + rewrite loop from logs</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
-      <code class="nav-target" title="ellipse_definition.py">ellipse_definition.py</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Rendered contact sheet and numerical sum check">Rendered contact sheet and numerical sum check</code>
-      <span class="nav-note">Corrected label crowding, stale movement captions and displayed rounding</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="ellipse-player.html and served animation">ellipse-player.html and served animation</code>
-      <span class="nav-note">Source links included; HTTP 200</span>
+      <code class="nav-target" title="modules/makeup-exam/backend/automation_actions.py">modules/makeup-exam/backend/automation_actions.py</code>
+      <span class="nav-note">Tab → blur; no retries</span>
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">1:06 PM — Phase 3 of embedding Matrix Part 3 in the student portal: closed the typecheck decision by declaring the Matrix surface in src/types/matrix-app.d.ts so tsc stops compiling the sibling repo (portal type-check now green, and the pre-existing invalid ignoreDeprecations 6.0 option was removed); added the Assignments tab tile; registered the activity via migration 009 + db:push, without which the attempts.activity_id foreign key would have failed every save; replaced Macro App's single-app roster filter with PROGRESS_ROSTER_APPS so the results are visible teacher-side. — 4 steps · 5h 40m</span>
+      <span class="track-title">3:14 PM — Makeup Exam: commit backup phone + campus after assessment-campus postback — 4 steps · 2ms</span>
       
     </summary>
     <div class="track-panel">
       <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 5h 40m active tool time
-        <br>4 steps · first helpful at #1 · 2 ✓ · 1 ~ · 0 ✗
-        <br>Hook saw 11 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 5h 40m (includes idle time)
+        Session 3:14 PM
+         · 2ms since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 2ms (includes idle time)
       </p>
       <p class="muted-inline nav-legend">
         <span class="nav-helpful-pill">✓ helpful</span>
@@ -988,1074 +266,255 @@
       <span class="nav-marker" title="routed">→</span>
       <span class="nav-step-num">1</span>
       
-      <code class="nav-target" title="AskQuestion on typecheck strategy + tile placement">AskQuestion on typecheck strategy + tile placement</code>
-      <span class="nav-note">Chase chose the external-dependency boundary and the Assignments tab.</span>
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">INDEX → School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Makeup Exam CDP row</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
-      <code class="nav-target" title="student-portal/src/app/components/PracticeView.tsx + PortalListTile.tsx">student-portal/src/app/components/PracticeView.tsx + PortalListTile.tsx</code>
-      <span class="nav-note">Tile pattern to copy for the new AssignmentsView.</span>
+      <code class="nav-target" title="docs/MAKEUP_EXAM_CDP_INTEGRATION.md">docs/MAKEUP_EXAM_CDP_INTEGRATION.md</code>
+      <span class="nav-note">Form fill / deferred field pattern</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
-      <code class="nav-target" title="grep supabase/migrations for activity_id foreign keys">grep supabase/migrations for activity_id foreign keys</code>
-      <span class="nav-note">Load-bearing find: attempts.activity_id references activities(id), so the migration was required, not bookkeeping. 003_check_app.sql was the exemplar; 007 supplied grading_mode/published columns.</span>
+      <code class="nav-target" title="modules/makeup-exam/backend/automation_core.py">modules/makeup-exam/backend/automation_core.py</code>
+      <span class="nav-note">Final check before campus select</span>
       
-    </li><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">4</span>
       
-      <code class="nav-target" title="STUDENT_PROGRESS_PIPELINE.md known-gaps section">STUDENT_PROGRESS_PIPELINE.md known-gaps section</code>
-      <span class="nav-note">Named the Macro App gap but described it as a hardcoded activity_id=eq.check-app%2Fquiz filter; the code had since drifted to a single-app check on activities.app. Same effect, wrong location to grep for. Doc corrected, and the six-place add-an-app list rewritten with a new subsection for separate-repo apps.</span>
+      <code class="nav-target" title="modules/makeup-exam/backend/automation_actions.py">modules/makeup-exam/backend/automation_actions.py</code>
+      <span class="nav-note">Added commit_text_field</span>
       
     </li></ul>
     </div>
   </details><details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">7:25 AM — Phase 2 - Matrix Part 3 embedded in the portal via importer-aware alias, scoped CSS, and code-split feature folder; dev + build both verified — 7 steps · 9h 31m</span>
+      <span class="track-title">10:33 AM — Makeup Exam: Cancel button, 2s named field timeouts, force-click past overlays, re-find frame after Add — 4 steps · 12m 13s</span>
       
     </summary>
     <div class="track-panel">
       <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 9h 31m active tool time
-        <br>7 steps · first helpful at #1 · 6 ✓ · 1 ~ · 0 ✗
-        <br>Hook saw 16 search(es), 2 doc read(s)
-        <br>Wall-clock gap since previous task: 9h 38m (includes idle time)
+        Session 9:53 AM
+         · 12m 13s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 12m 13s (includes idle time)
       </p>
       <p class="muted-inline nav-legend">
         <span class="nav-helpful-pill">✓ helpful</span>
         <span class="nav-partial-pill">~ partial</span>
         <span class="nav-dead-pill">✗ dead end</span>
       </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
       <span class="nav-step-num">1</span>
       
-      <code class="nav-target" title="School Scrips/student-portal/scripts/netlify-deploy-prod.mjs">School Scrips/student-portal/scripts/netlify-deploy-prod.mjs</code>
-      <span class="nav-note">CLI deploy uploads a local dist, so Netlify never clones - sibling-folder alias is deploy-safe</span>
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">INDEX → School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Makeup Exam → MAKEUP_EXAM_CDP</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">2</span>
       
-      <code class="nav-target" title="School Scrips/student-portal/src/features/generic-quiz/GenericQuizView.tsx">School Scrips/student-portal/src/features/generic-quiz/GenericQuizView.tsx</code>
-      <span class="nav-note">Exemplar for view/runner/result split and portal-quiz classes</span>
+      <code class="nav-target" title="docs/MAKEUP_EXAM_CDP_INTEGRATION.md">docs/MAKEUP_EXAM_CDP_INTEGRATION.md</code>
+      
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">3</span>
       
-      <code class="nav-target" title="School Scrips/student-portal/src/features/generic-quiz/GenericQuizQuestionCard.tsx">School Scrips/student-portal/src/features/generic-quiz/GenericQuizQuestionCard.tsx</code>
-      <span class="nav-note">Header Back + progress pattern for focus mode</span>
+      <code class="nav-target" title="automation_core.py logs">automation_core.py logs</code>
+      <span class="nav-note">Add click 30s + html intercepts pointer events</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
       <span class="nav-step-num">4</span>
       
-      <code class="nav-target" title="School Scrips/Matrix app/src/styles/theme.css">School Scrips/Matrix app/src/styles/theme.css</code>
-      <span class="nav-note">Global @layer base * / body rules confirmed why its CSS cannot be imported flat</span>
+      <code class="nav-target" title="modules/makeup-exam/backend/automation_actions.py">modules/makeup-exam/backend/automation_actions.py</code>
+      <span class="nav-note">new helpers</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:21 AM — Makeup Exam: invalidate modal snapshot after login URL; roll past start date to today — 4 steps · 9m 38s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:53 AM
+         · 9m 38s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 9m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">INDEX → School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">snapshot/modal → EMBEDDED_BROWSER</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
+      <span class="nav-step-num">2</span>
       
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx">School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx</code>
-      <span class="nav-note">Overlay already owns Next/Continue/Finish with animation guards - portal only adds a previous-step control</span>
+      <code class="nav-target" title="docs/EMBEDDED_BROWSER_AND_MODALS.md">docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">pre-warm cache reuse</span>
       
     </li><li class="nav-step nav-helpful" style="--nav-depth:0">
       <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
+      <span class="nav-step-num">3</span>
       
-      <code class="nav-target" title="grep: fixed/min-h-screen/100vw in Part 3 subtree">grep: fixed/min-h-screen/100vw in Part 3 subtree</code>
-      <span class="nav-note">Only one viewport assumption in the whole subtree; the escaping code all lives in App.tsx</span>
+      <code class="nav-target" title="useEmbeddedBrowserModal cachedSnapshotRef">useEmbeddedBrowserModal cachedSnapshotRef</code>
+      <span class="nav-note">stale login PNG after form landing</span>
       
-    </li><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
-      <span class="nav-step-num">7</span>
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
       
-      <code class="nav-target" title="vite resolve.alias plugin ordering">vite resolve.alias plugin ordering</code>
-      <span class="nav-note">Built-in vite:alias claims @/ before user pre-plugins; had to drop resolve.alias and own both prefixes in one plugin</span>
+      <code class="nav-target" title="useMakeupExamConfig.ts">useMakeupExamConfig.ts</code>
+      <span class="nav-note">persisted startDate past today</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:11 AM — Fixed Makeup Exam infinite activate loop — stable effect deps, hide only on leave — 3 steps · 6m 8s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:53 AM
+         · 6m 8s since previous task
+        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 6m 8s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Makeup / stuck browser → EMBEDDED_BROWSER_AND_MODALS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="conversation transcript + logs">conversation transcript + logs</code>
+      <span class="nav-note">activate makeup-exam × hundreds + update depth at useEmbeddedBrowser/slotSessionStore</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/shell/useMacroAppWorkspaceBrowserEffects.ts">renderer/src/hooks/shell/useMacroAppWorkspaceBrowserEffects.ts</code>
+      <span class="nav-note">activateSlotForTab in deps + hide on cancel → loop</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:05 AM — Fixed Makeup Exam / Settings: don't reattach browser under modal; hide on leave race — 4 steps · 12m 11s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:53 AM
+         · 12m 11s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 12m 11s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">snapshot/freeze → EMBEDDED_BROWSER_AND_MODALS</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="docs/EMBEDDED_BROWSER_AND_MODALS.md">docs/EMBEDDED_BROWSER_AND_MODALS.md</code>
+      <span class="nav-note">Never reattach under modal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/browser-view-slots.js">electron-app/browser-view-slots.js</code>
+      <span class="nav-note">activateSlot deferred when modalSuppressed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/hooks/shell/useMacroAppWorkspaceBrowserEffects.ts">renderer/src/hooks/shell/useMacroAppWorkspaceBrowserEffects.ts</code>
+      <span class="nav-note">hide if leave Makeup Exam mid-activate</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:53 AM — Setup courses schedule step: remove Skip this course / Skip all schedules — 2 steps · 1ms</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:53 AM
+         · 1ms since previous task
+        <br>2 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1ms (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Setup courses / modal</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/components/shell/SetupCoursesWizardModal.tsx">renderer/src/components/shell/SetupCoursesWizardModal.tsx</code>
+      <span class="nav-note">Removed skip buttons on schedule step</span>
       
     </li></ul>
     </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Monday, Sep 7, 2026 <span class="day-count">49 tasks</span></h2>
+      <h2 class="day-title">Monday, Sep 7, 2026 <span class="day-count">31 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">9:46 PM — Captured reusable Manim math explanation animation recipe and prompt template from the GCF iteration — 4 steps · 3m 8s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3m 8s active tool time
-        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 5 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 49m 29s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md and APP_LOCATIONS.md">agent docs/INDEX.md and APP_LOCATIONS.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/README.md">Manim Trial/README.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Existing GCF animation iterations">Existing GCF animation iterations</code>
-      <span class="nav-note">Extracted stable movement, wording and visual rules</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Manim Trial/ANIMATION_STYLE_RECIPE.md">Manim Trial/ANIMATION_STYLE_RECIPE.md</code>
-      <span class="nav-note">Created reusable recipe and prompt template</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:57 PM — Built the slim profile as an NSIS installer (first time — every prior slim build was --dir only) and hash-verified the copy onto the H: USB drive: Macro App Setup 0.1.24.exe, 170 MB, three-tab profile — 5 steps · 59s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 59s since previous task
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 59s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="dist-slim listing">dist-slim listing</code>
-      <span class="nav-note">Confirmed no installer existed — every slim build so far used --dir per Chase's original 'don't make it executable'</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Get-PSDrive H / Get-Volume">Get-PSDrive H / Get-Volume</code>
-      <span class="nav-note">H: is a FAT32 removable Windows-install stick (ESD-USB), 24.7 GB free — 4 GB file cap is not a problem for a 170 MB installer</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="H:\Macro App Slim listing">H:\Macro App Slim listing</code>
-      <span class="nav-note">Found a stale 655 MB four-tab unpacked build from 8/31; left it alone rather than deleting, flagged to Chase</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scripts/build-profile.cjs slim --out dist-slim (no --dir)">scripts/build-profile.cjs slim --out dist-slim (no --dir)</code>
-      <span class="nav-note">The --dir flag added earlier is exactly what made both shapes reachable from one profile</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="Get-FileHash source vs USB">Get-FileHash source vs USB</code>
-      <span class="nav-note">SHA256 match — USB copies are worth verifying rather than trusting Copy-Item</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:56 PM — Changed final GCF caption to exact requested wording and re-rendered playback page — 3 steps · 3m 18s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3m 18s since previous task
-        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 1 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 3m 18s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Rendered MP4 and playback page">Rendered MP4 and playback page</code>
-      <span class="nav-note">Verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:53 PM — Updated GCF animation captions to use pull-out language and remove awkward multiply-back wording — 4 steps · 4m 9s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 4m 9s since previous task
-        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 4m 9s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      <span class="nav-note">Changed captions at factor placement and final factored equation</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Rendered Manim MP4">Rendered Manim MP4</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scratch/gcf-division.html">scratch/gcf-division.html</code>
-      <span class="nav-note">Embedded updated video and verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:48 PM — Increased GCF animation playback speed to 1.15x without re-rendering — 1 step · 2m</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 2m since previous task
-        <br>1 steps · first helpful at #1 · 1 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 2m (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="Existing GCF playback page">Existing GCF playback page</code>
-      <span class="nav-note">Checked line count, updated video playback rate, verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:46 PM — Extended GCF animation: lifted factored equation, separated zero-product branches diagonally, animated subtraction and division to x=0 or x=-5/3 — 4 steps · 3m 19s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3m 19s since previous task
-        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 3m 19s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Manim Trial/solve_factors.py and v4 contact sheet">Manim Trial/solve_factors.py and v4 contact sheet</code>
-      <span class="nav-note">Rendered and inspected factor split, both solving branches and final answers</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scratch/gcf-division.html">scratch/gcf-division.html</code>
-      <span class="nav-note">Updated video and verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:43 PM — Fixed GCF animation quotient landing: 3x plus 5 stays stationary while factor, parentheses and equals zero assemble sequentially around it — 4 steps · 3m 1s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3m 1s since previous task
-        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 3m 1s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Rendered v3 contact sheet">Rendered v3 contact sheet</code>
-      <span class="nav-note">Confirmed fixed quotient geometry across reveal and final assembly</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scratch/gcf-division.html">scratch/gcf-division.html</code>
-      <span class="nav-note">Updated embedded MP4 and verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:40 PM — Revised GCF animation to start with 6x squared plus 10x equals zero on one baseline and develop all work downward; preserved quotient motion and checked rendered frames — 4 steps · 6m 46s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 6m 46s since previous task
-        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 6m 46s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md and Manim Trial/README.md">agent docs/INDEX.md and Manim Trial/README.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py">Manim Trial/gcf_division.py</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Rendered v2 contact sheet">Rendered v2 contact sheet</code>
-      <span class="nav-note">Verified normal plus/equals baseline, downward factor merge and final factored equation</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="scratch/gcf-division.html">scratch/gcf-division.html</code>
-      <span class="nav-note">Replaced embedded video and verified HTTP 200</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">8:33 PM — Created and visually checked 1080p GCF division animation with fraction bars, merging 2x divisors and forming parentheses; delivered accessible playback page — 5 steps · 1h 4m</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 1h 4m since previous task
-        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 1h 4m (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md and Manim Trial/README.md">agent docs/INDEX.md and Manim Trial/README.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="canvas-kit divisionBeats.ts and Manim verification scene">canvas-kit divisionBeats.ts and Manim verification scene</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="agent docs/rules/html-delivery.md and docs server">agent docs/rules/html-delivery.md and docs server</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Manim Trial/gcf_division.py and rendered contact sheet">Manim Trial/gcf_division.py and rendered contact sheet</code>
-      <span class="nav-note">Checked layout and merge; replaced text morphing with fades</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="scratch/gcf-division.html">scratch/gcf-division.html</code>
-      <span class="nav-note">HTTP verified; no browser or player opened</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">7:29 PM — Installed uv 0.12.10, isolated Manim 0.21.0 and per-user MiKTeX; successfully rendered fraction/exponent MP4 headlessly — 5 steps · 4m 46s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 4m 46s since previous task
-        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 4m 46s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md and APP_LOCATIONS.md">agent docs/INDEX.md and APP_LOCATIONS.md</code>
-      <span class="nav-note">Added Manim Trial lookup row</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Official uv and MiKTeX installation/configuration docs">Official uv and MiKTeX installation/configuration docs</code>
-      <span class="nav-note">Initial unattended howto URL unavailable; routed via official setup manual</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Scoped prerequisite and existing Manim search">Scoped prerequisite and existing Manim search</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="Manim Trial">Manim Trial</code>
-      <span class="nav-note">Isolated dependency install, documented render script and successful MathTex video check</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
-      
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">7:24 PM — Checked Windows Manim prerequisites and existing executable availability; no software installed — 2 steps · 4m 57s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 4m 57s since previous task
-        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        
-        <br>Wall-clock gap since previous task: 4m 57s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="Official Manim Windows installation guide">Official Manim Windows installation guide</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Get-Command availability check">Get-Command availability check</code>
-      <span class="nav-note">Python 3.12 path found; uv, Manim and TeX executables absent from PATH</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">7:19 PM — Explained Manim, CTAT example-tracing and H5P using official documentation and math-app examples — 2 steps · 12m 7s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 12m 7s since previous task
-        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 1 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 12m 7s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="Prior Studio and accessibility review">Prior Studio and accessibility review</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Official Manim quickstart, CTAT teaching documentation, H5P content and branching guides">Official Manim quickstart, CTAT teaching documentation, H5P content and branching guides</code>
-      
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">7:07 PM — Matrix app phase 1 - optional onAnswer prop records the 7 Part 3 answers with choice, attempt, and timing; 27/27 tests pass, build clean — 6 steps · 1m 45s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 1m 45s active tool time
-        <br>6 steps · first helpful at #1 · 5 ✓ · 1 ~ · 0 ✗
-        <br>Hook saw 5 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 2m 6s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-solver-part-3.tsx">School Scrips/Matrix app/src/app/components/matrix-solver-part-3.tsx</code>
-      <span class="nav-note">Wrapper handlers already compute correctness - hook needed no change at all</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx">School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx</code>
-      <span class="nav-note">Notation ids are correct/wrong1/wrong2 so the distractor is recoverable</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/types/matrix.ts">School Scrips/Matrix app/src/app/types/matrix.ts</code>
-      <span class="nav-note">Existing owner of shared tutorial types - event shape went here, no new types file</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/test/animation-timing.test.ts">School Scrips/Matrix app/src/test/animation-timing.test.ts</code>
-      <span class="nav-note">Test style reference</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="git diff (Matrix app)">git diff (Matrix app)</code>
-      <span class="nav-note">Surfaced pre-existing uncommitted portal-theme.css work from an unlogged session</span>
-      
-    </li><li class="nav-step nav-partial" style="--nav-depth:0">
-      <span class="nav-marker" title="partial">~</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/docs/sessions/SESSIONS.md">School Scrips/Matrix app/docs/sessions/SESSIONS.md</code>
-      <span class="nav-note">Latest entry does not mention the portal theming that is sitting uncommitted - log gap, not an index gap</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">7:05 PM — Assessed Math App Studio and Animation Studio authoring alternatives against head-mouse/dwell accessibility and adaptive-tutoring ambitions — 6 steps · 5m 23s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 5m 23s active tool time
-        <br>6 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 33 search(es), 4 doc read(s)
-        <br>Wall-clock gap since previous task: 5m 43s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md and previously read APP_LOCATIONS.md">agent docs/INDEX.md and previously read APP_LOCATIONS.md</code>
-      
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="Math App Studio/AGENTS.md">Math App Studio/AGENTS.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="Studio dwell, move/resize, animation-library and design-handoff docs">Studio dwell, move/resize, animation-library and design-handoff docs</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="AnimationStudio.tsx and canvas-kit animation registry">AnimationStudio.tsx and canvas-kit animation registry</code>
-      
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="Scoped animation app name search in APP_LOCATIONS.md and apps.json">Scoped animation app name search in APP_LOCATIONS.md and apps.json</code>
-      <span class="nav-note">No separate animation app listing; Animation Studio identified through owning Studio docs</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="Official H5P, Articulate, CMU CTAT and Manim documentation">Official H5P, Articulate, CMU CTAT and Manim documentation</code>
-      <span class="nav-note">Compared capabilities; authoring accessibility with dwell remains unverified</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">6:59 PM — Reviewed Student Portal, Transformations, Logic, and Matrix learning flows and assessed college/mobile value against current alternatives — 8 steps · 8m 26s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 8m 26s active tool time
-        <br>8 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 8 search(es), 0 doc read(s)
-        <br>Wall-clock gap since previous task: 8m 44s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="APP_LOCATIONS.md">INDEX → APP_LOCATIONS.md</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
-      <span class="nav-note">Explained pedagogy and authoring ambition; dated planned sections checked against current source</span>
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="App AGENTS.md files">App AGENTS.md files</code>
-      <span class="nav-note">Portal, Transformations and Matrix read; Logic has no AGENTS.md, used existing README and source; no index row needed for absent file</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="Scoped app file inventories, tutorial text, hooks, quiz service and components">Scoped app file inventories, tutorial text, hooks, quiz service and components</code>
-      <span class="nav-note">Verified guided errors, truth table work, matrix steps, database quizzes and empty practice registry</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="Official DeltaMath, MyOpenMath and Amplify pages">Official DeltaMath, MyOpenMath and Amplify pages</code>
-      
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">7</span>
-      
-      <code class="nav-target" title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
-      <span class="nav-note">Fetched 28 active repositories; none behind</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">8</span>
-      
-      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
-      
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">6:50 PM — Scoped embedding Matrix app Part 3 into student-portal as a recorded assignment - feasibility, seams, and CSS/chrome risks — 14 steps · 45m 20s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 45m 20s active tool time
-        <br>14 steps · first helpful at #1 · 12 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 7 search(es), 2 doc read(s)
-        <br>Wall-clock gap since previous task: 45m 35s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
-      <span class="nav-note">Row 25 sent me to the pipeline doc; branch table covered both apps via their AGENTS.md</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
-      <span class="nav-note">Apps-live-inside-the-site design, identity/resume ownership, shipping policy</span>
-      
-    </li><li class="nav-step nav-routed" style="--nav-depth:0">
-      <span class="nav-marker" title="routed">→</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/AGENTS.md">School Scrips/Matrix app/AGENTS.md</code>
-      <span class="nav-note">Confirmed stack + step-numbering caveat; no embedding guidance exists yet</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
-      <span class="nav-note">Five-place app registration, hardcoded check-app filter gap, the three unbackfillable columns</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/TUTORIAL_TEXT.md">School Scrips/Matrix app/TUTORIAL_TEXT.md</code>
-      <span class="nav-note">Part 3 is the answerable part - 7 interaction points</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">6</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/package.json">School Scrips/Matrix app/package.json</code>
-      <span class="nav-note">React is an optional peerDependency - already library-shaped</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">7</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/App.tsx">School Scrips/Matrix app/src/app/App.tsx</code>
-      <span class="nav-note">100dvh/100vw + fixed z-999999 blocker + owns Back/Next/Exit chrome</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">8</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/hooks/use-matrix-tutorial-part-3.ts">School Scrips/Matrix app/src/app/hooks/use-matrix-tutorial-part-3.ts</code>
-      <span class="nav-note">The recording seam - 6 functions decide correctness, already tracked in state</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">9</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-solver-part-3.tsx">School Scrips/Matrix app/src/app/components/matrix-solver-part-3.tsx</code>
-      <span class="nav-note">forwardRef with 5 optional props - mountable without App.tsx</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">10</span>
-      
-      <code class="nav-target" title="School Scrips/Matrix app/src/styles/theme.css">School Scrips/Matrix app/src/styles/theme.css</code>
-      <span class="nav-note">Global @layer base * / body / button rules - the main collision risk</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">11</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/app/App.tsx">School Scrips/student-portal/src/app/App.tsx</code>
-      <span class="nav-note">Assignments tab is a placeholder - natural home</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">12</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/hooks/useResumableAttempt.ts">School Scrips/student-portal/src/hooks/useResumableAttempt.ts</code>
-      <span class="nav-note">Generic over progress blob T - already fits matrix-shaped data</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">13</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/services/attemptSubmission.ts">School Scrips/student-portal/src/services/attemptSubmission.ts</code>
-      <span class="nav-note">outcome allows 'answered' - ungraded clicks fit</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">14</span>
-      
-      <code class="nav-target" title="School Scrips/student-portal/src/features/generic-quiz/useGenericQuiz.ts">School Scrips/student-portal/src/features/generic-quiz/useGenericQuiz.ts</code>
-      <span class="nav-note">Exemplar for hydrate + saveProgress + submit wiring</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">6:05 PM — Audited what actually ships in the slim build: confirmed Course Settings (today's Browser-tab work) is included and reachable, Manage Tabs already cannot activate the 12 excluded tabs, calendar engine already stripped; corrected an earlier overstatement that readable renderer source ships. Chase chose to leave Teacher Console compiled in — no code change. — 5 steps · 3m 28s · 1 dead-end</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 3m 28s active tool time
-        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 1 ✗
-        <br>Hook saw 8 search(es), 4 doc read(s)
-        <br>Wall-clock gap since previous task: 35m 53s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="components/shell/CourseSettingsModal.tsx + AppHomeSidePanel.tsx">components/shell/CourseSettingsModal.tsx + AppHomeSidePanel.tsx</code>
-      <span class="nav-note">Course Settings is a Browser-tab side-panel button (rename/schedule/retire), shell-level — ships and works in slim</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="utils/shell/workspaceTabLayout.ts">utils/shell/workspaceTabLayout.ts</code>
-      <span class="nav-note">DEFAULT_WORKSPACE_TAB_ORDER derives from the already-filtered D2L_WORKSPACE_TABS and normalize drops unknown ids, so excluded tabs cannot be re-activated</span>
-      
-    </li><li class="nav-step nav-dead" style="--nav-depth:0">
-      <span class="nav-marker" title="dead-end">✗</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="grep bundle for minified identifiers">grep bundle for minified identifiers</code>
-      <span class="nav-note">Identifier probes are worthless against a minified bundle — they reported 'not in bundle' for code that is present. Re-ran with string literals only</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="dist-slim bundle string-literal probe + CSS probe">dist-slim bundle string-literal probe + CSS probe</code>
-      <span class="nav-note">Teacher Console IS compiled in (AppMainPanel statically imports TeacherConsoleWorkspace + its CSS); calendar workbook engine is not</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="dist-slim/win-unpacked/resources/app/renderer/">dist-slim/win-unpacked/resources/app/renderer/</code>
-      <span class="nav-note">Only minified dist ships, no renderer/src — corrected my earlier claim that readable source was exposed</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
-    <summary class="track-summary">
-      <span class="track-title">5:29 PM — Fresh slim build from current main (through b1520f8, incl. Course Settings / teacher console / boot timing) — v0.1.23 build #37 to dist-slim/win-unpacked, three tabs, no installer — 5 steps · 20m 11s</span>
-      
-    </summary>
-    <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session 5:09 PM
-         · 20m 11s active tool time
-        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
-        <br>Hook saw 13 search(es), 9 doc read(s)
-        <br>Wall-clock gap since previous task: 20m 12s (includes idle time)
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">1</span>
-      
-      <code class="nav-target" title="git status + fetch + log 97fde26..HEAD">git status + fetch + log 97fde26..HEAD</code>
-      <span class="nav-note">20 commits since the slim work; tree clean and in sync with origin</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">2</span>
-      
-      <code class="nav-target" title="moduleContracts ALL_D2L_WORKSPACE_TABS vs build-profiles/slim/build.config.json">moduleContracts ALL_D2L_WORKSPACE_TABS vs build-profiles/slim/build.config.json</code>
-      <span class="nav-note">Checked for new tab ids first — absent keys default to INCLUDED, so a new tab would ship silently. All 15 still covered</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">3</span>
-      
-      <code class="nav-target" title="git show --stat 51420e9">git show --stat 51420e9</code>
-      <span class="nav-note">Chase's commit had folded in my vite/manifest/profile changes and added boot-timing.js; slim plumbing intact</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">4</span>
-      
-      <code class="nav-target" title="npm run build:slim">npm run build:slim</code>
-      <span class="nav-note">App not running, so the full build:python re-provision ran (AA reqs correctly excluded)</span>
-      
-    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
-      <span class="nav-marker" title="helpful">✓</span>
-      <span class="nav-step-num">5</span>
-      
-      <code class="nav-target" title="packed bundle inspection">packed bundle inspection</code>
-      <span class="nav-note">Teacher Console / Course Settings / exit-ticket code is compiled into the bundle but unreachable — their tabs are excluded, so no code-splitting benefit; noted for Chase</span>
-      
-    </li></ul>
-    </div>
-  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">5:03 PM — Diagnosed failed prod-renderer task (stale workspace folder broke all Grep calls); confirmed slim build already ships browser/makeup-exam/email; fixed stale APP_LOCATIONS row and added MISSING PATHS check to check-docs.js — 10 steps · 43s · 2 dead-end</span>
       
