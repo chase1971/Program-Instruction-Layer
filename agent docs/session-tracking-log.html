@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>327</dd></div>
-      <div><dt>Tasks today</dt><dd>2</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">11.5M (of 3 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>172k</dd></div>
-      <div><dt>Total billed</dt><dd>31.4M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1393 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>328</dd></div>
+      <div><dt>Tasks today</dt><dd>3</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">11.4M (of 4 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>194k</dd></div>
+      <div><dt>Total billed</dt><dd>42.7M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1397 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">6:28 PM · Wednesday, Sep 9, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">6:39 PM · Wednesday, Sep 9, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,56 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">2 tasks</span></h2>
+      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">3 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:39 PM — Committed and pushed the session's work; merged 5 incoming laptop commits (Manim setup scripts) that had touched the same README, and confirmed every other repo clean or machine-local-only — 4 steps · 10m 18s</span>
+      <span class="pill p0">11.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:54 PM
+         · 10m 18s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 18 search(es), 0 doc read(s) · 11.2M tokens over 52 turn(s) · 216k/turn
+        <br>Wall-clock gap since previous task: 10m 39s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
+      <span class="nav-note">Gave the scan order, the machine-local skip list, and the stop-on-collision rule; no narrower doc needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="AGENTS.md">AGENTS.md</code>
+      <span class="nav-note">Frozen-app skip (Calendar 2.0) and the commit-every-dirty-repo rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="git origin/main">git origin/main</code>
+      <span class="nav-note">Local was 5 behind with an overlapping dirty README — committed first, then merged; auto-merge was clean so no judgment call was needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/scratch">agent docs/scratch</code>
+      <span class="nav-note">Checked precedent before committing 34MB of base64 video pages — ellipse/gcf/two-step pages are already tracked, so the dice pages follow the pattern</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">6:28 PM — Stitched the four two-dice parts into one 4:27 video via a reusable combine_parts.py (lossless stream copy), merged their pause marks into the combined timeline, and delivered it as a served page — 5 steps · 7m 24s</span>
       <span class="pill p0">7.7M tokens</span>
