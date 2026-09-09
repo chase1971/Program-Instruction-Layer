@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>325</dd></div>
-      <div><dt>Tasks today</dt><dd>9</dd></div>
+      <div><dt>Total tasks</dt><dd>328</dd></div>
+      <div><dt>Tasks today</dt><dd>3</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">12.2M (of 1 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>284k</dd></div>
       <div><dt>Total billed</dt><dd>12.2M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1378 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (50/1391 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:26 PM · Tuesday, Sep 8, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:20 AM · Wednesday, Sep 9, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,6 +202,160 @@
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">3 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:20 AM — Launch splash shows Loading immediately — HTA replaces slow PowerShell splash; launcher keeps it until Electron splash paints — 3 steps · 2h 23m · 1 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:45 AM
+         · 2h 23m since previous task
+        <br>3 steps · first helpful at #1 · 2 ✓ · 0 ~ · 1 ✗
+        
+        <br>Wall-clock gap since previous task: 2h 23m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="scripts/launch-laptop-dev.cjs">scripts/launch-laptop-dev.cjs</code>
+      <span class="nav-note">Was killing PS splash at Electron spawn</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-app/launch-splash-window.js">electron-app/launch-splash-window.js</code>
+      <span class="nav-note">show:true before HTML loaded</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scripts/launch-splash.ps1">scripts/launch-splash.ps1</code>
+      <span class="nav-note">Add-Type delayed first paint — replaced with HTA</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:56 AM — Laptop second launch now closes the live Macro App before touching Vite, so a duplicate open cannot strand a frameless window — 4 steps · 10m 48s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:45 AM
+         · 10m 48s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 10m 48s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">No second-instance row yet — added LAPTOP_LAUNCH.md after the fix</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="scripts/launch-laptop-dev.cjs">scripts/launch-laptop-dev.cjs</code>
+      <span class="nav-note">Was killing Vite then spawning Electron that lost the lock</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scripts/port-cleanup.cjs">scripts/port-cleanup.cjs</code>
+      <span class="nav-note">ensurePortReadyForLaunch freePort path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-app/main.js">electron-app/main.js</code>
+      <span class="nav-note">Frameless close interceptor — why Vite-first kill is fatal</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:45 AM — Diagnosed accidental second Macro App launch: laptop launcher killed Vite, new Electron lost the single-instance lock, original frameless window failed to load and could not close — 6 steps · 1ms</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:45 AM
+         · 1ms since previous task
+        <br>6 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 1ms (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">App-by-name row sent to Macro App AGENTS</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/Macro-App/AGENTS.md">School Scripts/Macro-App/AGENTS.md</code>
+      <span class="nav-note">Logs keyword → docs/LOGGING.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="docs/LOGGING.md">docs/LOGGING.md</code>
+      <span class="nav-note">Named macro-app.log under userData</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="%LOCALAPPDATA%/SchoolLaunch/logs/macro-app-laptop.log">%LOCALAPPDATA%/SchoolLaunch/logs/macro-app-laptop.log</code>
+      <span class="nav-note">Second launch cleared port 5328 then Electron exited immediately</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="electron-app/main.js">electron-app/main.js</code>
+      <span class="nav-note">Single-instance lock + frameless close interceptor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="scripts/launch-laptop-dev.cjs">scripts/launch-laptop-dev.cjs</code>
+      <span class="nav-note">Kills Vite on second launch; does not close existing Electron</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Tuesday, Sep 8, 2026 <span class="day-count">9 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
