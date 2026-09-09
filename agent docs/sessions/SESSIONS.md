@@ -41,6 +41,8 @@ The deleted folder left a stale row in `APP_LOCATIONS.md`, and Chase asked why t
 
 **Next session:** Nothing pending in the repo. The Cursor workspace root itself is unfixable from here — there is no `.code-workspace` file, so it lives in Cursor's own state and only Chase can remove it. Until he does, `Grep` stays broken workspace-wide and `rg` via Shell is the fallback.
 
+> **Superseded 2026-09-09.** The stale root is gone: `C:\Users\chase\.cursor\Programs.code-workspace` now lists only `Documents/Programs` and `My Drive/Rosters etc`, both of which exist. The IO error still seen afterwards was a different bug — `Grep` fails only when the explicit `path` *is* the workspace root spelled with an uppercase `C:`, because Cursor registers it lowercase and compares case-sensitively. Omitting `path` works. `Grep` is **not** broken workspace-wide and `rg` via Shell is **not** the general fallback. Rule captured in root `AGENTS.md` § Searching this tree.
+
 ---
 
 ## 2026-09-07 — Gradebook sync fixes, Matrix tutorial, and MT2 tools
