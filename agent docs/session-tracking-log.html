@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>328</dd></div>
-      <div><dt>Tasks today</dt><dd>3</dd></div>
+      <div><dt>Total tasks</dt><dd>332</dd></div>
+      <div><dt>Tasks today</dt><dd>7</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">11.4M (of 4 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>194k</dd></div>
       <div><dt>Total billed</dt><dd>42.7M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">4% (49/1397 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (49/1414 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">6:39 PM · Wednesday, Sep 9, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:01 PM · Wednesday, Sep 9, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,207 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">3 tasks</span></h2>
+      <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:01 PM — M1324 Matrix portal pilot + dev server bind fix; momentum handoff prepared — 3 steps · 2m 57s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:56 PM
+         · 2m 57s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 2 doc read(s)
+        <br>Wall-clock gap since previous task: 3m 30s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/config/portalAccess.ts">School Scrips/student-portal/src/config/portalAccess.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/vite.config.ts">School Scrips/student-portal/vite.config.ts</code>
+      <span class="nav-note">host 127.0.0.1 fix for Firefox connect</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:58 PM — Committed and pushed the session's work; merged 5 incoming laptop commits (Manim setup scripts) that had touched the same README, and confirmed every other repo clean or machine-local-only — 4 steps · 1m 13s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 7:56 PM
+         · 1m 13s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 2 search(es), 2 doc read(s)
+        <br>Wall-clock gap since previous task: 1m 27s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/multi-repo-git-push.md">agent docs/rules/multi-repo-git-push.md</code>
+      <span class="nav-note">Gave the scan order, the machine-local skip list, and the stop-on-collision rule; no narrower doc needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="AGENTS.md">AGENTS.md</code>
+      <span class="nav-note">Frozen-app skip (Calendar 2.0) and the commit-every-dirty-repo rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="git origin/main">git origin/main</code>
+      <span class="nav-note">Local was 5 behind with an overlapping dirty README — committed first, then merged; auto-merge was clean so no judgment call was needed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/scratch">agent docs/scratch</code>
+      <span class="nav-note">Checked precedent before committing 34MB of base64 video pages — ellipse/gcf/two-step pages are already tracked, so the dice pages follow the pattern</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:10 PM — Created a momentum handoff protocol that preserves design judgment for continuation in a fresh task without end-of-session Git operations — 5 steps · 8m 47s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:54 PM
+         · 8m 47s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 8m 58s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Session-flow section identified the end-of-session owner and the capture trigger.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title=".claude/skills/capture/SKILL.md">.claude/skills/capture/SKILL.md</code>
+      <span class="nav-note">Placed the durable spoken trigger in AGENTS.md and the detailed procedure in one indexed owner.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/END_OF_SESSION.md">agent docs/END_OF_SESSION.md</code>
+      <span class="nav-note">Established the explicit boundary: momentum handoff continues work and does not authorize push or finalization.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="OpenAI Docs — model guidance">Web: OpenAI Docs — model guidance</code>
+      <span class="nav-note">Confirmed that handoffs should preserve completed actions, assumptions, outcomes, blockers, and the next goal.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      <span class="nav-note">Added the single procedure owner and copy-ready handoff contents.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:01 PM — Added proactive long-task context warnings with fresh-task handoffs across Codex, Cursor, and Claude Code — 5 steps · 21m 52s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:54 PM
+         · 21m 52s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 2 doc read(s)
+        <br>Wall-clock gap since previous task: 22m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Routed the durable reminder request to the capture skill and session tracking docs.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title=".claude/skills/capture/SKILL.md">.claude/skills/capture/SKILL.md</code>
+      <span class="nav-note">Required a structural detector plus a short always-on behavior rule.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="OpenAI Docs — model guidance">Web: OpenAI Docs — model guidance</code>
+      <span class="nav-note">Confirmed monitoring context and compacting at milestones as the supported long-context approach.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="scripts/scorecard-enforce.js">scripts/scorecard-enforce.js</code>
+      <span class="nav-note">Extended the existing Stop and PreCompact enforcement owner instead of creating a second mechanism.</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title=".codex/hooks.json and peer hook configs">.codex/hooks.json and peer hook configs</code>
+      <span class="nav-note">Connected the warning to prompt submission on all three supported hosts.</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">6:39 PM — Committed and pushed the session's work; merged 5 incoming laptop commits (Manim setup scripts) that had touched the same README, and confirmed every other repo clean or machine-local-only — 4 steps · 10m 18s</span>
       <span class="pill p0">11.2M tokens</span>
