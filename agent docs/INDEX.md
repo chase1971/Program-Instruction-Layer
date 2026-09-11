@@ -65,7 +65,7 @@ never touches this file.
 | "run the conformance pass on \<app\>" · bring one app up to standard | [APP_CONFORMANCE_PASS.md](./APP_CONFORMANCE_PASS.md) |
 | how does this whole setup work · which tool reads which file · why did `.mdc` go away | [HOW_TO_INTERACT_WITH_AI.md](../HOW_TO_INTERACT_WITH_AI.md) |
 | explain my setup to another developer | [AGENT_SETUP_FOR_PEER_REVIEW.md](./AGENT_SETUP_FOR_PEER_REVIEW.md) |
-| "show me the diagram" · the pages on 8765 · how is the index laid out | [index.html](./index.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |
+| "show me the diagram" · the pages on 8765 · how is the index laid out | [pages.html](./pages.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |
 | what is this index · how do I add a row | this file — § Keeping this honest, below |
 
 ## Scripts
