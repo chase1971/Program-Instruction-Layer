@@ -60,7 +60,7 @@ node scripts/append-session-scorecard.js --finalize-file agent docs/.scorecard-f
 
 | Hook | Behavior |
 |------|----------|
-| **UserPromptSubmit** | At each 12-user-message interval, injects one context-efficiency warning recommending the momentum-handoff protocol after the current deliverable. Twelve is an early proxy because exact live token totals are not available on every host. |
+| **UserPromptSubmit** | Counts messages **per chat** (`scripts/chat-task.js`), so a fresh task after a momentum handoff starts at zero. Injects one context-efficiency warning recommending a handoff once the task is heavy — in Claude Code, when the latest reply re-read at least `HEAVY_CONTEXT_TOKENS` (`scripts/session-token-cost.js`); in Cursor, which records no tokens, at `CONTEXT_WARNING_TURN_INTERVAL` messages in the chat. Repeats at most once per that interval. |
 | **Stop** | Blocks turn end when ≥2 files edited, 0 bumps, ≥3 turns. Reminds agent to `--bump-file`. Max 3 blocks. |
 | **PreCompact** | Always injects the same fresh-task warning before compaction; also reminds the agent to bump any unlogged edited work. |
 
@@ -86,4 +86,4 @@ node scripts/append-session-scorecard.js --rebuild-tracking-from-running
 
 ---
 
-*Updated: 2026-08-09 — split from session tracking*
+*Updated: 2026-09-11 — context warning is per chat and uses real context size where available*

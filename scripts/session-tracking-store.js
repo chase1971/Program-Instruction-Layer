@@ -9,6 +9,7 @@ const path = require('path');
 const {
   normalizeNavigationPath,
   summarizeNavigationPath,
+  validateNavigationPath,
   formatDurationMs,
 } = require('./scorecard-navigation-path');
 const {
@@ -16,6 +17,7 @@ const {
   observeWindow,
 } = require('./session-tracking-stats');
 const { readTranscriptUsage } = require('./session-token-cost');
+const { readChat, transcriptKB } = require('./chat-task');
 
 function trackingDataPath(root) {
   return path.join(root, 'agent docs', 'session-tracking.jsonl');
@@ -56,7 +58,36 @@ function durationSince(prevIso, nextIso) {
   return Math.max(0, next - prev);
 }
 
+// A bump with no note, or a step with a typo'd or missing outcome, is refused outright.
+// Defaulting those to "helpful" is how bad data got into the log.
+function assertValidBump(delta) {
+  const problems = [];
+  if (!String(delta.chunkNote || '').trim()) {
+    problems.push('chunkNote is required — one line saying what you finished');
+  }
+  problems.push(...validateNavigationPath(delta.navigationPath));
+  if (problems.length) {
+    throw new Error(
+      'Bump rejected, nothing was logged. Fix the bump JSON (agent docs/SESSION_TRACKING.md) '
+      + `and rerun:\n  - ${problems.join('\n  - ')}`,
+    );
+  }
+}
+
+// Messages and transcript size for the chat this bump came from. The only cost signal
+// in Cursor, which records no tokens; logged on every host so chats can be compared.
+function chatSize(running) {
+  const out = {};
+  const chat = readChat(running.chatKey);
+  if (chat) out.chatUserMessages = chat.prompts;
+  const kb = transcriptKB(running.transcriptPath);
+  if (Number.isFinite(kb)) out.chatTranscriptKB = kb;
+  if (running.chatKey) out.chatId = String(running.chatKey).slice(0, 8);
+  return out;
+}
+
 function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()) {
+  assertValidBump(delta);
   const sessionId = running.sessionStarted || timestamp;
   const prevAt = running.lastTrackingBumpAt || sessionId;
   const durationMs = durationSince(prevAt, timestamp);
@@ -81,6 +112,7 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
     ...stats,
     ...observed,
     ...cost,
+    ...chatSize(running),
     navigationPath,
   };
 }

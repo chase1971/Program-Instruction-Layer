@@ -16,9 +16,66 @@ const NAV_TIP =
   + '~ partial, ✗ dead end. '
   + 'Use this to see whether INDEX.md and app AGENTS.md are creating short routes.';
 
+// Legacy shorthand: { "step": "…", "result": "✓" }.
+const RESULT_OUTCOMES = {
+  '✓': 'helpful', ok: 'helpful',
+  '✗': 'dead-end', x: 'dead-end',
+  '~': 'partial',
+  '→': 'routed', '->': 'routed',
+};
+
+// Keys a step may carry. Anything else is a typo for one of these: on 2026-09-11 steps
+// written with "status" instead of "outcome" were silently logged as helpful.
+const STEP_KEYS = new Set([
+  'target', 'path', 'label', 'step', 'kind', 'outcome', 'result', 'note', 'branch', 'steps',
+]);
+
 function normalizeOutcome(raw) {
   const v = String(raw || 'helpful').toLowerCase().trim();
   return NAV_OUTCOMES.has(v) ? v : 'helpful';
+}
+
+function outcomeFromResult(raw) {
+  const r = String(raw || '').trim();
+  return RESULT_OUTCOMES[r] || RESULT_OUTCOMES[r.toLowerCase()] || null;
+}
+
+// Strict check for a bump being logged now. normalizeNavigationPath stays lenient
+// because it also re-reads every historical entry in the jsonl.
+function validateNavigationPath(list, prefix = 'navigationPath') {
+  if (!Array.isArray(list) || !list.length) {
+    return [`${prefix} is required — a non-empty array of lookup steps`];
+  }
+  const outcomes = [...NAV_OUTCOMES].join(' | ');
+  const problems = [];
+  list.forEach((raw, i) => {
+    const at = `${prefix}[${i}]`;
+    if (!raw || typeof raw !== 'object') {
+      problems.push(`${at} must be an object`);
+      return;
+    }
+    for (const key of Object.keys(raw)) {
+      if (!STEP_KEYS.has(key)) {
+        problems.push(`${at} has unknown key "${key}"${key === 'status' ? ' — use "outcome"' : ''}`);
+      }
+    }
+    const label = raw.target || raw.path || raw.label || (typeof raw.step === 'string' ? raw.step : '');
+    if (!String(label).trim()) problems.push(`${at} needs a "target"`);
+    if (raw.outcome !== undefined) {
+      if (!NAV_OUTCOMES.has(String(raw.outcome).toLowerCase().trim())) {
+        problems.push(`${at} outcome "${raw.outcome}" must be one of ${outcomes}`);
+      }
+    } else if (raw.result !== undefined) {
+      if (!outcomeFromResult(raw.result)) problems.push(`${at} result "${raw.result}" must be ✓, ✗, ~ or →`);
+    } else {
+      problems.push(`${at} is missing "outcome" (${outcomes})`);
+    }
+    if (raw.steps !== undefined) {
+      if (!Array.isArray(raw.steps)) problems.push(`${at}.steps must be an array`);
+      else if (raw.steps.length) problems.push(...validateNavigationPath(raw.steps, `${at}.steps`));
+    }
+  });
+  return problems;
 }
 
 function normalizeStep(raw, index) {
@@ -28,13 +85,7 @@ function normalizeStep(raw, index) {
   if (!target) return null;
 
   let outcome = raw.outcome;
-  if (!outcome && raw.result) {
-    const r = String(raw.result).trim();
-    if (r === '✓' || r.toLowerCase() === 'ok') outcome = 'helpful';
-    else if (r === '✗' || r.toLowerCase() === 'x') outcome = 'dead-end';
-    else if (r === '~') outcome = 'partial';
-    else if (r === '→' || r === '->') outcome = 'routed';
-  }
+  if (!outcome && raw.result) outcome = outcomeFromResult(raw.result);
 
   const step = {
     target,
@@ -229,6 +280,7 @@ function navigationPathStyles() {
 module.exports = {
   NAV_TIP,
   normalizeNavigationPath,
+  validateNavigationPath,
   mergeNavigationPaths,
   summarizeNavigationPath,
   flattenSteps,

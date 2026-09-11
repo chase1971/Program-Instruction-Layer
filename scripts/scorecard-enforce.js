@@ -8,9 +8,10 @@
  *   --stop        Stop hook. Blocks the agent from ending its turn when there's clear
  *                 evidence of unbumped work. Capped at MAX_BLOCKS consecutive blocks,
  *                 then force-allows — this can never trap the session.
- *   --context-warning  UserPromptSubmit hook. At a named turn interval, injects a
- *                 reminder that the agent must recommend a fresh task after the current
- *                 deliverable and provide a copy-ready handoff summary.
+ *   --context-warning  UserPromptSubmit hook. Counts messages per chat and, once the
+ *                 task is heavy (real context size in Claude Code, message count in
+ *                 Cursor), injects a reminder to recommend a momentum handoff after
+ *                 the current deliverable.
  *   --precompact  PreCompact hook. Non-blocking (Stop is the only hook here allowed to
  *                 block). Injects a reminder before compaction, since the running-tally
  *                 counts already survive compaction (written to disk on every tool call)
@@ -28,6 +29,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveChat, recordPrompt, updateChat } = require('./chat-task');
+const {
+  HEAVY_CONTEXT_TOKENS,
+  readLatestContextTokens,
+  formatTokens,
+} = require('./session-token-cost');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
@@ -35,8 +42,8 @@ const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json')
 const MIN_TURNS = 3;
 const MIN_EDITED_FILES = 2;
 const MAX_BLOCKS = 3;
-// Exact live token totals are not available on every host. Twelve user messages catches
-// context-heavy iterative work before compaction without interrupting short tasks.
+// Cursor transcripts carry no token usage, so there twelve messages in one chat stands in
+// for "heavy". On every host it is also the minimum gap between repeat warnings.
 const CONTEXT_WARNING_TURN_INTERVAL = 12;
 
 function readRunning() {
@@ -128,29 +135,44 @@ function runPrecompact() {
   });
 }
 
-function runContextWarning() {
-  const running = readRunning();
-  if (!running) return printAndExit();
-
-  const turns = Number(running.turns) || 0;
-  const lastWarningTurn = Number(running.lastContextWarningTurn) || 0;
-  if (
-    turns < CONTEXT_WARNING_TURN_INTERVAL
-    || turns - lastWarningTurn < CONTEXT_WARNING_TURN_INTERVAL
-  ) {
-    return printAndExit();
+function readStdinJson() {
+  try {
+    const raw = fs.readFileSync(0, 'utf8').trim();
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
   }
+}
 
-  running.lastContextWarningTurn = turns;
-  writeRunning(running);
+// Counts are per chat (scripts/chat-task.js), so a fresh task after a handoff starts
+// at zero. Where the transcript has real usage (Claude Code) the trigger is the context
+// the latest reply re-read; Cursor has none, so there it is messages in this chat.
+function runContextWarning() {
+  const { chatKey, transcriptPath } = resolveChat(readStdinJson());
+  if (!chatKey) return printAndExit();
+
+  const chat = recordPrompt(chatKey);
+  const context = readLatestContextTokens(transcriptPath);
+  const heavy = context !== null
+    ? context >= HEAVY_CONTEXT_TOKENS
+    : chat.prompts >= CONTEXT_WARNING_TURN_INTERVAL;
+  const warnedRecently = chat.lastWarnedAtPrompt > 0
+    && chat.prompts - chat.lastWarnedAtPrompt < CONTEXT_WARNING_TURN_INTERVAL;
+  if (!heavy || warnedRecently) return printAndExit();
+
+  updateChat(chatKey, (row) => ({ ...row, lastWarnedAtPrompt: chat.prompts }));
+  const measure = context !== null
+    ? `Each reply in this task now re-reads about ${formatTokens(context)} tokens of context `
+      + '(a fresh task starts near 60k-90k). '
+    : `This task has reached ${chat.prompts} messages from Chase. `;
   printAndExit({
     hookSpecificOutput: {
       hookEventName: 'UserPromptSubmit',
       additionalContext:
-        `CONTEXT EFFICIENCY WARNING: This task has reached ${turns} user messages. `
+        `CONTEXT EFFICIENCY WARNING: ${measure}`
         + 'Tell Chase plainly in your next response that continued unrelated or major work here '
         + 'will drag more context through each turn. Finish the current deliverable, then recommend '
-        + 'that he say "perform a momentum handoff" before starting a fresh Codex task. Do not '
+        + 'that he say "perform a momentum handoff" before starting a fresh task. Do not '
         + 'interrupt unfinished work or create or switch tasks automatically.',
     },
   });

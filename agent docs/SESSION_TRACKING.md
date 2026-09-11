@@ -56,6 +56,11 @@ Give Chase: **`http://127.0.0.1:8765/session-tracking-log.html`**
 | **`navigationPath`** | Yes | Ordered lookup steps for **this task** |
 | `addGreps`, `filesRead`, `filesEdited` | Optional | Feeds the metrics running file (hooks also tally) |
 
+**Bad bumps are rejected, not guessed at.** A missing `chunkNote`, an empty `navigationPath`, or a
+step with an unknown key (e.g. `"status"`) or no `outcome` makes the script exit with the reasons
+and log **nothing**. Fix the JSON and rerun. (Until 2026-09-11 such steps were silently saved as
+`helpful`.)
+
 ### navigationPath outcomes
 
 | `outcome` | Marker | Meaning |
@@ -106,9 +111,11 @@ both for the task window. They appear on [session tracking](http://127.0.0.1:876
 
 | Field | Meaning |
 |-------|---------|
-| `billedTokens` | **Real tokens billed for this task** — cache read + cache write + input + output |
+| `billedTokens` | **Real tokens billed for this task** — cache read + cache write + input + output. **Claude Code only:** Cursor transcripts carry no usage, so Cursor bumps have none |
 | `tokensPerTurn` | Context dragged along per assistant turn. Rises with session length, not task difficulty |
-| `tokenTurns` | Assistant turns in the window |
+| `tokenTurns` | Assistant replies in the window, each counted once |
+| `chatUserMessages` / `chatTranscriptKB` | Chase's messages and transcript size for this chat so far — **the only cost signal in Cursor**. KB doesn't compare across hosts (Claude Code transcripts include tool output) |
+| `chatId` | First 8 characters of the chat's id — groups the bumps from one chat |
 | `activeMs` / `activeLabel` | First-to-last tool event in the window (excludes idle gaps) |
 | `observedSearches` / `observedDocReads` | Hook-counted searches and doc reads in the window |
 | `durationMs` / `durationLabel` | Wall-clock since previous bump — **includes idle; p90 was 9.6h.** Ignore it |
@@ -127,6 +134,13 @@ An audit of the first 342 bumps found three metrics were measuring their own ins
   how long it had been since the last bump.
 
 **Cost per task replaced all three.** Greps are free; tokens are not.
+
+### Fixed 2026-09-11 — token counts were 2–4× high
+
+The reader summed every transcript line with usage, but Claude Code writes one line per content
+block (thinking, text, each tool call), each repeating the reply's usage. It now counts each reply
+once by message id. Entries recomputed afterward carry `tokensRecountedAt`; any older `billedTokens`
+without it is still high. `tokensPerTurn` was roughly right all along (both halves were inflated).
 
 ---
 
@@ -150,4 +164,4 @@ Hooks still block finish when ≥2 files edited and zero bumps — see [SESSION_
 
 ---
 
-*Updated: 2026-08-14 — hook-verified navigation reconciliation*
+*Updated: 2026-09-11 — tokens counted once per reply; chat size for Cursor; bad bumps rejected*

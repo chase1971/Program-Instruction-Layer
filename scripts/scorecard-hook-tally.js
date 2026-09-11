@@ -11,6 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
 const { pushTimelineEvent } = require('./session-tracking-stats');
+const { resolveChat } = require('./chat-task');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
@@ -188,20 +189,22 @@ function recordTurn() {
   writeRunning(running);
 }
 
-// Claude Code hands every hook the path to this session's transcript, which is
-// the only place real billed-token counts live. Stash it so the bump can slice
-// usage for the task window. See scripts/session-token-cost.js.
-function recordTranscriptPath(payload) {
-  const p = payload.transcript_path || payload.transcriptPath;
-  if (!p) return;
+// Remember which chat and transcript the latest hook came from, so a bump can slice
+// that chat's billed tokens (Claude Code only — see scripts/session-token-cost.js)
+// and read its size (both hosts — see scripts/chat-task.js). Both fields move
+// together so a Cursor chat never inherits a stale Claude Code transcript.
+function recordChat(payload) {
+  const { chatKey, transcriptPath } = resolveChat(payload);
+  if (!chatKey && !transcriptPath) return;
   const running = readRunning() || emptyRunning();
-  if (running.transcriptPath === p) return;
-  running.transcriptPath = p;
+  if (running.chatKey === chatKey && running.transcriptPath === transcriptPath) return;
+  running.chatKey = chatKey;
+  running.transcriptPath = transcriptPath;
   writeRunning(running);
 }
 
 function recordToolUse(payload) {
-  recordTranscriptPath(payload);
+  recordChat(payload);
   const toolName = String(payload.tool_name || payload.toolName || '').trim();
   if (!toolName) {
     const eventName = String(payload.hook_event_name || payload.hookEventName || '').trim();
