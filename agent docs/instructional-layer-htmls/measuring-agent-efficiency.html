@@ -400,6 +400,13 @@
   </table>
   <p style="margin-top:.9rem">Verified working — the entry logged while writing this recorded
      <b>7.4M tokens over 65 turns</b>, about <b>114k per turn</b>.</p>
+  <p style="margin-top:.6rem;color:#fbbf24"><b>Correction, 2026-09-11.</b> That reader summed every
+     transcript line carrying usage, and Claude Code writes one line per content block — so each reply
+     was counted several times. Totals and turn counts on this page are roughly <b>2–4× high</b>.
+     The <b>per-turn figures are unaffected</b>, because both halves were inflated together. Fixed in
+     <code>scripts/session-token-cost.js</code>; entries recomputed afterwards carry
+     <code>tokensRecountedAt</code>. Cursor transcripts carry no usage at all, so Cursor tasks log
+     chat size instead of tokens.</p>
 </div>
 
 

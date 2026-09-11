@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>344</dd></div>
-      <div><dt>Tasks today</dt><dd>6</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.6M (of 6 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>175k</dd></div>
-      <div><dt>Total billed</dt><dd>30.3M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (50/1478 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>346</dd></div>
+      <div><dt>Tasks today</dt><dd>8</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.6M (of 8 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>196k</dd></div>
+      <div><dt>Total billed</dt><dd>38.8M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (50/1485 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:21 PM · Friday, Sep 11, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">5:02 PM · Friday, Sep 11, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,97 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">6 tasks</span></h2>
+      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">8 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:02 PM — Updated the capture-ladder / context-engineering HTML pages to match how the instruction layer works now (.mdc retired, keyword routing, momentum handoff, corrected token claims) — 5 steps · 27m 54s</span>
+      <span class="pill p0">6.6M tokens</span><span class="pill p2">Heavy context — 328k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:52 PM
+         · 27m 54s active tool time
+        <br>5 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 21 search(es), 0 doc read(s) · 6.6M tokens over 20 turn(s) · 328k/turn · chat so far: 2 message(s), 2371 KB transcript
+        <br>Wall-clock gap since previous task: 28m 3s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Which HTML folders are maintained vs scratch</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/context-engineering-*.html + rule-architecture-infographic.html">agent docs/context-engineering-*.html + rule-architecture-infographic.html</code>
+      <span class="nav-note">All four written 2026-08-01, before .mdc retirement</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/instructional-layer-htmls/head-agents-md.html">agent docs/instructional-layer-htmls/head-agents-md.html</code>
+      <span class="nav-note">Correct ladder but missing the two newest AGENTS.md sections; added them — index routed correctly; the doc was stale and is now updated, so this is not an index gap</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/instructional-layer-htmls/measuring-agent-efficiency.html">agent docs/instructional-layer-htmls/measuring-agent-efficiency.html</code>
+      <span class="nav-note">Token totals predate the dedupe fix; added a correction note — index routed correctly; the doc was stale and is now updated, so this is not an index gap</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="scripts/check-docs.js">scripts/check-docs.js</code>
+      <span class="nav-note">0 dead links; tag balance unchanged vs HEAD</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:34 PM — Split append-session-scorecard.js (926 lines) into entry (101) + ops, metrics store, metrics html, metrics card; byte-identical output verified against pre-split snapshot — 2 steps · 13m 8s</span>
+      <span class="pill p0">1.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:52 PM
+         · 13m 8s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · 1.9M tokens over 8 turn(s) · 243k/turn · chat so far: 1 message(s), 1775 KB transcript
+        <br>Wall-clock gap since previous task: 13m 14s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="scripts/append-session-scorecard.js">scripts/append-session-scorecard.js</code>
+      <span class="nav-note">Read in full to find seams; metricCell was dead code, dropped</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="scratchpad split/compare.js">scratchpad split/compare.js</code>
+      <span class="nav-note">Render byte-identical; all 6 CLI modes leave identical files</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">4:21 PM — Tracking fixes: tokens counted once per reply (4 entries recounted), per-chat context warning using real context size in Claude Code, chat size logged for Cursor, bad bump JSON rejected — 6 steps · 27m 40s</span>
       <span class="pill p0">1.9M tokens</span>

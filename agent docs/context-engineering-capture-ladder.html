@@ -219,7 +219,7 @@
     <div class="ladder-bar">
       <div class="rung r1"><span class="rung-num">1</span><span><strong>Structurally impossible</strong> — one owner, API that can't be misused</span></div>
       <div class="rung r2"><span class="rung-num">2</span><span><strong>Lint or test</strong> — violation fails CI / pre-commit</span></div>
-      <div class="rung r3"><span class="rung-num">3</span><span><strong>Glob <code>.mdc</code></strong> — fires when matching files are open (default for UI/code patterns)</span></div>
+      <div class="rung r3"><span class="rung-num">3</span><span><strong>Recipe + <code>recipes/INDEX.md</code></strong>, or a keyword row in the app's <code>AGENTS.md</code> — fires when you describe the task</span></div>
       <div class="rung r4"><span class="rung-num">4</span><span><strong>Always-on rule</strong> — every session; ~200-line budget total</span></div>
       <div class="rung r5"><span class="rung-num">5</span><span><strong>On-demand doc / exemplar</strong> — task recipes, HTML templates, deep dives</span></div>
     </div>
@@ -249,7 +249,7 @@
     <div class="decision">
       <ol>
         <li><strong>One-off task?</strong> (“fix this typo”) → don't capture</li>
-        <li><strong>Only one app / file type?</strong> → Rung <strong>3</strong> glob <code>.mdc</code> (or Rung <strong>5</strong> task doc if it's a procedure)</li>
+        <li><strong>Only one app / kind of task?</strong> → Rung <strong>3</strong> keyword row in that app's <code>AGENTS.md</code> (or Rung <strong>5</strong> task doc if it's a procedure)</li>
         <li><strong>Every session, every app, short?</strong> → Rung <strong>4</strong> always-on (sparingly)</li>
         <li><strong>Machine can detect violations?</strong> → Rung <strong>2</strong> lint/test</li>
         <li><strong>About who owns a mechanism?</strong> → Rung <strong>1</strong> code shape</li>
@@ -287,7 +287,7 @@
         <p class="label">What happened</p>
         <p>Agents add to already-huge files because nothing stops them at commit time.</p>
         <p class="label">Capture choice</p>
-        <p><code>scripts/check-file-size.js</code> + pre-commit hook + glob rule <code>10-file-size-before-edit.mdc</code> pointing at it.</p>
+        <p><code>scripts/check-file-size.js</code> + pre-commit hook, with the 800-line cap stated once in <code>AGENTS.md</code> § The most violated rules.</p>
         <p class="label">Graduate path</p>
         <p>If agents bypass hook → make CI fail too. Doc-only reminder stays deleted once lint owns it.</p>
       </div>
@@ -304,7 +304,7 @@
         <p>First session: agent explored Pearson blindly, burned tokens, no repeatability.</p>
         <p class="label">Capture choice</p>
         <p><strong>Rung 5:</strong> <code>PEARSON_BROWSER_AUTOMATION.md</code> — Task Index + recipes (~40 lines each).<br>
-        <strong>Rung 3:</strong> <code>pearson-browser-automation.mdc</code> globs <code>modules/pearson/**</code> — “read Task Index first.”</p>
+        <strong>Rung 3:</strong> a keyword row in Macro App's <code>AGENTS.md</code> — “Pearson” → “read the Task Index first.”</p>
         <p class="label">Next session flow</p>
         <div class="flow-steps">
           <span>You: “harvest question IDs”</span>
@@ -316,7 +316,7 @@
           <span>Run <code>pearson_question_details.py</code></span>
         </div>
         <p class="label">Why not always-on?</p>
-        <p>Pearson isn't every task — glob + doc is enough until agents keep missing without it.</p>
+        <p>Pearson isn't every task — a keyword row + doc is enough until agents keep missing without it.</p>
       </div>
     </div>
 
@@ -330,10 +330,10 @@
         <p class="label">What happened</p>
         <p>Agents add hover-only UI; dwell fires at 250ms and clicks the wrong thing.</p>
         <p class="label">Capture choice</p>
-        <p><code>25-dwell-accessibility.mdc</code> on <code>*.tsx</code> + deep dive <code>dwell-and-head-mouse.md</code> (rung 5 pointer only in AGENTS.md).</p>
+        <p>A dwell/head-mouse row in <code>agent docs/recipes/INDEX.md</code> → the recipe that owns it (rung 5 pointer only in <code>AGENTS.md</code>).</p>
         <p class="label">Graduate example</p>
-        <p class="quote bad">Bad: same 250ms / 12px / pointerleave copied in AGENTS.md AND .mdc AND doc — three copies drift.<br>
-        Good: .mdc owns numbers; AGENTS.md one-line pointer; doc for edge cases.</p>
+        <p class="quote bad">Bad: the same dwell timing copied into AGENTS.md AND a recipe AND a doc — three copies drift.<br>
+        Good: <code>dwell_constants.py</code> owns the real values; the recipe points at it and never restates a number; AGENTS.md keeps one pointer.</p>
       </div>
     </div>
 
@@ -347,7 +347,7 @@
         <p class="label">What happened</p>
         <p>Chat links to Windows paths break (%5C). Batch files require folder navigation you won't do.</p>
         <p class="label">Capture choice</p>
-        <p><strong>Rung 3:</strong> <code>html-infographic-delivery.mdc</code> — glob on <code>docs/**/*.html</code>; loads when editing HTML or when you ask.<br>
+        <p><strong>Rung 3:</strong> an INDEX row — “make me an HTML page I can click” → <code>agent docs/rules/html-delivery.md</code>; loads when you ask.<br>
         <strong>Rung 5:</strong> Exemplars <code>exam2-review-map.html</code>, <code>context-engineering-infographic.html</code>.<br>
         <strong>AGENTS.md</strong> — short trigger pointer (~8 lines), not always-on.</p>
         <p class="label">Why NOT rung 4 (always-on)?</p>
@@ -367,7 +367,7 @@
         <p class="label">What happened</p>
         <p class="quote">“again” — models default to bash chaining; your shell is PowerShell 5.x.</p>
         <p class="label">Capture choice</p>
-        <p><code>30-powershell-shell-commands.mdc</code> always-on — separate Shell calls or <code>;</code>, never <code>&&</code>.</p>
+        <p><code>AGENTS.md</code> § Windows PowerShell 5.x, always-on — separate calls or <code>;</code>, never <code>&&</code>. Detail in <code>agent docs/rules/powershell-shell-commands.md</code>.</p>
         <p class="label">Repetition → graduate</p>
         <p>Third time you said it → proven too low as a doc note → promoted to always-on.</p>
       </div>
@@ -383,12 +383,12 @@
         <p class="label">What happened</p>
         <p>You loved the two-column layout: homework sections left, review filtered right, green = match.</p>
         <p class="label">Capture choice (now)</p>
-        <p><strong>Exemplar:</strong> <code>docs/exam2-review-map.html</code> — the HTML <em>is</em> the spec.<br>
+        <p><strong>Exemplar:</strong> <code>School Scrips/School documents/exam2-review-map.html</code> — the HTML <em>is</em> the spec.<br>
         Delivery still uses rung 4 HTML rule (http link).</p>
         <p class="label">What we did NOT do (on purpose)</p>
         <p class="quote bad">New always-on “comparison HTML rule” — would bloat every session for a Pearson-only pattern you might finish in a month.</p>
         <p class="label">If you do this 3+ times and agents wander</p>
-        <p>Then graduate: one line in <code>html-infographic-delivery.mdc</code> (“comparison → copy exam2-review-map structure”) or a Pearson task-index row — still not always-on.</p>
+        <p>Then graduate: one line in <code>agent docs/rules/html-delivery.md</code> (“comparison → copy exam2-review-map structure”) plus an INDEX row — still not always-on.</p>
       </div>
     </div>
 
@@ -453,7 +453,7 @@
         <div>
           <h3 style="color:var(--danger)">Costs every session</h3>
           <ul style="margin:0;padding-left:1.2rem;font-size:0.95rem">
-            <li><code>alwaysApply: true</code> rules</li>
+            <li>Root <code>AGENTS.md</code> — every section, every session</li>
             <li><code>AGENTS.md</code> (large baseline)</li>
             <li>Duplicate prose in 3 places</li>
           </ul>
@@ -461,14 +461,14 @@
         <div>
           <h3 style="color:var(--accent2)">Cheap until needed</h3>
           <ul style="margin:0;padding-left:1.2rem;font-size:0.95rem">
-            <li>1000 glob <code>.mdc</code> files on disk</li>
+            <li>1000 recipes and rules on disk</li>
             <li>Exemplar HTML files</li>
             <li>Task docs + inventories</li>
-            <li>Rules with narrow globs</li>
+            <li>Docs reached by one keyword row</li>
           </ul>
         </div>
       </div>
-      <p style="margin-top:0.75rem;color:var(--muted);font-size:0.92rem">Agents don't scan all <code>.mdc</code> files every turn — Cursor injects always-on + matching globs. Bloat = too many always-on + overlapping globs + no exemplar to grep toward.</p>
+      <p style="margin-top:0.75rem;color:var(--muted);font-size:0.92rem">Agents don't scan the tree every turn — <code>AGENTS.md</code> arrives automatically, everything else only when a keyword row routes to it. Bloat = an over-long always-on file + the same truth in several docs + no exemplar to copy.</p>
     </div>
 
     <p class="footer">

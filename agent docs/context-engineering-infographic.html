@@ -203,30 +203,30 @@
 
     <h1>Context Engineering Map</h1>
     <p class="subtitle">Programs workspace — how AI agents get instructions, learn, and stay maintainable<br>
-    Generated 2026-08-01 · <strong>Open (pick one):</strong><br>
+    Generated 2026-08-01 · Updated 2026-09-11 · <strong>Open (pick one):</strong><br>
     • Toolbar Launcher Panel → tile <strong>🗺️ Context Map</strong> (one click, opens in browser)<br>
     • Chat link (when docs server running): <a href="http://127.0.0.1:8765/context-engineering-infographic.html">http://127.0.0.1:8765/context-engineering-infographic.html</a><br>
     • Start server once: <code>node scripts/serve-programs-docs.js</code> — then chat http links work<br>
     • Cursor file paths with <code>C:\...</code> break (%5C bug) — do not use</p>
 
     <!-- WHAT IS MDC -->
-    <h2>What is <code>.mdc</code>?</h2>
+    <h2>How instructions load</h2>
     <div class="card highlight">
-      <p><strong>MDC = Markdown Cursor rule file.</strong> A small contract with YAML frontmatter at the top (<code>description</code>, <code>globs</code>, <code>alwaysApply</code>) plus markdown rules below.</p>
+      <p><strong>One always-on file: <code>AGENTS.md</code> at the Programs root.</strong> Cursor, Codex, and Claude Code all read it — root <code>CLAUDE.md</code> is a short pointer that imports it (<code>@AGENTS.md</code>). Everything else is reached by asking for it.</p>
       <table>
-        <tr><th>Mode</th><th>When it loads</th><th>Token impact</th></tr>
+        <tr><th>Layer</th><th>When it loads</th><th>Token impact</th></tr>
         <tr>
-          <td><span class="tag tag-always">alwaysApply: true</span></td>
-          <td>Every chat in this workspace</td>
-          <td>Always on — keep <strong>short</strong> (~200 lines total budget across all always-on rules)</td>
+          <td><span class="tag tag-always">Root AGENTS.md</span></td>
+          <td>Every session, in every tool</td>
+          <td>Always on — 17 sections, ~197 non-blank lines. Keep it short</td>
         </tr>
         <tr>
-          <td><span class="tag tag-glob">alwaysApply: false + globs</span></td>
-          <td>When you edit matching files (e.g. <code>*.tsx</code>, <code>modules/pearson/**</code>)</td>
-          <td>Only when relevant — preferred for most patterns</td>
+          <td><span class="tag tag-glob">Routed docs</span></td>
+          <td>When your words match a row in <code>agent docs/INDEX.md</code>, an app's <code>AGENTS.md</code>, or <code>recipes/INDEX.md</code></td>
+          <td>Only when relevant — where most guidance belongs</td>
         </tr>
       </table>
-      <p><strong>Claude Code does not auto-load <code>.mdc</code>.</strong> App <code>CLAUDE.md</code> indexes which rules exist. Root <code>CLAUDE.md</code> is a 6-line pointer → <code>AGENTS.md</code> (single source of truth).</p>
+      <p><strong><code>.cursor/rules/*.mdc</code> were retired 2026-08-02</strong> and are never created again: they only loaded when a matching file was open in a Cursor tab, which is not how you work. Keyword routing replaced them — reasoning in <code>HOW_TO_INTERACT_WITH_AI.md</code>.</p>
     </div>
 
     <!-- LAYER STACK -->
@@ -234,9 +234,9 @@
     <div class="layer-stack">
       <div class="layer l1"><strong>1 · Code / lint / tests</strong> Cannot misuse — ESLint, file-size check, typed APIs. Hardest for AI to ignore.</div>
       <div class="layer l2"><strong>2 · Capture skill</strong> <code>.claude/skills/capture/SKILL.md</code> — runs when you say trigger phrases; picks the rung and writes the rule.</div>
-      <div class="layer l3"><strong>3 · Always-on <code>.mdc</code></strong> 9 rules at Programs root (~292 lines). Entrypoint, git sync, no GUI without permission, PowerShell, frozen apps…</div>
-      <div class="layer l4"><strong>4 · Glob-scoped <code>.mdc</code></strong> 30+ app rules — modals, dwell, Pearson, D2L, Studio canvas… fire when matching files are open.</div>
-      <div class="layer l5"><strong>5 · On-demand docs</strong> <code>cursor-patterns/</code>, <code>docs/*_INTEGRATION.md</code>, task indexes — read when task matches, not every turn.</div>
+      <div class="layer l3"><strong>3 · Always-on <code>AGENTS.md</code></strong> One file at Programs root (~197 non-blank lines). Doc routing, screen safety, PowerShell, git sync, session flow, capture ladder…</div>
+      <div class="layer l4"><strong>4 · Routed docs</strong> <code>agent docs/INDEX.md</code> keyword rows → the one owner: an app's <code>AGENTS.md</code>, <code>recipes/INDEX.md</code>, or <code>rules/*.md</code>.</div>
+      <div class="layer l5"><strong>5 · On-demand docs</strong> <code>agent docs/recipes/</code>, app <code>docs/*.md</code>, task indexes — read when the task matches, not every turn.</div>
       <div class="layer l6"><strong>6 · Chat memory</strong> Does not persist. Never rely on “we talked about it last week.”</div>
     </div>
 
@@ -246,7 +246,7 @@
     <ol class="ladder">
       <li><strong>Structurally impossible</strong> — one owner, API that can’t be misused</li>
       <li><strong>Lint or test</strong> — violation fails CI</li>
-      <li><strong>Glob <code>.mdc</code> contract</strong> — default for most UI/code patterns</li>
+      <li><strong>Recipe + index row</strong> — <code>recipes/INDEX.md</code>, or a keyword row in the app's <code>AGENTS.md</code>; default for most UI/code patterns</li>
       <li><strong>Always-on rule</strong> — only if short and universal; budget ~200 lines total</li>
       <li><strong>On-demand doc</strong> — deep dives, task recipes (Pearson browser, blank iframe…)</li>
     </ol>
@@ -276,7 +276,7 @@
     <!-- CHASE VOCABULARY -->
     <h2>Chase vocabulary (your dialect)</h2>
     <div class="card">
-      <p>Generic English ≠ your implementation. Example: <strong>“drag handle”</strong> → must map to <code>cursor-patterns/dwell-and-head-mouse.md</code> + exemplar (<code>useDwellAttachDrag</code>, toolbar overlay), not generic HTML drag.</p>
+      <p>Generic English ≠ your implementation. Example: <strong>“drag handle”</strong> → must map to the dwell/drag row in <code>agent docs/recipes/INDEX.md</code> + exemplar (<code>useDwellAttachDrag</code>, toolbar overlay), not generic HTML drag. Timing values live in <code>dwell_constants.py</code> — never restated in a recipe.</p>
       <p><strong>First time an agent guesses wrong:</strong> capture once — map phrase → doc → exemplar file. After that, grep + rule/doc handle it.</p>
       <p>AI does <em>not</em> auto-register keywords globally unless something is <strong>written to the repo</strong>.</p>
     </div>
@@ -292,60 +292,59 @@
       <span class="arrow">→</span>
       <span>Execute via CDP / MCP macro-app</span>
     </div>
-    <p>Doc: <code>School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md</code> · Rule: <code>pearson-browser-automation.mdc</code> · CDP: port <strong>9224</strong> · MCP server: <strong>macro-app</strong></p>
+    <p>Doc: <code>School Scrips/Macro App/docs/PEARSON_BROWSER_AUTOMATION.md</code> · Routed from: Macro App <code>AGENTS.md</code> keyword table · CDP: port <strong>9224</strong> · MCP server: <strong>macro-app</strong></p>
     <p>New flow not in index? Explore once → add recipe before session ends. Whole doc budget ~500 lines; then split by topic.</p>
 
     <!-- ALWAYS ON RULES -->
-    <h2>Programs root — always-on rules (every session)</h2>
+    <h2>Programs root — what is always-on (every session)</h2>
     <table>
-      <tr><th>File</th><th>~Lines</th><th>Purpose</th></tr>
-      <tr><td><code>00-programs-entrypoint.mdc</code></td><td>42</td><td>What to read first; 8 hard rules; deep-dive index</td></tr>
-      <tr><td><code>05-never-display-without-permission.mdc</code></td><td>45</td><td>No GUI launches without your OK (head-mouse safety)</td></tr>
-      <tr><td><code>10-file-size-before-edit.mdc</code></td><td>15</td><td>800-line cap; glob on code files</td></tr>
-      <tr><td><code>20-modal-pattern.mdc</code></td><td>18</td><td>max-w-md, no backdrop dismiss</td></tr>
-      <tr><td><code>25-dwell-accessibility.mdc</code></td><td>59</td><td>Head-mouse, dwell, drag — grep before 5th mechanism</td></tr>
-      <tr><td><code>30-powershell-shell-commands.mdc</code></td><td>25</td><td>No <code>&&</code> in PowerShell</td></tr>
-      <tr><td><code>40-multi-repo-git-push.mdc</code></td><td>39</td><td>Pull at start, commit/push at end</td></tr>
-      <tr><td><code>45-frozen-apps.mdc</code></td><td>19</td><td>Calendar 2.0 off-limits unless you unfreeze</td></tr>
-      <tr><td><code>50-electron-toolbar-launcher-panel.mdc</code></td><td>30</td><td>Toolbar launcher panel patterns</td></tr>
+      <tr><th>Section group</th><th>Covers</th></tr>
+      <tr><td>Orientation</td><td>First move — find the doc: <code>agent docs/INDEX.md</code> before grepping the tree</td></tr>
+      <tr><td>Safety</td><td>Nothing on your screen without asking · no keyboard-driven handoffs · ask before assuming</td></tr>
+      <tr><td>Shell &amp; code shape</td><td>PowerShell 5.x quirks · the most violated rules (800-line cap, entry file orchestrates, preserve behavior, grep before a new mechanism, modals)</td></tr>
+      <tr><td>Launchers</td><td>Never a visible detached console</td></tr>
+      <tr><td>Git</td><td>Pull at start; commit and push every dirty repo at the end</td></tr>
+      <tr><td>Session flow</td><td>Long-task context warning · momentum handoff · session tracking bumps · end-of-session protocol</td></tr>
+      <tr><td>Capture</td><td>Trigger phrases → capture skill · the five-rung ladder</td></tr>
+      <tr><td>Housekeeping</td><td>Frozen apps · HTML pages you can click · searching this tree</td></tr>
     </table>
-    <p>Total ~292 lines loaded every session. Target budget ~200 — trimmed 2026-08-01 (entrypoint + git rule); re-count with line counts on disk.</p>
-    <div class="meter" title="Always-on budget (~200 target)"><div class="meter-fill" style="width: 75%;"></div></div>
+    <p>17 sections, ~197 non-blank lines on 2026-09-11 — the only file loaded every session. Per-section detail, and why each earns its space: <a href="/instructional-layer-htmls/head-agents-md.html">Head AGENTS.md</a>.</p>
+    <div class="meter" title="Always-on budget (~200 target)"><div class="meter-fill" style="width: 98%;"></div></div>
 
     <!-- GLOB RULES BY APP -->
-    <h2>Glob-scoped rules by app (when files match)</h2>
+    <h2>App-scoped guidance (routed by what you say)</h2>
     <table>
-      <tr><th>App / area</th><th>Rules</th></tr>
+      <tr><th>App / area</th><th>Where its guidance lives</th></tr>
       <tr>
         <td><strong>Macro App</strong></td>
-        <td>embedded-browser-modals, snapshot-modal-order, macro-modals, assignment-assistant-freeze, d2l-grades-automation, d2l-course-builder-automation, macro-ci, pearson-session-contract, <strong>pearson-browser-automation</strong>, …</td>
+        <td><code>School Scrips/Macro App/AGENTS.md</code> keyword table → Pearson browser automation, D2L grades, embedded browser and modals, makeup exam</td>
       </tr>
       <tr>
         <td><strong>Math App Studio</strong></td>
-        <td>studio-dwell-mechanics, studio-canvas-move-resize, animation-*, canvas-info-block, tutorial-flash-vocabulary, …</td>
+        <td><code>School Scrips/Math App Studio/AGENTS.md</code> → canvas move/resize, studio dwell latch, animation notes (its own <code>docs/recipes/</code>)</td>
       </tr>
       <tr>
         <td><strong>electron-toolbar</strong></td>
-        <td>launcher-panel-target</td>
+        <td><code>electron-toolbar/AGENTS.md</code> → launcher panel, dwell modules. Timing values live in <code>dwell_constants.py</code>, never in a doc</td>
       </tr>
       <tr>
-        <td><strong>Monitor Configuration App</strong></td>
-        <td>display-identity, display-safety, win32-quirks, tkinter-dpi</td>
+        <td><strong>Student portal / session kit</strong></td>
+        <td><code>student-portal/AGENTS.md</code> and <code>student-session-kit/AGENTS.md</code> → the student progress pipeline</td>
       </tr>
       <tr>
-        <td><strong>Video Player</strong></td>
-        <td>vlc-embed-contract</td>
+        <td><strong>Monitor Configuration App</strong>, <strong>Video Player</strong>, <strong>Guildrun Stats</strong>, <strong>canvas-kit</strong>, the smaller apps</td>
+        <td>Each keeps its own <code>AGENTS.md</code> — about 20 app files across the tree</td>
+      </tr>
+      <tr>
+        <td>Cross-app build patterns</td>
+        <td><code>agent docs/recipes/INDEX.md</code> — drag, dwell, overlay, modal, canvas, scroll, animation</td>
       </tr>
       <tr>
         <td><span class="tag tag-frozen">frozen</span> Calendar 2.0</td>
-        <td>3 rules — skip unless you explicitly unfreeze</td>
-      </tr>
-      <tr>
-        <td>Other</td>
-        <td>canvas-kit, spire-overlay, sts2-dwell-targeting</td>
+        <td>Skip entirely unless you explicitly unfreeze it</td>
       </tr>
     </table>
-    <p><strong>39 <code>.mdc</code> files</strong> total in Programs tree (excluding frozen app from routine work).</p>
+    <p><strong>No <code>.mdc</code> files remain</strong> — all retired 2026-08-02. App guidance now lives in each app's <code>AGENTS.md</code> keyword table, with shared build patterns in <code>agent docs/recipes/</code>.</p>
 
     <!-- SELF POLICING -->
     <h2>Self-policing — the system watches itself</h2>
@@ -357,9 +356,9 @@
         <tr><td>Dead links</td><td>Docs pointing at moved/deleted files</td></tr>
         <tr><td>Orphans</td><td>Docs nothing links to (invisible knowledge)</td></tr>
         <tr><td>Duplicates</td><td>Two copies of the same truth — they drift apart</td></tr>
-        <tr><td>Unindexed rules</td><td><code>.mdc</code> not listed in any CLAUDE.md / AGENTS.md — invisible to Claude Code</td></tr>
+        <tr><td>Unrouted docs</td><td>A doc no index points at — invisible to agents, so it gets re-derived or duplicated</td></tr>
       </table>
-      <p>Latest run snapshot: <strong>15 dead links · 3 duplicate sets · 6 unindexed rules · 89 orphans</strong> — advisory unless <code>--strict</code>.</p>
+      <p>Latest run snapshot (2026-09-11): <strong>0 dead links · 6 duplicate sets · 2 stale plans · 74 orphans</strong> — advisory unless <code>--strict</code>.</p>
     </div>
 
     <!-- AVOID OVERLOAD -->
@@ -368,7 +367,7 @@
       <div class="card">
         <h3>Do</h3>
         <ul class="compact">
-          <li>Prefer <strong>glob rules</strong> over always-on</li>
+          <li>Prefer a <strong>recipe + index row</strong> over always-on</li>
           <li>Prefer <strong>task indexes</strong> over encyclopedias</li>
           <li><strong>Graduate up</strong> the ladder; delete lower copy</li>
           <li>Point rules at <strong>one exemplar file</strong> to copy</li>
@@ -397,7 +396,7 @@
       <span class="arrow">→</span>
       <span>You ask in plain English</span>
       <span class="arrow">→</span>
-      <span>Agent reads index / greps / glob rules</span>
+      <span>Agent reads AGENTS.md, then the routed doc</span>
       <span class="arrow">→</span>
       <span>Work</span>
       <span class="arrow">→</span>
@@ -410,11 +409,11 @@
     <table>
       <tr><th>File</th><th>Role</th></tr>
       <tr><td><code>AGENTS.md</code></td><td>Master instructions (Codex + Cursor baseline)</td></tr>
-      <tr><td><code>.cursor/rules/html-infographic-delivery.mdc</code></td><td>Infographics → http://127.0.0.1:8765/ (never C:\ chat links)</td></tr>
+      <tr><td><code>agent docs/rules/html-delivery.md</code></td><td>Pages → http://127.0.0.1:8765/pages.html (never C:\ chat links)</td></tr>
       <tr><td><code>CLAUDE.md</code> (root)</td><td>Pointer → AGENTS.md for Claude Code</td></tr>
       <tr><td><code>APP_LOCATIONS.md</code></td><td>Where every app lives</td></tr>
-      <tr><td><code>cursor-patterns/CODING_STANDARDS.md</code></td><td>Canonical coding rules</td></tr>
-      <tr><td><code>.cursor/rules/*.mdc</code></td><td>Cursor rule contracts</td></tr>
+      <tr><td><code>agent docs/recipes/CODING_STANDARDS.md</code></td><td>Canonical coding rules</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>Keyword router — what Chase said → the one doc that owns it</td></tr>
       <tr><td><code>.claude/skills/capture/SKILL.md</code></td><td>Capture skill workflow</td></tr>
       <tr><td><code>scripts/check-docs.js</code></td><td>Instruction layer health check</td></tr>
       <tr><td><code>.cursor/mcp.json</code></td><td>MCP: agent-browser (9227), macro-app (9224)</td></tr>

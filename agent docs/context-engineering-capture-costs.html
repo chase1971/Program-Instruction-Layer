@@ -274,12 +274,12 @@
           <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
           <tr>
             <td>“Capture that, <strong>not always-on</strong>: in Macro App Pearson, read the browser doc first.”</td>
-            <td>App rule file for Pearson folders. (<em>pearson-browser-automation.mdc</em>)</td>
+            <td>Keyword row in Macro App's <em>AGENTS.md</em> → the Pearson doc.</td>
             <td>Writes ~40-line rule. Pearson work → agent sees it. D2L/toolbar work → zero cost.</td>
           </tr>
           <tr>
             <td>“HTML link rule — <strong>don’t</strong> put it in always-on.”</td>
-            <td>Remember delivery (8765 http) without taxing every chat. (<em>html-infographic-delivery.mdc</em>)</td>
+            <td>Remember delivery (8765 http) without taxing every chat. (<em>agent docs/rules/html-delivery.md</em>)</td>
             <td>Glob rule + short AGENTS note. New chat + “link it” → agent knows pattern.</td>
           </tr>
         </table>
@@ -288,8 +288,8 @@
           <div class="cost-grid">
             <div><dt>Chat token cost</dt><dd><span class="pill p1">~750–1,250 per rule</span> when it loads — only when matching files or agent reads it.</dd></div>
             <div><dt>How many before “too much”</dt><dd><strong>Many files on disk OK.</strong> Problem = <strong>overlap</strong>: 5+ rules all firing on the same file at once (~4k–6k tokens dumped together).</dd></div>
-            <div><dt>Thousands on disk?</dt><dd><strong>AI does NOT scan all of them.</strong> Cursor injects only rules whose file pattern matches what you’re editing. 1,000 Pearson-only rules don’t load during toolbar work.</dd></div>
-            <div><dt>When it goes wrong</dt><dd>Contradictory rules on same glob; agent skims long stack. Chat-only task (no file open) → rule might not auto-load. <strong>Wrong rung cost:</strong> token overlap if you duplicated rung 4 content here.</dd></div>
+            <div><dt>Thousands on disk?</dt><dd><strong>AI does NOT scan all of them.</strong> A doc loads only when a keyword row routes to it. 1,000 Pearson recipes cost nothing during toolbar work.</dd></div>
+            <div><dt>When it goes wrong</dt><dd>Two docs answer the same question and drift. Nothing routes to the doc, so the agent greps instead. <strong>Wrong rung cost:</strong> token overlap if you duplicated rung 4 content here.</dd></div>
           </div>
         </div>
       </div>
@@ -335,12 +335,12 @@
           <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
           <tr>
             <td>“<strong>Every session</strong>: pull git before we start, push when we’re done.”</td>
-            <td>Universal two-machine sync. (<em>40-multi-repo-git-push.mdc</em>)</td>
+            <td>Universal two-machine sync. (<em>AGENTS.md § Git</em> + <em>rules/multi-repo-git-push.md</em>)</td>
             <td>Always-on ~23 lines — every agent gets git habit.</td>
           </tr>
           <tr>
             <td>“Remember: <strong>never open a window</strong> on my screen without asking.”</td>
-            <td>Head-mouse safety. (<em>05-never-display-without-permission.mdc</em>)</td>
+            <td>Head-mouse safety. (<em>AGENTS.md § Never put anything on Chase's screen</em>)</td>
             <td>Always-on ~45 lines — no surprise GUI tests.</td>
           </tr>
           <tr>
@@ -352,7 +352,7 @@
         <div class="cost-box">
           <h3>Cost &amp; capacity (rung 4)</h3>
           <div class="cost-grid">
-            <div><dt>Chat token cost</dt><dd><span class="pill p3">~600–1,000 per rule, every chat</span>. Yours now: <strong>~127 lines ≈ 2k–3.2k tokens</strong> before you type anything.</dd></div>
+            <div><dt>Chat token cost</dt><dd><span class="pill p3">~600–1,000 per section, every chat</span>. Yours now: <strong>~197 non-blank lines ≈ 3k–5k tokens</strong> before you type anything.</dd></div>
             <div><dt>How many before “too much”</dt><dd>Budget <strong>~200 lines total</strong> (~5–8 rules). At ~300 lines agents start <strong>skimming</strong> — rules present but not followed reliably.</dd></div>
             <div><dt>Thousands always-on?</dt><dd><strong>Never.</strong> All load every chat — context fills before your task. Model quotes rules, misses nuance, feels “heavy.”</dd></div>
             <div><dt>When it goes wrong</dt><dd>Duplicate guidance in AGENTS + always-on + docs (pay 3×, they disagree). Simple questions get slow. You lose headroom for actual work.</dd></div>
@@ -438,7 +438,7 @@
         <div class="guide-box guide-good">
           <h3>Good for AGENTS note</h3>
           <ul class="compact">
-            <li>One sentence the agent needs in <strong>chat-only</strong> tasks (no file open → rung 3 glob might not load)</li>
+            <li>One sentence the agent needs before it knows what the task is (nothing has routed yet)</li>
             <li>Pointer to an exemplar or doc (“link it like exam2-review-map”)</li>
             <li>You said <strong>“AGENTS note only, not always-on”</strong></li>
           </ul>
@@ -455,7 +455,7 @@
             <tr>
               <td>“Add another always-on rule but put it in AGENTS instead.”</td>
               <td>AGENTS <em>is</em> always-on — same slot problem as rung 4, often worse (whole file loads).</td>
-              <td><span class="rephrase">→ Rung 3 glob if app-specific; rung 4 only if truly universal and short</span></td>
+              <td><span class="rephrase">→ Rung 3 keyword row if app-specific; rung 4 only if truly universal and short</span></td>
             </tr>
           </table>
         </div>
@@ -472,7 +472,7 @@
           <div class="cost-grid">
             <div><dt>Chat token cost</dt><dd>Whole AGENTS.md ~370 lines ≈ <strong>4k–8k every chat</strong>. Each pointer you add ≈ +120–200 tokens.</dd></div>
             <div><dt>How many pointers</dt><dd>Many short pointers OK. At ~500+ total lines AGENTS becomes noise — pointers get lost in prose.</dd></div>
-            <div><dt>Watch this</dt><dd>Often bigger cost than all always-on .mdc combined. Trim to index + pointers; move recipes to rung 5 docs.</dd></div>
+            <div><dt>Watch this</dt><dd>This file is the whole always-on cost now. Trim to index + pointers; move procedures to rung 5 docs.</dd></div>
           </div>
         </div>
       </div>
@@ -494,8 +494,8 @@
       <tr><th>What you’d say</th><th>What you’re asking for</th><th>What the agent does</th></tr>
       <tr><td>“Capture that…” / “Remember…”</td><td>Make it stick in the repo.</td><td>Picks rung (your “not always-on” hint wins).</td></tr>
       <tr><td>“That was the <strong>third time</strong>” / “again”</td><td>Current level failed.</td><td>Moves up one rung.</td></tr>
-      <tr><td>“<strong>Not always-on</strong>” / “don’t use my limited always-on room”</td><td>Cap at 3 or 5.</td><td>No alwaysApply: true.</td></tr>
-      <tr><td>“<strong>Take it off always-on</strong>”</td><td>Too expensive every chat.</td><td>Demote to glob + AGENTS + exemplar.</td></tr>
+      <tr><td>“<strong>Not always-on</strong>” / “don’t use my limited always-on room”</td><td>Cap at 3 or 5.</td><td>Not a section in root AGENTS.md.</td></tr>
+      <tr><td>“<strong>Take it off always-on</strong>”</td><td>Too expensive every chat.</td><td>Demote to a recipe + INDEX row + exemplar.</td></tr>
       <tr><td>“<strong>Link it</strong>” (no capture)</td><td>Do it now using what’s already saved.</td><td>Follows AGENTS + exemplar; no new rule.</td></tr>
       <tr><td>“<strong>Run the instruction layer audit</strong>”</td><td>Periodic doc/rule cleanup — duplicates &amp; contradictions.</td><td>Reads <code>INSTRUCTION_LAYER_AUDIT.md</code>; robot pass first, then report.</td></tr>
     </table>
