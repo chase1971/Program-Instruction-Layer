@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>332</dd></div>
-      <div><dt>Tasks today</dt><dd>7</dd></div>
+      <div><dt>Total tasks</dt><dd>338</dd></div>
+      <div><dt>Tasks today</dt><dd>6</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">11.4M (of 4 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>194k</dd></div>
       <div><dt>Total billed</dt><dd>42.7M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (49/1414 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (49/1443 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:01 PM · Wednesday, Sep 9, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:54 PM · Thursday, Sep 10, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,6 +202,332 @@
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Thursday, Sep 10, 2026 <span class="day-count">6 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:54 PM — Matrix report layout fixes — 2 spares, session tuning, column paging, cell sizing — 5 steps · 47m 9s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:02 PM
+         · 47m 9s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 51 search(es), 1 doc read(s)
+        <br>Wall-clock gap since previous task: 47m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="plan matrix_report_layout_fixes">plan matrix_report_layout_fixes</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/utils/matrixReport/matrixReportRoster.ts">renderer/src/utils/matrixReport/matrixReportRoster.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/components/teacher-console/MatrixReportGrid.tsx">renderer/src/components/teacher-console/MatrixReportGrid.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookScrollFrame.tsx">renderer/src/components/gradebook/GradebookScrollFrame.tsx</code>
+      <span class="nav-note">Exemplar for arrow pad wiring</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/components/teacher-console/MatrixReportScrollFrame.tsx">renderer/src/components/teacher-console/MatrixReportScrollFrame.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:06 PM — Fixed gradebook stale vs green mismatch — unified pull staleness for Session button tone and course tab dots — 7 steps · 4m 13s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:02 PM
+         · 4m 13s active tool time
+        <br>7 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 76 search(es), 2 doc read(s)
+        <br>Wall-clock gap since previous task: 4m 15s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Gradebook sync keywords → Macro App AGENTS gradebook rows</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Grades push / gradebook sync → GRADE_IMPORT_INTEGRATION pointer</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep stale + sync-status in Macro App/renderer">grep stale + sync-status in Macro App/renderer</code>
+      <span class="nav-note">Found GradebookSessionStatusLights + gradebookCourseTabSyncDot split</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookPullFreshness.ts">renderer/src/utils/gradebook/gradebookPullFreshness.ts</code>
+      <span class="nav-note">Stale title here; no tone on display object</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="renderer/src/utils/gradebook/gradebookCourseTabSyncDot.ts">renderer/src/utils/gradebook/gradebookCourseTabSyncDot.ts</code>
+      <span class="nav-note">Green dot ignored 24h staleness — root cause</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="renderer/src/components/gradebook/GradebookSessionStatusLights.tsx">renderer/src/components/gradebook/GradebookSessionStatusLights.tsx</code>
+      <span class="nav-note">Separate pullTone fn from title resolver</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="renderer/src/styles/gradebook/panel-shell.css">renderer/src/styles/gradebook/panel-shell.css</code>
+      <span class="nav-note">Confirmed tone-* CSS classes exist; not a CSS bug</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:55 PM — Momentum handoff — Matrix tutorial + revoke-code + roster Copy/scroll rails; friend NAJPJK→new spare QA pending — 5 steps · 52m 48s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:47 PM
+         · 52m 48s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 55 search(es), 4 doc read(s)
+        <br>Wall-clock gap since previous task: 52m 51s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Prior matrix QA handoff superseded</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/hooks/useStudentIdentity.ts">School Scrips/student-portal/src/hooks/useStudentIdentity.ts</code>
+      <span class="nav-note">Dead-code auto-clear on revoke</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/.../ConsoleRosterScreen.tsx">School Scrips/Macro App/renderer/.../ConsoleRosterScreen.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="student-session-kit/012_revoke_student_code.sql">student-session-kit/012_revoke_student_code.sql</code>
+      <span class="nav-note">db:push applied</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:02 PM — Momentum handoff — Matrix tutorial + Auto Solve nav/skip fixes documented; six repos dirty, QA next — 4 steps · 4h 16m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:47 PM
+         · 4h 16m active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 124 search(es), 6 doc read(s)
+        <br>Wall-clock gap since previous task: 4h 16m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Overwritten with full session state</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Matrix app/src/app/components/matrix-auto-solver.tsx">School Scrips/Matrix app/src/app/components/matrix-auto-solver.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/features/matrix-tutorial/MatrixTutorialView.tsx">School Scrips/student-portal/src/features/matrix-tutorial/MatrixTutorialView.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:46 PM — Matrix portal layout fit confirmed good on Portal Wide 812×460; momentum handoff written for tutorial QA + multi-repo commit — 5 steps · 35m 2s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:47 PM
+         · 35m 2s active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 61 search(es), 4 doc read(s)
+        <br>Wall-clock gap since previous task: 35m 5s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/styles/index.css">School Scrips/student-portal/src/styles/index.css</code>
+      <span class="nav-note">portal-quiz--matrix flex fill chain</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/styles/matrix-embed.css">School Scrips/student-portal/src/styles/matrix-embed.css</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/apps.json">School Scrips/App Dashboard/apps.json</code>
+      <span class="nav-note">student-portal-horizontal-debug launcher</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:11 PM — Momentum handoff storage: latest.md folder, INDEX/AGENTS keywords, 3-day prune script — 3 steps · 16h 23m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:47 PM
+         · 16h 23m active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 42 search(es), 5 doc read(s)
+        <br>Wall-clock gap since previous task: 16h 23m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scripts/prune-momentum-handoffs.js">scripts/prune-momentum-handoffs.js</code>
+      
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Wednesday, Sep 9, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

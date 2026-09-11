@@ -8,6 +8,9 @@
  *   --stop        Stop hook. Blocks the agent from ending its turn when there's clear
  *                 evidence of unbumped work. Capped at MAX_BLOCKS consecutive blocks,
  *                 then force-allows — this can never trap the session.
+ *   --context-warning  UserPromptSubmit hook. At a named turn interval, injects a
+ *                 reminder that the agent must recommend a fresh task after the current
+ *                 deliverable and provide a copy-ready handoff summary.
  *   --precompact  PreCompact hook. Non-blocking (Stop is the only hook here allowed to
  *                 block). Injects a reminder before compaction, since the running-tally
  *                 counts already survive compaction (written to disk on every tool call)
@@ -18,6 +21,7 @@
  *
  * Manual smoke test:
  *   echo '{}' | node scripts/scorecard-enforce.js --stop
+ *   echo '{}' | node scripts/scorecard-enforce.js --context-warning
  *   echo '{}' | node scripts/scorecard-enforce.js --precompact
  */
 'use strict';
@@ -31,6 +35,9 @@ const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json')
 const MIN_TURNS = 3;
 const MIN_EDITED_FILES = 2;
 const MAX_BLOCKS = 3;
+// Exact live token totals are not available on every host. Twelve user messages catches
+// context-heavy iterative work before compaction without interrupting short tasks.
+const CONTEXT_WARNING_TURN_INTERVAL = 12;
 
 function readRunning() {
   if (!fs.existsSync(RUNNING)) {
@@ -100,22 +107,51 @@ function runStop() {
 
 function runPrecompact() {
   const running = readRunning();
-  if (!running) {
-    return printAndExit();
-  }
+  if (!running) return printAndExit();
 
   const { edited, bumps } = unbumpedState(running);
-  if (edited === 0 || bumps > 0) {
-    return printAndExit();
-  }
+  const trackingReminder = edited > 0 && bumps === 0
+    ? ` ${edited} file(s) have been edited with 0 session tracking bumps logged; run `
+      + 'node scripts/append-session-scorecard.js --bump-file <path> with chunkNote and '
+      + 'navigationPath before detail gets summarized away.'
+    : '';
 
   printAndExit({
     hookSpecificOutput: {
       hookEventName: 'PreCompact',
       additionalContext:
-        `Compaction is about to summarize this conversation. ${edited} file(s) have been `
-        + 'edited so far with 0 session tracking bumps logged. Run node scripts/append-session-scorecard.js '
-        + '--bump-file <path> with chunkNote and navigationPath now, before detail gets summarized away.',
+        'CONTEXT EFFICIENCY WARNING: Compaction is about to summarize this conversation. '
+        + 'Tell Chase plainly in your next response that this task has become context-heavy, '
+        + 'finish the current deliverable, and recommend that he say "perform a momentum handoff" '
+        + `before starting another major chunk in a fresh Codex task.${trackingReminder}`,
+    },
+  });
+}
+
+function runContextWarning() {
+  const running = readRunning();
+  if (!running) return printAndExit();
+
+  const turns = Number(running.turns) || 0;
+  const lastWarningTurn = Number(running.lastContextWarningTurn) || 0;
+  if (
+    turns < CONTEXT_WARNING_TURN_INTERVAL
+    || turns - lastWarningTurn < CONTEXT_WARNING_TURN_INTERVAL
+  ) {
+    return printAndExit();
+  }
+
+  running.lastContextWarningTurn = turns;
+  writeRunning(running);
+  printAndExit({
+    hookSpecificOutput: {
+      hookEventName: 'UserPromptSubmit',
+      additionalContext:
+        `CONTEXT EFFICIENCY WARNING: This task has reached ${turns} user messages. `
+        + 'Tell Chase plainly in your next response that continued unrelated or major work here '
+        + 'will drag more context through each turn. Finish the current deliverable, then recommend '
+        + 'that he say "perform a momentum handoff" before starting a fresh Codex task. Do not '
+        + 'interrupt unfinished work or create or switch tasks automatically.',
     },
   });
 }
@@ -127,6 +163,9 @@ function main() {
     }
     if (process.argv.includes('--precompact')) {
       return runPrecompact();
+    }
+    if (process.argv.includes('--context-warning')) {
+      return runContextWarning();
     }
     printAndExit();
   } catch {

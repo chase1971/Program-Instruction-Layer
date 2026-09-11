@@ -18,6 +18,11 @@
             "type": "command",
             "command": "node scripts/scorecard-hook-tally.js 2>/dev/null || true",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node scripts/scorecard-enforce.js --context-warning 2>/dev/null || true",
+            "timeout": 10
           }
         ]
       }

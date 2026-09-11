@@ -151,6 +151,35 @@ Detail + machine-local list: `agent docs/rules/multi-repo-git-push.md`.
 
 ---
 
+## Long-task context warning
+
+When a hook injects **`CONTEXT EFFICIENCY WARNING`**, tell Chase plainly in the next response
+that the task has become context-heavy. Finish the current deliverable first; do not interrupt
+work already in progress and do not create or switch tasks automatically.
+
+Recommend starting a fresh Codex task before the next unrelated or major work chunk. If Chase
+accepts or asks for the handoff, follow `agent docs/MOMENTUM_HANDOFF.md`. This exists because
+long tasks drag increasing context through later turns even when answer quality still appears
+normal.
+
+---
+
+## Momentum handoff
+
+On **"perform a momentum handoff"**, "switch to a fresh task", or "give the next agent our
+momentum" → follow **`agent docs/MOMENTUM_HANDOFF.md`**. Write the handoff to
+**`agent docs/momentum-handoffs/latest.md`** (plus a dated copy), prune archives older than
+3 days, then give a copy-ready fresh-task prompt. This is a continuation boundary, not an
+end-of-session: do **not** commit, push, finalize, or create the new task unless separately
+asked.
+
+On **"read the latest momentum handoff"**, "continue from the handoff", or "pick up the
+momentum handoff" → read **`agent docs/momentum-handoffs/latest.md` first** (check the Written
+date — day-valid only), then follow **`agent docs/MOMENTUM_HANDOFF.md`** § Read. Not the same
+as "where did we leave off" (`SESSIONS.md` history).
+
+---
+
 ## Session tracking — bump as you go
 
 After each **completed deliverable** ("here's the fix", "done", a refactor phase) — not after

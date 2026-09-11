@@ -56,12 +56,13 @@ node scripts/append-session-scorecard.js --finalize-file agent docs/.scorecard-f
 
 ## Enforcement (2026-08-07)
 
-`scripts/scorecard-enforce.js` runs on **Stop** and **PreCompact** (`.cursor/hooks.json`, `.claude/settings.json`, `.codex/hooks.json`):
+`scripts/scorecard-enforce.js` runs on **UserPromptSubmit**, **Stop**, and **PreCompact** (`.cursor/hooks.json`, `.claude/settings.json`, `.codex/hooks.json`):
 
 | Hook | Behavior |
 |------|----------|
+| **UserPromptSubmit** | At each 12-user-message interval, injects one context-efficiency warning recommending the momentum-handoff protocol after the current deliverable. Twelve is an early proxy because exact live token totals are not available on every host. |
 | **Stop** | Blocks turn end when ≥2 files edited, 0 bumps, ≥3 turns. Reminds agent to `--bump-file`. Max 3 blocks. |
-| **PreCompact** | Non-blocking reminder before compaction |
+| **PreCompact** | Always injects the same fresh-task warning before compaction; also reminds the agent to bump any unlogged edited work. |
 
 Procedure detail was in the old SESSION_SCORECARD doc — behavior unchanged.
 
