@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Student Portal — Matrix tutorial layout frames</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.45;
+    }
+    .banner {
+      background: #fef3c7;
+      border-bottom: 2px solid #f59e0b;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+    }
+    main { max-width: 52rem; margin: 0 auto; padding: 1rem; }
+    h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
+    p { margin: 0 0 1rem; }
+    .diagram {
+      border: 2px solid #334155;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .frame {
+      padding: 0.65rem 0.75rem 0.75rem;
+      border: 3px solid;
+      margin: 0.35rem;
+      border-radius: 0.35rem;
+      position: relative;
+    }
+    .frame > .tag {
+      display: inline-block;
+      font: 700 0.7rem/1.2 ui-monospace, monospace;
+      color: #fff;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.2rem;
+      margin-bottom: 0.35rem;
+    }
+    .frame > .note {
+      font-size: 0.8rem;
+      color: #475569;
+      margin: 0.25rem 0 0;
+    }
+    .gray-bg { background: #e5e7eb; padding: 0.5rem; }
+    ul { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: #1d4ed8; }
+    .swatch { display: inline-block; width: 0.75rem; height: 0.75rem; vertical-align: middle; border: 1px solid #0003; }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    Scratch reference — 2026-09-10. Live color outlines: launch <strong>Portal Debug</strong> (812×460) from the toolbar or App Dashboard — not a browser link.
+  </div>
+  <main>
+    <h1>Matrix tutorial — who wraps whom</h1>
+    <p>
+      Your launcher window is <strong>812×460</strong>. The gray band below the white card is usually
+      <strong>body / #root / portal-shell</strong> stretching to full viewport height while the white card is shorter.
+    </p>
+    <p><a href="/pages.html">← All pages</a></p>
+
+    <div class="diagram gray-bg">
+      <div class="frame" style="border-color:#6b7280;background:#f9fafb">
+        <span class="tag" style="background:#6b7280">html · body · #root</span>
+        <p class="note">Page background — gray you see under the card</p>
+
+        <div class="frame" style="border-color:#dc2626;background:#fff">
+          <span class="tag" style="background:#dc2626">portal-shell</span>
+          <p class="note">Outermost portal wrapper (white in matrix focus mode)</p>
+
+          <div class="frame" style="border-color:#ea580c">
+            <span class="tag" style="background:#ea580c">portal-content-wrap</span>
+            <p class="note">Padding gutter around the rounded card</p>
+
+            <div class="frame" style="border-color:#ca8a04">
+              <span class="tag" style="background:#ca8a04;color:#1f2937">portal-content-panel</span>
+              <p class="note">White rounded card + shadow</p>
+
+              <div class="frame" style="border-color:#65a30d">
+                <span class="tag" style="background:#65a30d">portal-content-body-plain</span>
+                <p class="note">Inner slot (padding 0 for matrix)</p>
+
+                <div class="frame" style="border-color:#0891b2">
+                  <span class="tag" style="background:#0891b2">portal-quiz--matrix</span>
+
+                  <div class="frame" style="border-color:#1d4ed8">
+                    <span class="tag" style="background:#1d4ed8">portal-quiz__header</span>
+                    <p class="note">Navy “← Back” / title bar</p>
+                  </div>
+
+                  <div class="frame" style="border-color:#c026d3;margin-top:0.5rem">
+                    <span class="tag" style="background:#c026d3">matrix-embed</span>
+                    <p class="note">Matrix region — nav floats here in tutorial mode</p>
+
+                    <div class="frame" style="border-color:#16a34a">
+                      <span class="tag" style="background:#16a34a">matrix-tutorial-nav</span>
+                      <p class="note">Part 1/2/3 + Back / Next / Exit (tutorial only, absolute position)</p>
+                    </div>
+
+                    <div class="frame" style="border-color:#7c3aed;margin-top:0.5rem">
+                      <span class="tag" style="background:#7c3aed">MatrixSolver root (.min-h-screen.p-8)</span>
+
+                      <div class="frame" style="border-color:#db2777">
+                        <span class="tag" style="background:#db2777">MatrixSolver workspace (.min-h-[500px])</span>
+                        <p class="note">Matrix cells + instruction bubble — 500px min-height is the usual scroll culprit</p>
+
+                        <div class="frame" style="border-color:#0d9488">
+                          <span class="tag" style="background:#0d9488">matrix-tutorial-home</span>
+                          <p class="note">Intro text (home screen only)</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:1rem;margin:0 0 0.5rem">How to use live debug</h2>
+    <ul>
+      <li>Launcher Panel tile <strong>Portal Debug</strong> (🔍) or App Dashboard <strong>Student Portal (Horizontal, Layout Debug)</strong> — same 812×460 phone-wide window as Portal Wide.</li>
+      <li>Each box gets a colored outline + label; legend sits bottom-right.</li>
+      <li>Tell me the <strong>label name</strong> and color of the frame you want moved or shrunk.</li>
+    </ul>
+  </main>
+</body>
+</html>

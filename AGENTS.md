@@ -139,10 +139,12 @@ know the skip list and the scan. Machine-local dirty only (e.g. `config/d2l-cour
 dirty + remote ahead, or a merge conflict → **STOP and surface it**; never auto-resolve.
 
 **End / "put on GitHub":** commit and push **every dirty repo**, one commit per repo — not
-only the active app. Sister pair: Macro App ↔ `assignment-assistant-engine`. Skip unless
-asked: `.env`, credentials, `config/d2l-courses.json`, Calendar `server-port.json`.
-**Do include** `Macro App/modules/makeup-exam/exam_history.jsonl`. No tests or builds unless
-Chase asks — sync only.
+only the active app. Sister pair: Macro App ↔ `assignment-assistant-engine`. **Silent skip**
+(never commit, **never mention in reports**): `.env`, credentials, `config/d2l-courses.json`,
+Calendar `server-port.json`. **When unsure, commit.** GitHub is Chase's backup and home↔work
+sync — he does not decide file-by-file. **Do include** `Macro App/modules/makeup-exam/exam_history.jsonl`.
+No tests or builds unless Chase asks — sync only. Wrap-up: *everything committed and pushed*
+— not a list of intentional leftovers.
 
 **Mid-session:** do not commit or push unless Chase explicitly asks; wait for "put on GitHub"
 or end-of-session.

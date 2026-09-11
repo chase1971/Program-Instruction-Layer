@@ -1,0 +1,8 @@
+{
+  "chunkNote": "Matrix report view tuning auto-saves per course; removed duplicate inner scroll rail",
+  "navigationPath": [
+    { "step": "useMatrixReportViewTuning.ts", "status": "routed" },
+    { "step": "matrixReportDisplayPrefs.ts", "status": "routed" },
+    { "step": "ViewportScrollFrame hideRail", "status": "routed" }
+  ]
+}
