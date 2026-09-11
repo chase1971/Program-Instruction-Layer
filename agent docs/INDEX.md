@@ -38,7 +38,7 @@ never touches this file.
 |---|---|
 | "don't put that on my screen" · launch the app · GUI or UI test · change the display config | [rules/never-display-without-permission.md](./rules/never-display-without-permission.md) |
 | PowerShell error · `&&` didn't work · curl failed · shell syntax | [rules/powershell-shell-commands.md](./rules/powershell-shell-commands.md) |
-| "put it on GitHub" · pull · "pull Macro App" · "same as my PC" · push at end · which repos get committed · laptop vs PC files | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
+| "put it on GitHub" · pull · "pull Macro App" · "same as my PC" · push at end · which repos get committed · laptop vs PC files · don't tell me what's uncommitted · commit everything · GitHub backup | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | `.gitignore` didn't work · ignored file still shows in git · runtime file keeps changing | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | frozen apps · Calendar 2.0 · "don't touch that one" | [rules/frozen-apps.md](./rules/frozen-apps.md) |
 | "make me an HTML page I can click" · deliver a link · the docs server on 8765 | [rules/html-delivery.md](./rules/html-delivery.md) |
