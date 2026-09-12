@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>354</dd></div>
-      <div><dt>Tasks today</dt><dd>16</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.2M (of 11 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>215k</dd></div>
-      <div><dt>Total billed</dt><dd>55.6M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1528 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>358</dd></div>
+      <div><dt>Tasks today</dt><dd>20</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">5.2M (of 15 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>235k</dd></div>
+      <div><dt>Total billed</dt><dd>105.0M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1552 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:13 PM · Friday, Sep 11, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:02 PM · Friday, Sep 11, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,256 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">16 tasks</span></h2>
+      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">20 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:02 PM — Attempt policy now means 'which attempt counts' instead of 'how many times can they open it': students can always retake, 'once' records the first completed attempt, 'repeatable' records the best. Applied in the response grid, the grades screen (which still took the newest, including in-progress), and the student tile score. Labels reworded. Also locked question wording after submissions (migration 025). — 4 steps · 52m 24s</span>
+      <span class="pill p0">10.2M tokens</span><span class="pill p2">Heavy context — 364k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 PM
+         · 52m 24s since previous task
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 10.2M tokens over 28 turn(s) · 364k/turn · chat so far: 3 message(s), 2817 KB transcript
+        <br>Wall-clock gap since previous task: 52m 24s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/features/grades/formatAttemptScore.ts">School Scrips/student-portal/src/features/grades/formatAttemptScore.ts</code>
+      <span class="nav-note">bestScoreLabelForActivity already defined 'best' as highest score ratio; reused that rule instead of inventing a second one</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts">School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts</code>
+      <span class="nav-note">firstAnswerPerSlot confirms the tutorial already records the first try at each step</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleGradesScreen.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleGradesScreen.tsx</code>
+      <span class="nav-note">Found a second copy of the attempt-picking rule still taking the newest attempt; folded onto recordedAttemptForActivity</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketsScreen.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketsScreen.tsx</code>
+      <span class="nav-note">Policy toggle labels described access, not which attempt counts</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:09 PM — Portal risk fixes #3-#12: instructor flag replaces the CHASE1 literal in the bundle, active/inactive replaces student deletion, publish resolves a section instead of inventing one, option wording locked after submissions, crypto codes, tutorial submit moved behind a SECURITY DEFINER function. Migrations 017-022+024 pushed; 023 (closing anon writes) parked pending a Netlify deploy. — 8 steps · 28m 18s</span>
+      <span class="pill p0">27.6M tokens</span><span class="pill p2">Heavy context — 265k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 PM
+         · 28m 18s since previous task
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 27.6M tokens over 104 turn(s) · 265k/turn · chat so far: 3 message(s), 2497 KB transcript
+        <br>Wall-clock gap since previous task: 28m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.comments.json">agent docs/scratch/portal-risk-review.comments.json</code>
+      <span class="nav-note">Authority on dispositions; re-read the rejected list before each item</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      <span class="nav-note">Identity rules + shipping policy (db:push automatic, Netlify on request) decided the whole sequencing</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/AGENTS.md">School Scrips/student-session-kit/AGENTS.md</code>
+      <span class="nav-note">Append-only migrations, anon gets functions not tables</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/008_server_marking.sql">School Scrips/student-session-kit/supabase/migrations/008_server_marking.sql</code>
+      <span class="nav-note">submit_quiz_attempt already deletes-then-inserts, so #5 only ever affected the Matrix path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/007_exit_ticket_foundation.sql">School Scrips/student-session-kit/supabase/migrations/007_exit_ticket_foundation.sql</code>
+      <span class="nav-note">Caught that 007 redefined claim_student to return a table; my 019 draft had reverted it to the pre-007 uuid form</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/features/matrix-tutorial/useMatrixTutorialAttempt.ts">School Scrips/student-portal/src/features/matrix-tutorial/useMatrixTutorialAttempt.ts</code>
+      <span class="nav-note">Matrix submits named slots, not questions rows, so submit_quiz_attempt could not absorb it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/scripts/sync-portal-rosters.mjs">School Scrips/student-session-kit/scripts/sync-portal-rosters.mjs</code>
+      <span class="nav-note">Section ids are database-generated, NOT the Drive map's sectionId; caught before it broke publishing</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/types/matrix-app.d.ts">School Scrips/student-portal/src/types/matrix-app.d.ts</code>
+      <span class="nav-note">MatrixAutoSolverHandle is module-scoped, explaining a pre-existing typecheck error</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:41 PM — Portal risk fixes #1 and #2: teacher console now reports each student's earliest COMPLETED exit ticket attempt (first attempt only, locked); removed the 500/200 attempt caps in favour of paged uncapped reads plus a visible attempt count — 9 steps · 13m 11s</span>
+      <span class="pill p0">10.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 PM
+         · 13m 11s active tool time
+        <br>9 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 9 search(es), 0 doc read(s) · 10.6M tokens over 82 turn(s) · 129k/turn · chat so far: 1 message(s), 1210 KB transcript
+        <br>Wall-clock gap since previous task: 13m 30s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Day-valid; gave decisions, file paths, line numbers and the ordering constraint</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.comments.json">agent docs/scratch/portal-risk-review.comments.json</code>
+      <span class="nav-note">Authority on dispositions — confirmed #1 and #2 accepted, rejected list read before proposing</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">Four-part chain + agent shipping rules; named student-progress-io.js as the reader</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/teacher-console/useExitTicketResponseReport.ts">School Scrips/Macro App/renderer/src/hooks/teacher-console/useExitTicketResponseReport.ts</code>
+      <span class="nav-note">latestAttemptForActivity -&gt; recordedAttemptForActivity</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/student-progress/useStudentProgressResults.ts">School Scrips/Macro App/renderer/src/hooks/student-progress/useStudentProgressResults.ts</code>
+      <span class="nav-note">Confirmed attempts arrive sorted ascending by attemptSortTime, so [length-1] really was the latest</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportProgress.ts">School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportProgress.ts</code>
+      <span class="nav-note">Reused existing attemptSortTime instead of adding a second ordering rule</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportRoster.ts">School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportRoster.ts</code>
+      <span class="nav-note">findInAllMapsByCode proves the Matrix roster spans course maps — why a global section filter is unsafe</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">697 lines at the extract-before-700 threshold; split the Supabase REST layer out</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Student Progress row points at the pipeline doc, which was already open</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:27 PM — Wrote the momentum handoff for the portal risk fixes — 12 accepted decisions, 7 rejected directions, 4 open questions, exact next step — 3 steps · 12m 52s</span>
+      <span class="pill p0">1.1M tokens</span><span class="pill p2">Heavy context — 267k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 9:14 PM
+         · 12m 52s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 29 search(es), 0 doc read(s) · 1.1M tokens over 4 turn(s) · 267k/turn · chat so far: 6 message(s), 1931 KB transcript
+        <br>Wall-clock gap since previous task: 13m 2s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      <span class="nav-note">Procedure, file locations, required sections, final response shape</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.comments.json">agent docs/scratch/portal-risk-review.comments.json</code>
+      <span class="nav-note">Source of truth for what Chase actually decided — quoted his language into the handoff</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="scripts/prune-momentum-handoffs.js">scripts/prune-momentum-handoffs.js</code>
+      <span class="nav-note">Ran with --yes; nothing older than 3 days</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">9:13 PM — Answered Chase's 7 follow-up comments on the portal risk review (what the 500 counts, why the one-time quiz hang is a loading state not an error, dropped the code-entry box on his reasoning) — 2 steps · 5m 42s</span>
       <span class="pill p0">1.8M tokens</span><span class="pill p2">Heavy context — 258k/turn</span>
