@@ -68,6 +68,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "block clicks under scroll zone", "dwell pause scroll zone" | [scroll-zone-click-block.md](./scroll-zone-click-block.md) | ✅ | electron-toolbar scroll zones (Python dwell pause) |
 | "it needs a scroll rail", "hover to scroll", "the scrollbar is too small", "click to nudge" | [vertical-scroll-rail.md](./vertical-scroll-rail.md) | ✅ | Macro App (×3), Math App Studio, Guildrun Stats |
 | "don't add confirmation text", "no copied message", "stop adding feedback after click" | [no-ephemeral-feedback.md](./no-ephemeral-feedback.md) | ✅ | All UI — unless Chase asks for it |
+| "pop-in", "paint all at once", "things load in after", "staged load on open", "layout shift when the screen opens" | [first-paint-gate.md](./first-paint-gate.md) | ✅ | student-portal home, Teacher Console dashboard |
 
 ## Where everything else went (2026-08-08)
 

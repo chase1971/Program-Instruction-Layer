@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>358</dd></div>
-      <div><dt>Tasks today</dt><dd>20</dd></div>
+      <div><dt>Total tasks</dt><dd>373</dd></div>
+      <div><dt>Tasks today</dt><dd>15</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">5.2M (of 15 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>235k</dd></div>
       <div><dt>Total billed</dt><dd>105.0M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1552 steps)</dd></div>
-      <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:02 PM · Friday, Sep 11, 2026</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1606 steps)</dd></div>
+      <div><dt>Avg steps</dt><dd>5.3</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">3:20 PM · Saturday, Sep 12, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,6 +202,687 @@
     </li></ul>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Saturday, Sep 12, 2026 <span class="day-count">15 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:20 PM — Exit ticket Responses screen — side-panel bar charts per question showing answer counts from completed attempts — 3 steps · 2m 3s</span>
+      <span class="pill p0">Chat: 5 msgs · 69 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 2m 3s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 4 search(es), 1 doc read(s) · chat so far: 5 message(s), 69 KB transcript
+        <br>Wall-clock gap since previous task: 2m 11s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx</code>
+      <span class="nav-note">Exemplar for bar chart styling approach</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/exit-ticket/buildExitTicketResponseSummary.ts">School Scrips/Macro App/renderer/src/utils/exit-ticket/buildExitTicketResponseSummary.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/ExitTicketResponseSummaryPanel.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/ExitTicketResponseSummaryPanel.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:18 PM — Exit ticket Responses tab now auto-refreshes Supabase attempts — fixes empty grid after completing survey in preview — 3 steps · 3m 37s</span>
+      <span class="pill p0">Chat: 4 msgs · 51 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 3m 37s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 16 search(es), 0 doc read(s) · chat so far: 4 message(s), 51 KB transcript
+        <br>Wall-clock gap since previous task: 3m 45s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Supabase attempts query">Supabase attempts query</code>
+      <span class="nav-note">Tester Student completion + 2 attempt_items exist</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/student-progress/useStudentProgressResults.ts">School Scrips/Macro App/renderer/src/hooks/student-progress/useStudentProgressResults.ts</code>
+      <span class="nav-note">Results only loaded on module mount — stale after preview submit</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="ConsoleExitTicketResponseScreen.tsx">ConsoleExitTicketResponseScreen.tsx</code>
+      <span class="nav-note">Added onRefreshResults on Responses open</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:14 PM — Hide misleading 0 of 0 on completed survey tiles — ungraded exit tickets have no score to show — 2 steps · 2m 16s</span>
+      <span class="pill p0">Chat: 3 msgs · 44 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 2m 16s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 7 search(es), 0 doc read(s) · chat so far: 3 message(s), 44 KB transcript
+        <br>Wall-clock gap since previous task: 2m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/services/classworkData.ts">School Scrips/student-portal/src/services/classworkData.ts</code>
+      <span class="nav-note">Skip recordedScoreLabel when gradingMode is none</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/015_attempt_policy.sql">School Scrips/student-session-kit/supabase/migrations/015_attempt_policy.sql</code>
+      <span class="nav-note">submit_quiz_attempt leaves max_score at 0 for ungraded surveys</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:12 PM — Diagnosed exit-ticket delete bug — update_exit_ticket set total_items but kept orphan question rows; migration 029 deletes removed Qs + fixed Math App Survey to 2 questions — 3 steps · 7m 11s</span>
+      <span class="pill p0">Chat: 2 msgs · 29 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 7m 11s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 0 doc read(s) · chat so far: 2 message(s), 29 KB transcript
+        <br>Wall-clock gap since previous task: 7m 16s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/025_lock_question_wording.sql">School Scrips/student-session-kit/supabase/migrations/025_lock_question_wording.sql</code>
+      <span class="nav-note">update_exit_ticket never deleted removed questions</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Supabase live state">Supabase live state</code>
+      <span class="nav-note">total_items=2 but 3 question rows</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/029_update_exit_ticket_delete_removed.sql">School Scrips/student-session-kit/supabase/migrations/029_update_exit_ticket_delete_removed.sql</code>
+      <span class="nav-note">Added delete when no completed submissions</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:05 PM — Portal Check Q3 updated in Supabase (Math App Survey ticket) — approved survey copy live; Q1/Q2 unchanged; dev preview verified 3 of 3 — 4 steps · 50m 7s</span>
+      <span class="pill p0">Chat: 1 msgs · 1 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 50m 7s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 174 search(es), 15 doc read(s) · chat so far: 1 message(s), 1 KB transcript
+        <br>Wall-clock gap since previous task: 50m 10s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Approved Q3 copy + exact next step</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/teacher-console/useExitTicketQuizEdit.ts">School Scrips/Macro App/renderer/src/hooks/teacher-console/useExitTicketQuizEdit.ts</code>
+      <span class="nav-note">Confirm update_exit_ticket save path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">Headless save via same RPC as quiz editor</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="http://127.0.0.1:5340 dev preview">http://127.0.0.1:5340 dev preview</code>
+      <span class="nav-note">Playwright: 3 of 3 shows new Q3 prompt + four options</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:14 PM — Dashboard layout — Logins under Announcements; narrow sidebar; full-size portal preview column — 3 steps · 6m 10s</span>
+      <span class="pill p0">Chat: 10 msgs · 214 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 6m 10s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 5 search(es), 1 doc read(s) · chat so far: 10 message(s), 214 KB transcript
+        <br>Wall-clock gap since previous task: 7m 38s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="ConsoleDashboardScreen.tsx">ConsoleDashboardScreen.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="teacher-console-dashboard.css">teacher-console-dashboard.css</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="DashboardPortalPreviewCard.tsx">DashboardPortalPreviewCard.tsx</code>
+      <span class="nav-note">Removed compact sizing</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:07 PM — Dashboard layout — Logins under Announcements; narrow sidebar; full-size portal preview column — 3 steps · 1m 45s</span>
+      <span class="pill p0">Chat: 8 msgs · 193 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 1m 45s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · chat so far: 8 message(s), 193 KB transcript
+        <br>Wall-clock gap since previous task: 1m 48s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="ConsoleDashboardScreen.tsx">ConsoleDashboardScreen.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="teacher-console-dashboard.css">teacher-console-dashboard.css</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="DashboardPortalPreviewCard.tsx">DashboardPortalPreviewCard.tsx</code>
+      <span class="nav-note">Removed compact sizing</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:05 PM — Dashboard side-panel portal preview — grouped Live/Preview, persona, aspect controls + embedded preview card — 4 steps · 4m 37s</span>
+      <span class="pill p0">Chat: 7 msgs · 117 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 4m 37s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 10 search(es), 1 doc read(s) · chat so far: 7 message(s), 117 KB transcript
+        <br>Wall-clock gap since previous task: 4m 40s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Prior session context</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="TeacherConsoleDashboardPanel.tsx">TeacherConsoleDashboardPanel.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="ConsoleAppLiveScreen.tsx + useTeacherConsolePortalPreview.ts">ConsoleAppLiveScreen.tsx + useTeacherConsolePortalPreview.ts</code>
+      <span class="nav-note">Reused app preview pattern</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="useMacroAppStudentProgressShell.ts">useMacroAppStudentProgressShell.ts</code>
+      <span class="nav-note">Dev server + dashboard preview source</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:00 PM — Exit ticket quiz editor first-paint gate — no blank edit form before questions load — 2 steps · 1m 22s</span>
+      <span class="pill p0">Chat: 5 msgs · 103 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 1m 22s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · chat so far: 5 message(s), 103 KB transcript
+        <br>Wall-clock gap since previous task: 1m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/recipes/first-paint-gate.md">agent docs/recipes/first-paint-gate.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="ConsoleExitTicketQuizScreen + useExitTicketQuizEdit">ConsoleExitTicketQuizScreen + useExitTicketQuizEdit</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:59 PM — Exit ticket Roster subview — same activate/deactivate roster as Matrix app, per exit ticket activity — 3 steps · 2m 29s</span>
+      <span class="pill p0">Chat: 4 msgs · 78 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 2m 29s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 21 search(es), 0 doc read(s) · chat so far: 4 message(s), 78 KB transcript
+        <br>Wall-clock gap since previous task: 2m 34s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="ConsoleRosterScreen + useRosterAppAccess">ConsoleRosterScreen + useRosterAppAccess</code>
+      <span class="nav-note">Matrix app exemplar</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="useTeacherConsoleNavigation + TeacherConsoleExitTicketPanel">useTeacherConsoleNavigation + TeacherConsoleExitTicketPanel</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="TeacherConsoleWorkspace roster dispatch">TeacherConsoleWorkspace roster dispatch</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:56 PM — Fixed Teacher Console announcements Gateway Timeout — retry + friendly error, no error cache — 3 steps · 3m</span>
+      <span class="pill p0">Chat: 3 msgs · 49 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 3m active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 13 search(es), 4 doc read(s) · chat so far: 3 message(s), 49 KB transcript
+        <br>Wall-clock gap since previous task: 3m 5s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="DashboardAnnouncementsPanel + useSectionAnnouncements">DashboardAnnouncementsPanel + useSectionAnnouncements</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-app/student-progress-io.js listClassAnnouncements">electron-app/student-progress-io.js listClassAnnouncements</code>
+      <span class="nav-note">Missing try/catch vs publish</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/student-progress-rest.js">electron-app/student-progress-rest.js</code>
+      <span class="nav-note">Added retry + JSON error parse</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:53 PM — Fixed Teacher Console announcements Gateway Timeout — retry + friendly error, no error cache — 3 steps · 1m 41s</span>
+      <span class="pill p0">Chat: 2 msgs · 29 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 1m 41s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 12 search(es), 0 doc read(s) · chat so far: 2 message(s), 29 KB transcript
+        <br>Wall-clock gap since previous task: 1m 48s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="DashboardAnnouncementsPanel + useSectionAnnouncements">DashboardAnnouncementsPanel + useSectionAnnouncements</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-app/student-progress-io.js listClassAnnouncements">electron-app/student-progress-io.js listClassAnnouncements</code>
+      <span class="nav-note">Missing try/catch vs publish</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/student-progress-rest.js">electron-app/student-progress-rest.js</code>
+      <span class="nav-note">Added retry + JSON error parse</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:51 PM — Verified announcement dismiss → Past announcements → #/announcements flow in portal Preview (migration 028 OK) — 5 steps · 2m 31s</span>
+      <span class="pill p0">Chat: 1 msgs · 2 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 2m 31s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 4 doc read(s) · chat so far: 1 message(s), 2 KB transcript
+        <br>Wall-clock gap since previous task: 2m 37s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/AGENTS.md">School Scrips/student-portal/AGENTS.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-portal announcement components + RPC">student-portal announcement components + RPC</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Browser verification at localhost:5340 Preview URL">Browser verification at localhost:5340 Preview URL</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:49 PM — Momentum handoff — Teacher Console dashboard, announcements, preview server, past-announcements page — 5 steps · 22m 41s</span>
+      <span class="pill p0">Chat: 13 msgs · 279 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 22m 41s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 64 search(es), 5 doc read(s) · chat so far: 13 message(s), 279 KB transcript
+        <br>Wall-clock gap since previous task: 22m 44s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Prior handoff replaced</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App">School Scrips/Macro App</code>
+      <span class="nav-note">git status — uncommitted dashboard/preview/announcements</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal">School Scrips/student-portal</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit">School Scrips/student-session-kit</code>
+      <span class="nav-note">migrations 026-028; 028 pushed</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:26 PM — Teacher Console dashboard redesign, logins bar chart, and class announcements (portal card + teacher publish/dismiss + Supabase 026) — 8 steps · 14h 21m</span>
+      <span class="pill p0">Chat: 4 msgs · 131 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 11:04 PM
+         · 14h 21m active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 31 search(es), 1 doc read(s) · chat so far: 4 message(s), 131 KB transcript
+        <br>Wall-clock gap since previous task: 14h 21m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/AGENTS.md">School Scrips/Macro App/AGENTS.md</code>
+      <span class="nav-note">Teacher Console keyword row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="renderer/src/components/teacher-console/screens/ConsoleDashboardScreen.tsx">renderer/src/components/teacher-console/screens/ConsoleDashboardScreen.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="renderer/src/styles/teacher-console-dashboard.css">renderer/src/styles/teacher-console-dashboard.css</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx">renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx</code>
+      <span class="nav-note">Line chart → smaller bar chart</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/app/components/PortalHomeIntro.tsx">School Scrips/student-portal/src/app/components/PortalHomeIntro.tsx</code>
+      <span class="nav-note">Existing welcome copy replaced by DB-driven announcements</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">Schema/RPC patterns for portal + Macro App</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="student-session-kit/supabase/migrations/026_class_announcements.sql">student-session-kit/supabase/migrations/026_class_announcements.sql</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="Macro App/electron-app/student-progress-io.js">Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">IPC list/publish/unpublish announcements</span>
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">20 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

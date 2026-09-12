@@ -157,9 +157,3 @@ subview → edit paste / save via existing `useExitTicketQuizEdit` flow. Refresh
 4. Save/publish update.
 5. Preview mode → **Refresh** → confirm Q3 wording and options on question 3 of 3.
 6. *(Optional)* Add `student-portal/src/config/portalCheckSurvey.ts` with `PORTAL_CHECK_SURVEY_PASTE` constant so future edits have one code owner — **only if Chase wants repo source of truth**; not required for this task.
-
----
-
-## Fresh-task prompt (copy below)
-
-See parent response for the fenced block Chase pastes into a new task.
