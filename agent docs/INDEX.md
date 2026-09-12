@@ -42,6 +42,7 @@ never touches this file.
 | `.gitignore` didn't work · ignored file still shows in git · runtime file keeps changing | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | frozen apps · Calendar 2.0 · "don't touch that one" | [rules/frozen-apps.md](./rules/frozen-apps.md) |
 | "make me an HTML page I can click" · deliver a link · the docs server on 8765 | [rules/html-delivery.md](./rules/html-delivery.md) |
+| **"read my comments on \<page\>"** · he annotated an HTML report · comment boxes on a page | [rules/html-delivery.md](./rules/html-delivery.md) § Reader comments — read `<page>.comments.json` beside the page |
 
 ## Session flow
 

@@ -1,0 +1,194 @@
+{
+  "page": "scratch/portal-risk-review.html",
+  "updated": "2026-09-12T02:11:11.645Z",
+  "comments": {
+    "the-console-can-only-see-your": {
+      "title": "The console can only see your newest 500 attempts — and silently forgets the rest",
+      "thread": [
+        {
+          "text": "I don't understand why it stops at 500. Like, where did these come from  But yes, go ahead and increase them. Is there any reason to have a limit at all  Like, why would it have a 500 limit by default  Because I never mentioned anything about how many I should be able to hold or something like that. So can we just make it unlimited",
+          "updated": "2026-09-12T01:36:09.244Z"
+        },
+        {
+          "text": "Now, is this like the data that the students are collecting through their taking the quizzes and their answers and stuff  Or is it like the number of students  What does this number actually reference",
+          "updated": "2026-09-12T02:02:46.860Z"
+        }
+      ],
+      "draft": ""
+    },
+    "a-student-who-reopens-a-finished": {
+      "title": "A student who reopens a finished quiz looks like they never did it",
+      "thread": [
+        {
+          "text": "So the way to handle this is,   if they, whatever they did the first time is saved, and then anything they do afterwards, it doesn't, I don't, like, there may be exceptions to this later on as I develop different apps, but for now, like, I don't need any more data once they've done it once, I don't think. now they could do it again themselves but none of these things are graded in terms of like oh you missed this one so you need to go back and redo it so you get credit for it none of the initial ones I'm doing will be like that so I don't see any reason why I would take anything other than the first time and then keep everything and keep it locked from there on",
+          "updated": "2026-09-12T01:37:25.924Z"
+        },
+        {
+          "text": "Yes, you need to fix the code.",
+          "updated": "2026-09-12T02:03:14.405Z"
+        }
+      ],
+      "draft": ""
+    },
+    "a-student-with-bad-wifi-can": {
+      "title": "A student with bad wifi can get their answers recorded twice",
+      "thread": [
+        {
+          "text": "It's saved to answer then mark the attempt finish. Okay, I guess that's fine.",
+          "updated": "2026-09-12T01:38:52.407Z"
+        },
+        {
+          "text": "Alright, let's fix it.",
+          "updated": "2026-09-12T02:03:43.653Z"
+        }
+      ],
+      "draft": ""
+    },
+    "fixing-a-typo-in-an-answer": {
+      "title": "Fixing a typo in an answer key doesn't re-grade anyone",
+      "thread": [
+        {
+          "text": "This is not going to matter.  typos won't infect their choices, or even if it did, I don't care. It's not that big of a deal.",
+          "updated": "2026-09-12T01:39:25.556Z"
+        }
+      ],
+      "draft": ""
+    },
+    "revoke-code-deletes-the-student-and": {
+      "title": "\"Revoke code\" deletes the student — and orphans everything they ever submitted",
+      "thread": [
+        {
+          "text": "I'd rather do some type of archiving because the data would be potentially important. But it wouldn't... So I don't know. I guess just, again, if I can have hundreds of thousands of data entries that I could just keep forever, then I guess it's not a big deal. Or eventually I would just pull it off of the database completely but save it in my record somewhere.   we can just do active, inactive,",
+          "updated": "2026-09-12T01:40:21.373Z"
+        }
+      ],
+      "draft": ""
+    },
+    "the-that-s-not-your-link": {
+      "title": "The \"that's not your link\" screen shows the other student's code in big bold letters",
+      "thread": [
+        {
+          "text": "This is not as big a deal as you're making it out to be. Essentially, if it flags two students, all I would know is that someone tried to give their link to someone else, and I don't know who's at fault, and it wouldn't really matter at this point because nothing here is really all that big a deal for them to want to do this, and there's nothing you can stop. It should be impossible. Oh, this isn't me. I'm trying to think. How would that even be possible  Let's see. Someone, I can see it being maybe a problem in a house where there's a brother and sister taking the course, and they share a family computer, but they're likely going to be doing it on their phone, so I don't think this is a big deal. They're not.",
+          "updated": "2026-09-12T01:41:42.172Z"
+        },
+        {
+          "text": "No, because I have admin privileges. My name can look at other people's apps without penalty.    But you can go ahead and fix it.",
+          "updated": "2026-09-12T02:05:19.791Z"
+        }
+      ],
+      "draft": ""
+    },
+    "the-cheating-log-blames-the-wrong": {
+      "title": "The cheating log blames the wrong student",
+      "thread": [
+        {
+          "text": "It doesn't matter.",
+          "updated": "2026-09-12T01:41:54.593Z"
+        }
+      ],
+      "draft": ""
+    },
+    "a-one-time-quiz-can-hang": {
+      "title": "A one-time quiz can hang on a blank loading screen forever",
+      "thread": [
+        {
+          "text": "Okay,   I have to think about this one. I would say like in these one-time quizzes, it's just not that big a deal if they break and can't get back in. It's just like gonna be for simple questions, just, or maybe like a slight, like a small warmup or something. I would still like to think about like some kind of retry, But the purpose of it is, I mean, I guess now that I've decided that if I don't want them to, that I'm only taking the first attempt at something, I guess they could just retry it all they want to. It's just nothing will ever change their original scoring. But you could also maybe make it to where, like, if a problem, like, how would it, I'm trying to think, how would it fail  Like a drop connection, it already knows to bring them back to where they left off, right  So like how would it submit something if the lost connection  I don't see how this would actually happen. Unless there's like an actual error that potentially could happen, like their phone crashes or something. But like even then it won't, it wouldn't submit it. It would just leave off of where they were. I don't think this is an issue. Are you sure",
+          "updated": "2026-09-12T01:43:52.320Z"
+        },
+        {
+          "text": "Well, what you're saying is that they go to do something first for the first time, but it never loads and then it errors out and they go back and it says you've already taken this quiz. So, but to me, if there's no answers, if no answers have been selected, then why would it say that  why would it make it to where the first question like like for them to have to go back to the app and it skip over a question means they had to give an answer to that question right why would it skip that question even if they got an error message when they reloaded it wouldn't it just say they don't have it would look at the database and go oh this person hasn't answered any of the question so let's start with question one",
+          "updated": "2026-09-12T02:07:37.118Z"
+        }
+      ],
+      "draft": ""
+    },
+    "reopening-a-finished-quiz-tells-the": {
+      "title": "Reopening a finished quiz tells the student they scored 0 of 0",
+      "thread": [
+        {
+          "text": "Just allow them to take it again, but the score is not going to change. These are not things that are actual grades.",
+          "updated": "2026-09-12T01:45:05.468Z"
+        }
+      ],
+      "draft": ""
+    },
+    "phones-forget-who-the-student-is": {
+      "title": "Phones forget who the student is, and two tabs fight each other",
+      "thread": [
+        {
+          "text": "It's not going to require me at all because they're getting an email of this link and if they need to go back to get it to work, they'll just have to reference the email   If the what like, would it know that it used to have access  Because if it if it if it knew it used to have access, then you could have a specific message appear on the screen for that user to say, find your original email to reactivate. Like find the email that I sent you to reactivate your account or click on the link inside the email that I sent you to reactivate your account. Now, if it can't detect that and it doesn't know, then we need the message that says, like, you need to get your teacher talk to whatever the one it says. I don't know what it says, but like, talk to your teacher to get you a code or something you can maybe mention. Or if you are locked out, go to the email and click the link that I sent about earlier, phrase it better than that. But that's kind of what I want for this.",
+          "updated": "2026-09-12T01:47:00.150Z"
+        },
+        {
+          "text": "Yes, but do it without using in-dashes.   I don't want them typing any code. In fact, it'd be nice if they didn't even know it was like, I guess it shows up, but I don't, I just, no. Because they're not gonna know their code off the top of their head. Like they're gonna have to go, if those, I'm telling you, if that box was there, I would get more emails telling me what's the code that I need to put in, then it would be that if I didn't have the box there and it said to just go look for the email,",
+          "updated": "2026-09-12T02:08:57.917Z"
+        }
+      ],
+      "draft": ""
+    },
+    "a-browser-can-still-write-any": {
+      "title": "A browser can still write any score it likes — which makes server-side grading decorative",
+      "thread": [
+        {
+          "text": "I mean, if that fixes it, like, this is not an issue at all, because these are not going to be grades that I record. I mean, there might be grades that I record, but they're just like completion. They just have to do it. And if they click the buttons, they could get literally everything wrong. Oh, actually, that's not necessarily true. But it's just, it doesn't matter too much. However, if you can fix it and it's no problem, let's just do that.",
+          "updated": "2026-09-12T01:49:40.748Z"
+        }
+      ],
+      "draft": ""
+    },
+    "unlimited-retries-plus-per-question-feedback": {
+      "title": "Unlimited retries plus per-question feedback adds up to the answer key",
+      "thread": [
+        {
+          "text": "Yes, I made it to where I only see results of the first attempt.",
+          "updated": "2026-09-12T01:50:17.316Z"
+        },
+        {
+          "text": "Yes, that's because we're going to build it to do it that way.  .",
+          "updated": "2026-09-12T02:09:21.182Z"
+        }
+      ],
+      "draft": ""
+    },
+    "your-personal-test-code-is-sitting": {
+      "title": "Your personal test code is sitting inside the published website",
+      "thread": [
+        {
+          "text": "get it out of the code, please.",
+          "updated": "2026-09-12T01:50:35.614Z"
+        }
+      ],
+      "draft": ""
+    },
+    "codes-use-the-weak-kind-of": {
+      "title": "Codes use the weak kind of randomness, and nobody's watching for guessing",
+      "thread": [
+        {
+          "text": "It doesn't matter really, honestly, but   if it's for free, then let's just do it. Because I haven't given out any codes yet anyway, so just keep the spare codes as the same. If you have to make any changes at all.",
+          "updated": "2026-09-12T01:51:16.795Z"
+        }
+      ],
+      "draft": ""
+    },
+    "a-publishing-mismatch-can-send-a": {
+      "title": "A publishing mismatch can send a quiz to nobody and still say \"published\"",
+      "thread": [
+        {
+          "text": "Yes, let's do this.",
+          "updated": "2026-09-12T01:51:43.646Z"
+        }
+      ],
+      "draft": ""
+    },
+    "call-it-pseudonymised-not-anonymous-it": {
+      "title": "Call it \"pseudonymised,\" not \"anonymous\" — it's a stronger position, not a weaker one",
+      "thread": [
+        {
+          "text": "Like, I have their, I mean, wouldn't that be true for like, I have access to their grades on D2L and I have access to their, like I have access to them on D2L, how is that any different than this  It's just that if someone intercepted like the trans, for whatever reason, they hacked and they were able to intercept the bits of data that was going online, they wouldn't be pulling their names from anything, right  They would have to hack into my computer to do it. I don't see how this is any different than just a website. Please explain, please. Now as for like recording their login records, like is this not legal  Do I have to worry about any legality of like having some sort of check to see when they log in or log out",
+          "updated": "2026-09-12T01:53:36.077Z"
+        }
+      ],
+      "draft": ""
+    }
+  }
+}

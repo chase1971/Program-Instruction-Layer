@@ -39,6 +39,7 @@ into new code.
 | "add a scroll rail" · hover to scroll · the scrollbar is too small to click · click to nudge | [vertical-scroll-rail.md](./vertical-scroll-rail.md) |
 | "modal over the browser" · snapshot · freeze browser · PAUSED stuck · can't close modal | [modal-shell.md](./modal-shell.md) § Macro App embedded browser → then `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
+| report grid columns spread · compact grid · exit ticket Responses too wide · natural column width | [report-grid-column-sizing.md](./report-grid-column-sizing.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
 | "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
 | "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |

@@ -3,6 +3,11 @@
  * so chat http:// links open in a browser.
  * Usage: node scripts/serve-programs-docs.js
  * Then open: http://127.0.0.1:8765/context-engineering-infographic.html
+ *
+ * Also accepts ONE kind of write: POST /__comments/<page path> saves reader comments
+ * to <page>.comments.json beside the page, so a page can collect Chase's notes and an
+ * agent can read them straight off disk. Nothing else is writable. Detail:
+ * agent docs/rules/html-delivery.md § Reader comments.
  */
 'use strict';
 
@@ -45,8 +50,82 @@ function resolveFile(rel) {
   return null;
 }
 
+const COMMENTS_PREFIX = '/__comments/';
+const COMMENTS_SUFFIX = '.comments.json';
+const MAX_COMMENT_BODY = 512 * 1024;
+
+/**
+ * Where a page's comments file lives: beside the page, in whichever served root
+ * holds it. Returns null for anything that is not an existing .html page.
+ */
+function resolveCommentsFile(rel) {
+  const clean = rel.replace(/^\//, '');
+  if (!clean.toLowerCase().endsWith('.html') || clean.includes('\0')) {
+    return null;
+  }
+  const page = resolveFile(`/${clean}`);
+  if (!page) {
+    return null;
+  }
+  return page.replace(/\.html$/i, '') + COMMENTS_SUFFIX;
+}
+
+function handleSaveComments(req, res, rel) {
+  const target = resolveCommentsFile(rel);
+  if (!target) {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end('{"ok":false,"error":"no such page"}');
+    return;
+  }
+
+  let body = '';
+  let tooBig = false;
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_COMMENT_BODY) {
+      tooBig = true;
+      req.destroy();
+    }
+  });
+  req.on('end', () => {
+    if (tooBig) {
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"too large"}');
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(body || '{}');
+    } catch {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"bad json"}');
+      return;
+    }
+    try {
+      fs.writeFileSync(target, JSON.stringify(parsed, null, 2) + '\n', 'utf8');
+      console.log(`comments saved: ${path.basename(target)}`);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, file: path.basename(target) }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+    }
+  });
+}
+
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
+
+  if (rel.startsWith(COMMENTS_PREFIX)) {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"POST only"}');
+      return;
+    }
+    handleSaveComments(req, res, rel.slice(COMMENTS_PREFIX.length - 1));
+    return;
+  }
+
   if (rel === '/') rel = '/index.html';
   const file = resolveFile(rel);
   if (!file) {

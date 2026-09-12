@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>346</dd></div>
-      <div><dt>Tasks today</dt><dd>8</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.6M (of 8 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>196k</dd></div>
-      <div><dt>Total billed</dt><dd>38.8M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (50/1485 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>354</dd></div>
+      <div><dt>Tasks today</dt><dd>16</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.2M (of 11 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>215k</dd></div>
+      <div><dt>Total billed</dt><dd>55.6M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1528 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.4</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">5:02 PM · Friday, Sep 11, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:13 PM · Friday, Sep 11, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,469 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">8 tasks</span></h2>
+      <h2 class="day-title">Friday, Sep 11, 2026 <span class="day-count">16 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:13 PM — Answered Chase's 7 follow-up comments on the portal risk review (what the 500 counts, why the one-time quiz hang is a loading state not an error, dropped the code-entry box on his reasoning) — 2 steps · 5m 42s</span>
+      <span class="pill p0">1.8M tokens</span><span class="pill p2">Heavy context — 258k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 5m 42s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 2 doc read(s) · 1.8M tokens over 7 turn(s) · 258k/turn · chat so far: 5 message(s), 1813 KB transcript
+        <br>Wall-clock gap since previous task: 5m 54s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.comments.json">agent docs/scratch/portal-risk-review.comments.json</code>
+      <span class="nav-note">7 new posts; diffed against REPLIES indexes to find only the unanswered ones</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="student-portal/src/app/components/PortalUserLabel.tsx">student-portal/src/app/components/PortalUserLabel.tsx</code>
+      <span class="nav-note">Answers his 'should they even know there is a code' — it is shown as 'User ABC123' on assignment headers</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:07 PM — Student Portal: fixed staged pop-in on load. Banner painted instantly while identity/access/classwork resolved serially and each rendered null while waiting. Added remembered studentId (optimistic identity paint + background re-verify), localStorage-persisted classwork snapshot, and usePortalFirstPaintReady gate so the whole screen paints once. Also made Teacher Console Live preview always open portal home instead of #/matrix-tutorial, and added Admin vs Student tester persona toggle. — 10 steps · 7m 7s · 1 dead-end</span>
+      <span class="pill p0">Chat: 14 msgs · 290 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 7m 7s active tool time
+        <br>10 steps · first helpful at #1 · 7 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 10 search(es), 0 doc read(s) · chat so far: 14 message(s), 290 KB transcript
+        <br>Wall-clock gap since previous task: 7m 13s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="Chase reported banner loads first, then the text underneath — asked why and how to fix">Chase reported banner loads first, then the text underneath — asked why and how to fix</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Grep 'nothing here yet' + read student-portal App.tsx to map render branches — found PortalGate returns null while status==='checking'">Grep 'nothing here yet' + read student-portal App.tsx to map render branches — found PortalGate returns null while status==='checking'</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Read useStudentIdentity.ts + useStudentAppAccess.ts + ClassworkView.tsx — root cause is three serial Supabase RPCs where each waiting piece renders null (zero height), so content arrives in stages with layout shift">Read useStudentIdentity.ts + useStudentAppAccess.ts + ClassworkView.tsx — root cause is three serial Supabase RPCs where each waiting piece renders null (zero height), so content arrives in stages with layout shift</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Read classworkData.ts — cache was an in-memory Map only, wiped every page load, so the preview paid full price on every open">Read classworkData.ts — cache was an in-memory Map only, wiped every page load, so the preview paid full price on every open</code>
+      
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Asked Chase how far to go; he chose both the one-paint reveal and the caching">Asked Chase how far to go; he chose both the one-paint reveal and the caching</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Added readStoredStudentId/storeStudentId to studentIdentity.ts and optimistic initialIdentityState() in useStudentIdentity.ts, skipped when the link code differs so mismatch arbitration still runs first">Added readStoredStudentId/storeStudentId to studentIdentity.ts and optimistic initialIdentityState() in useStudentIdentity.ts, skipped when the link code differs so mismatch arbitration still runs first</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="Persisted classwork snapshot to localStorage and preserved cached tileState during refresh so badges do not blank out mid-refresh">Persisted classwork snapshot to localStorage and preserved cached tileState during refresh so badges do not blank out mid-refresh</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="New usePortalFirstPaint.ts gate waits on identity + access + classwork and reads the warm cache during render; caught and fixed my own frame-timing hole where effect-set state would have re-introduced one pop-in">New usePortalFirstPaint.ts gate waits on identity + access + classwork and reads the warm cache during render; caught and fixed my own frame-timing hole where effect-set state would have re-introduced one pop-in</code>
+      
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="npm run type-check on student-portal surfaced a pre-existing unrelated error: useMatrixTutorialParts.ts uses MatrixAutoSolverHandle as a global but matrix-app.d.ts declares it inside a module block. Left unfixed as out of scope; vite build has no tsc step so it never blocked deploys">npm run type-check on student-portal surfaced a pre-existing unrelated error: useMatrixTutorialParts.ts uses MatrixAutoSolverHandle as a global but matrix-app.d.ts declares it inside a module block. Left unfixed as out of scope; vite build has no tsc step so it never blocked deploys</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">10</span>
+      
+      <code class="nav-target" title="npm run build (portal) + build:renderer + vitest portalPreview (Macro App) all green, 4 tests passing">npm run build (portal) + build:renderer + vitest portalPreview (Macro App) all green, 4 tests passing</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:00 PM — Answered all 16 of Chase's comments inline on the portal risk review as forum-style threads; verified his first-attempt-only belief against the code and corrected it — 5 steps · 1h 25m · 1 dead-end</span>
+      <span class="pill p0">4.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 1h 25m active tool time
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 29 search(es), 0 doc read(s) · 4.2M tokens over 18 turn(s) · 235k/turn · chat so far: 4 message(s), 1731 KB transcript
+        <br>Wall-clock gap since previous task: 1h 25m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.comments.json">agent docs/scratch/portal-risk-review.comments.json</code>
+      <span class="nav-note">His 16 comments — read straight off disk as designed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Macro App/renderer/src/hooks/teacher-console/useExitTicketResponseReport.ts">Macro App/renderer/src/hooks/teacher-console/useExitTicketResponseReport.ts</code>
+      <span class="nav-note">Confirmed only attempt-picker takes attempts[length-1] — no first-attempt logic exists</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Macro App/renderer/src/hooks/teacher-console/useGradesScreenData.ts">Macro App/renderer/src/hooks/teacher-console/useGradesScreenData.ts</code>
+      <span class="nav-note">No attempt selection here; ruled it out</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Macro App/renderer/src/hooks/teacher-console/useExitTicketAuthoring.ts">Macro App/renderer/src/hooks/teacher-console/useExitTicketAuthoring.ts</code>
+      <span class="nav-note">Publish form defaults attemptPolicy to 'repeatable' — so his tickets allow retakes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Updated § Reader comments for the thread shape and the REPLIES convention</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:34 PM — Added per-point comment boxes to the portal risk review page, plus a save endpoint on the docs server so an agent can read Chase's notes off disk — 6 steps · 54m 56s · 1 dead-end</span>
+      <span class="pill p0">10.8M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 54m 56s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 130 search(es), 13 doc read(s) · 10.8M tokens over 68 turn(s) · 158k/turn · chat so far: 3 message(s), 1432 KB transcript
+        <br>Wall-clock gap since previous task: 55m 10s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Where served pages live, 8765, dwell-friendly rules — but nothing on collecting reader input</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="scripts/serve-programs-docs.js">scripts/serve-programs-docs.js</code>
+      <span class="nav-note">72-line read-only static server; no POST or write path existed</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="grep localStorage / POST across served HTML">grep localStorage / POST across served HTML</code>
+      <span class="nav-note">Confirmed no existing notes or save mechanism to extend — so building one was not a second implementation</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/scratch/student-attempt-history-rpc.html">agent docs/scratch/student-attempt-history-rpc.html</code>
+      <span class="nav-note">House style for a scratch page</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/page-manifest.json">agent docs/page-manifest.json</code>
+      <span class="nav-note">Filed the page under App &amp; pipeline maps</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="agent docs/SESSION_TRACKING.md">agent docs/SESSION_TRACKING.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:39 PM — Momentum handoff — exit ticket console UX, layout fixes, Q column width — 4 steps · 23m 24s</span>
+      <span class="pill p0">Chat: 20 msgs · 355 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 23m 24s active tool time
+        <br>4 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 45 search(es), 4 doc read(s) · chat so far: 20 message(s), 355 KB transcript
+        <br>Wall-clock gap since previous task: 23m 26s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      <span class="nav-note">Perform procedure</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Prior handoff was student-app-access; replaced</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App git status">School Scrips/Macro App git status</code>
+      <span class="nav-note">Uncommitted exit ticket UX files</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit git status">School Scrips/student-session-kit git status</code>
+      <span class="nav-note">015/016 migrations untracked</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:15 PM — Fix infinite roster/response loading loop — stable loadQuestions + effect deps — 4 steps · 22m 23s</span>
+      <span class="pill p0">Chat: 15 msgs · 285 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 22m 23s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 17 search(es), 0 doc read(s) · chat so far: 15 message(s), 285 KB transcript
+        <br>Wall-clock gap since previous task: 22m 28s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="ConsoleExitTicketResponseScreen.tsx">ConsoleExitTicketResponseScreen.tsx</code>
+      <span class="nav-note">gradesData in useEffect deps caused re-fetch loop</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="useGradesScreenData.ts">useGradesScreenData.ts</code>
+      <span class="nav-note">Stable loadQuestions via ref + in-flight guard</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="useRosterAppAccess.ts">useRosterAppAccess.ts</code>
+      <span class="nav-note">Prior art for infinite loop prevention</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="npm run build">npm run build</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:53 PM — Exit ticket UX — quiz/responses nav, side panel titles, Matrix tuning on response grid, in-place edit + update_exit_ticket RPC — 8 steps · 27m 17s</span>
+      <span class="pill p0">Chat: 13 msgs · 278 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:26 PM
+         · 27m 17s active tool time
+        <br>8 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 61 search(es), 1 doc read(s) · chat so far: 13 message(s), 278 KB transcript
+        <br>Wall-clock gap since previous task: 27m 23s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Prior session; plan attached for handoff</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/teacher-console/useTeacherConsoleNavigation.ts">School Scrips/Macro App/renderer/src/hooks/teacher-console/useTeacherConsoleNavigation.ts</code>
+      <span class="nav-note">Added exit-ticket subView quiz|responses</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/side-panels/teacher-console/TeacherConsoleExitTicketPanel.tsx">School Scrips/Macro App/renderer/src/components/side-panels/teacher-console/TeacherConsoleExitTicketPanel.tsx</code>
+      <span class="nav-note">Title, meta, nav, tuning</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppStudentProgressShell.ts">School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppStudentProgressShell.ts</code>
+      <span class="nav-note">matrixViewTuning on exit-ticket responses</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketQuizScreen.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketQuizScreen.tsx</code>
+      <span class="nav-note">New preview+edit screen</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/016_update_exit_ticket.sql">School Scrips/student-session-kit/supabase/migrations/016_update_exit_ticket.sql</code>
+      <span class="nav-note">In-place update RPC</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app/student-progress-io.js">School Scrips/Macro App/electron-app/student-progress-io.js</code>
+      <span class="nav-note">updateExitTicket IPC</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="npm run build (Macro App renderer)">npm run build (Macro App renderer)</code>
+      <span class="nav-note">Green</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:20 PM — Portal Check: Submit button, thank-you screen, attempt_policy one-time vs retryable — migration 015 pushed, portal + Teacher Console wired — 4 steps · 9m</span>
+      <span class="pill p0">Chat: 8 msgs · 44 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 5:11 PM
+         · 9m active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 20 search(es), 0 doc read(s) · chat so far: 8 message(s), 44 KB transcript
+        <br>Wall-clock gap since previous task: 9m 5s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">student portal / exit tickets</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/features/generic-quiz/">School Scrips/student-portal/src/features/generic-quiz/</code>
+      <span class="nav-note">GenericQuizQuestionCard, GenericQuizResult, useGenericQuiz</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/015_attempt_policy.sql">School Scrips/student-session-kit/supabase/migrations/015_attempt_policy.sql</code>
+      <span class="nav-note">attempt_policy column + RPC enforcement</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketsScreen.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleExitTicketsScreen.tsx</code>
+      <span class="nav-note">One time vs Retryable toggle</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">5:02 PM — Updated the capture-ladder / context-engineering HTML pages to match how the instruction layer works now (.mdc retired, keyword routing, momentum handoff, corrected token claims) — 5 steps · 27m 54s</span>
       <span class="pill p0">6.6M tokens</span><span class="pill p2">Heavy context — 328k/turn</span>

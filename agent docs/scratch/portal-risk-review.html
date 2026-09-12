@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Portal — What Could Go Wrong</title>
+<style>
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 19px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 20px 120px;
+  }
+  a { color: var(--blue); }
+  .backlink {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1 { font-size: 40px; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .sub { font-size: 21px; color: var(--soft); margin: 0 0 26px; }
+  .banner {
+    background: var(--bluebg);
+    border: 2px solid #c7d7fe;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 0 0 36px;
+    font-size: 17px;
+    color: #1e3a8a;
+  }
+  h2 {
+    font-size: 30px;
+    margin: 54px 0 6px;
+    padding-top: 22px;
+    border-top: 3px solid var(--line);
+    letter-spacing: -0.01em;
+  }
+  .secnote { color: var(--soft); font-size: 18px; margin: 0 0 24px; }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin: 0 0 22px;
+  }
+  .card h3 {
+    font-size: 25px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .tag {
+    display: inline-block;
+    font: 700 14px/1 system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 0 8px 12px 0;
+    vertical-align: middle;
+  }
+  .t-now   { background: var(--redbg);   color: var(--red);   border: 1.5px solid #fda29b; }
+  .t-soon  { background: var(--amberbg); color: var(--amber); border: 1.5px solid #fec84b; }
+  .t-minor { background: #f2f4f7;        color: var(--soft);  border: 1.5px solid var(--line); }
+  .t-self  { background: var(--redbg);   color: var(--red);   border: 1.5px solid #fda29b; }
+  .t-try   { background: #f2f4f7;        color: var(--soft);  border: 1.5px solid var(--line); }
+  .label {
+    font: 700 14px/1 system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 20px 0 6px;
+  }
+  .card p { margin: 0 0 12px; }
+  .fix {
+    background: var(--greenbg);
+    border-left: 6px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 18px 0 0;
+  }
+  .fix .label { color: var(--green); margin-top: 0; }
+  .fix p:last-child { margin-bottom: 0; }
+  .where {
+    font-size: 15px;
+    color: var(--soft);
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    word-break: break-word;
+  }
+  .top3 {
+    background: #fff;
+    border: 3px solid #fda29b;
+    border-radius: 16px;
+    padding: 8px 28px 24px;
+    margin: 0 0 40px;
+  }
+  .top3 h2 { border: none; margin: 22px 0 4px; padding-top: 0; font-size: 27px; }
+  .top3 ol { margin: 14px 0 0; padding-left: 28px; }
+  .top3 li { margin-bottom: 16px; }
+  .fine { background: var(--greenbg); border: 2px solid #a6f4c5; border-radius: 16px; padding: 8px 28px 22px; }
+  .fine ul { padding-left: 26px; }
+  .fine li { margin-bottom: 10px; }
+  strong { font-weight: 700; }
+  .q { color: var(--soft); font-style: italic; }
+  nav.jump { margin: 0 0 40px; }
+  nav.jump a {
+    display: block;
+    padding: 18px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 19px;
+  }
+  nav.jump a span { display: block; font-weight: 400; font-size: 16px; color: var(--soft); margin-top: 4px; }
+  code { background: #e9eef5; padding: 2px 7px; border-radius: 5px; font-size: 0.9em; }
+
+  /* ---- Comment boxes (injected by the script at the bottom) ---- */
+  .cbox {
+    margin: 20px 0 0;
+    padding: 18px 20px;
+    background: #fbfcfe;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+  }
+  .cbox.has-text { border-style: solid; border-color: #c7d7fe; background: var(--bluebg); }
+  .cbox .label { margin: 0 0 10px; }
+  .cbox textarea {
+    display: block;
+    width: 100%;
+    min-height: 78px;
+    padding: 14px 16px;
+    font: 18px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    resize: vertical;
+  }
+  .cbox textarea:focus { outline: 3px solid #84adff; outline-offset: 1px; border-color: var(--blue); }
+  .cbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .cbtn {
+    padding: 16px 28px;
+    min-width: 170px;
+    font: 700 18px system-ui, sans-serif;
+    color: #fff;
+    background: var(--blue);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .cbtn:disabled { background: #9cb4e8; cursor: default; }
+  .cbtn.clear { background: #fff; color: var(--soft); border: 2px solid var(--line); min-width: 0; padding: 14px 20px; font-weight: 600; }
+  .cstate { font-size: 16px; color: var(--soft); }
+  .cstate.err { color: var(--red); font-weight: 600; }
+  .csaved { color: var(--green); font-weight: 600; }
+
+  /* ---- Comment summary at the top ---- */
+  .csum {
+    background: #fff;
+    border: 3px solid #c7d7fe;
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin: 0 0 40px;
+  }
+  .csum h2 { border: none; margin: 0 0 10px; padding-top: 0; font-size: 26px; }
+  .csum p { margin: 0 0 10px; }
+  .csum .count { font-size: 22px; font-weight: 700; color: var(--blue); }
+  .csum .say {
+    display: block;
+    margin: 14px 0 0;
+    padding: 16px 20px;
+    background: var(--bluebg);
+    border-radius: 10px;
+    font-size: 18px;
+    color: #1e3a8a;
+  }
+  .csum code { background: #e9eef5; }
+
+  /* ---- Comment threads ---- */
+  .thread { margin: 22px 0 0; }
+  .post {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 0 14px;
+  }
+  .post--mine { background: var(--bluebg); border: 2px solid #c7d7fe; }
+  .post--reply {
+    background: #fbfcfe;
+    border: 2px solid var(--line);
+    border-left: 6px solid var(--blue);
+    margin-left: 28px;
+  }
+  .post__head { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; margin-bottom: 8px; }
+  .post__who { font: 700 15px system-ui, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #1e3a8a; }
+  .post__who--ai { color: var(--blue); }
+  .post__when { font-size: 15px; color: var(--soft); }
+  .post__body { white-space: pre-wrap; }
+  .post--reply .post__body { white-space: normal; }
+  .post--reply .post__body p { margin: 0 0 12px; }
+  .post--reply .post__body p:last-child { margin-bottom: 0; }
+  .post__row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .post__row .cbtn { min-width: 0; padding: 12px 18px; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+
+<h1>Student portal &amp; teacher console</h1>
+<p class="sub">Things that could go wrong, why each one matters, and what to do about it.</p>
+
+<div class="banner">
+  <strong>Written 2026-09-11.</strong> This is a one-off review, not a maintained doc &mdash; if the portal
+  changes a lot, assume parts of this went stale. It deliberately skips the problems you already know about
+  (the browser deciding its own grade, students sharing links, getting around the one-device lock).
+  Everything here is something in the code that isn't written down yet.
+</div>
+
+<div class="csum">
+  <h2>Your comments</h2>
+  <p>Every point below has a thread at the bottom of it. Type a question or a note, press
+    <strong>Post comment</strong>, and my reply appears underneath it &mdash; indented, like a forum.
+    You can edit or delete anything you've written, and keep replying as long as you want.</p>
+  <p>You currently have <span class="count" id="csum-count">no comments</span> saved.
+    <span id="csum-waiting"></span></p>
+  <span class="say">To have me answer new ones, just say:
+    <strong>&ldquo;read my comments on the portal risk review.&rdquo;</strong></span>
+  <p style="margin-top:14px;font-size:16px;color:var(--soft)">They're stored next to this page in
+    <code>agent docs/scratch/portal-risk-review.comments.json</code>, so they survive a browser restart
+    and I can read them straight off disk. They stay on this machine.</p>
+</div>
+
+<nav class="jump">
+  <a href="#data">1. Your data quietly going wrong
+    <span>Nothing looks broken, but what you're reading isn't what happened. Five items.</span></a>
+  <a href="#students">2. What a student might see break
+    <span>Blank screens, wrong messages, a "0" that isn't real. Five items.</span></a>
+  <a href="#abuse">3. Ways someone could game it
+    <span>From "a student could do this without trying" to "needs real effort." Five items.</span></a>
+  <a href="#ferpa">4. How to talk about this with your college
+    <span>One wording change that makes your position stronger, not weaker.</span></a>
+  <a href="#fine">5. Things I checked that are fine
+    <span>So you know what I actually looked at.</span></a>
+</nav>
+
+<div class="top3">
+  <h2>If you only do three things</h2>
+  <ol>
+    <li><strong>Raise the 500-attempt ceiling in the teacher console.</strong> Right now it can only see
+      your most recent 500 attempts, and it drops the oldest ones silently. This one is already counting
+      down on its own.</li>
+    <li><strong>Stop the "wrong link" screen from printing the other student's code.</strong> It currently
+      shows one student's private code to whoever is holding the device. That's handing out the key.</li>
+    <li><strong>Close the back door that lets a browser write any score it wants.</strong> Until that's
+      shut, server-side grading isn't actually protecting anything, so nothing here could honestly be
+      worth points.</li>
+  </ol>
+</div>
+
+<h2 id="data">1. Your data quietly going wrong</h2>
+<p class="secnote">This is the category you said you were most worried about, and it's where the real
+problems are. None of these throw an error. Everything looks like it worked.</p>
+
+<div class="card" data-comment-id="the-console-can-only-see-your" data-comment-title="The console can only see your newest 500 attempts — and silently forgets the rest">
+  <span class="tag t-now">Fix first</span><span class="tag t-self">Happens on its own</span>
+  <h3>The console can only see your newest 500 attempts &mdash; and silently forgets the rest</h3>
+  <p>When Macro App loads student progress, it asks the database for attempts <em>newest first, stop at
+    500</em>. That one number covers everything at once: all your sections, all your apps, finished work
+    and half-finished work alike.</p>
+  <p><strong>Why it's bad:</strong> once you cross 500, the console starts dropping the <em>oldest</em>
+    rows &mdash; September's work goes first. There's no warning, no error, no "showing 500 of 700." The
+    grid just quietly stops knowing about early-semester work, and you'd have no reason to suspect it.
+    Thirty students times one exit ticket is thirty rows. Three sections and half a dozen tickets in,
+    you're at the ceiling. <span class="q">The data is still safe in the database &mdash; it's the
+    console's view of it that goes blind.</span></p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Two parts. Short term: raise the limit and filter the request down to the section you're actually
+      looking at, so you're not spending the budget on other classes. Proper fix: page through the
+      results instead of capping them, and show a row count so a truncation could never be invisible
+      again. There's a second, tighter cap of 200 on the completed-attempts list that needs the same
+      treatment.</p>
+  </div>
+  <p class="where">Macro App/electron-app/student-progress-io.js:200 (and the 200-row query below it)</p>
+</div>
+
+<div class="card" data-comment-id="a-student-who-reopens-a-finished" data-comment-title="A student who reopens a finished quiz looks like they never did it">
+  <span class="tag t-now">Fix first</span><span class="tag t-self">Happens on its own</span>
+  <h3>A student who reopens a finished quiz looks like they never did it</h3>
+  <p>Your response grid shows each student's <em>most recent</em> attempt. If a student submits their
+    exit ticket, then comes back later to look at it again and taps a single answer, that tap starts a
+    brand-new, empty attempt. That empty one is now the most recent &mdash; so it's the one the grid
+    shows.</p>
+  <p><strong>Why it's bad:</strong> their row goes blank and your "completed" count drops by one. Their
+    real answers are still in the database, perfectly intact, but the screen says they didn't do the
+    work. If you were grading off that screen you'd give a zero to someone who finished &mdash; and the
+    student would have no idea they'd done anything.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>When picking which attempt to show, prefer the most recent <em>completed</em> one, and only fall
+      back to an unfinished attempt if there's no completed one at all. Small change in a single place,
+      and it fixes the whole grid at once.</p>
+  </div>
+  <p class="where">Macro App/renderer/src/hooks/teacher-console/useExitTicketResponseReport.ts:52</p>
+</div>
+
+<div class="card" data-comment-id="a-student-with-bad-wifi-can" data-comment-title="A student with bad wifi can get their answers recorded twice">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>A student with bad wifi can get their answers recorded twice</h3>
+  <p>Submitting happens in two steps: save the answers, then mark the attempt finished. If the first
+    step works and the second one times out, the student sees an error and presses Finish again &mdash;
+    which saves the whole set of answers a <em>second</em> time. Nothing stops a duplicate.</p>
+  <p><strong>Why it's bad:</strong> the student's own grade history starts showing 26 questions for a
+    13-question tutorial, which is confusing enough on its own. The quieter problem is that it only
+    happens to students with unreliable connections. So when you eventually go looking at where students
+    stall, your per-question data is doubled for exactly one group of kids &mdash; the ones on bad
+    phones. That's a slanted dataset, and you'd never spot it by looking at it.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Clear out any previously saved answers for that attempt before writing the new set, which is what
+      the newer exit-ticket path already does correctly. Belt and braces: add a rule in the database
+      saying one attempt can't hold two answers for the same question, so a duplicate becomes impossible
+      rather than merely unlikely.</p>
+  </div>
+  <p class="where">student-portal/src/services/attemptSubmission.ts:57</p>
+</div>
+
+<div class="card" data-comment-id="fixing-a-typo-in-an-answer" data-comment-title="Fixing a typo in an answer key doesn't re-grade anyone">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>Fixing a typo in an answer key doesn't re-grade anyone</h3>
+  <p>You can edit a published exit ticket, including which option is the correct one. But nothing
+    re-marks the attempts that already came in.</p>
+  <p><strong>Why it's bad:</strong> the first time you mistype an answer key and catch it after twenty
+    students have submitted, those twenty keep the wrong result permanently &mdash; and there's no button
+    to fix it. You'd be hand-correcting in your gradebook and hoping you remembered everyone. There's a
+    sharper version of this too: editing a published ticket lets you rewrite the <em>wording</em> of the
+    options while keeping everything else in place. Do that, and last week's stored answers now point at
+    options that say something different. The old data stops meaning anything, and nothing flags it.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Add a "re-grade this ticket" action that re-marks the existing attempts against the current key
+      &mdash; it's the same logic as grading, just pointed at answers you already have. And make the
+      editor refuse to change option wording once a student has submitted. Renaming the title or
+      reordering questions is harmless; changing what an option <em>says</em> isn't.</p>
+  </div>
+  <p class="where">student-session-kit/supabase/migrations/016_update_exit_ticket.sql</p>
+</div>
+
+<div class="card" data-comment-id="revoke-code-deletes-the-student-and" data-comment-title="&quot;Revoke code&quot; deletes the student — and orphans everything they ever submitted">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-try">Only when you click it</span>
+  <h3>"Revoke code" deletes the student &mdash; and orphans everything they ever submitted</h3>
+  <p>Revoking a student's code doesn't switch the code off, it deletes the student record. Their
+    submitted attempts survive, but the link back to <em>who</em> submitted them is wiped. Their login
+    history is deleted outright.</p>
+  <p><strong>Why it's bad:</strong> the one time you'd reach for this is mid-semester &mdash; a student's
+    code got passed around, or they lost their device and need a fresh link. Do it, and every score they
+    had already earned becomes unattributable. Not recoverable either: the connection is simply gone.
+    Your own pipeline doc says "deactivate dropped students, don't delete them" &mdash; the button does
+    the opposite of what you'd already decided.</p>
+  <p>Sitting right next to it: "reset attempts" has no per-quiz option. It deletes <em>every</em> attempt
+    that student ever made. If you reach for it meaning "let them retake today's warm-up," you've wiped
+    their semester.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Add an "active" flag to students and have revoke flip that instead of deleting &mdash; the code
+      stops working, the history stays attached, and you can undo it. Then give reset-attempts a quiz
+      selector, with "all quizzes" as a deliberate extra choice rather than the only behaviour.</p>
+  </div>
+  <p class="where">student-session-kit/supabase/migrations/011, 012</p>
+</div>
+
+<h2 id="students">2. What a student might see break</h2>
+<p class="secnote">Each of these produces either an email to you or a quiet wrong impression. None of
+them need anyone doing anything clever.</p>
+
+<div class="card" data-comment-id="the-that-s-not-your-link" data-comment-title="The &quot;that's not your link&quot; screen shows the other student's code in big bold letters">
+  <span class="tag t-now">Fix first</span><span class="tag t-self">Happens on its own</span>
+  <h3>The "that's not your link" screen shows the other student's code in big bold letters</h3>
+  <p>When a device is already locked to one student and someone opens a different link on it, the portal
+    blocks them &mdash; and displays <em>"Your code: XXXXXX"</em> in large type, meaning the code
+    belonging to whoever set the device up.</p>
+  <p><strong>Why it's bad:</strong> picture a campus lab machine, or one student borrowing another's
+    phone for a minute. Student B opens their own link, gets blocked, and the screen hands them
+    <em>student A's</em> code &mdash; which is the entire login. Now B can sign in as A from their own
+    phone, read A's grades, and submit work in A's name. The feature built to stop link-sharing is the
+    thing that leaks the key. On top of that there's no way out of the screen: the only button signs you
+    in as the other student.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Don't print the code. Say "this device is already signed in as someone else" and offer two big
+      buttons: <em>Continue as the student already signed in</em>, and <em>This isn't me &mdash; sign
+      this device out</em>, where the second clears the device so the next student can use their own
+      link. That turns a dead end into a shared-computer feature and stops the leak at the same time.</p>
+  </div>
+  <p class="where">student-portal/src/app/components/PortalGate.tsx:30</p>
+</div>
+
+<div class="card" data-comment-id="the-cheating-log-blames-the-wrong" data-comment-title="The cheating log blames the wrong student">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>The cheating log blames the wrong student</h3>
+  <p>When that mismatch happens it gets recorded &mdash; but it's filed under the student the
+    <em>device</em> belongs to, with the arriving student listed as the other party.</p>
+  <p><strong>Why it's bad:</strong> in the shared-computer case that's exactly backwards. The record
+    reads "A went after B's link," when what actually happened is B walked up to A's browser. A did
+    nothing. If you ever looked at that log to settle a question about academic honesty, you'd be looking
+    at an accusation pointed at the wrong person &mdash; stored in the database as though it were a
+    fact.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Record it as a neutral event instead of an attribution: "this device, signed in as A, had B's link
+      opened on it." Same two names, no implied culprit. And in the console, label that column something
+      like "link mix-ups" rather than anything that reads as cheating, because a shared machine is by far
+      the most likely cause.</p>
+  </div>
+  <p class="where">student-portal/src/hooks/useStudentIdentity.ts, migration 014</p>
+</div>
+
+<div class="card" data-comment-id="a-one-time-quiz-can-hang" data-comment-title="A one-time quiz can hang on a blank loading screen forever">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>A one-time quiz can hang on a blank loading screen forever</h3>
+  <p>For a quiz set to "one attempt only," the portal checks whether the student has already done it
+    before letting them start. If that check fails &mdash; a dropped connection, a hiccup, anything
+    &mdash; the error isn't caught. The screen sits on "loading" and never moves.</p>
+  <p><strong>Why it's bad:</strong> the student can't start, can't retry, and has nothing to tell you
+    except "it didn't work." Reloading might fix it or might not. This is the kind of thing that
+    generates five confused messages during one class period and that you can never reproduce
+    afterwards.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Catch the failure and show a real message with a retry button. Then decide the safe default: I'd
+      let them into the quiz if the check can't complete, since the database refuses a second submission
+      anyway. Better a student who starts and gets politely stopped than a student staring at a dead
+      screen.</p>
+  </div>
+  <p class="where">student-portal/src/features/generic-quiz/useGenericQuiz.ts:99</p>
+</div>
+
+<div class="card" data-comment-id="reopening-a-finished-quiz-tells-the" data-comment-title="Reopening a finished quiz tells the student they scored 0 of 0">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>Reopening a finished quiz tells the student they scored 0 of 0</h3>
+  <p>If a student goes back into a one-attempt quiz they already completed, the portal knows they're done
+    &mdash; it passes along a flag saying so. The screen ignores that flag completely and falls through
+    to the normal results display, which reads <strong>"Quiz complete &mdash; 0 of 0."</strong></p>
+  <p><strong>Why it's bad:</strong> on a graded quiz that looks exactly like a zero. The student panics,
+    emails you, and you have to go check the database to reassure them. On an ungraded exit ticket it
+    happens to land on friendly wording by accident, which is probably why nobody has reported it yet.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Small one. Use the flag that's already being handed over, and show "You've already completed this
+      &mdash; your answers are saved," with their real score if it's graded. Ten minutes of work.</p>
+  </div>
+  <p class="where">student-portal/src/features/generic-quiz/GenericQuizResult.tsx:18</p>
+</div>
+
+<div class="card" data-comment-id="phones-forget-who-the-student-is" data-comment-title="Phones forget who the student is, and two tabs fight each other">
+  <span class="tag t-minor">Know about it</span><span class="tag t-self">Happens on its own</span>
+  <h3>Phones forget who the student is, and two tabs fight each other</h3>
+  <p>Two separate things with one cause &mdash; who the student is lives only in that browser's local
+    storage.</p>
+  <p><strong>Why it's bad:</strong> iPhones clear that storage for sites you haven't visited in about a
+    week. So a student who skips seven days gets silently signed out and needs the original email again
+    &mdash; which, by then, plenty of them will have deleted. Same story if they first opened the link
+    inside the D2L app's built-in browser and later try regular Safari: different storage, not signed in.
+    Separately, if a student has the same quiz open in two tabs or on two devices, both share a single
+    saved-progress record and the last one to save wins &mdash; so a stale tab can overwrite newer
+    answers.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Accept the logouts, but make recovery not involve you: on the "you need your class link" screen,
+      let them type their six-character code by hand. It's the same credential, it's short, and it turns
+      a support email into five seconds of typing. For the two-tabs problem, have a save that arrives
+      with older progress than what's already stored get refused instead of applied.</p>
+  </div>
+  <p class="where">student-portal/src/services/studentIdentity.ts</p>
+</div>
+
+<h2 id="abuse">3. Ways someone could game it</h2>
+<p class="secnote">Ordered by how much effort it takes. The first one decides whether any of this can ever
+be worth points.</p>
+
+<div class="card" data-comment-id="a-browser-can-still-write-any" data-comment-title="A browser can still write any score it likes — which makes server-side grading decorative">
+  <span class="tag t-now">Fix first</span><span class="tag t-try">Needs someone trying</span>
+  <h3>A browser can still write any score it likes &mdash; which makes server-side grading decorative</h3>
+  <p>You built proper server-side grading, where the answer key never leaves the database. But the older,
+    wide-open path from the original build is still switched on next to it: a browser is allowed to
+    create an attempt and mark it finished with whatever score it names. Nothing checks that the attempt
+    belongs to the person sending it, and nothing checks the score is plausible.</p>
+  <p><strong>Why it's bad:</strong> it means the careful version isn't actually protecting anything. A
+    student who wants a 10/10 doesn't need to beat the grading function, they can walk around it &mdash;
+    and the same move skips your "one attempt only" setting and the class check. It also works in
+    reverse: the same door lets someone write a <em>zero</em> into a classmate's record, which is
+    sabotage rather than cheating, and would look completely genuine to you. Your docs list closing this
+    as optional cleanup. It isn't &mdash; it's the difference between "worth points" being honest or
+    not.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Turn off the two leftover permissions that let a browser write attempt rows directly, and stop
+      letting browsers call the "mark this finished" function at all. Everything in the exit-ticket path
+      already goes through proper grading, so this should be quiet &mdash; the Matrix tutorial is the one
+      thing to check first, since it still submits the old way and would need moving over.</p>
+  </div>
+  <p class="where">migrations 001 (the two "with check (true)" policies) and 004 (finish_attempt)</p>
+</div>
+
+<div class="card" data-comment-id="unlimited-retries-plus-per-question-feedback" data-comment-title="Unlimited retries plus per-question feedback adds up to the answer key">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-try">A clever student could</span>
+  <h3>Unlimited retries plus per-question feedback adds up to the answer key</h3>
+  <p>New quizzes default to unlimited attempts, and after each submission the portal tells the student
+    which individual questions they got right. The console shows you their most recent attempt.</p>
+  <p><strong>Why it's bad:</strong> a student doesn't need to hack anything &mdash; they submit, see
+    which four they missed, change those, and submit again. Four rounds on a ten-question, four-option
+    quiz is enough to reach full marks, and the only attempt you'd see is the perfect one. The work you
+    did to keep the answer key on the server protects the <em>key</em>, but it doesn't slow this down at
+    all.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>For anything graded, set it to one attempt when you publish &mdash; and consider making one
+      attempt the <em>default</em>, so the safe choice is what happens when you don't think about it. If
+      you want retries for practice, hold the per-question breakdown back until the last attempt, or show
+      only the total. Worth saying: that breakdown is genuinely good for learning, so this is a real
+      trade-off per assignment rather than a bug to stamp out.</p>
+  </div>
+  <p class="where">migration 015 &mdash; attempt_policy defaults to "repeatable"</p>
+</div>
+
+<div class="card" data-comment-id="your-personal-test-code-is-sitting" data-comment-title="Your personal test code is sitting inside the published website">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-try">Needs someone curious</span>
+  <h3>Your personal test code is sitting inside the published website</h3>
+  <p><code>CHASE1</code> is written into the portal's code, which means it ships inside the JavaScript
+    file every student's browser downloads. Anyone who opens developer tools, or just searches the page
+    source for likely words, can read it.</p>
+  <p><strong>Why it's bad:</strong> that code is deliberately special &mdash; it skips the class check
+    and skips the one-device lock. So it's a universal key to every section's apps, published on the open
+    internet, and short enough to guess if someone felt lucky. And because everyone using it shares one
+    identity, any work submitted under it piles onto the same record and muddies whatever you were
+    testing.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Take it out of the code and make it an ordinary student row in the database that happens to be
+      enrolled in every section &mdash; then it's a secret you hold rather than one you ship. If you want
+      a true bypass for testing, drive it off something only you can set on your own machine, so it can't
+      exist in the public bundle at all.</p>
+  </div>
+  <p class="where">student-portal/src/config/portalAccess.ts (and the built dist bundle)</p>
+</div>
+
+<div class="card" data-comment-id="codes-use-the-weak-kind-of" data-comment-title="Codes use the weak kind of randomness, and nobody's watching for guessing">
+  <span class="tag t-minor">Low priority</span><span class="tag t-try">Needs real effort</span>
+  <h3>Codes use the weak kind of randomness, and nobody's watching for guessing</h3>
+  <p>Two small things stacked together. The codes come from the everyday random-number generator rather
+    than the cryptographic one. And the sign-in function can be called from anywhere on the internet as
+    many times as someone likes, with failed guesses leaving no trace &mdash; only successes get
+    logged.</p>
+  <p><strong>Why it's bad:</strong> a billion possible codes is plenty against someone typing guesses by
+    hand. But the everyday generator is predictable if you can see a few of its outputs, and a whole
+    section's codes get made in one run &mdash; so in principle one leaked code could help work out the
+    others. More practically, nothing would tell you if someone were scanning for valid codes; you'd find
+    out when unexplained attempts showed up. <span class="q">Honestly: this is the least likely thing on
+    the page to ever happen to you. It's here because the fix is nearly free.</span></p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Switch the code generator to the cryptographic random function &mdash; a one-line change that
+      makes the prediction angle impossible rather than merely unlikely. If you ever want the monitoring
+      half, log failed code attempts too, so a scan would show up as a wall of misses instead of
+      nothing.</p>
+  </div>
+  <p class="where">student-portal/scripts/lib/roster-codes.mjs:65</p>
+</div>
+
+<div class="card" data-comment-id="a-publishing-mismatch-can-send-a" data-comment-title="A publishing mismatch can send a quiz to nobody and still say &quot;published&quot;">
+  <span class="tag t-minor">Know about it</span><span class="tag t-try">Waiting to happen</span>
+  <h3>A publishing mismatch can send a quiz to nobody and still say "published"</h3>
+  <p>A quiz gets attached to a class by matching the course name and the term. The console always sends
+    the term as the word <em>"current"</em>, while the roster side uses whatever term is in the course
+    file and only falls back to "current." The course-name match is also case-sensitive.</p>
+  <p><strong>Why it's bad:</strong> today those happen to agree, so it works. But the moment a course
+    file carries a real term like "Fall 2026," or a course name differs by a single capital letter, the
+    publish quietly creates a <em>second</em>, empty class and files the quiz there. Every student gets
+    "not available for this class," while your console reports a successful publish. You'd be debugging
+    the portal when the problem is one mismatched word.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Publish to the class by its database id &mdash; the one the roster sync already knows &mdash;
+      instead of re-matching on name and term. Failing that, have publishing refuse to invent a new
+      class: if nothing matches, stop and say so. Either way it becomes a loud error instead of a silent
+      one.</p>
+  </div>
+  <p class="where">useExitTicketAuthoring.ts:121 and migration 015's publish function</p>
+</div>
+
+<h2 id="ferpa">4. How to talk about this with your college</h2>
+
+<div class="card" data-comment-id="call-it-pseudonymised-not-anonymous-it" data-comment-title="Call it &quot;pseudonymised,&quot; not &quot;anonymous&quot; — it's a stronger position, not a weaker one">
+  <h3>Call it "pseudonymised," not "anonymous" &mdash; it's a stronger position, not a weaker one</h3>
+  <p>Your design is genuinely good and I'd keep it exactly as it is. But I'd change how you describe it.
+    Right now the claim is that nothing identifies a student. The accurate version is: <strong>no student
+    name or email is ever stored in the cloud, and the only list connecting codes to people lives on your
+    machine.</strong></p>
+  <p><strong>Why the wording matters:</strong> "anonymous" collapses the moment anyone points out that
+    you can obviously tell who's who &mdash; you have the list, that's the whole point of it. Under
+    FERPA, data you can re-link is still a student record. But "no names in the cloud, and the key never
+    leaves my office computer" is both true and exactly what a privacy reviewer wants to hear. Claiming
+    the stronger thing and getting corrected is worse than claiming the accurate thing first, especially
+    with a committee that's already nervous about technology.</p>
+  <p>Two things have quietly grown past the original description, worth knowing before someone asks. The
+    login log now records a timestamp every time a student signs in or opens an app &mdash; combined with
+    your local list, that's an attendance-and-behaviour record, not just scores, and nothing deletes it,
+    so it accumulates forever. And the "wrong link" entries are stored allegations about two identifiable
+    students, which the earlier item explains can point at the wrong one.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Write a short retention rule and actually implement it &mdash; something like "login events are
+      deleted after 90 days, scores at the end of the following term." That's one small scheduled
+      cleanup. Being able to say "here's my retention policy" without being asked does more for you with
+      a cautious committee than any technical detail, and it caps how much behavioural history exists to
+      worry about in the first place. Keep it on your existing FERPA notes rather than starting a new
+      doc.</p>
+  </div>
+</div>
+
+<h2 id="fine">5. Things I checked that are fine</h2>
+
+<div class="card fine">
+  <ul>
+    <li><strong>No student names or emails anywhere in the cloud database.</strong> I went looking. The
+      design holds.</li>
+    <li><strong>Answer keys don't reach the browser</strong> on the newer exit-ticket path &mdash; the
+      function that hands out questions deliberately leaves the correct answer behind.</li>
+    <li><strong>Made-up codes write nothing.</strong> A stranger typing a random code gets turned away,
+      and no record is created for them.</li>
+    <li><strong>Sign-in fails closed.</strong> If the database is unreachable, the portal blocks rather
+      than letting someone in.</li>
+    <li><strong>The app-access toggle fails closed too</strong> &mdash; if the check errors out, the
+      student is denied rather than let through.</li>
+    <li><strong>Your service key is encrypted on disk</strong> and never goes near a browser.</li>
+    <li><strong>The "most recent attempt" sorting is correct.</strong> I suspected an off-by-one there
+      and it's genuinely right.</li>
+    <li><strong>Costs are not a risk</strong> at your scale. Nothing here pushes Supabase off the free
+      tier, and Netlify spend is about how often you deploy, not how much students use it.</li>
+  </ul>
+</div>
+
+<a class="backlink" href="/pages.html" style="margin-top:40px">&larr; All pages</a>
+
+<script>
+/*
+ * Comment threads. One per card, keyed by the card's data-comment-id.
+ *
+ * Chase's posts save to agent docs/scratch/portal-risk-review.comments.json via
+ * the docs server's POST /__comments/<page> endpoint (scripts/serve-programs-docs.js),
+ * so an agent reads them straight off disk — nothing here is browser-only storage.
+ *
+ * REPLIES below are the agent's answers, authored into this page. Index N answers
+ * the reader's post N, so a thread reads: post 0, reply 0, post 1, reply 1, ...
+ * To answer a new comment, append a string to that card's array.
+ */
+(function () {
+  'use strict';
+
+  var PAGE = 'scratch/portal-risk-review.html';
+  var DATA_URL = '/scratch/portal-risk-review.comments.json';
+  var SAVE_URL = '/__comments/' + PAGE;
+
+  var REPLIES = {
+  "the-console-can-only-see-your": [
+    "<p><strong>Where the 500 came from:</strong> nowhere meaningful. It's a number typed into that one line of code — not a Supabase rule, not a licence limit, and nothing you ever asked for. An earlier session of me wrote that query and added a cap out of habit, the way you'd add a seatbelt without measuring the road. Nothing was measured or decided.</p><p><strong>Is there any reason to have a limit at all?</strong> A small one, and it isn't about storage. The console loads every attempt it fetches into memory at once to build the grid, so a cap keeps the screen from getting slower to open as years pile up, and stops you downloading history you aren't looking at. But at your scale that's theoretical for a very long time: thirty students across twenty activities with a few attempts each is a few thousand rows, which is nothing.</p><p><strong>So yes — unlimited, with one addition.</strong> I'll drop the cap and also filter the request to the section you're actually viewing, which keeps it fast for free rather than as a trade. And I'll put a visible row count on the screen, so if anything ever does get cut off it says so instead of hiding it. If it's ever genuinely slow years from now, the fix is loading in pages, not going back to a cap.</p>",
+    "<p><strong>Attempts.</strong> Not students, and not individual answers. One row every time a student starts a quiz or tutorial.</p><p>There are three layers stacked up, and it helps to keep them apart:</p><p><strong>Students</strong> &mdash; about 30 per section, one row each, forever. Nothing to do with the 500.<br><strong>Attempts</strong> &mdash; one row per student per time they do an activity. <em>This is what the 500 counts.</em><br><strong>Answers</strong> &mdash; the individual questions inside an attempt. Not counted against the 500, but they come along with it.</p><p>So in your numbers: 30 students doing one exit ticket creates <strong>30 attempts</strong>. Ten exit tickets across one section is 300. Three sections doing the same ten is 900, and you'd have been cut off at 500 with the oldest 400 invisible. If a ticket allows retakes, every retake is another row too.</p><p>The answers matter for a different reason. A ten-question ticket means ten answer rows riding inside each attempt, so asking for 500 attempts can pull several thousand answer rows along with them. That's the only real argument for any cap at all, and it's about how much arrives in one response rather than how much you're allowed to keep. Filtering to the section you're looking at fixes that better than a cap does, which is why I'm doing both.</p>"
+  ],
+  "a-student-who-reopens-a-finished": [
+    "<p><strong>This is a better rule than the one I proposed,</strong> and it's simpler to reason about: the first completed attempt is the record, everything after it is ignored, and students can click around freely without consequence. Say the word and that becomes the rule everywhere.</p><p>It also quietly solves three other items on this page — the blank loading screen, the fake “0 of 0”, and the answer-key probing — because none of them matter once later attempts can't change anything.</p><p><strong>One thing to know before you call it done:</strong> that is not what the code does today. The console currently shows the <em>most recent</em> attempt, not the first. See my reply on the “unlimited retries” point further down — you mentioned there that you'd already set it to first-attempt-only, and I don't think that's actually true yet.</p>",
+    "<p><strong>Will do.</strong> The console will take the earliest completed attempt for each student, so nothing they do afterwards can change what you see. That makes first-attempt-only true in the code rather than depending on how a ticket was published.</p>"
+  ],
+  "a-student-with-bad-wifi-can": [
+    "<p><strong>Slight clarification, because “that's fine” might be reading it as harmless:</strong> the two-step save is fine. The problem is what happens when step two fails and the student presses Finish again — their answers get written a second time, so one attempt ends up holding two copies of every answer. It's not two attempts, it's one attempt with doubled contents.</p><p>Under your first-attempt-only rule this gets less important, but it doesn't go away, because the duplication happens <em>inside</em> the attempt you're keeping. It's a small fix and I'll do it in the same pass as the others — one line to clear old answers before writing new ones, plus a database rule making a duplicate impossible rather than just unlikely.</p>",
+    "<p><strong>Will do.</strong> Clearing old answers before writing new ones, plus a database rule so one attempt physically cannot hold two answers for the same question.</p>"
+  ],
+  "fixing-a-typo-in-an-answer": [
+    "<p><strong>Agreed, dropping it.</strong> Re-grading past attempts isn't worth building for work that isn't really graded.</p><p>One half I'd still keep, because it's free: block editing the <em>wording</em> of an answer option once students have submitted. Reordering or retitling is harmless, but rewriting what option B says means last week's stored answers now point at something different — which is the one version of this that could quietly confuse you later when you're looking at which wrong answers students picked. Renaming stays open, rewriting gets blocked. No re-grading machinery needed.</p>"
+  ],
+  "revoke-code-deletes-the-student-and": [
+    "<p><strong>Active/inactive it is.</strong> That's the whole fix — the code stops working, every score stays attached to the student, and you can flip it back.</p><p><strong>On archiving: you don't need to, and the numbers aren't close.</strong> An attempt row is a few hundred bytes. A hundred thousand of them is well under a tenth of your free 500 MB. Realistically you could teach for a decade and not approach the limit, so “keep everything forever” is a real option, not a compromise. Drop the archiving idea unless something changes.</p><p>If you ever do want a copy off the database, Macro App already holds the key it would need, so exporting everything to a file on your machine is a small job whenever you want it — not something to design for now.</p>"
+  ],
+  "the-that-s-not-your-link": [
+    "<p><strong>You're right and I overstated this one.</strong> I was treating the code like a password worth stealing, and by your own framing it isn't: nothing here is graded high-stakes, so the worst case is someone doing a warm-up as someone else, which you'd shrug at. The flag-two-students detection value is also as low as you say — it tells you a link got shared and not who's at fault, which isn't actionable.</p><p><strong>On “how would that even be possible” —</strong> your sibling/family-computer case is one. A library or campus lab machine is another. Someone borrowing a friend's phone because their battery died is the realistic student version. But the one that will actually hit you first is <em>your own demo device</em>: whatever phone or laptop you test on gets locked to the last code you used, so the next time you open a student's link on it, you'll be the one staring at this screen.</p><p><strong>What I'd still do, and what I'd drop:</strong> stop printing the code — it's a one-line change and there's no reason to print it. Keep the “this isn't me, sign this device out” button too, not for security but because that's the thing that unsticks your demo device. Drop the rest of what I wrote about it.</p>",
+    "<p><strong>Fair, and that's a real privilege you should keep.</strong> Worth connecting two items though: the thing that currently gives you that free pass is <code>CHASE1</code> being special-cased in the portal's code, which is the same line you told me to get out of the published site.</p><p>Moving it to an ordinary student row in the database that's enrolled in every section keeps your access working exactly as it does now, and stops it being readable by any student who opens the page source. You lose nothing. I'll do both changes together so there's no window where your test code stops working.</p>"
+  ],
+  "the-cheating-log-blames-the-wrong": [
+    "<p><strong>Closing it, no change.</strong> Worth noting it's already collecting these entries, so if you ever glance at that column and see a name, remember the record points at whoever's device it was rather than whoever walked up to it. Nothing to build.</p>"
+  ],
+  "a-one-time-quiz-can-hang": [
+    "<p><strong>Yes, I'm sure — and the part you're reasoning about is correct.</strong> You're thinking of the <em>saving</em> path, and you're right about it: if a student loses connection mid-quiz, their progress is already stored and they come back where they left off. Nothing submits by accident.</p><p><strong>This failure is somewhere else: the moment the quiz opens, before a single question appears.</strong> For a one-attempt quiz the portal first asks the database “has this student already finished this one?” That question is a network request like any other, and it's the one request in the flow with no error handling around it. If it fails, the code that would show the first question never runs — so the screen sits on “loading” with nothing to retry. It's not a dropped submit, it's a dropped <em>question</em>.</p><p>How it happens in practice: a phone handing off from wifi to cell as they walk into the room, or the first request after a phone wakes from sleep. Uncommon, but it's the kind of thing that hits two students in a class of thirty and you can never reproduce it afterwards.</p><p><strong>The good news is your own rule deletes it.</strong> If retakes are allowed and only the first attempt counts, nothing needs to ask that question at open time — so the code that can hang comes out entirely rather than getting an error message bolted on. This is the item that gets cheapest once you make that decision.</p>",
+    "<p><strong>Your model of it is right, and the behaviour is simpler and dumber than you're picturing.</strong> Nothing skips a question, and nothing tells them they already took it. There's no error message at all. The screen just sits there on a loading state, forever, because the code that would draw question one is waiting on an answer that never arrives and nobody wrote the \"what if this fails\" branch.</p><p><strong>The check isn't about which questions they answered.</strong> It asks one narrow thing: does a <em>completed</em> attempt already exist for this student on this activity. It never looks at individual answers, which is why your instinct about starting at question one doesn't apply here. Half-finished work is handled by a completely separate piece of code, and that one does exactly what you described: it finds their saved place and puts them back on it.</p><p><strong>And you're right that it heals itself.</strong> Reloading re-runs the check, and if the connection is back they're straight in with nothing lost. So the real cost isn't lost data, it's one student sitting on a blank screen not knowing that reloading would fix it, and telling you it's broken.</p><p>Which makes it small. And it disappears entirely with the change you already approved: once only the first attempt counts, there's no reason to ask the question at open time, so the code that can hang comes out rather than getting an error message bolted onto it. Nothing extra to decide.</p>"
+  ],
+  "reopening-a-finished-quiz-tells-the": [
+    "<p><strong>Same answer as yours, and it lines up with the first-attempt rule.</strong> Let them back in, show them their recorded score from the first attempt rather than a zero, and make sure the second run can't overwrite what's stored. That's the whole change.</p>"
+  ],
+  "phones-forget-who-the-student-is": [
+    "<p><strong>Direct answer to the detection question: no, not reliably.</strong> Once the browser clears its storage there is genuinely nothing left on the page's side to look at — erasing that evidence is the whole point of the eviction. I could leave a second marker behind (a cookie), but Safari limits those the same way, so it would work sometimes and confidently show the wrong message the rest of the time. A detection that's right 60% of the time is worse than none, because the students it's wrong about get sent down a dead end.</p><p><strong>So do what you described, but in one message that serves both people.</strong> Something like: “If you've opened this before, use the link in the email I sent you — that signs you straight back in. If you never got one, message me and I'll send you your link.” Nobody needs to be identified for that to read correctly, and neither group gets the wrong instruction.</p><p>I'd still add a box where they can type their six-character code, because that turns the whole problem into five seconds of typing without involving you at all — and the code is already in that same email.</p>",
+    "<p><strong>You're right and I'll drop the code box.</strong> Your reasoning beats mine: they'd have to open the email to find the code anyway, so a box asking for it just adds a step where they can get stuck and write to you instead. Fewer doors is better here.</p><p>So the message points at one place only, no code entry, no dashes:</p><p style=\"padding:14px 18px;background:#fff;border:2px solid #c7d7fe;border-radius:10px\"><strong>You need your class link</strong><br>Open the link in the email I sent you and you'll be signed straight back in. If you can't find that email, message me and I'll send you a new link.</p><p><strong>On them not knowing a code exists:</strong> right now they do see it. Assignment headers show <em>\"User ABC123\"</em> in small text, which is your own code label. It's there so that when a student sends you a screenshot you can tell who they are. Your call: I can leave it (useful for exactly that) or take it off the student view. It has nothing to do with signing in either way.</p>"
+  ],
+  "a-browser-can-still-write-any": [
+    "<p><strong>Doing it.</strong> And your instinct is right that the stakes are low — this matters for “could I ever make something worth points,” not for warm-ups.</p><p>One ordering detail so it doesn't break anything: the Matrix tutorial still submits through the old path, so it has to move over to the new one first, <em>then</em> the old door closes. Done in that order it's invisible; done backwards, Matrix submissions start failing. I'll handle it as one change.</p><p>Worth saying plainly: with this closed, “students have to actually do it to get completion credit” becomes true rather than assumed. That's the real gain for you.</p>"
+  ],
+  "unlimited-retries-plus-per-question-feedback": [
+    "<p><strong>I checked, and I don't think this is set the way you think it is.</strong> There's no first-attempt logic anywhere in the console — the one place that picks an attempt takes the <em>most recent</em> one. So if a student submits twice, what you're looking at is attempt two.</p><p>What you may be remembering is the <strong>“one attempt only” switch when you publish a ticket</strong>. That gets you the same result by a different route: it stops a second attempt existing at all, so the latest one is also the first. But the publish form starts on “repeatable” every time, so unless you deliberately changed that toggle on each ticket, your existing ones allow retakes — and for those, the console is showing you the newest attempt.</p><p><strong>Worth a look at your published tickets.</strong> Either way I'd rather not leave this depending on a toggle you have to remember: I'll make the console explicitly take the earliest completed attempt, so first-attempt-only is true by construction no matter how a ticket was published.</p>",
+    "<p><strong>Understood.</strong> Then this one stops being a cheating question entirely, because a retake can't change the record. Retakes become free practice, and the per-question feedback stays on, which is the better outcome for learning anyway.</p>"
+  ],
+  "your-personal-test-code-is-sitting": [
+    "<p><strong>Will do.</strong> It becomes an ordinary student row in the database that happens to be in every section — so it keeps working exactly as it does now for you, and stops being readable by anyone who opens the page source.</p>"
+  ],
+  "codes-use-the-weak-kind-of": [
+    "<p><strong>Doing it, and it changes nothing you've already got.</strong> The switch only affects codes minted <em>after</em> the change — existing codes, spare codes, and anything already in a course file all stay exactly as they are. Nothing to reissue and nothing for you to do.</p>"
+  ],
+  "a-publishing-mismatch-can-send-a": [
+    "<p><strong>Doing it.</strong> Publishing will point at the class by its database id instead of re-matching on name and term, and if no class matches it stops with an error rather than inventing an empty one. The failure mode you'd never have diagnosed becomes a message that says what's wrong.</p>"
+  ],
+  "call-it-pseudonymised-not-anonymous-it": [
+    "<p><strong>“How is this different from D2L?” Honestly — it mostly isn't, and that's the useful answer.</strong> D2L is full of identifiable student records too. The difference isn't the data, it's who's responsible for it. D2L is the college's system: vetted, under contract, with their compliance people on the hook if something goes wrong. Your app makes <em>you</em> the custodian of similar data. FERPA doesn't prohibit that at all — instructors hold student data constantly, in gradebooks, spreadsheets and stacks of graded paper, and you're covered as a school official using records for a legitimate educational purpose. What your design does is shrink how much there is to argue about, because the cloud half has no names in it.</p><p><strong>On interception — your instinct is exactly right.</strong> The traffic is HTTPS, so in practice there's nothing to intercept. But even in the worst case, where someone gets the entire database, they get codes and scores and no names. Attaching a name to any of it requires your computer. That genuinely is stronger than a typical website, and it's the sentence worth saying out loud to your college.</p><p><strong>On login records: no, there's nothing illegal about it,</strong> and I should be clearer than I was. Every LMS logs far more than you do — D2L knows every page your students open and how long they sat there. Recording that a student opened your tool at 9:40 is an ordinary education record. The only consequence is that it's part of their record, so in principle a student could ask to see it. That's not a restriction on keeping it.</p><p><strong>Where I'd soften what I originally wrote:</strong> I implied the login log created a new concern, and it doesn't. The reason to have a retention rule is practical rather than legal — it's a sentence that ends a nervous conversation before it starts, and it keeps you from carrying years of data you'll never look at. If you're not expecting that conversation, it can wait.</p><p><strong>The wording advice stands, though, for a different reason than you might think.</strong> It's not about legal exposure — it's that “anonymous” is a claim someone can knock down in one question (“but you know who they are, right?”), and once that happens you're on the back foot about everything else. “No names ever leave my machine” is both true and unarguable. You want the version nobody can poke a hole in.</p>"
+  ]
+};
+
+  var store = { page: PAGE, updated: null, comments: {} };
+  var cards = {};
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleString(undefined, {
+      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
+    });
+  }
+
+  function entry(id) {
+    if (!store.comments[id]) {
+      store.comments[id] = { title: cards[id].title, thread: [], draft: '' };
+    }
+    var e = store.comments[id];
+    if (!Array.isArray(e.thread)) e.thread = [];
+    return e;
+  }
+
+  function countPosts() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (e && Array.isArray(e.thread)) n += e.thread.length;
+    }
+    return n;
+  }
+
+  function countUnanswered() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (!e || !Array.isArray(e.thread)) continue;
+      var answers = (REPLIES[k] || []).length;
+      if (e.thread.length > answers) n += 1;
+    }
+    return n;
+  }
+
+  function refreshSummary() {
+    var countEl = document.getElementById('csum-count');
+    if (countEl) {
+      var n = countPosts();
+      countEl.textContent = n === 0 ? 'no comments' : (n === 1 ? '1 comment' : n + ' comments');
+    }
+    var waitEl = document.getElementById('csum-waiting');
+    if (waitEl) {
+      var w = countUnanswered();
+      if (w === 0) {
+        waitEl.textContent = 'Everything you’ve written has a reply under it.';
+      } else {
+        waitEl.textContent = w === 1
+          ? '1 point is waiting for a reply.'
+          : w + ' points are waiting for a reply.';
+      }
+    }
+  }
+
+  function save(id, busyBtn, busyLabel) {
+    store.updated = new Date().toISOString();
+    if (busyBtn) {
+      busyBtn.disabled = true;
+      busyBtn.textContent = busyLabel || 'Saving…';
+    }
+    return fetch(SAVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(store),
+    })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)); })
+      .then(function () {
+        if (cards[id]) cards[id].error = null;
+        return true;
+      })
+      .catch(function (err) {
+        if (cards[id]) {
+          cards[id].error = 'Could not save — ' + err.message
+            + '. Is the docs server running? Your text is still here.';
+        }
+        return false;
+      });
+  }
+
+  /* ---------- rendering ---------- */
+
+  function postEl(id, index, post) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--mine';
+
+    var head = document.createElement('div');
+    head.className = 'post__head';
+    head.innerHTML = '<span class="post__who">You</span>'
+      + '<span class="post__when">' + fmtTime(post.updated) + '</span>';
+    wrap.appendChild(head);
+
+    var body = document.createElement('div');
+    body.className = 'post__body';
+    body.textContent = post.text;
+    wrap.appendChild(body);
+
+    var row = document.createElement('div');
+    row.className = 'post__row';
+
+    var edit = document.createElement('button');
+    edit.type = 'button';
+    edit.className = 'cbtn clear';
+    edit.textContent = 'Edit';
+    row.appendChild(edit);
+
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'cbtn clear';
+    del.textContent = 'Delete';
+    row.appendChild(del);
+
+    wrap.appendChild(row);
+
+    edit.addEventListener('click', function () {
+      var area = document.createElement('textarea');
+      area.value = post.text;
+      var saveBtn = document.createElement('button');
+      saveBtn.type = 'button';
+      saveBtn.className = 'cbtn';
+      saveBtn.textContent = 'Save changes';
+      var cancel = document.createElement('button');
+      cancel.type = 'button';
+      cancel.className = 'cbtn clear';
+      cancel.textContent = 'Cancel';
+
+      body.replaceWith(area);
+      row.replaceWith((function () {
+        var r = document.createElement('div');
+        r.className = 'post__row';
+        r.appendChild(saveBtn);
+        r.appendChild(cancel);
+        wrap.appendChild(r);
+        return r;
+      })());
+
+      area.focus();
+      saveBtn.addEventListener('click', function () {
+        var text = area.value.trim();
+        var e = entry(id);
+        if (text) {
+          e.thread[index] = { text: text, updated: new Date().toISOString() };
+        } else {
+          e.thread.splice(index, 1);
+        }
+        save(id, saveBtn, 'Saving…').then(function () { render(id); });
+      });
+      cancel.addEventListener('click', function () { render(id); });
+    });
+
+    del.addEventListener('click', function () {
+      if (del.dataset.confirm !== '1') {
+        del.dataset.confirm = '1';
+        del.textContent = 'Really delete?';
+        return;
+      }
+      var e = entry(id);
+      e.thread.splice(index, 1);
+      save(id, del, 'Deleting…').then(function () { render(id); });
+    });
+
+    return wrap;
+  }
+
+  function replyEl(html) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--reply';
+    var head = document.createElement('div');
+    head.className = 'post__head';
+    head.innerHTML = '<span class="post__who post__who--ai">Claude replied</span>';
+    wrap.appendChild(head);
+    var body = document.createElement('div');
+    body.className = 'post__body';
+    body.innerHTML = html;
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  function render(id) {
+    var card = cards[id];
+    var e = entry(id);
+    var host = card.host;
+    host.textContent = '';
+
+    var replies = REPLIES[id] || [];
+    var max = Math.max(e.thread.length, 0);
+
+    for (var i = 0; i < max; i += 1) {
+      host.appendChild(postEl(id, i, e.thread[i]));
+      if (replies[i]) host.appendChild(replyEl(replies[i]));
+    }
+
+    // A reply written before any comment existed still shows (shouldn't happen, but harmless).
+    if (e.thread.length === 0 && replies.length > 0) {
+      host.appendChild(replyEl(replies[0]));
+    }
+
+    if (e.thread.length > replies.length) {
+      var waiting = document.createElement('div');
+      waiting.className = 'cstate';
+      waiting.textContent = 'Waiting for a reply — say “read my comments on the portal risk review.”';
+      host.appendChild(waiting);
+    }
+
+    // Composer
+    var composer = document.createElement('div');
+    composer.className = 'cbox';
+
+    var label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = e.thread.length ? 'Add another comment' : 'Your comment or question';
+    composer.appendChild(label);
+
+    var area = document.createElement('textarea');
+    area.setAttribute('aria-label', 'Your comment on: ' + card.title);
+    area.placeholder = 'Anything you want to ask or flag about this point…';
+    area.value = e.draft || '';
+    composer.appendChild(area);
+
+    var row = document.createElement('div');
+    row.className = 'cbox-row';
+
+    var post = document.createElement('button');
+    post.type = 'button';
+    post.className = 'cbtn';
+    post.textContent = 'Post comment';
+    row.appendChild(post);
+
+    var state = document.createElement('span');
+    state.className = 'cstate';
+    if (card.error) {
+      state.className = 'cstate err';
+      state.textContent = card.error;
+    } else if (e.draft) {
+      state.textContent = 'Draft saved — press Post comment when you’re ready.';
+    }
+    row.appendChild(state);
+
+    composer.appendChild(row);
+    host.appendChild(composer);
+
+    var timer = null;
+    area.addEventListener('input', function () {
+      entry(id).draft = area.value;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { save(id); }, 1500);
+    });
+    area.addEventListener('blur', function () {
+      if (timer) clearTimeout(timer);
+      entry(id).draft = area.value;
+      save(id);
+    });
+    post.addEventListener('click', function () {
+      if (timer) clearTimeout(timer);
+      var text = area.value.trim();
+      if (!text) return;
+      var en = entry(id);
+      en.thread.push({ text: text, updated: new Date().toISOString() });
+      en.draft = '';
+      save(id, post, 'Posting…').then(function () {
+        render(id);
+        refreshSummary();
+      });
+    });
+  }
+
+  /* ---------- wire up ---------- */
+
+  var nodes = document.querySelectorAll('.card[data-comment-id]');
+  for (var i = 0; i < nodes.length; i += 1) {
+    var node = nodes[i];
+    var id = node.getAttribute('data-comment-id');
+    var host = document.createElement('div');
+    host.className = 'thread';
+    node.appendChild(host);
+    cards[id] = {
+      title: node.getAttribute('data-comment-title') || '',
+      host: host,
+      error: null,
+    };
+  }
+
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) {
+      if (!data || !data.comments) return;
+      store = { page: PAGE, updated: data.updated || null, comments: {} };
+      for (var id in data.comments) {
+        var raw = data.comments[id];
+        if (!raw) continue;
+        // Migrate the original one-comment-per-card shape into a thread.
+        var thread = Array.isArray(raw.thread) ? raw.thread : [];
+        if (!thread.length && typeof raw.text === 'string' && raw.text.trim()) {
+          thread = [{ text: raw.text.trim(), updated: raw.updated || null }];
+        }
+        store.comments[id] = {
+          title: raw.title || (cards[id] ? cards[id].title : ''),
+          thread: thread,
+          draft: typeof raw.draft === 'string' ? raw.draft : '',
+        };
+      }
+    })
+    .catch(function () { /* No comments file yet — first visit. */ })
+    .then(function () {
+      for (var id in cards) render(id);
+      refreshSummary();
+    });
+
+  window.addEventListener('beforeunload', function () {
+    if (!navigator.sendBeacon) return;
+    navigator.sendBeacon(SAVE_URL, new Blob([JSON.stringify(store)], { type: 'application/json' }));
+  });
+})();
+
+</script>
+
+</body>
+</html>

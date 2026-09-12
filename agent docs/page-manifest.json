@@ -39,6 +39,7 @@
       "open": false,
       "match": [
         "instructional-layer-htmls/student-portal-pipeline.html",
+        "scratch/portal-risk-review.html",
         "instructional-layer-htmls/course-setup-map.html",
         "scratch/macro-app-launch-paths.html",
         "scratch/gradebook-pull-timing-map.html",
@@ -144,6 +145,7 @@
     }
   ],
   "descriptions": {
+    "scratch/portal-risk-review.html": "Plain-language risk review of the student portal + teacher console (2026-09-11). Fifteen things that could go wrong with student use or the data you collect, each with why it matters and what to do. Starts with the three to fix first.",
     "instructional-layer-htmls/agent-measurement-workbench.html": "The front door to all the measurement tooling: the three report pages, every command, and a ranked queue of five experiments to run. Includes the settled facts so you don't re-derive them.",
     "probe-baseline-log.html": "20 fixed questions, each answered in a fresh read-only session, so the tasks never vary and any difference between runs is caused by what you changed. Baseline: 20/20 correct, 867k tokens. Includes the navigation-cost list.",
     "token-usage-log.html": "Real billed tokens from your Claude Code history plus Cursor's local counts. Reading files costs ~4× editing them; a turn in a 600+ turn session costs ~8× a turn in a short one.",
