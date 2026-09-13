@@ -39,6 +39,7 @@
       "open": false,
       "match": [
         "instructional-layer-htmls/student-portal-pipeline.html",
+        "scratch/student-portal-pamphlet-view.html",
         "scratch/portal-risk-review.html",
         "scratch/portal-risk-review-2.html",
         "instructional-layer-htmls/course-setup-map.html",
@@ -161,6 +162,7 @@
     "context-engineering-capture-costs.html": "What each rung of the capture ladder costs per session.",
     "rule-architecture-infographic.html": "How the guidance system works. Predates the index restructure, so parts may now be wrong.",
     "instructional-layer-htmls/student-portal-pipeline.html": "Walkthrough of the grading pipeline: Math App Studio designs an app, the portal runs it, Supabase stores anonymous results, Macro App puts the names back. Includes seven weak spots ranked worst-first.",
+    "scratch/student-portal-pamphlet-view.html": "Clickable full-size view of the Student Portal one-page pamphlet image — what it does, learning data collected, privacy model.",
     "instructional-layer-htmls/course-setup-map.html": "Setup steps create information nodes; Macro App tabs pull from those nodes — course list, schedule, calendar link, roster, assignment calendar.",
     "scratch/macro-app-launch-paths.html": "Why the .bat launch feels worse than the dashboard one, and how to fix it.",
     "scratch/gradebook-pull-timing-map.html": "Timing map for the gradebook pull.",

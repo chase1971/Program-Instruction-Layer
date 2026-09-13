@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-13 — Recipe: pressable buttons
+
+**Files changed:** `agent docs/recipes/pressable-buttons.md` (new), `agent docs/recipes/INDEX.md` (row).
+
+**What worked:** Captured Chase's requirement that buttons look raised, sink on press, and that a chosen toggle stays pushed in (dwell clicks are too quick to see `:active`). Exemplar: Macro App `teacher-console-side-panel-buttons.css`, built this session. Main work of the session is logged in `student-portal/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green.
+
+**File size flag:** None.
+
+**Next session:** None queued.
+
 ## 2026-09-11 — Session tracking fixes, scorecard split, capture-ladder pages refreshed
 
 **Files changed:** `scripts/session-token-cost.js` (count each reply once, tail context reader, `HEAVY_CONTEXT_TOKENS`),
