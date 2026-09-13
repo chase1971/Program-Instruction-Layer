@@ -38,7 +38,8 @@ workspace — it is inside Programs.
 | **Solving Quadratics** | `School Scrips\Solving Quadratics App` | chase1971/Solving-Quadratics-App | Chrome + Vite math app; multiple quadratic-solving tutorials (apps.json id `solving-quadratics`, port 5330) |
 | **Fractions** | `School Scrips\Fractions-App` | chase1971/Fractions-App | |
 | **Logic** | `School Scrips\logic-app` | chase1971/logic-app | |
-| **Matrix** | `School Scrips\Matrix app` | chase1971/Matrix-app | |
+| **Teacher Console**, TC | `School Scrips\Macro App\renderer\src\components\teacher-console` | *(part of Macro App)* | Screens, hooks in `hooks\teacher-console`, styles `styles\teacher-console*.css`, data via `services\studentProgressService.ts` |
+| **Matrix**, matrix tutorial, Gauss-Jordan | `School Scrips\Matrix app` | chase1971/Matrix-app | Solver/animation source. The **portal's** matrix tutorial imports it via `@matrix/` alias from `student-portal\src\features\matrix-tutorial` |
 | **Probability** | `School Scrips\Probability App` | chase1971/Probability-App | |
 | **Statistics** | `School Scrips\Statistics app` | chase1971/Statistics-app | |
 | **Transformations** | `School Scrips\transformations-app` | chase1971/transformations-app | Guided practice app; **code reader GUI:** `scripts\session_codec.py` (Launcher Panel: Transformations Code Reader) |

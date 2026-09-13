@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-13 — Recipe: portal assignment gate
+
+**Files changed:** `agent docs/recipes/portal-assignment-gate.md` (new), `agent docs/recipes/INDEX.md` (row), `agent docs/recipes/first-paint-gate.md` (touch), momentum handoffs for grades/logo work.
+
+**What worked:** Documented the full-page portal assignment gate pattern (blocking errors, Refresh + Go home, no backdrop dismiss). App implementation and deploy logged in `student-portal/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green.
+
+**File size flag:** None.
+
+**Next session:** None queued.
+
 ## 2026-09-13 — Recipe: pressable buttons
 
 **Files changed:** `agent docs/recipes/pressable-buttons.md` (new), `agent docs/recipes/INDEX.md` (row).

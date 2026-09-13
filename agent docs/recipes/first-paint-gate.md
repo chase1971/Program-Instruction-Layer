@@ -25,7 +25,7 @@ ready, then paint once.**
 
 | App | Gate hook | What it waits for |
 |---|---|---|
-| **student-portal** | `src/hooks/usePortalFirstPaint.ts` | identity + app access + classwork |
+| **student-portal** | `src/hooks/usePortalFirstPaint.ts` | identity + app access + classwork + announcements |
 | **Macro App Teacher Console dashboard** | `renderer/src/hooks/teacher-console/useTeacherConsoleDashboardFirstPaint.ts` | portal maps + exit tickets + announcements + logins chart |
 | **Macro App exit ticket quiz editor** | `ConsoleExitTicketQuizScreen.tsx` + `useExitTicketQuizEdit.ts` session cache | ticket metadata + questions before edit form paints |
 
