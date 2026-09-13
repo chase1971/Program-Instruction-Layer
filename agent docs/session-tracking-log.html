@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>373</dd></div>
-      <div><dt>Tasks today</dt><dd>15</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">5.2M (of 15 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>235k</dd></div>
-      <div><dt>Total billed</dt><dd>105.0M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (53/1606 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>382</dd></div>
+      <div><dt>Tasks today</dt><dd>24</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">4.7M (of 18 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>225k</dd></div>
+      <div><dt>Total billed</dt><dd>117.1M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (54/1653 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.3</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">3:20 PM · Saturday, Sep 12, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:30 PM · Saturday, Sep 12, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -202,8 +202,517 @@
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Saturday, Sep 12, 2026 <span class="day-count">15 tasks</span></h2>
+      <h2 class="day-title">Saturday, Sep 12, 2026 <span class="day-count">24 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:30 PM — Pushed pending 023 as migration 035 (renumbered, 024-034 already applied); verified anon direct insert refused, Matrix save+submit still OK; pending README + pipeline doc updated — 3 steps · 47m 58s</span>
+      <span class="pill p0">2.8M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 47m 58s since previous task
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 1 search(es), 0 doc read(s) · 2.8M tokens over 13 turn(s) · 215k/turn · chat so far: 5 message(s), 1621 KB transcript
+        <br>Wall-clock gap since previous task: 47m 58s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="supabase/pending/README.md">supabase/pending/README.md</code>
+      <span class="nav-note">move-then-push order</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="npm run db:push">npm run db:push</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="live DB rollback trial">live DB rollback trial</code>
+      <span class="nav-note">RLS refuses anon insert; functions still work</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:42 PM — Portal keeps ?s=CODE in the address bar after sign-in (Safari 7-day localStorage wipe); Supabase keep-alive GitHub Action every 3 days reading anon key from live bundle, committed + pushed in student-session-kit — 4 steps · 7m 23s · 1 dead-end</span>
+      <span class="pill p0">Chat: 1 msgs · 23 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 7m 23s active tool time
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 5 search(es), 0 doc read(s) · chat so far: 1 message(s), 23 KB transcript
+        <br>Wall-clock gap since previous task: 7m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="useStudentIdentity.ts + studentIdentity.ts">useStudentIdentity.ts + studentIdentity.ts</code>
+      <span class="nav-note">sign-in already logged every load, so no Logins clutter</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="gh auth status">gh auth status</code>
+      <span class="nav-note">not logged in; avoided repo secret by reading key from live bundle</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="node scripts/keep-alive.mjs locally">node scripts/keep-alive.mjs locally</code>
+      <span class="nav-note">read 1 activity row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="STUDENT_PROGRESS_PIPELINE.md">STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">step 4 + costs section updated</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:35 PM — Portal review 2 comments: migration 034 (Matrix section-less saves, Deactivate enforced server-side, 15 teacher functions locked to service_role + locked default privileges), portal save retry backoff (not deployed), replies on review page, pipeline doc + kit AGENTS — 8 steps · 1h 40m</span>
+      <span class="pill p0">6.4M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 1h 40m active tool time
+        <br>8 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 25 search(es), 6 doc read(s) · 6.4M tokens over 43 turn(s) · 150k/turn · chat so far: 1 message(s), 1225 KB transcript
+        <br>Wall-clock gap since previous task: 1h 40m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">findings, exact next step, Matrix-off correction</span>
+      
+    </li><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="STUDENT_PROGRESS_PIPELINE.md">STUDENT_PROGRESS_PIPELINE.md</code>
+      <span class="nav-note">shipping rules: db:push auto, Netlify on request</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="portal-risk-review-2.comments.json">portal-risk-review-2.comments.json</code>
+      <span class="nav-note">approvals for 1,2,5,7; questions on 3,6</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="html-delivery.md § Reader comments">html-delivery.md § Reader comments</code>
+      <span class="nav-note">REPLIES append pattern</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="live DB via Management API">live DB via Management API</code>
+      <span class="nav-note">student_app_access: matrix off x30 incl kqrzc6; anon exec list</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="033/022/013 migrations">033/022/013 migrations</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="student-portal rpc grep + Macro App supabaseRpc">student-portal rpc grep + Macro App supabaseRpc</code>
+      <span class="nav-note">portal uses 16 fns; Macro uses service key</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="useResumableAttempt.ts">useResumableAttempt.ts</code>
+      <span class="nav-note">working copy was double-spaced by another session; rewritten single-spaced</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:55 PM — Second portal review published as commentable HTML (scratch/portal-risk-review-2.html); re-verified after 030-033 + deploy, found Matrix saves broken by 033 — 5 steps · 52m 57s</span>
+      <span class="pill p0">2.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 52m 57s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 68 search(es), 3 doc read(s) · 2.9M tokens over 12 turn(s) · 238k/turn · chat so far: 2 message(s), 1607 KB transcript
+        <br>Wall-clock gap since previous task: 55m 48s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/rules/html-delivery.md">agent docs/rules/html-delivery.md</code>
+      <span class="nav-note">Reader comments section: copy pattern from portal-risk-review.html</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/scratch/portal-risk-review.html">agent docs/scratch/portal-risk-review.html</code>
+      <span class="nav-note">Style + comment script template</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="student-session-kit/supabase/migrations/033_multi_section_testers.sql">student-session-kit/supabase/migrations/033_multi_section_testers.sql</code>
+      <span class="nav-note">New section check rejects section-less Matrix activity</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Supabase management API live checks">Supabase management API live checks</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/page-manifest.json">agent docs/page-manifest.json</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:59 PM — Momentum handoff — Math App Survey retake, exit ticket Responses, deploy 10–12 state — 5 steps · 9m 49s</span>
+      <span class="pill p0">Chat: 3 msgs · 30 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 9m 49s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 28 search(es), 1 doc read(s) · chat so far: 3 message(s), 30 KB transcript
+        <br>Wall-clock gap since previous task: 9m 53s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Prior handoff read for format</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/docs/netlify-deploy-counter.json">School Scrips/student-portal/docs/netlify-deploy-counter.json</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Supabase REST (attempts, activities)">Supabase REST (attempts, activities)</code>
+      <span class="nav-note">Math App Survey once policy; 3 completed today</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="git status — student-portal, Macro App, student-session-kit">git status — student-portal, Macro App, student-session-kit</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:49 PM — Momentum handoff — portal link emails, Force link for device mismatch, Netlify deploy docs; migration 030 pushed — 5 steps · 41m 32s</span>
+      <span class="pill p0">Chat: 13 msgs · 137 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 41m 32s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 129 search(es), 8 doc read(s) · chat so far: 13 message(s), 137 KB transcript
+        <br>Wall-clock gap since previous task: 41m 39s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/030_device_bind_override.sql">School Scrips/student-session-kit/supabase/migrations/030_device_bind_override.sql</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/RosterForceLinkButton.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/RosterForceLinkButton.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/hooks/useStudentIdentity.ts">School Scrips/student-portal/src/hooks/useStudentIdentity.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Written handoff</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:07 PM — Momentum handoff — portal link emails, Force link for device mismatch, Netlify deploy docs; migration 030 pushed — 5 steps · 13m 55s</span>
+      <span class="pill p0">Chat: 13 msgs · 215 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 13m 55s active tool time
+        <br>5 steps · first helpful at #1 · 5 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 34 search(es), 4 doc read(s) · chat so far: 13 message(s), 215 KB transcript
+        <br>Wall-clock gap since previous task: 13m 58s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/MOMENTUM_HANDOFF.md">agent docs/MOMENTUM_HANDOFF.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/030_device_bind_override.sql">School Scrips/student-session-kit/supabase/migrations/030_device_bind_override.sql</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/RosterForceLinkButton.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/RosterForceLinkButton.tsx</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/hooks/useStudentIdentity.ts">School Scrips/student-portal/src/hooks/useStudentIdentity.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/latest.md">agent docs/momentum-handoffs/latest.md</code>
+      <span class="nav-note">Written handoff</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:53 PM — Second-pass portal + Supabase risk review: found teacher-only RPCs executable by anon (verified live), undeployed fixes vs pushed 017, once-policy retake break, save retry hot loop, term-turnover device lock — 9 steps · 11m 20s</span>
+      <span class="pill p0">Chat: 8 msgs · 137 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 11m 20s active tool time
+        <br>9 steps · first helpful at #1 · 8 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 25 search(es), 6 doc read(s) · chat so far: 8 message(s), 137 KB transcript
+        <br>Wall-clock gap since previous task: 11m 55s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Row 24 -&gt; pipeline doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/2026-09-11_portal-risk-fixes.md">agent docs/momentum-handoffs/2026-09-11_portal-risk-fixes.md</code>
+      <span class="nav-note">Prior 16-point review decisions, avoided re-raising rejected items</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/docs/sessions/SESSIONS.md">School Scrips/student-portal/docs/sessions/SESSIONS.md</code>
+      <span class="nav-note">What was implemented, not deployed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/supabase/migrations/">School Scrips/student-session-kit/supabase/migrations/</code>
+      <span class="nav-note">revoke from public does not remove Supabase default anon grant</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Supabase management API pg_proc privileges query">Supabase management API pg_proc privileges query</code>
+      <span class="nav-note">Confirmed anon EXECUTE on every function</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="School Scrips/student-portal/src/hooks/useResumableAttempt.ts">School Scrips/student-portal/src/hooks/useResumableAttempt.ts</code>
+      <span class="nav-note">No-backoff retry loop</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">8</span>
+      
+      <code class="nav-target" title="https://mathappsclass.netlify.app bundle">https://mathappsclass.netlify.app bundle</code>
+      <span class="nav-note">Live build predates 09-11 fixes</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">9</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/scripts/sync-portal-rosters.mjs">School Scrips/student-session-kit/scripts/sync-portal-rosters.mjs</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:41 PM — Exit ticket Responses screen — side-panel bar charts per question showing answer counts from completed attempts — 3 steps · 18m 14s</span>
+      <span class="pill p0">Chat: 5 msgs · 123 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 3:23 PM
+         · 18m 14s active tool time
+        <br>3 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 29 search(es), 2 doc read(s) · chat so far: 5 message(s), 123 KB transcript
+        <br>Wall-clock gap since previous task: 18m 18s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/dashboard/DashboardLoginsPreview.tsx</code>
+      <span class="nav-note">Exemplar for bar chart styling approach</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/exit-ticket/buildExitTicketResponseSummary.ts">School Scrips/Macro App/renderer/src/utils/exit-ticket/buildExitTicketResponseSummary.ts</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/ExitTicketResponseSummaryPanel.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/ExitTicketResponseSummaryPanel.tsx</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">3:20 PM — Exit ticket Responses screen — side-panel bar charts per question showing answer counts from completed attempts — 3 steps · 2m 3s</span>
       <span class="pill p0">Chat: 5 msgs · 69 KB</span>

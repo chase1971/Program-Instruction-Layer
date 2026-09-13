@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Portal — Second Review</title>
+<style>
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 19px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 20px 120px;
+  }
+  a { color: var(--blue); }
+  .backlink {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1 { font-size: 40px; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .sub { font-size: 21px; color: var(--soft); margin: 0 0 26px; }
+  .banner {
+    background: var(--bluebg);
+    border: 2px solid #c7d7fe;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin: 0 0 36px;
+    font-size: 17px;
+    color: #1e3a8a;
+  }
+  h2 {
+    font-size: 30px;
+    margin: 54px 0 6px;
+    padding-top: 22px;
+    border-top: 3px solid var(--line);
+    letter-spacing: -0.01em;
+  }
+  .secnote { color: var(--soft); font-size: 18px; margin: 0 0 24px; }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin: 0 0 22px;
+  }
+  .card h3 {
+    font-size: 25px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .tag {
+    display: inline-block;
+    font: 700 14px/1 system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 0 8px 12px 0;
+    vertical-align: middle;
+  }
+  .t-now   { background: var(--redbg);   color: var(--red);   border: 1.5px solid #fda29b; }
+  .t-soon  { background: var(--amberbg); color: var(--amber); border: 1.5px solid #fec84b; }
+  .t-minor { background: #f2f4f7;        color: var(--soft);  border: 1.5px solid var(--line); }
+  .t-self  { background: var(--redbg);   color: var(--red);   border: 1.5px solid #fda29b; }
+  .t-try   { background: #f2f4f7;        color: var(--soft);  border: 1.5px solid var(--line); }
+  .label {
+    font: 700 14px/1 system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 20px 0 6px;
+  }
+  .card p { margin: 0 0 12px; }
+  .fix {
+    background: var(--greenbg);
+    border-left: 6px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 18px 0 0;
+  }
+  .fix .label { color: var(--green); margin-top: 0; }
+  .fix p:last-child { margin-bottom: 0; }
+  .where {
+    font-size: 15px;
+    color: var(--soft);
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    word-break: break-word;
+  }
+  .top3 {
+    background: #fff;
+    border: 3px solid #fda29b;
+    border-radius: 16px;
+    padding: 8px 28px 24px;
+    margin: 0 0 40px;
+  }
+  .top3 h2 { border: none; margin: 22px 0 4px; padding-top: 0; font-size: 27px; }
+  .top3 ol { margin: 14px 0 0; padding-left: 28px; }
+  .top3 li { margin-bottom: 16px; }
+  .fine { background: var(--greenbg); border: 2px solid #a6f4c5; border-radius: 16px; padding: 8px 28px 22px; }
+  .fine ul { padding-left: 26px; }
+  .fine li { margin-bottom: 10px; }
+  strong { font-weight: 700; }
+  .q { color: var(--soft); font-style: italic; }
+  nav.jump { margin: 0 0 40px; }
+  nav.jump a {
+    display: block;
+    padding: 18px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 19px;
+  }
+  nav.jump a span { display: block; font-weight: 400; font-size: 16px; color: var(--soft); margin-top: 4px; }
+  code { background: #e9eef5; padding: 2px 7px; border-radius: 5px; font-size: 0.9em; }
+
+  /* ---- Comment boxes (injected by the script at the bottom) ---- */
+  .cbox {
+    margin: 20px 0 0;
+    padding: 18px 20px;
+    background: #fbfcfe;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+  }
+  .cbox.has-text { border-style: solid; border-color: #c7d7fe; background: var(--bluebg); }
+  .cbox .label { margin: 0 0 10px; }
+  .cbox textarea {
+    display: block;
+    width: 100%;
+    min-height: 78px;
+    padding: 14px 16px;
+    font: 18px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    resize: vertical;
+  }
+  .cbox textarea:focus { outline: 3px solid #84adff; outline-offset: 1px; border-color: var(--blue); }
+  .cbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .cbtn {
+    padding: 16px 28px;
+    min-width: 170px;
+    font: 700 18px system-ui, sans-serif;
+    color: #fff;
+    background: var(--blue);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .cbtn:disabled { background: #9cb4e8; cursor: default; }
+  .cbtn.clear { background: #fff; color: var(--soft); border: 2px solid var(--line); min-width: 0; padding: 14px 20px; font-weight: 600; }
+  .cstate { font-size: 16px; color: var(--soft); }
+  .cstate.err { color: var(--red); font-weight: 600; }
+  .csaved { color: var(--green); font-weight: 600; }
+
+  /* ---- Comment summary at the top ---- */
+  .csum {
+    background: #fff;
+    border: 3px solid #c7d7fe;
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin: 0 0 40px;
+  }
+  .csum h2 { border: none; margin: 0 0 10px; padding-top: 0; font-size: 26px; }
+  .csum p { margin: 0 0 10px; }
+  .csum .count { font-size: 22px; font-weight: 700; color: var(--blue); }
+  .csum .say {
+    display: block;
+    margin: 14px 0 0;
+    padding: 16px 20px;
+    background: var(--bluebg);
+    border-radius: 10px;
+    font-size: 18px;
+    color: #1e3a8a;
+  }
+  .csum code { background: #e9eef5; }
+
+  /* ---- Comment threads ---- */
+  .thread { margin: 22px 0 0; }
+  .post {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 0 14px;
+  }
+  .post--mine { background: var(--bluebg); border: 2px solid #c7d7fe; }
+  .post--reply {
+    background: #fbfcfe;
+    border: 2px solid var(--line);
+    border-left: 6px solid var(--blue);
+    margin-left: 28px;
+  }
+  .post__head { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; margin-bottom: 8px; }
+  .post__who { font: 700 15px system-ui, sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: #1e3a8a; }
+  .post__who--ai { color: var(--blue); }
+  .post__when { font-size: 15px; color: var(--soft); }
+  .post__body { white-space: pre-wrap; }
+  .post--reply .post__body { white-space: normal; }
+  .post--reply .post__body p { margin: 0 0 12px; }
+  .post--reply .post__body p:last-child { margin-bottom: 0; }
+  .post__row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .post__row .cbtn { min-width: 0; padding: 12px 18px; font-size: 16px; }
+  .card ul { padding-left: 26px; margin: 0 0 12px; } .card li { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+
+<h1>Student portal &amp; teacher console: second pass</h1>
+<p class="sub">What's still wrong after the first review's fixes, checked against the live database and the live site.</p>
+
+<div class="banner">
+  <strong>Written 2026-09-12, re-checked the same evening</strong> after migrations 030&ndash;033 and today's
+  Netlify deploy. It skips everything from the <a href="/scratch/portal-risk-review.html">first review</a>, including
+  the points you turned down. Every finding marked <em>confirmed</em> was checked against the real database or the
+  live website, not just read out of the code. Nothing has been changed yet.
+</div>
+
+<div class="csum">
+  <h2>Your comments</h2>
+  <p>Every point below has a thread at the bottom of it. Type a question or a note, press
+    <strong>Post comment</strong>, and my reply appears underneath it, indented like a forum.
+    You can edit or delete anything you've written.</p>
+  <p>You currently have <span class="count" id="csum-count">no comments</span> saved.
+    <span id="csum-waiting"></span></p>
+  <span class="say">To have me answer new ones, just say:
+    <strong>&ldquo;read my comments on the second portal review.&rdquo;</strong></span>
+  <p style="margin-top:14px;font-size:16px;color:var(--soft)">They're stored next to this page in
+    <code>agent docs/scratch/portal-risk-review-2.comments.json</code>, on this machine.</p>
+</div>
+
+<div class="top3">
+  <h2>If you only do three things</h2>
+  <ol>
+    <li><strong>Fix the Matrix tutorial before you turn it back on.</strong> Since this afternoon's database change,
+      nobody can save progress in it or press Finish. Students have it switched off, so only your tester codes hit it today.</li>
+    <li><strong>Lock the teacher-only database functions.</strong> Anyone with the website address can wipe a
+      student's work, lock students out, or post an announcement to your class. No student code needed.</li>
+    <li><strong>Push the waiting "close the back door" migration.</strong> It was waiting on a portal deploy, and
+      that deploy happened today.</li>
+  </ol>
+</div>
+
+<nav class="jump">
+  <a href="#now">1. Broken, but switched off for students
+    <span>Breaks the moment you turn Matrix back on. One item.</span></a>
+  <a href="#doors">2. Doors that are open
+    <span>Things someone could do on purpose. Two items.</span></a>
+  <a href="#support">3. Things that turn into emails to you
+    <span>No one is attacking anything; students just get stuck. Two items.</span></a>
+  <a href="#minor">4. Worth knowing
+    <span>Low stakes, but you should know they're there. Two items.</span></a>
+  <a href="#fixed">5. Fixed since my first pass this afternoon</a>
+</nav>
+
+<h2 id="now">1. Broken, but switched off for students</h2>
+<p class="secnote">Confirmed against the live database. You have Matrix turned off for 30 students in M1324 on
+  purpose, so no student is hitting this today.</p>
+
+<div class="card" data-comment-id="matrix-saves-broken-by-033" data-comment-title="The Matrix tutorial can't save or submit since migration 033">
+  <span class="tag t-now">Before Matrix goes back on</span><span class="tag t-self">Happens on its own</span>
+  <h3>The Matrix tutorial can't save or submit since migration 033</h3>
+  <p>Migration 033 (multi-section testers) added a new check to the function that saves progress: the
+    activity's class has to match the student's class, or the save is refused with
+    <em>"Activity not available for this class."</em></p>
+  <p>That works for exit tickets, because each one belongs to a class. <strong>The Gauss-Jordan tutorial
+    doesn't belong to any class.</strong> It was registered with no section, on purpose, so every section
+    could use it. Its empty section never matches a real one, so every save is refused.</p>
+  <p><strong>What a student sees:</strong> the "offline" note while they work. When they press Finish, the
+    portal saves first, and that save fails too, so <strong>the tutorial can never be submitted</strong>.
+    Your console will show nobody completing it.</p>
+  <p><strong>Who hits it today:</strong> only CHASE1 and the two shared tester codes, because they skip the
+    per-student switch. Turning Matrix back on for students brings everyone into it.</p>
+  <p><strong>Worse:</strong> the portal retries a failed save immediately with no pause (see "A failed save retries instantly" below), so
+    every phone with the tutorial open keeps hammering the database.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>A small follow-up migration: only require the class to match when the activity actually names one. The
+      tutorial submit function (022) already does exactly this, so it's copying an existing rule, not
+      inventing one. It's safe to push right away, and nothing needs a Netlify deploy.</p>
+  </div>
+  <p class="where">student-session-kit/supabase/migrations/033_multi_section_testers.sql (save_attempt_progress) &middot;
+    live: activities.section_id is null for matrix/gauss-jordan</p>
+</div>
+
+<h2 id="doors">2. Doors that are open</h2>
+<p class="secnote">Low stakes by your standard for grades, but the first one can destroy data, and nothing
+  on the free plan can bring it back.</p>
+
+<div class="card" data-comment-id="teacher-functions-open-to-public-key" data-comment-title="Teacher-only database functions can be run by anyone with the website address">
+  <span class="tag t-now">Fix first</span><span class="tag t-try">Needs someone trying</span>
+  <h3>Teacher-only database functions can be run by anyone with the website address</h3>
+  <p>Every "teacher only" function in the migrations was locked with the same line, which takes access away from
+    "the public." But Supabase also hands the website's key its <em>own</em> separate permission on every new
+    function, and nothing ever took that one away. The key that ships inside the portal can still run
+    everything.</p>
+  <p><strong>I confirmed this on the live database</strong>, and then with nothing but that public key
+    (read-only, counting rows without printing them). The key could read your class ids straight from the
+    activities list, and use one to pull the login log with student ids in it.</p>
+  <p><strong>So someone with only the site address, and no student code, can:</strong></p>
+  <ul>
+    <li><strong>Delete any student's work</strong>, or a whole class's in a loop (<code>reset_student_attempts</code>)</li>
+    <li><strong>Lock students out</strong> (<code>revoke_student_code</code>, which has no undo button)</li>
+    <li><strong>Post an announcement to your class</strong>. It only needs the course name (<code>MATH-1324 4202 1</code>)
+      and the word <code>current</code>.</li>
+    <li>Unpublish or edit exit tickets, change who can open an app, and move CHASE1's preview class</li>
+  </ul>
+  <p>It needs a person who goes looking. But the announcement one gets their words onto every student's home
+    screen under your name, and the delete one can't be recovered (see &ldquo;No backups&rdquo; below).</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>One migration that removes the website key's access to the 15 teacher functions, and changes the
+      default so any function added later starts locked. The portal never calls any of them, and Macro App
+      uses its own key, so it's safe to push right away with no deploy.</p>
+  </div>
+  <p class="where">Open today: reset_student_attempts, revoke_student_code, publish_exit_ticket, update_exit_ticket,
+    unpublish_exit_ticket, publish_class_announcement, unpublish_class_announcement, set_student_app_access,
+    set_students_app_access, list_student_app_access, list_portal_login_events, grant_device_bind_override,
+    set_preview_section, revoke_student_membership, finish_attempt</p>
+</div>
+
+<div class="card" data-comment-id="back-door-still-open-after-deploy" data-comment-title="The score back door is still open, and its fix was only waiting on today's deploy">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-try">Needs someone trying</span>
+  <h3>The score back door is still open, and its fix was only waiting on today's deploy</h3>
+  <p><code>023_close_anon_writes.sql</code> is still parked in <code>pending/</code>. It was held back because the
+    old live site still wrote scores the old way. <strong>Today's deploy replaced that site</strong>: the live
+    bundle now uses the new submit function and no longer contains the old path. I checked. The
+    wide-open write rules are still on the live database, so the reason to wait is gone but the door isn't
+    closed.</p>
+  <p><strong>One related loose end:</strong> <code>CHASE1</code> is no longer inside the website, but it was
+    readable there for about a week. The code itself still works and still signs in as instructor.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Move 023 into <code>migrations/</code> and push it. Then give CHASE1 a new code. The sign-in link
+      Macro App and the App Dashboard use would need the new code too.</p>
+  </div>
+  <p class="where">student-session-kit/supabase/pending/023_close_anon_writes.sql &middot; live bundle index-DLCvqFnu.js</p>
+</div>
+
+<h2 id="support">3. Things that turn into emails to you</h2>
+<p class="secnote">Your "does this generate an email to me" test.</p>
+
+<div class="card" data-comment-id="term-turnover-device-lock" data-comment-title="Every returning student gets locked out at the start of next term">
+  <span class="tag t-soon">Before next term</span><span class="tag t-self">Happens on its own</span>
+  <h3>Every returning student gets locked out at the start of next term</h3>
+  <p>A phone remembers the first code it signed in with. When a different code's link opens on it, the portal
+    shows <em>"You can't use someone else's link,"</em> as long as the remembered code still works.</p>
+  <p><strong>Nothing ever turns off last term's codes.</strong> So a student who takes you again next term gets a
+    new code, opens the new link on the same phone, and is blocked, because their old code is still active.
+    Same for a student in two of your sections at once, since codes are per course.</p>
+  <p><strong>Force link (migration 030) does unstick them,</strong> but only after they email you and you
+    press it for that student. That's one email per returning student, which is the exact thing you're trying
+    to avoid.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Either of two small changes. <strong>(a)</strong> When you retire a course, turn off its codes in the
+      same step, so an old code on a phone clears itself silently. <strong>(b)</strong> Treat a remembered code
+      from a <em>retired</em> course as not a conflict. Option (a) fits what you already do at term end and
+      needs no portal change.</p>
+  </div>
+  <p class="where">student-portal/src/hooks/useStudentIdentity.ts (mismatch branch) &middot; Macro App course retire flow</p>
+</div>
+
+<div class="card" data-comment-id="save-retry-has-no-pause" data-comment-title="A failed save retries instantly, forever">
+  <span class="tag t-soon">Worth fixing</span><span class="tag t-self">Happens on its own</span>
+  <h3>A failed save retries instantly, forever</h3>
+  <p>When saving progress fails, the portal puts the save back in line and tries again <em>immediately</em>, with no
+    waiting in between, and it never gives up.</p>
+  <ul>
+    <li><strong>Phone offline</strong> (walking between buildings): each try fails in a split second, so the
+      page spins through thousands of tries and drains the battery until the signal comes back.</li>
+    <li><strong>The database refuses the save</strong> (like the Matrix problem above): it keeps re-sending the same
+      doomed save for as long as the tab is open, even after the student leaves the quiz.</li>
+  </ul>
+  <p>This is why the Matrix problem is worse than "the tutorial doesn't save": every open tutorial is a phone stuck in
+    this loop.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Wait before retrying, and wait longer each time (1 second, then 2, then 4, up to about 30). Stop retrying
+      a save the database <em>refused</em>, as opposed to one that couldn't reach it. Stop when the student
+      leaves the page. It's all in one file. It needs a Netlify deploy.</p>
+  </div>
+  <p class="where">student-portal/src/hooks/useResumableAttempt.ts (flushSaveNow &rarr; finally block)</p>
+</div>
+
+<h2 id="minor">4. Worth knowing</h2>
+
+<div class="card" data-comment-id="no-backups-and-weekly-pause" data-comment-title="No backups, and the database goes to sleep after a quiet week">
+  <span class="tag t-minor">Know about it</span><span class="tag t-self">Happens on its own</span>
+  <h3>No backups, and the database goes to sleep after a quiet week</h3>
+  <p><strong>Backups:</strong> Supabase's free plan gives you no backup you can restore from. Anything deleted,
+    by the open doors above or by a teacher-side mistake, is gone.</p>
+  <p><strong>Sleep:</strong> free projects pause after about 7 days with no activity. Over winter break every
+    student opening the portal would get the "You need your class link" screen, and it stays that way until
+    you restore the project in the Supabase dashboard.</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>A scheduled data dump to your PC (the Supabase command line already on this machine can do it), maybe
+      weekly. For breaks, either remember to wake it up before classes restart, or let the same scheduled job
+      keep it active.</p>
+  </div>
+</div>
+
+<div class="card" data-comment-id="access-toggles-browser-only" data-comment-title="Deactivate and the class gate are only checked in the browser">
+  <span class="tag t-minor">Low stakes</span><span class="tag t-try">Needs someone trying</span>
+  <h3>Deactivate and the class gate are only checked in the browser</h3>
+  <p>The roster <strong>Deactivate</strong> toggle and the "Matrix is only for M1324" rule are enforced by the
+    portal page, not the database. A student who knows how can skip both by setting one value in their
+    browser's storage (<code>mathapps.isInstructor</code>) or adding <code>?previewSection=</code> to the address.
+    Deactivate never stopped a student on the database side anyway.</p>
+  <p>By your standard this probably doesn't matter. It's here so "deactivated" isn't mistaken for "blocked."</p>
+  <div class="fix">
+    <div class="label">What to do</div>
+    <p>Nothing now. If Deactivate ever needs to really block someone, the save and submit functions would check
+      it, the same way they now check the class.</p>
+  </div>
+</div>
+
+<h2 id="fixed">5. Fixed since my first pass this afternoon</h2>
+
+<div class="card fine">
+  <ul>
+    <li><strong>Retaking a "First attempt" ticket.</strong> The database used to refuse it with a raw error.
+      Migration 032 now allows retakes everywhere, matching your rule.</li>
+    <li><strong>The old live site.</strong> It predated all of the 09-11 fixes. Today's deploy replaced it:
+      CHASE1 is out of the bundle and Matrix submits through the protected function.</li>
+    <li><strong>Matrix Finish getting stuck after a wifi blip</strong> (old site plus the new no-duplicates
+      rule). Gone with the deploy, though the problem at the top has broken Matrix again for a different reason.</li>
+    <li><strong>A phone stuck on someone else's code.</strong> Force link now exists. &ldquo;Every returning student gets locked out&rdquo; is about how often you'll have to use it.</li>
+    <li><strong>Checked and fine:</strong> every table has row security on; no names are in the cloud; the
+      11 attempts with no student attached are leftovers from test deletes before revoke stopped deleting.</li>
+  </ul>
+</div>
+
+<a class="backlink" href="/pages.html" style="margin-top:40px">&larr; All pages</a>
+
+
+<script>
+/*
+ * Comment threads. One per card, keyed by the card's data-comment-id.
+ *
+ * Chase's posts save to agent docs/scratch/portal-risk-review-2.comments.json via
+ * the docs server's POST /__comments/<page> endpoint (scripts/serve-programs-docs.js),
+ * so an agent reads them straight off disk — nothing here is browser-only storage.
+ *
+ * REPLIES below are the agent's answers, authored into this page. Index N answers
+ * the reader's post N, so a thread reads: post 0, reply 0, post 1, reply 1, ...
+ * To answer a new comment, append a string to that card's array.
+ */
+(function () {
+  'use strict';
+
+  var PAGE = 'scratch/portal-risk-review-2.html';
+  var DATA_URL = '/scratch/portal-risk-review-2.comments.json';
+  var SAVE_URL = '/__comments/' + PAGE;
+
+  var REPLIES = {
+    'matrix-saves-broken-by-033': [
+      '<p><strong>Fixed and live.</strong> Migration 034 is on the database now, and no Netlify deploy is needed. The class check only applies when an assignment actually belongs to a class, so the Gauss-Jordan tutorial saves and submits again.</p>'
+      + '<p>I tested it on the live database inside a test that undoes itself, so nothing was written: save plus Finish works, an exit ticket still saves for its own class, and it is still refused for a different class.</p>'
+      + '<p><strong>One thing I found:</strong> tester code <code>kqrzc6</code> (Chris) is switched off for Matrix along with your 30 students. Kristy&rsquo;s <code>88hr4q</code> is not. So Chris can&rsquo;t open Matrix until you switch him back on in the roster. I didn&rsquo;t change it.</p>'
+    ],
+    'teacher-functions-open-to-public-key': [
+      '<p><strong>Done and live</strong>, in the same migration (034). All 15 teacher functions now work only with Macro App&rsquo;s private key. The website key keeps exactly the 17 functions the portal actually uses. I confirmed both lists on the live database afterwards.</p>'
+      + '<p>Anything added from now on also starts locked, so this can&rsquo;t quietly reopen. Nothing changes in Teacher Console, because it already uses the private key.</p>'
+    ],
+    'back-door-still-open-after-deploy': [
+      '<p><strong>Netlify.</strong> That migration was waiting for the new portal to go live on Netlify, and that happened today. Pushing the migration itself is a Supabase change, and it doesn&rsquo;t need another Netlify deploy.</p>'
+      + '<p>I checked that nothing in the portal still writes scores the old way, so it&rsquo;s safe. Part of it is already done: migration 034 locked the old <code>finish_attempt</code> function. What&rsquo;s left is removing the three old write rules on the scores tables. I haven&rsquo;t pushed it, since you asked a question rather than saying go. Say <strong>&ldquo;push 023&rdquo;</strong> and I will.</p>'
+      + '<p>Changing the CHASE1 code is a separate choice, and I haven&rsquo;t touched it.</p>'
+    ],
+    'term-turnover-device-lock': [
+      '<p>Agreed. Nothing done. If every term starts with a clean database and new students, this never comes up. I&rsquo;ll leave it for whenever you build the retire-course process.</p>'
+    ],
+    'save-retry-has-no-pause': [
+      '<p><strong>Written, but not live yet.</strong> A failed save now waits 1 second, then 2, then 4, up to 30, before trying again. A save the database refuses is dropped instead of being retried forever, and retries stop when the student leaves the page. The code builds cleanly.</p>'
+      + '<p>This one is in the portal, so students only get it with your next Netlify deploy. Migration 034 already stopped Matrix saves from being refused, so the stuck-phone loop can&rsquo;t happen today. That makes the deploy low-pressure.</p>'
+    ],
+    'no-backups-and-weekly-pause': [
+      '<p><strong>Bookmarks:</strong> the portal removes the code from the address bar the moment the page opens. A bookmark made after that <em>won&rsquo;t</em> contain the code. It still works on that same phone or browser, because the browser remembers who the student is. It fails on a new device, or after they clear their browser data. Then they need the emailed link again.</p>'
+      + '<p><strong>The sleep is a different thing, though.</strong> It isn&rsquo;t about a student&rsquo;s link or code going stale. The whole database goes to sleep when <em>nobody at all</em> uses it for 7 days. One student opening the portal during the week counts for everyone, so during the semester it basically never happens. The risk is winter or spring break. If it does fall asleep, the link can&rsquo;t wake it. Every student gets the &ldquo;you need your class link&rdquo; screen until you press Restore in the Supabase dashboard. Nothing is lost; it takes a few minutes.</p>'
+      + '<p>So the only habit needed: open Teacher Console or the portal once before classes restart after a long break. Backups are a separate question, and nothing is set up for them.</p>'
+    ],
+    'access-toggles-browser-only': [
+      '<p><strong>Half of it was easy, and it&rsquo;s done and live</strong> (migration 034). The roster <strong>Deactivate</strong> switch is now enforced by the database. A student who is switched off can&rsquo;t save or submit that assignment, even if they fiddle with their browser. I tested this with one of your 30 switched-off students. Your CHASE1 code is still exempt, just like in the portal.</p>'
+      + '<p><strong>The &ldquo;Matrix is only for M1324&rdquo; rule is not done.</strong> The database has no record of which classes get Matrix. That list only lives in the portal&rsquo;s code, so enforcing it would mean adding a new setting. At worst, an M1314 student who pokes at it does a tutorial they weren&rsquo;t assigned. I left it.</p>'
+    ],
+  };
+
+  var store = { page: PAGE, updated: null, comments: {} };
+  var cards = {};
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleString(undefined, {
+      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
+    });
+  }
+
+  function entry(id) {
+    if (!store.comments[id]) {
+      store.comments[id] = { title: cards[id].title, thread: [], draft: '' };
+    }
+    var e = store.comments[id];
+    if (!Array.isArray(e.thread)) e.thread = [];
+    return e;
+  }
+
+  function countPosts() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (e && Array.isArray(e.thread)) n += e.thread.length;
+    }
+    return n;
+  }
+
+  function countUnanswered() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (!e || !Array.isArray(e.thread)) continue;
+      var answers = (REPLIES[k] || []).length;
+      if (e.thread.length > answers) n += 1;
+    }
+    return n;
+  }
+
+  function refreshSummary() {
+    var countEl = document.getElementById('csum-count');
+    if (countEl) {
+      var n = countPosts();
+      countEl.textContent = n === 0 ? 'no comments' : (n === 1 ? '1 comment' : n + ' comments');
+    }
+    var waitEl = document.getElementById('csum-waiting');
+    if (waitEl) {
+      var w = countUnanswered();
+      if (w === 0) {
+        waitEl.textContent = 'Everything you’ve written has a reply under it.';
+      } else {
+        waitEl.textContent = w === 1
+          ? '1 point is waiting for a reply.'
+          : w + ' points are waiting for a reply.';
+      }
+    }
+  }
+
+  function save(id, busyBtn, busyLabel) {
+    store.updated = new Date().toISOString();
+    if (busyBtn) {
+      busyBtn.disabled = true;
+      busyBtn.textContent = busyLabel || 'Saving…';
+    }
+    return fetch(SAVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(store),
+    })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)); })
+      .then(function () {
+        if (cards[id]) cards[id].error = null;
+        return true;
+      })
+      .catch(function (err) {
+        if (cards[id]) {
+          cards[id].error = 'Could not save — ' + err.message
+            + '. Is the docs server running? Your text is still here.';
+        }
+        return false;
+      });
+  }
+
+  /* ---------- rendering ---------- */
+
+  function postEl(id, index, post) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--mine';
+
+    var head = document.createElement('div');
+    head.className = 'post__head';
+    head.innerHTML = '<span class="post__who">You</span>'
+      + '<span class="post__when">' + fmtTime(post.updated) + '</span>';
+    wrap.appendChild(head);
+
+    var body = document.createElement('div');
+    body.className = 'post__body';
+    body.textContent = post.text;
+    wrap.appendChild(body);
+
+    var row = document.createElement('div');
+    row.className = 'post__row';
+
+    var edit = document.createElement('button');
+    edit.type = 'button';
+    edit.className = 'cbtn clear';
+    edit.textContent = 'Edit';
+    row.appendChild(edit);
+
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'cbtn clear';
+    del.textContent = 'Delete';
+    row.appendChild(del);
+
+    wrap.appendChild(row);
+
+    edit.addEventListener('click', function () {
+      var area = document.createElement('textarea');
+      area.value = post.text;
+      var saveBtn = document.createElement('button');
+      saveBtn.type = 'button';
+      saveBtn.className = 'cbtn';
+      saveBtn.textContent = 'Save changes';
+      var cancel = document.createElement('button');
+      cancel.type = 'button';
+      cancel.className = 'cbtn clear';
+      cancel.textContent = 'Cancel';
+
+      body.replaceWith(area);
+      row.replaceWith((function () {
+        var r = document.createElement('div');
+        r.className = 'post__row';
+        r.appendChild(saveBtn);
+        r.appendChild(cancel);
+        wrap.appendChild(r);
+        return r;
+      })());
+
+      area.focus();
+      saveBtn.addEventListener('click', function () {
+        var text = area.value.trim();
+        var e = entry(id);
+        if (text) {
+          e.thread[index] = { text: text, updated: new Date().toISOString() };
+        } else {
+          e.thread.splice(index, 1);
+        }
+        save(id, saveBtn, 'Saving…').then(function () { render(id); });
+      });
+      cancel.addEventListener('click', function () { render(id); });
+    });
+
+    del.addEventListener('click', function () {
+      if (del.dataset.confirm !== '1') {
+        del.dataset.confirm = '1';
+        del.textContent = 'Really delete?';
+        return;
+      }
+      var e = entry(id);
+      e.thread.splice(index, 1);
+      save(id, del, 'Deleting…').then(function () { render(id); });
+    });
+
+    return wrap;
+  }
+
+  function replyEl(html) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--reply';
+    var head = document.createElement('div');
+    head.className = 'post__head';
+    head.innerHTML = '<span class="post__who post__who--ai">Claude replied</span>';
+    wrap.appendChild(head);
+    var body = document.createElement('div');
+    body.className = 'post__body';
+    body.innerHTML = html;
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  function render(id) {
+    var card = cards[id];
+    var e = entry(id);
+    var host = card.host;
+    host.textContent = '';
+
+    var replies = REPLIES[id] || [];
+    var max = Math.max(e.thread.length, 0);
+
+    for (var i = 0; i < max; i += 1) {
+      host.appendChild(postEl(id, i, e.thread[i]));
+      if (replies[i]) host.appendChild(replyEl(replies[i]));
+    }
+
+    // A reply written before any comment existed still shows (shouldn't happen, but harmless).
+    if (e.thread.length === 0 && replies.length > 0) {
+      host.appendChild(replyEl(replies[0]));
+    }
+
+    if (e.thread.length > replies.length) {
+      var waiting = document.createElement('div');
+      waiting.className = 'cstate';
+      waiting.textContent = 'Waiting for a reply — say “read my comments on the second portal review.”';
+      host.appendChild(waiting);
+    }
+
+    // Composer
+    var composer = document.createElement('div');
+    composer.className = 'cbox';
+
+    var label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = e.thread.length ? 'Add another comment' : 'Your comment or question';
+    composer.appendChild(label);
+
+    var area = document.createElement('textarea');
+    area.setAttribute('aria-label', 'Your comment on: ' + card.title);
+    area.placeholder = 'Anything you want to ask or flag about this point…';
+    area.value = e.draft || '';
+    composer.appendChild(area);
+
+    var row = document.createElement('div');
+    row.className = 'cbox-row';
+
+    var post = document.createElement('button');
+    post.type = 'button';
+    post.className = 'cbtn';
+    post.textContent = 'Post comment';
+    row.appendChild(post);
+
+    var state = document.createElement('span');
+    state.className = 'cstate';
+    if (card.error) {
+      state.className = 'cstate err';
+      state.textContent = card.error;
+    } else if (e.draft) {
+      state.textContent = 'Draft saved — press Post comment when you’re ready.';
+    }
+    row.appendChild(state);
+
+    composer.appendChild(row);
+    host.appendChild(composer);
+
+    var timer = null;
+    area.addEventListener('input', function () {
+      entry(id).draft = area.value;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { save(id); }, 1500);
+    });
+    area.addEventListener('blur', function () {
+      if (timer) clearTimeout(timer);
+      entry(id).draft = area.value;
+      save(id);
+    });
+    post.addEventListener('click', function () {
+      if (timer) clearTimeout(timer);
+      var text = area.value.trim();
+      if (!text) return;
+      var en = entry(id);
+      en.thread.push({ text: text, updated: new Date().toISOString() });
+      en.draft = '';
+      save(id, post, 'Posting…').then(function () {
+        render(id);
+        refreshSummary();
+      });
+    });
+  }
+
+  /* ---------- wire up ---------- */
+
+  var nodes = document.querySelectorAll('.card[data-comment-id]');
+  for (var i = 0; i < nodes.length; i += 1) {
+    var node = nodes[i];
+    var id = node.getAttribute('data-comment-id');
+    var host = document.createElement('div');
+    host.className = 'thread';
+    node.appendChild(host);
+    cards[id] = {
+      title: node.getAttribute('data-comment-title') || '',
+      host: host,
+      error: null,
+    };
+  }
+
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) {
+      if (!data || !data.comments) return;
+      store = { page: PAGE, updated: data.updated || null, comments: {} };
+      for (var id in data.comments) {
+        var raw = data.comments[id];
+        if (!raw) continue;
+        // Migrate the original one-comment-per-card shape into a thread.
+        var thread = Array.isArray(raw.thread) ? raw.thread : [];
+        if (!thread.length && typeof raw.text === 'string' && raw.text.trim()) {
+          thread = [{ text: raw.text.trim(), updated: raw.updated || null }];
+        }
+        store.comments[id] = {
+          title: raw.title || (cards[id] ? cards[id].title : ''),
+          thread: thread,
+          draft: typeof raw.draft === 'string' ? raw.draft : '',
+        };
+      }
+    })
+    .catch(function () { /* No comments file yet — first visit. */ })
+    .then(function () {
+      for (var id in cards) render(id);
+      refreshSummary();
+    });
+
+  window.addEventListener('beforeunload', function () {
+    if (!navigator.sendBeacon) return;
+    navigator.sendBeacon(SAVE_URL, new Blob([JSON.stringify(store)], { type: 'application/json' }));
+  });
+})();
+
+</script>
+
+</body>
+</html>
+</body>
+</html>

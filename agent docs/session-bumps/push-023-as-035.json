@@ -1,0 +1,8 @@
+{
+  "chunkNote": "Pushed pending 023 as migration 035 (renumbered, 024-034 already applied); verified anon direct insert refused, Matrix save+submit still OK; pending README + pipeline doc updated",
+  "navigationPath": [
+    { "step": "supabase/pending/README.md", "result": "✓", "note": "move-then-push order" },
+    { "step": "npm run db:push", "result": "✓" },
+    { "step": "live DB rollback trial", "result": "✓", "note": "RLS refuses anon insert; functions still work" }
+  ]
+}
