@@ -40,6 +40,7 @@
       "match": [
         "instructional-layer-htmls/student-portal-pipeline.html",
         "scratch/student-portal-pamphlet-view.html",
+        "scratch/teacher-console-concept.html",
         "scratch/portal-risk-review.html",
         "scratch/portal-risk-review-2.html",
         "instructional-layer-htmls/course-setup-map.html",

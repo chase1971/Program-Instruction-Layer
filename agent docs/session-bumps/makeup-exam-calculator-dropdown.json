@@ -1,0 +1,15 @@
+{
+  "chunkNote": "Makeup Exam calculator: read live form via CDP (S=Scientific, A=Any); side panel choice now maps straight to dropdown by value with read-back check; verified on live form",
+  "addGreps": 5,
+  "navigationPath": [
+    { "target": "CDP 127.0.0.1:9224 Request Form / TargetContent frame", "kind": "live-page", "outcome": "helpful", "note": "#LSC_TCRFORMS_LSC_TCCALCULATOR options incl. new Four Function / Graphing" },
+    { "target": "School Scrips/Macro App/modules/makeup-exam/backend/automation_core.py", "kind": "code", "outcome": "helpful", "note": "Default mode used class-code heuristic -> None" },
+    { "target": "%APPDATA%/macro-app/logs/macro-app.log", "kind": "log", "outcome": "helpful", "note": "Set calculator type: None" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/modules/makeup-exam/backend/automation_actions.py",
+    "School Scrips/Macro App/modules/makeup-exam/backend/automation_core.py",
+    "School Scrips/Macro App/modules/makeup-exam/tests/test_pure_helpers.py",
+    "School Scrips/Macro App/renderer/src/components/makeup-exam/MakeupExamExamConfigPanel.tsx"
+  ]
+}

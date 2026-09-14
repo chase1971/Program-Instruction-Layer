@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Refactor step 3b: TeacherConsoleWorkspace 50 flat props -> 15 grouped (courseTabs, rosterData, results, navigation, preview + existing sectionExitTickets/sectionAnnouncements/dashboardLogins objects passed through; types in teacherConsoleWorkspaceProps.ts); useTesterRename hook out of ConsoleRosterScreen (7 -> 2 useState); two identical ConsoleRosterScreen renders merged with keys preserving remount. Also fixed portal exit-ticket quiz stuck on 'Loading quiz' on instructor devices: inverted adminBypass guard in GenericQuizView (added in 1168e8f). Macro build/lint/1343 tests; portal tsc/vitest/build pass",
+  "navigationPath": [
+    { "step": "TeacherConsoleWorkspace.tsx + AppMainPanel.tsx caller", "result": "✓" },
+    { "step": "useMacroAppStudentProgressShell sub-objects (sectionExitTickets, sectionAnnouncements, dashboardLogins)", "result": "✓", "note": "reused as prop groups" },
+    { "step": "ConsoleRosterScreen rename state", "result": "✓", "note": "extracted to useTesterRename" },
+    { "step": "grep 'Loading quiz' → GenericQuizView.tsx", "result": "✓" },
+    { "step": "git log -L on load guard", "result": "✓", "note": "regression from 1168e8f, not refactor" }
+  ]
+}

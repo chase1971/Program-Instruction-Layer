@@ -1,0 +1,8 @@
+{
+  "chunkNote": "Redesigned the tester app selector for ten apps with a compact current-app display, circular previous/next controls, and a two-column large-target app tray.",
+  "navigationPath": [
+    {"target":"visualize/SKILL.md","kind":"doc","outcome":"helpful"},
+    {"target":"agent docs/scratch/teacher-console-concept.html","kind":"code","outcome":"helpful"}
+  ],
+  "filesEdited": ["agent docs/scratch/teacher-console-concept.html"]
+}

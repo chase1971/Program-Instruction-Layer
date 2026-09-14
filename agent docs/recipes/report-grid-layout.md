@@ -36,7 +36,7 @@ Screen and workspace body must participate in flex:
 - `.viewport-scroll-frame` / `.matrix-report-scroll` → `flex: 1; min-height: 0`
 - `.viewport-scroll-frame__viewport` / `.gradebook-scroll-frame__viewport` → `flex: 1; min-height: 0; max-height: 100%`
 
-CSS owners: [`teacher-console-matrix-report.css`](../../School%20Scrips/Macro%20App/renderer/src/styles/teacher-console-matrix-report.css), [`teacher-console-grades.css`](../../School%20Scrips/Macro%20App/renderer/src/styles/teacher-console-grades.css) (§ logins).
+CSS owners: [`teacher-console-matrix-report.css`](../../School%20Scrips/Macro%20App/renderer/src/styles/teacher-console-matrix-report.css), [`teacher-console-logins.css`](../../School%20Scrips/Macro%20App/renderer/src/styles/teacher-console-logins.css) (logins grid, then exit-ticket Responses layout).
 
 ### Scrolling
 

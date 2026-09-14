@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Macro App: slim NSIS installer 0.1.28 to USB H:\\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified",
+  "addGreps": 4,
+  "addTurns": 2,
+  "navigationPath": [
+    { "target": "School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md", "kind": "doc", "outcome": "partial", "note": "Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down" },
+    { "target": "School Scrips/Macro App/scripts/build-profile.cjs", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Macro App/electron-builder.config.cjs", "kind": "code", "outcome": "helpful" }
+  ],
+  "filesEdited": []
+}

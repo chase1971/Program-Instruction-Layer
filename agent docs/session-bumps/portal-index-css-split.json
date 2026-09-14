@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Refactor step 2b: student-portal src/styles/index.css (1118 lines) is now an ordered import list; body moved in original order to portal-base.css (495), portal-features.css (507), portal-compact-layout.css (123); built CSS bundle byte-identical before/after; tsc, vitest 20, vite build pass; AGENTS.md compact-layout rows updated",
+  "navigationPath": [
+    { "step": "mtime check student-portal/src", "result": "✓", "note": "nothing in last 20 min" },
+    { "step": "src/styles/index.css section comments", "result": "✓", "note": "split at 500 (matrix nav) and 1002 (compact layout)" },
+    { "step": "grep index.css references tree-wide", "result": "✓", "note": "portal AGENTS.md rows + matrixTutorialLandscape.ts comment" },
+    { "step": "split script guard (line-ending regex)", "result": "✗", "note": "own bug, caught before writing; fixed" },
+    { "step": "A/B vite build CSS bundle cmp", "result": "✓" }
+  ]
+}
