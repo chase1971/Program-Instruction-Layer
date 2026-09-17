@@ -5,17 +5,17 @@
       "file": "2026-09-16-0847cb26.html",
       "heroes": [
         "Fiona",
-        "Niklas",
-        "Pollen"
+        "Karsu",
+        "Niklas"
       ],
-      "floor": 7,
+      "floor": 12,
       "act": 1,
-      "battles_won": 7,
-      "battles": 8,
-      "relics": 7,
-      "shards": 61,
-      "updated": "2026-09-16T23:00:25",
-      "live": true
+      "battles_won": 21,
+      "battles": 22,
+      "relics": 17,
+      "shards": 11,
+      "updated": "2026-09-16T23:20:17",
+      "live": false
     },
     {
       "id": "19a18e6d-b25a-4a60-9aec-6582aabf5f19",
