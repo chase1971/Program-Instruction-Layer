@@ -89,6 +89,9 @@ class FractionAddFractions(Narrated, Scene):
         self.wait(.45)
 
     def finish_sum(self, numerator, denominator, mark_prefix=None):
+        self.wait(.35)
+        if mark_prefix:
+            self.mark(f'{mark_prefix}_ready_to_add')
         if denominator == 1:
             expression = str(numerator)
         else:
