@@ -21,6 +21,7 @@ never touches this file.
 | any app by name · "where does X live" · which folder is that in | [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
 | anything inside one app — its subsystems, its docs, "Pearson", "the gradebook", "the launcher panel" | that app's `AGENTS.md` — find the folder via [APP_LOCATIONS.md](../APP_LOCATIONS.md) |
 | seating chart save · wipe on reopen · sticky room · attendance save · persistence | [School Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md](../School%20Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md) |
+| seating chart retired course · active courses · "why is it pulling this course" | seating-chart `AGENTS.md` § Macro integration |
 | student portal · student codes · exit tickets · custom quiz · "can students cheat" · Student Progress tab · how an app becomes a grade | [School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md](../School%20Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md) |
 | **deploy the portal** · push to netlify · **update supabase** · push migration · ship student site · netlify credits · deploy budget | pipeline doc § Shipping changes to production · `student-portal/docs/netlify-deploy-counter.json` |
 | building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |

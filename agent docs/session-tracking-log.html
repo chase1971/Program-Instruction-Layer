@@ -84,12 +84,12 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>484</dd></div>
+      <div><dt>Total tasks</dt><dd>488</dd></div>
       <div><dt>Tasks today</dt><dd>0</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.0M (of 43 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>203k</dd></div>
       <div><dt>Total billed</dt><dd>181.3M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (62/2062 steps)</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (64/2082 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.0</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">10:55 PM · Wednesday, Sep 16, 2026</dd></div>
     </div>
@@ -100,6 +100,21 @@
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="electron-toolbar/AGENTS.md">electron-toolbar/AGENTS.md</code>
+      <span class="nav-note">No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.</span>
+      <span class="index-fail-task">10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="electron-toolbar/docs/recipes/scroll-calculation.md">electron-toolbar/docs/recipes/scroll-calculation.md</code>
+      <span class="nav-note">Owns F13 two-zone bar, not laptop stylus overlay</span>
+      <span class="index-fail-task">10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span>
+    </li><li class="index-fail nav-dead">
+      <span class="nav-marker">✗</span>
+      <code title="agent docs/recipes/vertical-scroll-rail.md">agent docs/recipes/vertical-scroll-rail.md</code>
+      <span class="nav-note">In-app hover rails, not OS stylus overlay</span>
+      <span class="index-fail-task">10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
       <span class="nav-note">Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down</span>
@@ -184,25 +199,10 @@
       <code title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
       <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
       <span class="index-fail-task">1:38 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="Monitor Configuration App/docs/sessions/SESSIONS.md">Monitor Configuration App/docs/sessions/SESSIONS.md</code>
-      <span class="nav-note">Stale — newest entry is 2026-05-27, so the 08-07 and 08-20 profile corruptions left no trace. Closed by documenting the failure in DISPLAY_SAFETY_CONTRACT.md instead</span>
-      <span class="index-fail-task">1:34 PM — Monitor Config App: living_room.json was a bedroom capture (clobbered 2026-08-20 by a dwell overshoot from Apply onto Save) — restored from backup, added guards so an unclaimed active monitor can no longer become a silent clone</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="Macro-App/AGENTS.md">Macro-App/AGENTS.md</code>
-      <span class="nav-note">No stats-email keyword; grepped statistics Email</span>
-      <span class="index-fail-task">11:01 AM — Statistics Email: First assignment message checkbox fills Outlook subject/body for missing or below-threshold filters</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="docs/ROSTER_PIPELINE_INTEGRATION.md">docs/ROSTER_PIPELINE_INTEGRATION.md</code>
-      <span class="nav-note">Symptom table had no C→G row yet; confirmed owner is path resolution</span>
-      <span class="index-fail-task">10:19 AM — Laptop G:\My Drive detection remaps PC C:\Users\...\My Drive paths for storage, Zoom/open, and AA folders</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Sep 16, 2026 <span class="day-count">43 tasks</span></h2>
+      <h2 class="day-title">Wednesday, Sep 16, 2026 <span class="day-count">45 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">10:55 PM — Added the post-Example-2 “Play another example” step and wired it to Example 3 — 2 steps · 6m 22s</span>
@@ -2064,9 +2064,112 @@
       
     </li></ul>
     </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:23 AM — Seating Chart now hides Macro-retired leftover courses from the room queue and dropdown — 4 steps · 12m 31s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:27 AM
+         · 12m 31s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 12m 31s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Seating chart → AGENTS Macro integration</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/AGENTS.md">School Scripts/seating-chart/AGENTS.md</code>
+      <span class="nav-note">Course list owner is macro-roster-bridge</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Macro-App/electron-app/retire-course-io.js">Macro-App/electron-app/retire-course-io.js</code>
+      <span class="nav-note">Owner of retired-courses/; added leftover check</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="seating-chart/electron/macro-roster-bridge.js">seating-chart/electron/macro-roster-bridge.js</code>
+      <span class="nav-note">Filter list/load/initial to active only</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:10 AM — Seating Chart queued retired MATH-0324 NCBO because it reads leftover d2l-courses.json entries, not Macro App's active list — 5 steps · 22h 18m</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:27 AM
+         · 22h 18m since previous task
+        <br>5 steps · first helpful at #1 · 4 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 22h 18m (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Seating chart persistence row → Seating-Chart docs</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scripts/seating-chart/AGENTS.md">School Scripts/seating-chart/AGENTS.md</code>
+      <span class="nav-note">Courses from d2l-courses.json; new-course queue</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="seating-chart/electron/macro-roster-bridge.js">seating-chart/electron/macro-roster-bridge.js</code>
+      <span class="nav-note">All in-person courses, no retire filter</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="Macro-App/config/d2l-courses.json">Macro-App/config/d2l-courses.json</code>
+      <span class="nav-note">Local file dropped MATH-0324 this morning; HEAD still has it</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="G:/My Drive/Rosters etc/retired-courses">G:/My Drive/Rosters etc/retired-courses</code>
+      <span class="nav-note">COURSE_1663241 archived 2026-08-20</span>
+      
+    </li></ul>
+    </div>
   </details></div>
     </section><section class="day-block">
-      <h2 class="day-title">Tuesday, Sep 15, 2026 <span class="day-count">10 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Sep 15, 2026 <span class="day-count">12 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">9:06 PM — View tuning consolidation: shared createViewTuningAdjustments, hover-to-repeat step buttons (750ms), separate Students/Testers/Preview tuning scopes — 4 steps · 18m 33s</span>
@@ -2621,6 +2724,123 @@
       
       <code class="nav-target" title="anon REST probe">anon REST probe</code>
       
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:52 AM — Added toolbar gear button to open Settings, same dwell style as stylus — 4 steps · 24m 17s</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:27 AM
+         · 24m 17s since previous task
+        <br>4 steps · first helpful at #1 · 3 ✓ · 0 ~ · 0 ✗
+        
+        <br>Wall-clock gap since previous task: 24m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="electron-toolbar/AGENTS.md">electron-toolbar/AGENTS.md</code>
+      <span class="nav-note">Add toolbar button → toolbar-system.md</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-toolbar/docs/recipes/toolbar-system.md">electron-toolbar/docs/recipes/toolbar-system.md</code>
+      <span class="nav-note">data-action + IPC + pack order</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-app/src/toolbar.html">electron-app/src/toolbar.html</code>
+      <span class="nav-note">Stylus ✏️ exemplar + TOOLBAR_PACK_ORDER</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="electron-app/src/ipc-handlers/toolbar-handlers.js">electron-app/src/ipc-handlers/toolbar-handlers.js</code>
+      <span class="nav-note">Local toggle_settings, no signal double-fire</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings — 7 steps · 1ms · 2 dead-end</span>
+      
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 10:27 AM
+         · 1ms since previous task
+        <br>7 steps · first helpful at #1 · 3 ✓ · 1 ~ · 2 ✗
+        
+        <br>Wall-clock gap since previous task: 1ms (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">App-by-name → electron-toolbar AGENTS</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="electron-toolbar/AGENTS.md">electron-toolbar/AGENTS.md</code>
+      <span class="nav-note">No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="electron-toolbar/docs/recipes/scroll-calculation.md">electron-toolbar/docs/recipes/scroll-calculation.md</code>
+      <span class="nav-note">Owns F13 two-zone bar, not laptop stylus overlay</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="agent docs/recipes/vertical-scroll-rail.md">agent docs/recipes/vertical-scroll-rail.md</code>
+      <span class="nav-note">In-app hover rails, not OS stylus overlay</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="modules/scroll/laptop/scrollgrade_laptop_runner.py">modules/scroll/laptop/scrollgrade_laptop_runner.py</code>
+      <span class="nav-note">Toolbar host for scrollgrade_module_v2.pyw</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="scrollgrade_module_v2.pyw REPEAT_HZ">scrollgrade_module_v2.pyw REPEAT_HZ</code>
+      <span class="nav-note">Hardcoded 30 Hz pulse rate is the speed</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="electron-app/src/settings.html">electron-app/src/settings.html</code>
+      <span class="nav-note">Existing settings sidebar; extracted new panel instead of growing inline JS</span>
       
     </li></ul>
     </div>
