@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Seating chart: no yellow pick tag, auto course by schedule, remove room banner, roster remove in settings",
+  "addGreps": 6,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scripts/seating-chart/src/hooks/useRandomPicker.ts", "kind": "code", "outcome": "helped" },
+    { "target": "School Scripts/seating-chart/src/utils/courseSchedulePick.ts", "kind": "code", "outcome": "helped" },
+    { "target": "School Scripts/seating-chart/src/components/RosterManagePanel.tsx", "kind": "code", "outcome": "helped" }
+  ]
+}

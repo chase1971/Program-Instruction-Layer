@@ -1,0 +1,25 @@
+{
+  "chunkNote": "Pulled School-Documents factoring handout PDFs (3 commits, including work-machine self-contained rebuild)",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "School HTML / teaching documents row → School documents; added factoring pdf keywords" },
+    { "target": "agent docs/rules/multi-repo-git-push.md", "kind": "doc", "outcome": "helpful" },
+    { "target": "APP_LOCATIONS.md", "kind": "doc", "outcome": "helpful", "note": "School documents = chase1971/School-Documents" },
+    { "target": "School Scripts/School documents", "kind": "code", "outcome": "helpful", "note": "Clean, behind 3; pulled ff-only" }
+  ],
+  "filesRead": [
+    "agent docs/INDEX.md",
+    "agent docs/rules/multi-repo-git-push.md",
+    "School Scripts/School documents/README.md"
+  ],
+  "filesEdited": [
+    "agent docs/INDEX.md",
+    "scripts/serve-programs-docs.js"
+  ],
+  "docsRulesOpened": [
+    "agent docs/INDEX.md",
+    "agent docs/rules/multi-repo-git-push.md",
+    "agent docs/SESSION_TRACKING.md"
+  ]
+}

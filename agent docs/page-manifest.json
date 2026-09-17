@@ -180,6 +180,8 @@
     "scratch/dice-stats.html": "Two dice, part 2 — the chart tips into a histogram, a normal curve lays over it, then mu = 7 and sigma = 2.42.",
     "scratch/dice-sampling.html": "Two dice, part 3 — 100 sample means of four rolls rain onto the same axis, and sigma / root n predicts the spread.",
     "scratch/dice-products.html": "Two dice, part 4 — the product is spiky and gap-riddled, yet its sampling distribution still goes normal. The Central Limit Theorem.",
-    "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem."
+    "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem.",
+    "scratch/fraction-times-whole.html": "Q5 guided-practice help — multiply a fraction by a whole number (Manim, white background, math only).",
+    "scratch/fraction-add-fractions.html": "Q9 guided-practice help — add whole numbers to fractions, then fraction to fraction (Manim, white background, math only)."
   }
 }

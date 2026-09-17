@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Seating chart quit fix: destroy pick overlay on close so Electron process exits and relaunch works",
+  "addGreps": 3,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scripts/seating-chart/electron/main.js", "kind": "code", "outcome": "helped", "note": "window-all-closed + close cleanup" },
+    { "target": "School Scripts/seating-chart/electron/pick-overlay-window.js", "kind": "code", "outcome": "helped", "note": "destroy overlay instead of hide" }
+  ]
+}

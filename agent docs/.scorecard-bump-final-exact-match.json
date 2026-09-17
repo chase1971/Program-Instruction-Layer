@@ -1,0 +1,19 @@
+{
+  "chunkNote": "CDP probe: D2L Enter Grades uses header/item Final and label Final value for… (not Final Points Grade); itemsMatch exact-only fix for wrong-column push",
+  "addGreps": 4,
+  "filesRead": [
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py",
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py",
+    "School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md"
+  ],
+  "filesEdited": [
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py",
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py",
+    "School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md"
+  ],
+  "navigationPath": [
+    { "target": "CDP port 9224 Enter Grades page", "kind": "runtime", "outcome": "helpful", "note": "Headers Final; d2l-input-number label Final value for…; Cell: Final vs Final Adjusted Grade" },
+    { "target": "modules/d2l/grades_enter_import_scripts.py itemsMatch", "kind": "code", "outcome": "helpful", "note": "Reverse prefix pi.startsWith(ei+' ') matched Final→Final Adjusted Grade in findGradeControlIds" },
+    { "target": "modules/d2l/grades_enter_import_scripts.py", "kind": "code", "outcome": "helpful", "note": "Exact-only itemsMatch in APPLY and VERIFY scripts" }
+  ]
+}

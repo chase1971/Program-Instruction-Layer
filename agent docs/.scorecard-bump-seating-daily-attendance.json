@@ -1,0 +1,22 @@
+{
+  "chunkNote": "Seating chart daily attendance reset, F219 side column, date/status toolbar, history edit; synced repos",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "helpful", "note": "seating persistence row" },
+    { "target": "School Scripts/seating-chart/docs/PERSISTENCE_INTEGRATION.md", "kind": "doc", "outcome": "helpful" },
+    { "target": "School Scripts/seating-chart/src/state/chartReducer.ts", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scripts/seating-chart/legacy/script.js", "kind": "code", "outcome": "helpful", "note": "isNewDayForChart pattern" },
+    { "target": "School Scripts/seating-chart/src/layouts/layoutF219Definition.ts", "kind": "code", "outcome": "helpful" }
+  ],
+  "filesRead": [
+    "School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx",
+    "School Scripts/seating-chart/src/components/SeatingToolbar.tsx"
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/src/state/chartReducer.ts",
+    "School Scripts/seating-chart/src/layouts/layoutF219Definition.ts",
+    "School Scripts/seating-chart/src/components/AttendanceHistoryModal.tsx",
+    "School Scripts/seating-chart/src/components/SeatingToolbar.tsx"
+  ]
+}

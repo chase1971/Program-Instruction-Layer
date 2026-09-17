@@ -1,0 +1,15 @@
+{
+  "chunkNote": "Seating Chart: fix cross-course write — ensureCourseBound re-pointed a live chart, stamping one class's seats onto the next course; added loadedCourseRef guard",
+  "addGreps": 3,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "%APPDATA%/seating-chart/app-data.json", "kind": "data", "outcome": "helpful", "note": "all 3 courses held MATH-2412's 28 names — proved cross-write, not a render bug" },
+    { "target": "seating-chart/src/components/SeatingWorkspace.tsx", "kind": "code", "outcome": "helpful", "note": "ensureCourseBound effect fired on every dropdown change" },
+    { "target": "seating-chart/src/hooks/useSeatingChart.ts", "kind": "code", "outcome": "helpful", "note": "commitAppData effect watches courseCode — wrote stale seats under new code" },
+    { "target": "seating-chart/src/hooks/useCourseSelection.ts", "kind": "code", "outcome": "dead-end", "note": "selection/roster flow was correct all along" }
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/src/hooks/useSeatingChart.ts",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Default subtotal rounding changed from 1 to 2 decimal places so homework 22/26 × 10 shows 8.46 like D2L, not 8.5.",
+  "navigationPath": [
+    { "step": "User: D2L 8.46 vs app 8.5 for 22/26 homework", "result": "start" },
+    { "step": "DEFAULT_SUBTOTAL_DECIMAL_PLACES 1 → 2 in gradebookRecalculateRow.ts", "result": "ok" },
+    { "step": "Inference min 1 dec from scrape unchanged (19.9 case)", "result": "ok" },
+    { "step": "Whiteley test expects 8.46; gradebook vitest 401 passed", "result": "ok" }
+  ]
+}

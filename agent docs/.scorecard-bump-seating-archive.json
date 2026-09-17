@@ -1,0 +1,19 @@
+{
+  "chunkNote": "Seating Chart: fix course switch; archive writes attendance+chart under Rosters etc/Seating Chart/archived/",
+  "addGreps": 6,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "seating-chart/src/components/SeatingWorkspace.tsx", "kind": "code", "outcome": "helpful", "note": "Controlled select awaited save before switch" },
+    { "target": "seating-chart/electron/seating-drive-io.js", "kind": "code", "outcome": "helpful", "note": "New Seating Chart/ + archived/ layout" },
+    { "target": "macro-roster-bridge.js", "kind": "code", "outcome": "helpful", "note": "Filter archived from course list" }
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/electron/seating-drive-io.js",
+    "School Scripts/seating-chart/electron/macro-roster-bridge.js",
+    "School Scripts/seating-chart/electron/main.js",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx",
+    "School Scripts/seating-chart/src/hooks/useCourseSelection.ts",
+    "School Scripts/seating-chart/src/hooks/useSeatingChart.ts"
+  ],
+  "docsRulesOpened": ["School Scripts/seating-chart/AGENTS.md"]
+}

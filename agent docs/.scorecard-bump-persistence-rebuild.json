@@ -1,0 +1,19 @@
+{
+  "chunkNote": "Seating Chart persistence rebuild: single chartReducer writer, load gate, Save Attendance, new-course room queue, settings cleanup",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/recipes/CODING_STANDARDS.md", "kind": "doc", "outcome": "helpful", "note": "section 9 INTEGRATION.md required" },
+    { "target": "%APPDATA%/seating-chart/app-data.json", "kind": "data", "outcome": "helpful", "note": "boot wipe root cause confirmed earlier" },
+    { "target": "seating-chart/src/hooks/useSeatingChart.ts", "kind": "code", "outcome": "helpful", "note": "retired — eight writers collapsed" },
+    { "target": "seating-chart/src/state/chartReducer.ts", "kind": "code", "outcome": "helpful", "note": "single pure writer + invariants" },
+    { "target": "seating-chart/scripts/verify-persistence.mjs", "kind": "code", "outcome": "helpful", "note": "late-load byte-identical guard" }
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/src/state/chartReducer.ts",
+    "School Scripts/seating-chart/src/state/chartPersistence.ts",
+    "School Scripts/seating-chart/src/hooks/useChartStore.ts",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx",
+    "School Scripts/seating-chart/docs/PERSISTENCE_INTEGRATION.md"
+  ]
+}

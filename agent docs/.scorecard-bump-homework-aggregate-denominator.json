@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Fixed homework/quiz aggregate subtotals to divide by all assignment maxes in the category (D2L 22/26 × weight), matching 18.462/20 final grades.",
+  "navigationPath": [
+    { "step": "User report: Whiteley 18.5/20 vs app 18/20 with HW 10/10, 8/8, 4/8 + quiz 10/10", "result": "start" },
+    { "step": "Read gradebookRecalculateRow.ts recalculateAggregateCategory", "result": "ok" },
+    { "step": "Found bug: denominator used only graded assignment maxes, not all category maxes", "result": "ok" },
+    { "step": "Updated recalculateAggregateCategory + gradebookGradeCalculationWork explainAggregateCategory", "result": "ok" },
+    { "step": "Added Whiteley 22/26 test; updated tests for blank-HW denominator; vitest gradebook 401 passed", "result": "ok" }
+  ]
+}

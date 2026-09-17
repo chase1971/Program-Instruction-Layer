@@ -1,0 +1,8 @@
+{
+  "chunkNote": "Seating chart toolbar: attendance banner moved above action buttons",
+  "addGreps": 2,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scripts/seating-chart/src/components/SeatingToolbar.tsx", "kind": "code", "outcome": "helped" }
+  ]
+}

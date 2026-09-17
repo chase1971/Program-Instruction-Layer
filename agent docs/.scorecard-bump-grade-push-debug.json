@@ -1,0 +1,33 @@
+{
+  "chunkNote": "Grade push save-confirm hardening plus live-browser debug during Push (gradebookD2LDebug flags); unblocked Programs/Macro App git push",
+  "addGreps": 12,
+  "filesRead": [
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py",
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py",
+    "School Scripts/Macro-App/renderer/src/config/gradebookD2LDebug.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/gradebook/useGradebookImport.ts",
+    "School Scripts/Macro-App/electron-app/d2l-bridge.js",
+    "School Scripts/Macro-App/docs/GRADE_IMPORT_INTEGRATION.md",
+    "agent docs/SESSION_TRACKING.md"
+  ],
+  "filesEdited": [
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_actions.py",
+    "School Scripts/Macro-App/modules/d2l/grades_enter_import_scripts.py",
+    "School Scripts/Macro-App/renderer/src/config/gradebookD2LDebug.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/gradebook/useGradebookD2L.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/gradebook/useGradebookImport.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/shell/useMacroAppGradebookBrowserEffects.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/shell/useMacroAppShell.ts",
+    "School Scripts/Macro-App/renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts"
+  ],
+  "navigationPath": [
+    { "target": "agent docs/SESSION_TRACKING.md", "kind": "doc", "outcome": "helpful", "note": "Bump procedure" },
+    { "target": "Macro App user console logs", "kind": "runtime", "outcome": "helpful", "note": "16 cells applied; Save confirm Yes timed out at 20s" },
+    { "target": "modules/d2l/grades_enter_import_scripts.py", "kind": "code", "outcome": "helpful", "note": "CLICK_SAVE_CONFIRM_YES_SCRIPT too narrow vs bulk delete pattern" },
+    { "target": "modules/d2l/grades_bulk_actions.py", "kind": "code", "outcome": "helpful", "note": "Exemplar d2l-dialog + shadow DOM confirm" },
+    { "target": "renderer/src/config/gradebookD2LDebug.ts", "kind": "code", "outcome": "helpful", "note": "Existing TEMP debug switches for live browser" },
+    { "target": "renderer/src/hooks/gradebook/useGradebookImport.ts", "kind": "code", "outcome": "helpful", "note": "Push used ensureHidden unless showD2LGradebookView" },
+    { "target": "renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts", "kind": "code", "outcome": "helpful", "note": "showBrowserPanel hidden on gradebook tab" },
+    { "target": "Programs root git merge", "kind": "git", "outcome": "helpful", "note": "Session log conflicts resolved; push synced" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Reverted aggregate subtotal denominator to graded assignments only — blanks no longer count as zero in category averages.",
+  "navigationPath": [
+    { "step": "User: blanks should not count as zero in averages", "result": "start" },
+    { "step": "Reverted recalculateAggregateCategory to sum max from non-empty cells only", "result": "ok" },
+    { "step": "Reverted gradebookGradeCalculationWork explainAggregateCategory", "result": "ok" },
+    { "step": "Updated tests; Whiteley 22/26 still passes when all three HW graded", "result": "ok" }
+  ]
+}

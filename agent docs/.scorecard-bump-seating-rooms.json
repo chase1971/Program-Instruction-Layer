@@ -1,0 +1,18 @@
+{
+  "chunkNote": "Seating Chart: desktop/laptop Drive prefs like Macro; Room layout modal with F214 + F219",
+  "addGreps": 5,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "Macro-App/electron-app/rosters-paths.js", "kind": "code", "outcome": "helpful", "note": "C/G/D findRostersBasePath" },
+    { "target": "Macro-App/electron-app/machine-profile.js", "kind": "code", "outcome": "helpful", "note": "profiled gradebook-storage-prefs" },
+    { "target": "seating-chart/src/layouts/layout1Definition.ts", "kind": "code", "outcome": "helpful", "note": "F214 baseline" },
+    { "target": "agent docs/recipes/modal-shell.md", "kind": "doc", "outcome": "helpful" }
+  ],
+  "filesEdited": [
+    "School Scripts/seating-chart/electron/macro-roster-bridge.js",
+    "School Scripts/seating-chart/src/layouts/layoutF219Definition.ts",
+    "School Scripts/seating-chart/src/components/RoomLayoutModal.tsx",
+    "School Scripts/seating-chart/src/components/SeatingGrid.tsx",
+    "School Scripts/seating-chart/src/components/SeatingWorkspace.tsx"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Seating chart: right-click seat opens first-name nickname editor; legal name kept for attendance",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "partial", "note": "Seating persistence row" },
+    { "target": "School Scripts/seating-chart/AGENTS.md", "kind": "app-agents", "outcome": "helped" },
+    { "target": "src/components/SeatingWorkspace.tsx", "kind": "code", "outcome": "helped", "note": "Right-click wired to NameModal" },
+    { "target": "src/state/chartReducer.ts", "kind": "code", "outcome": "helped", "note": "SET_FIRST_NAME_OVERRIDE action" }
+  ]
+}
