@@ -17,6 +17,12 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
 # folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
 PAGES = [
+    ('fraction_add_fractions', 'FractionAddFractions', 'fraction-add-fractions',
+     'Add fractions with common denominators', 'Fraction addition help',
+     'fraction_add_fractions_marks.json',
+     'Three whole-plus-fraction sums (including one negative whole) and three '
+     'fraction-plus-fraction sums. Each shows rewriting a whole over 1, scaling '
+     'to a common denominator, then adding the tops.'),
     ('fraction_times_whole', 'FractionTimesWhole', 'fraction-times-whole',
      'Multiply a fraction by a whole number', 'Fraction times whole number',
      'fraction_times_whole_marks.json',

@@ -1,0 +1,94 @@
+[
+  {
+    "name": "whole_one_problem_shown",
+    "time": 1.08
+  },
+  {
+    "name": "whole_one_whole_rewritten",
+    "time": 3.75
+  },
+  {
+    "name": "whole_one_scaled",
+    "time": 5.88
+  },
+  {
+    "name": "whole_one_summed",
+    "time": 7.13
+  },
+  {
+    "name": "whole_two_problem_shown",
+    "time": 9.04
+  },
+  {
+    "name": "whole_two_whole_rewritten",
+    "time": 11.71
+  },
+  {
+    "name": "whole_two_scaled",
+    "time": 13.83
+  },
+  {
+    "name": "whole_two_summed",
+    "time": 15.08
+  },
+  {
+    "name": "whole_three_problem_shown",
+    "time": 17.0
+  },
+  {
+    "name": "whole_three_whole_rewritten",
+    "time": 19.67
+  },
+  {
+    "name": "whole_three_scaled",
+    "time": 21.79
+  },
+  {
+    "name": "whole_three_summed",
+    "time": 23.04
+  },
+  {
+    "name": "whole_examples_done",
+    "time": 23.88
+  },
+  {
+    "name": "frac_one_problem_shown",
+    "time": 25.58
+  },
+  {
+    "name": "frac_one_scaled",
+    "time": 27.5
+  },
+  {
+    "name": "frac_one_summed",
+    "time": 30.0
+  },
+  {
+    "name": "frac_two_problem_shown",
+    "time": 31.92
+  },
+  {
+    "name": "frac_two_scaled",
+    "time": 33.83
+  },
+  {
+    "name": "frac_two_summed",
+    "time": 36.33
+  },
+  {
+    "name": "frac_three_problem_shown",
+    "time": 38.25
+  },
+  {
+    "name": "frac_three_scaled",
+    "time": 40.17
+  },
+  {
+    "name": "frac_three_summed",
+    "time": 42.67
+  },
+  {
+    "name": "done",
+    "time": 43.5
+  }
+]
