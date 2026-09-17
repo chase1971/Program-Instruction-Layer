@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-16 — Guided-practice fraction help and viewport tuning
+
+**Files changed:** Matrix app guided-practice builders, session hook, fraction-help components and MP4 asset; student-portal guided-practice screens and scoped styles; `Manim Trial/fraction_times_whole.py` and pause marks; viewport-budget recipe, app routing docs, momentum handoffs, and generated session logs.
+
+**What worked:** Completed the Q5 help path from draggable alert and blurred Yes/No prompt through a click-driven, non-interactive Manim lesson. The lesson now uses numbered tutorial cards, immediate text changes, Back/Next navigation, Replay below the animation, multiple examples, a right-side Resume button, and an unsaved Yes/Kinda/No feedback gate. Related guided-practice builder sizing, live cell previews, row-entry transitions, portal preview framing, and 812×460 layout work are included.
+
+**Current state:** Green — Matrix app and student-portal production builds pass; Chase approved the flow through the final “Play another example” adjustment.
+
+**File size flag:** `student-portal/src/styles/guided-practice.css` was split; fraction-help styling now lives in `guided-practice-fraction-help.css`. No changed file exceeds 500 lines.
+
+**Next session:** Verify the final Q5 sequence and record the alert coordinates, then build the matching Q9 add/subtract lesson.
+
 ## 2026-09-13 — Recipe: portal assignment gate
 
 **Files changed:** `agent docs/recipes/portal-assignment-gate.md` (new), `agent docs/recipes/INDEX.md` (row), `agent docs/recipes/first-paint-gate.md` (touch), momentum handoffs for grades/logo work.

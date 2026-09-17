@@ -70,6 +70,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "the buttons don't act like buttons", "no 3D effect", "doesn't look like I clicked it", "just a blue field", "which one is selected" | [pressable-buttons.md](./pressable-buttons.md) | ✅ | Macro App (`.da-btn`, Teacher Console side panel); any app Chase drives |
 | "don't add confirmation text", "no copied message", "stop adding feedback after click" | [no-ephemeral-feedback.md](./no-ephemeral-feedback.md) | ✅ | All UI — unless Chase asks for it |
 | "pop-in", "paint all at once", "things load in after", "staged load on open", "layout shift when the screen opens" | [first-paint-gate.md](./first-paint-gate.md) | ✅ | student-portal home, Teacher Console dashboard |
+| "too big", "small scale", "I have to scroll", "padded buttons", "doesn't fit on screen", "812×460", "measure where things go", viewport budget | [viewport-budget-layout.md](./viewport-budget-layout.md) | ✅ | student-portal quiz homes, Matrix guided practice, any fixed-shape window |
 | "assignment isn't available", "deactivated but tile still shows", "error cut off in header", "access off inside quiz", "full page error not overlay" | [portal-assignment-gate.md](./portal-assignment-gate.md) | ✅ | student-portal exit tickets, Matrix tutorial, future portal apps |
 
 ## Where everything else went (2026-08-08)

@@ -6,6 +6,10 @@ Reusable style guidance: [ANIMATION_STYLE_RECIPE.md](ANIMATION_STYLE_RECIPE.md).
 
 ## Animation examples
 
+- `fraction_times_whole.py`: multiply a fraction by whole numbers — write as n/1,
+  cancel first, then multiply tops. Each product is two factors only (e.g. 1/3 × 15
+  separately), then `2/7` with a negative and `2/7 × 3/8` simplified.
+  `http://127.0.0.1:8765/scratch/fraction-times-whole.html`.
 - `gcf_division.py` and `solve_factors.py`: factor and solve a quadratic.
 - `two_step_equation.py`: solve `3x + 7 = 22` by undoing the addition, then the
   multiplication, with each operation written beneath both sides. Delivered at

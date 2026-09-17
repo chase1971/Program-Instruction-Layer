@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Momentum handoff: Gauss-Jordan guided practice first-column UI complete; next is attempt recording",
+  "navigationPath": [
+    { "step": "agent docs/MOMENTUM_HANDOFF.md", "outcome": "routed" },
+    { "step": "Matrix app guided-practice + engine", "outcome": "routed" },
+    { "step": "student-portal/features/guided-practice", "outcome": "routed" },
+    { "step": "agent docs/momentum-handoffs/latest.md", "outcome": "routed" }
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "example_one_problem_shown",
+    "time": 1.17
+  },
+  {
+    "name": "example_one_whole_rewritten",
+    "time": 3.21
+  },
+  {
+    "name": "example_one_products_shown",
+    "time": 4.42
+  },
+  {
+    "name": "example_one_simplified",
+    "time": 7.33
+  },
+  {
+    "name": "example_two_problem_shown",
+    "time": 9.33
+  },
+  {
+    "name": "example_two_whole_rewritten",
+    "time": 11.38
+  },
+  {
+    "name": "example_two_products_shown",
+    "time": 12.58
+  },
+  {
+    "name": "example_two_simplified",
+    "time": 14.0
+  },
+  {
+    "name": "example_one_done",
+    "time": 21.5
+  },
+  {
+    "name": "done",
+    "time": 50.04
+  }
+]

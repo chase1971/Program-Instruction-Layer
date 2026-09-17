@@ -17,6 +17,13 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
 # folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
 PAGES = [
+    ('fraction_times_whole', 'FractionTimesWhole', 'fraction-times-whole',
+     'Multiply a fraction by a whole number', 'Fraction times whole number',
+     'fraction_times_whole_marks.json',
+     'Write a whole number as a fraction, cancel common factors first, then multiply '
+     'the tops. Each product is two factors only &mdash; &frac13;&times;15, then '
+     '&frac13;&times;4, then &frac13;&times;22. Example&nbsp;2: &frac27; with a '
+     'negative whole, then &frac27;&times;&frac38; simplified to &frac{3}{28}.'),
     ('combine_parts', 'DiceSeries', 'dice-series',
      'Two dice &mdash; all four parts', 'Two dice, complete series',
      'dice_series_marks.json',
