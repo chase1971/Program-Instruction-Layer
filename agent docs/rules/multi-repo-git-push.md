@@ -45,6 +45,9 @@ These may differ per machine and must **not** block a pull or get committed on s
 | Path | Why it stays local |
 |---|---|
 | `Macro-App/config/d2l-courses.json` (and `School Scrips/Macro App/...`) | Course list / labels differ or drift between machines |
+| `student-portal/vite.config.ts`, `student-portal/src/styles/index.css` | `Matrix app` vs `Matrix-app` folder name per machine |
+| `student-portal/scripts/lib/roster-codes.mjs` | Tester spare labels per machine |
+| `agent docs/session-*.jsonl`, `agent docs/session-*-log.html` | Per-machine session bumps; merge on pull (see below) |
 | Calendar `server-port.json` | Port per machine |
 | `.env`, credentials, secrets | Never sync |
 
@@ -53,7 +56,26 @@ AppData prefs (Drive roots, machine-profile) live **outside** the repo — leave
 **Procedure when dirty ∩ machine-local only + behind:**  
 `git stash push -m "machine-local before pull" -- <those paths>` → `git pull --ff-only` → `git stash pop`. Report what was pulled; mention preserved locals in one line. **Never** leave the repo un-pulled because only those files were dirty.
 
-**Real collision (STOP):** dirty includes tracked **source** (code, docs, configs that are not in the table above) **and** remote is ahead — surface local vs incoming. Or merge conflict after pull — never auto-resolve. Per-machine styling wrongly living in committed source → ask once (belongs in AppData profile).
+## Diverged branches — merge and finish (do not ask)
+
+When `git pull --ff-only` fails because the branch is **ahead and behind** (common on the
+Programs root after laptop + PC both commit session tracking):
+
+1. Stash machine-local paths if the working tree is dirty.
+2. `git merge origin/<branch>` (default merge — **not** rebase unless Chase names it).
+3. Fix conflicts, commit the merge, `git stash pop` if needed.
+4. **Never** report "needs merge" or "diverged — what do you want?" and stop. Chase's answer is
+   always: merge, fix, commit, move on.
+
+**Session-tracking conflicts** (`session-tracking.jsonl`, `session-scorecards.jsonl`, generated
+HTML): union both sides' jsonl lines (dedupe), then regenerate:
+`node -e "require('./scripts/session-scorecard-ops').regenerate()"`. Do not hand-merge the HTML.
+
+**Other merge conflicts:** resolve in favor of keeping both machines' work when obvious; prefer
+remote for generated/scratch you did not touch this session. Commit when clean.
+
+**Only STOP (surface to Chase):** secret/credential accidentally staged, pre-commit hook failure,
+file too large for GitHub — not because a merge exists.
 
 ## Start of session / explicit pull — pull first
 
@@ -63,8 +85,8 @@ Trigger: first substantive request, or "what's the state", "where did we leave o
 2. Clean + behind → `git pull --ff-only`.
 3. Dirty **only** machine-local paths + behind → stash those paths, pull, restore (see above). **Do not ask.**
 4. Named app (“pull Macro App”) → do that repo **and** still scan sisters if they are behind (especially Macro ↔ assignment-assistant-engine). Do not stop after one repo if others are obviously behind unless he named a single app and the others are current.
-5. Dirty source + remote ahead, or merge conflict → **STOP** — surface it.
-6. Summary: pulled / current / preserved locals / needs attention. **No clarifying questions about what “pull” means.**
+5. Diverged or merge conflict → merge, fix, commit (§ Diverged branches). Do not stop mid-merge.
+6. Summary: pulled / merged / current / preserved locals. **No clarifying questions about what “pull” means.**
 
 ## Commit / push / "put on GitHub" / end-of-session
 
@@ -100,3 +122,5 @@ Fix:
 - Skipping an entire repo at EOS because a machine-local file was dirty.
 - Waiting for him to name every sibling repo when he said “pull” / “same as my PC.”
 - Overwriting `d2l-courses.json` with the other machine’s copy during pull restore.
+- Leaving a repo **diverged** or **mid-merge** because Chase "might want rebase" — he doesn't; merge and finish.
+- Reporting "Programs root needs attention" without merging when he said pull / pull everything.

@@ -135,8 +135,11 @@ drives this. Skip frozen apps.
 "pull Macro App", "same as my PC/laptop"): scan repos, `git status --short` + `git fetch`.
 Clean + behind → `git pull --ff-only`. **Do not ask which repos or which files** — you already
 know the skip list and the scan. Machine-local dirty only (e.g. `config/d2l-courses.json`) →
-**stash those paths, pull, restore** — never skip the whole repo or quiz Chase. Real source
-dirty + remote ahead, or a merge conflict → **STOP and surface it**; never auto-resolve.
+**stash those paths, pull, restore** — never skip the whole repo or quiz Chase. **Diverged**
+(ahead + behind) or ff-only blocked → **merge `origin/<branch>`, fix conflicts, commit** — do
+not ask Chase to choose merge vs rebase or leave the repo mid-merge. Session-tracking jsonl:
+union both sides, regenerate HTML (`session-scorecard-ops`). Other conflicts: merge and fix;
+only **STOP** for secrets staged, hook failure, or oversize file — not for "needs merge."
 
 **End / "put on GitHub":** commit and push **every dirty repo**, one commit per repo — not
 only the active app. Sister pair: Macro App ↔ `assignment-assistant-engine`. **Silent skip**
