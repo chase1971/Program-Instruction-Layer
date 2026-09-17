@@ -1,0 +1,35 @@
+{
+  "chunkNote": "Macro App slim build: Teacher Console stripped, not just hidden (@teacher-console alias shim, main.js gate, builder excludes); build:slim verified",
+  "addGreps": 14,
+  "addTurns": 1,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "Row 22 — app work goes to the app's AGENTS.md" },
+    { "target": "School Scrips/Macro App/AGENTS.md", "kind": "doc", "outcome": "routed", "note": "Keyword row 'Slim build' → SLIM_DISTRIBUTION_BUILD.md" },
+    { "target": "School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md", "kind": "doc", "outcome": "helpful", "note": "student-progress already false — tab hidden, code still shipped" },
+    { "target": "School Scrips/Macro App/renderer/vite.config.ts", "kind": "code", "outcome": "helpful", "note": "Existing alias→ci-shim exclusion pattern reused" },
+    { "target": "School Scrips/Macro App/electron-app/main.js", "kind": "code", "outcome": "helpful", "note": "first-day-handout isTabEnabled block as exemplar" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts", "kind": "code", "outcome": "helpful", "note": "Single isStudentProgressModule gate" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/vite.config.ts",
+    "School Scrips/Macro App/renderer/tsconfig.json",
+    "School Scrips/Macro App/renderer/tsconfig.app.json",
+    "School Scrips/Macro App/renderer/src/modules/teacher-console/teacherConsoleEntry.ts",
+    "School Scrips/Macro App/renderer/src/ci-shims/teacher-console/teacherConsoleEntry.ts",
+    "School Scrips/Macro App/renderer/src/modules/registry.ts",
+    "School Scrips/Macro App/renderer/src/components/shell/AppSidePanel.tsx",
+    "School Scrips/Macro App/renderer/src/components/shell/AppMainPanel.tsx",
+    "School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShell.ts",
+    "School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShellBrowserLayout.ts",
+    "School Scrips/Macro App/renderer/src/styles/index.css",
+    "School Scrips/Macro App/electron-app/main.js",
+    "School Scrips/Macro App/electron-builder.config.cjs",
+    "School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md",
+    "School Scrips/Macro App/docs/PACKAGING_AND_BETA_TESTING.md"
+  ],
+  "docsRulesOpened": [
+    "School Scrips/Macro App/AGENTS.md",
+    "School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md",
+    "agent docs/SESSION_TRACKING.md"
+  ]
+}

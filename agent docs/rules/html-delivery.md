@@ -80,6 +80,54 @@ not the 1 KB stub in `agent docs/`. **Subfolders work**, so
 | Never `.bat` delivery | Chase won't browse to double-click |
 | Port **8765** + `serve-programs-docs.js` | Broken bookmarkable URLs |
 
+## Reader comments — Chase annotating a page, agent reading it back
+
+Added 2026-09-11. A served page can collect Chase's own comments and leave them somewhere an
+agent reads directly, so he can annotate a long report instead of re-typing points into chat.
+
+**The one write the server allows.** `scripts/serve-programs-docs.js` accepts
+`POST /__comments/<page path>` and writes the JSON body to **`<page>.comments.json` beside the
+page** — e.g. `scratch/portal-risk-review.html` → `agent docs/scratch/portal-risk-review.comments.json`.
+Nothing else is writable: non-`.html` targets, pages that don't exist, and path traversal all 404,
+and `GET` on the endpoint is 405. Reading the file back is just the static server (it serves `.json`).
+
+**When Chase says "read my comments on X"** → read `<that page>.comments.json`. Shape:
+
+```json
+{ "page": "scratch/foo.html", "updated": "<iso>",
+  "comments": { "<card id>": {
+      "title": "<the heading he commented on>",
+      "thread": [ { "text": "…", "updated": "<iso>" } ],
+      "draft": "<typed but not yet posted — answer it too>"
+  } } }
+```
+
+Each entry carries the heading text, so the file stands alone — you do not need to open the HTML to
+know what a comment refers to. A `draft` is text he typed without pressing Post; treat it as a real
+comment. Pages written before 2026-09-11 used a flat `"text"` per card instead of `thread`; the
+loader migrates that shape on read, so either may appear on disk.
+
+**Answering him happens in the page, not in chat.** Replies live in the page's own `REPLIES` object,
+keyed by card id, as an array of HTML strings: index *N* answers his post *N*, so a card renders
+post 0, reply 0, post 1, reply 1 … To answer a new comment, append a string to that card's array —
+never rewrite an existing reply, or the thread stops matching what he remembers reading. The page
+shows a "waiting for a reply" line on any card where his posts outnumber the replies, and counts
+those at the top, which is how you (and he) see what is still unanswered.
+
+**To put comment boxes on a new page:** copy the pattern from
+`agent docs/scratch/portal-risk-review.html` — stamp `data-comment-id` (a stable slug) and
+`data-comment-title` on each card, then reuse its `<script>` block with `PAGE`/`DATA_URL` changed.
+The script injects the boxes, so cards stay clean and a new card gets a box for free.
+**Do not build a second save path** (no localStorage-only notes, no copy-to-clipboard export) —
+browser-only storage cannot be read by an agent, which is the entire point of this one.
+
+**Ids must stay stable across rewrites.** The comments file keys off `data-comment-id`. If you
+regenerate a page, keep the existing ids or the comments detach from their points.
+
+**The server must be running for a save to land.** The page shows a red "could not save" line and
+keeps the text in the box, so nothing is lost — but a restart of `serve-programs-docs.js` is needed
+after editing the server itself.
+
 ## Comparison layouts
 
 Side-by-side homework/review (or similar): copy structure from **`School Scrips/School documents/exam2-review-map.html`** — do not invent a new always-on rule.

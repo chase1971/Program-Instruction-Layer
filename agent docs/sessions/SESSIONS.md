@@ -2,6 +2,74 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-09-16 — Guided-practice fraction help and viewport tuning
+
+**Files changed:** Matrix app guided-practice builders, session hook, fraction-help components and MP4 asset; student-portal guided-practice screens and scoped styles; `Manim Trial/fraction_times_whole.py` and pause marks; viewport-budget recipe, app routing docs, momentum handoffs, and generated session logs.
+
+**What worked:** Completed the Q5 help path from draggable alert and blurred Yes/No prompt through a click-driven, non-interactive Manim lesson. The lesson now uses numbered tutorial cards, immediate text changes, Back/Next navigation, Replay below the animation, multiple examples, a right-side Resume button, and an unsaved Yes/Kinda/No feedback gate. Related guided-practice builder sizing, live cell previews, row-entry transitions, portal preview framing, and 812×460 layout work are included.
+
+**Current state:** Green — Matrix app and student-portal production builds pass; Chase approved the flow through the final “Play another example” adjustment.
+
+**File size flag:** `student-portal/src/styles/guided-practice.css` was split; fraction-help styling now lives in `guided-practice-fraction-help.css`. No changed file exceeds 500 lines.
+
+**Next session:** Verify the final Q5 sequence and record the alert coordinates, then build the matching Q9 add/subtract lesson.
+
+## 2026-09-13 — Recipe: portal assignment gate
+
+**Files changed:** `agent docs/recipes/portal-assignment-gate.md` (new), `agent docs/recipes/INDEX.md` (row), `agent docs/recipes/first-paint-gate.md` (touch), momentum handoffs for grades/logo work.
+
+**What worked:** Documented the full-page portal assignment gate pattern (blocking errors, Refresh + Go home, no backdrop dismiss). App implementation and deploy logged in `student-portal/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green.
+
+**File size flag:** None.
+
+**Next session:** None queued.
+
+## 2026-09-13 — Recipe: pressable buttons
+
+**Files changed:** `agent docs/recipes/pressable-buttons.md` (new), `agent docs/recipes/INDEX.md` (row).
+
+**What worked:** Captured Chase's requirement that buttons look raised, sink on press, and that a chosen toggle stays pushed in (dwell clicks are too quick to see `:active`). Exemplar: Macro App `teacher-console-side-panel-buttons.css`, built this session. Main work of the session is logged in `student-portal/docs/sessions/SESSIONS.md`.
+
+**Current state:** Green.
+
+**File size flag:** None.
+
+**Next session:** None queued.
+
+## 2026-09-11 — Session tracking fixes, scorecard split, capture-ladder pages refreshed
+
+**Files changed:** `scripts/session-token-cost.js` (count each reply once, tail context reader, `HEAVY_CONTEXT_TOKENS`),
+`scripts/chat-task.js` (new — per-chat identity + message counts), `scripts/scorecard-enforce.js`,
+`scripts/scorecard-hook-tally.js`, `scripts/scorecard-navigation-path.js` (+`validateNavigationPath`),
+`scripts/session-tracking-store.js`, `scripts/session-tracking-html.js`, `.gitignore`; split
+`scripts/append-session-scorecard.js` 926 → 101 lines into new `session-scorecard-ops.js`,
+`session-metrics-store.js`, `session-metrics-html.js`, `session-metrics-card.js`;
+`agent docs/SESSION_TRACKING.md`, `agent docs/SESSION_METRICS.md`; six HTML pages
+(`context-engineering-*`, `rule-architecture-infographic`, `instructional-layer-htmls/head-agents-md`,
+`measuring-agent-efficiency`); generated logs.
+
+**What worked:** Audited whether session tracking and the momentum handoff produce real data. Token cost
+was recorded on only 4 of 342 bumps (Claude Code only — Cursor transcripts carry no usage) and was 2–4×
+high because the reader summed one transcript line per content block; fixed, and 4 logged entries recounted.
+The context warning is now per chat, so a fresh task after a handoff starts at zero, and it fires on real
+context size in Claude Code (message count in Cursor). Bumps with unknown step keys or no outcome are now
+rejected instead of silently logged as `helpful`. Split the over-cap scorecard entry file and proved the
+split byte-identical on page output and identical across all six CLI modes against a pre-split snapshot.
+Refreshed the capture-ladder HTML family, which still taught the retired `.mdc` mechanism as rung 3.
+
+**Current state:** Green — every changed script loads, bump/finalize/rebuild verified headlessly,
+check-docs 0 dead links, HTML tag balance unchanged.
+
+**File size flag:** `append-session-scorecard.js` 926 → 101. Largest new file `session-metrics-card.js` 391.
+None over 500.
+
+**Next session:** Confirm a Cursor bump records `chatUserMessages` — the Cursor transcript resolves by
+conversation id but has not run through the new hook yet. Handoff-effect data is still only two days deep.
+
+---
+
 ## 2026-09-08 — Agent measurement workbench + session-tracking trim
 
 **Files changed:** `scripts/session-tracking-stats.js`, `session-token-cost.js`, `scorecard-hook-tally.js`,

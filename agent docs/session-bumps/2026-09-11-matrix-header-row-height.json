@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Restored header/category row height tuning for matrix report and gradebook",
+  "navigationPath": [
+    { "step": "Conversation handoff — category row height request", "status": "routed" },
+    { "step": "gradebookViewTuningPrefs.ts — categoryRowPaddingY field", "status": "routed" },
+    { "step": "GradebookViewTuningPanel — Header row height stepper", "status": "routed" },
+    { "step": "MatrixReportGrid + GradebookTable — CSS var wiring", "status": "routed" },
+    { "step": "npm run build + vitest gradebookDisplayPrefs", "status": "routed" }
+  ]
+}

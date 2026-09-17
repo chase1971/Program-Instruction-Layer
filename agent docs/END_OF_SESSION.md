@@ -76,7 +76,9 @@ anything on Chase's screen without asking.
 
 5. **Commit and push** per root `AGENTS.md` § Git — **every dirty repo, one commit per repo**,
    not only the active app. Sibling repos are separate git repos; committing the root does not
-   commit them.
+   commit them. **Silent skip** paths (machine-local config, secrets) are excluded from add and
+   from Chase's report — never "left uncommitted: d2l-courses.json". **When unsure, commit.**
+   Only surface paths that blocked sync (conflict, hook fail, oversize file).
 
 6. **Close your own index gaps, then `node scripts/check-docs.js`.**
 
@@ -93,8 +95,9 @@ anything on Chase's screen without asking.
      names owners, owners name their contents.
    - Report the check-docs summary line and fix dead links.
 
-7. **Report back in one short line:** what was logged, commit/push result, check-docs summary,
-   anything left broken. **Do not ask Chase to run anything.**
+7. **Report back in one short line:** what was logged, commit/push result (success = everything
+   synced — no skip-list noise), check-docs summary, anything left broken. **Do not ask Chase
+   to run anything.**
 
 ---
 

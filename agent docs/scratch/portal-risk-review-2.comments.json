@@ -1,0 +1,76 @@
+{
+  "page": "scratch/portal-risk-review-2.html",
+  "updated": "2026-09-13T00:25:19.582Z",
+  "comments": {
+    "matrix-saves-broken-by-033": {
+      "title": "The Matrix tutorial can't save or submit since migration 033",
+      "thread": [
+        {
+          "text": "Yes, we need to fix this so that it works. I mean, just works.",
+          "updated": "2026-09-13T00:20:40.810Z"
+        }
+      ],
+      "draft": ""
+    },
+    "teacher-functions-open-to-public-key": {
+      "title": "Teacher-only database functions can be run by anyone with the website address",
+      "thread": [
+        {
+          "text": "let's do this. No reason to have this out there if it doesn't need to be dictated.",
+          "updated": "2026-09-13T00:21:08.618Z"
+        }
+      ],
+      "draft": ""
+    },
+    "back-door-still-open-after-deploy": {
+      "title": "The score back door is still open, and its fix was only waiting on today's deploy",
+      "thread": [
+        {
+          "text": "Do you mean the... When you say deploy, are you referring to Netlify or Supabase   .",
+          "updated": "2026-09-13T00:21:57.668Z"
+        }
+      ],
+      "draft": ""
+    },
+    "term-turnover-device-lock": {
+      "title": "Every returning student gets locked out at the start of next term",
+      "thread": [
+        {
+          "text": "I teach a college course that ends at the semester, so this is not going to be an issue. And then I'll just wipe everything probably when I start the next term, but they'll be different students. If I do have the same student that follows, then I'll make sure to build an architecture so that it can still track that student or have given the same code from the previous year or something like that. but this is not like a real big issue unless you can like quickly do it so that it works like that. I mean, I would definitely build a retire course process, but I don't think I need to do that now.",
+          "updated": "2026-09-13T00:22:59.300Z"
+        }
+      ],
+      "draft": ""
+    },
+    "save-retry-has-no-pause": {
+      "title": "A failed save retries instantly, forever",
+      "thread": [
+        {
+          "text": "Sure, let's do it.",
+          "updated": "2026-09-13T00:23:23.033Z"
+        }
+      ],
+      "draft": ""
+    },
+    "no-backups-and-weekly-pause": {
+      "title": "No backups, and the database goes to sleep after a quiet week",
+      "thread": [
+        {
+          "text": "I don't know what that means exactly, but it's very likely that students will go longer than a week. But again, they have access to the link to go back to it. Let me ask you, if a student were to bookmark on, let's say, Chrome or Safari or Firefox or Edge, would the bookmark contain the code link or would it automatically take it off  Because if it doesn't take it off, then it doesn't matter. They'll have that link saved, and that's what they'll be. Anytime they go to the app, they'll use the code length to re-trigger the, to, I guess, reenact them, right  Reactivate them,",
+          "updated": "2026-09-13T00:24:46.350Z"
+        }
+      ],
+      "draft": ""
+    },
+    "access-toggles-browser-only": {
+      "title": "Deactivate and the class gate are only checked in the browser",
+      "thread": [
+        {
+          "text": "Is it easy to fix it  But if it's easy to fix it, let's just fix it, I guess.",
+          "updated": "2026-09-13T00:25:19.582Z"
+        }
+      ],
+      "draft": ""
+    }
+  }
+}

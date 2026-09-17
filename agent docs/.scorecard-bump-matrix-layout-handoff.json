@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Matrix portal layout fit confirmed good on Portal Wide 812×460; momentum handoff written for tutorial QA + multi-repo commit",
+  "navigationPath": [
+    { "target": "agent docs/MOMENTUM_HANDOFF.md", "kind": "doc", "outcome": "routed" },
+    { "target": "School Scrips/student-portal/src/styles/index.css", "kind": "code", "outcome": "helpful", "note": "portal-quiz--matrix flex fill chain" },
+    { "target": "School Scrips/student-portal/src/styles/matrix-embed.css", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/App Dashboard/apps.json", "kind": "code", "outcome": "helpful", "note": "student-portal-horizontal-debug launcher" },
+    { "target": "agent docs/momentum-handoffs/latest.md", "kind": "doc", "outcome": "helpful" }
+  ]
+}

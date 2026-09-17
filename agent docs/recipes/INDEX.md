@@ -39,6 +39,7 @@ into new code.
 | "add a scroll rail" · hover to scroll · the scrollbar is too small to click · click to nudge | [vertical-scroll-rail.md](./vertical-scroll-rail.md) |
 | "modal over the browser" · snapshot · freeze browser · PAUSED stuck · can't close modal | [modal-shell.md](./modal-shell.md) § Macro App embedded browser → then `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
+| report grid · compact grid · matrix report · logins table · gradebook-style grid · grid scroll · table doesn't fill · exit ticket Responses · natural column width · hover tooltip offset · zoom tooltip | [report-grid-layout.md](./report-grid-layout.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
 | "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
 | "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |
@@ -66,7 +67,11 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "click through overlay", "block clicks under pill", "pointer policy" | [overlay-pointer-policy.md](./overlay-pointer-policy.md) | ✅ | electron-toolbar overlay-creator (key pills, tabletop) |
 | "block clicks under scroll zone", "dwell pause scroll zone" | [scroll-zone-click-block.md](./scroll-zone-click-block.md) | ✅ | electron-toolbar scroll zones (Python dwell pause) |
 | "it needs a scroll rail", "hover to scroll", "the scrollbar is too small", "click to nudge" | [vertical-scroll-rail.md](./vertical-scroll-rail.md) | ✅ | Macro App (×3), Math App Studio, Guildrun Stats |
+| "the buttons don't act like buttons", "no 3D effect", "doesn't look like I clicked it", "just a blue field", "which one is selected" | [pressable-buttons.md](./pressable-buttons.md) | ✅ | Macro App (`.da-btn`, Teacher Console side panel); any app Chase drives |
 | "don't add confirmation text", "no copied message", "stop adding feedback after click" | [no-ephemeral-feedback.md](./no-ephemeral-feedback.md) | ✅ | All UI — unless Chase asks for it |
+| "pop-in", "paint all at once", "things load in after", "staged load on open", "layout shift when the screen opens" | [first-paint-gate.md](./first-paint-gate.md) | ✅ | student-portal home, Teacher Console dashboard |
+| "too big", "small scale", "I have to scroll", "padded buttons", "doesn't fit on screen", "812×460", "measure where things go", viewport budget | [viewport-budget-layout.md](./viewport-budget-layout.md) | ✅ | student-portal quiz homes, Matrix guided practice, any fixed-shape window |
+| "assignment isn't available", "deactivated but tile still shows", "error cut off in header", "access off inside quiz", "full page error not overlay" | [portal-assignment-gate.md](./portal-assignment-gate.md) | ✅ | student-portal exit tickets, Matrix tutorial, future portal apps |
 
 ## Where everything else went (2026-08-08)
 

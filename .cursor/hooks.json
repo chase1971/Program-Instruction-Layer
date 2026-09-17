@@ -9,6 +9,9 @@
     "beforeSubmitPrompt": [
       {
         "command": "node scripts/scorecard-hook-tally.js"
+      },
+      {
+        "command": "node scripts/scorecard-enforce.js --context-warning"
       }
     ],
     "preCompact": [

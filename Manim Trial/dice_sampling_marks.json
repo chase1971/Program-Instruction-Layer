@@ -1,0 +1,22 @@
+[
+  {
+    "name": "definition",
+    "time": 10.42
+  },
+  {
+    "name": "spread_question",
+    "time": 31.79
+  },
+  {
+    "name": "sigma_question",
+    "time": 54.17
+  },
+  {
+    "name": "prediction_fixed",
+    "time": 64.42
+  },
+  {
+    "name": "part4_leadin",
+    "time": 74.54
+  }
+]

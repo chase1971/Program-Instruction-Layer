@@ -1,0 +1,13 @@
+{
+  "chunkNote": "Portal review 2 comments: migration 034 (Matrix section-less saves, Deactivate enforced server-side, 15 teacher functions locked to service_role + locked default privileges), portal save retry backoff (not deployed), replies on review page, pipeline doc + kit AGENTS",
+  "navigationPath": [
+    { "step": "agent docs/momentum-handoffs/latest.md", "result": "→", "note": "findings, exact next step, Matrix-off correction" },
+    { "step": "STUDENT_PROGRESS_PIPELINE.md", "result": "→", "note": "shipping rules: db:push auto, Netlify on request" },
+    { "step": "portal-risk-review-2.comments.json", "result": "✓", "note": "approvals for 1,2,5,7; questions on 3,6" },
+    { "step": "html-delivery.md § Reader comments", "result": "✓", "note": "REPLIES append pattern" },
+    { "step": "live DB via Management API", "result": "✓", "note": "student_app_access: matrix off x30 incl kqrzc6; anon exec list" },
+    { "step": "033/022/013 migrations", "result": "✓" },
+    { "step": "student-portal rpc grep + Macro App supabaseRpc", "result": "✓", "note": "portal uses 16 fns; Macro uses service key" },
+    { "step": "useResumableAttempt.ts", "result": "✓", "note": "working copy was double-spaced by another session; rewritten single-spaced" }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "chunkNote": "Part 2 column recap (steps 9–10): typed summary panel at (335,-59), word-spacing fix, instructor-only Part 2 Step 9 jump on home",
+  "addGreps": 8,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "student-portal AGENTS.md for matrix tutorial" },
+    { "target": "School Scrips/student-portal/AGENTS.md", "kind": "doc", "outcome": "helpful", "note": "portal mounts Matrix app solvers" },
+    { "target": "School Scrips/Matrix app/AGENTS.md", "kind": "doc", "outcome": "helpful", "note": "Part 2 step numbering exception" },
+    { "target": "matrix-tutorial-overlay-part-2.tsx", "kind": "code", "outcome": "helpful", "note": "steps 8–10 overlay copy" },
+    { "target": "matrix-column-recap.tsx + matrix-column-recap-panel.tsx", "kind": "code", "outcome": "helpful", "note": "recap content + fixed position" },
+    { "target": "shared/animated-notation.tsx", "kind": "code", "outcome": "helpful", "note": "nbsp for flex char spaces; word typing for headings" },
+    { "target": "student-portal/matrix-embed.css", "kind": "code", "outcome": "helpful", "note": "portal recap width/padding" },
+    { "target": "MatrixTutorialView.tsx + useMatrixTutorialParts.ts", "kind": "code", "outcome": "helpful", "note": "Part 2 Step 9 dev jump button" }
+  ],
+  "filesEdited": [
+    "School Scrips/Matrix app/src/app/components/matrix-column-recap.tsx",
+    "School Scrips/Matrix app/src/app/components/matrix-column-recap-panel.tsx",
+    "School Scrips/Matrix app/src/app/components/shared/animated-notation.tsx",
+    "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+    "School Scrips/Matrix app/src/app/components/matrix-solver-part-2.tsx",
+    "School Scrips/Matrix app/src/app/components/matrix-solver.tsx",
+    "School Scrips/Matrix app/src/app/hooks/use-matrix-tutorial-part-2.ts",
+    "School Scrips/Matrix app/TUTORIAL_TEXT.md",
+    "School Scrips/student-portal/src/styles/matrix-embed.css",
+    "School Scrips/student-portal/src/features/matrix-tutorial/MatrixTutorialView.tsx",
+    "School Scrips/student-portal/src/features/matrix-tutorial/useMatrixTutorialParts.ts",
+    "School Scrips/student-portal/src/types/matrix-app.d.ts"
+  ]
+}

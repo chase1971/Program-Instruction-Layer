@@ -36,6 +36,9 @@ Avoid “multiply back” unless the lesson specifically teaches checking by mul
 ## Visual style
 
 - Dark navy background, large high-contrast math, muted instructional captions.
+- **Captions ride along the top of the frame, never the bottom.** They say what is going
+  on, so they should be read first. `scene_style.CAPTION_Y` owns the position; content
+  then lives below roughly y = 2.5.
 - Gold for the GCF, light blue for the remaining factors, white for operators and structure.
 - Keep the equation readable on a phone held horizontally.
 - Use MathTex for formulas; do not render equations as ordinary text.

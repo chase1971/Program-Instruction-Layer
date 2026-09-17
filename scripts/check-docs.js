@@ -38,7 +38,7 @@ const IGNORED_DIRS = new Set([
   'logs', '.husky', 'dist-installer', 'test-results', 'backups',
   'calendar-vendor', 'assignment-assistant-engine', '.ci-test-venv', 'reports',
   // Ephemeral / tool-generated / vendored — not part of the instruction layer
-  'plans', '.pytest_cache', 'DisplayProfileManager-main', 'coverage',
+  'plans', 'momentum-handoffs', '.pytest_cache', 'DisplayProfileManager-main', 'coverage',
   'playwright-report', 'simulator', 'test-fixtures', 'node_modules_old',
   'animation-library', 'my-calendar', 'sog-world-viewer', 'canvas-vendor',
   'venv', 'site-packages', '.venv', 'Lib', 'python', 'heros-hour-umt-export',

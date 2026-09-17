@@ -1,0 +1,7 @@
+{
+  "chunkNote": "Portal: raw error when a quiz/tutorial first opens replaced with two plain messages (can't connect vs. not available); built, not deployed per Chase",
+  "navigationPath": [
+    { "step": "src/config/studentMessages.ts", "result": "✓", "note": "owner added last task" },
+    { "step": "hooks/useResumableAttempt.ts + services/attemptProgress.ts", "result": "✓" }
+  ]
+}

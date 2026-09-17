@@ -1,0 +1,16 @@
+{
+  "chunkNote": "Tester codes roster cleanup — universal spares, course Assign/Remove, rename labels, horizontal actions (code done; migration 036 not pushed)",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "Prior session context from summary" },
+    { "target": "Macro App/renderer/.../ConsoleRosterScreen.tsx", "kind": "code", "outcome": "helpful" },
+    { "target": "Macro App/electron-app/shared-multi-section-testers.js", "kind": "code", "outcome": "helpful" },
+    { "target": "student-session-kit/supabase/migrations/033_multi_section_testers.sql", "kind": "code", "outcome": "helpful" },
+    { "target": "student-session-kit/supabase/migrations/036_multi_section_spares_grant_membership.sql", "kind": "code", "outcome": "helpful", "note": "Created — not pushed" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleRosterScreen.tsx",
+    "School Scrips/student-session-kit/supabase/migrations/036_multi_section_spares_grant_membership.sql"
+  ]
+}

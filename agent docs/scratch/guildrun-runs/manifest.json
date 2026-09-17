@@ -1,6 +1,57 @@
 {
   "runs": [
     {
+      "id": "0847cb26-ad4d-4a9f-b9c5-e396804d325a",
+      "file": "2026-09-16-0847cb26.html",
+      "heroes": [
+        "Fiona",
+        "Niklas",
+        "Pollen"
+      ],
+      "floor": 7,
+      "act": 1,
+      "battles_won": 7,
+      "battles": 8,
+      "relics": 7,
+      "shards": 61,
+      "updated": "2026-09-16T23:00:25",
+      "live": true
+    },
+    {
+      "id": "19a18e6d-b25a-4a60-9aec-6582aabf5f19",
+      "file": "2026-09-16-19a18e6d.html",
+      "heroes": [
+        "Funke",
+        "Rip",
+        "Sal"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 11,
+      "battles": 14,
+      "relics": 13,
+      "shards": 17,
+      "updated": "2026-09-16T22:39:38",
+      "live": false
+    },
+    {
+      "id": "b910966e-082a-41ec-9cdf-626fdec0876f",
+      "file": "2026-09-16-b910966e.html",
+      "heroes": [
+        "Irini",
+        "Pollen",
+        "Fiona"
+      ],
+      "floor": 8,
+      "act": 1,
+      "battles_won": 7,
+      "battles": 8,
+      "relics": 10,
+      "shards": 8,
+      "updated": "2026-09-16T22:04:42",
+      "live": false
+    },
+    {
       "id": "b8e1de3f-63af-4a7c-8844-5913ea0fb01d",
       "file": "2026-09-05-b8e1de3f.html",
       "heroes": [

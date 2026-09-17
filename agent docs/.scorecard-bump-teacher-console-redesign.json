@@ -1,0 +1,24 @@
+{
+  "chunkNote": "Teacher Console preview-first redesign — workspace nav, portal+tester panel, app switcher, inline response detail; build:renderer green, 43 tests pass",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "Programs root baseline" },
+    { "target": "agent docs/scratch/teacher-console-concept.html", "kind": "doc", "outcome": "helpful", "note": "Prototype layout target" },
+    { "target": "School Scrips/Macro App/AGENTS.md", "kind": "doc", "outcome": "routed", "note": "Teacher Console live preview row" },
+    { "target": "useTeacherConsoleNavigation.ts", "kind": "code", "outcome": "helpful", "note": "Replaced dashboard-first with workspace-first model" },
+    { "target": "TeacherConsoleWorkspaceShell.tsx + new workspace screens", "kind": "code", "outcome": "helpful" },
+    { "target": "TeacherConsoleSidePanel.tsx", "kind": "code", "outcome": "helpful", "note": "Contextual tools only; removed app drill-in panels" },
+    { "target": "npm run build:renderer + vitest", "kind": "verify", "outcome": "helpful" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/src/hooks/teacher-console/useTeacherConsoleNavigation.ts",
+    "School Scrips/Macro App/renderer/src/hooks/teacher-console/useTeacherConsoleActivityCatalog.ts",
+    "School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppStudentProgressShell.ts",
+    "School Scrips/Macro App/renderer/src/components/teacher-console/TeacherConsoleWorkspaceShell.tsx",
+    "School Scrips/Macro App/renderer/src/components/teacher-console/TeacherConsoleWorkspace.tsx",
+    "School Scrips/Macro App/renderer/src/components/side-panels/teacher-console/TeacherConsoleSidePanel.tsx",
+    "School Scrips/Macro App/renderer/src/styles/teacher-console-workspaces.css"
+  ],
+  "docsRulesOpened": ["AGENTS.md", "School Scrips/Macro App/AGENTS.md"]
+}

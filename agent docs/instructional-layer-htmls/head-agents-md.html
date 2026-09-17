@@ -74,9 +74,9 @@
   </header>
 
   <div class="stats">
-    <div class="stat"><b style="color:var(--blue)">15</b><span>sections</span></div>
-    <div class="stat"><b style="color:var(--green)">145</b><span>nonblank lines</span></div>
-    <div class="stat"><b style="color:var(--amber)">~9.3k</b><span>characters</span></div>
+    <div class="stat"><b style="color:var(--blue)">17</b><span>sections</span></div>
+    <div class="stat"><b style="color:var(--green)">197</b><span>nonblank lines</span></div>
+    <div class="stat"><b style="color:var(--amber)">~13.6k</b><span>characters</span></div>
     <div class="stat"><b style="color:var(--purple)">1</b><span>always-on root file</span></div>
   </div>
 
@@ -152,9 +152,23 @@
     </div>
 
     <div class="card amber">
+      <div class="eyebrow">Context cost</div>
+      <div class="title">Long-task context warning</div>
+      <div class="body">When a hook reports that the task has gone context-heavy, say so plainly, finish the current deliverable, then recommend a momentum handoff before the next major chunk.</div>
+      <div class="why">Why it stays: every reply re-reads the whole conversation, so a long task quietly costs several times what a fresh one does.</div>
+    </div>
+
+    <div class="card purple">
+      <div class="eyebrow">Continuation</div>
+      <div class="title">Momentum handoff</div>
+      <div class="body">"Perform a momentum handoff" writes <code>agent docs/momentum-handoffs/latest.md</code> — objective, decisions, rejected directions, exact next step — then hands over a fresh-task prompt. It is not an end-of-session: nothing is committed or finalized.</div>
+      <div class="why">Why it stays: it is how judgment survives into a new task instead of dying with the old context.</div>
+    </div>
+
+    <div class="card amber">
       <div class="eyebrow">Bookkeeping</div>
-      <div class="title">Session scorecard</div>
-      <div class="body">After each completed deliverable, bump the running scorecard file through the script.</div>
+      <div class="title">Session tracking</div>
+      <div class="body">After each completed deliverable, bump the log through the script — what you finished, plus the ordered path of where you looked and what helped.</div>
       <div class="why">Why it stays: it preserves work counts through summarization and long sessions.</div>
     </div>
 

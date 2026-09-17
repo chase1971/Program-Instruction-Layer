@@ -1,0 +1,10 @@
+{
+  "chunkNote": "Refactor step 3a: split Macro App studentProgressService.ts (575 lines, 48 exports) into 6 domain services (attempts, access, sections/tester labels/login events, class announcements, exit tickets, portal dev server); original is now a 13-line re-export barrel so all 67 importers unchanged; code lines + export names verified identical; build/lint/1343 tests pass",
+  "navigationPath": [
+    { "step": "handoff § step 3 domain proposal", "result": "✓" },
+    { "step": "mtime check renderer/src", "result": "✓", "note": "service untouched since 15:47" },
+    { "step": "grep importers / vi.mock / ci-shims", "result": "✓", "note": "67 importers, no mocks → barrel keeps them working" },
+    { "step": "split script LF assumption", "result": "✗", "note": "file is CRLF; guard stopped before writing; fixed" },
+    { "step": "multiset line diff + export-name diff", "result": "✓" }
+  ]
+}

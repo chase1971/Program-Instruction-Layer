@@ -1,0 +1,13 @@
+{
+  "chunkNote": "Makeup Exam tab opens on a class (last used, else first) instead of none; splash fix confirmed in source, no build",
+  "addGreps": 6,
+  "navigationPath": [
+    { "target": "School Scrips/Macro App/AGENTS.md", "kind": "doc", "outcome": "routed", "note": "No Makeup Exam course-selection row; Makeup Exam docs cover CDP only, so went to hooks/makeup-exam" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/makeup-exam/useMakeupExam.ts", "kind": "code", "outcome": "helpful", "note": "selectedCourseCode starts null, set only by tab click" },
+    { "target": "School Scrips/Macro App/renderer/src/hooks/student-progress/useStudentProgressLastCourse.ts", "kind": "code", "outcome": "helpful", "note": "Existing last-course pattern; persisted via usePersistedState" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/renderer/src/hooks/makeup-exam/useMakeupExam.ts",
+    "School Scrips/Macro App/renderer/src/hooks/makeup-exam/useMakeupExamAutomation.ts"
+  ]
+}

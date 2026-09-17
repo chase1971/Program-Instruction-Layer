@@ -1,0 +1,9 @@
+{
+  "chunkNote": "Portal keeps ?s=CODE in the address bar after sign-in (Safari 7-day localStorage wipe); Supabase keep-alive GitHub Action every 3 days reading anon key from live bundle, committed + pushed in student-session-kit",
+  "navigationPath": [
+    { "step": "useStudentIdentity.ts + studentIdentity.ts", "result": "✓", "note": "sign-in already logged every load, so no Logins clutter" },
+    { "step": "gh auth status", "result": "✗", "note": "not logged in; avoided repo secret by reading key from live bundle" },
+    { "step": "node scripts/keep-alive.mjs locally", "result": "✓", "note": "read 1 activity row" },
+    { "step": "STUDENT_PROGRESS_PIPELINE.md", "result": "✓", "note": "step 4 + costs section updated" }
+  ]
+}

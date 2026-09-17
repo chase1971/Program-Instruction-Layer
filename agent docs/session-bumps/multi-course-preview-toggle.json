@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Multi-course preview toggle: migration 033, sync, Macro App IPC + phone preview hook, portal preview context, docs",
+  "navigationPath": [
+    { "step": "agent docs/INDEX.md", "result": "routed", "note": "student progress pipeline" },
+    { "step": "033_multi_section_testers.sql", "result": "routed", "note": "memberships + RPCs (already pushed)" },
+    { "step": "Macro App student-progress-io + Teacher Console hooks", "result": "routed" },
+    { "step": "student-portal previewContext + useStudentIdentity", "result": "routed" },
+    { "step": "sync-portal-rosters + 1314 codes regen", "result": "routed" },
+    { "step": "STUDENT_PROGRESS_PIPELINE.md", "result": "routed" }
+  ]
+}

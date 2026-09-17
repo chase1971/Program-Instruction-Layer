@@ -12,7 +12,27 @@
 
 Chase uses **sibling repos** under `C:\Users\chase\Documents\Programs\` (not a monorepo). **Pull before you start, push before you stop** — agent drives this; Chase cannot rely on remembering.
 
+**Why GitHub exists for Chase:** crash backup and moving work between home and work. He does not curate what is in the repo — he needs **everything that makes the tree work** (and anything he asked to keep) on GitHub. The agent decides commit vs skip; he should never have to.
+
 **Full repo index, sister-app pairs, skip lists:** `AGENTS.md` § End-of-Session + multi-repo table in user rules.
+
+## Silent skip list — exclude, never report
+
+These paths are **never committed**. Exclude them from `git add` and from **every report** Chase sees — end-of-session, "put on GitHub", status summaries. Do **not** write "left uncommitted: `d2l-courses.json`" or similar. From his perspective, skip-list files do not exist for sync purposes; mentioning them creates work he did not ask for.
+
+| Path | Why |
+|---|---|
+| `.env`, credentials, secrets | Security |
+| `Macro App/config/d2l-courses.json` (both path spellings) | Machine-local course list |
+| Calendar `server-port.json` | Machine-local port |
+
+**When unsure whether to commit:** **commit and push.** There is no downside for Chase — worst case an extra file is on GitHub. Do not ask him to decide. Do not list "judgment call" leftovers in the wrap-up report.
+
+**Only mention an uncommitted path when** something actually blocked sync: merge conflict, hook failure, secret accidentally staged, or a file too large for GitHub. Fix or surface the blocker — not a skip-list item.
+
+## Wrap-up report shape
+
+One line (or short table): repos **committed and pushed**, check-docs summary, anything **broken**. Success wording: *everything committed and pushed* — not *everything except X, Y, Z*. Skip-list paths are omitted entirely.
 
 ## Why pull must not ask
 
@@ -53,9 +73,9 @@ Also: Cursor Automation, nightly backup. **No npm test / pytest / builds** unles
 1. Same multi-repo scan; skip frozen apps.
 2. Commit + push **every dirty repo** with meaningful changes — not only the active app. One repo per commit.
 3. Sister pair when either changed: Macro App ↔ assignment-assistant-engine.
-4. Skip unless asked: `.env`, credentials, `config/d2l-courses.json`, Calendar `server-port.json`.
-5. **Do include:** `Macro App/modules/makeup-exam/exam_history.jsonl` (tracked sync log).
-6. Summary table: repo, commit, push result, skipped.
+4. **Silent skip** (exclude from add and from Chase's report): `.env`, credentials, `config/d2l-courses.json`, Calendar `server-port.json`. See § Silent skip list above.
+5. **Do include:** `Macro App/modules/makeup-exam/exam_history.jsonl` (tracked sync log). **Default:** commit any other dirty tracked or untracked file unless it is on the silent skip list.
+6. Summary for Chase: repo, commit, push result — **no "skipped" column** for silent-skip paths. Only report blockers (conflict, hook fail, oversize file).
 
 Run commit/push scan **before** `SESSIONS.md` on end-of-session.
 

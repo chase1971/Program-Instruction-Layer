@@ -1,0 +1,15 @@
+{
+  "chunkNote": "Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing",
+  "addGreps": 8,
+  "navigationPath": [
+    { "target": "School Scrips/Macro App/docs/LAPTOP_LAUNCH.md", "kind": "doc", "outcome": "partial", "note": "Covers the old blank-splash cause (HTA/show:true); not this one" },
+    { "target": "School Scrips/Macro App/electron-app/launch-splash-window.js", "kind": "code", "outcome": "helpful" },
+    { "target": "%APPDATA%/macro-app/logs/macro-app.log", "kind": "log", "outcome": "helpful", "note": "[boot] marks: 7-10s renderer first paint, no main-process log lines during gap" },
+    { "target": "School Scrips/Macro App/electron-app/boot-timing.js", "kind": "code", "outcome": "helpful", "note": "Extended with startStallWatch/stopStallWatch" }
+  ],
+  "filesEdited": [
+    "School Scrips/Macro App/electron-app/boot-timing.js",
+    "School Scrips/Macro App/electron-app/main.js",
+    "School Scrips/Macro App/electron-app/launch-splash-window.js"
+  ]
+}

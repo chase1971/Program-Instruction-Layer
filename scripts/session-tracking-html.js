@@ -10,7 +10,7 @@ const {
   escapeHtml,
 } = require('./scorecard-navigation-path');
 const { rollup, collectIndexFailures } = require('./session-tracking-stats');
-const { formatTokens } = require('./session-token-cost');
+const { formatTokens, HEAVY_CONTEXT_TOKENS } = require('./session-token-cost');
 
 function dayKey(iso) {
   const d = new Date(iso || Date.now());
@@ -91,8 +91,12 @@ function costPills(entry) {
   let html = '';
   if (Number.isFinite(entry.billedTokens)) {
     html += `<span class="pill p0">${formatTokens(entry.billedTokens)} tokens</span>`;
+  } else if (Number.isFinite(entry.chatUserMessages)) {
+    // Cursor records no tokens, so chat length is the only cost signal there.
+    const kb = Number.isFinite(entry.chatTranscriptKB) ? ` · ${entry.chatTranscriptKB} KB` : '';
+    html += `<span class="pill p0">Chat: ${entry.chatUserMessages} msgs${kb}</span>`;
   }
-  if ((entry.tokensPerTurn || 0) >= 250000) {
+  if ((entry.tokensPerTurn || 0) >= HEAVY_CONTEXT_TOKENS) {
     html += `<span class="pill p2">Heavy context — ${formatTokens(entry.tokensPerTurn)}/turn</span>`;
   }
   return html;
@@ -119,6 +123,10 @@ function taskEntryHtml(entry) {
       + `${Number.isFinite(entry.billedTokens)
         ? ` · ${formatTokens(entry.billedTokens)} tokens over ${entry.tokenTurns} turn(s)`
           + ` · ${formatTokens(entry.tokensPerTurn)}/turn`
+        : ''}`
+      + `${Number.isFinite(entry.chatUserMessages)
+        ? ` · chat so far: ${entry.chatUserMessages} message(s)`
+          + `${Number.isFinite(entry.chatTranscriptKB) ? `, ${entry.chatTranscriptKB} KB transcript` : ''}`
         : ''}`
     : '';
 

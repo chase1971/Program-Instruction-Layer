@@ -38,16 +38,19 @@ never touches this file.
 |---|---|
 | "don't put that on my screen" · launch the app · GUI or UI test · change the display config | [rules/never-display-without-permission.md](./rules/never-display-without-permission.md) |
 | PowerShell error · `&&` didn't work · curl failed · shell syntax | [rules/powershell-shell-commands.md](./rules/powershell-shell-commands.md) |
-| "put it on GitHub" · pull · "pull Macro App" · "same as my PC" · push at end · which repos get committed · laptop vs PC files | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
+| "put it on GitHub" · pull · "pull Macro App" · "same as my PC" · push at end · which repos get committed · laptop vs PC files · don't tell me what's uncommitted · commit everything · GitHub backup | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | `.gitignore` didn't work · ignored file still shows in git · runtime file keeps changing | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | frozen apps · Calendar 2.0 · "don't touch that one" | [rules/frozen-apps.md](./rules/frozen-apps.md) |
 | "make me an HTML page I can click" · deliver a link · the docs server on 8765 | [rules/html-delivery.md](./rules/html-delivery.md) |
+| **"read my comments on \<page\>"** · he annotated an HTML report · comment boxes on a page | [rules/html-delivery.md](./rules/html-delivery.md) § Reader comments — read `<page>.comments.json` beside the page |
 
 ## Session flow
 
 | You might say | Read this |
 |---|---|
 | "end of session protocol" · wrap the session · we're done for now | [END_OF_SESSION.md](./END_OF_SESSION.md) — the seven steps and the log template |
+| "perform a momentum handoff" · switch to a fresh task · give the next agent our momentum | [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) — write [momentum-handoffs/latest.md](./momentum-handoffs/latest.md), then copy-ready prompt |
+| **"read the latest momentum handoff"** · continue from the handoff · pick up the momentum handoff · what did the last agent leave off (fresh task) | **[momentum-handoffs/latest.md](./momentum-handoffs/latest.md)** first, then [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) § Read — check the Written date; stale → ask Chase |
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
 | "log the task" · bump session tracking · task navigation path | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
 | finalize session metrics · grep/file counts · hook enforcement | [SESSION_METRICS.md](./SESSION_METRICS.md) |
@@ -63,7 +66,7 @@ never touches this file.
 | "run the conformance pass on \<app\>" · bring one app up to standard | [APP_CONFORMANCE_PASS.md](./APP_CONFORMANCE_PASS.md) |
 | how does this whole setup work · which tool reads which file · why did `.mdc` go away | [HOW_TO_INTERACT_WITH_AI.md](../HOW_TO_INTERACT_WITH_AI.md) |
 | explain my setup to another developer | [AGENT_SETUP_FOR_PEER_REVIEW.md](./AGENT_SETUP_FOR_PEER_REVIEW.md) |
-| "show me the diagram" · the pages on 8765 · how is the index laid out | [index.html](./index.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |
+| "show me the diagram" · the pages on 8765 · how is the index laid out | [pages.html](./pages.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |
 | what is this index · how do I add a row | this file — § Keeping this honest, below |
 
 ## Scripts
@@ -74,6 +77,7 @@ never touches this file.
 | serve a page Chase can click · start the docs server · port 8765 | [scripts/serve-programs-docs.js](../scripts/serve-programs-docs.js) |
 | bump task tracking or finalize session metrics | [scripts/append-session-scorecard.js](../scripts/append-session-scorecard.js) |
 | archive old plans · sweep `docs/plans/` | [scripts/archive-stale-plans.js](../scripts/archive-stale-plans.js) |
+| prune old momentum handoffs · dated handoff cleanup | [scripts/prune-momentum-handoffs.js](../scripts/prune-momentum-handoffs.js) — auto after each perform; keeps 3 days |
 | turn a markdown file into a PDF | [scripts/md-to-pdf.js](../scripts/md-to-pdf.js) |
 
 ---

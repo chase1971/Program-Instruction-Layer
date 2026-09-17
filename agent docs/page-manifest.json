@@ -39,6 +39,10 @@
       "open": false,
       "match": [
         "instructional-layer-htmls/student-portal-pipeline.html",
+        "scratch/student-portal-pamphlet-view.html",
+        "scratch/teacher-console-concept.html",
+        "scratch/portal-risk-review.html",
+        "scratch/portal-risk-review-2.html",
         "instructional-layer-htmls/course-setup-map.html",
         "scratch/macro-app-launch-paths.html",
         "scratch/gradebook-pull-timing-map.html",
@@ -104,9 +108,16 @@
       "accent": "amber",
       "open": false,
       "match": [
+        "scratch/dice-series.html",
+        "scratch/dice-sums.html",
+        "scratch/dice-stats.html",
+        "scratch/dice-sampling.html",
+        "scratch/dice-products.html",
         "scratch/ellipse-definition.html",
         "scratch/gcf-division.html",
         "scratch/two-step-equation.html",
+        "scratch/fraction-times-whole.html",
+        "scratch/fraction-add-fractions.html",
         "scratch/matrix-tutorial-text-2026-09-07.html"
       ]
     },
@@ -123,7 +134,9 @@
         "scratch/mt2-run.html",
         "^scratch/guildrun-runs/"
       ],
-      "collapsePatterns": ["^scratch/guildrun-runs/"]
+      "collapsePatterns": [
+        "^scratch/guildrun-runs/"
+      ]
     },
     {
       "id": "retired",
@@ -131,10 +144,14 @@
       "blurb": "The old cursor-patterns/ set, kept for history. These were merged into recipes/ on 2026-08-07 — do not treat as current guidance.",
       "accent": "grey",
       "open": false,
-      "match": ["^instructional-layer-htmls/cursor-patterns/"]
+      "match": [
+        "^instructional-layer-htmls/cursor-patterns/"
+      ]
     }
   ],
   "descriptions": {
+    "scratch/portal-risk-review-2.html": "Second pass on the student portal + teacher console (2026-09-12), checked against the live database. Matrix saves broken by migration 033, teacher-only functions runnable with the public key, and five more, with comment threads.",
+    "scratch/portal-risk-review.html": "Plain-language risk review of the student portal + teacher console (2026-09-11). Fifteen things that could go wrong with student use or the data you collect, each with why it matters and what to do. Starts with the three to fix first.",
     "instructional-layer-htmls/agent-measurement-workbench.html": "The front door to all the measurement tooling: the three report pages, every command, and a ranked queue of five experiments to run. Includes the settled facts so you don't re-derive them.",
     "probe-baseline-log.html": "20 fixed questions, each answered in a fresh read-only session, so the tasks never vary and any difference between runs is caused by what you changed. Baseline: 20/20 correct, 867k tokens. Includes the navigation-cost list.",
     "token-usage-log.html": "Real billed tokens from your Claude Code history plus Cursor's local counts. Reading files costs ~4× editing them; a turn in a 600+ turn session costs ~8× a turn in a short one.",
@@ -148,6 +165,7 @@
     "context-engineering-capture-costs.html": "What each rung of the capture ladder costs per session.",
     "rule-architecture-infographic.html": "How the guidance system works. Predates the index restructure, so parts may now be wrong.",
     "instructional-layer-htmls/student-portal-pipeline.html": "Walkthrough of the grading pipeline: Math App Studio designs an app, the portal runs it, Supabase stores anonymous results, Macro App puts the names back. Includes seven weak spots ranked worst-first.",
+    "scratch/student-portal-pamphlet-view.html": "Clickable full-size view of the Student Portal one-page pamphlet image — what it does, learning data collected, privacy model.",
     "instructional-layer-htmls/course-setup-map.html": "Setup steps create information nodes; Macro App tabs pull from those nodes — course list, schedule, calendar link, roster, assignment calendar.",
     "scratch/macro-app-launch-paths.html": "Why the .bat launch feels worse than the dashboard one, and how to fix it.",
     "scratch/gradebook-pull-timing-map.html": "Timing map for the gradebook pull.",
@@ -157,6 +175,11 @@
     "instructional-layer-htmls/electron-toolbar-docs-review.html": "All 39 markdowns under electron-toolbar/ checked against live code. 11 of 16 flagged files deleted.",
     "instructional-layer-htmls/app-dashboard-docs-review.html": "First app in the conformance-pass series. All 12 App Dashboard markdowns checked; 5 deleted, 2 fixed.",
     "instructional-layer-htmls/recipes-review.html": "The 26 interaction recipes checked against live code and split by owning app — only 3 were genuinely cross-app.",
-    "instructional-layer-htmls/cursor-patterns-review.html": "Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted."
+    "instructional-layer-htmls/cursor-patterns-review.html": "Historical record of the review that eliminated cursor-patterns/ — 6 files merged into recipes/, 11 deleted.",
+    "scratch/dice-sums.html": "Two dice, part 1 — every ordered roll behind each sum from 2 to 12, ending on 36.",
+    "scratch/dice-stats.html": "Two dice, part 2 — the chart tips into a histogram, a normal curve lays over it, then mu = 7 and sigma = 2.42.",
+    "scratch/dice-sampling.html": "Two dice, part 3 — 100 sample means of four rolls rain onto the same axis, and sigma / root n predicts the spread.",
+    "scratch/dice-products.html": "Two dice, part 4 — the product is spiky and gap-riddled, yet its sampling distribution still goes normal. The Central Limit Theorem.",
+    "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem."
   }
 }
