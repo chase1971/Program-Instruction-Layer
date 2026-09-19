@@ -244,7 +244,7 @@ class FractionTimesWhole(Narrated, Scene):
             1, 3, 4, 1, (4, 3),
             mark_prefix='example_two',
         )
-        self.show_problem(1, 3, 22, 1, (22, 3))
+        self.show_problem(1, 3, 22, 1, (22, 3), mark_prefix='example_three')
         self.mark('example_one_done')
         self.wait(1.)
 
