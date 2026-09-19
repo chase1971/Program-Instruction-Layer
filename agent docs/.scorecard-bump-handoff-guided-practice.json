@@ -1,0 +1,16 @@
+{
+  "chunkNote": "Momentum handoff — guided practice fraction help + solution entry (Q17 pulse, skip buttons, tab-or-click prompts)",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/MOMENTUM_HANDOFF.md", "kind": "doc", "outcome": "helpful" },
+    { "target": "agent docs/momentum-handoffs/latest.md", "kind": "doc", "outcome": "helpful" },
+    { "target": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-session.ts", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Matrix app/src/app/components/guided-practice/SolutionEntryGrid.tsx", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts", "kind": "code", "outcome": "helpful" }
+  ],
+  "filesEdited": [
+    "agent docs/momentum-handoffs/latest.md",
+    "agent docs/momentum-handoffs/2026-09-19_guided-practice-solution-and-fraction-help.md"
+  ]
+}

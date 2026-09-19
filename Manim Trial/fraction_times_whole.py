@@ -217,12 +217,17 @@ class FractionTimesWhole(Narrated, Scene):
             )
         else:
             self.play(FadeIn(board), run_time=.85)
+            self.wait(.55)
+            if mark_prefix:
+                self.mark(f'{mark_prefix}_problem_shown')
 
         self.wait(.55)
-        if mark_prefix:
+        if whole_number and mark_prefix:
             self.mark(f'{mark_prefix}_whole_rewritten')
         if reductions:
             self.pull_cancel_pair(board, terms, values, reductions)
+            if mark_prefix:
+                self.mark(f'{mark_prefix}_cancelled')
             self.wait(.5)
 
         result = self.finish_product(
@@ -241,25 +246,15 @@ class FractionTimesWhole(Narrated, Scene):
             mark_prefix='example_one',
         )
         self.show_problem(
-            1, 3, 4, 1, (4, 3),
-            mark_prefix='example_two',
-        )
-        self.show_problem(1, 3, 22, 1, (22, 3), mark_prefix='example_three')
-        self.mark('example_one_done')
-        self.wait(1.)
-
-        self.show_problem(
             2, 7, 14, 1, '4',
             reductions=[('left_bottom', '1'), ('right_top', '2')],
-        )
-        self.show_problem(
-            2, 7, -21, 1, '-6',
-            reductions=[('left_bottom', '1'), ('right_top', '-3')],
+            mark_prefix='example_two',
         )
         self.show_problem(
             2, 7, 3, 8, (3, 28),
             reductions=[('left_top', '1'), ('right_bottom', '4')],
             whole_number=False,
+            mark_prefix='example_three',
         )
         self.mark('done')
         self.wait(2.)

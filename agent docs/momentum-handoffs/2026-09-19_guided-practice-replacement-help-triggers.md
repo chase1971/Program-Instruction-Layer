@@ -107,9 +107,3 @@
 **Wait for Chase’s device feedback** on the latest help-trigger + step 16 layout. If he reports overlap or wrong behavior, adjust `GuidedPracticeRowEntryReplacementReveal.tsx` / compact label CSS in `guided-practice-fraction-help.css` (portal) and `theme.css` (Matrix standalone). If everything looks good, ask whether to run **end-of-session protocol** (commit both repos).
 
 **Skip-button smoke path for Chase (statement, not a question):** Home → **Col 2 · Replace entry** → wrong row → confirm embedded *Need help with adding fractions?* above animation, **!** icon, inline Next on wrong tip.
-
----
-
-## Copy-ready navigation path (for scorecard)
-
-`latest.md` → `GuidedPracticeHelpTrigger.tsx` → `GuidedPracticeSolver.tsx` → `guided-practice-wrong-recovery.ts` → `GuidedPracticeView.tsx`

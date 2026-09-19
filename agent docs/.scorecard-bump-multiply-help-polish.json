@@ -1,0 +1,32 @@
+{
+  "chunkNote": "Q5 multiply fraction help: intro flow, centered layout, EX2 simplify-first steps, Q9 prompt, video zoom",
+  "addGreps": 12,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "School Scrips/Matrix app/AGENTS.md", "kind": "doc", "outcome": "routed", "note": "guided practice viewport + step numbering" },
+    { "target": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Matrix app/src/app/components/guided-practice/useSegmentedHelpAnimation.ts", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpPanel.tsx", "kind": "code", "outcome": "helpful" },
+    { "target": "School Scrips/student-portal/src/styles/guided-practice-fraction-help.css", "kind": "code", "outcome": "helpful" },
+    { "target": "Manim Trial/fraction_times_whole.py", "kind": "code", "outcome": "helpful" },
+    { "target": "Manim Trial/fraction_times_whole_marks.json", "kind": "code", "outcome": "helpful", "note": "6-clip MP4 timing for EX2/EX3 offsets" },
+    { "target": "agent docs/momentum-handoffs/2026-09-16_manim-fraction-times-whole.md", "kind": "doc", "outcome": "helpful", "note": "Three sets, one clip each" }
+  ],
+  "filesRead": [
+    "School Scrips/Matrix app/src/app/engine/question-script.ts",
+    "School Scrips/Matrix app/docs/sessions/SESSIONS.md",
+    "School Scrips/Macro App/renderer/src/utils/matrixReport/matrixSlotCatalog.ts"
+  ],
+  "filesEdited": [
+    "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+    "School Scrips/Matrix app/src/app/components/guided-practice/useSegmentedHelpAnimation.ts",
+    "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpPanel.tsx",
+    "School Scrips/Matrix app/src/app/engine/question-script.ts",
+    "School Scrips/Matrix app/src/test/fractionHelpTutorialConfigs.test.ts",
+    "School Scrips/Matrix app/src/test/engine/guided-practice-engine.test.ts",
+    "School Scrips/student-portal/src/styles/guided-practice-fraction-help.css",
+    "School Scrips/Macro App/renderer/src/utils/matrixReport/matrixSlotCatalog.ts",
+    "Manim Trial/fraction_times_whole.py"
+  ],
+  "docsRulesOpened": ["School Scrips/Matrix app/AGENTS.md"]
+}
