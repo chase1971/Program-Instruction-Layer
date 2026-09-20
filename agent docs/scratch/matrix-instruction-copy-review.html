@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matrix instruction copy review</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --ink: #1e3a5f;
+      --muted: #64748b;
+      --line: #cbd5e1;
+      --accent: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --wrong: #dc2626;
+      --box-bg: #eff6ff;
+      --box-border: #93c5fd;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    a.back {
+      display: inline-block;
+      min-height: 44px;
+      padding: 0.65rem 1rem;
+      margin: 1rem 1rem 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-bottom: 3px solid var(--accent);
+    }
+    header h1 { margin: 0 0 0.35rem; font-size: 1.25rem; }
+    header p { margin: 0; color: #cbd5e1; font-size: 0.92rem; }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      margin-top: 0.85rem;
+    }
+    .toolbar button, .toolbar label.btn {
+      min-height: 44px;
+      min-width: 88px;
+      padding: 0.55rem 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+    }
+    .toolbar button.secondary, .toolbar label.btn.secondary {
+      background: #334155;
+    }
+    .toolbar button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .toolbar label.btn input { display: none; }
+    .toolbar .page-info {
+      font-weight: 600;
+      padding: 0 0.35rem;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+    }
+    .filters button {
+      min-height: 44px;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .filters button.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .status-bar {
+      padding: 0 1.25rem 0.75rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 0 1.25rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+    }
+    .card.has-comment { border-color: #f59e0b; }
+    .card.expanded { border-color: var(--accent); }
+    .card-head {
+      padding: 0.65rem 0.85rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.78rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    .card-head button.ref {
+      display: block;
+      width: 100%;
+      text-align: left;
+      min-height: 44px;
+      padding: 0.35rem 0;
+      border: none;
+      background: transparent;
+      color: var(--accent);
+      font: inherit;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .preview {
+      margin: 0.85rem;
+      padding: 0.85rem 1rem;
+      border: 2px solid var(--box-border);
+      background: var(--box-bg);
+      border-radius: 12px;
+      color: #1e40af;
+      font-size: 0.95rem;
+      flex: 1;
+    }
+    .preview.wrong .incorrect { color: var(--wrong); font-weight: 700; }
+    .meta {
+      padding: 0 0.85rem 0.65rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .pill.template { background: #fef3c7; color: #92400e; }
+    .pill.commented { background: #ffedd5; color: #c2410c; }
+    .card-actions {
+      padding: 0 0.85rem 0.85rem;
+    }
+    .card-actions button {
+      width: 100%;
+      min-height: 44px;
+      border: none;
+      border-radius: 10px;
+      background: #e2e8f0;
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .card-actions button.open { background: var(--accent-soft); color: var(--accent); }
+    .editor {
+      padding: 0 0.85rem 0.85rem;
+      display: none;
+    }
+    .card.expanded .editor { display: block; }
+    .editor label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 0.35rem 0 0.25rem;
+      color: var(--muted);
+    }
+    .editor textarea {
+      width: 100%;
+      min-height: 72px;
+      padding: 0.65rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+      resize: vertical;
+    }
+    .editor .save-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .editor .save-row button {
+      flex: 1;
+      min-height: 44px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .editor .save-row button.save { background: var(--accent); color: white; }
+    .editor .save-row button.cancel { background: #e2e8f0; }
+    .banner {
+      margin: 0 1.25rem 1rem;
+      padding: 0.75rem 1rem;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      border-radius: 10px;
+      color: #9a3412;
+      font-size: 0.92rem;
+    }
+    .empty {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="/pages.html">← All pages</a>
+  <header>
+    <h1>Matrix instruction copy review</h1>
+    <p>Two columns × three rows per page. Click a card to comment or dictate replacement text.</p>
+    <div class="toolbar">
+      <button type="button" id="prevBtn" aria-label="Previous page">← Prev</button>
+      <span class="page-info" id="pageInfo">Page 1</span>
+      <button type="button" id="nextBtn" aria-label="Next page">Next →</button>
+      <button type="button" class="secondary" id="exportBtn">Export JSON</button>
+      <label class="btn secondary">Import JSON<input type="file" id="importInput" accept="application/json" /></label>
+    </div>
+  </header>
+  <div class="banner">Scratch tool — 2026-09-20. Comments stay in this browser until you export. Say “apply copy review changes” with the export file to batch-update source.</div>
+  <div class="filters" id="filters"></div>
+  <div class="status-bar" id="statusBar">Loading catalog…</div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="emptyState" hidden>No strings match this filter.</p>
+
+  <script>
+    const STORAGE_KEY = 'matrixInstructionCopyReview_v1';
+    const PAGE_SIZE = 6;
+    const CATALOG_URL = 'instruction-copy-catalog.json';
+
+    let catalog = [];
+    let reviews = loadReviews();
+    let page = 0;
+    let filter = 'all';
+    let expandedId = null;
+
+    function loadReviews() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveReviews() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    }
+
+    function filteredEntries() {
+      if (filter === 'all') return catalog;
+      if (filter === 'commented') return catalog.filter((e) => reviews[e.id]);
+      return catalog.filter((e) => e.category === filter);
+    }
+
+    function renderFilters() {
+      const counts = { all: catalog.length, commented: 0, tutorial: 0, guided: 0, help: 0, unguided: 0, portal: 0 };
+      for (const entry of catalog) {
+        counts[entry.category] = (counts[entry.category] || 0) + 1;
+        if (reviews[entry.id]) counts.commented += 1;
+      }
+      const labels = [
+        ['all', 'All'],
+        ['commented', 'Commented'],
+        ['tutorial', 'Tutorial'],
+        ['guided', 'Guided practice'],
+        ['help', 'Help overlays'],
+        ['unguided', 'Unguided'],
+        ['portal', 'Portal wrappers'],
+      ];
+      const root = document.getElementById('filters');
+      root.innerHTML = '';
+      for (const [key, label] of labels) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = `${label} (${counts[key] || 0})`;
+        btn.className = key === filter ? 'active' : '';
+        btn.addEventListener('click', () => {
+          filter = key;
+          page = 0;
+          expandedId = null;
+          render();
+        });
+        root.appendChild(btn);
+      }
+    }
+
+    function previewHtml(entry) {
+      const text = entry.text.replace(/\{placeholder\}/g, '…');
+      if (entry.previewKind === 'instruction-box-wrong') {
+        const rest = text.replace(/^incorrect\.?\s*/i, '');
+        return `<span class="incorrect">Incorrect.</span> ${escapeHtml(rest || text)}`;
+      }
+      return escapeHtml(text);
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function render() {
+      const entries = filteredEntries();
+      const totalPages = Math.max(1, Math.ceil(entries.length / PAGE_SIZE));
+      if (page >= totalPages) page = totalPages - 1;
+      const slice = entries.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+
+      document.getElementById('pageInfo').textContent = `Page ${page + 1} of ${totalPages} (${entries.length} strings)`;
+      document.getElementById('prevBtn').disabled = page <= 0;
+      document.getElementById('nextBtn').disabled = page >= totalPages - 1;
+
+      const pending = Object.values(reviews).filter((r) => r && r.replacementText && r.status !== 'done').length;
+      document.getElementById('statusBar').textContent = `${catalog.length} total · ${Object.keys(reviews).length} commented · ${pending} pending replacement`;
+
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      document.getElementById('emptyState').hidden = slice.length > 0;
+
+      for (const entry of slice) {
+        const review = reviews[entry.id] || {};
+        const card = document.createElement('article');
+        card.className = 'card' + (review.comment || review.replacementText ? ' has-comment' : '') + (expandedId === entry.id ? ' expanded' : '');
+
+        const head = document.createElement('div');
+        head.className = 'card-head';
+        const refBtn = document.createElement('button');
+        refBtn.type = 'button';
+        refBtn.className = 'ref';
+        refBtn.textContent = `${entry.id} · ${entry.file}:${entry.line}`;
+        refBtn.title = 'Copy reference';
+        refBtn.addEventListener('click', (event) => {
+          event.stopPropagation();
+          navigator.clipboard.writeText(`${entry.file}:${entry.line} — ${entry.id}`).catch(() => {});
+        });
+        head.appendChild(refBtn);
+
+        const preview = document.createElement('div');
+        preview.className = 'preview' + (entry.previewKind === 'instruction-box-wrong' ? ' wrong' : '');
+        preview.innerHTML = previewHtml(entry);
+
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.innerHTML = `<span class="pill">${entry.category}</span>` +
+          (entry.isTemplate ? '<span class="pill template">template</span>' : '') +
+          (review.comment || review.replacementText ? '<span class="pill commented">commented</span>' : '');
+
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+        const openBtn = document.createElement('button');
+        openBtn.type = 'button';
+        openBtn.className = expandedId === entry.id ? 'open' : '';
+        openBtn.textContent = expandedId === entry.id ? 'Close comment' : 'Comment / replacement';
+        openBtn.addEventListener('click', () => {
+          expandedId = expandedId === entry.id ? null : entry.id;
+          render();
+        });
+
+        const editor = document.createElement('div');
+        editor.className = 'editor';
+        editor.innerHTML = `
+          <label for="comment-${entry.id}">Comment (notes to yourself or the agent)</label>
+          <textarea id="comment-${entry.id}" data-field="comment">${escapeHtml(review.comment || '')}</textarea>
+          <label for="replace-${entry.id}">Replacement text (exact new copy — leave blank if note only)</label>
+          <textarea id="replace-${entry.id}" data-field="replacementText">${escapeHtml(review.replacementText || '')}</textarea>
+          <div class="save-row">
+            <button type="button" class="save" data-save="${entry.id}">Save</button>
+            <button type="button" class="cancel" data-cancel="${entry.id}">Cancel</button>
+          </div>
+        `;
+
+        editor.querySelector('[data-save]').addEventListener('click', () => {
+          const comment = editor.querySelector('[data-field="comment"]').value.trim();
+          const replacementText = editor.querySelector('[data-field="replacementText"]').value.trim();
+          if (!comment && !replacementText) {
+            delete reviews[entry.id];
+          } else {
+            reviews[entry.id] = {
+              comment,
+              replacementText,
+              status: review.status || 'todo',
+              updatedAt: new Date().toISOString(),
+            };
+          }
+          saveReviews();
+          expandedId = null;
+          renderFilters();
+          render();
+        });
+        editor.querySelector('[data-cancel]').addEventListener('click', () => {
+          expandedId = null;
+          render();
+        });
+
+        actions.appendChild(openBtn);
+        card.append(head, preview, meta, actions, editor);
+        grid.appendChild(card);
+      }
+
+      renderFilters();
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      page -= 1;
+      expandedId = null;
+      render();
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      page += 1;
+      expandedId = null;
+      render();
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(reviews, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `matrix-copy-review-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('importInput').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          reviews = JSON.parse(reader.result);
+          saveReviews();
+          render();
+        } catch {
+          alert('Could not parse JSON file.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    });
+
+    fetch(CATALOG_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error('Catalog missing — run npm run extract:copy in Matrix app');
+        return response.json();
+      })
+      .then((data) => {
+        catalog = data.entries || [];
+        render();
+      })
+      .catch((error) => {
+        document.getElementById('statusBar').textContent = error.message;
+      });
+  </script>
+</body>
+</html>
