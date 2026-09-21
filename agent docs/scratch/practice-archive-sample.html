@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Practice archive — what collected data looks like</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        line-height: 1.45;
+        color: #111827;
+        background: #f3f4f6;
+      }
+      body {
+        margin: 0;
+        padding: 1.25rem;
+      }
+      .wrap {
+        max-width: 52rem;
+        margin: 0 auto;
+      }
+      .banner {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+      .nav {
+        margin-bottom: 1rem;
+      }
+      .nav a {
+        display: inline-block;
+        min-height: 2.75rem;
+        line-height: 2.75rem;
+        padding: 0 1rem;
+        background: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        color: #1d4ed8;
+        font-weight: 600;
+      }
+      section {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: 1.35rem;
+      }
+      h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.05rem;
+      }
+      p {
+        margin: 0 0 0.75rem;
+      }
+      .meta {
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem 0.65rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f9fafb;
+        width: 7rem;
+      }
+      pre {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        overflow: auto;
+        font-size: 0.8rem;
+        white-space: pre-wrap;
+      }
+      .pill {
+        display: inline-block;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        background: #dbeafe;
+        color: #1e3a8a;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="nav"><a href="/pages.html">← All pages</a></p>
+
+      <div class="banner">
+        Sample only — 2026-09-20. Shows the <strong>shape</strong> of data after a student
+        finishes a problem with the new archive code. Not live Supabase data.
+      </div>
+
+      <section>
+        <h1>Who is who?</h1>
+        <p>
+          Students sign in with a <strong>code</strong> (e.g. CHASE1). Supabase stores an internal
+          <strong>UUID</strong> on every attempt row. The Teacher Console should show
+          <span class="pill">Instructor · CHASE1</span> or
+          <span class="pill">Last, First</span> — not a raw UUID. If you see
+          <code>e5532e6b…</code>, that was a label bug (fixed); hit
+          <strong>Refresh responses</strong> after restarting Macro App.
+        </p>
+      </section>
+
+      <section>
+        <h2>Guided practice — one completed problem (timeline)</h2>
+        <p class="meta">Bank problem 7 · mode guided · stored in <code>attempts.session_log.events[]</code></p>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Kind</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>12:00</td><td>portal-nav</td><td>start-guided · problem 7</td></tr>
+            <tr><td>12:01</td><td>help-open</td><td>multiply</td></tr>
+            <tr><td>12:01</td><td>help-example</td><td>EX1</td></tr>
+            <tr><td>12:02</td><td>help-feedback</td><td>Yes</td></tr>
+            <tr><td>12:02</td><td>help-feedback</td><td>Kinda</td></tr>
+            <tr><td>12:02</td><td>help-feedback</td><td>No</td></tr>
+            <tr><td>12:03</td><td>answer</td><td>op1-pick-cell · R1C2 · wrong · attempt 1 · 500ms</td></tr>
+            <tr><td>12:03</td><td>recovery-step</td><td>highlight-row</td></tr>
+            <tr><td>12:04</td><td>answer</td><td>op1-pick-cell · R1C1 · correct · attempt 2 · 800ms</td></tr>
+          </tbody>
+        </table>
+        <p class="meta">Also on the row: <code>attempts.problem_id = 7</code>, score from first try per step.</p>
+      </section>
+
+      <section>
+        <h2>Unguided practice — one completed problem (summary)</h2>
+        <p class="meta">Bank problem 19 · mode practice · shorter log (no step-by-step matrix)</p>
+        <table>
+          <tbody>
+            <tr><th>Outcome</th><td>correct</td></tr>
+            <tr><th>Wrong attempts</th><td>0 (first try correct)</td></tr>
+            <tr><th>Opened matrix steps</th><td>No</td></tr>
+            <tr><th>Final choice</th><td>(x, y) = (2, -1)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Raw JSON — unguided (what Supabase stores)</h2>
+        <pre>{
+  "version": 1,
+  "problemId": 19,
+  "mode": "unguided",
+  "outcome": "correct",
+  "wrongAttempts": 0,
+  "firstTryCorrect": true,
+  "viewedMatrixSteps": false,
+  "finalChoice": "(x, y) = (2, -1)"
+}</pre>
+      </section>
+
+      <section>
+        <h2>Raw JSON — guided (truncated)</h2>
+        <pre>{
+  "version": 1,
+  "problemId": 7,
+  "events": [
+    { "kind": "portal-nav", "choice": "start-guided", "at": "2026-09-20T12:00:00.000Z" },
+    { "kind": "help-open", "meta": { "helpTopic": "multiply" }, "at": "..." },
+    { "kind": "answer", "slot": "op1-pick-cell", "choice": "R1C2", "correct": false, "attemptIndex": 1 }
+  ]
+}</pre>
+      </section>
+
+      <section>
+        <h2>How you know collection is wired (without this page)</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>Automated tests</th>
+              <td>
+                In student-portal: <code>npm test</code> — 42 tests pass. That proves the portal
+                builds the payload above on finish.
+              </td>
+            </tr>
+            <tr>
+              <th>DB verify script</th>
+              <td>
+                In student-session-kit: <code>npm run verify-practice-archive</code> — writes one
+                real row to Supabase and prints JSON with <code>"ok": true</code> in the terminal.
+              </td>
+            </tr>
+            <tr>
+              <th>Live students</th>
+              <td>
+                After Netlify deploy, new completions get non-null <code>session_log</code>. Old rows
+                show <strong>null</strong> — that is expected.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1111 @@
+/**
+ * One-shot generator for guided-practice-attempt-60b0a608.html
+ * Run: node "agent docs/scratch/build-guided-practice-attempt-page.mjs"
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const dir = path.dirname(fileURLToPath(import.meta.url));
+const payload = JSON.parse(
+  fs.readFileSync(path.join(dir, 'attempt-60b0a608-payload.json'), 'utf8'),
+)[0];
+
+const attemptData = {
+  attemptId: payload.id,
+  status: payload.status,
+  score: payload.score,
+  maxScore: payload.max_score,
+  startedAt: payload.started_at,
+  completedAt: payload.completed_at,
+  problemId: payload.problem_id,
+  attemptItems: payload.attempt_items,
+  sessionLog: payload.session_log,
+};
+
+const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guided practice attempt — problem 16</title>
+<style>
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 20px 24px 120px;
+  }
+  a { color: var(--blue); }
+  .backlink {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; }
+  .sub { font-size: 19px; color: var(--soft); margin: 0 0 20px; }
+  .banner {
+    background: var(--amberbg);
+    border: 2px solid #fec84b;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 0 0 28px;
+    font-size: 16px;
+    color: #7a2e0e;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 0 0 28px;
+  }
+  .meta-item {
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .meta-item .label {
+    font: 700 12px/1 system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 0 0 6px;
+  }
+  .meta-item .value { font-size: 20px; font-weight: 700; margin: 0; }
+  nav.jump {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 0 0 24px;
+  }
+  nav.jump a {
+    display: block;
+    padding: 14px 16px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    min-height: 3.25rem;
+  }
+  nav.jump a span { display: block; font-weight: 400; font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .layout-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .layout-2col > .section-card { margin: 0; }
+  h2 {
+    font-size: 26px;
+    margin: 48px 0 6px;
+    padding-top: 18px;
+    border-top: 3px solid var(--line);
+  }
+  .secnote { color: var(--soft); font-size: 16px; margin: 0 0 18px; }
+  .card, .section-card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 0 0 18px;
+  }
+  .card h3, .section-card h3 { font-size: 22px; margin: 0 0 12px; line-height: 1.25; }
+  .pill {
+    display: inline-block;
+    font: 700 12px/1 system-ui, sans-serif;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 0 6px 6px 0;
+    vertical-align: middle;
+  }
+  .pill-ok { background: var(--greenbg); color: var(--green); border: 1.5px solid #a6f4c5; }
+  .pill-bad { background: var(--redbg); color: var(--red); border: 1.5px solid #fda29b; }
+  .pill-warn { background: var(--amberbg); color: var(--amber); border: 1.5px solid #fec84b; }
+  .pill-info { background: var(--bluebg); color: var(--blue); border: 1.5px solid #c7d7fe; }
+  .pill-neutral { background: #f2f4f7; color: var(--soft); border: 1.5px solid var(--line); }
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .q-tile {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    min-height: 7.5rem;
+  }
+  .q-tile:hover { border-color: #94a3b8; }
+  .q-tile.open { border-color: #2563eb; background: var(--bluebg); box-shadow: 0 0 0 3px #bfdbfe; }
+  .q-tile-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .q-tile-num { font: 800 22px/1 system-ui, sans-serif; color: var(--ink); }
+  .q-tile-status { font: 700 13px/1 system-ui, sans-serif; padding: 5px 8px; border-radius: 6px; }
+  .q-tile-status.ok { background: var(--greenbg); color: var(--green); }
+  .q-tile-status.bad { background: var(--redbg); color: var(--red); }
+  .q-tile-slot { font-size: 12px; color: var(--soft); font-family: ui-monospace, Consolas, monospace; margin-bottom: 6px; }
+  .q-tile-prompt { font-size: 13px; color: var(--soft); margin: 0 0 8px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .q-tile-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+  .q-tile-badges .pill { font-size: 11px; padding: 4px 7px; margin: 0; }
+  .q-detail-panel {
+    margin-top: 14px;
+    background: #fff;
+    border: 3px solid #2563eb;
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .q-detail-panel[hidden] { display: none !important; }
+  .q-detail-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; margin-bottom: 12px; }
+  .q-detail-head h3 { margin: 0; font-size: 24px; }
+  .q-detail-close {
+    margin-left: auto;
+    padding: 12px 20px;
+    font: 700 16px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    min-height: 2.75rem;
+  }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: ui-monospace, Consolas, monospace;
+    border: 1.5px solid var(--line);
+    background: #f9fafb;
+  }
+  .chip.ok { border-color: #a6f4c5; background: var(--greenbg); }
+  .chip.bad { border-color: #fda29b; background: var(--redbg); }
+  .q-detail-events { font-size: 14px; margin: 12px 0; }
+  .q-detail-events ul { margin: 0; padding-left: 20px; }
+  .q-detail-events li { margin-bottom: 6px; }
+  .struggle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .struggle-grid .card { margin: 0; padding: 18px 20px; }
+  .struggle-grid .card h3 { font-size: 18px; }
+  .timeline-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .timeline-grid li { margin: 0; }
+  .collapsible-toggle {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+    font: 700 16px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 12px;
+    min-height: 2.75rem;
+  }
+  .collapsible-body[hidden] { display: none !important; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li {
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+    background: #fff;
+  }
+  .timeline .at { display: block; font-size: 13px; color: var(--soft); margin-bottom: 4px; }
+  .timeline .label { font-weight: 700; margin-right: 8px; }
+  .timeline .detail { font-size: 15px; word-break: break-word; }
+  .timeline .meta { font-size: 13px; color: var(--soft); font-family: ui-monospace, Consolas, monospace; margin-top: 6px; }
+  .agg-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .agg-table th, .agg-table td { border: 1.5px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  .agg-table th { background: #f9fafb; }
+  .narrative p { margin: 0 0 10px; }
+  .narrative ul { margin: 8px 0 12px; padding-left: 22px; }
+  .narrative li { margin-bottom: 6px; }
+  .gap-rank { font-weight: 700; color: var(--red); margin-right: 8px; }
+  .evidence {
+    background: #f9fafb;
+    border-left: 4px solid var(--amber);
+    padding: 10px 14px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    font-family: ui-monospace, Consolas, monospace;
+    white-space: pre-wrap;
+  }
+  .raw-toggle {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 24px;
+    text-align: left;
+  }
+  pre.raw-json {
+    display: none;
+    background: #f9fafb;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    overflow: auto;
+    font-size: 12px;
+    white-space: pre-wrap;
+    margin-top: 10px;
+  }
+  pre.raw-json.open { display: block; }
+  code { background: #e9eef5; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+
+  /* Comment boxes */
+  .cbox { margin: 20px 0 0; padding: 18px 20px; background: #fbfcfe; border: 2px dashed var(--line); border-radius: 12px; }
+  .cbox .label { font: 700 12px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin: 0 0 10px; }
+  .cbox textarea { display: block; width: 100%; min-height: 78px; padding: 14px 16px; font: 17px/1.5 system-ui, sans-serif; color: var(--ink); background: #fff; border: 2px solid var(--line); border-radius: 10px; resize: vertical; }
+  .cbox textarea:focus { outline: 3px solid #84adff; outline-offset: 1px; border-color: var(--blue); }
+  .cbox-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 12px; }
+  .cbtn { padding: 14px 24px; min-width: 150px; font: 700 17px system-ui, sans-serif; color: #fff; background: var(--blue); border: none; border-radius: 10px; cursor: pointer; }
+  .cbtn:disabled { background: #9cb4e8; cursor: default; }
+  .cbtn.clear { background: #fff; color: var(--soft); border: 2px solid var(--line); min-width: 0; padding: 12px 18px; font-weight: 600; }
+  .cstate { font-size: 15px; color: var(--soft); }
+  .cstate.err { color: var(--red); font-weight: 600; }
+  .csum { background: #fff; border: 3px solid #c7d7fe; border-radius: 16px; padding: 20px 24px; margin: 0 0 32px; }
+  .post { margin: 0 0 14px; padding: 14px 16px; border-radius: 10px; border: 2px solid var(--line); background: #fff; }
+  .post--mine { border-color: #c7d7fe; background: var(--bluebg); }
+  .post--reply { border-color: #a6f4c5; background: var(--greenbg); }
+  .post__head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: 14px; }
+  .post__who { font-weight: 700; }
+  .post__when { color: var(--soft); }
+  .post__row { display: flex; gap: 10px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+
+<div class="banner">
+  <strong>Scratch prototype — 2026-09-20.</strong>
+  Live Supabase data from your completed guided practice (problem 16, 13/17).
+  Four-column question grid — click any tile to open details and add notes.
+</div>
+
+<h1>Guided practice attempt review</h1>
+<p class="sub" id="hero-sub"></p>
+
+<div class="meta-grid" id="meta-grid"></div>
+
+<div class="csum" id="comment-summary" data-comment-id="comment-summary" data-comment-title="Overall comments on this review page">
+  <strong>Your comments:</strong>
+  <span id="csum-count">no comments</span>
+  · <span id="csum-waiting">Nothing waiting for a reply.</span>
+</div>
+
+<nav class="jump" aria-label="Jump to section">
+  <a href="#step-ledger">A. Step ledger <span>One row per question — tries, help, recovery</span></a>
+  <a href="#struggle-cards">B. Struggle cards <span>Plain-English narrative for each first-try miss</span></a>
+  <a href="#decoded-timeline">C. Decoded timeline <span>All 60 events with meta shown</span></a>
+  <a href="#aggregates">D. Aggregates <span>Wrong counts, help usage, stall points</span></a>
+  <a href="#gap-panel">Gap panel <span>What capture is missing for teacher usefulness</span></a>
+</nav>
+
+<section class="section-card" id="step-ledger" data-comment-id="section-step-ledger" data-comment-title="Section A — Step ledger layout">
+  <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">A. All 17 questions</h2>
+  <p class="secnote">Four columns — click a question to open the detail panel below it. Add your notes there; they save automatically.</p>
+  <div class="q-grid" id="ledger-root"></div>
+  <div id="q-detail-panel" class="q-detail-panel" hidden></div>
+  <div id="q-panel-store" hidden aria-hidden="true"></div>
+</section>
+
+<section class="section-card" id="struggle-cards" data-comment-id="section-struggle-cards" data-comment-title="Section B — Struggle cards layout">
+  <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">B. Struggle cards</h2>
+  <p class="secnote">First-try misses only — two columns.</p>
+  <div class="struggle-grid" id="struggle-root"></div>
+</section>
+
+<section class="section-card" id="decoded-timeline" data-comment-id="section-decoded-timeline" data-comment-title="Section C — Decoded timeline layout">
+  <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">C. Decoded timeline</h2>
+  <p class="secnote">All 60 events with <code>meta</code> — collapsed by default.</p>
+  <button type="button" class="collapsible-toggle" id="timeline-toggle" aria-expanded="false">Show decoded timeline (60 events)</button>
+  <div class="collapsible-body" id="timeline-body" hidden>
+    <ol class="timeline timeline-grid" id="timeline-root"></ol>
+  </div>
+</section>
+
+<div class="layout-2col">
+  <section class="section-card" id="aggregates" data-comment-id="section-aggregates" data-comment-title="Section D — Aggregates layout">
+    <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">D. Aggregates</h2>
+    <p class="secnote">Wrong counts, help usage, stall points.</p>
+    <div id="aggregates-root"></div>
+  </section>
+
+  <section class="section-card" id="gap-panel" data-comment-id="section-gap-panel" data-comment-title="Gap panel — missing capture">
+    <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">Gap panel</h2>
+    <p class="secnote">What capture is missing — ranked.</p>
+    <div id="gap-root"></div>
+  </section>
+</div>
+
+<button type="button" class="raw-toggle" id="raw-toggle" aria-expanded="false">Show raw session_log JSON</button>
+<pre class="raw-json" id="raw-json"></pre>
+
+<script type="application/json" id="attempt-data">${JSON.stringify(attemptData)}</script>
+
+<script>
+(function () {
+  'use strict';
+
+  var DATA = JSON.parse(document.getElementById('attempt-data').textContent);
+  var events = DATA.sessionLog.events || [];
+
+  var SLOT_CATALOG = [
+    { slot: 'op1-pick-cell', shortLabel: 'Q1', prompt: 'Column one: tab or click where the 1 needs to go.' },
+    { slot: 'op1-operation-type', shortLabel: 'Q2', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op1-row-notation', shortLabel: 'Q3', prompt: 'Write the row transformation to make the pivot a 1.' },
+    { slot: 'op1-row-entry', shortLabel: 'Q4', prompt: 'Fill in the new R1.' },
+    { slot: 'op2-pick-cell', shortLabel: 'Q5', prompt: 'Tab or click the entry you need to turn into a zero.' },
+    { slot: 'op2-operation-type', shortLabel: 'Q6', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op2-row-notation', shortLabel: 'Q7', prompt: 'Write the row replacement operation.' },
+    { slot: 'op2-row-entry', shortLabel: 'Q8', prompt: 'Fill in the new R2.' },
+    { slot: 'op3-pick-cell', shortLabel: 'Q9', prompt: 'Tab or click where the one needs to go.' },
+    { slot: 'op3-operation-type', shortLabel: 'Q10', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op3-row-notation', shortLabel: 'Q11', prompt: 'Write the row transformation to make the pivot a 1.' },
+    { slot: 'op3-row-entry', shortLabel: 'Q12', prompt: 'Fill in the new R2.' },
+    { slot: 'op4-pick-cell', shortLabel: 'Q13', prompt: 'Tab or click the entry you need to turn into a zero.' },
+    { slot: 'op4-operation-type', shortLabel: 'Q14', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op4-row-notation', shortLabel: 'Q15', prompt: 'Write the row replacement operation.' },
+    { slot: 'op4-row-entry', shortLabel: 'Q16', prompt: 'Fill in the new R1.' },
+    { slot: 'solution', shortLabel: 'Q17', prompt: 'What is the solution? Tab or click on the ordered pair to enter your answer.' },
+  ];
+
+  var HELP_TOPIC_LABELS = {
+    multiply: 'Fraction help — multiply',
+    'add-subtract': 'Fraction help — add/subtract',
+    'row-scaling': 'Row-scaling notation help',
+    'row-replacement': 'Row-replacement notation help',
+  };
+
+  var RECOVERY_PHASE_LABELS = {
+    'multiply-row-prompt': 'Pick the row to multiply',
+    'changed-row-prompt': 'Pick the row that changes',
+    'pivot-row-prompt': 'Pick the pivot row',
+    'pivot-row-reveal': 'Pivot row revealed',
+    'target-row-prompt': 'Pick the target row',
+    'opposite-reveal': 'Opposite coefficient revealed',
+  };
+
+  function fmtTime(iso) {
+    if (!iso || iso === '—') return '—';
+    var d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  }
+
+  function fmtMs(ms) {
+    if (ms == null) return '';
+    if (ms >= 60000) return Math.round(ms / 1000) + 's (' + Math.round(ms / 60000 * 10) / 10 + ' min)';
+    if (ms >= 1000) return Math.round(ms / 1000) + 's';
+    return ms + 'ms';
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function eventsForSlot(slot) {
+    return events.filter(function (e) { return e.slot === slot || (slot == null && !e.slot); });
+  }
+
+  function firstAnswerPerSlot() {
+    var map = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || !e.slot) continue;
+      if (!map[e.slot]) map[e.slot] = e;
+    }
+    return map;
+  }
+
+  function wrongAttemptsBySlot() {
+    var bySlot = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || e.correct !== false || !e.slot) continue;
+      if (!bySlot[e.slot]) bySlot[e.slot] = { wrongCount: 0, choices: [] };
+      bySlot[e.slot].wrongCount += 1;
+      if (e.choice) bySlot[e.slot].choices.push(e.choice);
+    }
+    return Object.keys(bySlot).map(function (slot) {
+      return { slot: slot, wrongCount: bySlot[slot].wrongCount, choices: bySlot[slot].choices };
+    });
+  }
+
+  function helpUsageSummary() {
+    var opensByTopic = {};
+    var examplesClicked = [];
+    var feedbackByTopic = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      var topic = String((e.meta && e.meta.helpTopic) || 'unknown');
+      if (e.kind === 'help-open') opensByTopic[topic] = (opensByTopic[topic] || 0) + 1;
+      if (e.kind === 'help-example' && e.choice) examplesClicked.push(e.choice);
+      if (e.kind === 'help-feedback' && e.choice) {
+        if (!feedbackByTopic[topic]) feedbackByTopic[topic] = {};
+        feedbackByTopic[topic][e.choice] = (feedbackByTopic[topic][e.choice] || 0) + 1;
+      }
+    }
+    return { opensByTopic: opensByTopic, examplesClicked: examplesClicked, feedbackByTopic: feedbackByTopic };
+  }
+
+  function stallPoints(thresholdMs) {
+    thresholdMs = thresholdMs || 60000;
+    var firstBySlot = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || !e.slot || e.attemptIndex !== 1) continue;
+      if (!firstBySlot[e.slot]) firstBySlot[e.slot] = e;
+    }
+    var stalls = [];
+    for (var slot in firstBySlot) {
+      var ev = firstBySlot[slot];
+      var elapsed = ev.elapsedMs || 0;
+      if (elapsed >= thresholdMs) stalls.push({ slot: slot, elapsedMs: elapsed, choice: ev.choice || '' });
+    }
+    return stalls.sort(function (a, b) { return b.elapsedMs - a.elapsedMs; });
+  }
+
+  function decodeEventLabel(e) {
+    if (e.kind === 'portal-nav') {
+      if (e.choice === 'start-guided') return 'Started guided practice';
+      if (e.choice === 'complete') return 'Finished problem';
+      if (e.choice === 'back-home') return 'Exited to home';
+      if (e.choice === 'abandon-problem') return 'Abandoned problem';
+      return 'Portal: ' + (e.choice || '?');
+    }
+    if (e.kind === 'answer') {
+      return 'Answer at ' + (e.slot || '?');
+    }
+    if (e.kind === 'help-open') {
+      var topic = e.meta && e.meta.helpTopic;
+      return 'Opened help' + (topic ? ' — ' + (HELP_TOPIC_LABELS[topic] || topic) : '');
+    }
+    if (e.kind === 'help-prompt') return 'Help prompt answered';
+    if (e.kind === 'help-example') return 'Help example selected';
+    if (e.kind === 'help-step') return 'Help step';
+    if (e.kind === 'help-feedback') return 'Help feedback';
+    if (e.kind === 'help-close') return 'Closed help';
+    if (e.kind === 'recovery-step') return 'Recovery step';
+    return e.kind;
+  }
+
+  function decodeEventDetail(e) {
+    var parts = [];
+    if (e.slot) parts.push(e.slot);
+    if (e.prompt) parts.push('"' + e.prompt + '"');
+    if (e.choice) parts.push('choice: ' + e.choice);
+    if (e.correct === true) parts.push('correct');
+    if (e.correct === false) parts.push('incorrect');
+    if (e.attemptIndex != null) parts.push('attempt ' + e.attemptIndex);
+    if (e.elapsedMs != null) parts.push(fmtMs(e.elapsedMs));
+    return parts.join(' · ');
+  }
+
+  function decodeMeta(e) {
+    if (!e.meta || !Object.keys(e.meta).length) return '';
+    var m = e.meta;
+    var parts = [];
+    if (m.helpTopic) parts.push(HELP_TOPIC_LABELS[m.helpTopic] || m.helpTopic);
+    if (m.stage) parts.push('stage=' + m.stage);
+    if (m.exampleLabel) parts.push('example=' + m.exampleLabel);
+    if (m.exampleIndex != null) parts.push('exampleIndex=' + m.exampleIndex);
+    if (m.action) parts.push('action=' + m.action);
+    if (m.stepIndex != null) parts.push('step ' + (m.stepIndex + 1) + '/' + (m.stepCount || '?'));
+    if (m.durationMs != null) parts.push('open ' + fmtMs(m.durationMs));
+    if (m.valueKind) parts.push('valueKind=' + m.valueKind);
+    if (m.recoveryKind) parts.push('recovery=' + m.recoveryKind);
+    if (m.phase) parts.push(RECOVERY_PHASE_LABELS[m.phase] || m.phase);
+    if (m.mode) parts.push('mode=' + m.mode);
+    if (m.problemId != null) parts.push('problemId=' + m.problemId);
+    return parts.join(' · ');
+  }
+
+  function describeRecoveryStep(e) {
+    var m = e.meta || {};
+    var parts = [];
+    if (m.action === 'commit-value') {
+      parts.push('Committed ' + (m.valueKind === 'reciprocal' ? 'reciprocal' : m.valueKind === 'opposite' ? 'opposite' : m.valueKind) + ': ' + (e.choice || '?'));
+    } else if (m.action === 'pick-row') {
+      parts.push((RECOVERY_PHASE_LABELS[m.phase] || m.phase || 'Pick row') + ': ' + (e.choice || '?'));
+    } else if (m.action === 'continue') {
+      parts.push('Continued through ' + (RECOVERY_PHASE_LABELS[m.phase] || m.phase || 'recovery reveal'));
+    } else if (m.action === 'advance-reveal') {
+      parts.push('Advanced row-entry reveal (' + (m.revealType || 'reveal') + ')');
+    } else {
+      parts.push((m.action || 'recovery') + (e.choice ? ': ' + e.choice : ''));
+    }
+    return parts.join('');
+  }
+
+  function describeHelpBlock(slotEvents) {
+    var lines = [];
+    var currentTopic = null;
+    var openAt = null;
+    for (var i = 0; i < slotEvents.length; i++) {
+      var e = slotEvents[i];
+      if (e.kind === 'help-open') {
+        currentTopic = e.meta && e.meta.helpTopic;
+        openAt = e.at;
+        lines.push('Opened ' + (HELP_TOPIC_LABELS[currentTopic] || currentTopic || 'help') + ' at ' + fmtTime(e.at));
+      }
+      if (e.kind === 'help-prompt') {
+        lines.push('Help prompt: ' + e.choice);
+      }
+      if (e.kind === 'help-example') {
+        lines.push('Selected example ' + e.choice);
+      }
+      if (e.kind === 'help-step' && e.meta) {
+        var ex = e.meta.exampleLabel ? ' on ' + e.meta.exampleLabel : '';
+        if (e.meta.action === 'play') lines.push('Played help step ' + (e.meta.stepIndex + 1) + ex);
+        else if (e.meta.action === 'next') lines.push('Advanced notation help step ' + (e.meta.stepIndex + 1));
+      }
+      if (e.kind === 'help-feedback') {
+        lines.push('Feedback (' + (HELP_TOPIC_LABELS[e.meta.helpTopic] || e.meta.helpTopic) + '): ' + e.choice);
+      }
+      if (e.kind === 'help-close' && e.meta) {
+        lines.push('Closed help after ' + fmtMs(e.meta.durationMs));
+      }
+    }
+    return lines;
+  }
+
+  function buildStruggleNarrative(slot, catalogEntry) {
+    var slotEvents = events.filter(function (e) {
+      return e.slot === slot || (e.kind === 'portal-nav' && e.meta && e.meta.slot === slot);
+    });
+    var answers = slotEvents.filter(function (e) { return e.kind === 'answer'; });
+    var wrongs = answers.filter(function (e) { return e.correct === false; });
+    var finalCorrect = answers.filter(function (e) { return e.correct === true; }).pop();
+    var recoveries = slotEvents.filter(function (e) { return e.kind === 'recovery-step'; });
+    var helpLines = describeHelpBlock(slotEvents);
+
+    var html = '<div class="narrative">';
+    html += '<p><strong>Prompt:</strong> ' + esc(catalogEntry.prompt) + '</p>';
+    if (wrongs.length) {
+      html += '<p><strong>Wrong tries:</strong></p><ul>';
+      for (var w = 0; w < wrongs.length; w++) {
+        html += '<li>Attempt ' + wrongs[w].attemptIndex + ': <code>' + esc(wrongs[w].choice) + '</code> (' + fmtMs(wrongs[w].elapsedMs) + ')</li>';
+      }
+      html += '</ul>';
+    }
+    if (helpLines.length) {
+      html += '<p><strong>Help used:</strong></p><ul>';
+      for (var h = 0; h < helpLines.length; h++) html += '<li>' + esc(helpLines[h]) + '</li>';
+      html += '</ul>';
+    }
+    if (recoveries.length) {
+      html += '<p><strong>Recovery builder:</strong></p><ul>';
+      for (var r = 0; r < recoveries.length; r++) html += '<li>' + esc(describeRecoveryStep(recoveries[r])) + '</li>';
+      html += '</ul>';
+    }
+    if (finalCorrect) {
+      html += '<p><strong>Finally correct:</strong> <code>' + esc(finalCorrect.choice) + '</code> (attempt ' + finalCorrect.attemptIndex + ')</p>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  /* ---- Render hero ---- */
+  var durationMs = new Date(DATA.completedAt) - new Date(DATA.startedAt);
+  document.getElementById('hero-sub').textContent =
+    'Attempt ' + DATA.attemptId.slice(0, 8) + '… · Instructor test session · ' + events.length + ' events';
+
+  document.getElementById('meta-grid').innerHTML = [
+    ['Problem', DATA.problemId],
+    ['Score', DATA.score + ' / ' + DATA.maxScore],
+    ['Status', DATA.status],
+    ['Duration', fmtMs(durationMs)],
+    ['Started', fmtTime(DATA.startedAt)],
+    ['Finished', fmtTime(DATA.completedAt)],
+  ].map(function (row) {
+    return '<div class="meta-item"><div class="label">' + esc(row[0]) + '</div><p class="value">' + esc(String(row[1])) + '</p></div>';
+  }).join('');
+
+  /* ---- A. Step ledger — 4-col tiles + detail dropdown ---- */
+  var firstTries = firstAnswerPerSlot();
+  var ledgerRoot = document.getElementById('ledger-root');
+  var panelStore = document.getElementById('q-panel-store');
+  var detailPanel = document.getElementById('q-detail-panel');
+  var openTile = null;
+  var openPanelEl = null;
+
+  function returnPanelToStore() {
+    if (openPanelEl && panelStore) {
+      panelStore.appendChild(openPanelEl);
+      openPanelEl = null;
+    }
+    if (detailPanel) {
+      detailPanel.innerHTML = '';
+      detailPanel.hidden = true;
+    }
+    if (openTile) {
+      openTile.classList.remove('open');
+      openTile.setAttribute('aria-expanded', 'false');
+      openTile = null;
+    }
+  }
+
+  function buildQuestionPanel(cat, slotEvents, answers, firstTryMiss, helpCount, recoveryCount, item) {
+    var panel = document.createElement('div');
+    panel.className = 'q-panel';
+    panel.id = 'panel-' + cat.slot;
+
+    var chips = answers.map(function (a) {
+      var cls = a.correct ? 'ok' : 'bad';
+      return '<span class="chip ' + cls + '">' + esc(a.choice) + ' · try ' + a.attemptIndex + '</span>';
+    }).join('');
+
+    var detailParts = [];
+    for (var di = 0; di < slotEvents.length; di++) {
+      var ev = slotEvents[di];
+      if (ev.kind === 'answer') continue;
+      detailParts.push('<li><strong>' + esc(decodeEventLabel(ev)) + '</strong> at ' + fmtTime(ev.at) +
+        (decodeEventDetail(ev) ? ' — ' + esc(decodeEventDetail(ev)) : '') +
+        (decodeMeta(ev) ? '<br><span style="color:#5a6b80;font-size:13px">' + esc(decodeMeta(ev)) + '</span>' : '') +
+        '</li>');
+    }
+
+    var badges = '';
+    if (firstTryMiss) badges += '<span class="pill pill-bad">First try miss</span>';
+    else if (answers.length) badges += '<span class="pill pill-ok">First try correct</span>';
+    if (helpCount) badges += '<span class="pill pill-info">Help ×' + helpCount + '</span>';
+    if (recoveryCount) badges += '<span class="pill pill-warn">Recovery ×' + recoveryCount + '</span>';
+    if (item && item.outcome === 'incorrect') badges += '<span class="pill pill-bad">Scored incorrect</span>';
+
+    panel.innerHTML =
+      '<div class="q-detail-head">' +
+        '<h3>' + esc(cat.shortLabel) + ' · ' + esc(cat.slot) + '</h3>' + badges +
+        '<button type="button" class="q-detail-close">Close</button>' +
+      '</div>' +
+      '<p class="ledger-prompt">' + esc(cat.prompt) + '</p>' +
+      '<div class="chip-row">' + (chips || '<span class="pill pill-neutral">No answers logged</span>') + '</div>' +
+      buildStruggleNarrative(cat.slot, cat) +
+      (detailParts.length ? '<div class="q-detail-events"><strong>Help &amp; recovery events</strong><ul>' + detailParts.join('') + '</ul></div>' : '') +
+      '<div data-comment-id="q-' + cat.slot + '" data-comment-title="' + esc(cat.shortLabel + ' ' + cat.slot) + '"></div>';
+
+    panel.querySelector('.q-detail-close').addEventListener('click', returnPanelToStore);
+    return panel;
+  }
+
+  for (var si = 0; si < SLOT_CATALOG.length; si++) {
+    (function (cat) {
+      var slotEvents = eventsForSlot(cat.slot);
+      var answers = slotEvents.filter(function (e) { return e.kind === 'answer'; });
+      var helpCount = slotEvents.filter(function (e) { return e.kind.indexOf('help-') === 0; }).length;
+      var recoveryCount = slotEvents.filter(function (e) { return e.kind === 'recovery-step'; }).length;
+      var first = firstTries[cat.slot];
+      var firstTryMiss = first && first.correct === false;
+      var item = (DATA.attemptItems || []).find(function (it) { return it.slot === cat.slot; });
+
+      var panelEl = buildQuestionPanel(cat, slotEvents, answers, firstTryMiss, helpCount, recoveryCount, item);
+      panelStore.appendChild(panelEl);
+
+      var tileBadges = '';
+      if (helpCount) tileBadges += '<span class="pill pill-info">Help</span>';
+      if (recoveryCount) tileBadges += '<span class="pill pill-warn">Recovery</span>';
+      if (answers.length > 1) tileBadges += '<span class="pill pill-neutral">' + answers.length + ' tries</span>';
+
+      var statusCls = firstTryMiss ? 'bad' : 'ok';
+      var statusLabel = firstTryMiss ? 'Miss' : (answers.length ? 'OK' : '—');
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'q-tile';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('data-slot', cat.slot);
+      btn.innerHTML =
+        '<div class="q-tile-head"><span class="q-tile-num">' + esc(cat.shortLabel) + '</span>' +
+        '<span class="q-tile-status ' + statusCls + '">' + statusLabel + '</span></div>' +
+        '<div class="q-tile-slot">' + esc(cat.slot) + '</div>' +
+        '<p class="q-tile-prompt">' + esc(cat.prompt) + '</p>' +
+        '<div class="q-tile-badges">' + tileBadges + '</div>';
+
+      btn.addEventListener('click', function () {
+        if (openTile === btn) {
+          returnPanelToStore();
+          return;
+        }
+        returnPanelToStore();
+        openTile = btn;
+        openPanelEl = panelEl;
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        detailPanel.hidden = false;
+        detailPanel.appendChild(panelEl);
+        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (window.__renderQuestionComment) window.__renderQuestionComment('q-' + cat.slot);
+      });
+
+      ledgerRoot.appendChild(btn);
+    })(SLOT_CATALOG[si]);
+  }
+
+  /* ---- B. Struggle cards ---- */
+  var struggleRoot = document.getElementById('struggle-root');
+  for (var sj = 0; sj < SLOT_CATALOG.length; sj++) {
+    var sc = SLOT_CATALOG[sj];
+    var ft = firstTries[sc.slot];
+    if (!ft || ft.correct !== false) continue;
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-comment-id', 'struggle-' + sc.slot);
+    card.setAttribute('data-comment-title', 'Struggle card — ' + sc.shortLabel + ' ' + sc.slot);
+    card.innerHTML = '<h3>' + esc(sc.shortLabel) + ' · ' + esc(sc.slot) + '</h3>' + buildStruggleNarrative(sc.slot, sc);
+    struggleRoot.appendChild(card);
+  }
+
+  /* ---- C. Decoded timeline ---- */
+  var timelineRoot = document.getElementById('timeline-root');
+  for (var ti = 0; ti < events.length; ti++) {
+    var te = events[ti];
+    var li = document.createElement('li');
+    li.innerHTML =
+      '<span class="at">' + fmtTime(te.at) + '</span>' +
+      '<span class="label">' + esc(decodeEventLabel(te)) + '</span>' +
+      '<span class="detail">' + esc(decodeEventDetail(te) || '—') + '</span>' +
+      (decodeMeta(te) ? '<div class="meta">' + esc(decodeMeta(te)) + '</div>' : '');
+    timelineRoot.appendChild(li);
+  }
+
+  /* ---- D. Aggregates ---- */
+  var wrongs = wrongAttemptsBySlot();
+  var help = helpUsageSummary();
+  var stalls = stallPoints(60000);
+  var aggHtml = '<h3>Wrong attempts by slot</h3>';
+  if (!wrongs.length) aggHtml += '<p>None</p>';
+  else {
+    aggHtml += '<table class="agg-table"><thead><tr><th>Slot</th><th>Wrong count</th><th>Choices typed</th></tr></thead><tbody>';
+    for (var wi = 0; wi < wrongs.length; wi++) {
+      aggHtml += '<tr><td>' + esc(wrongs[wi].slot) + '</td><td>' + wrongs[wi].wrongCount + '</td><td>' +
+        wrongs[wi].choices.map(function (c) { return '<code>' + esc(c) + '</code>'; }).join(', ') + '</td></tr>';
+    }
+    aggHtml += '</tbody></table>';
+  }
+  aggHtml += '<h3 style="margin-top:24px">Help usage</h3><table class="agg-table"><tbody>';
+  aggHtml += '<tr><th>Opens by topic</th><td>' + esc(JSON.stringify(help.opensByTopic)) + '</td></tr>';
+  aggHtml += '<tr><th>Examples clicked</th><td>' + esc(help.examplesClicked.join(', ') || '—') + '</td></tr>';
+  aggHtml += '<tr><th>Feedback by topic</th><td>' + esc(JSON.stringify(help.feedbackByTopic)) + '</td></tr>';
+  aggHtml += '</tbody></table>';
+  aggHtml += '<h3 style="margin-top:24px">Stall points (&ge; 60s on first try)</h3>';
+  if (!stalls.length) aggHtml += '<p>None</p>';
+  else {
+    aggHtml += '<table class="agg-table"><thead><tr><th>Slot</th><th>Time</th><th>First choice</th></tr></thead><tbody>';
+    for (var st = 0; st < stalls.length; st++) {
+      aggHtml += '<tr><td>' + esc(stalls[st].slot) + '</td><td>' + fmtMs(stalls[st].elapsedMs) + '</td><td><code>' + esc(stalls[st].choice) + '</code></td></tr>';
+    }
+    aggHtml += '</tbody></table>';
+  }
+  document.getElementById('aggregates-root').innerHTML = aggHtml;
+
+  /* ---- Gap panel ---- */
+  var gaps = [
+    {
+      id: 'gap-wrong-kind',
+      rank: 1,
+      title: 'Wrong-answer kind is not distinguished',
+      body: 'markWrong, markSoftRetry, and markFormatIssue all emit identical answer events. Events 4 and 5 for op1-row-notation are byte-identical — cannot tell format rejection from a real second try.',
+      evidence: 'Event 4: answer op1-row-notation "1/6R1 → R2" incorrect attempt 1\\nEvent 5: answer op1-row-notation "1/6R1 → R2" incorrect attempt 2\\n(identical choice, no errorKind field)',
+    },
+    {
+      id: 'gap-expected-answer',
+      rank: 2,
+      title: 'Expected answer is never stored',
+      body: 'You only recover the correct answer by finding a later correct event. Abandoned attempts never record what was right.',
+      evidence: 'op1-row-notation: first wrong stored as selected_option_id in attempt_items, but correct "1/6R1 → R1" only appears in event 15.',
+    },
+    {
+      id: 'gap-matrix-state',
+      rank: 3,
+      title: 'No matrix state on screen',
+      body: 'problem_id gives the starting matrix; nothing records the matrix after each step. Reconstructing what the student saw requires replaying the whole problem.',
+      evidence: 'All 60 events lack matrixBefore / matrixAfter. Row-entry wrong "0, 1, 1" at op2-row-entry has no matrix context.',
+    },
+    {
+      id: 'gap-error-text',
+      rank: 4,
+      title: 'No validator error text',
+      body: 'What the student saw after a wrong answer (e.g. "wrong target row") is not captured.',
+      evidence: 'op2-row-notation wrong tries show choice only — no errorMessage or feedbackText field.',
+    },
+    {
+      id: 'gap-example-switch',
+      rank: 5,
+      title: 'Example switching under-logged',
+      body: 'help-example fired once (EX1), but help-step meta shows EX2 and EX3 were both played during multiply help.',
+      evidence: 'help-example: choice=EX1\\nhelp-step meta: exampleLabel EX1, EX2, EX3 all appear in events 20–28',
+    },
+    {
+      id: 'gap-recovery-labels',
+      rank: 6,
+      title: 'Recovery phases have no human labels in Teacher Console',
+      body: 'multiply-row-prompt, changed-row-prompt, pivot-row-prompt, etc. are in meta.phase but PracticeArchivePanel timeline drops meta entirely. Display-only fix possible in matrixSlotCatalog.',
+      evidence: 'Event 13: recovery-step meta.phase=multiply-row-prompt action=pick-row choice=R1\\nCurrent TC shows: recovery-step · op1-row-notation · R1',
+    },
+  ];
+
+  var gapRoot = document.getElementById('gap-root');
+  for (var gi = 0; gi < gaps.length; gi++) {
+    var g = gaps[gi];
+    var gCard = document.createElement('div');
+    gCard.className = 'card';
+    gCard.setAttribute('data-comment-id', g.id);
+    gCard.setAttribute('data-comment-title', 'Gap ' + g.rank + ' — ' + g.title);
+    gCard.innerHTML =
+      '<h3><span class="gap-rank">#' + g.rank + '</span>' + esc(g.title) + '</h3>' +
+      '<p>' + esc(g.body) + '</p>' +
+      '<div class="evidence">' + esc(g.evidence) + '</div>';
+    gapRoot.appendChild(gCard);
+  }
+
+  /* ---- Timeline collapse ---- */
+  document.getElementById('timeline-toggle').addEventListener('click', function () {
+    var body = document.getElementById('timeline-body');
+    var opening = body.hidden;
+    body.hidden = !opening;
+    this.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    this.textContent = opening ? 'Hide decoded timeline (60 events)' : 'Show decoded timeline (60 events)';
+  });
+
+  /* ---- Raw JSON ---- */
+  document.getElementById('raw-json').textContent = JSON.stringify(DATA.sessionLog, null, 2);
+  document.getElementById('raw-toggle').addEventListener('click', function () {
+    var pre = document.getElementById('raw-json');
+    var open = pre.classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    this.textContent = open ? 'Hide raw session_log JSON' : 'Show raw session_log JSON';
+  });
+})();
+</script>
+
+<script>
+/* Comment threads — pattern from portal-risk-review.html */
+(function () {
+  'use strict';
+  var PAGE = 'scratch/guided-practice-attempt-60b0a608.html';
+  var DATA_URL = '/scratch/guided-practice-attempt-60b0a608.comments.json';
+  var SAVE_URL = '/__comments/' + PAGE;
+  var REPLIES = {};
+  var store = { page: PAGE, updated: null, comments: {} };
+  var cards = {};
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  }
+  function entry(id) {
+    if (!store.comments[id]) store.comments[id] = { title: cards[id].title, thread: [], draft: '' };
+    var e = store.comments[id];
+    if (!Array.isArray(e.thread)) e.thread = [];
+    return e;
+  }
+  function countPosts() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (e && Array.isArray(e.thread)) n += e.thread.length;
+    }
+    return n;
+  }
+  function countUnanswered() {
+    var n = 0;
+    for (var k in store.comments) {
+      var e = store.comments[k];
+      if (!e || !Array.isArray(e.thread)) continue;
+      if (e.thread.length > (REPLIES[k] || []).length) n += 1;
+    }
+    return n;
+  }
+  function refreshSummary() {
+    var countEl = document.getElementById('csum-count');
+    if (countEl) {
+      var n = countPosts();
+      countEl.textContent = n === 0 ? 'no comments' : (n === 1 ? '1 comment' : n + ' comments');
+    }
+    var waitEl = document.getElementById('csum-waiting');
+    if (waitEl) {
+      var w = countUnanswered();
+      waitEl.textContent = w === 0 ? 'Everything you\\'ve written has a reply under it.' : (w === 1 ? '1 point is waiting for a reply.' : w + ' points are waiting for a reply.');
+    }
+  }
+  function save(id, busyBtn, busyLabel) {
+    store.updated = new Date().toISOString();
+    if (busyBtn) { busyBtn.disabled = true; busyBtn.textContent = busyLabel || 'Saving…'; }
+    return fetch(SAVE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(store) })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)); })
+      .then(function () { if (cards[id]) cards[id].error = null; return true; })
+      .catch(function (err) {
+        if (cards[id]) cards[id].error = 'Could not save — ' + err.message + '. Is the docs server running?';
+        return false;
+      });
+  }
+  function postEl(id, index, post) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--mine';
+    wrap.innerHTML = '<div class="post__head"><span class="post__who">You</span><span class="post__when">' + fmtTime(post.updated) + '</span></div><div class="post__body"></div><div class="post__row"><button type="button" class="cbtn clear edit">Edit</button><button type="button" class="cbtn clear del">Delete</button></div>';
+    wrap.querySelector('.post__body').textContent = post.text;
+    wrap.querySelector('.edit').addEventListener('click', function () {
+      var body = wrap.querySelector('.post__body');
+      var area = document.createElement('textarea');
+      area.value = post.text;
+      body.replaceWith(area);
+      var row = wrap.querySelector('.post__row');
+      row.innerHTML = '';
+      var saveBtn = document.createElement('button');
+      saveBtn.type = 'button'; saveBtn.className = 'cbtn'; saveBtn.textContent = 'Save changes';
+      var cancel = document.createElement('button');
+      cancel.type = 'button'; cancel.className = 'cbtn clear'; cancel.textContent = 'Cancel';
+      row.appendChild(saveBtn); row.appendChild(cancel);
+      saveBtn.addEventListener('click', function () {
+        var text = area.value.trim();
+        var en = entry(id);
+        if (text) en.thread[index] = { text: text, updated: new Date().toISOString() }; else en.thread.splice(index, 1);
+        save(id, saveBtn, 'Saving…').then(function () { render(id); });
+      });
+      cancel.addEventListener('click', function () { render(id); });
+    });
+    wrap.querySelector('.del').addEventListener('click', function () {
+      var btn = wrap.querySelector('.del');
+      if (btn.dataset.confirm !== '1') { btn.dataset.confirm = '1'; btn.textContent = 'Really delete?'; return; }
+      entry(id).thread.splice(index, 1);
+      save(id, btn, 'Deleting…').then(function () { render(id); });
+    });
+    return wrap;
+  }
+  function replyEl(html) {
+    var wrap = document.createElement('div');
+    wrap.className = 'post post--reply';
+    wrap.innerHTML = '<div class="post__head"><span class="post__who">Claude replied</span></div><div class="post__body">' + html + '</div>';
+    return wrap;
+  }
+  function render(id) {
+    var card = cards[id];
+    var e = entry(id);
+    var host = card.host;
+    host.textContent = '';
+    var replies = REPLIES[id] || [];
+    for (var i = 0; i < e.thread.length; i++) {
+      host.appendChild(postEl(id, i, e.thread[i]));
+      if (replies[i]) host.appendChild(replyEl(replies[i]));
+    }
+    if (e.thread.length > replies.length) {
+      var waiting = document.createElement('div');
+      waiting.className = 'cstate';
+      waiting.textContent = 'Waiting for a reply — say “read my comments on the guided practice attempt review.”';
+      host.appendChild(waiting);
+    }
+    var composer = document.createElement('div');
+    composer.className = 'cbox';
+    composer.innerHTML = '<div class="label">' + (e.thread.length ? 'Add another comment' : 'Your comment or question') + '</div>';
+    var area = document.createElement('textarea');
+    area.setAttribute('aria-label', 'Comment on: ' + card.title);
+    area.placeholder = 'Which layout works? What is still unreadable?';
+    area.value = e.draft || '';
+    composer.appendChild(area);
+    var row = document.createElement('div');
+    row.className = 'cbox-row';
+    var post = document.createElement('button');
+    post.type = 'button'; post.className = 'cbtn'; post.textContent = 'Post comment';
+    var state = document.createElement('span');
+    state.className = card.error ? 'cstate err' : 'cstate';
+    if (card.error) state.textContent = card.error;
+    row.appendChild(post); row.appendChild(state);
+    composer.appendChild(row);
+    host.appendChild(composer);
+    var timer = null;
+    area.addEventListener('input', function () {
+      entry(id).draft = area.value;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { save(id); }, 1500);
+    });
+    post.addEventListener('click', function () {
+      if (timer) clearTimeout(timer);
+      var text = area.value.trim();
+      if (!text) return;
+      entry(id).thread.push({ text: text, updated: new Date().toISOString() });
+      entry(id).draft = '';
+      save(id, post, 'Posting…').then(function () { render(id); refreshSummary(); });
+    });
+  }
+  var nodes = document.querySelectorAll('[data-comment-id]');
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+    var id = node.getAttribute('data-comment-id');
+    var host = document.createElement('div');
+    host.className = 'thread';
+    node.appendChild(host);
+    cards[id] = { title: node.getAttribute('data-comment-title') || '', host: host, error: null };
+  }
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) {
+      if (!data || !data.comments) return;
+      store = { page: PAGE, updated: data.updated || null, comments: {} };
+      for (var cid in data.comments) {
+        var raw = data.comments[cid];
+        if (!raw) continue;
+        var thread = Array.isArray(raw.thread) ? raw.thread : [];
+        if (!thread.length && typeof raw.text === 'string' && raw.text.trim()) thread = [{ text: raw.text.trim(), updated: raw.updated || null }];
+        store.comments[cid] = { title: raw.title || (cards[cid] ? cards[cid].title : ''), thread: thread, draft: typeof raw.draft === 'string' ? raw.draft : '' };
+      }
+    })
+    .catch(function () {})
+    .then(function () {
+      for (var cid in cards) render(cid);
+      refreshSummary();
+    });
+  window.__renderQuestionComment = function (id) {
+    if (cards[id]) render(id);
+  };
+  window.addEventListener('beforeunload', function () {
+    if (navigator.sendBeacon) navigator.sendBeacon(SAVE_URL, new Blob([JSON.stringify(store)], { type: 'application/json' }));
+  });
+})();
+</script>
+
+</body>
+</html>`;
+
+const outPath = path.join(dir, 'guided-practice-attempt-60b0a608.html');
+fs.writeFileSync(outPath, html, 'utf8');
+console.log('Wrote', outPath, '(' + html.length + ' bytes)');

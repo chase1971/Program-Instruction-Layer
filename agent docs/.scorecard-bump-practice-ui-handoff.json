@@ -1,0 +1,11 @@
+{
+  "chunkNote": "Momentum handoff — Practice UI must match guided solution step layout (not implemented this session)",
+  "addGreps": 4,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/MOMENTUM_HANDOFF.md", "kind": "doc", "outcome": "routed", "note": "Perform procedure" },
+    { "target": "GuidedPracticeSolver.tsx (solutionActive)", "kind": "file", "outcome": "routed", "note": "Layout exemplar for handoff" },
+    { "target": "UnguidedPracticeSolver.tsx", "kind": "file", "outcome": "routed", "note": "Current wrong layout documented" },
+    { "target": "agent docs/momentum-handoffs/latest.md", "kind": "doc", "outcome": "routed", "note": "Written 2026-09-20 practice-ui handoff" }
+  ]
+}

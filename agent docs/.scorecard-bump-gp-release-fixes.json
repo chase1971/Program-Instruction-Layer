@@ -1,0 +1,31 @@
+{
+  "chunkNote": "Fixed the guided/unguided practice release blockers: resume boundary, submit no longer blanks progress, releaseAttempt kills post-submit retries, survey re-asks instead of dead-ending, dead buttons now show an error; type-check green, file sizes under cap",
+  "addGreps": 8,
+  "navigationPath": [
+    { "target": "School Scrips/student-portal/src/hooks/useResumableAttempt.ts", "kind": "code", "outcome": "helpful", "note": "Added releaseAttempt to drop pending save + retry timer" },
+    { "target": "School Scrips/student-portal/src/services/attemptSubmission.ts", "kind": "code", "outcome": "helpful", "note": "resumeProgress/resumeIndex so a failed submit keeps the work" },
+    { "target": "School Scrips/student-portal/src/features/guided-practice/useGuidedPracticeAttempt.ts", "kind": "code", "outcome": "helpful", "note": "canResume <= maxScore, deferInitialSave, abandon returns boolean" },
+    { "target": "School Scrips/student-portal/src/features/guided-practice/GuidedPracticeView.tsx", "kind": "code", "outcome": "helpful", "note": "runFlow wrapper surfaces draw/bank failures instead of swallowing them" },
+    { "target": "School Scrips/student-portal/src/features/guided-practice/guidedPracticeSurveyGate.ts", "kind": "code", "outcome": "helpful", "note": "Re-ask until answered; fixes shared-bank miss and mid-survey bail" },
+    { "target": "School Scrips/student-portal/src/types/matrix-app.d.ts", "kind": "code", "outcome": "helpful", "note": "Stale @matrix contract was hiding the whole feature from tsc" },
+    { "target": "npm run type-check (student-portal)", "kind": "command", "outcome": "helpful", "note": "0 errors for the first time" },
+    { "target": "npm test (portal 68, matrix 129)", "kind": "command", "outcome": "helpful", "note": "All green including 7 new persistence tests" }
+  ],
+  "filesEdited": [
+    "School Scrips/student-portal/src/hooks/useResumableAttempt.ts",
+    "School Scrips/student-portal/src/services/attemptSubmission.ts",
+    "School Scrips/student-portal/src/config/studentMessages.ts",
+    "School Scrips/student-portal/src/features/guided-practice/useGuidedPracticeAttempt.ts",
+    "School Scrips/student-portal/src/features/guided-practice/useUnguidedPracticeAttempt.ts",
+    "School Scrips/student-portal/src/features/guided-practice/GuidedPracticeView.tsx",
+    "School Scrips/student-portal/src/features/guided-practice/guidedPracticeSurveyGate.ts",
+    "School Scrips/student-portal/src/features/guided-practice/GuidedPracticePostSurvey.tsx",
+    "School Scrips/student-portal/src/features/guided-practice/guidedPracticePostSurveyService.ts",
+    "School Scrips/student-portal/src/types/matrix-app.d.ts",
+    "School Scrips/student-portal/AGENTS.md"
+  ],
+  "docsRulesOpened": [
+    "School Scrips/student-portal/AGENTS.md",
+    "agent docs/SESSION_TRACKING.md"
+  ]
+}

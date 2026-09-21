@@ -1,0 +1,23 @@
+{
+  "chunkNote": "Practice archive QA — contract tests + verify script + Teacher Console panel; UUID label fix; static sample HTML for Chase",
+  "addGreps": 8,
+  "addTurns": 0,
+  "navigationPath": [
+    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "routed", "note": "html-delivery + session tracking rows" },
+    { "target": "agent docs/rules/html-delivery.md", "kind": "doc", "outcome": "helpful", "note": "scratch/ path on port 8765" },
+    { "target": "School Scrips/student-portal/src/test/", "kind": "code", "outcome": "helpful", "note": "guided/unguided archive contract tests — 42 pass" },
+    { "target": "School Scrips/student-session-kit/scripts/verify-practice-archive.mjs", "kind": "code", "outcome": "helpful", "note": "DB round-trip ok" },
+    { "target": "School Scrips/Macro App/renderer/src/components/teacher-console/PracticeArchivePanel.tsx", "kind": "code", "outcome": "helpful", "note": "Instructor·code label + no-archive suffix" },
+    { "target": "agent docs/scratch/practice-archive-sample.html", "kind": "doc", "outcome": "helpful", "note": "Static shape-of-data page for Chase" }
+  ],
+  "filesRead": [
+    "agent docs/rules/html-delivery.md",
+    "School Scrips/Macro App/renderer/src/components/teacher-console/PracticeArchivePanel.tsx",
+    "School Scrips/Macro App/renderer/src/services/studentProgressAttemptsService.ts"
+  ],
+  "filesEdited": [
+    "agent docs/scratch/practice-archive-sample.html",
+    "School Scrips/Macro App/renderer/src/components/teacher-console/PracticeArchivePanel.tsx",
+    "School Scrips/Macro App/renderer/src/components/teacher-console/screens/ConsoleActivityWorkspaceScreen.tsx"
+  ]
+}
