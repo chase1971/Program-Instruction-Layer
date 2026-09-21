@@ -1,0 +1,324 @@
+[
+  {
+    "id": "6f9a7f87-1cb4-49e8-bec0-9311ff5f84e0",
+    "status": "completed",
+    "score": 17,
+    "max_score": 17,
+    "started_at": "2026-09-21T17:45:29.471045+00:00",
+    "completed_at": "2026-09-21T17:47:37.514413+00:00",
+    "problem_id": 10,
+    "session_log": {
+      "events": [
+        {
+          "at": "2026-09-21T17:45:29.504Z",
+          "kind": "portal-nav",
+          "meta": {
+            "problemId": 10
+          },
+          "choice": "start-guided"
+        },
+        {
+          "at": "2026-09-21T17:45:43.401Z",
+          "kind": "answer",
+          "slot": "op1-pick-cell",
+          "choice": "R1C1",
+          "prompt": "Tap or click the value that will be the pivot. That is the number that needs to become 1 first.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:45:44.388Z",
+          "kind": "answer",
+          "slot": "op1-operation-type",
+          "choice": "row-scaling",
+          "prompt": "What type of row transformation do you need?",
+          "correct": true,
+          "elapsedMs": 0,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:45:51.713Z",
+          "kind": "answer",
+          "slot": "op1-row-notation",
+          "choice": "1/3R1 → R1",
+          "prompt": "Write the row transformation to make the pivot a 1.",
+          "correct": true,
+          "elapsedMs": 6,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:06.600Z",
+          "kind": "answer",
+          "slot": "op1-row-entry",
+          "choice": "1, -5/3, 4",
+          "prompt": "Fill in the new R1.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:10.272Z",
+          "kind": "answer",
+          "slot": "op2-pick-cell",
+          "choice": "R2C1",
+          "prompt": "Tab or click the entry you need to turn into a 0.",
+          "correct": true,
+          "elapsedMs": 0,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:13.223Z",
+          "kind": "answer",
+          "slot": "op2-operation-type",
+          "choice": "row-replacement",
+          "prompt": "What type of row transformation do you need?",
+          "correct": true,
+          "elapsedMs": 0,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:19.330Z",
+          "kind": "answer",
+          "slot": "op2-row-notation",
+          "choice": "2R1 + R2 → R2",
+          "prompt": "Write the row replacement operation.",
+          "correct": true,
+          "elapsedMs": 0,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:38.127Z",
+          "kind": "answer",
+          "slot": "op2-row-entry",
+          "choice": "0, 11/3, 0",
+          "prompt": "Fill in the new R2.",
+          "correct": true,
+          "elapsedMs": 0,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:41.165Z",
+          "kind": "answer",
+          "slot": "op3-pick-cell",
+          "choice": "R2C2",
+          "prompt": "Tap or click the next pivot.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:42.698Z",
+          "kind": "answer",
+          "slot": "op3-operation-type",
+          "choice": "row-scaling",
+          "prompt": "What type of row transformation do you need?",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:47.866Z",
+          "kind": "answer",
+          "slot": "op3-row-notation",
+          "choice": "3/11R2 → R2",
+          "prompt": "Write the row transformation to make the pivot a 1.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:46:56.604Z",
+          "kind": "answer",
+          "slot": "op3-row-entry",
+          "choice": "0, 1, 0",
+          "prompt": "Fill in the new R2.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:00.110Z",
+          "kind": "answer",
+          "slot": "op4-pick-cell",
+          "choice": "R1C2",
+          "prompt": "Tab or click the entry you need to turn into a 0.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:01.527Z",
+          "kind": "answer",
+          "slot": "op4-operation-type",
+          "choice": "row-replacement",
+          "prompt": "What type of row transformation do you need?",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:06.111Z",
+          "kind": "answer",
+          "slot": "op4-row-notation",
+          "choice": "5/3R2 + R1 → R1",
+          "prompt": "Write the row replacement operation.",
+          "correct": true,
+          "elapsedMs": 2,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:24.444Z",
+          "kind": "answer",
+          "slot": "op4-row-entry",
+          "choice": "1, 0, 4",
+          "prompt": "Fill in the new R1.",
+          "correct": true,
+          "elapsedMs": 1,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:34.325Z",
+          "kind": "answer",
+          "slot": "solution",
+          "choice": "x = 4, y = 0",
+          "prompt": "What is the solution? Tab or click on the ordered pair to enter your answer.",
+          "correct": true,
+          "elapsedMs": 2,
+          "attemptIndex": 1
+        },
+        {
+          "at": "2026-09-21T17:47:37.194Z",
+          "kind": "portal-nav",
+          "meta": {
+            "mode": "guided"
+          },
+          "choice": "no"
+        }
+      ],
+      "version": 1,
+      "problemId": 10
+    },
+    "attempt_items": [
+      {
+        "slot": "op1-pick-cell",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "R1C1"
+      },
+      {
+        "slot": "op1-operation-type",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "row-scaling"
+      },
+      {
+        "slot": "op1-row-notation",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "1/3R1 → R1"
+      },
+      {
+        "slot": "op1-row-entry",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "1, -5/3, 4"
+      },
+      {
+        "slot": "op2-pick-cell",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "R2C1"
+      },
+      {
+        "slot": "op2-operation-type",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "row-replacement"
+      },
+      {
+        "slot": "op2-row-notation",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "2R1 + R2 → R2"
+      },
+      {
+        "slot": "op2-row-entry",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "0, 11/3, 0"
+      },
+      {
+        "slot": "op3-pick-cell",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "R2C2"
+      },
+      {
+        "slot": "op3-operation-type",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "row-scaling"
+      },
+      {
+        "slot": "op3-row-notation",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "3/11R2 → R2"
+      },
+      {
+        "slot": "op3-row-entry",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "0, 1, 0"
+      },
+      {
+        "slot": "op4-pick-cell",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "R1C2"
+      },
+      {
+        "slot": "op4-operation-type",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "row-replacement"
+      },
+      {
+        "slot": "op4-row-notation",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "5/3R2 + R1 → R1"
+      },
+      {
+        "slot": "op4-row-entry",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "1, 0, 4"
+      },
+      {
+        "slot": "solution",
+        "outcome": "correct",
+        "item_kind": "guided-practice-step",
+        "attempt_count": 1,
+        "selected_option_id": "x = 4, y = 0"
+      }
+    ]
+  }
+]

@@ -84,14 +84,14 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>516</dd></div>
-      <div><dt>Tasks today</dt><dd>16</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.0M (of 43 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>203k</dd></div>
-      <div><dt>Total billed</dt><dd>181.3M</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (61/2237 steps)</dd></div>
+      <div><dt>Total tasks</dt><dd>523</dd></div>
+      <div><dt>Tasks today</dt><dd>6</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.4M (of 44 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>196k</dd></div>
+      <div><dt>Total billed</dt><dd>184.6M</dd></div>
+      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">3% (65/2273 steps)</dd></div>
       <div><dt>Avg steps</dt><dd>5.1</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:49 PM · Sunday, Sep 20, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">2:38 PM · Monday, Sep 21, 2026</dd></div>
     </div>
     <section class="index-failures-block">
     <h2 class="day-title">Real index gaps</h2>
@@ -100,6 +100,11 @@
     or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
     correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
     <ul class="index-failures-list"><li class="index-fail nav-partial">
+      <span class="nav-marker">~</span>
+      <code title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
+      <span class="nav-note">Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc</span>
+      <span class="index-fail-task">8:50 PM — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span>
+    </li><li class="index-fail nav-partial">
       <span class="nav-marker">~</span>
       <code title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
       <span class="nav-note">Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down</span>
@@ -194,16 +199,406 @@
       <code title="Macro-App/AGENTS.md">Macro-App/AGENTS.md</code>
       <span class="nav-note">No stats-email keyword; grepped statistics Email</span>
       <span class="index-fail-task">11:01 AM — Statistics Email: First assignment message checkbox fills Outlook subject/body for missing or below-threshold filters</span>
-    </li><li class="index-fail nav-partial">
-      <span class="nav-marker">~</span>
-      <code title="docs/ROSTER_PIPELINE_INTEGRATION.md">docs/ROSTER_PIPELINE_INTEGRATION.md</code>
-      <span class="nav-note">Symptom table had no C→G row yet; confirmed owner is path resolution</span>
-      <span class="index-fail-task">10:19 AM — Laptop G:\My Drive detection remaps PC C:\Users\...\My Drive paths for storage, Zoom/open, and AA folders</span>
     </li></ul>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Sep 20, 2026 <span class="day-count">16 tasks</span></h2>
+      <h2 class="day-title">Monday, Sep 21, 2026 <span class="day-count">6 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:38 PM — Diagnosed missing D2L extra-credit column in gradebook pull — stale Enter Grades page in hidden browser slot, not a parser bug; confirmed by Chase after refresh — 4 steps · 23m 51s · 1 dead-end</span>
+      <span class="pill p0">Chat: 21 msgs · 388 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 23m 51s active tool time
+        <br>4 steps · first helpful at #1 · 2 ✓ · 1 ~ · 1 ✗
+        <br>Hook saw 17 search(es), 2 doc read(s) · chat so far: 21 message(s), 388 KB transcript
+        <br>Wall-clock gap since previous task: 23m 56s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="macro-app.log [Backup] D2L grid lines">macro-app.log [Backup] D2L grid lines</code>
+      <span class="nav-note">Decisive: pull enumerated 33 assignments, Extra Credit yielded only the 4 'Extra Credit Assignment N' items — new column absent, alignment check OK</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_enter_grid_actions.py">School Scrips/Macro App/modules/d2l/grades_enter_grid_actions.py</code>
+      <span class="nav-note">select_import_columns / _parse_scraped_export_categories filters checked — ruled out as cause</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_enter_grid_scripts.py">School Scrips/Macro App/modules/d2l/grades_enter_grid_scripts.py</code>
+      <span class="nav-note">editable flag requires d2l-input-number in a student cell; showed scrape reads live DOM, so a stale page yields a stale column set</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/modules/d2l/grades_enter_grid_scroll_scrape.py">School Scrips/Macro App/modules/d2l/grades_enter_grid_scroll_scrape.py</code>
+      <span class="nav-note">Checked horizontal-scroll merge for dropped columns — not the cause</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:14 PM — Found blank GP dots root cause — bare &lt;span&gt; dot had no display rule so width/height collapsed to zero; added display:inline-block — 5 steps · 7m 19s · 2 dead-end</span>
+      <span class="pill p0">Chat: 16 msgs · 332 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 7m 19s active tool time
+        <br>5 steps · first helpful at #1 · 3 ✓ · 0 ~ · 2 ✗
+        <br>Hook saw 8 search(es), 0 doc read(s) · chat so far: 16 message(s), 332 KB transcript
+        <br>Wall-clock gap since previous task: 7m 24s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="user screenshot of Students &gt; Responses">user screenshot of Students &gt; Responses</code>
+      <span class="nav-note">Grid + roster render correctly, only dots missing — ruled out data path</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/styles/teacher-console-logins.css">School Scrips/Macro App/renderer/src/styles/teacher-console-logins.css</code>
+      <span class="nav-note">.teacher-console-login-dot sets width/height but no display</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/LoginDayCell.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/LoginDayCell.tsx</code>
+      <span class="nav-note">Logins screen uses a &lt;button&gt; inside inline-flex, so it was blockified and worked by accident</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/electron-app (git status)">School Scrips/Macro App/electron-app (git status)</code>
+      <span class="nav-note">No main-process drift</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="AppData/Roaming/macro-app/logs/macro-app.log">AppData/Roaming/macro-app/logs/macro-app.log</code>
+      <span class="nav-note">No student-progress errors</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:07 PM — Moved Refresh responses to preview tester side panel; verified GP completion pipeline computes green from live data — 6 steps · 11m 35s · 1 dead-end</span>
+      <span class="pill p0">Chat: 15 msgs · 293 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 11m 35s active tool time
+        <br>6 steps · first helpful at #1 · 5 ✓ · 0 ~ · 1 ✗
+        <br>Hook saw 16 search(es), 1 doc read(s) · chat so far: 15 message(s), 293 KB transcript
+        <br>Wall-clock gap since previous task: 11m 39s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="School Scrips/App Dashboard/apps.json">School Scrips/App Dashboard/apps.json</code>
+      <span class="nav-note">Macro App runs npm run dev — dist rebuild was irrelevant</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="http://localhost:5328 module fetch">http://localhost:5328 module fetch</code>
+      <span class="nav-note">Dev server confirmed serving guided-practice branch and grid modules</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportRoster.ts">School Scrips/Macro App/renderer/src/utils/matrixReport/matrixReportRoster.ts</code>
+      <span class="nav-note">Roster ids match DB student ids</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="temporary vitest diag over live maps+results">temporary vitest diag over live maps+results</code>
+      <span class="nav-note">Garcia Baptiste computes green/red/green</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/components/teacher-console/PreviewTesterPanel.tsx">School Scrips/Macro App/renderer/src/components/teacher-console/PreviewTesterPanel.tsx</code>
+      <span class="nav-note">Preview responses is hardcoded audience=testers</span>
+      
+    </li><li class="nav-step nav-dead" style="--nav-depth:0">
+      <span class="nav-marker" title="dead-end">✗</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/teacher-console/useMatrixReportViewTuning.ts">School Scrips/Macro App/renderer/src/hooks/teacher-console/useMatrixReportViewTuning.ts</code>
+      <span class="nav-note">Never returns null — ruled out blank-panel path</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:55 PM — Spread guided-practice review page to 4-column grid with per-question dropdown + saveable comments — 2 steps · 39m 14s</span>
+      <span class="pill p0">Chat: 13 msgs · 246 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 39m 14s active tool time
+        <br>2 steps · first helpful at #1 · 2 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 126 search(es), 3 doc read(s) · chat so far: 13 message(s), 246 KB transcript
+        <br>Wall-clock gap since previous task: 39m 17s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/scratch/build-guided-practice-attempt-page.mjs">agent docs/scratch/build-guided-practice-attempt-page.mjs</code>
+      <span class="nav-note">Regenerated layout</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="agent docs/scratch/guided-practice-attempt-60b0a608.html">agent docs/scratch/guided-practice-attempt-60b0a608.html</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:16 PM — GP gap #1 format-reject (not scored) + gap #2 expected_option_id on attempt_items; migration 052 pushed — 7 steps · 6m 6s</span>
+      <span class="pill p0">Chat: 9 msgs · 117 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 6m 6s active tool time
+        <br>7 steps · first helpful at #1 · 7 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 31 search(es), 0 doc read(s) · chat so far: 9 message(s), 117 KB transcript
+        <br>Wall-clock gap since previous task: 6m 13s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="conversation handoff summary">conversation handoff summary</code>
+      <span class="nav-note">Gap #1/#2 requirements from prior session</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="Matrix app guided-practice-event-emit.ts">Matrix app guided-practice-event-emit.ts</code>
+      <span class="nav-note">markFormatIssue used reportAnswer</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="student-portal useGuidedPracticeAttempt buildAttemptItems">student-portal useGuidedPracticeAttempt buildAttemptItems</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-session-kit migrations 045/047">student-session-kit migrations 045/047</code>
+      <span class="nav-note">submit_tutorial_attempt + abandon_attempt</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="Matrix app guided-practice-expected-choice.ts">Matrix app guided-practice-expected-choice.ts</code>
+      <span class="nav-note">new engine helper</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="npm test Matrix + portal archive contract">npm test Matrix + portal archive contract</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="student-session-kit npm run db:push">student-session-kit npm run db:push</code>
+      
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:10 PM — GP completion grid in Teacher Console, disabled unguided Practice on portal home, Michelle live review HTML + gap panel explained — 7 steps · 12m 15s</span>
+      <span class="pill p0">Chat: 8 msgs · 112 KB</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 12:57 PM
+         · 12m 15s active tool time
+        <br>7 steps · first helpful at #1 · 6 ✓ · 0 ~ · 0 ✗
+        <br>Hook saw 19 search(es), 15 doc read(s) · chat so far: 8 message(s), 112 KB transcript
+        <br>Wall-clock gap since previous task: 12m 21s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/INDEX.md">agent docs/INDEX.md</code>
+      <span class="nav-note">Student progress pipeline row</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md">School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code>
+      
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="Macro App ActivityResponsesPanel + matrixReport utils">Macro App ActivityResponsesPanel + matrixReport utils</code>
+      <span class="nav-note">GP responses panel was empty by design</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="student-portal GuidedPracticeHomePanel">student-portal GuidedPracticeHomePanel</code>
+      <span class="nav-note">UNGUIDED_PRACTICE_HOME_ENABLED flag</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="agent docs/scratch/build-guided-practice-attempt-page.mjs">agent docs/scratch/build-guided-practice-attempt-page.mjs</code>
+      <span class="nav-note">Four-section review HTML A–D</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">6</span>
+      
+      <code class="nav-target" title="Matrix app markFormatIssue/markSoftRetry/markWrong">Matrix app markFormatIssue/markSoftRetry/markWrong</code>
+      <span class="nav-note">Gap #1 — all log correct:false today</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">7</span>
+      
+      <code class="nav-target" title="agent docs/momentum-handoffs/2026-09-20_practice-archive-gap-analysis.md">agent docs/momentum-handoffs/2026-09-20_practice-archive-gap-analysis.md</code>
+      
+      
+    </li></ul>
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Sunday, Sep 20, 2026 <span class="day-count">17 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:50 PM — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\ — 5 steps · 33m 33s</span>
+      <span class="pill p0">3.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">
+        Session 8:11 PM
+         · 33m 33s active tool time
+        <br>5 steps · first helpful at #1 · 3 ✓ · 1 ~ · 0 ✗
+        <br>Hook saw 8 search(es), 0 doc read(s) · 3.3M tokens over 33 turn(s) · 100k/turn · chat so far: 1 message(s), 703 KB transcript
+        <br>Wall-clock gap since previous task: 39m 34s (includes idle time)
+      </p>
+      <p class="muted-inline nav-legend">
+        <span class="nav-helpful-pill">✓ helpful</span>
+        <span class="nav-partial-pill">~ partial</span>
+        <span class="nav-dead-pill">✗ dead end</span>
+      </p>
+      <ul class="nav-tree nav-root"><li class="nav-step nav-routed" style="--nav-depth:0">
+      <span class="nav-marker" title="routed">→</span>
+      <span class="nav-step-num">1</span>
+      
+      <code class="nav-target" title="agent docs/session-bumps/slim-installer-0-1-28.json">agent docs/session-bumps/slim-installer-0-1-28.json</code>
+      <span class="nav-note">Prior bump identified 'slim build' as Macro App and named the build script</span>
+      
+    </li><li class="nav-step nav-partial" style="--nav-depth:0">
+      <span class="nav-marker" title="partial">~</span>
+      <span class="nav-step-num">2</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md">School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code>
+      <span class="nav-note">Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">3</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/scripts/write-build-manifest.cjs">School Scrips/Macro App/scripts/write-build-manifest.cjs</code>
+      <span class="nav-note">--bump-version increments package.json patch at build start</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">4</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShell.ts">School Scrips/Macro App/renderer/src/hooks/shell/useMacroAppShell.ts</code>
+      <span class="nav-note">flushSync settings-modal open; file mtime 09-18 vs bundle mtime 09-16 proved the build was stale</span>
+      
+    </li><li class="nav-step nav-helpful" style="--nav-depth:0">
+      <span class="nav-marker" title="helpful">✓</span>
+      <span class="nav-step-num">5</span>
+      
+      <code class="nav-target" title="School Scrips/Macro App/renderer/src/hooks/browser/useShellBrowserModals.ts">School Scrips/Macro App/renderer/src/hooks/browser/useShellBrowserModals.ts</code>
+      <span class="nav-note">prepareSettingsModalOpen freezes the embedded browser - confirms the Settings/browser interaction Chase named</span>
+      
+    </li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">7:49 PM — Fixed the guided/unguided practice release blockers: resume boundary, submit no longer blanks progress, releaseAttempt kills post-submit retries, survey re-asks instead of dead-ending, dead buttons now show an error; type-check green, file sizes under cap — 8 steps · 20m 10s</span>
       <span class="pill p0">Chat: 9 msgs · 57 KB</span>

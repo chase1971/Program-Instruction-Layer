@@ -1,60 +1,9 @@
-/**
- * Generator for guided-practice attempt review HTML (sections A–D).
- *
- * Run:
- *   node "agent docs/scratch/build-guided-practice-attempt-page.mjs"
- *   node "agent docs/scratch/build-guided-practice-attempt-page.mjs" --payload attempt-6f9a7f87-payload.json --student "Michelle (Spare 3)"
- */
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-function parseArgs(argv) {
-  const out = {};
-  for (let i = 0; i < argv.length; i += 1) {
-    const token = argv[i];
-    if (!token.startsWith('--')) {
-      continue;
-    }
-    const key = token.slice(2);
-    const next = argv[i + 1];
-    out[key] = next && !next.startsWith('--') ? argv[++i] : 'true';
-  }
-  return out;
-}
-
-const dir = path.dirname(fileURLToPath(import.meta.url));
-const args = parseArgs(process.argv.slice(2));
-const payloadFile = args.payload ?? 'attempt-60b0a608-payload.json';
-const studentLabel = args.student ?? 'Instructor test session';
-const payloadRows = JSON.parse(fs.readFileSync(path.join(dir, payloadFile), 'utf8'));
-const payload = Array.isArray(payloadRows) ? payloadRows[0] : payloadRows;
-if (!payload?.id) {
-  throw new Error(`No attempt row in ${payloadFile}`);
-}
-
-const slug = args.slug ?? payload.id.slice(0, 8);
-const htmlName = `guided-practice-attempt-${slug}.html`;
-const eventCount = Array.isArray(payload.session_log?.events) ? payload.session_log.events.length : 0;
-
-const attemptData = {
-  attemptId: payload.id,
-  status: payload.status,
-  score: payload.score,
-  maxScore: payload.max_score,
-  startedAt: payload.started_at,
-  completedAt: payload.completed_at,
-  problemId: payload.problem_id,
-  attemptItems: payload.attempt_items,
-  sessionLog: payload.session_log,
-};
-
-const html = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Guided practice attempt — ${studentLabel} — problem ${payload.problem_id}</title>
+<title>Guided practice attempt — Michelle (Spare 3) — problem 10</title>
 <style>
   :root {
     --ink: #13243a;
@@ -342,7 +291,7 @@ const html = `<!DOCTYPE html>
 
 <div class="banner">
   <strong>Scratch prototype — live Supabase data.</strong>
-  ${studentLabel} · guided practice problem ${payload.problem_id} · ${payload.score}/${payload.max_score} · ${eventCount} events.
+  Michelle (Spare 3) · guided practice problem 10 · 17/17 · 19 events.
   Four display sections (A–D) — click any question tile to open details and add notes.
 </div>
 
@@ -360,7 +309,7 @@ const html = `<!DOCTYPE html>
 <nav class="jump" aria-label="Jump to section">
   <a href="#step-ledger">A. Step ledger <span>One row per question — tries, help, recovery</span></a>
   <a href="#struggle-cards">B. Struggle cards <span>Plain-English narrative for each first-try miss</span></a>
-  <a href="#decoded-timeline">C. Decoded timeline <span>All ${eventCount} events with meta shown</span></a>
+  <a href="#decoded-timeline">C. Decoded timeline <span>All 19 events with meta shown</span></a>
   <a href="#aggregates">D. Aggregates <span>Wrong counts, help usage, stall points</span></a>
   <a href="#gap-panel">Gap panel <span>What capture is missing for teacher usefulness</span></a>
 </nav>
@@ -381,8 +330,8 @@ const html = `<!DOCTYPE html>
 
 <section class="section-card" id="decoded-timeline" data-comment-id="section-decoded-timeline" data-comment-title="Section C — Decoded timeline layout">
   <h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">C. Decoded timeline</h2>
-  <p class="secnote">All ${eventCount} events with <code>meta</code> — collapsed by default.</p>
-  <button type="button" class="collapsible-toggle" id="timeline-toggle" aria-expanded="false">Show decoded timeline (${eventCount} events)</button>
+  <p class="secnote">All 19 events with <code>meta</code> — collapsed by default.</p>
+  <button type="button" class="collapsible-toggle" id="timeline-toggle" aria-expanded="false">Show decoded timeline (19 events)</button>
   <div class="collapsible-body" id="timeline-body" hidden>
     <ol class="timeline timeline-grid" id="timeline-root"></ol>
   </div>
@@ -405,7 +354,7 @@ const html = `<!DOCTYPE html>
 <button type="button" class="raw-toggle" id="raw-toggle" aria-expanded="false">Show raw session_log JSON</button>
 <pre class="raw-json" id="raw-json"></pre>
 
-<script type="application/json" id="attempt-data">${JSON.stringify(attemptData)}</script>
+<script type="application/json" id="attempt-data">{"attemptId":"6f9a7f87-1cb4-49e8-bec0-9311ff5f84e0","status":"completed","score":17,"maxScore":17,"startedAt":"2026-09-21T17:45:29.471045+00:00","completedAt":"2026-09-21T17:47:37.514413+00:00","problemId":10,"attemptItems":[{"slot":"op1-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C1"},{"slot":"op1-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op1-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1/3R1 → R1"},{"slot":"op1-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, -5/3, 4"},{"slot":"op2-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C1"},{"slot":"op2-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op2-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"2R1 + R2 → R2"},{"slot":"op2-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 11/3, 0"},{"slot":"op3-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C2"},{"slot":"op3-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op3-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"3/11R2 → R2"},{"slot":"op3-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 1, 0"},{"slot":"op4-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C2"},{"slot":"op4-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op4-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"5/3R2 + R1 → R1"},{"slot":"op4-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 0, 4"},{"slot":"solution","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"x = 4, y = 0"}],"sessionLog":{"events":[{"at":"2026-09-21T17:45:29.504Z","kind":"portal-nav","meta":{"problemId":10},"choice":"start-guided"},{"at":"2026-09-21T17:45:43.401Z","kind":"answer","slot":"op1-pick-cell","choice":"R1C1","prompt":"Tap or click the value that will be the pivot. That is the number that needs to become 1 first.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:45:44.388Z","kind":"answer","slot":"op1-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T17:45:51.713Z","kind":"answer","slot":"op1-row-notation","choice":"1/3R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":6,"attemptIndex":1},{"at":"2026-09-21T17:46:06.600Z","kind":"answer","slot":"op1-row-entry","choice":"1, -5/3, 4","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:46:10.272Z","kind":"answer","slot":"op2-pick-cell","choice":"R2C1","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T17:46:13.223Z","kind":"answer","slot":"op2-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T17:46:19.330Z","kind":"answer","slot":"op2-row-notation","choice":"2R1 + R2 → R2","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T17:46:38.127Z","kind":"answer","slot":"op2-row-entry","choice":"0, 11/3, 0","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T17:46:41.165Z","kind":"answer","slot":"op3-pick-cell","choice":"R2C2","prompt":"Tap or click the next pivot.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:46:42.698Z","kind":"answer","slot":"op3-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:46:47.866Z","kind":"answer","slot":"op3-row-notation","choice":"3/11R2 → R2","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:46:56.604Z","kind":"answer","slot":"op3-row-entry","choice":"0, 1, 0","prompt":"Fill in the new R2.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:47:00.110Z","kind":"answer","slot":"op4-pick-cell","choice":"R1C2","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:47:01.527Z","kind":"answer","slot":"op4-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:47:06.111Z","kind":"answer","slot":"op4-row-notation","choice":"5/3R2 + R1 → R1","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T17:47:24.444Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, 4","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T17:47:34.325Z","kind":"answer","slot":"solution","choice":"x = 4, y = 0","prompt":"What is the solution? Tab or click on the ordered pair to enter your answer.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T17:47:37.194Z","kind":"portal-nav","meta":{"mode":"guided"},"choice":"no"}],"version":1,"problemId":10}}</script>
 
 <script>
 (function () {
@@ -673,7 +622,7 @@ const html = `<!DOCTYPE html>
   /* ---- Render hero ---- */
   var durationMs = new Date(DATA.completedAt) - new Date(DATA.startedAt);
   document.getElementById('hero-sub').textContent =
-    'Attempt ' + DATA.attemptId.slice(0, 8) + '… · ${studentLabel.replace(/'/g, "\\'")} · ' + events.length + ' events';
+    'Attempt ' + DATA.attemptId.slice(0, 8) + '… · Michelle (Spare 3) · ' + events.length + ' events';
 
   document.getElementById('meta-grid').innerHTML = [
     ['Problem', DATA.problemId],
@@ -869,7 +818,7 @@ const html = `<!DOCTYPE html>
       rank: 1,
       title: 'Wrong-answer kind is not distinguished',
       body: 'markWrong, markSoftRetry, and markFormatIssue all emit identical answer events. Events 4 and 5 for op1-row-notation are byte-identical — cannot tell format rejection from a real second try.',
-      evidence: 'Event 4: answer op1-row-notation "1/6R1 → R2" incorrect attempt 1\\nEvent 5: answer op1-row-notation "1/6R1 → R2" incorrect attempt 2\\n(identical choice, no errorKind field)',
+      evidence: 'Event 4: answer op1-row-notation "1/6R1 → R2" incorrect attempt 1\nEvent 5: answer op1-row-notation "1/6R1 → R2" incorrect attempt 2\n(identical choice, no errorKind field)',
     },
     {
       id: 'gap-expected-answer',
@@ -897,14 +846,14 @@ const html = `<!DOCTYPE html>
       rank: 5,
       title: 'Example switching under-logged',
       body: 'help-example fired once (EX1), but help-step meta shows EX2 and EX3 were both played during multiply help.',
-      evidence: 'help-example: choice=EX1\\nhelp-step meta: exampleLabel EX1, EX2, EX3 all appear in events 20–28',
+      evidence: 'help-example: choice=EX1\nhelp-step meta: exampleLabel EX1, EX2, EX3 all appear in events 20–28',
     },
     {
       id: 'gap-recovery-labels',
       rank: 6,
       title: 'Recovery phases have no human labels in Teacher Console',
       body: 'multiply-row-prompt, changed-row-prompt, pivot-row-prompt, etc. are in meta.phase but PracticeArchivePanel timeline drops meta entirely. Display-only fix possible in matrixSlotCatalog.',
-      evidence: 'Event 13: recovery-step meta.phase=multiply-row-prompt action=pick-row choice=R1\\nCurrent TC shows: recovery-step · op1-row-notation · R1',
+      evidence: 'Event 13: recovery-step meta.phase=multiply-row-prompt action=pick-row choice=R1\nCurrent TC shows: recovery-step · op1-row-notation · R1',
     },
   ];
 
@@ -928,7 +877,7 @@ const html = `<!DOCTYPE html>
     var opening = body.hidden;
     body.hidden = !opening;
     this.setAttribute('aria-expanded', opening ? 'true' : 'false');
-    this.textContent = opening ? 'Hide decoded timeline (${eventCount} events)' : 'Show decoded timeline (${eventCount} events)';
+    this.textContent = opening ? 'Hide decoded timeline (19 events)' : 'Show decoded timeline (19 events)';
   });
 
   /* ---- Raw JSON ---- */
@@ -946,8 +895,8 @@ const html = `<!DOCTYPE html>
 /* Comment threads — pattern from portal-risk-review.html */
 (function () {
   'use strict';
-  var PAGE = 'scratch/${htmlName}';
-  var DATA_URL = '/scratch/guided-practice-attempt-${slug}.comments.json';
+  var PAGE = 'scratch/guided-practice-attempt-6f9a7f87.html';
+  var DATA_URL = '/scratch/guided-practice-attempt-6f9a7f87.comments.json';
   var SAVE_URL = '/__comments/' + PAGE;
   var REPLIES = {};
   var store = { page: PAGE, updated: null, comments: {} };
@@ -991,7 +940,7 @@ const html = `<!DOCTYPE html>
     var waitEl = document.getElementById('csum-waiting');
     if (waitEl) {
       var w = countUnanswered();
-      waitEl.textContent = w === 0 ? 'Everything you\\'ve written has a reply under it.' : (w === 1 ? '1 point is waiting for a reply.' : w + ' points are waiting for a reply.');
+      waitEl.textContent = w === 0 ? 'Everything you\'ve written has a reply under it.' : (w === 1 ? '1 point is waiting for a reply.' : w + ' points are waiting for a reply.');
     }
   }
   function save(id, busyBtn, busyLabel) {
@@ -1130,8 +1079,4 @@ const html = `<!DOCTYPE html>
 </script>
 
 </body>
-</html>`;
-
-const outPath = path.join(dir, htmlName);
-fs.writeFileSync(outPath, html, 'utf8');
-console.log('Wrote', outPath, '(' + html.length + ' bytes)');
+</html>

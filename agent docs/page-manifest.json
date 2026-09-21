@@ -49,7 +49,10 @@
         "scratch/supabase-setup.html",
         "scratch/finish-attempt-rpc.html",
         "scratch/student-attempt-history-rpc.html",
-        "scratch/monitor-status.html"
+        "scratch/monitor-status.html",
+        "scratch/practice-archive-sample.html",
+        "scratch/guided-practice-attempt-60b0a608.html",
+        "scratch/guided-practice-attempt-6f9a7f87.html"
       ]
     },
     {
@@ -186,6 +189,9 @@
     "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem.",
     "scratch/fraction-times-whole.html": "Q5 guided-practice help — multiply a fraction by a whole number (Manim, white background, math only).",
     "scratch/fraction-add-fractions.html": "Q9 guided-practice help — add whole numbers to fractions, then fraction to fraction (Manim, white background, math only).",
-    "scratch/matrix-instruction-copy-review.html": "Paginated 2×3 grid of every Matrix app instruction-box string — comment, dictate replacement text, export JSON for batch apply."
+    "scratch/matrix-instruction-copy-review.html": "Paginated 2×3 grid of every Matrix app instruction-box string — comment, dictate replacement text, export JSON for batch apply.",
+    "scratch/practice-archive-sample.html": "Sample shape of practice archive data — not live Supabase.",
+    "scratch/guided-practice-attempt-60b0a608.html": "Guided practice review — Chase (instructor), problem 16, 13/17. Four sections: step ledger, struggle cards, timeline, aggregates.",
+    "scratch/guided-practice-attempt-6f9a7f87.html": "Guided practice review — Michelle (Spare 3 tester), problem 10, 17/17 perfect. Same four-section layout for comparison."
   }
 }
