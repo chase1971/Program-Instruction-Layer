@@ -1,9 +1,0 @@
-{
-  "chunkNote": "Momentum handoff — TC preview frame done + guided practice polish (merge animation, skip target-value, format feedback, cell sizing)",
-  "navigationPath": [
-    { "step": "agent docs/MOMENTUM_HANDOFF.md", "result": "✓" },
-    { "step": "agent docs/momentum-handoffs/latest.md (prior)", "result": "→" },
-    { "step": "Matrix app + Macro App + student-portal changed files", "result": "✓" },
-    { "step": "agent docs/momentum-handoffs/latest.md (written)", "result": "✓" }
-  ]
-}

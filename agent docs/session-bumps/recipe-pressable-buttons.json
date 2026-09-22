@@ -1,8 +1,0 @@
-{
-  "chunkNote": "Captured the raised/pressable button pattern as recipe pressable-buttons.md, routed from recipes/INDEX.md",
-  "navigationPath": [
-    { "step": "agent docs/recipes/INDEX.md", "result": "✓", "note": "no existing button-look recipe" },
-    { "step": "recipes/no-ephemeral-feedback.md", "result": "✓", "note": "shape template + cross-link" },
-    { "step": "teacher-console-side-panel-buttons.css", "result": "✓", "note": "exemplar" }
-  ]
-}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guided practice — class aggregate</title>
+<style>
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 80px;
+  }
+  a { color: var(--blue); }
+  .backlink, .nav-pill {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin: 0 8px 8px 0;
+    min-height: 3rem;
+  }
+  .nav-pill.active { border-color: #2563eb; background: var(--bluebg); box-shadow: 0 0 0 3px #bfdbfe; }
+  h1 { font-size: 32px; margin: 0 0 8px; }
+  .sub { color: var(--soft); font-size: 18px; margin: 0 0 24px; }
+  .banner {
+    background: var(--amberbg);
+    border: 2px solid #fec84b;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 0 0 24px;
+    font-size: 16px;
+    color: #7a2e0e;
+  }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 0 0 16px;
+  }
+  .card h2, .card h3 { margin: 0 0 10px; line-height: 1.25; }
+  .card h2 { font-size: 24px; }
+  .card h3 { font-size: 20px; }
+  .pill {
+    display: inline-block;
+    font: 700 12px/1 system-ui, sans-serif;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 0 6px 6px 0;
+  }
+  .pill-bad { background: var(--redbg); color: var(--red); border: 1.5px solid #fda29b; }
+  .pill-info { background: var(--bluebg); color: var(--blue); border: 1.5px solid #c7d7fe; }
+  .pill-ok { background: var(--greenbg); color: var(--green); border: 1.5px solid #a6f4c5; }
+  .student-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 20px;
+  }
+  .student-nav button {
+    padding: 18px 24px;
+    font: 700 18px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    min-height: 3.5rem;
+  }
+  .student-nav button:disabled { opacity: 0.35; cursor: default; }
+  .student-name { text-align: center; font-size: 28px; font-weight: 800; margin: 0; }
+  .student-sub { text-align: center; color: var(--soft); margin: 4px 0 0; }
+  .problem-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 20px;
+  }
+  .problem-tabs button {
+    padding: 16px 18px;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    min-height: 3.25rem;
+    text-align: left;
+  }
+  .problem-tabs button.active {
+    border-color: #2563eb;
+    background: var(--bluebg);
+    box-shadow: 0 0 0 3px #bfdbfe;
+  }
+  .tab-sub { display: block; font-weight: 400; font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .miss-card ul { margin: 8px 0 0; padding-left: 22px; }
+  .miss-card li { margin-bottom: 6px; }
+  .miss-card code {
+    background: #e9eef5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+  }
+  .empty {
+    border: 2px dashed var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    color: var(--soft);
+  }
+  .bar-row { display: grid; grid-template-columns: 1fr 3fr 60px; gap: 12px; align-items: center; margin: 0 0 10px; }
+  .bar-track { background: #e9eef5; border-radius: 8px; height: 28px; overflow: hidden; }
+  .bar-fill { background: #2563eb; height: 100%; border-radius: 8px; min-width: 4px; }
+  table.simple { width: 100%; border-collapse: collapse; font-size: 15px; }
+  table.simple th, table.simple td { border: 1.5px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  table.simple th { background: #f9fafb; }
+  .survey-row { border: 2px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 10px; background: #fbfcfe; }
+  .survey-row .q { font-weight: 700; margin: 0 0 6px; }
+  .survey-row .a { margin: 0; white-space: pre-wrap; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 20px; }
+  .miss-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    min-height: 3.5rem;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .miss-badge:hover { border-color: #94a3b8; }
+  .miss-badge.active {
+    border-color: #2563eb;
+    background: var(--bluebg);
+    box-shadow: 0 0 0 3px #bfdbfe;
+  }
+  .miss-badge .count {
+    font-size: 15px;
+    color: var(--red);
+    background: var(--redbg);
+    border: 1.5px solid #fda29b;
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .badge-detail {
+    background: #fff;
+    border: 3px solid #2563eb;
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 0 0 20px;
+  }
+  .badge-detail[hidden] { display: none !important; }
+  .badge-detail h3 { margin: 0 0 6px; font-size: 22px; }
+  .badge-detail .desc { color: var(--soft); margin: 0 0 16px; }
+  .instance {
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0 0 10px;
+    background: #fbfcfe;
+  }
+  .instance .who { font-weight: 700; margin: 0 0 8px; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare-box {
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #fff;
+  }
+  .compare-box.bad { border-color: #fda29b; background: var(--redbg); }
+  .compare-box.good { border-color: #a6f4c5; background: var(--greenbg); }
+  .compare-box .label {
+    font: 700 11px/1 system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 0 0 6px;
+  }
+  .compare-box .value {
+    margin: 0;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 15px;
+    word-break: break-word;
+  }
+  .student-badge-summary { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .student-badge-summary span {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #f2f4f7;
+    border: 1.5px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+<a class="nav-pill" href="/scratch/guided-practice-miss-student.html">Per-student misses</a>
+
+<div class="banner"><strong>Class-wide badges.</strong> Click a badge to see every miss instance — who, what they wrote, and the answer.</div>
+<h1>Class miss badges</h1>
+<p class="sub">5 students with guided-practice attempts · 2 surveys</p>
+
+<section class="card">
+  <h2>Class miss badges (all students, both problems)</h2>
+  <p style="color:var(--soft);margin:0 0 16px">Each badge counts one miss on one problem. Click to expand.</p>
+  <div class="badge-row" id="class-badge-row"></div>
+  <div class="badge-detail" id="class-badge-detail" hidden></div>
+</section>
+
+<section class="card">
+  <h2>Badges by student</h2>
+  <table class="simple">
+    <thead><tr><th>Student</th><th>Total badges</th><th>Breakdown</th></tr></thead>
+    <tbody><tr><td>Cynthia Jimenez Duran</td><td>2</td><td><div class="student-badge-summary"><span>Transform type ×1</span><span>Replacement math ×1</span></div></td></tr><tr><td>Maria Garcia Baptiste</td><td>2</td><td><div class="student-badge-summary"><span>Replacement notation ×1</span><span>Scaling notation ×1</span></div></td></tr></tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Post-practice survey (2 responses)</h2>
+  <div class="survey-row"><p class="q">When you got a step wrong, did the help make sense?</p><p class="a">Yes: 2</p></div><div class="survey-row"><p class="q">Did you use the help buttons (fraction help, row notation help)?</p><p class="a">Maybe: 1 · I didn't use it: 1</p></div><div class="survey-row"><p class="q">Would you use this again before a test?</p><p class="a">Yes: 2</p></div>
+  <h3 style="margin:20px 0 10px">Open feedback</h3><div class="survey-row"><p class="q">Cynthia Jimenez Duran</p><p class="a">I use the app on my laptop because I find it easier to study math on a computer than on my phone, especially since I’m usually not doing math on the go. I think it would be helpful if we could use the keyboard to type in numbers instead of having to click each number with the cursor.
+
+Another thing that would help is keeping the row operations visible after we enter them. Sometimes I forget which row operation I needed to use, and then I have to mentally work backward through the problem to figure it out again. Being able to see the row operation that we're working on would make it much easier to follow my work. (I'm not sure if that makes sense..)</p></div><div class="survey-row"><p class="q">Maria Garcia Baptiste</p><p class="a">The app is very helpful. It is simple to navigate and has clear instructions/help for when I get the questions wrong. I don't think anything should be changed.</p></div>
+</section>
+
+<section class="card">
+  <h2>Mini-tutorial help — “Did this help?”</h2>
+  <p style="color:var(--soft);margin:0 0 12px">Aggregated Yes / Kinda / No from fraction help and row-notation help prompts.</p>
+  <table class="simple">
+    <thead><tr><th>Help topic</th><th>Responses</th></tr></thead>
+    <tbody><tr><td colspan="2">No help feedback yet.</td></tr></tbody>
+  </table>
+</section>
+
+<script type="application/json" id="aggregate-data">{"classBadges":[{"category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","count":1},{"category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","count":1},{"category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","count":1},{"category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","count":1}],"instancesByCategory":{"transform-type":[{"studentName":"Cynthia Jimenez Duran","problemLabel":"Problem 2","problemId":11,"tryCount":1,"wrongChoices":[{"choice":"Row replacement","attemptIndex":1}],"expectedAnswer":"Row scaling"}],"replacement-math":[{"studentName":"Cynthia Jimenez Duran","problemLabel":"Problem 2","problemId":11,"tryCount":1,"wrongChoices":[{"choice":"1, 0, -11","attemptIndex":1}],"expectedAnswer":"1, 0, 1"}],"replacement-notation":[{"studentName":"Maria Garcia Baptiste","problemLabel":"Problem 1","problemId":6,"tryCount":1,"wrongChoices":[{"choice":"2/R2+R1→R1","attemptIndex":1}],"expectedAnswer":"2/5R2 + R1 → R1"}],"scaling-notation":[{"studentName":"Maria Garcia Baptiste","problemLabel":"Problem 2","problemId":12,"tryCount":1,"wrongChoices":[{"choice":"-7/41R1 → R1","attemptIndex":1}],"expectedAnswer":"-7/41R2 → R2"}]}}</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('aggregate-data').textContent);
+  var openBadge = null;
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function instanceHtml(inst) {
+    var wrongText = inst.wrongChoices.map(function (w) {
+      return 'Try ' + w.attemptIndex + ': ' + w.choice;
+    }).join('; ');
+    return '<div class="instance"><p class="who">' + esc(inst.studentName) + ' · ' + esc(inst.problemLabel) + ' · problem ' + inst.problemId + '</p>' +
+      '<div class="compare"><div class="compare-box bad"><p class="label">They wrote</p><p class="value">' + esc(wrongText || '—') + '</p></div>' +
+      '<div class="compare-box good"><p class="label">Answer</p><p class="value">' + esc(inst.expectedAnswer || '—') + '</p></div></div></div>';
+  }
+
+  function renderDetail(category) {
+    var panel = document.getElementById('class-badge-detail');
+    if (!category) { panel.hidden = true; panel.innerHTML = ''; return; }
+    var badge = DATA.classBadges.find(function (b) { return b.category === category; });
+    var instances = DATA.instancesByCategory[category] || [];
+    panel.hidden = false;
+    panel.innerHTML = '<h3>' + esc(badge.badgeLabel) + ' <span class="count">×' + badge.count + '</span></h3>' +
+      '<p class="desc">' + esc(badge.description) + '</p>' +
+      instances.map(instanceHtml).join('');
+  }
+
+  function render() {
+    var row = document.getElementById('class-badge-row');
+    row.innerHTML = DATA.classBadges.map(function (badge) {
+      var active = openBadge === badge.category;
+      return '<button type="button" class="miss-badge' + (active ? ' active' : '') + '" data-category="' + esc(badge.category) + '">' +
+        esc(badge.badgeLabel) + ' <span class="count">×' + badge.count + '</span></button>';
+    }).join('');
+    row.querySelectorAll('.miss-badge').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cat = btn.getAttribute('data-category');
+        openBadge = openBadge === cat ? null : cat;
+        renderDetail(openBadge);
+        render();
+      });
+    });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -1,9 +1,0 @@
-{
-  "chunkNote": "Matrix Part 1 landscape tuning — portal inset/cell/bracket CSS + Teacher Console preview 812×360 + notch indicator. Roster deploy (036/codes/sync) done earlier.",
-  "navigationPath": [
-    { "step": "agent docs/momentum-handoffs/latest.md", "result": "✓" },
-    { "step": "student-portal/src/styles/matrix-embed.css", "result": "✓" },
-    { "step": "Macro App/.../studentPortalChromeWindow.ts", "result": "✓" },
-    { "step": "STUDENT_PROGRESS_PIPELINE.md § deploy", "result": "→" }
-  ]
-}

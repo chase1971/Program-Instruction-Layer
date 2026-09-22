@@ -5,9 +5,6 @@
  */
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const { refreshCountsTrust } = require('./scorecard-trust');
 const {
   TIPS,
   esc,
@@ -17,60 +14,15 @@ const {
   sessionCard,
 } = require('./session-metrics-card');
 
-const MDC_STATS = path.join(__dirname, '..', 'agent docs', 'mdc-read-stats.json');
-
 const TRACKING_URL = 'http://127.0.0.1:8765/session-tracking-log.html';
 const METRICS_URL = 'http://127.0.0.1:8765/session-metrics-log.html';
-
-function readMdcLifetimeStats() {
-  if (!fs.existsSync(MDC_STATS)) return [];
-  try {
-    const raw = JSON.parse(fs.readFileSync(MDC_STATS, 'utf8'));
-    return Object.entries(raw)
-      .map(([name, row]) => ({ name, count: row.count || 0, last: row.last || null }))
-      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
-  } catch {
-    return [];
-  }
-}
-
-function mdcLifetimeBlock() {
-  const rows = readMdcLifetimeStats();
-  if (!rows.length) {
-    return `<details class="legend">
-      <summary>${tip('MDC lifetime (Read tool)', TIPS.mdcLifetime)} — no .mdc reads logged yet</summary>
-      <p class="muted-inline">When Cursor <strong>auto-injects</strong> a glob rule because a file is open, that does not appear here — only explicit agent <code>Read</code> on a <code>.mdc</code> file.</p>
-    </details>`;
-  }
-  const top = rows.slice(0, 12);
-  const rest = rows.length - top.length;
-  return `<details class="legend">
-    <summary>${tip('MDC lifetime (Read tool)', TIPS.mdcLifetime)} — ${rows.length} rule file(s) opened via Read</summary>
-    <p class="muted-inline">Auto-injected glob rules (file open, no Read) are <strong>not</strong> counted. Low numbers here do not mean a rule is useless.</p>
-    <table class="mdc-table">
-      <thead><tr><th>Rule file</th><th>Reads</th><th>Last</th></tr></thead>
-      <tbody>${top.map((r) => `<tr>
-        <td><code>${esc(r.name)}</code></td>
-        <td>${r.count}</td>
-        <td>${r.last ? esc(timeShort(r.last)) : '—'}</td>
-      </tr>`).join('')}</tbody>
-    </table>
-    ${rest > 0 ? `<p class="muted-inline">+ ${rest} more in <code>agent docs/mdc-read-stats.json</code></p>` : ''}
-  </details>`;
-}
 
 function legendHtml() {
   const items = [
     ['Your messages', TIPS.turns],
-    ['Searches', TIPS.greps],
+    ['Tokens', TIPS.tokens],
+    ['Peak context/turn', TIPS.peakContext],
     ['You corrected me', TIPS.corrections],
-    ['Browser snapshots', TIPS.browserSnapshots],
-    ['Tools used', TIPS.toolsUsed],
-    ['Markdowns read', TIPS.docsRead],
-    ['Partial counts', TIPS.partialConfidence],
-    ['Counts incomplete — summarized, no bumps', TIPS.summarizedNoBump],
-    ['Summarized — early work missing', TIPS.summarizedEarlyMissing],
-    ['Low confidence counts', TIPS.lowConfidence],
     ['Agent suggests capturing', TIPS.captureSuggest],
   ];
   return `<details class="legend">
@@ -80,39 +32,16 @@ function legendHtml() {
 }
 
 function runningToDisplayEntry(r) {
-  refreshCountsTrust(r);
   return {
     timestamp: r.sessionStarted,
     model: r.model || '—',
     sessionType: r.sessionType || 'mixed',
     summaryHuman: r.summaryHuman || 'Session in progress…',
-    outcome: 'Partial',
     summarized: !!r.summarized,
-    confidence: r.countsTrust || 'low',
-    countsTrust: r.countsTrust,
-    missingEarlyWork: r.missingEarlyWork,
-    preHookWorkUntracked: r.preHookWorkUntracked,
-    agentBumped: !!r.agentBumped,
     turns: r.turns,
-    greps: r.greps,
     corrections: r.corrections,
-    docsRulesOpened: r.docsRulesOpened,
-    mdcReadsList: r.mdcReadsList || [],
-    filesReadList: r.filesReadList,
-    filesEditedList: r.filesEditedList,
-    toolsUsedCounts: r.toolsUsedCounts || {},
-    browserSnapshots: r.browserSnapshots || 0,
     taskBumpCount: Array.isArray(r.taskLog) ? r.taskLog.length : 0,
-    worthNoting: [
-      r.missingEarlyWork ? 'Hook tally missing pre-hook work — bump tasks as you go.' : '',
-      r.taskLog?.length
-        ? `Tasks logged so far: ${r.taskLog.length} (last: ${r.taskLog[r.taskLog.length - 1].note || '—'})`
-        : '',
-      r.hookTally ? 'Hook auto-tally active.' : '',
-    ]
-      .filter(Boolean)
-      .join(' '),
-    hookTally: !!r.hookTally,
+    taskLog: r.taskLog || [],
   };
 }
 
@@ -172,9 +101,6 @@ function buildHtml(entries, running) {
     .legend ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.92rem; }
     .legend li { margin: 0.35rem 0; }
     .muted-inline { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
-    .mdc-table { width: 100%; border-collapse: collapse; margin-top: 0.65rem; font-size: 0.9rem; }
-    .mdc-table th, .mdc-table td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
-    .mdc-table th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
     .summary-bar {
       display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;
       padding: 0.85rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
@@ -192,21 +118,8 @@ function buildHtml(entries, running) {
     .model { color: var(--muted); font-size: 0.9rem; }
     .summary-human { margin: 0.35rem 0 0.75rem; font-size: 1.02rem; line-height: 1.5; }
     .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.35rem 0; }
-    .metric-grid-activity { margin-top: 0.15rem; }
     @media (max-width: 700px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }
     .metric { background: #151c26; border-radius: 8px; padding: 0.45rem 0.55rem; }
-    .metric-expandable { padding: 0; overflow: hidden; }
-    .metric-expandable summary.metric-summary {
-      display: block; padding: 0.45rem 0.55rem; cursor: pointer; min-height: 44px;
-      list-style: none; border-radius: 8px;
-    }
-    .metric-expandable summary.metric-summary::-webkit-details-marker { display: none; }
-    .metric-expandable[open] { box-shadow: inset 0 0 0 1px rgba(94, 184, 255, 0.35); }
-    .metric-expandable[open] summary.metric-summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-    .metric-panel {
-      padding: 0.35rem 0.55rem 0.5rem; max-height: 260px; overflow-y: auto;
-      border-top: 1px solid rgba(61, 81, 102, 0.45);
-    }
     .metric-warn { border: 1px solid var(--warn); }
     .metric dt { font-size: 0.68rem; text-transform: uppercase; color: var(--muted); margin: 0; letter-spacing: 0.03em; }
     .metric dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.05rem; }
@@ -218,14 +131,9 @@ function buildHtml(entries, running) {
     .note-box, .capture-box { margin-top: 0.55rem; padding: 0.55rem 0.7rem; border-radius: 8px; font-size: 0.92rem; }
     .note-box { background: #2a2a18; border: 1px solid var(--warn); }
     .capture-box { background: #1a2a22; border: 1px solid var(--accent2); }
-    .red-flags { color: var(--danger); font-size: 0.9rem; margin: 0.45rem 0 0; }
     .next { color: var(--muted); font-size: 0.9rem; margin: 0.45rem 0 0; }
-    .path-list { margin: 0; padding: 0; list-style: none; font-size: 0.82rem; color: var(--muted); }
-    .path-list li { margin: 0.2rem 0; min-height: 1.35rem; display: flex; align-items: baseline; }
-    .path-list code { font-family: Consolas, "Courier New", monospace; font-size: 0.88rem; color: var(--text); word-break: break-all; }
-    .path-list code.path-mdc { color: var(--warn); font-weight: 600; }
-    .path-list code.path-doc { color: var(--danger); }
-    .path-list code.path-snapshot { color: var(--accent); }
+    .task-list { margin: 0.35rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; color: var(--muted); }
+    .task-list li { margin: 0.2rem 0; }
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
     .footer a { color: var(--accent); }
@@ -234,9 +142,8 @@ function buildHtml(entries, running) {
 <body>
   <div class="wrap">
     <h1>Session metrics</h1>
-    <p class="subtitle">Greps, files, hook tallies — one card per finalized session. Task pathing lives on <a href="${TRACKING_URL}">session tracking</a>. Data in <code>session-scorecards.jsonl</code>.</p>
+    <p class="subtitle">One card per finalized session: what got done, what it cost, and the agent's notes. Per-task rows live on <a href="${TRACKING_URL}">session tracking</a>. Data in <code>session-scorecards.jsonl</code>.</p>
     ${legendHtml()}
-    ${mdcLifetimeBlock()}
     <div class="summary-bar">
       <div><dt>Total sessions</dt><dd>${total}</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">${esc(last)}</dd></div>

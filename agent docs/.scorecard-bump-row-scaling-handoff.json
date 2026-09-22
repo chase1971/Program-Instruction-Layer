@@ -1,9 +1,0 @@
-{
-  "chunkNote": "Momentum handoff — row-scaling notation recovery blocked on device submit of 1/3R1→R2",
-  "navigationPath": [
-    { "target": "agent docs/MOMENTUM_HANDOFF.md", "kind": "doc", "outcome": "routed" },
-    { "target": "Matrix app guided-practice row-notation recovery hooks", "kind": "code", "outcome": "routed" },
-    { "target": "GuidedPracticeRowNotationHelpPanel.tsx", "kind": "file", "outcome": "routed" },
-    { "target": "agent docs/momentum-handoffs/latest.md", "kind": "file", "outcome": "routed" }
-  ]
-}

@@ -1,6 +1,6 @@
 # Session metrics
 
-> **Rung 5 procedure doc** — grep/file/hook counts and end-of-session finalize.  
+> **Rung 5 procedure doc** — end-of-session finalize and the enforcement hooks.  
 > Task pathing bumps: [SESSION_TRACKING.md](./SESSION_TRACKING.md).
 
 Chase views: **`http://127.0.0.1:8765/session-metrics-log.html`**
@@ -9,23 +9,20 @@ Chase views: **`http://127.0.0.1:8765/session-metrics-log.html`**
 
 ## What this is
 
-One **session card** per finalized chat — greps, files read/edited, docs opened, hook trust pills, corrections. This is the legacy scorecard view; it no longer shows navigation paths (those moved to [session tracking](./SESSION_TRACKING.md)).
+One **session card** per finalized chat: summary, messages, tokens (or chat size in Cursor), peak
+context per reply, the task list, corrections, and the agent's *worth noting* / *capture* notes.
+Grep counts, file lists and count-trust pills were removed 2026-09-21. Nothing read them back.
 
 ---
 
-## Running tally (automatic + bumps)
+## Running tally (automatic)
 
 **Scratch pad:** `agent docs/.session-scorecard-running.json`  
 **Archive:** `agent docs/session-scorecards.jsonl`
 
-Hooks in `scripts/scorecard-hook-tally.js` auto-count reads, edits, and searches. **Bumps** add task boundaries and merge chunk-level counts from your bump JSON.
-
-| Tool | Count |
-|------|--------|
-| `Grep`, `Glob`, `WebSearch`, `Shell` | +1 search |
-| `Read` | file read (+ docs/rules if path matches) |
-| `Write`, `StrReplace`, `Delete`, `EditNotebook` | file edited |
-| `CallMcpTool`, `Task`, `WebFetch`, … | tools used |
+`scripts/scorecard-hook-tally.js` records, with no agent effort: messages from Chase, files edited
+(evidence for the Stop hook), tool-call timestamps (active time), the chat/transcript, and the model.
+Bumps add the task list. Session tokens are summed from that session's task rows at finalize.
 
 ---
 
@@ -43,14 +40,14 @@ node scripts/append-session-scorecard.js --finalize-file agent docs/.scorecard-f
   "sessionType": "mixed",
   "outcome": "Done",
   "summarized": true,
-  "worthNoting": "Optional",
+  "worthNoting": "Optional — anything unusual",
+  "captureCandidate": "Optional — a rule worth capturing",
   "nextSession": "Concrete next step",
-  "addTurns": 5,
   "addCorrections": 0
 }
 ```
 
-**Counts** come from the running file — do not re-guess greps/files in finalize JSON.
+Messages, tasks and tokens come from the running file and task rows — don't estimate them.
 
 ---
 
@@ -61,7 +58,7 @@ node scripts/append-session-scorecard.js --finalize-file agent docs/.scorecard-f
 | Hook | Behavior |
 |------|----------|
 | **UserPromptSubmit** | Counts messages **per chat** (`scripts/chat-task.js`), so a fresh task after a momentum handoff starts at zero. Injects one context-efficiency warning recommending a handoff once the task is heavy — in Claude Code, when the latest reply re-read at least `HEAVY_CONTEXT_TOKENS` (`scripts/session-token-cost.js`); in Cursor, which records no tokens, at `CONTEXT_WARNING_TURN_INTERVAL` messages in the chat. Repeats at most once per that interval. |
-| **Stop** | Blocks turn end when ≥2 files edited, 0 bumps, ≥3 turns. Reminds agent to `--bump-file`. Max 3 blocks. |
+| **Stop** | Blocks turn end when ≥2 files edited, 0 bumps, ≥3 turns. Reminds agent to bump with `--note`. Max 3 blocks. |
 | **PreCompact** | Always injects the same fresh-task warning before compaction; also reminds the agent to bump any unlogged edited work. |
 
 Procedure detail was in the old SESSION_SCORECARD doc — behavior unchanged.
@@ -72,8 +69,8 @@ Procedure detail was in the old SESSION_SCORECARD doc — behavior unchanged.
 
 | `bumped` | Meaning |
 |----------|---------|
-| `true` | At least one `--bump-file` this session — counts trustworthy |
-| `false` | Counts reconstructed at end — order-of-magnitude only |
+| `true` | At least one bump this session — the task list is real |
+| `false` | No bumps — the card has no task list |
 
 ---
 
@@ -86,4 +83,4 @@ node scripts/append-session-scorecard.js --rebuild-tracking-from-running
 
 ---
 
-*Updated: 2026-09-11 — context warning is per chat and uses real context size where available*
+*Updated: 2026-09-21 — cards show cost and notes; grep/file counts and trust pills removed*

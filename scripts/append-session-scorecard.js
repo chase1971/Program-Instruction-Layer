@@ -2,6 +2,7 @@
  * FILE: scripts/append-session-scorecard.js
  * PURPOSE: Task tracking + session metrics — bump writes tracking; finalize writes metrics.
  *          Agents WRITE via this script only — never read the generated HTML logs.
+ *          Bump in one command: --note "what you finished" [--gap "doc: why it didn't route"]
  *          This file only parses the command line; the work lives in:
  *            session-scorecard-ops.js   bump, finalize, regenerate
  *            session-metrics-store.js   metrics jsonl + running tally file
@@ -13,6 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const { backfillTrackingFromRunning } = require('./session-tracking-store');
+const { parseGapArg } = require('./session-index-gaps');
 const { TRACKING_URL, METRICS_URL } = require('./session-metrics-html');
 const {
   ROOT,
@@ -34,6 +36,20 @@ function loadJsonArg(flag) {
   const p = process.argv[idx + 1];
   if (!p) throw new Error(`${flag} requires a path`);
   return JSON.parse(fs.readFileSync(path.resolve(p), 'utf8'));
+}
+
+// --note "…" [--gap "doc: why"]… — a bump without writing a JSON file first.
+function bumpFromFlags() {
+  const argv = process.argv;
+  const noteIdx = argv.indexOf('--note');
+  if (noteIdx === -1) return null;
+  const bump = { chunkNote: argv[noteIdx + 1] || '' };
+  const gaps = [];
+  argv.forEach((a, i) => {
+    if (a === '--gap' && argv[i + 1]) gaps.push(parseGapArg(argv[i + 1]));
+  });
+  if (gaps.length) bump.indexGaps = gaps;
+  return bump;
 }
 
 function loadNewEntry() {
@@ -71,7 +87,7 @@ function main() {
     console.log(`Backfilled ${added} task(s) into session-tracking.jsonl. View: ${TRACKING_URL}`);
     return;
   }
-  const bump = loadJsonArg('--bump-file');
+  const bump = bumpFromFlags() || loadJsonArg('--bump-file');
   if (bump) {
     bumpRunning(bump);
     console.log(`Task logged. View: ${TRACKING_URL}`);
@@ -86,7 +102,8 @@ function main() {
   const newEntry = loadNewEntry();
   if (!newEntry) {
     console.error(
-      'Usage: --file path.json | --bump-file delta.json | --finalize-file meta.json | '
+      'Usage: --note "what you finished" [--gap "doc: why"] | --bump-file delta.json | '
+      + '--finalize-file meta.json | --file path.json | '
       + '--rebuild | --rebuild-tracking-from-running',
     );
     process.exit(1);
@@ -98,4 +115,9 @@ function main() {
   console.log(`Appended metrics entry. Tracking: ${TRACKING_URL} · Metrics: ${METRICS_URL}`);
 }
 
-main();
+try {
+  main();
+} catch (e) {
+  console.error(e.message);
+  process.exit(1);
+}

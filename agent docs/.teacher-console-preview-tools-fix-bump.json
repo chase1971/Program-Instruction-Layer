@@ -1,8 +1,0 @@
-{
-  "chunkNote": "Restored the Preview controls as independent Admin and Student tester identities plus the Phone width toggle, while preserving the expanded tester roster and grade panel.",
-  "navigationPath": [
-    {"target":"visualize/SKILL.md","kind":"doc","outcome":"helpful"},
-    {"target":"agent docs/scratch/teacher-console-concept.html","kind":"code","outcome":"helpful","note":"Separated preview personas from the tester roster state."}
-  ],
-  "filesEdited": ["agent docs/scratch/teacher-console-concept.html"]
-}

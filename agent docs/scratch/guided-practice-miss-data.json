@@ -1,0 +1,558 @@
+{
+  "students": [
+    {
+      "id": "943b6378-ab8c-43bd-b310-9285921357dd",
+      "name": "Cynthia Jimenez Duran",
+      "survey": {
+        "completedAt": "2026-09-21T19:55:08.691878+00:00",
+        "answers": [
+          {
+            "label": "When you got a step wrong, did the help make sense?",
+            "value": "Yes"
+          },
+          {
+            "label": "Did you use the help buttons (fraction help, row notation help)?",
+            "value": "Maybe"
+          },
+          {
+            "label": "Would you use this again before a test?",
+            "value": "Yes"
+          },
+          {
+            "label": "Anything else we should know?",
+            "value": "I use the app on my laptop because I find it easier to study math on a computer than on my phone, especially since I’m usually not doing math on the go. I think it would be helpful if we could use the keyboard to type in numbers instead of having to click each number with the cursor.\n\nAnother thing that would help is keeping the row operations visible after we enter them. Sometimes I forget which row operation I needed to use, and then I have to mentally work backward through the problem to figure it out again. Being able to see the row operation that we're working on would make it much easier to follow my work. (I'm not sure if that makes sense..)"
+          }
+        ]
+      },
+      "problems": [
+        {
+          "attemptId": "a2d0cde0-fe1a-4b95-a0f2-fba3f9521e7a",
+          "problemLabel": "Problem 1",
+          "problemId": 17,
+          "status": "completed",
+          "score": 17,
+          "maxScore": 17,
+          "misses": [],
+          "badges": [],
+          "helpFeedback": []
+        },
+        {
+          "attemptId": "b690240f-b919-418b-91e6-9ca647cce1af",
+          "problemLabel": "Problem 2",
+          "problemId": 11,
+          "status": "completed",
+          "score": 15,
+          "maxScore": 17,
+          "misses": [
+            {
+              "slot": "op1-operation-type",
+              "category": "transform-type",
+              "badgeLabel": "Transform type",
+              "description": "Picked the wrong row transformation type",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "Row replacement",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "Row scaling"
+            },
+            {
+              "slot": "op4-row-entry",
+              "category": "replacement-math",
+              "badgeLabel": "Replacement math",
+              "description": "Row replacement arithmetic wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "1, 0, -11",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "1, 0, 1"
+            }
+          ],
+          "badges": [
+            {
+              "category": "transform-type",
+              "badgeLabel": "Transform type",
+              "description": "Picked the wrong row transformation type",
+              "count": 1,
+              "instances": [
+                {
+                  "slot": "op1-operation-type",
+                  "category": "transform-type",
+                  "badgeLabel": "Transform type",
+                  "description": "Picked the wrong row transformation type",
+                  "tryCount": 1,
+                  "wrongChoices": [
+                    {
+                      "choice": "Row replacement",
+                      "attemptIndex": 1
+                    }
+                  ],
+                  "expectedAnswer": "Row scaling"
+                }
+              ]
+            },
+            {
+              "category": "replacement-math",
+              "badgeLabel": "Replacement math",
+              "description": "Row replacement arithmetic wrong",
+              "count": 1,
+              "instances": [
+                {
+                  "slot": "op4-row-entry",
+                  "category": "replacement-math",
+                  "badgeLabel": "Replacement math",
+                  "description": "Row replacement arithmetic wrong",
+                  "tryCount": 1,
+                  "wrongChoices": [
+                    {
+                      "choice": "1, 0, -11",
+                      "attemptIndex": 1
+                    }
+                  ],
+                  "expectedAnswer": "1, 0, 1"
+                }
+              ]
+            }
+          ],
+          "helpFeedback": []
+        }
+      ],
+      "missCount": 2,
+      "categoryCounts": {
+        "transform-type": 1,
+        "replacement-math": 1
+      },
+      "badges": [
+        {
+          "category": "transform-type",
+          "badgeLabel": "Transform type",
+          "description": "Picked the wrong row transformation type",
+          "count": 1,
+          "instances": [
+            {
+              "slot": "op1-operation-type",
+              "category": "transform-type",
+              "badgeLabel": "Transform type",
+              "description": "Picked the wrong row transformation type",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "Row replacement",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "Row scaling",
+              "problemLabel": "Problem 2",
+              "problemId": 11
+            }
+          ]
+        },
+        {
+          "category": "replacement-math",
+          "badgeLabel": "Replacement math",
+          "description": "Row replacement arithmetic wrong",
+          "count": 1,
+          "instances": [
+            {
+              "slot": "op4-row-entry",
+              "category": "replacement-math",
+              "badgeLabel": "Replacement math",
+              "description": "Row replacement arithmetic wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "1, 0, -11",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "1, 0, 1",
+              "problemLabel": "Problem 2",
+              "problemId": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e2205031-706e-405a-9d5c-41a0629c469c",
+      "name": "Denys Demchenko",
+      "survey": null,
+      "problems": [
+        {
+          "attemptId": "97b58e1e-5936-4ed4-a0d0-7562e95c62dd",
+          "problemLabel": "Problem 1",
+          "problemId": 11,
+          "status": "in_progress",
+          "score": null,
+          "maxScore": null,
+          "misses": [],
+          "badges": [],
+          "helpFeedback": []
+        }
+      ],
+      "missCount": 0,
+      "categoryCounts": {},
+      "badges": []
+    },
+    {
+      "id": "9a9bb7ff-f271-4b8b-94c6-fcf99eb579ac",
+      "name": "Ivanna Stone",
+      "survey": null,
+      "problems": [
+        {
+          "attemptId": "fc32e137-db7e-4c6c-b5a8-f677db48da31",
+          "problemLabel": "Problem 1",
+          "problemId": 11,
+          "status": "in_progress",
+          "score": null,
+          "maxScore": null,
+          "misses": [],
+          "badges": [],
+          "helpFeedback": []
+        }
+      ],
+      "missCount": 0,
+      "categoryCounts": {},
+      "badges": []
+    },
+    {
+      "id": "d93cdcdf-6c7a-45df-88ba-ed5e6b031dc8",
+      "name": "Luna Pena Melendez",
+      "survey": null,
+      "problems": [
+        {
+          "attemptId": "f9601c9d-bb59-4725-b16d-50f6a54f985d",
+          "problemLabel": "Problem 1",
+          "problemId": 8,
+          "status": "in_progress",
+          "score": null,
+          "maxScore": null,
+          "misses": [],
+          "badges": [],
+          "helpFeedback": []
+        }
+      ],
+      "missCount": 0,
+      "categoryCounts": {},
+      "badges": []
+    },
+    {
+      "id": "3bc881fd-2854-4938-b6cc-2e3570313d40",
+      "name": "Maria Garcia Baptiste",
+      "survey": {
+        "completedAt": "2026-09-21T18:42:19.451122+00:00",
+        "answers": [
+          {
+            "label": "When you got a step wrong, did the help make sense?",
+            "value": "Yes"
+          },
+          {
+            "label": "Did you use the help buttons (fraction help, row notation help)?",
+            "value": "I didn't use it"
+          },
+          {
+            "label": "Would you use this again before a test?",
+            "value": "Yes"
+          },
+          {
+            "label": "Anything else we should know?",
+            "value": "The app is very helpful. It is simple to navigate and has clear instructions/help for when I get the questions wrong. I don't think anything should be changed."
+          }
+        ]
+      },
+      "problems": [
+        {
+          "attemptId": "ee38e8e6-daf0-44cd-b644-712cc97ec793",
+          "problemLabel": "Problem 1",
+          "problemId": 6,
+          "status": "completed",
+          "score": 16,
+          "maxScore": 17,
+          "misses": [
+            {
+              "slot": "op4-row-notation",
+              "category": "replacement-notation",
+              "badgeLabel": "Replacement notation",
+              "description": "Row replacement notation wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "2/R2+R1→R1",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "2/5R2 + R1 → R1"
+            }
+          ],
+          "badges": [
+            {
+              "category": "replacement-notation",
+              "badgeLabel": "Replacement notation",
+              "description": "Row replacement notation wrong",
+              "count": 1,
+              "instances": [
+                {
+                  "slot": "op4-row-notation",
+                  "category": "replacement-notation",
+                  "badgeLabel": "Replacement notation",
+                  "description": "Row replacement notation wrong",
+                  "tryCount": 1,
+                  "wrongChoices": [
+                    {
+                      "choice": "2/R2+R1→R1",
+                      "attemptIndex": 1
+                    }
+                  ],
+                  "expectedAnswer": "2/5R2 + R1 → R1"
+                }
+              ]
+            }
+          ],
+          "helpFeedback": []
+        },
+        {
+          "attemptId": "3f536cc0-67b1-40bd-9542-864a9e9340c9",
+          "problemLabel": "Problem 2",
+          "problemId": 12,
+          "status": "completed",
+          "score": 16,
+          "maxScore": 17,
+          "misses": [
+            {
+              "slot": "op3-row-notation",
+              "category": "scaling-notation",
+              "badgeLabel": "Scaling notation",
+              "description": "Row scaling notation wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "-7/41R1 → R1",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "-7/41R2 → R2"
+            }
+          ],
+          "badges": [
+            {
+              "category": "scaling-notation",
+              "badgeLabel": "Scaling notation",
+              "description": "Row scaling notation wrong",
+              "count": 1,
+              "instances": [
+                {
+                  "slot": "op3-row-notation",
+                  "category": "scaling-notation",
+                  "badgeLabel": "Scaling notation",
+                  "description": "Row scaling notation wrong",
+                  "tryCount": 1,
+                  "wrongChoices": [
+                    {
+                      "choice": "-7/41R1 → R1",
+                      "attemptIndex": 1
+                    }
+                  ],
+                  "expectedAnswer": "-7/41R2 → R2"
+                }
+              ]
+            }
+          ],
+          "helpFeedback": []
+        }
+      ],
+      "missCount": 2,
+      "categoryCounts": {
+        "replacement-notation": 1,
+        "scaling-notation": 1
+      },
+      "badges": [
+        {
+          "category": "scaling-notation",
+          "badgeLabel": "Scaling notation",
+          "description": "Row scaling notation wrong",
+          "count": 1,
+          "instances": [
+            {
+              "slot": "op3-row-notation",
+              "category": "scaling-notation",
+              "badgeLabel": "Scaling notation",
+              "description": "Row scaling notation wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "-7/41R1 → R1",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "-7/41R2 → R2",
+              "problemLabel": "Problem 2",
+              "problemId": 12
+            }
+          ]
+        },
+        {
+          "category": "replacement-notation",
+          "badgeLabel": "Replacement notation",
+          "description": "Row replacement notation wrong",
+          "count": 1,
+          "instances": [
+            {
+              "slot": "op4-row-notation",
+              "category": "replacement-notation",
+              "badgeLabel": "Replacement notation",
+              "description": "Row replacement notation wrong",
+              "tryCount": 1,
+              "wrongChoices": [
+                {
+                  "choice": "2/R2+R1→R1",
+                  "attemptIndex": 1
+                }
+              ],
+              "expectedAnswer": "2/5R2 + R1 → R1",
+              "problemLabel": "Problem 1",
+              "problemId": 6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aggregates": {
+    "missByCategory": [
+      {
+        "category": "transform-type",
+        "label": "Transform type",
+        "description": "Picked the wrong row transformation type",
+        "count": 1
+      },
+      {
+        "category": "scaling-notation",
+        "label": "Scaling notation",
+        "description": "Row scaling notation wrong",
+        "count": 1
+      },
+      {
+        "category": "replacement-notation",
+        "label": "Replacement notation",
+        "description": "Row replacement notation wrong",
+        "count": 1
+      },
+      {
+        "category": "replacement-math",
+        "label": "Replacement math",
+        "description": "Row replacement arithmetic wrong",
+        "count": 1
+      }
+    ],
+    "missByStudent": [
+      {
+        "name": "Cynthia Jimenez Duran",
+        "missCount": 2,
+        "categories": {
+          "transform-type": 1,
+          "replacement-math": 1
+        }
+      },
+      {
+        "name": "Maria Garcia Baptiste",
+        "missCount": 2,
+        "categories": {
+          "replacement-notation": 1,
+          "scaling-notation": 1
+        }
+      }
+    ],
+    "instancesByCategory": {
+      "transform-type": [
+        {
+          "studentName": "Cynthia Jimenez Duran",
+          "problemLabel": "Problem 2",
+          "problemId": 11,
+          "tryCount": 1,
+          "wrongChoices": [
+            {
+              "choice": "Row replacement",
+              "attemptIndex": 1
+            }
+          ],
+          "expectedAnswer": "Row scaling"
+        }
+      ],
+      "replacement-math": [
+        {
+          "studentName": "Cynthia Jimenez Duran",
+          "problemLabel": "Problem 2",
+          "problemId": 11,
+          "tryCount": 1,
+          "wrongChoices": [
+            {
+              "choice": "1, 0, -11",
+              "attemptIndex": 1
+            }
+          ],
+          "expectedAnswer": "1, 0, 1"
+        }
+      ],
+      "replacement-notation": [
+        {
+          "studentName": "Maria Garcia Baptiste",
+          "problemLabel": "Problem 1",
+          "problemId": 6,
+          "tryCount": 1,
+          "wrongChoices": [
+            {
+              "choice": "2/R2+R1→R1",
+              "attemptIndex": 1
+            }
+          ],
+          "expectedAnswer": "2/5R2 + R1 → R1"
+        }
+      ],
+      "scaling-notation": [
+        {
+          "studentName": "Maria Garcia Baptiste",
+          "problemLabel": "Problem 2",
+          "problemId": 12,
+          "tryCount": 1,
+          "wrongChoices": [
+            {
+              "choice": "-7/41R1 → R1",
+              "attemptIndex": 1
+            }
+          ],
+          "expectedAnswer": "-7/41R2 → R2"
+        }
+      ]
+    },
+    "survey": {
+      "q1": {
+        "Yes": 2
+      },
+      "q2": {
+        "Maybe": 1,
+        "I didn't use it": 1
+      },
+      "q3": {
+        "Yes": 2
+      },
+      "responses": 2,
+      "openFeedback": [
+        {
+          "name": "Cynthia Jimenez Duran",
+          "text": "I use the app on my laptop because I find it easier to study math on a computer than on my phone, especially since I’m usually not doing math on the go. I think it would be helpful if we could use the keyboard to type in numbers instead of having to click each number with the cursor.\n\nAnother thing that would help is keeping the row operations visible after we enter them. Sometimes I forget which row operation I needed to use, and then I have to mentally work backward through the problem to figure it out again. Being able to see the row operation that we're working on would make it much easier to follow my work. (I'm not sure if that makes sense..)"
+        },
+        {
+          "name": "Maria Garcia Baptiste",
+          "text": "The app is very helpful. It is simple to navigate and has clear instructions/help for when I get the questions wrong. I don't think anything should be changed."
+        }
+      ]
+    },
+    "helpFeedback": {},
+    "studentsWithData": 5
+  }
+}
