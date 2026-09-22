@@ -7,7 +7,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { emptyTrustFields } = require('./scorecard-trust');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = path.join(ROOT, 'agent docs', 'session-scorecards.jsonl');
@@ -36,7 +35,6 @@ function writeEntries(entries) {
 
 function normalize(entry) {
   if (!entry.timestamp) entry.timestamp = new Date().toISOString();
-  if (entry.docsRules && !entry.docsRulesOpened) entry.docsRulesOpened = entry.docsRules;
   if (entry.spike && !entry.worthNoting) entry.worthNoting = entry.spike;
   return entry;
 }
@@ -58,6 +56,8 @@ function clearRunning() {
   if (fs.existsSync(RUNNING)) fs.unlinkSync(RUNNING);
 }
 
+// Hook-maintained fields: turns (one per prompt), filesEditedList (the Stop hook's
+// evidence of unbumped work), toolTimeline (active time), chatKey/transcriptPath.
 function emptyRunning() {
   return {
     sessionStarted: new Date().toISOString(),
@@ -65,20 +65,12 @@ function emptyRunning() {
     sessionType: 'mixed',
     summaryHuman: 'Session in progress…',
     turns: 0,
-    greps: 0,
     corrections: 0,
-    docsRulesOpened: [],
-    mdcReadsList: [],
-    filesReadList: [],
     filesEditedList: [],
-    toolsUsedCounts: {},
-    browserSnapshots: 0,
     taskLog: [],
     lastTrackingBumpAt: null,
     toolTimeline: [],
-    hookTally: false,
     agentBumped: false,
-    ...emptyTrustFields(),
   };
 }
 

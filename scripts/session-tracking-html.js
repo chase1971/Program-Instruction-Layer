@@ -1,25 +1,27 @@
 /**
  * FILE: scripts/session-tracking-html.js
- * PURPOSE: Build session-tracking-log.html — one collapsible row per task bump.
+ * PURPOSE: Build session-tracking-log.html — cost roll-up, docs that failed to route,
+ *          then one collapsible row per task bump.
  */
 'use strict';
 
-const {
-  navigationPathStyles,
-  renderNavSteps,
-  escapeHtml,
-} = require('./scorecard-navigation-path');
-const { rollup, collectIndexFailures } = require('./session-tracking-stats');
+const { rollup } = require('./session-tracking-stats');
+const { entryGaps, collectIndexGaps, gapCountsByDoc } = require('./session-index-gaps');
 const { formatTokens, HEAVY_CONTEXT_TOKENS } = require('./session-token-cost');
+
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
 function dayKey(iso) {
   const d = new Date(iso || Date.now());
   if (Number.isNaN(d.getTime())) return 'Unknown date';
   return d.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
+    weekday: 'long', year: 'numeric', month: 'short', day: 'numeric',
   });
 }
 
@@ -29,169 +31,90 @@ function timeShort(iso) {
   return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 }
 
-function sessionTimeShort(iso) {
-  const d = new Date(iso || Date.now());
-  if (Number.isNaN(d.getTime())) return '—';
-  return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+function tokensOrDash(value) {
+  return value == null || Number.isNaN(value) ? '—' : formatTokens(value);
 }
 
-function formatPctOrDash(value) {
-  if (value == null || Number.isNaN(value)) return '—';
-  return `${value}%`;
-}
-
-function formatTokensOrDash(value) {
-  if (value == null || Number.isNaN(value)) return '—';
-  return formatTokens(value);
-}
-
-function summaryStats(entries) {
-  const today = dayKey(new Date().toISOString());
-  const todayEntries = entries.filter((e) => dayKey(e.timestamp) === today);
-  const withSteps = entries.filter((e) => (e.stepCount || 0) > 0);
-  const avgSteps = withSteps.length
-    ? (withSteps.reduce((s, e) => s + (e.stepCount || 0), 0) / withSteps.length).toFixed(1)
-    : '—';
-  const roll = rollup(entries);
-
-  return {
-    total: entries.length,
-    today: todayEntries.length,
-    avgSteps,
-    observedTaskCount: roll.observedTaskCount,
-    deadEndRate: roll.deadEndRate,
-    deadEndSteps: roll.deadEndSteps,
-    totalSteps: roll.totalSteps,
-    costedTaskCount: roll.costedTaskCount,
-    medianBilledTokens: roll.medianBilledTokens,
-    totalBilledTokens: roll.totalBilledTokens,
-    medianTokensPerTurn: roll.medianTokensPerTurn,
-  };
-}
-
-function taskSummaryLine(entry) {
-  const parts = [
-    timeShort(entry.timestamp),
-    entry.chunkNote,
-  ];
-  const meta = [];
-  if (entry.stepCount) meta.push(`${entry.stepCount} step${entry.stepCount === 1 ? '' : 's'}`);
-  if (entry.activeLabel && entry.activeMs > 0) meta.push(entry.activeLabel);
-  else if (entry.durationLabel) meta.push(entry.durationLabel);
-  if (entry.deadEndCount) meta.push(`${entry.deadEndCount} dead-end`);
-  if (entry.missingNavigationPath) meta.push('no path logged');
-  if (meta.length) parts.push(meta.join(' · '));
-  return parts.filter(Boolean).join(' — ');
-}
-
-// Cost pills replace the old coverage pills. Context re-read per turn is the
-// number worth flagging: it grows with session length, not task difficulty, so
-// a high value means "this session got expensive", not "this task was hard".
+// Context re-read per turn is the number worth flagging: it grows with session
+// length, not task difficulty, so a high value means "this session got expensive".
 function costPills(entry) {
   let html = '';
   if (Number.isFinite(entry.billedTokens)) {
     html += `<span class="pill p0">${formatTokens(entry.billedTokens)} tokens</span>`;
   } else if (Number.isFinite(entry.chatUserMessages)) {
     // Cursor records no tokens, so chat length is the only cost signal there.
-    const kb = Number.isFinite(entry.chatTranscriptKB) ? ` · ${entry.chatTranscriptKB} KB` : '';
-    html += `<span class="pill p0">Chat: ${entry.chatUserMessages} msgs${kb}</span>`;
+    html += `<span class="pill p0">Chat: ${entry.chatUserMessages} msgs</span>`;
   }
   if ((entry.tokensPerTurn || 0) >= HEAVY_CONTEXT_TOKENS) {
     html += `<span class="pill p2">Heavy context — ${formatTokens(entry.tokensPerTurn)}/turn</span>`;
   }
+  const gaps = entryGaps(entry).length;
+  if (gaps) html += `<span class="pill p3">${gaps} index gap${gaps === 1 ? '' : 's'}</span>`;
   return html;
 }
 
+function detailLines(entry) {
+  const lines = [];
+  if (entry.model) lines.push(`Model: ${entry.model}`);
+  if (entry.activeMs > 0) lines.push(`${entry.activeLabel} active tool time`);
+  if (entry.durationLabel) lines.push(`${entry.durationLabel} since previous task (includes idle)`);
+  if (Number.isFinite(entry.billedTokens)) {
+    lines.push(`${formatTokens(entry.billedTokens)} tokens over ${entry.tokenTurns} turn(s) · `
+      + `${formatTokens(entry.tokensPerTurn)}/turn · ${formatTokens(entry.tokensCacheRead)} cache read · `
+      + `${formatTokens(entry.tokensOutput)} output`);
+  }
+  if (Number.isFinite(entry.chatUserMessages)) {
+    lines.push(`Chat so far: ${entry.chatUserMessages} message(s)`
+      + `${Number.isFinite(entry.chatTranscriptKB) ? `, ${entry.chatTranscriptKB} KB transcript` : ''}`);
+  }
+  return lines;
+}
+
 function taskEntryHtml(entry) {
-  const warnPill = entry.missingNavigationPath
-    ? '<span class="pill p2">No navigation path</span>'
+  const gaps = entryGaps(entry);
+  const gapList = gaps.length
+    ? `<ul class="gap-list">${gaps.map((g) => `<li><code>${escapeHtml(g.doc)}</code>`
+      + `${g.note ? ` — ${escapeHtml(g.note)}` : ''}</li>`).join('')}</ul>`
     : '';
-  const backfillPill = entry.backfilled
-    ? '<span class="pill p0">Backfilled</span>'
-    : '';
-  const navTree = entry.navigationPath?.length
-    ? `<ul class="nav-tree nav-root">${renderNavSteps(entry.navigationPath)}</ul>`
-    : '<p class="muted-inline">No navigation path was logged for this task.</p>';
-
-  const statsLine = entry.stepCount
-    ? `${entry.stepCount} steps · first helpful at #${entry.stepsToFirstHelpful || '—'} · `
-      + `${entry.helpfulCount || 0} ✓ · ${entry.partialCount || 0} ~ · ${entry.deadEndCount || 0} ✗`
-    : '';
-
-  const observedLine = entry.hasObservedData
-    ? `Hook saw ${entry.observedSearches || 0} search(es), ${entry.observedDocReads || 0} doc read(s)`
-      + `${Number.isFinite(entry.billedTokens)
-        ? ` · ${formatTokens(entry.billedTokens)} tokens over ${entry.tokenTurns} turn(s)`
-          + ` · ${formatTokens(entry.tokensPerTurn)}/turn`
-        : ''}`
-      + `${Number.isFinite(entry.chatUserMessages)
-        ? ` · chat so far: ${entry.chatUserMessages} message(s)`
-          + `${Number.isFinite(entry.chatTranscriptKB) ? `, ${entry.chatTranscriptKB} KB transcript` : ''}`
-        : ''}`
-    : '';
-
-  const idleNote = entry.durationLabel && entry.activeLabel && entry.durationMs !== entry.activeMs
-    ? `Wall-clock gap since previous task: ${entry.durationLabel} (includes idle time)`
-    : '';
-
   return `<details class="track-entry">
     <summary class="track-summary">
-      <span class="track-title">${escapeHtml(taskSummaryLine(entry))}</span>
-      ${warnPill}${backfillPill}${costPills(entry)}
+      <span class="track-title">${escapeHtml(`${timeShort(entry.timestamp)} — ${entry.chunkNote}`)}</span>
+      ${entry.backfilled ? '<span class="pill p0">Backfilled</span>' : ''}${costPills(entry)}
     </summary>
     <div class="track-panel">
-      <p class="track-meta muted-inline">
-        Session ${escapeHtml(sessionTimeShort(entry.sessionId))}
-        ${entry.activeLabel && entry.activeMs > 0
-    ? ` · ${escapeHtml(entry.activeLabel)} active tool time`
-    : (entry.durationLabel ? ` · ${escapeHtml(entry.durationLabel)} since previous task` : '')}
-        ${statsLine ? `<br>${escapeHtml(statsLine)}` : ''}
-        ${observedLine ? `<br>${escapeHtml(observedLine)}` : ''}
-        ${idleNote ? `<br>${escapeHtml(idleNote)}` : ''}
-      </p>
-      <p class="muted-inline nav-legend">
-        <span class="nav-helpful-pill">✓ helpful</span>
-        <span class="nav-partial-pill">~ partial</span>
-        <span class="nav-dead-pill">✗ dead end</span>
-      </p>
-      ${navTree}
+      <p class="track-meta muted-inline">${detailLines(entry).map(escapeHtml).join('<br>')}</p>
+      ${gapList}
     </div>
   </details>`;
 }
 
-function indexFailuresSection(entries) {
-  const failures = collectIndexFailures(entries, 20);
-  if (!failures.length) return '';
-
-  const rows = failures.map((f) => {
-    const marker = f.outcome === 'dead-end' ? '✗' : '~';
-    const cls = f.outcome === 'dead-end' ? 'nav-dead' : 'nav-partial';
-    return `<li class="index-fail ${cls}">
-      <span class="nav-marker">${marker}</span>
-      <code title="${escapeHtml(f.target)}">${escapeHtml(f.target)}</code>
-      ${f.note ? `<span class="nav-note">${escapeHtml(f.note)}</span>` : ''}
-      <span class="index-fail-task">${escapeHtml(timeShort(f.timestamp))} — ${escapeHtml(f.chunkNote || '')}</span>
-    </li>`;
-  }).join('');
-
-  return `<section class="index-failures-block">
-    <h2 class="day-title">Real index gaps</h2>
-    <p class="muted-inline">Doc steps logged <code>partial</code> or <code>dead-end</code> — the doc was
-    opened and did not answer, and did not route onward either. Each one should have become an index row
-    or a new doc before that session ended. Steps where the index correctly sent the agent onward, or
-    correctly said no narrower owner exists, are logged <code>routed</code> and are not listed here.</p>
-    <ul class="index-failures-list">${rows}</ul>
+function indexGapsSection(entries) {
+  const byDoc = gapCountsByDoc(entries).slice(0, 12);
+  if (!byDoc.length) return '';
+  const recent = collectIndexGaps(entries, 15);
+  return `<section class="gaps-block">
+    <h2 class="day-title">Docs that failed to route</h2>
+    <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
+    Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
+    <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
+      ${byDoc.map(([doc, n]) => `<tr><td><code>${escapeHtml(doc)}</code></td><td>${n}</td></tr>`).join('')}
+    </tbody></table>
+    <details class="recent-gaps"><summary>Most recent ${recent.length}</summary>
+      <ul class="gap-list">${recent.map((g) => `<li><code>${escapeHtml(g.doc)}</code>`
+        + `${g.note ? ` — ${escapeHtml(g.note)}` : ''}`
+        + `<span class="gap-task">${escapeHtml(timeShort(g.timestamp))} · ${escapeHtml(dayKey(g.timestamp))} — `
+        + `${escapeHtml(g.chunkNote || '')}</span></li>`).join('')}</ul>
+    </details>
   </section>`;
 }
 
 function buildTrackingHtml(entries) {
   const sorted = [...entries].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-  const stats = summaryStats(sorted);
-  const deadEndLabel = stats.totalSteps
-    ? `${formatPctOrDash(stats.deadEndRate)} (${stats.deadEndSteps}/${stats.totalSteps} steps)`
-    : '—';
-  const costLabel = stats.costedTaskCount
-    ? `${formatTokensOrDash(stats.medianBilledTokens)} (of ${stats.costedTaskCount} costed)`
+  const today = dayKey(new Date().toISOString());
+  const todayCount = sorted.filter((e) => dayKey(e.timestamp) === today).length;
+  const roll = rollup(sorted);
+  const costLabel = roll.costedTaskCount
+    ? `${tokensOrDash(roll.medianBilledTokens)} (of ${roll.costedTaskCount} costed)`
     : '— (no cost data yet)';
 
   const byDay = new Map();
@@ -200,22 +123,17 @@ function buildTrackingHtml(entries) {
     if (!byDay.has(k)) byDay.set(k, []);
     byDay.get(k).push(e);
   }
-
   let daySections = '';
   for (const [day, tasks] of byDay) {
     daySections += `<section class="day-block">
       <h2 class="day-title">${escapeHtml(day)} <span class="day-count">${tasks.length} task${tasks.length === 1 ? '' : 's'}</span></h2>
-      <div class="day-tasks">${tasks.map((t) => taskEntryHtml(t)).join('')}</div>
+      <div class="day-tasks">${tasks.map(taskEntryHtml).join('')}</div>
     </section>`;
   }
-
   if (!daySections) {
-    daySections = `<p class="empty">No tasks logged yet. After each deliverable, run <code>--bump-file</code> with <code>chunkNote</code> and <code>navigationPath</code>.</p>`;
+    daySections = '<p class="empty">No tasks logged yet. After each deliverable, run <code>--note "…"</code>.</p>';
   }
-
-  const last = sorted[0]
-    ? `${timeShort(sorted[0].timestamp)} · ${dayKey(sorted[0].timestamp)}`
-    : '—';
+  const last = sorted[0] ? `${timeShort(sorted[0].timestamp)} · ${dayKey(sorted[0].timestamp)}` : '—';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -225,9 +143,8 @@ function buildTrackingHtml(entries) {
   <title>Session tracking — task log</title>
   <style>
     :root {
-      --bg: #0f1419; --surface: #1a2332; --surface2: #243044;
-      --text: #e8eef4; --muted: #9db0c4; --accent: #5eb8ff; --accent2: #7ee787;
-      --warn: #f0b429; --danger: #ff7b72; --border: #3d5166;
+      --bg: #0f1419; --surface: #1a2332; --text: #e8eef4; --muted: #9db0c4;
+      --accent: #5eb8ff; --accent2: #7ee787; --warn: #f0b429; --danger: #ff7b72; --border: #3d5166;
     }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; font-size: 17px; }
@@ -240,12 +157,11 @@ function buildTrackingHtml(entries) {
     }
     .summary-bar dt { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); }
     .summary-bar dd { margin: 0.15rem 0 0; font-size: 1.15rem; font-weight: 700; }
-    .day-block, .index-failures-block { margin: 1.75rem 0; }
+    .day-block, .gaps-block { margin: 1.75rem 0; }
     .day-title { font-size: 1.2rem; color: var(--accent); margin: 0 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
     .day-count { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
     .day-tasks { display: flex; flex-direction: column; gap: 0.55rem; }
     .track-entry { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .track-entry[open] { box-shadow: inset 0 0 0 1px rgba(94, 184, 255, 0.35); }
     .track-summary {
       cursor: pointer; min-height: 48px; padding: 0.65rem 0.85rem;
       display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; list-style: none;
@@ -256,38 +172,36 @@ function buildTrackingHtml(entries) {
     .track-meta { margin: 0.5rem 0 0.35rem; font-size: 0.85rem; }
     .pill { display: inline-block; padding: 0.2em 0.55em; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
     .p0 { background: #1e3350; color: var(--accent); }
-    .p1 { background: #264032; color: var(--accent2); }
     .p2 { background: #4a3818; color: var(--warn); }
+    .p3 { background: #3d2020; color: var(--danger); }
     .muted-inline { color: var(--muted); font-size: 0.9rem; }
     .empty { color: var(--muted); padding: 2rem; text-align: center; }
+    .gap-table { border-collapse: collapse; margin: 0.5rem 0; font-size: 0.9rem; }
+    .gap-table th, .gap-table td { text-align: left; padding: 0.35rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .gap-table th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .recent-gaps summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .gap-list { margin: 0.35rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; }
+    .gap-list li { margin: 0.35rem 0; }
+    .gap-list code { font-family: Consolas, "Courier New", monospace; word-break: break-word; }
+    .gap-task { display: block; color: var(--muted); font-size: 0.82rem; }
     .footer { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; }
     .footer a { color: var(--accent); }
-    .index-failures-list { margin: 0.5rem 0 0; padding: 0; list-style: none; }
-    .index-fail {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem;
-      margin: 0.45rem 0; padding: 0.45rem 0.55rem; background: #151c26; border-radius: 8px; font-size: 0.88rem;
-    }
-    .index-fail code { font-family: Consolas, "Courier New", monospace; word-break: break-word; }
-    .index-fail-task { flex-basis: 100%; color: var(--muted); font-size: 0.82rem; padding-left: 1.45rem; }
-    ${navigationPathStyles()}
-    .track-entry .nav-path-block { margin-top: 0.35rem; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Session tracking</h1>
-    <p class="subtitle">One row per completed task — hook-verified navigation vs self-reported path. Data in <code>session-tracking.jsonl</code>.</p>
+    <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>${stats.total}</dd></div>
-      <div><dt>Tasks today</dt><dd>${stats.today}</dd></div>
+      <div><dt>Total tasks</dt><dd>${sorted.length}</dd></div>
+      <div><dt>Tasks today</dt><dd>${todayCount}</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">${escapeHtml(costLabel)}</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>${escapeHtml(formatTokensOrDash(stats.medianTokensPerTurn))}</dd></div>
-      <div><dt>Total billed</dt><dd>${escapeHtml(formatTokensOrDash(stats.totalBilledTokens))}</dd></div>
-      <div><dt>Dead-end rate</dt><dd style="font-size:1rem">${escapeHtml(deadEndLabel)}</dd></div>
-      <div><dt>Avg steps</dt><dd>${escapeHtml(String(stats.avgSteps))}</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>${escapeHtml(tokensOrDash(roll.medianTokensPerTurn))}</dd></div>
+      <div><dt>Total billed</dt><dd>${escapeHtml(tokensOrDash(roll.totalBilledTokens))}</dd></div>
+      <div><dt>Share that is cache re-reads</dt><dd>${roll.cacheReadPct == null ? '—' : `${roll.cacheReadPct}%`}</dd></div>
       <div><dt>Latest</dt><dd style="font-size:1rem">${escapeHtml(last)}</dd></div>
     </div>
-    ${indexFailuresSection(sorted)}
+    ${indexGapsSection(sorted)}
     ${daySections}
     <p class="footer">Generated by <code>scripts/append-session-scorecard.js</code> ·
       <a href="http://127.0.0.1:8765/session-metrics-log.html">Session metrics</a> ·
@@ -301,4 +215,5 @@ module.exports = {
   buildTrackingHtml,
   dayKey,
   timeShort,
+  escapeHtml,
 };

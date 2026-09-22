@@ -32,6 +32,22 @@
     "time": 14.0
   },
   {
+    "name": "example_three_problem_shown",
+    "time": 15.93
+  },
+  {
+    "name": "example_three_whole_rewritten",
+    "time": 17.98
+  },
+  {
+    "name": "example_three_products_shown",
+    "time": 19.18
+  },
+  {
+    "name": "example_three_simplified",
+    "time": 21.07
+  },
+  {
     "name": "example_one_done",
     "time": 21.5
   },

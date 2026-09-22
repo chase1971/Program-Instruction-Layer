@@ -1,94 +1,122 @@
 [
   {
     "name": "whole_one_problem_shown",
-    "time": 1.04
+    "time": 2.2
   },
   {
     "name": "whole_one_whole_rewritten",
-    "time": 2.17
+    "time": 4.5
+  },
+  {
+    "name": "whole_one_multiplier_shown",
+    "time": 6.0
   },
   {
     "name": "whole_one_common_denominator",
-    "time": 4.42
+    "time": 7.8
+  },
+  {
+    "name": "whole_one_ready_to_add",
+    "time": 9.8
   },
   {
     "name": "whole_one_summed",
-    "time": 6.67
-  },
-  {
-    "name": "whole_two_problem_shown",
-    "time": 8.42
-  },
-  {
-    "name": "whole_two_whole_rewritten",
-    "time": 9.54
-  },
-  {
-    "name": "whole_two_common_denominator",
-    "time": 11.79
-  },
-  {
-    "name": "whole_two_summed",
-    "time": 14.04
+    "time": 11.8
   },
   {
     "name": "whole_three_problem_shown",
-    "time": 15.79
+    "time": 15.05
   },
   {
     "name": "whole_three_whole_rewritten",
-    "time": 16.92
+    "time": 17.35
+  },
+  {
+    "name": "whole_three_multiplier_shown",
+    "time": 18.85
   },
   {
     "name": "whole_three_common_denominator",
-    "time": 19.17
+    "time": 20.65
+  },
+  {
+    "name": "whole_three_ready_to_add",
+    "time": 22.65
   },
   {
     "name": "whole_three_summed",
-    "time": 21.42
+    "time": 24.65
   },
   {
     "name": "whole_examples_done",
-    "time": 22.12
+    "time": 25.7
   },
   {
     "name": "frac_one_problem_shown",
-    "time": 23.79
+    "time": 29.1
+  },
+  {
+    "name": "frac_one_multipliers_shown",
+    "time": 32.1
   },
   {
     "name": "frac_one_common_denominator",
-    "time": 26.04
+    "time": 35.7
+  },
+  {
+    "name": "frac_one_ready_to_add",
+    "time": 37.7
   },
   {
     "name": "frac_one_summed",
-    "time": 28.29
+    "time": 39.7
   },
   {
     "name": "frac_two_problem_shown",
-    "time": 30.04
+    "time": 43.4
+  },
+  {
+    "name": "frac_two_multipliers_shown",
+    "time": 44.9
   },
   {
     "name": "frac_two_common_denominator",
-    "time": 32.29
+    "time": 46.7
+  },
+  {
+    "name": "frac_two_ready_to_add",
+    "time": 48.7
   },
   {
     "name": "frac_two_summed",
-    "time": 34.54
+    "time": 50.7
+  },
+  {
+    "name": "frac_two_simplified",
+    "time": 52.85
   },
   {
     "name": "frac_three_problem_shown",
-    "time": 36.29
+    "time": 56.55
+  },
+  {
+    "name": "frac_three_multipliers_shown",
+    "time": 59.55
   },
   {
     "name": "frac_three_common_denominator",
-    "time": 38.54
+    "time": 63.15
+  },
+  {
+    "name": "frac_three_ready_to_add",
+    "time": 65.15
   },
   {
     "name": "frac_three_summed",
-    "time": 40.79
+    "time": 67.15
   },
   {
     "name": "done",
-    "time": 41.5
+    "time": 68.2
   }
 ]

@@ -100,9 +100,8 @@ function runStop() {
 
   const message =
     `Session tracking: ${edited} file(s) edited this session, ${bumps} bumps logged. `
-    + 'Before finishing, run node scripts/append-session-scorecard.js --bump-file <path> '
-    + '(see agent docs/SESSION_TRACKING.md) with chunkNote and navigationPath, '
-    + 'then finish your reply normally. '
+    + 'Before finishing, run node scripts/append-session-scorecard.js --note "<what you finished>" '
+    + '(see agent docs/SESSION_TRACKING.md), then finish your reply normally. '
     + `(This auto-allows after ${MAX_BLOCKS} reminders regardless, so it can't loop forever.)`;
 
   printAndExit({
@@ -119,8 +118,8 @@ function runPrecompact() {
   const { edited, bumps } = unbumpedState(running);
   const trackingReminder = edited > 0 && bumps === 0
     ? ` ${edited} file(s) have been edited with 0 session tracking bumps logged; run `
-      + 'node scripts/append-session-scorecard.js --bump-file <path> with chunkNote and '
-      + 'navigationPath before detail gets summarized away.'
+      + 'node scripts/append-session-scorecard.js --note "<what you finished>" before detail '
+      + 'gets summarized away.'
     : '';
 
   printAndExit({

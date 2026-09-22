@@ -1,8 +1,0 @@
-{
-  "chunkNote": "Made the three preview button pairs direct peers with equal spacing across one toolbar.",
-  "navigationPath": [
-    {"target":"visualize/SKILL.md","kind":"doc","outcome":"helpful"},
-    {"target":"agent docs/scratch/teacher-console-concept.html","kind":"code","outcome":"helpful"}
-  ],
-  "filesEdited": ["agent docs/scratch/teacher-console-concept.html"]
-}

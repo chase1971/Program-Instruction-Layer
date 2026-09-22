@@ -1,0 +1,151 @@
+{
+  "page": "scratch/guided-practice-attempt-6f9a7f87.html",
+  "updated": null,
+  "comments": {
+    "comment-summary": {
+      "title": "Overall comments on this review page",
+      "thread": [],
+      "draft": ""
+    },
+    "section-step-ledger": {
+      "title": "Section A — Step ledger layout",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op1-pick-cell": {
+      "title": "Q1 op1-pick-cell",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op1-operation-type": {
+      "title": "Q2 op1-operation-type",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op1-row-notation": {
+      "title": "Q3 op1-row-notation",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op1-row-entry": {
+      "title": "Q4 op1-row-entry",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op2-pick-cell": {
+      "title": "Q5 op2-pick-cell",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op2-operation-type": {
+      "title": "Q6 op2-operation-type",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op2-row-notation": {
+      "title": "Q7 op2-row-notation",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op2-row-entry": {
+      "title": "Q8 op2-row-entry",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op3-pick-cell": {
+      "title": "Q9 op3-pick-cell",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op3-operation-type": {
+      "title": "Q10 op3-operation-type",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op3-row-notation": {
+      "title": "Q11 op3-row-notation",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op3-row-entry": {
+      "title": "Q12 op3-row-entry",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op4-pick-cell": {
+      "title": "Q13 op4-pick-cell",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op4-operation-type": {
+      "title": "Q14 op4-operation-type",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op4-row-notation": {
+      "title": "Q15 op4-row-notation",
+      "thread": [],
+      "draft": ""
+    },
+    "q-op4-row-entry": {
+      "title": "Q16 op4-row-entry",
+      "thread": [],
+      "draft": ""
+    },
+    "q-solution": {
+      "title": "Q17 solution",
+      "thread": [],
+      "draft": ""
+    },
+    "section-struggle-cards": {
+      "title": "Section B — Struggle cards layout",
+      "thread": [],
+      "draft": ""
+    },
+    "section-decoded-timeline": {
+      "title": "Section C — Decoded timeline layout",
+      "thread": [],
+      "draft": ""
+    },
+    "section-aggregates": {
+      "title": "Section D — Aggregates layout",
+      "thread": [],
+      "draft": ""
+    },
+    "section-gap-panel": {
+      "title": "Gap panel — missing capture",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-wrong-kind": {
+      "title": "Gap 1 — Wrong-answer kind is not distinguished",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-expected-answer": {
+      "title": "Gap 2 — Expected answer is never stored",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-matrix-state": {
+      "title": "Gap 3 — No matrix state on screen",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-error-text": {
+      "title": "Gap 4 — No validator error text",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-example-switch": {
+      "title": "Gap 5 — Example switching under-logged",
+      "thread": [],
+      "draft": ""
+    },
+    "gap-recovery-labels": {
+      "title": "Gap 6 — Recovery phases have no human labels in Teacher Console",
+      "thread": [],
+      "draft": ""
+    }
+  }
+}

@@ -1,6 +1,24 @@
 {
   "runs": [
     {
+      "id": "266b26e3-c4b6-4a3f-ba9f-8a418257e05f",
+      "file": "2026-09-18-266b26e3.html",
+      "heroes": [
+        "Ratna",
+        "Karsu",
+        "Rip",
+        "Pimenta"
+      ],
+      "floor": 12,
+      "act": 1,
+      "battles_won": 20,
+      "battles": 21,
+      "relics": 13,
+      "shards": 8,
+      "updated": "2026-09-18T23:05:09",
+      "live": false
+    },
+    {
       "id": "0847cb26-ad4d-4a9f-b9c5-e396804d325a",
       "file": "2026-09-16-0847cb26.html",
       "heroes": [

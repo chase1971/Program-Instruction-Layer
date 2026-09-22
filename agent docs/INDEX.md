@@ -53,7 +53,7 @@ never touches this file.
 | "perform a momentum handoff" · switch to a fresh task · give the next agent our momentum | [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) — write [momentum-handoffs/latest.md](./momentum-handoffs/latest.md), then copy-ready prompt |
 | **"read the latest momentum handoff"** · continue from the handoff · pick up the momentum handoff · what did the last agent leave off (fresh task) | **[momentum-handoffs/latest.md](./momentum-handoffs/latest.md)** first, then [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) § Read — check the Written date; stale → ask Chase |
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
-| "log the task" · bump session tracking · task navigation path | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
+| "log the task" · bump session tracking · index gap | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
 | finalize session metrics · grep/file counts · hook enforcement | [SESSION_METRICS.md](./SESSION_METRICS.md) |
 | Macro App browser residency plan · browser memory plan | [scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md) · [review](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN_REVIEW.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |

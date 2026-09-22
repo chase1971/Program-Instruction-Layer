@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guided practice — miss badges by student</title>
+<style>
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 80px;
+  }
+  a { color: var(--blue); }
+  .backlink, .nav-pill {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin: 0 8px 8px 0;
+    min-height: 3rem;
+  }
+  .nav-pill.active { border-color: #2563eb; background: var(--bluebg); box-shadow: 0 0 0 3px #bfdbfe; }
+  h1 { font-size: 32px; margin: 0 0 8px; }
+  .sub { color: var(--soft); font-size: 18px; margin: 0 0 24px; }
+  .banner {
+    background: var(--amberbg);
+    border: 2px solid #fec84b;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 0 0 24px;
+    font-size: 16px;
+    color: #7a2e0e;
+  }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 0 0 16px;
+  }
+  .card h2, .card h3 { margin: 0 0 10px; line-height: 1.25; }
+  .card h2 { font-size: 24px; }
+  .card h3 { font-size: 20px; }
+  .pill {
+    display: inline-block;
+    font: 700 12px/1 system-ui, sans-serif;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 0 6px 6px 0;
+  }
+  .pill-bad { background: var(--redbg); color: var(--red); border: 1.5px solid #fda29b; }
+  .pill-info { background: var(--bluebg); color: var(--blue); border: 1.5px solid #c7d7fe; }
+  .pill-ok { background: var(--greenbg); color: var(--green); border: 1.5px solid #a6f4c5; }
+  .student-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 20px;
+  }
+  .student-nav button {
+    padding: 18px 24px;
+    font: 700 18px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    min-height: 3.5rem;
+  }
+  .student-nav button:disabled { opacity: 0.35; cursor: default; }
+  .student-name { text-align: center; font-size: 28px; font-weight: 800; margin: 0; }
+  .student-sub { text-align: center; color: var(--soft); margin: 4px 0 0; }
+  .problem-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 20px;
+  }
+  .problem-tabs button {
+    padding: 16px 18px;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    min-height: 3.25rem;
+    text-align: left;
+  }
+  .problem-tabs button.active {
+    border-color: #2563eb;
+    background: var(--bluebg);
+    box-shadow: 0 0 0 3px #bfdbfe;
+  }
+  .tab-sub { display: block; font-weight: 400; font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .miss-card ul { margin: 8px 0 0; padding-left: 22px; }
+  .miss-card li { margin-bottom: 6px; }
+  .miss-card code {
+    background: #e9eef5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+  }
+  .empty {
+    border: 2px dashed var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    color: var(--soft);
+  }
+  .bar-row { display: grid; grid-template-columns: 1fr 3fr 60px; gap: 12px; align-items: center; margin: 0 0 10px; }
+  .bar-track { background: #e9eef5; border-radius: 8px; height: 28px; overflow: hidden; }
+  .bar-fill { background: #2563eb; height: 100%; border-radius: 8px; min-width: 4px; }
+  table.simple { width: 100%; border-collapse: collapse; font-size: 15px; }
+  table.simple th, table.simple td { border: 1.5px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  table.simple th { background: #f9fafb; }
+  .survey-row { border: 2px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 10px; background: #fbfcfe; }
+  .survey-row .q { font-weight: 700; margin: 0 0 6px; }
+  .survey-row .a { margin: 0; white-space: pre-wrap; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 20px; }
+  .miss-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    min-height: 3.5rem;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .miss-badge:hover { border-color: #94a3b8; }
+  .miss-badge.active {
+    border-color: #2563eb;
+    background: var(--bluebg);
+    box-shadow: 0 0 0 3px #bfdbfe;
+  }
+  .miss-badge .count {
+    font-size: 15px;
+    color: var(--red);
+    background: var(--redbg);
+    border: 1.5px solid #fda29b;
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .badge-detail {
+    background: #fff;
+    border: 3px solid #2563eb;
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 0 0 20px;
+  }
+  .badge-detail[hidden] { display: none !important; }
+  .badge-detail h3 { margin: 0 0 6px; font-size: 22px; }
+  .badge-detail .desc { color: var(--soft); margin: 0 0 16px; }
+  .instance {
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0 0 10px;
+    background: #fbfcfe;
+  }
+  .instance .who { font-weight: 700; margin: 0 0 8px; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare-box {
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #fff;
+  }
+  .compare-box.bad { border-color: #fda29b; background: var(--redbg); }
+  .compare-box.good { border-color: #a6f4c5; background: var(--greenbg); }
+  .compare-box .label {
+    font: 700 11px/1 system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 0 0 6px;
+  }
+  .compare-box .value {
+    margin: 0;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 15px;
+    word-break: break-word;
+  }
+  .student-badge-summary { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .student-badge-summary span {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #f2f4f7;
+    border: 1.5px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+<a class="nav-pill" href="/scratch/guided-practice-miss-aggregate.html">Class aggregate &amp; survey</a>
+
+<div class="banner"><strong>Miss badges.</strong> Seven categories. Click a badge to see what they typed vs the answer.</div>
+<h1>Miss badges by student</h1>
+<p class="sub">Survey on top, combined badges, then Problem 1 / Problem 2 tabs. Each badge is &times;how many times they missed that skill.</p>
+
+<div class="student-nav">
+  <button type="button" id="prev-student">&larr; Previous</button>
+  <div><p class="student-name" id="student-name"></p><p class="student-sub" id="student-sub"></p></div>
+  <button type="button" id="next-student" style="justify-self:end">Next &rarr;</button>
+</div>
+
+<section class="card" id="survey-section">
+  <h2>Post-practice survey</h2>
+  <div id="survey-body"></div>
+</section>
+
+<section class="card">
+  <h2>All problems combined</h2>
+  <p class="sub" style="margin:0 0 12px">Badge totals across Problem 1 and Problem 2.</p>
+  <div class="badge-row" id="student-all-badges"></div>
+</section>
+
+<div class="problem-tabs">
+  <button type="button" id="tab-p1">Problem 1<span class="tab-sub" id="tab-p1-sub"></span></button>
+  <button type="button" id="tab-p2">Problem 2<span class="tab-sub" id="tab-p2-sub"></span></button>
+</div>
+
+<div class="badge-row" id="badge-row"></div>
+<div class="badge-detail" id="badge-detail" hidden></div>
+<div id="miss-empty"></div>
+
+<script type="application/json" id="students-data">[{"id":"943b6378-ab8c-43bd-b310-9285921357dd","name":"Cynthia Jimenez Duran","survey":{"completedAt":"2026-09-21T19:55:08.691878+00:00","answers":[{"label":"When you got a step wrong, did the help make sense?","value":"Yes"},{"label":"Did you use the help buttons (fraction help, row notation help)?","value":"Maybe"},{"label":"Would you use this again before a test?","value":"Yes"},{"label":"Anything else we should know?","value":"I use the app on my laptop because I find it easier to study math on a computer than on my phone, especially since I’m usually not doing math on the go. I think it would be helpful if we could use the keyboard to type in numbers instead of having to click each number with the cursor.\n\nAnother thing that would help is keeping the row operations visible after we enter them. Sometimes I forget which row operation I needed to use, and then I have to mentally work backward through the problem to figure it out again. Being able to see the row operation that we're working on would make it much easier to follow my work. (I'm not sure if that makes sense..)"}]},"problems":[{"attemptId":"a2d0cde0-fe1a-4b95-a0f2-fba3f9521e7a","problemLabel":"Problem 1","problemId":17,"status":"completed","score":17,"maxScore":17,"misses":[],"badges":[],"helpFeedback":[]},{"attemptId":"b690240f-b919-418b-91e6-9ca647cce1af","problemLabel":"Problem 2","problemId":11,"status":"completed","score":15,"maxScore":17,"misses":[{"slot":"op1-operation-type","category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","tryCount":1,"wrongChoices":[{"choice":"Row replacement","attemptIndex":1}],"expectedAnswer":"Row scaling"},{"slot":"op4-row-entry","category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","tryCount":1,"wrongChoices":[{"choice":"1, 0, -11","attemptIndex":1}],"expectedAnswer":"1, 0, 1"}],"badges":[{"category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","count":1,"instances":[{"slot":"op1-operation-type","category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","tryCount":1,"wrongChoices":[{"choice":"Row replacement","attemptIndex":1}],"expectedAnswer":"Row scaling"}]},{"category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","count":1,"instances":[{"slot":"op4-row-entry","category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","tryCount":1,"wrongChoices":[{"choice":"1, 0, -11","attemptIndex":1}],"expectedAnswer":"1, 0, 1"}]}],"helpFeedback":[]}],"missCount":2,"categoryCounts":{"transform-type":1,"replacement-math":1},"badges":[{"category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","count":1,"instances":[{"slot":"op1-operation-type","category":"transform-type","badgeLabel":"Transform type","description":"Picked the wrong row transformation type","tryCount":1,"wrongChoices":[{"choice":"Row replacement","attemptIndex":1}],"expectedAnswer":"Row scaling","problemLabel":"Problem 2","problemId":11}]},{"category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","count":1,"instances":[{"slot":"op4-row-entry","category":"replacement-math","badgeLabel":"Replacement math","description":"Row replacement arithmetic wrong","tryCount":1,"wrongChoices":[{"choice":"1, 0, -11","attemptIndex":1}],"expectedAnswer":"1, 0, 1","problemLabel":"Problem 2","problemId":11}]}]},{"id":"e2205031-706e-405a-9d5c-41a0629c469c","name":"Denys Demchenko","survey":null,"problems":[{"attemptId":"97b58e1e-5936-4ed4-a0d0-7562e95c62dd","problemLabel":"Problem 1","problemId":11,"status":"in_progress","score":null,"maxScore":null,"misses":[],"badges":[],"helpFeedback":[]}],"missCount":0,"categoryCounts":{},"badges":[]},{"id":"9a9bb7ff-f271-4b8b-94c6-fcf99eb579ac","name":"Ivanna Stone","survey":null,"problems":[{"attemptId":"fc32e137-db7e-4c6c-b5a8-f677db48da31","problemLabel":"Problem 1","problemId":11,"status":"in_progress","score":null,"maxScore":null,"misses":[],"badges":[],"helpFeedback":[]}],"missCount":0,"categoryCounts":{},"badges":[]},{"id":"d93cdcdf-6c7a-45df-88ba-ed5e6b031dc8","name":"Luna Pena Melendez","survey":null,"problems":[{"attemptId":"f9601c9d-bb59-4725-b16d-50f6a54f985d","problemLabel":"Problem 1","problemId":8,"status":"in_progress","score":null,"maxScore":null,"misses":[],"badges":[],"helpFeedback":[]}],"missCount":0,"categoryCounts":{},"badges":[]},{"id":"3bc881fd-2854-4938-b6cc-2e3570313d40","name":"Maria Garcia Baptiste","survey":{"completedAt":"2026-09-21T18:42:19.451122+00:00","answers":[{"label":"When you got a step wrong, did the help make sense?","value":"Yes"},{"label":"Did you use the help buttons (fraction help, row notation help)?","value":"I didn't use it"},{"label":"Would you use this again before a test?","value":"Yes"},{"label":"Anything else we should know?","value":"The app is very helpful. It is simple to navigate and has clear instructions/help for when I get the questions wrong. I don't think anything should be changed."}]},"problems":[{"attemptId":"ee38e8e6-daf0-44cd-b644-712cc97ec793","problemLabel":"Problem 1","problemId":6,"status":"completed","score":16,"maxScore":17,"misses":[{"slot":"op4-row-notation","category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","tryCount":1,"wrongChoices":[{"choice":"2/R2+R1→R1","attemptIndex":1}],"expectedAnswer":"2/5R2 + R1 → R1"}],"badges":[{"category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","count":1,"instances":[{"slot":"op4-row-notation","category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","tryCount":1,"wrongChoices":[{"choice":"2/R2+R1→R1","attemptIndex":1}],"expectedAnswer":"2/5R2 + R1 → R1"}]}],"helpFeedback":[]},{"attemptId":"3f536cc0-67b1-40bd-9542-864a9e9340c9","problemLabel":"Problem 2","problemId":12,"status":"completed","score":16,"maxScore":17,"misses":[{"slot":"op3-row-notation","category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","tryCount":1,"wrongChoices":[{"choice":"-7/41R1 → R1","attemptIndex":1}],"expectedAnswer":"-7/41R2 → R2"}],"badges":[{"category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","count":1,"instances":[{"slot":"op3-row-notation","category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","tryCount":1,"wrongChoices":[{"choice":"-7/41R1 → R1","attemptIndex":1}],"expectedAnswer":"-7/41R2 → R2"}]}],"helpFeedback":[]}],"missCount":2,"categoryCounts":{"replacement-notation":1,"scaling-notation":1},"badges":[{"category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","count":1,"instances":[{"slot":"op3-row-notation","category":"scaling-notation","badgeLabel":"Scaling notation","description":"Row scaling notation wrong","tryCount":1,"wrongChoices":[{"choice":"-7/41R1 → R1","attemptIndex":1}],"expectedAnswer":"-7/41R2 → R2","problemLabel":"Problem 2","problemId":12}]},{"category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","count":1,"instances":[{"slot":"op4-row-notation","category":"replacement-notation","badgeLabel":"Replacement notation","description":"Row replacement notation wrong","tryCount":1,"wrongChoices":[{"choice":"2/R2+R1→R1","attemptIndex":1}],"expectedAnswer":"2/5R2 + R1 → R1","problemLabel":"Problem 1","problemId":6}]}]}]</script>
+<script>
+(function () {
+  var STUDENTS = JSON.parse(document.getElementById('students-data').textContent);
+  var withData = STUDENTS.filter(function (s) { return s.problems.length > 0; });
+  var idx = 0;
+  var tab = 0;
+  var openBadge = null;
+  var openScope = 'problem';
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    return isNaN(d) ? iso : d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderSurvey(student) {
+    var body = document.getElementById('survey-body');
+    if (!student.survey) {
+      body.innerHTML = '<p class="empty" style="margin:0">No survey yet.</p>';
+      return;
+    }
+    body.innerHTML = '<p style="color:#5a6b80;margin:0 0 12px">Completed ' + fmtTime(student.survey.completedAt) + '</p>' +
+      student.survey.answers.map(function (row) {
+        return '<div class="survey-row"><p class="q">' + esc(row.label) + '</p><p class="a">' + esc(row.value) + '</p></div>';
+      }).join('');
+  }
+
+  function instanceHtml(inst, showProblem) {
+    var wrongText = inst.wrongChoices.map(function (w) {
+      return 'Try ' + w.attemptIndex + ': ' + w.choice;
+    }).join('; ');
+    var header = showProblem
+      ? esc(inst.problemLabel || '') + ' · problem ' + inst.problemId
+      : 'Miss';
+    return '<div class="instance"><p class="who">' + header + (inst.tryCount > 1 ? ' · ' + inst.tryCount + ' tries' : '') + '</p>' +
+      '<div class="compare"><div class="compare-box bad"><p class="label">They wrote</p><p class="value">' + esc(wrongText || '—') + '</p></div>' +
+      '<div class="compare-box good"><p class="label">Answer</p><p class="value">' + esc(inst.expectedAnswer || '—') + '</p></div></div></div>';
+  }
+
+  function renderBadgeDetail(badge, scope) {
+    var panel = document.getElementById('badge-detail');
+    if (!badge) { panel.hidden = true; panel.innerHTML = ''; return; }
+    panel.hidden = false;
+    panel.innerHTML = '<h3>' + esc(badge.badgeLabel) + ' <span class="count">×' + badge.count + '</span></h3>' +
+      '<p class="desc">' + esc(badge.description) + '</p>' +
+      badge.instances.map(function (inst) { return instanceHtml(inst, scope === 'all'); }).join('');
+  }
+
+  function wireBadges(container, badges, scope) {
+    container.innerHTML = badges.map(function (badge) {
+      var active = openScope === scope && openBadge === badge.category;
+      return '<button type="button" class="miss-badge' + (active ? ' active' : '') + '" data-category="' + esc(badge.category) + '" data-scope="' + scope + '">' +
+        esc(badge.badgeLabel) + ' <span class="count">×' + badge.count + '</span></button>';
+    }).join('');
+    container.querySelectorAll('.miss-badge').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var cat = btn.getAttribute('data-category');
+        var sc = btn.getAttribute('data-scope');
+        var list = sc === 'all' ? withData[idx].badges : ((withData[idx].problems[tab] && withData[idx].problems[tab].badges) || []);
+        var badge = list.find(function (b) { return b.category === cat; });
+        if (openBadge === cat && openScope === sc) { openBadge = null; renderBadgeDetail(null); }
+        else { openBadge = cat; openScope = sc; renderBadgeDetail(badge, sc); }
+        render();
+      });
+    });
+  }
+
+  function renderMisses(student) {
+    var problem = student.problems[tab];
+    var badgeRow = document.getElementById('badge-row');
+    var empty = document.getElementById('miss-empty');
+    wireBadges(document.getElementById('student-all-badges'), student.badges || [], 'all');
+    if (!problem) {
+      badgeRow.innerHTML = '';
+      empty.innerHTML = '<div class="empty">No attempt in this slot yet.</div>';
+      if (openScope === 'problem') renderBadgeDetail(null);
+      return;
+    }
+    if (!problem.badges.length) {
+      badgeRow.innerHTML = '';
+      empty.innerHTML = '<div class="empty">No misses on ' + esc(problem.problemLabel) + ' — every step correct on first try.</div>';
+      if (openScope === 'problem') renderBadgeDetail(null);
+      return;
+    }
+    empty.innerHTML = '';
+    wireBadges(badgeRow, problem.badges, 'problem');
+    if (openScope === 'problem' && openBadge) {
+      renderBadgeDetail(problem.badges.find(function (b) { return b.category === openBadge; }), 'problem');
+    } else if (openScope === 'all' && openBadge) {
+      renderBadgeDetail(student.badges.find(function (b) { return b.category === openBadge; }), 'all');
+    }
+  }
+
+  function updateTabs(student) {
+    ['Problem 1', 'Problem 2'].forEach(function (label, i) {
+      var btn = document.getElementById(i === 0 ? 'tab-p1' : 'tab-p2');
+      var sub = document.getElementById(i === 0 ? 'tab-p1-sub' : 'tab-p2-sub');
+      var problem = student.problems[i];
+      btn.classList.toggle('active', tab === i);
+      if (!problem) {
+        sub.textContent = 'No attempt';
+        return;
+      }
+      sub.textContent = problem.problemLabel + ' · problem ' + problem.problemId + ' · ' + problem.misses.length + ' badge' + (problem.misses.length === 1 ? '' : 's');
+    });
+  }
+
+  function render() {
+    if (!withData.length) {
+      document.getElementById('student-name').textContent = 'No student data yet';
+      return;
+    }
+    var student = withData[idx];
+    document.getElementById('student-name').textContent = student.name;
+    document.getElementById('student-sub').textContent = (idx + 1) + ' of ' + withData.length + ' with attempts';
+    document.getElementById('prev-student').disabled = idx === 0;
+    document.getElementById('next-student').disabled = idx >= withData.length - 1;
+    renderSurvey(student);
+    updateTabs(student);
+    renderMisses(student);
+  }
+
+  document.getElementById('prev-student').addEventListener('click', function () { if (idx > 0) { idx -= 1; tab = 0; openBadge = null; render(); } });
+  document.getElementById('next-student').addEventListener('click', function () { if (idx < withData.length - 1) { idx += 1; tab = 0; openBadge = null; render(); } });
+  document.getElementById('tab-p1').addEventListener('click', function () { tab = 0; openBadge = null; openScope = 'problem'; render(); });
+  document.getElementById('tab-p2').addEventListener('click', function () { tab = 1; openBadge = null; openScope = 'problem'; render(); });
+  render();
+})();
+</script>
+</body>
+</html>

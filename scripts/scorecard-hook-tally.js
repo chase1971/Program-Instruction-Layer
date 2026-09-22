@@ -1,98 +1,38 @@
 /**
- * Cursor postToolUse hook — append tool-use counts to the session scorecard running tally.
- * Stdin: hook JSON (tool_name, tool_input, …). Always exits 0 (fail open).
+ * FILE: scripts/scorecard-hook-tally.js
+ * PURPOSE: PostToolUse + UserPromptSubmit hook (Cursor, Claude Code, Codex). Keeps the
+ *          running tally the bump reads:
+ *            turns            one per prompt from Chase
+ *            filesEditedList  evidence of unbumped work for the Stop hook
+ *            toolTimeline     timestamps, for active time per task
+ *            chatKey / transcriptPath / model
+ *          Stdin: hook JSON. Always exits 0 (fail open).
+ *
+ * 2026-09-21: stopped counting greps, files read, docs opened, .mdc reads and tool
+ * usage. Nothing downstream used them to make a decision.
  *
  * Manual smoke test:
- *   echo {"tool_name":"Read","tool_input":{"path":"foo.ts"}} | node scripts/scorecard-hook-tally.js
+ *   echo {"tool_name":"Edit","tool_input":{"file_path":"foo.ts"}} | node scripts/scorecard-hook-tally.js
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const { refreshCountsTrust, emptyTrustFields } = require('./scorecard-trust');
 const { pushTimelineEvent } = require('./session-tracking-stats');
 const { resolveChat } = require('./chat-task');
+const { emptyRunning } = require('./session-metrics-store');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
-const MDC_STATS = path.join(ROOT, 'agent docs', 'mdc-read-stats.json');
 
-// Tool names differ between hosts. Cursor sends Shell/StrReplace/Task; Claude Code sends
-// Bash/PowerShell/Edit/Agent. Both sets are listed so one hook script serves both.
-const DOC_EXT = new Set(['.md', '.mdc', '.html', '.json', '.jsonl', '.txt']);
-const SEARCH_TOOLS = new Set(['Grep', 'Glob', 'WebSearch']);
-const READ_TOOLS = new Set(['Read']);
+// Cursor sends StrReplace/Delete/EditNotebook; Claude Code sends Edit/NotebookEdit.
 const EDIT_TOOLS = new Set([
   'Write', 'StrReplace', 'Delete', 'EditNotebook',
-  'Edit', 'NotebookEdit',                             // Claude Code
+  'Edit', 'NotebookEdit',
 ]);
-const SHELL_TOOLS = new Set([
-  'Shell',
-  'Bash', 'PowerShell',                               // Claude Code
-]);
-const AGENT_TOOLS = new Set([
-  'Task', 'GetMcpTools', 'WebFetch', 'FetchMcpResource', 'CallMcpTool',
-  'Agent',                                            // Claude Code
-]);
-
-function bumpToolCount(running, key) {
-  if (!key) {
-    return;
-  }
-  if (!running.toolsUsedCounts) {
-    running.toolsUsedCounts = {};
-  }
-  running.toolsUsedCounts[key] = (running.toolsUsedCounts[key] || 0) + 1;
-}
-
-function mcpToolKey(toolInput) {
-  const args = toolInput.arguments || toolInput;
-  const inner = args.toolName || toolInput.toolName || '';
-  if (!inner) {
-    return null;
-  }
-  let server = args.server || toolInput.server || 'mcp';
-  server = String(server).replace(/^project-0-Programs-/, '');
-  return `${server}:${inner}`;
-}
-
-function mergeUnique(list, add) {
-  const set = new Set(list || []);
-  for (const x of add || []) {
-    if (x) {
-      set.add(x);
-    }
-  }
-  return [...set];
-}
-
-function emptyRunning() {
-  return {
-    sessionStarted: new Date().toISOString(),
-    model: '',
-    sessionType: 'mixed',
-    summaryHuman: 'Session in progress…',
-    turns: 0,
-    greps: 0,
-    corrections: 0,
-    docsRulesOpened: [],
-    mdcReadsList: [],
-    filesReadList: [],
-    filesEditedList: [],
-    taskLog: [],
-    toolsUsedCounts: {},
-    browserSnapshots: 0,
-    toolTimeline: [],
-    hookTally: false,
-    agentBumped: false,
-    ...emptyTrustFields(),
-  };
-}
 
 function readRunning() {
-  if (!fs.existsSync(RUNNING)) {
-    return null;
-  }
+  if (!fs.existsSync(RUNNING)) return null;
   try {
     return JSON.parse(fs.readFileSync(RUNNING, 'utf8'));
   } catch {
@@ -101,174 +41,54 @@ function readRunning() {
 }
 
 function writeRunning(data) {
-  const dir = path.dirname(RUNNING);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
   fs.writeFileSync(RUNNING, JSON.stringify(data, null, 2), 'utf8');
 }
 
-function normalizePath(raw) {
-  if (!raw || typeof raw !== 'string') {
-    return null;
-  }
-  return raw.replace(/\\/g, '/');
-}
-
-function isDocRulePath(filePath) {
-  const normalized = normalizePath(filePath);
-  if (!normalized) {
-    return false;
-  }
-  const lower = normalized.toLowerCase();
-  const ext = path.extname(lower);
-  if (DOC_EXT.has(ext)) {
-    return true;
-  }
-  return (
-    lower.includes('/.cursor/rules/')
-    || lower.includes('/agent docs/')
-    || lower.includes('/docs/')
-    || lower.includes('/cursor-patterns/')
-  );
-}
-
-function isMdcPath(filePath) {
-  const normalized = normalizePath(filePath);
-  if (!normalized) {
-    return false;
-  }
-  return path.extname(normalized.toLowerCase()) === '.mdc';
-}
-
-function mdcLabel(filePath) {
-  return path.basename(String(filePath || '').replace(/\\/g, '/'));
-}
-
-function bumpLifetimeMdcStats(filePath) {
-  if (!isMdcPath(filePath)) {
-    return;
-  }
-  const key = mdcLabel(filePath);
-  let stats = {};
-  if (fs.existsSync(MDC_STATS)) {
-    try {
-      stats = JSON.parse(fs.readFileSync(MDC_STATS, 'utf8'));
-    } catch {
-      stats = {};
-    }
-  }
-  const row = stats[key] || { count: 0, last: null, lastPath: null };
-  row.count += 1;
-  row.last = new Date().toISOString();
-  row.lastPath = normalizePath(filePath);
-  stats[key] = row;
-  fs.writeFileSync(MDC_STATS, JSON.stringify(stats, null, 2), 'utf8');
-}
-
 function pickPath(toolInput) {
-  if (!toolInput || typeof toolInput !== 'object') {
-    return null;
-  }
-  return normalizePath(
-    toolInput.path
-    || toolInput.file_path
-    || toolInput.target_path
-    || toolInput.target_notebook
-  );
-}
-
-// UserPromptSubmit carries no tool_name — it fires once per thing Chase says.
-// `turns` used to depend on the agent remembering to bump it, so it was almost
-// always 0. This makes the interaction count automatic like the tool counts.
-function recordTurn() {
-  const running = readRunning() || emptyRunning();
-  running.hookTally = true;
-  running.turns = (running.turns || 0) + 1;
-  refreshCountsTrust(running);
-  writeRunning(running);
+  if (!toolInput || typeof toolInput !== 'object') return null;
+  const raw = toolInput.path || toolInput.file_path || toolInput.target_path || toolInput.target_notebook;
+  return typeof raw === 'string' ? raw.replace(/\\/g, '/') : null;
 }
 
 // Remember which chat and transcript the latest hook came from, so a bump can slice
 // that chat's billed tokens (Claude Code only — see scripts/session-token-cost.js)
 // and read its size (both hosts — see scripts/chat-task.js). Both fields move
 // together so a Cursor chat never inherits a stale Claude Code transcript.
-function recordChat(payload) {
+function recordChat(running, payload) {
   const { chatKey, transcriptPath } = resolveChat(payload);
-  if (!chatKey && !transcriptPath) return;
-  const running = readRunning() || emptyRunning();
-  if (running.chatKey === chatKey && running.transcriptPath === transcriptPath) return;
-  running.chatKey = chatKey;
-  running.transcriptPath = transcriptPath;
-  writeRunning(running);
+  if (chatKey || transcriptPath) {
+    running.chatKey = chatKey;
+    running.transcriptPath = transcriptPath;
+  }
+  if (typeof payload.model === 'string' && payload.model.trim()) running.model = payload.model.trim();
 }
 
-function recordToolUse(payload) {
-  recordChat(payload);
+function isPromptEvent(payload) {
+  const eventName = String(payload.hook_event_name || payload.hookEventName || '').trim();
+  return payload.prompt !== undefined
+    || eventName === 'UserPromptSubmit'
+    || eventName === 'beforeSubmitPrompt';
+}
+
+function record(payload) {
+  const running = readRunning() || emptyRunning();
+  recordChat(running, payload);
+
   const toolName = String(payload.tool_name || payload.toolName || '').trim();
   if (!toolName) {
-    const eventName = String(payload.hook_event_name || payload.hookEventName || '').trim();
-    if (
-      payload.prompt !== undefined
-      || eventName === 'UserPromptSubmit'
-      || eventName === 'beforeSubmitPrompt'
-    ) {
-      recordTurn();
-    }
+    if (isPromptEvent(payload)) running.turns = (running.turns || 0) + 1;
+    writeRunning(running);
     return;
   }
-
-  const toolInput = payload.tool_input || payload.toolInput || payload.arguments || {};
-  const running = readRunning() || emptyRunning();
-  running.hookTally = true;
 
   const now = new Date().toISOString();
-
-  if (SEARCH_TOOLS.has(toolName)) {
-    running.greps += 1;
-    pushTimelineEvent(running, { t: now, k: 'search', p: null });
-  } else if (SHELL_TOOLS.has(toolName)) {
-    running.greps += 1;
-    pushTimelineEvent(running, { t: now, k: 'search', p: null });
-  } else if (READ_TOOLS.has(toolName)) {
-    const filePath = pickPath(toolInput);
-    if (filePath) {
-      running.filesReadList = mergeUnique(running.filesReadList, [filePath]);
-      if (isDocRulePath(filePath)) {
-        running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
-        pushTimelineEvent(running, { t: now, k: 'doc-read', p: filePath });
-      } else {
-        pushTimelineEvent(running, { t: now, k: 'read', p: filePath });
-      }
-      if (isMdcPath(filePath)) {
-        running.mdcReadsList = mergeUnique(running.mdcReadsList, [filePath]);
-        bumpLifetimeMdcStats(filePath);
-      }
+  pushTimelineEvent(running, { t: now });
+  if (EDIT_TOOLS.has(toolName)) {
+    const filePath = pickPath(payload.tool_input || payload.toolInput || payload.arguments || {});
+    if (filePath && !(running.filesEditedList || []).includes(filePath)) {
+      running.filesEditedList = [...(running.filesEditedList || []), filePath];
     }
-  } else if (EDIT_TOOLS.has(toolName)) {
-    const filePath = pickPath(toolInput);
-    if (filePath) {
-      running.filesEditedList = mergeUnique(running.filesEditedList, [filePath]);
-      if (isDocRulePath(filePath)) {
-        running.docsRulesOpened = mergeUnique(running.docsRulesOpened, [filePath]);
-      }
-      pushTimelineEvent(running, { t: now, k: 'edit', p: filePath });
-    }
-  } else if (toolName === 'CallMcpTool') {
-    const key = mcpToolKey(toolInput);
-    if (key) {
-      bumpToolCount(running, key);
-      if (key.endsWith(':browser_snapshot')) {
-        running.browserSnapshots = (running.browserSnapshots || 0) + 1;
-      }
-    }
-  } else if (AGENT_TOOLS.has(toolName)) {
-    bumpToolCount(running, toolName);
-  } else {
-    return;
   }
-
-  refreshCountsTrust(running);
   writeRunning(running);
 }
 
@@ -279,11 +99,7 @@ function main() {
   process.stdin.on('end', () => {
     try {
       const raw = chunks.join('').trim();
-      if (!raw) {
-        process.exit(0);
-        return;
-      }
-      recordToolUse(JSON.parse(raw));
+      if (raw) record(JSON.parse(raw));
     } catch {
       // Fail open — never block the agent on tally errors.
     }

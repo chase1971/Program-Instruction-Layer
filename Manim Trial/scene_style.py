@@ -45,12 +45,13 @@ class Narrated:
     elapsed = 0.
     marks = None
     _inner = False  # Scene.wait routes through Scene.play; don't scale or count twice.
+    pace = PACE  # per-scene override point; a subclass can set its own without touching PACE.
 
     def play(self, *animations, **kwargs):
         if self._inner:
             super().play(*animations, **kwargs)
             return
-        scaled = kwargs['run_time'] / PACE if 'run_time' in kwargs else 1.
+        scaled = kwargs['run_time'] / self.pace if 'run_time' in kwargs else 1.
         if 'run_time' in kwargs:
             kwargs['run_time'] = scaled
         self._inner = True
@@ -61,7 +62,7 @@ class Narrated:
         self.elapsed += scaled
 
     def wait(self, duration=1., **kwargs):
-        scaled = duration / PACE
+        scaled = duration / self.pace
         self._inner = True
         try:
             super().wait(scaled, **kwargs)

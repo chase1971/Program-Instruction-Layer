@@ -1,9 +1,0 @@
-{
-  "chunkNote": "Teacher Console side panel buttons made raised/pressable (chosen toggle stays pushed in); styles moved out of over-cap teacher-console.css into teacher-console-side-panel-buttons.css; headless screenshot check",
-  "navigationPath": [
-    { "step": "grep 'Phone shape' → TeacherConsolePortalPreviewControls.tsx", "result": "✓" },
-    { "step": "styles/buttons-status.css (.da-btn raised 3D)", "result": "✓", "note": "exemplar" },
-    { "step": "styles/teacher-console.css", "result": "→", "note": "flat overrides; file over 800 cap, extracted" },
-    { "step": "headless Chromium screenshot", "result": "✓" }
-  ]
-}

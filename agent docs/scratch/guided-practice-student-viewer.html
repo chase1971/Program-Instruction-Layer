@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guided practice — Cynthia &amp; Maria (layout prototype)</title>
+<style>
+
+  :root {
+    --ink: #13243a;
+    --soft: #5a6b80;
+    --line: #d6dee8;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --red: #b42318;
+    --redbg: #fef3f2;
+    --amber: #b54708;
+    --amberbg: #fffaeb;
+    --green: #15803d;
+    --greenbg: #f0fdf4;
+    --blue: #1d4ed8;
+    --bluebg: #eff4ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 20px 24px 120px;
+  }
+  a { color: var(--blue); }
+  .backlink {
+    display: inline-block;
+    padding: 14px 22px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 34px; line-height: 1.15; margin: 0 0 8px; }
+  .sub { font-size: 19px; color: var(--soft); margin: 0 0 20px; }
+  .banner {
+    background: var(--amberbg);
+    border: 2px solid #fec84b;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 0 0 28px;
+    font-size: 16px;
+    color: #7a2e0e;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 0 0 28px;
+  }
+  .meta-item {
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .meta-item .label {
+    font: 700 12px/1 system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin: 0 0 6px;
+  }
+  .meta-item .value { font-size: 20px; font-weight: 700; margin: 0; }
+  nav.jump {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 0 0 24px;
+  }
+  nav.jump a {
+    display: block;
+    padding: 14px 16px;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    min-height: 3.25rem;
+  }
+  nav.jump a span { display: block; font-weight: 400; font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .layout-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .layout-2col > .section-card { margin: 0; }
+  h2 {
+    font-size: 26px;
+    margin: 48px 0 6px;
+    padding-top: 18px;
+    border-top: 3px solid var(--line);
+  }
+  .secnote { color: var(--soft); font-size: 16px; margin: 0 0 18px; }
+  .card, .section-card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 0 0 18px;
+  }
+  .card h3, .section-card h3 { font-size: 22px; margin: 0 0 12px; line-height: 1.25; }
+  .pill {
+    display: inline-block;
+    font: 700 12px/1 system-ui, sans-serif;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 0 6px 6px 0;
+    vertical-align: middle;
+  }
+  .pill-ok { background: var(--greenbg); color: var(--green); border: 1.5px solid #a6f4c5; }
+  .pill-bad { background: var(--redbg); color: var(--red); border: 1.5px solid #fda29b; }
+  .pill-warn { background: var(--amberbg); color: var(--amber); border: 1.5px solid #fec84b; }
+  .pill-info { background: var(--bluebg); color: var(--blue); border: 1.5px solid #c7d7fe; }
+  .pill-neutral { background: #f2f4f7; color: var(--soft); border: 1.5px solid var(--line); }
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .q-tile {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    min-height: 7.5rem;
+  }
+  .q-tile:hover { border-color: #94a3b8; }
+  .q-tile.open { border-color: #2563eb; background: var(--bluebg); box-shadow: 0 0 0 3px #bfdbfe; }
+  .q-tile-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .q-tile-num { font: 800 22px/1 system-ui, sans-serif; color: var(--ink); }
+  .q-tile-status { font: 700 13px/1 system-ui, sans-serif; padding: 5px 8px; border-radius: 6px; }
+  .q-tile-status.ok { background: var(--greenbg); color: var(--green); }
+  .q-tile-status.bad { background: var(--redbg); color: var(--red); }
+  .q-tile-slot { font-size: 12px; color: var(--soft); font-family: ui-monospace, Consolas, monospace; margin-bottom: 6px; }
+  .q-tile-prompt { font-size: 13px; color: var(--soft); margin: 0 0 8px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .q-tile-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+  .q-tile-badges .pill { font-size: 11px; padding: 4px 7px; margin: 0; }
+  .q-detail-panel {
+    margin-top: 14px;
+    background: #fff;
+    border: 3px solid #2563eb;
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .q-detail-panel[hidden] { display: none !important; }
+  .q-detail-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; margin-bottom: 12px; }
+  .q-detail-head h3 { margin: 0; font-size: 24px; }
+  .q-detail-close {
+    margin-left: auto;
+    padding: 12px 20px;
+    font: 700 16px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    min-height: 2.75rem;
+  }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: ui-monospace, Consolas, monospace;
+    border: 1.5px solid var(--line);
+    background: #f9fafb;
+  }
+  .chip.ok { border-color: #a6f4c5; background: var(--greenbg); }
+  .chip.bad { border-color: #fda29b; background: var(--redbg); }
+  .q-detail-events { font-size: 14px; margin: 12px 0; }
+  .q-detail-events ul { margin: 0; padding-left: 20px; }
+  .q-detail-events li { margin-bottom: 6px; }
+  .struggle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .struggle-grid .card { margin: 0; padding: 18px 20px; }
+  .struggle-grid .card h3 { font-size: 18px; }
+  .timeline-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .timeline-grid li { margin: 0; }
+  .collapsible-toggle {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+    font: 700 16px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 12px;
+    min-height: 2.75rem;
+  }
+  .collapsible-body[hidden] { display: none !important; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li {
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+    background: #fff;
+  }
+  .timeline .at { display: block; font-size: 13px; color: var(--soft); margin-bottom: 4px; }
+  .timeline .label { font-weight: 700; margin-right: 8px; }
+  .timeline .detail { font-size: 15px; word-break: break-word; }
+  .timeline .meta { font-size: 13px; color: var(--soft); font-family: ui-monospace, Consolas, monospace; margin-top: 6px; }
+  .agg-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .agg-table th, .agg-table td { border: 1.5px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  .agg-table th { background: #f9fafb; }
+  .narrative p { margin: 0 0 10px; }
+  .narrative ul { margin: 8px 0 12px; padding-left: 22px; }
+  .narrative li { margin-bottom: 6px; }
+  .gap-rank { font-weight: 700; color: var(--red); margin-right: 8px; }
+  .evidence {
+    background: #f9fafb;
+    border-left: 4px solid var(--amber);
+    padding: 10px 14px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    font-family: ui-monospace, Consolas, monospace;
+    white-space: pre-wrap;
+  }
+  .raw-toggle {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 24px;
+    text-align: left;
+  }
+  pre.raw-json {
+    display: none;
+    background: #f9fafb;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    overflow: auto;
+    font-size: 12px;
+    white-space: pre-wrap;
+    margin-top: 10px;
+  }
+  pre.raw-json.open { display: block; }
+  code { background: #e9eef5; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+
+  /* Comment boxes */
+  .cbox { margin: 20px 0 0; padding: 18px 20px; background: #fbfcfe; border: 2px dashed var(--line); border-radius: 12px; }
+  .cbox .label { font: 700 12px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin: 0 0 10px; }
+  .cbox textarea { display: block; width: 100%; min-height: 78px; padding: 14px 16px; font: 17px/1.5 system-ui, sans-serif; color: var(--ink); background: #fff; border: 2px solid var(--line); border-radius: 10px; resize: vertical; }
+  .cbox textarea:focus { outline: 3px solid #84adff; outline-offset: 1px; border-color: var(--blue); }
+  .cbox-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 12px; }
+  .cbtn { padding: 14px 24px; min-width: 150px; font: 700 17px system-ui, sans-serif; color: #fff; background: var(--blue); border: none; border-radius: 10px; cursor: pointer; }
+  .cbtn:disabled { background: #9cb4e8; cursor: default; }
+  .cbtn.clear { background: #fff; color: var(--soft); border: 2px solid var(--line); min-width: 0; padding: 12px 18px; font-weight: 600; }
+  .cstate { font-size: 15px; color: var(--soft); }
+  .cstate.err { color: var(--red); font-weight: 600; }
+  .csum { background: #fff; border: 3px solid #c7d7fe; border-radius: 16px; padding: 20px 24px; margin: 0 0 32px; }
+  .post { margin: 0 0 14px; padding: 14px 16px; border-radius: 10px; border: 2px solid var(--line); background: #fff; }
+  .post--mine { border-color: #c7d7fe; background: var(--bluebg); }
+  .post--reply { border-color: #a6f4c5; background: var(--greenbg); }
+  .post__head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; font-size: 14px; }
+  .post__who { font-weight: 700; }
+  .post__when { color: var(--soft); }
+  .post__row { display: flex; gap: 10px; margin-top: 10px; }
+
+  .student-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 24px;
+  }
+  .student-nav button {
+    padding: 18px 24px;
+    font: 700 18px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    cursor: pointer;
+    min-height: 3.5rem;
+  }
+  .student-nav button:disabled { opacity: 0.35; cursor: default; }
+  .student-nav .student-name {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0;
+  }
+  .student-nav .student-sub {
+    text-align: center;
+    color: var(--soft);
+    font-size: 16px;
+    margin: 4px 0 0;
+  }
+  .survey-card {
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 0 0 24px;
+  }
+  .survey-card h2 { margin: 0 0 6px; font-size: 24px; border: none; padding: 0; }
+  .survey-card .when { color: var(--soft); margin: 0 0 16px; font-size: 15px; }
+  .survey-grid { display: grid; gap: 12px; }
+  .survey-row {
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    background: #fbfcfe;
+  }
+  .survey-row .q { font-weight: 700; margin: 0 0 8px; }
+  .survey-row .a { margin: 0; white-space: pre-wrap; }
+  .problem-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 20px;
+  }
+  .problem-tabs button {
+    padding: 16px 18px;
+    font: 700 17px system-ui, sans-serif;
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    min-height: 3.25rem;
+    text-align: left;
+  }
+  .problem-tabs button.active {
+    border-color: #2563eb;
+    background: var(--bluebg);
+    box-shadow: 0 0 0 3px #bfdbfe;
+  }
+  .problem-tabs .tab-sub { display: block; font-weight: 400; font-size: 13px; color: var(--soft); margin-top: 4px; }
+  .empty-problem {
+    background: #fff;
+    border: 2px dashed var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    color: var(--soft);
+    font-size: 18px;
+  }
+  .dot-green { color: var(--green); font-weight: 700; }
+  .dot-red { color: var(--red); font-weight: 700; }
+  .dot-blank { color: var(--soft); }
+  #problem-mount .banner, #problem-mount .csum, #problem-mount nav.jump, #problem-mount #gap-panel { display: none; }
+  #problem-mount h1, #problem-mount .sub { display: none; }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="/pages.html">&larr; All pages</a>
+
+<div class="banner">
+  <strong>Layout prototype — live Cynthia &amp; Maria data.</strong>
+  Survey on top, Problem 1 / Problem 2 tabs below, arrow between students. Same slot rules as Teacher Console (abandons show red until a finish turns the slot green).
+</div>
+
+<h1>Student guided-practice review</h1>
+<p class="sub">Pick a student, then a problem tab. Question tiles and struggle cards match the single-attempt review pages.</p>
+
+<div class="student-nav" aria-label="Choose student">
+  <button type="button" id="prev-student" aria-label="Previous student">&larr; Previous</button>
+  <div>
+    <p class="student-name" id="student-name"></p>
+    <p class="student-sub" id="student-sub"></p>
+  </div>
+  <button type="button" id="next-student" style="justify-self:end" aria-label="Next student">Next &rarr;</button>
+</div>
+
+<section class="survey-card" id="survey-section">
+  <h2>Post-practice survey</h2>
+  <p class="when" id="survey-when"></p>
+  <div class="survey-grid" id="survey-grid"></div>
+</section>
+
+<div class="problem-tabs" role="tablist" aria-label="Problem tabs">
+  <button type="button" role="tab" id="tab-problem1" aria-selected="true">Problem 1<span class="tab-sub" id="tab-problem1-sub"></span></button>
+  <button type="button" role="tab" id="tab-problem2" aria-selected="false">Problem 2<span class="tab-sub" id="tab-problem2-sub"></span></button>
+</div>
+
+<div id="problem-mount"></div>
+
+<script type="application/json" id="students-data">[{"id":"3bc881fd-2854-4938-b6cc-2e3570313d40","name":"Maria Garcia Baptiste","survey":{"completedAt":"2026-09-21T18:42:19.451122+00:00","answers":[{"label":"When you got a step wrong, did the help make sense?","value":"Yes"},{"label":"Did you use the help buttons (fraction help, row notation help)?","value":"I didn't use it"},{"label":"Would you use this again before a test?","value":"Yes"},{"label":"Anything else we should know?","value":"The app is very helpful. It is simple to navigate and has clear instructions/help for when I get the questions wrong. I don't think anything should be changed."}]},"problem1":{"dot":"green","data":{"attemptId":"ee38e8e6-daf0-44cd-b644-712cc97ec793","status":"completed","score":16,"maxScore":17,"startedAt":"2026-09-21T18:28:52.597905+00:00","completedAt":"2026-09-21T18:41:12.708866+00:00","problemId":6,"attemptItems":[{"slot":"op1-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C1"},{"slot":"op1-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op1-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1/5R1 → R1"},{"slot":"op1-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, -2/5, 33/5"},{"slot":"op2-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C1"},{"slot":"op2-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op2-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-3R1 + R2 → R2"},{"slot":"op2-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 26/5, 26/5"},{"slot":"op3-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C2"},{"slot":"op3-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op3-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"5/26R2 → R2"},{"slot":"op3-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 1, 1"},{"slot":"op4-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C2"},{"slot":"op4-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op4-row-notation","outcome":"incorrect","item_kind":"guided-practice-step","attempt_count":2,"selected_option_id":"2/R2+R1→R1"},{"slot":"op4-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 0, 7"},{"slot":"solution","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"x = 7, y = 1"}],"sessionLog":{"events":[{"at":"2026-09-21T18:28:52.768Z","kind":"portal-nav","meta":{"problemId":6},"choice":"start-guided"},{"at":"2026-09-21T18:31:05.504Z","kind":"answer","slot":"op1-pick-cell","choice":"R1C1","prompt":"Tap or click the value that will be the pivot. That is the number that needs to become 1 first.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:31:11.459Z","kind":"answer","slot":"op1-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T18:31:57.670Z","kind":"answer","slot":"op1-row-notation","choice":"1/5R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:33:06.197Z","kind":"answer","slot":"op1-row-entry","choice":"1, -2/5, 33/5","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:33:10.038Z","kind":"answer","slot":"op2-pick-cell","choice":"R2C1","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:33:11.937Z","kind":"answer","slot":"op2-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:34:21.802Z","kind":"answer","slot":"op2-row-notation","choice":"-3R1 + R2 → R2","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T18:35:48.195Z","kind":"answer","slot":"op2-row-entry","choice":"0, 26/5, 26/5","prompt":"Fill in the new R2.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T18:35:58.353Z","kind":"answer","slot":"op3-pick-cell","choice":"R2C2","prompt":"Tap or click the next pivot.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T18:36:43.363Z","kind":"answer","slot":"op3-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:37:59.268Z","kind":"answer","slot":"op3-row-notation","choice":"5/26R2 → R2","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T18:38:08.005Z","kind":"answer","slot":"op3-row-entry","choice":"0, 1, 1","prompt":"Fill in the new R2.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:38:10.446Z","kind":"answer","slot":"op4-pick-cell","choice":"R1C2","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:38:12.484Z","kind":"answer","slot":"op4-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:40:14.976Z","kind":"answer","slot":"op4-row-notation","choice":"2/R2+R1→R1","prompt":"Write the row replacement operation.","correct":false,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:40:30.704Z","kind":"answer","slot":"op4-row-notation","choice":"2/5R2 + R1 → R1","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":1,"attemptIndex":2},{"at":"2026-09-21T18:40:39.388Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, 7","prompt":"Fill in the new R1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T18:40:46.038Z","kind":"answer","slot":"solution","choice":"x = 7, y = 1","prompt":"What is the solution? Tab or click on the ordered pair to enter your answer.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:41:12.152Z","kind":"portal-nav","meta":{"mode":"guided"},"choice":"yes"}],"version":1,"problemId":6}}},"problem2":{"dot":"green","data":{"attemptId":"3f536cc0-67b1-40bd-9542-864a9e9340c9","status":"completed","score":16,"maxScore":17,"startedAt":"2026-09-21T18:42:20.055391+00:00","completedAt":"2026-09-21T19:08:31.378712+00:00","problemId":12,"attemptItems":[{"slot":"op1-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C1"},{"slot":"op1-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op1-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1/7R1 → R1"},{"slot":"op1-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 2/7, -22/7"},{"slot":"op2-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C1"},{"slot":"op2-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op2-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-3R1 + R2 → R2"},{"slot":"op2-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, -41/7, -123/7"},{"slot":"op3-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C2"},{"slot":"op3-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op3-row-notation","outcome":"incorrect","item_kind":"guided-practice-step","attempt_count":2,"selected_option_id":"-7/41R1 → R1"},{"slot":"op3-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 1, 3"},{"slot":"op4-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C2"},{"slot":"op4-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op4-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-2/7R2 + R1 → R1"},{"slot":"op4-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 0, -4"},{"slot":"solution","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"x = -4, y = 3"}],"sessionLog":{"events":[{"at":"2026-09-21T18:52:48.574Z","kind":"answer","slot":"op1-pick-cell","choice":"R1C1","prompt":"Tap or click the value that will be the pivot. That is the number that needs to become 1 first.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T18:53:18.171Z","kind":"answer","slot":"op1-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:57:42.715Z","kind":"answer","slot":"op1-row-notation","choice":"1/7R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:58:44.446Z","kind":"answer","slot":"op1-row-entry","choice":"1, 2/7, -22/7","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:58:47.817Z","kind":"answer","slot":"op2-pick-cell","choice":"R2C1","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T18:58:49.973Z","kind":"answer","slot":"op2-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:01:31.117Z","kind":"answer","slot":"op2-row-notation","choice":"-3R1 + R2 → R2","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:01:56.521Z","kind":"answer","slot":"op2-row-entry","choice":"0, -41/7, -123/7","prompt":"Fill in the new R2.","correct":true,"elapsedMs":10,"attemptIndex":1},{"at":"2026-09-21T19:02:02.529Z","kind":"answer","slot":"op3-pick-cell","choice":"R2C2","prompt":"Tap or click the next pivot.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T19:02:05.849Z","kind":"answer","slot":"op3-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:04:09.428Z","kind":"answer","slot":"op3-row-notation","choice":"-7/41R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":false,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:04:24.354Z","kind":"answer","slot":"op3-row-notation","choice":"-7/41R2 → R2","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":1,"attemptIndex":2},{"at":"2026-09-21T19:05:07.456Z","kind":"answer","slot":"op3-row-entry","choice":"0, 1, 3","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:05:12.257Z","kind":"answer","slot":"op4-pick-cell","choice":"R1C2","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:05:14.262Z","kind":"answer","slot":"op4-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:06:40.505Z","kind":"answer","slot":"op4-row-notation","choice":"-2/7R2 + R1 → R1","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T19:08:14.004Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, -4","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:08:22.257Z","kind":"answer","slot":"solution","choice":"x = -4, y = 3","prompt":"What is the solution? Tab or click on the ordered pair to enter your answer.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:08:31.128Z","kind":"portal-nav","meta":{"mode":"guided"},"choice":"no"}],"version":1,"problemId":12}}}},{"id":"943b6378-ab8c-43bd-b310-9285921357dd","name":"Cynthia Jimenez Duran","survey":{"completedAt":"2026-09-21T19:55:08.691878+00:00","answers":[{"label":"When you got a step wrong, did the help make sense?","value":"Yes"},{"label":"Did you use the help buttons (fraction help, row notation help)?","value":"Maybe"},{"label":"Would you use this again before a test?","value":"Yes"},{"label":"Anything else we should know?","value":"I use the app on my laptop because I find it easier to study math on a computer than on my phone, especially since I’m usually not doing math on the go. I think it would be helpful if we could use the keyboard to type in numbers instead of having to click each number with the cursor.\n\nAnother thing that would help is keeping the row operations visible after we enter them. Sometimes I forget which row operation I needed to use, and then I have to mentally work backward through the problem to figure it out again. Being able to see the row operation that we're working on would make it much easier to follow my work. (I'm not sure if that makes sense..)"}]},"problem1":{"dot":"green","data":{"attemptId":"a2d0cde0-fe1a-4b95-a0f2-fba3f9521e7a","status":"completed","score":17,"maxScore":17,"startedAt":"2026-09-21T19:45:40.258582+00:00","completedAt":"2026-09-21T19:50:10.585967+00:00","problemId":17,"attemptItems":[{"slot":"op1-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C1"},{"slot":"op1-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op1-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1/5R1 → R1"},{"slot":"op1-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 3/5, -27/5"},{"slot":"op2-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C1"},{"slot":"op2-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op2-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-2R1 + R2 → R2"},{"slot":"op2-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, -26/5, -26/5"},{"slot":"op3-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C2"},{"slot":"op3-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op3-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-5/26R2 → R2"},{"slot":"op3-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 1, 1"},{"slot":"op4-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C2"},{"slot":"op4-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op4-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-3/5R2 + R1 → R1"},{"slot":"op4-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 0, -6"},{"slot":"solution","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"x = -6, y = 1"}],"sessionLog":{"events":[{"at":"2026-09-21T19:45:40.261Z","kind":"portal-nav","meta":{"problemId":17},"choice":"start-guided"},{"at":"2026-09-21T19:45:50.080Z","kind":"answer","slot":"op1-pick-cell","choice":"R1C1","prompt":"Tap or click the value that will be the pivot. That is the number that needs to become 1 first.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:45:53.115Z","kind":"answer","slot":"op1-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:46:09.015Z","kind":"answer","slot":"op1-row-notation","choice":"1/5R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:46:42.649Z","kind":"answer","slot":"op1-row-entry","choice":"1, 3/5, -27/5","prompt":"Fill in the new R1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:46:45.997Z","kind":"answer","slot":"op2-pick-cell","choice":"R2C1","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:46:49.780Z","kind":"answer","slot":"op2-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:47:02.913Z","kind":"answer","slot":"op2-row-notation","choice":"-2R1 + R2 → R2","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:48:07.130Z","kind":"answer","slot":"op2-row-entry","choice":"0, -26/5, -26/5","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:48:10.379Z","kind":"answer","slot":"op3-pick-cell","choice":"R2C2","prompt":"Tap or click the next pivot.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:48:16.648Z","kind":"answer","slot":"op3-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:48:32.731Z","kind":"answer","slot":"op3-row-notation","choice":"-5/26R2 → R2","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:48:50.378Z","kind":"answer","slot":"op3-row-entry","choice":"0, 1, 1","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:48:55.628Z","kind":"answer","slot":"op4-pick-cell","choice":"R1C2","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":3,"attemptIndex":1},{"at":"2026-09-21T19:49:08.265Z","kind":"answer","slot":"op4-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T19:49:28.600Z","kind":"answer","slot":"op4-row-notation","choice":"-3/5R2 + R1 → R1","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T19:49:52.315Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, -6","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:50:04.038Z","kind":"answer","slot":"solution","choice":"x = -6, y = 1","prompt":"What is the solution? Tab or click on the ordered pair to enter your answer.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:50:10.228Z","kind":"portal-nav","meta":{"mode":"guided"},"choice":"no"}],"version":1,"problemId":17}}},"problem2":{"dot":"green","data":{"attemptId":"b690240f-b919-418b-91e6-9ca647cce1af","status":"completed","score":15,"maxScore":17,"startedAt":"2026-09-21T19:55:28.103809+00:00","completedAt":"2026-09-21T19:58:10.202352+00:00","problemId":11,"attemptItems":[{"slot":"op1-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C1"},{"slot":"op1-operation-type","outcome":"incorrect","item_kind":"guided-practice-step","attempt_count":2,"selected_option_id":"row-replacement"},{"slot":"op1-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1/2R1 → R1"},{"slot":"op1-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"1, 2, -5"},{"slot":"op2-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C1"},{"slot":"op2-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op2-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-5R1 + R2 → R2"},{"slot":"op2-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, -11, 33"},{"slot":"op3-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R2C2"},{"slot":"op3-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-scaling"},{"slot":"op3-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-1/11R2 → R2"},{"slot":"op3-row-entry","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"0, 1, -3"},{"slot":"op4-pick-cell","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"R1C2"},{"slot":"op4-operation-type","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"row-replacement"},{"slot":"op4-row-notation","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"-2R2 + R1 → R1"},{"slot":"op4-row-entry","outcome":"incorrect","item_kind":"guided-practice-step","attempt_count":2,"selected_option_id":"1, 0, -11"},{"slot":"solution","outcome":"correct","item_kind":"guided-practice-step","attempt_count":1,"selected_option_id":"x = 1, y = -3"}],"sessionLog":{"events":[{"at":"2026-09-21T19:55:28.125Z","kind":"portal-nav","meta":{"problemId":11},"choice":"start-guided"},{"at":"2026-09-21T19:55:30.989Z","kind":"answer","slot":"op1-pick-cell","choice":"R1C1","prompt":"Tap or click the value that will be the pivot. That is the number that needs to become 1 first.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:55:36.953Z","kind":"answer","slot":"op1-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":false,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:55:38.101Z","kind":"answer","slot":"op1-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":2},{"at":"2026-09-21T19:55:56.253Z","kind":"answer","slot":"op1-row-notation","choice":"1/2R1 → R1","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:56:06.568Z","kind":"answer","slot":"op1-row-entry","choice":"1, 2, -5","prompt":"Fill in the new R1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:09.267Z","kind":"answer","slot":"op2-pick-cell","choice":"R2C1","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:10.717Z","kind":"answer","slot":"op2-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:19.604Z","kind":"answer","slot":"op2-row-notation","choice":"-5R1 + R2 → R2","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:39.117Z","kind":"answer","slot":"op2-row-entry","choice":"0, -11, 33","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:41.952Z","kind":"answer","slot":"op3-pick-cell","choice":"R2C2","prompt":"Tap or click the next pivot.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:56:46.967Z","kind":"answer","slot":"op3-operation-type","choice":"row-scaling","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:57:00.816Z","kind":"answer","slot":"op3-row-notation","choice":"-1/11R2 → R2","prompt":"Write the row transformation to make the pivot a 1.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:57:12.920Z","kind":"answer","slot":"op3-row-entry","choice":"0, 1, -3","prompt":"Fill in the new R2.","correct":true,"elapsedMs":0,"attemptIndex":1},{"at":"2026-09-21T19:57:15.566Z","kind":"answer","slot":"op4-pick-cell","choice":"R1C2","prompt":"Tab or click the entry you need to turn into a 0.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:57:18.117Z","kind":"answer","slot":"op4-operation-type","choice":"row-replacement","prompt":"What type of row transformation do you need?","correct":true,"elapsedMs":3,"attemptIndex":1},{"at":"2026-09-21T19:57:28.602Z","kind":"answer","slot":"op4-row-notation","choice":"-2R2 + R1 → R1","prompt":"Write the row replacement operation.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:57:40.151Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, -11","prompt":"Fill in the new R1.","correct":false,"elapsedMs":2,"attemptIndex":1},{"at":"2026-09-21T19:57:58.972Z","kind":"answer","slot":"op4-row-entry","choice":"1, 0, 1","prompt":"Fill in the new R1.","correct":true,"elapsedMs":1,"attemptIndex":2},{"at":"2026-09-21T19:58:05.435Z","kind":"answer","slot":"solution","choice":"x = 1, y = -3","prompt":"What is the solution? Tab or click on the ordered pair to enter your answer.","correct":true,"elapsedMs":1,"attemptIndex":1},{"at":"2026-09-21T19:58:09.868Z","kind":"portal-nav","meta":{"mode":"guided"},"choice":"no"}],"version":1,"problemId":11}}}}]</script>
+
+<script>
+(function () {
+  'use strict';
+
+  var STUDENTS = JSON.parse(document.getElementById('students-data').textContent);
+  var studentIndex = 0;
+  var problemTab = 'problem1';
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return '—';
+    var d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  }
+
+  function dotLabel(dot) {
+    if (dot === 'green') return 'Completed';
+    if (dot === 'red') return 'Abandoned / in progress';
+    return 'Not started';
+  }
+
+  function dotClass(dot) {
+    if (dot === 'green') return 'dot-green';
+    if (dot === 'red') return 'dot-red';
+    return 'dot-blank';
+  }
+
+  function renderSurvey(student) {
+    var section = document.getElementById('survey-section');
+    var when = document.getElementById('survey-when');
+    var grid = document.getElementById('survey-grid');
+    if (!student.survey) {
+      when.textContent = 'No survey submitted yet.';
+      grid.innerHTML = '<div class="empty-problem">Survey not completed</div>';
+      return;
+    }
+    when.textContent = 'Completed ' + fmtTime(student.survey.completedAt);
+    grid.innerHTML = student.survey.answers.map(function (row) {
+      return '<div class="survey-row"><p class="q">' + esc(row.label) + '</p><p class="a">' + esc(row.value) + '</p></div>';
+    }).join('');
+  }
+
+  function problemShell(data) {
+    if (!data) {
+      return '<div class="empty-problem">No attempt in this slot yet.</div>';
+    }
+    return '<div class="attempt-root">' +
+      '<script type="application/json" data-attempt-data>' + JSON.stringify(data).replace(/</g, '\u003c') + '<\/script>' +
+      '<p data-hero-sub></p>' +
+      '<div class="meta-grid" data-meta-grid></div>' +
+      '<section class="section-card" id="step-ledger">' +
+        '<h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">All 17 questions</h2>' +
+        '<p class="secnote">Four columns — click a question to open the detail panel below it.</p>' +
+        '<div class="q-grid" data-ledger-root></div>' +
+        '<div data-q-detail-panel class="q-detail-panel" hidden></div>' +
+        '<div data-q-panel-store hidden aria-hidden="true"></div>' +
+      '</section>' +
+      '<section class="section-card" id="struggle-cards">' +
+        '<h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">Struggle cards</h2>' +
+        '<p class="secnote">First-try misses only — two columns.</p>' +
+        '<div class="struggle-grid" data-struggle-root></div>' +
+      '</section>' +
+      '<section class="section-card" id="decoded-timeline">' +
+        '<h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">Decoded timeline</h2>' +
+        '<button type="button" class="collapsible-toggle" data-timeline-toggle aria-expanded="false">Show decoded timeline</button>' +
+        '<div class="collapsible-body" data-timeline-body hidden><ol class="timeline timeline-grid" data-timeline-root></ol></div>' +
+      '</section>' +
+      '<div class="layout-2col">' +
+        '<section class="section-card" id="aggregates">' +
+          '<h2 style="border:none;padding:0;margin:0 0 6px;font-size:26px">Aggregates</h2>' +
+          '<div data-aggregates-root></div>' +
+        '</section>' +
+      '</div>' +
+      '<button type="button" class="raw-toggle" data-raw-toggle aria-expanded="false">Show raw session_log JSON</button>' +
+      '<pre class="raw-json" data-raw-json></pre>' +
+    '</div>';
+  }
+
+  window.renderGpAttemptInMount = function (mount) {
+
+
+  var DATA = JSON.parse(mount.querySelector("[data-attempt-data]").textContent);
+  var events = DATA.sessionLog.events || [];
+
+  var SLOT_CATALOG = [
+    { slot: 'op1-pick-cell', shortLabel: 'Q1', prompt: 'Column one: tab or click where the 1 needs to go.' },
+    { slot: 'op1-operation-type', shortLabel: 'Q2', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op1-row-notation', shortLabel: 'Q3', prompt: 'Write the row transformation to make the pivot a 1.' },
+    { slot: 'op1-row-entry', shortLabel: 'Q4', prompt: 'Fill in the new R1.' },
+    { slot: 'op2-pick-cell', shortLabel: 'Q5', prompt: 'Tab or click the entry you need to turn into a zero.' },
+    { slot: 'op2-operation-type', shortLabel: 'Q6', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op2-row-notation', shortLabel: 'Q7', prompt: 'Write the row replacement operation.' },
+    { slot: 'op2-row-entry', shortLabel: 'Q8', prompt: 'Fill in the new R2.' },
+    { slot: 'op3-pick-cell', shortLabel: 'Q9', prompt: 'Tab or click where the one needs to go.' },
+    { slot: 'op3-operation-type', shortLabel: 'Q10', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op3-row-notation', shortLabel: 'Q11', prompt: 'Write the row transformation to make the pivot a 1.' },
+    { slot: 'op3-row-entry', shortLabel: 'Q12', prompt: 'Fill in the new R2.' },
+    { slot: 'op4-pick-cell', shortLabel: 'Q13', prompt: 'Tab or click the entry you need to turn into a zero.' },
+    { slot: 'op4-operation-type', shortLabel: 'Q14', prompt: 'What type of row transformation do you need?' },
+    { slot: 'op4-row-notation', shortLabel: 'Q15', prompt: 'Write the row replacement operation.' },
+    { slot: 'op4-row-entry', shortLabel: 'Q16', prompt: 'Fill in the new R1.' },
+    { slot: 'solution', shortLabel: 'Q17', prompt: 'What is the solution? Tab or click on the ordered pair to enter your answer.' },
+  ];
+
+  var HELP_TOPIC_LABELS = {
+    multiply: 'Fraction help — multiply',
+    'add-subtract': 'Fraction help — add/subtract',
+    'row-scaling': 'Row-scaling notation help',
+    'row-replacement': 'Row-replacement notation help',
+  };
+
+  var RECOVERY_PHASE_LABELS = {
+    'multiply-row-prompt': 'Pick the row to multiply',
+    'changed-row-prompt': 'Pick the row that changes',
+    'pivot-row-prompt': 'Pick the pivot row',
+    'pivot-row-reveal': 'Pivot row revealed',
+    'target-row-prompt': 'Pick the target row',
+    'opposite-reveal': 'Opposite coefficient revealed',
+  };
+
+  function fmtTime(iso) {
+    if (!iso || iso === '—') return '—';
+    var d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  }
+
+  function fmtMs(ms) {
+    if (ms == null) return '';
+    if (ms >= 60000) return Math.round(ms / 1000) + 's (' + Math.round(ms / 60000 * 10) / 10 + ' min)';
+    if (ms >= 1000) return Math.round(ms / 1000) + 's';
+    return ms + 'ms';
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function eventsForSlot(slot) {
+    return events.filter(function (e) { return e.slot === slot || (slot == null && !e.slot); });
+  }
+
+  function firstAnswerPerSlot() {
+    var map = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || !e.slot) continue;
+      if (!map[e.slot]) map[e.slot] = e;
+    }
+    return map;
+  }
+
+  function wrongAttemptsBySlot() {
+    var bySlot = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || e.correct !== false || !e.slot) continue;
+      if (!bySlot[e.slot]) bySlot[e.slot] = { wrongCount: 0, choices: [] };
+      bySlot[e.slot].wrongCount += 1;
+      if (e.choice) bySlot[e.slot].choices.push(e.choice);
+    }
+    return Object.keys(bySlot).map(function (slot) {
+      return { slot: slot, wrongCount: bySlot[slot].wrongCount, choices: bySlot[slot].choices };
+    });
+  }
+
+  function helpUsageSummary() {
+    var opensByTopic = {};
+    var examplesClicked = [];
+    var feedbackByTopic = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      var topic = String((e.meta && e.meta.helpTopic) || 'unknown');
+      if (e.kind === 'help-open') opensByTopic[topic] = (opensByTopic[topic] || 0) + 1;
+      if (e.kind === 'help-example' && e.choice) examplesClicked.push(e.choice);
+      if (e.kind === 'help-feedback' && e.choice) {
+        if (!feedbackByTopic[topic]) feedbackByTopic[topic] = {};
+        feedbackByTopic[topic][e.choice] = (feedbackByTopic[topic][e.choice] || 0) + 1;
+      }
+    }
+    return { opensByTopic: opensByTopic, examplesClicked: examplesClicked, feedbackByTopic: feedbackByTopic };
+  }
+
+  function stallPoints(thresholdMs) {
+    thresholdMs = thresholdMs || 60000;
+    var firstBySlot = {};
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.kind !== 'answer' || !e.slot || e.attemptIndex !== 1) continue;
+      if (!firstBySlot[e.slot]) firstBySlot[e.slot] = e;
+    }
+    var stalls = [];
+    for (var slot in firstBySlot) {
+      var ev = firstBySlot[slot];
+      var elapsed = ev.elapsedMs || 0;
+      if (elapsed >= thresholdMs) stalls.push({ slot: slot, elapsedMs: elapsed, choice: ev.choice || '' });
+    }
+    return stalls.sort(function (a, b) { return b.elapsedMs - a.elapsedMs; });
+  }
+
+  function decodeEventLabel(e) {
+    if (e.kind === 'portal-nav') {
+      if (e.choice === 'start-guided') return 'Started guided practice';
+      if (e.choice === 'complete') return 'Finished problem';
+      if (e.choice === 'back-home') return 'Exited to home';
+      if (e.choice === 'abandon-problem') return 'Abandoned problem';
+      return 'Portal: ' + (e.choice || '?');
+    }
+    if (e.kind === 'answer') {
+      return 'Answer at ' + (e.slot || '?');
+    }
+    if (e.kind === 'help-open') {
+      var topic = e.meta && e.meta.helpTopic;
+      return 'Opened help' + (topic ? ' — ' + (HELP_TOPIC_LABELS[topic] || topic) : '');
+    }
+    if (e.kind === 'help-prompt') return 'Help prompt answered';
+    if (e.kind === 'help-example') return 'Help example selected';
+    if (e.kind === 'help-step') return 'Help step';
+    if (e.kind === 'help-feedback') return 'Help feedback';
+    if (e.kind === 'help-close') return 'Closed help';
+    if (e.kind === 'recovery-step') return 'Recovery step';
+    return e.kind;
+  }
+
+  function decodeEventDetail(e) {
+    var parts = [];
+    if (e.slot) parts.push(e.slot);
+    if (e.prompt) parts.push('"' + e.prompt + '"');
+    if (e.choice) parts.push('choice: ' + e.choice);
+    if (e.correct === true) parts.push('correct');
+    if (e.correct === false) parts.push('incorrect');
+    if (e.attemptIndex != null) parts.push('attempt ' + e.attemptIndex);
+    if (e.elapsedMs != null) parts.push(fmtMs(e.elapsedMs));
+    return parts.join(' · ');
+  }
+
+  function decodeMeta(e) {
+    if (!e.meta || !Object.keys(e.meta).length) return '';
+    var m = e.meta;
+    var parts = [];
+    if (m.helpTopic) parts.push(HELP_TOPIC_LABELS[m.helpTopic] || m.helpTopic);
+    if (m.stage) parts.push('stage=' + m.stage);
+    if (m.exampleLabel) parts.push('example=' + m.exampleLabel);
+    if (m.exampleIndex != null) parts.push('exampleIndex=' + m.exampleIndex);
+    if (m.action) parts.push('action=' + m.action);
+    if (m.stepIndex != null) parts.push('step ' + (m.stepIndex + 1) + '/' + (m.stepCount || '?'));
+    if (m.durationMs != null) parts.push('open ' + fmtMs(m.durationMs));
+    if (m.valueKind) parts.push('valueKind=' + m.valueKind);
+    if (m.recoveryKind) parts.push('recovery=' + m.recoveryKind);
+    if (m.phase) parts.push(RECOVERY_PHASE_LABELS[m.phase] || m.phase);
+    if (m.mode) parts.push('mode=' + m.mode);
+    if (m.problemId != null) parts.push('problemId=' + m.problemId);
+    return parts.join(' · ');
+  }
+
+  function describeRecoveryStep(e) {
+    var m = e.meta || {};
+    var parts = [];
+    if (m.action === 'commit-value') {
+      parts.push('Committed ' + (m.valueKind === 'reciprocal' ? 'reciprocal' : m.valueKind === 'opposite' ? 'opposite' : m.valueKind) + ': ' + (e.choice || '?'));
+    } else if (m.action === 'pick-row') {
+      parts.push((RECOVERY_PHASE_LABELS[m.phase] || m.phase || 'Pick row') + ': ' + (e.choice || '?'));
+    } else if (m.action === 'continue') {
+      parts.push('Continued through ' + (RECOVERY_PHASE_LABELS[m.phase] || m.phase || 'recovery reveal'));
+    } else if (m.action === 'advance-reveal') {
+      parts.push('Advanced row-entry reveal (' + (m.revealType || 'reveal') + ')');
+    } else {
+      parts.push((m.action || 'recovery') + (e.choice ? ': ' + e.choice : ''));
+    }
+    return parts.join('');
+  }
+
+  function describeHelpBlock(slotEvents) {
+    var lines = [];
+    var currentTopic = null;
+    var openAt = null;
+    for (var i = 0; i < slotEvents.length; i++) {
+      var e = slotEvents[i];
+      if (e.kind === 'help-open') {
+        currentTopic = e.meta && e.meta.helpTopic;
+        openAt = e.at;
+        lines.push('Opened ' + (HELP_TOPIC_LABELS[currentTopic] || currentTopic || 'help') + ' at ' + fmtTime(e.at));
+      }
+      if (e.kind === 'help-prompt') {
+        lines.push('Help prompt: ' + e.choice);
+      }
+      if (e.kind === 'help-example') {
+        lines.push('Selected example ' + e.choice);
+      }
+      if (e.kind === 'help-step' && e.meta) {
+        var ex = e.meta.exampleLabel ? ' on ' + e.meta.exampleLabel : '';
+        if (e.meta.action === 'play') lines.push('Played help step ' + (e.meta.stepIndex + 1) + ex);
+        else if (e.meta.action === 'next') lines.push('Advanced notation help step ' + (e.meta.stepIndex + 1));
+      }
+      if (e.kind === 'help-feedback') {
+        lines.push('Feedback (' + (HELP_TOPIC_LABELS[e.meta.helpTopic] || e.meta.helpTopic) + '): ' + e.choice);
+      }
+      if (e.kind === 'help-close' && e.meta) {
+        lines.push('Closed help after ' + fmtMs(e.meta.durationMs));
+      }
+    }
+    return lines;
+  }
+
+  function buildStruggleNarrative(slot, catalogEntry) {
+    var slotEvents = events.filter(function (e) {
+      return e.slot === slot || (e.kind === 'portal-nav' && e.meta && e.meta.slot === slot);
+    });
+    var answers = slotEvents.filter(function (e) { return e.kind === 'answer'; });
+    var wrongs = answers.filter(function (e) { return e.correct === false; });
+    var finalCorrect = answers.filter(function (e) { return e.correct === true; }).pop();
+    var recoveries = slotEvents.filter(function (e) { return e.kind === 'recovery-step'; });
+    var helpLines = describeHelpBlock(slotEvents);
+
+    var html = '<div class="narrative">';
+    html += '<p><strong>Prompt:</strong> ' + esc(catalogEntry.prompt) + '</p>';
+    if (wrongs.length) {
+      html += '<p><strong>Wrong tries:</strong></p><ul>';
+      for (var w = 0; w < wrongs.length; w++) {
+        html += '<li>Attempt ' + wrongs[w].attemptIndex + ': <code>' + esc(wrongs[w].choice) + '</code> (' + fmtMs(wrongs[w].elapsedMs) + ')</li>';
+      }
+      html += '</ul>';
+    }
+    if (helpLines.length) {
+      html += '<p><strong>Help used:</strong></p><ul>';
+      for (var h = 0; h < helpLines.length; h++) html += '<li>' + esc(helpLines[h]) + '</li>';
+      html += '</ul>';
+    }
+    if (recoveries.length) {
+      html += '<p><strong>Recovery builder:</strong></p><ul>';
+      for (var r = 0; r < recoveries.length; r++) html += '<li>' + esc(describeRecoveryStep(recoveries[r])) + '</li>';
+      html += '</ul>';
+    }
+    if (finalCorrect) {
+      html += '<p><strong>Finally correct:</strong> <code>' + esc(finalCorrect.choice) + '</code> (attempt ' + finalCorrect.attemptIndex + ')</p>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  /* ---- Render hero ---- */
+  var durationMs = new Date(DATA.completedAt) - new Date(DATA.startedAt);
+  mount.querySelector('[data-hero-sub]').textContent = 'Problem ' + DATA.problemId + ' · ' + DATA.score + '/' + DATA.maxScore + ' · ' + events.length + ' events';
+
+  mount.querySelector('[data-meta-grid]').innerHTML = [
+    ['Problem', DATA.problemId],
+    ['Score', DATA.score + ' / ' + DATA.maxScore],
+    ['Status', DATA.status],
+    ['Duration', fmtMs(durationMs)],
+    ['Started', fmtTime(DATA.startedAt)],
+    ['Finished', fmtTime(DATA.completedAt)],
+  ].map(function (row) {
+    return '<div class="meta-item"><div class="label">' + esc(row[0]) + '</div><p class="value">' + esc(String(row[1])) + '</p></div>';
+  }).join('');
+
+  /* ---- A. Step ledger — 4-col tiles + detail dropdown ---- */
+  var firstTries = firstAnswerPerSlot();
+  var ledgerRoot = mount.querySelector('[data-ledger-root]');
+  var panelStore = mount.querySelector('[data-q-panel-store]');
+  var detailPanel = mount.querySelector('[data-q-detail-panel]');
+  var openTile = null;
+  var openPanelEl = null;
+
+  function returnPanelToStore() {
+    if (openPanelEl && panelStore) {
+      panelStore.appendChild(openPanelEl);
+      openPanelEl = null;
+    }
+    if (detailPanel) {
+      detailPanel.innerHTML = '';
+      detailPanel.hidden = true;
+    }
+    if (openTile) {
+      openTile.classList.remove('open');
+      openTile.setAttribute('aria-expanded', 'false');
+      openTile = null;
+    }
+  }
+
+  function buildQuestionPanel(cat, slotEvents, answers, firstTryMiss, helpCount, recoveryCount, item) {
+    var panel = document.createElement('div');
+    panel.className = 'q-panel';
+    panel.id = 'panel-' + cat.slot;
+
+    var chips = answers.map(function (a) {
+      var cls = a.correct ? 'ok' : 'bad';
+      return '<span class="chip ' + cls + '">' + esc(a.choice) + ' · try ' + a.attemptIndex + '</span>';
+    }).join('');
+
+    var detailParts = [];
+    for (var di = 0; di < slotEvents.length; di++) {
+      var ev = slotEvents[di];
+      if (ev.kind === 'answer') continue;
+      detailParts.push('<li><strong>' + esc(decodeEventLabel(ev)) + '</strong> at ' + fmtTime(ev.at) +
+        (decodeEventDetail(ev) ? ' — ' + esc(decodeEventDetail(ev)) : '') +
+        (decodeMeta(ev) ? '<br><span style="color:#5a6b80;font-size:13px">' + esc(decodeMeta(ev)) + '</span>' : '') +
+        '</li>');
+    }
+
+    var badges = '';
+    if (firstTryMiss) badges += '<span class="pill pill-bad">First try miss</span>';
+    else if (answers.length) badges += '<span class="pill pill-ok">First try correct</span>';
+    if (helpCount) badges += '<span class="pill pill-info">Help ×' + helpCount + '</span>';
+    if (recoveryCount) badges += '<span class="pill pill-warn">Recovery ×' + recoveryCount + '</span>';
+    if (item && item.outcome === 'incorrect') badges += '<span class="pill pill-bad">Scored incorrect</span>';
+
+    panel.innerHTML =
+      '<div class="q-detail-head">' +
+        '<h3>' + esc(cat.shortLabel) + ' · ' + esc(cat.slot) + '</h3>' + badges +
+        '<button type="button" class="q-detail-close">Close</button>' +
+      '</div>' +
+      '<p class="ledger-prompt">' + esc(cat.prompt) + '</p>' +
+      '<div class="chip-row">' + (chips || '<span class="pill pill-neutral">No answers logged</span>') + '</div>' +
+      buildStruggleNarrative(cat.slot, cat) +
+      (detailParts.length ? '<div class="q-detail-events"><strong>Help &amp; recovery events</strong><ul>' + detailParts.join('') + '</ul></div>' : '') +
+      '<div data-comment-id="q-' + cat.slot + '" data-comment-title="' + esc(cat.shortLabel + ' ' + cat.slot) + '"></div>';
+
+    panel.querySelector('.q-detail-close').addEventListener('click', returnPanelToStore);
+    return panel;
+  }
+
+  for (var si = 0; si < SLOT_CATALOG.length; si++) {
+    (function (cat) {
+      var slotEvents = eventsForSlot(cat.slot);
+      var answers = slotEvents.filter(function (e) { return e.kind === 'answer'; });
+      var helpCount = slotEvents.filter(function (e) { return e.kind.indexOf('help-') === 0; }).length;
+      var recoveryCount = slotEvents.filter(function (e) { return e.kind === 'recovery-step'; }).length;
+      var first = firstTries[cat.slot];
+      var firstTryMiss = first && first.correct === false;
+      var item = (DATA.attemptItems || []).find(function (it) { return it.slot === cat.slot; });
+
+      var panelEl = buildQuestionPanel(cat, slotEvents, answers, firstTryMiss, helpCount, recoveryCount, item);
+      panelStore.appendChild(panelEl);
+
+      var tileBadges = '';
+      if (helpCount) tileBadges += '<span class="pill pill-info">Help</span>';
+      if (recoveryCount) tileBadges += '<span class="pill pill-warn">Recovery</span>';
+      if (answers.length > 1) tileBadges += '<span class="pill pill-neutral">' + answers.length + ' tries</span>';
+
+      var statusCls = firstTryMiss ? 'bad' : 'ok';
+      var statusLabel = firstTryMiss ? 'Miss' : (answers.length ? 'OK' : '—');
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'q-tile';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('data-slot', cat.slot);
+      btn.innerHTML =
+        '<div class="q-tile-head"><span class="q-tile-num">' + esc(cat.shortLabel) + '</span>' +
+        '<span class="q-tile-status ' + statusCls + '">' + statusLabel + '</span></div>' +
+        '<div class="q-tile-slot">' + esc(cat.slot) + '</div>' +
+        '<p class="q-tile-prompt">' + esc(cat.prompt) + '</p>' +
+        '<div class="q-tile-badges">' + tileBadges + '</div>';
+
+      btn.addEventListener('click', function () {
+        if (openTile === btn) {
+          returnPanelToStore();
+          return;
+        }
+        returnPanelToStore();
+        openTile = btn;
+        openPanelEl = panelEl;
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        detailPanel.hidden = false;
+        detailPanel.appendChild(panelEl);
+        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (window.__renderQuestionComment) window.__renderQuestionComment('q-' + cat.slot);
+      });
+
+      ledgerRoot.appendChild(btn);
+    })(SLOT_CATALOG[si]);
+  }
+
+  /* ---- B. Struggle cards ---- */
+  var struggleRoot = mount.querySelector('[data-struggle-root]');
+  for (var sj = 0; sj < SLOT_CATALOG.length; sj++) {
+    var sc = SLOT_CATALOG[sj];
+    var ft = firstTries[sc.slot];
+    if (!ft || ft.correct !== false) continue;
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-comment-id', 'struggle-' + sc.slot);
+    card.setAttribute('data-comment-title', 'Struggle card — ' + sc.shortLabel + ' ' + sc.slot);
+    card.innerHTML = '<h3>' + esc(sc.shortLabel) + ' · ' + esc(sc.slot) + '</h3>' + buildStruggleNarrative(sc.slot, sc);
+    struggleRoot.appendChild(card);
+  }
+
+  /* ---- C. Decoded timeline ---- */
+  var timelineRoot = mount.querySelector('[data-timeline-root]');
+  for (var ti = 0; ti < events.length; ti++) {
+    var te = events[ti];
+    var li = document.createElement('li');
+    li.innerHTML =
+      '<span class="at">' + fmtTime(te.at) + '</span>' +
+      '<span class="label">' + esc(decodeEventLabel(te)) + '</span>' +
+      '<span class="detail">' + esc(decodeEventDetail(te) || '—') + '</span>' +
+      (decodeMeta(te) ? '<div class="meta">' + esc(decodeMeta(te)) + '</div>' : '');
+    timelineRoot.appendChild(li);
+  }
+
+  /* ---- D. Aggregates ---- */
+  var wrongs = wrongAttemptsBySlot();
+  var help = helpUsageSummary();
+  var stalls = stallPoints(60000);
+  var aggHtml = '<h3>Wrong attempts by slot</h3>';
+  if (!wrongs.length) aggHtml += '<p>None</p>';
+  else {
+    aggHtml += '<table class="agg-table"><thead><tr><th>Slot</th><th>Wrong count</th><th>Choices typed</th></tr></thead><tbody>';
+    for (var wi = 0; wi < wrongs.length; wi++) {
+      aggHtml += '<tr><td>' + esc(wrongs[wi].slot) + '</td><td>' + wrongs[wi].wrongCount + '</td><td>' +
+        wrongs[wi].choices.map(function (c) { return '<code>' + esc(c) + '</code>'; }).join(', ') + '</td></tr>';
+    }
+    aggHtml += '</tbody></table>';
+  }
+  aggHtml += '<h3 style="margin-top:24px">Help usage</h3><table class="agg-table"><tbody>';
+  aggHtml += '<tr><th>Opens by topic</th><td>' + esc(JSON.stringify(help.opensByTopic)) + '</td></tr>';
+  aggHtml += '<tr><th>Examples clicked</th><td>' + esc(help.examplesClicked.join(', ') || '—') + '</td></tr>';
+  aggHtml += '<tr><th>Feedback by topic</th><td>' + esc(JSON.stringify(help.feedbackByTopic)) + '</td></tr>';
+  aggHtml += '</tbody></table>';
+  aggHtml += '<h3 style="margin-top:24px">Stall points (&ge; 60s on first try)</h3>';
+  if (!stalls.length) aggHtml += '<p>None</p>';
+  else {
+    aggHtml += '<table class="agg-table"><thead><tr><th>Slot</th><th>Time</th><th>First choice</th></tr></thead><tbody>';
+    for (var st = 0; st < stalls.length; st++) {
+      aggHtml += '<tr><td>' + esc(stalls[st].slot) + '</td><td>' + fmtMs(stalls[st].elapsedMs) + '</td><td><code>' + esc(stalls[st].choice) + '</code></td></tr>';
+    }
+    aggHtml += '</tbody></table>';
+  }
+  mount.querySelector('[data-aggregates-root]').innerHTML = aggHtml;
+
+  /* ---- Timeline collapse ---- */
+  mount.querySelector('[data-timeline-toggle]').addEventListener('click', function () {
+    var body = mount.querySelector('[data-timeline-body]');
+    var opening = body.hidden;
+    body.hidden = !opening;
+    this.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    this.textContent = opening ? 'Hide decoded timeline (' + events.length + ' events)' : 'Show decoded timeline (' + events.length + ' events)';
+  });
+
+  /* ---- Raw JSON ---- */
+  mount.querySelector('[data-raw-json]').textContent = JSON.stringify(DATA.sessionLog, null, 2);
+  mount.querySelector('[data-raw-toggle]').addEventListener('click', function () {
+    var pre = mount.querySelector('[data-raw-json]');
+    var open = pre.classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    this.textContent = open ? 'Hide raw session_log JSON' : 'Show raw session_log JSON';
+  });
+  };
+
+  function renderProblem(student) {
+    var slot = student[problemTab];
+    var mount = document.getElementById('problem-mount');
+    mount.innerHTML = problemShell(slot.data);
+    if (slot.data) {
+      var root = mount.querySelector('.attempt-root');
+      window.renderGpAttemptInMount(root);
+      var toggle = root.querySelector('[data-timeline-toggle]');
+      var events = slot.data.sessionLog && slot.data.sessionLog.events ? slot.data.sessionLog.events.length : 0;
+      if (toggle) toggle.textContent = 'Show decoded timeline (' + events + ' events)';
+    }
+  }
+
+  function updateTabs(student) {
+    ['problem1', 'problem2'].forEach(function (key) {
+      var slot = student[key];
+      var btn = document.getElementById('tab-' + key);
+      var sub = document.getElementById('tab-' + key + '-sub');
+      var active = problemTab === key;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      var detail = slot.data
+        ? 'Problem ' + slot.data.problemId + ' · ' + slot.data.score + '/' + slot.data.maxScore + ' · ' + dotLabel(slot.dot)
+        : dotLabel(slot.dot);
+      sub.textContent = detail;
+      sub.className = 'tab-sub ' + dotClass(slot.dot);
+    });
+  }
+
+  function renderAll() {
+    var student = STUDENTS[studentIndex];
+    document.getElementById('student-name').textContent = student.name;
+    document.getElementById('student-sub').textContent = (studentIndex + 1) + ' of ' + STUDENTS.length;
+    document.getElementById('prev-student').disabled = studentIndex === 0;
+    document.getElementById('next-student').disabled = studentIndex === STUDENTS.length - 1;
+    renderSurvey(student);
+    updateTabs(student);
+    renderProblem(student);
+  }
+
+  document.getElementById('prev-student').addEventListener('click', function () {
+    if (studentIndex > 0) { studentIndex -= 1; renderAll(); }
+  });
+  document.getElementById('next-student').addEventListener('click', function () {
+    if (studentIndex < STUDENTS.length - 1) { studentIndex += 1; renderAll(); }
+  });
+  document.getElementById('tab-problem1').addEventListener('click', function () {
+    problemTab = 'problem1'; renderAll();
+  });
+  document.getElementById('tab-problem2').addEventListener('click', function () {
+    problemTab = 'problem2'; renderAll();
+  });
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>

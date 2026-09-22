@@ -1,8 +1,0 @@
-{
-  "chunkNote": "Reorganized preview controls into the requested hierarchy: Live/Preview first, then Admin/Student tester, then Landscape/Portrait, with the latter choices retained across modes.",
-  "navigationPath": [
-    {"target":"visualize/SKILL.md","kind":"doc","outcome":"helpful"},
-    {"target":"agent docs/scratch/teacher-console-concept.html","kind":"code","outcome":"helpful"}
-  ],
-  "filesEdited": ["agent docs/scratch/teacher-console-concept.html"]
-}

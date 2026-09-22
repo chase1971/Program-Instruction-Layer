@@ -46,6 +46,7 @@ function parseUsageLine(raw) {
   return {
     id: entry.message.id || entry.requestId || null,
     timestamp: entry.timestamp,
+    model: entry.message.model || null,
     usage,
   };
 }
@@ -70,6 +71,7 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
   let cacheWrite = 0;
   let input = 0;
   let output = 0;
+  let model = null;
 
   for (const line of lines) {
     const hit = parseUsageLine(line.trim());
@@ -83,6 +85,7 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
     }
 
     const { usage } = hit;
+    if (hit.model) model = hit.model;
     turns += 1;
     cacheRead += usage.cache_read_input_tokens || 0;
     cacheWrite += usage.cache_creation_input_tokens || 0;
@@ -95,6 +98,7 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
   const billedTokens = cacheRead + cacheWrite + input + output;
 
   return {
+    ...(model ? { model } : {}),
     tokenTurns: turns,
     tokensCacheRead: cacheRead,
     tokensCacheWrite: cacheWrite,

@@ -49,7 +49,10 @@
         "scratch/supabase-setup.html",
         "scratch/finish-attempt-rpc.html",
         "scratch/student-attempt-history-rpc.html",
-        "scratch/monitor-status.html"
+        "scratch/monitor-status.html",
+        "scratch/practice-archive-sample.html",
+        "scratch/guided-practice-attempt-60b0a608.html",
+        "scratch/guided-practice-attempt-6f9a7f87.html"
       ]
     },
     {
@@ -80,6 +83,7 @@
         "scratch/portal-v4-mobile-patterns.html",
         "scratch/teacher-console-mockups.html",
         "scratch/teacher-console-skins.html",
+        "scratch/manage-class-redesign-options.html",
         "scratch/course-settings-mockups.html",
         "scratch/matrix-portal-theme-mockups.html"
       ]
@@ -118,7 +122,8 @@
         "scratch/two-step-equation.html",
         "scratch/fraction-times-whole.html",
         "scratch/fraction-add-fractions.html",
-        "scratch/matrix-tutorial-text-2026-09-07.html"
+        "scratch/matrix-tutorial-text-2026-09-07.html",
+        "scratch/matrix-instruction-copy-review.html"
       ]
     },
     {
@@ -150,6 +155,7 @@
     }
   ],
   "descriptions": {
+    "scratch/manage-class-redesign-options.html": "Seven switchable looks for the Teacher Console Manage class grid (2026-09-20), including the current white-on-white for comparison. Diagnoses why it reads washed out: the tray gradient and the cards are both #ffffff.",
     "scratch/portal-risk-review-2.html": "Second pass on the student portal + teacher console (2026-09-12), checked against the live database. Matrix saves broken by migration 033, teacher-only functions runnable with the public key, and five more, with comment threads.",
     "scratch/portal-risk-review.html": "Plain-language risk review of the student portal + teacher console (2026-09-11). Fifteen things that could go wrong with student use or the data you collect, each with why it matters and what to do. Starts with the three to fix first.",
     "instructional-layer-htmls/agent-measurement-workbench.html": "The front door to all the measurement tooling: the three report pages, every command, and a ranked queue of five experiments to run. Includes the settled facts so you don't re-derive them.",
@@ -182,6 +188,10 @@
     "scratch/dice-products.html": "Two dice, part 4 — the product is spiky and gap-riddled, yet its sampling distribution still goes normal. The Central Limit Theorem.",
     "scratch/dice-series.html": "Two dice, all four parts stitched into one 4:27 video — sums, histogram and mu/sigma, sampling distribution, then products and the Central Limit Theorem.",
     "scratch/fraction-times-whole.html": "Q5 guided-practice help — multiply a fraction by a whole number (Manim, white background, math only).",
-    "scratch/fraction-add-fractions.html": "Q9 guided-practice help — add whole numbers to fractions, then fraction to fraction (Manim, white background, math only)."
+    "scratch/fraction-add-fractions.html": "Q9 guided-practice help — add whole numbers to fractions, then fraction to fraction (Manim, white background, math only).",
+    "scratch/matrix-instruction-copy-review.html": "Paginated 2×3 grid of every Matrix app instruction-box string — comment, dictate replacement text, export JSON for batch apply.",
+    "scratch/practice-archive-sample.html": "Sample shape of practice archive data — not live Supabase.",
+    "scratch/guided-practice-attempt-60b0a608.html": "Guided practice review — Chase (instructor), problem 16, 13/17. Four sections: step ledger, struggle cards, timeline, aggregates.",
+    "scratch/guided-practice-attempt-6f9a7f87.html": "Guided practice review — Michelle (Spare 3 tester), problem 10, 17/17 perfect. Same four-section layout for comparison."
   }
 }

@@ -39,7 +39,7 @@ anything on Chase's screen without asking.
 1. **Git status** — briefly list untracked/modified across the tree, not just the active app.
 
 2. **Session metrics finalize** — `node scripts/append-session-scorecard.js --finalize-file <meta.json>`.
-   Task **tracking** bumps should already be on disk from `--bump-file` during the session
+   Task **tracking** bumps should already be on disk from `--note` during the session
    ([SESSION_TRACKING.md](./SESSION_TRACKING.md)). Finalize writes the metrics card only —
    see [SESSION_METRICS.md](./SESSION_METRICS.md). **Don't re-guess counts** from memory.
 
@@ -83,13 +83,10 @@ anything on Chase's screen without asking.
 6. **Close your own index gaps, then `node scripts/check-docs.js`.**
 
    - Add an index row for any recipe or doc this session created.
-   - **Re-read the `navigationPath` steps you logged this session.** Every doc step you marked
-     `partial` or `dead-end` is a claim that a row is missing — resolve each one now: add the
-     keyword row to the owning `AGENTS.md` (or `agent docs/INDEX.md` / `recipes/INDEX.md` if it
-     is genuinely cross-app), or write the doc that should have existed.
-   - If a step doesn't warrant a row after all, **change it to `routed`** rather than leaving it
-     on the gap list. Steps where the index correctly routed you onward should already be
-     `routed` — see [SESSION_TRACKING.md](./SESSION_TRACKING.md) § `routed` vs `partial`.
+   - **Resolve every `--gap` you logged this session.** Each is a claim that a row is missing:
+     add the keyword row to the owning `AGENTS.md` (or `agent docs/INDEX.md` / `recipes/INDEX.md`
+     if it is genuinely cross-app), or write the doc that should have existed. A doc that pointed
+     you onward correctly was never a gap — see [SESSION_TRACKING.md](./SESSION_TRACKING.md).
    - **Don't over-index.** A keyword row Chase would never say out loud is noise. App-specific
      vocabulary belongs in that app's `AGENTS.md`, never in `agent docs/INDEX.md` — that file
      names owners, owners name their contents.

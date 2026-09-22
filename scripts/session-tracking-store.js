@@ -1,20 +1,22 @@
 /**
  * FILE: scripts/session-tracking-store.js
  * PURPOSE: Read/write session-tracking.jsonl — one entry per task bump.
+ *          An entry is: what was done (chunkNote), time, cost (tokens or chat size),
+ *          model, and any index gaps. Everything but chunkNote and indexGaps is automatic.
  */
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const {
-  normalizeNavigationPath,
-  summarizeNavigationPath,
-  validateNavigationPath,
-  formatDurationMs,
-} = require('./scorecard-navigation-path');
+  validateIndexGaps,
+  normalizeIndexGaps,
+  gapsFromLegacyPath,
+} = require('./session-index-gaps');
 const {
   sliceTimeline,
-  observeWindow,
+  activeMsInWindow,
+  formatDurationMs,
 } = require('./session-tracking-stats');
 const { readTranscriptUsage } = require('./session-token-cost');
 const { readChat, transcriptKB } = require('./chat-task');
@@ -41,14 +43,12 @@ function readTrackingEntries(root) {
 }
 
 function appendTrackingEntry(root, entry) {
-  const file = trackingDataPath(root);
-  fs.appendFileSync(file, `${JSON.stringify(entry)}\n`, 'utf8');
+  fs.appendFileSync(trackingDataPath(root), `${JSON.stringify(entry)}\n`, 'utf8');
 }
 
 function writeTrackingEntries(root, entries) {
-  const file = trackingDataPath(root);
   const body = entries.map((e) => JSON.stringify(e)).join('\n') + (entries.length ? '\n' : '');
-  fs.writeFileSync(file, body, 'utf8');
+  fs.writeFileSync(trackingDataPath(root), body, 'utf8');
 }
 
 function durationSince(prevIso, nextIso) {
@@ -58,20 +58,25 @@ function durationSince(prevIso, nextIso) {
   return Math.max(0, next - prev);
 }
 
-// A bump with no note, or a step with a typo'd or missing outcome, is refused outright.
-// Defaulting those to "helpful" is how bad data got into the log.
+// A bump with no note is refused outright — a blank row is worse than no row.
 function assertValidBump(delta) {
   const problems = [];
   if (!String(delta.chunkNote || '').trim()) {
     problems.push('chunkNote is required — one line saying what you finished');
   }
-  problems.push(...validateNavigationPath(delta.navigationPath));
+  problems.push(...validateIndexGaps(delta.indexGaps));
   if (problems.length) {
     throw new Error(
-      'Bump rejected, nothing was logged. Fix the bump JSON (agent docs/SESSION_TRACKING.md) '
+      'Bump rejected, nothing was logged. Fix it (agent docs/SESSION_TRACKING.md) '
       + `and rerun:\n  - ${problems.join('\n  - ')}`,
     );
   }
+}
+
+// Explicit gaps win; an agent still sending the retired navigationPath keeps only its failed doc steps.
+function bumpGaps(delta) {
+  if (Array.isArray(delta.indexGaps)) return normalizeIndexGaps(delta.indexGaps);
+  return gapsFromLegacyPath(delta.navigationPath);
 }
 
 // Messages and transcript size for the chat this bump came from. The only cost signal
@@ -91,29 +96,24 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
   const sessionId = running.sessionStarted || timestamp;
   const prevAt = running.lastTrackingBumpAt || sessionId;
   const durationMs = durationSince(prevAt, timestamp);
-  const navigationPath = normalizeNavigationPath(delta.navigationPath || []);
-  const stats = summarizeNavigationPath(navigationPath);
-  const chunkNote = String(delta.chunkNote || '').trim() || '(no task note)';
-
-  const windowEvents = sliceTimeline(running.toolTimeline, prevAt, timestamp);
-  const observed = observeWindow(windowEvents);
+  const activeMs = activeMsInWindow(sliceTimeline(running.toolTimeline, prevAt, timestamp));
   const cost = readTranscriptUsage(running.transcriptPath, prevAt, timestamp) || {};
+  const model = cost.model || delta.model || running.model || '';
+  const indexGaps = bumpGaps(delta);
 
   return {
     id: timestamp,
     sessionId,
     timestamp,
-    chunkNote,
+    chunkNote: String(delta.chunkNote).trim(),
     durationMs,
     durationLabel: formatDurationMs(durationMs),
-    activeMs: observed.activeMs,
-    activeLabel: formatDurationMs(observed.activeMs),
-    missingNavigationPath: navigationPath.length === 0,
-    ...stats,
-    ...observed,
+    activeMs,
+    activeLabel: formatDurationMs(activeMs),
     ...cost,
+    ...(model ? { model } : {}),
     ...chatSize(running),
-    navigationPath,
+    ...(indexGaps.length ? { indexGaps } : {}),
   };
 }
 
@@ -127,8 +127,7 @@ function taskLogToTrackingEntries(running) {
   for (const task of tasks) {
     const timestamp = task.time || new Date().toISOString();
     const durationMs = durationSince(prevAt, timestamp);
-    const navigationPath = normalizeNavigationPath(task.navigationPath || []);
-    const stats = summarizeNavigationPath(navigationPath);
+    const indexGaps = normalizeIndexGaps(task.indexGaps);
     entries.push({
       id: timestamp,
       sessionId,
@@ -136,10 +135,8 @@ function taskLogToTrackingEntries(running) {
       chunkNote: String(task.note || '').trim() || '(no task note)',
       durationMs,
       durationLabel: formatDurationMs(durationMs),
-      missingNavigationPath: navigationPath.length === 0,
       backfilled: true,
-      ...stats,
-      navigationPath,
+      ...(indexGaps.length ? { indexGaps } : {}),
     });
     prevAt = timestamp;
   }
@@ -162,5 +159,4 @@ module.exports = {
   writeTrackingEntries,
   buildTrackingEntry,
   backfillTrackingFromRunning,
-  taskLogToTrackingEntries,
 };

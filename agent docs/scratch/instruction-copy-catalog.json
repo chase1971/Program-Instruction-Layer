@@ -1,0 +1,3975 @@
+{
+  "generatedAt": "2026-09-20T22:55:26.725Z",
+  "count": 441,
+  "entries": [
+    {
+      "id": "guided-parse-row-op-expression-17-u2212",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 17,
+      "category": "guided",
+      "text": "\\u2212",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-19-u2192",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 19,
+      "category": "guided",
+      "text": "\\u2192",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-21-u2194",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 21,
+      "category": "guided",
+      "text": "\\u2194",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-27-this-notation-has-an-error-check-fractions-arrow",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 27,
+      "category": "guided",
+      "text": "This notation has an error. Check fractions, arrows, and row labels.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-375-label-1-label",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 375,
+      "category": "guided",
+      "text": "label >= 1 && label",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-397-enter-the-full-row-transformation-before-submitt",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 397,
+      "category": "guided",
+      "text": "Enter the full row transformation before submitting.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeCompleteModal-19-gp-fraction-help-prompt-absolute-inset-0-z-60-fl",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeCompleteModal.tsx",
+      "line": 19,
+      "category": "guided",
+      "text": "gp-fraction-help-prompt absolute inset-0 z-[60] flex items-center justify-center pointer-events-auto bg-black/15",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeCompleteModal-22-problem-complete",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeCompleteModal.tsx",
+      "line": 22,
+      "category": "guided",
+      "text": "Problem complete",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeCompleteModal-29-problem-complete",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeCompleteModal.tsx",
+      "line": 29,
+      "category": "guided",
+      "text": "Problem complete.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeCompleteModal-45-gp-fraction-help-prompt-btn-gp-fraction-help-pro",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeCompleteModal.tsx",
+      "line": 45,
+      "category": "guided",
+      "text": "gp-fraction-help-prompt__btn gp-fraction-help-prompt__btn--yes",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-164-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 164,
+      "category": "guided",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-167-tutorial-step-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 167,
+      "category": "guided",
+      "text": "Tutorial step {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-173-z-100",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 173,
+      "category": "guided",
+      "text": "z-[100]",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-179-relative-placeholder-flex-flex-col-items-stretch",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 179,
+      "category": "guided",
+      "text": "relative {placeholder} flex flex-col items-stretch pointer-events-auto w-full max-w-[28rem]",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-180-absolute-placeholder-flex-flex-col-items-center-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 180,
+      "category": "guided",
+      "text": "absolute {placeholder} flex flex-col items-center pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-186-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 186,
+      "category": "guided",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-187-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 187,
+      "category": "guided",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-193-relative-bg-blue-50-border-2-border-blue-200-rou",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 193,
+      "category": "guided",
+      "text": "relative bg-blue-50 border-2 border-blue-200 rounded-xl shadow-xl w-full min-h-[60px] p-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-198-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 198,
+      "category": "guided",
+      "text": "absolute -top-4 -left-5 w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center text-white font-bold text-sm shadow-md z-10",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-203-text-sm-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 203,
+      "category": "guided",
+      "text": "text-sm text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-206-gp-row-transformation-notation-mb-2-rounded-md-b",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 206,
+      "category": "guided",
+      "text": "gp-row-transformation-notation mb-2 rounded-md border border-red-300 bg-red-50 px-2 py-1.5 text-red-800 font-medium leading-snug",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-214-mb-2-text-amber-800-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 214,
+      "category": "guided",
+      "text": "mb-2 text-amber-800 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-216-mb-2-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 216,
+      "category": "guided",
+      "text": "mb-2 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-221-mb-2-flex-items-center-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 221,
+      "category": "guided",
+      "text": "mb-2 flex items-center gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-222-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 222,
+      "category": "guided",
+      "text": "mb-0 flex-1 min-w-0 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-223-incorrect",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 223,
+      "category": "guided",
+      "text": "Incorrect.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-228-shrink-0-bg-blue-600-hover-bg-blue-700-text-whit",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 228,
+      "category": "guided",
+      "text": "shrink-0 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-235-mb-2-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 235,
+      "category": "guided",
+      "text": "mb-2 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-254-relative-z-60-mb-2-flex-items-center-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 254,
+      "category": "guided",
+      "text": "relative z-[60] mb-2 flex items-center gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-255-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 255,
+      "category": "guided",
+      "text": "mb-0 flex-1 min-w-0 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-258-look-at-the-animation-to-see-how-to-do-it",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 258,
+      "category": "guided",
+      "text": "Look at the animation to see how to do it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-264-relative-z-60-shrink-0-bg-blue-600-hover-bg-blue",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 264,
+      "category": "guided",
+      "text": "relative z-[60] shrink-0 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-278-mb-2-font-medium-text-amber-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 278,
+      "category": "guided",
+      "text": "mb-2 font-medium text-amber-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-280-mb-2-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 280,
+      "category": "guided",
+      "text": "mb-2 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-286-mb-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 286,
+      "category": "guided",
+      "text": "mb-0 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-287-incorrect",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 287,
+      "category": "guided",
+      "text": "Incorrect.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-289-mt-2-flex-w-full-items-center-justify-between-ga",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 289,
+      "category": "guided",
+      "text": "mt-2 flex w-full items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-295-h-1-62rem-px-2-5-text-xs-border-blue-300-text-bl",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 295,
+      "category": "guided",
+      "text": "h-[1.62rem] px-2.5 text-xs border-blue-300 text-blue-800 bg-white hover:bg-blue-50",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-306-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 306,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-315-text-red-600-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 315,
+      "category": "guided",
+      "text": "text-red-600 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-315-incorrect",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 315,
+      "category": "guided",
+      "text": "Incorrect.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-331-bg-red-600-hover-bg-red-700-text-white",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 331,
+      "category": "guided",
+      "text": "bg-red-600 hover:bg-red-700 text-white",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-332-bg-blue-600-hover-bg-blue-700-text-white",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 332,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-344-flex-items-center-gap-2-flex-wrap",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 344,
+      "category": "guided",
+      "text": "flex items-center gap-2 flex-wrap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-347-tab-or-click",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 347,
+      "category": "guided",
+      "text": "Tab or click",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-350-row-operation",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 350,
+      "category": "guided",
+      "text": "Row operation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-357-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 357,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-366-flex-flex-wrap-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 366,
+      "category": "guided",
+      "text": "flex flex-wrap gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-371-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 371,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-380-flex-flex-wrap-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 380,
+      "category": "guided",
+      "text": "flex flex-wrap gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-385-bg-emerald-600-hover-bg-emerald-700-text-white-h",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 385,
+      "category": "guided",
+      "text": "bg-emerald-600 hover:bg-emerald-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-395-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 395,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-91-mb-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 91,
+      "category": "guided",
+      "text": "mb-0 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-95-mt-0-5-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 95,
+      "category": "guided",
+      "text": "mt-0.5 flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-96-gp-row-transformation-notation-mb-0-min-w-0-flex",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 96,
+      "category": "guided",
+      "text": "gp-row-transformation-notation mb-0 min-w-0 flex-1 font-mono text-sm text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-103-shrink-0-bg-blue-600-hover-bg-blue-700-text-whit",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 103,
+      "category": "guided",
+      "text": "shrink-0 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-119-mb-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 119,
+      "category": "guided",
+      "text": "mb-0 font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-128-mt-2-bg-blue-600-hover-bg-blue-700-text-white-h-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 128,
+      "category": "guided",
+      "text": "mt-2 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-139-mt-2-bg-blue-600-hover-bg-blue-700-text-white-h-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 139,
+      "category": "guided",
+      "text": "mt-2 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-152-guided-practice-target-value-btn-min-w-2-5rem-h-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 152,
+      "category": "guided",
+      "text": "guided-practice-target-value-btn min-w-[2.5rem] h-7 px-2 py-0 text-xs bg-blue-600 hover:bg-blue-700 text-white",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-165-tab-or-click",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 165,
+      "category": "guided",
+      "text": "Tab or click",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-174-mt-2-flex-items-center-gap-2-flex-wrap",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 174,
+      "category": "guided",
+      "text": "mt-2 flex items-center gap-2 flex-wrap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-177-tab-or-click",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 177,
+      "category": "guided",
+      "text": "Tab or click",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-180-row-operation",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 180,
+      "category": "guided",
+      "text": "Row operation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeRowNotationRecovery-187-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
+      "line": 187,
+      "category": "guided",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-questions-17-what-is-the-solution-tab-or-click-on-the-ordered",
+      "file": "School Scrips/Matrix app/src/app/engine/guided-practice-questions.ts",
+      "line": 17,
+      "category": "guided",
+      "text": "What is the solution? Tab or click on the ordered pair to enter your answer.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-questions-19-read-x-and-y-from-the-reduced-matrix-x-is-the-to",
+      "file": "School Scrips/Matrix app/src/app/engine/guided-practice-questions.ts",
+      "line": 19,
+      "category": "guided",
+      "text": "Read x and y from the reduced matrix — x is the top constant, y is the bottom.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-19-op-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 19,
+      "category": "guided",
+      "text": "op{placeholder}-{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-23-r-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 23,
+      "category": "guided",
+      "text": "R{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-28-column-1-tab-or-click-where-the-1-needs-to-go",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 28,
+      "category": "guided",
+      "text": "Column 1: tab or click where the 1 needs to go.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-31-tab-or-click-where-the-1-needs-to-go",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 31,
+      "category": "guided",
+      "text": "Tab or click where the 1 needs to go.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-33-tab-or-click-the-first-pivot-value-you-need-to-c",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 33,
+      "category": "guided",
+      "text": "Tab or click the first pivot value you need to change.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-49-in-row-reduced-echelon-form-the-first-value-in-t",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 49,
+      "category": "guided",
+      "text": "In row-reduced echelon form, the first value in the pivot column has to become 1. That entry is called the pivot.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-55-what-type-of-row-transformation-do-you-need",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 55,
+      "category": "guided",
+      "text": "What type of row transformation do you need?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-56-to-turn-the-pivot-into-1-use-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 56,
+      "category": "guided",
+      "text": "To turn the pivot into 1, use row scaling.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-62-write-the-row-transformation-to-make-the-pivot-a",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 62,
+      "category": "guided",
+      "text": "Write the row transformation to make the pivot a 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-63-the-correct-notation-is-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 63,
+      "category": "guided",
+      "text": "The correct notation is {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-69-fill-in-the-new-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 69,
+      "category": "guided",
+      "text": "Fill in the new {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-71-each-entry-in-the-row-should-be-multiplied-by-th",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 71,
+      "category": "guided",
+      "text": "Each entry in the row should be multiplied by the same number you used in the row scaling.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-91-tab-or-click-the-entry-you-need-to-turn-into-a-0",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 91,
+      "category": "guided",
+      "text": "Tab or click the entry you need to turn into a 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-93-once-the-pivot-is-1-every-other-entry-in-that-co",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 93,
+      "category": "guided",
+      "text": "Once the pivot is 1, every other entry in that column must become 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-99-what-type-of-row-transformation-do-you-need",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 99,
+      "category": "guided",
+      "text": "What type of row transformation do you need?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-100-to-make-a-0-while-keeping-the-pivot-as-1-use-row",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 100,
+      "category": "guided",
+      "text": "To make a 0 while keeping the pivot as 1, use row replacement.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-106-write-the-row-replacement-operation",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 106,
+      "category": "guided",
+      "text": "Write the row replacement operation.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-107-the-correct-notation-is-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 107,
+      "category": "guided",
+      "text": "The correct notation is {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-113-fill-in-the-new-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 113,
+      "category": "guided",
+      "text": "Fill in the new {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-115-add-the-scaled-pivot-row-to-the-target-row-each-",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 115,
+      "category": "guided",
+      "text": "Add the scaled pivot row to the target row — each entry changes by the same multiple of the pivot row.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-134-tab-or-click-the-pivot-position-that-needs-to-mo",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 134,
+      "category": "guided",
+      "text": "Tab or click the pivot position that needs to move.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-136-the-pivot-position-is-where-a-1-must-appear-in-r",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 136,
+      "category": "guided",
+      "text": "The pivot position is where a 1 must appear in row-reduced echelon form.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-142-what-should-be-in-this-pivot-position-before-you",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 142,
+      "category": "guided",
+      "text": "What should be in this pivot position before you swap?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-143-you-need-a-nonzero-entry-in-the-pivot-position-b",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 143,
+      "category": "guided",
+      "text": "You need a nonzero entry in the pivot position before swapping rows.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-149-what-type-of-row-transformation-do-you-need",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 149,
+      "category": "guided",
+      "text": "What type of row transformation do you need?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-150-when-the-pivot-position-has-a-0-swap-rows-to-mov",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 150,
+      "category": "guided",
+      "text": "When the pivot position has a 0, swap rows to move a nonzero entry there.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-question-script-219-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 219,
+      "category": "guided",
+      "text": "{placeholder} ↔ {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-222-placeholder-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 222,
+      "category": "guided",
+      "text": "{placeholder}{placeholder} → {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-question-script-225-placeholder-placeholder-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
+      "line": 225,
+      "category": "guided",
+      "text": "{placeholder}{placeholder} + {placeholder} → {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-89-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 89,
+      "category": "guided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-136-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 136,
+      "category": "guided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-142-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 142,
+      "category": "guided",
+      "text": "{placeholder}/{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-181-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 181,
+      "category": "guided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-187-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 187,
+      "category": "guided",
+      "text": "{placeholder}/{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-206-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 206,
+      "category": "guided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-236-empty",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 236,
+      "category": "guided",
+      "text": "(empty)",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-builder-commit-237-enter-the-full-row-transformation-before-submitt",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
+      "line": 237,
+      "category": "guided",
+      "text": "Enter the full row transformation before submitting.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-59-r-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 59,
+      "category": "guided",
+      "text": "R{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-70-what-s-the-reciprocal-of-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 70,
+      "category": "guided",
+      "text": "What's the reciprocal of {placeholder}?",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-72-the-reciprocal-of-placeholder-is-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 72,
+      "category": "guided",
+      "text": "The reciprocal of {placeholder} is {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-74-what-row-do-we-multiply-this-by",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 74,
+      "category": "guided",
+      "text": "What row do we multiply this by?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-76-we-multiply-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 76,
+      "category": "guided",
+      "text": "We multiply {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-78-in-what-row-do-we-end-up-changing",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 78,
+      "category": "guided",
+      "text": "In what row do we end up changing?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-80-placeholder-is-the-row-that-changes",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 80,
+      "category": "guided",
+      "text": "{placeholder} is the row that changes.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-82-now-try-writing-the-full-row-transformation",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 82,
+      "category": "guided",
+      "text": "Now try writing the full row transformation.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-84-here-is-the-correct-row-transformation",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 84,
+      "category": "guided",
+      "text": "Here is the correct row transformation.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-notation-recovery-90-incorrect",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-notation-recovery.ts",
+      "line": 90,
+      "category": "guided",
+      "text": "Incorrect.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-84-r-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 84,
+      "category": "guided",
+      "text": "R{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-86-r-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 86,
+      "category": "guided",
+      "text": "R{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-97-what-s-the-opposite-of-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 97,
+      "category": "guided",
+      "text": "What's the opposite of {placeholder}?",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-99-the-opposite-of-placeholder-is-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 99,
+      "category": "guided",
+      "text": "The opposite of {placeholder} is {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-101-which-row-do-we-multiply-by-this",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 101,
+      "category": "guided",
+      "text": "Which row do we multiply by this?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-103-we-multiply-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 103,
+      "category": "guided",
+      "text": "We multiply {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-105-which-row-do-we-add-to",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 105,
+      "category": "guided",
+      "text": "Which row do we add to?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-107-placeholder-is-the-row-that-changes",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 107,
+      "category": "guided",
+      "text": "{placeholder} is the row that changes.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-109-now-try-writing-the-full-row-transformation",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 109,
+      "category": "guided",
+      "text": "Now try writing the full row transformation.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-row-replacement-notation-recovery-111-here-is-the-correct-row-transformation",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-row-replacement-notation-recovery.ts",
+      "line": 111,
+      "category": "guided",
+      "text": "Here is the correct row transformation.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-144-try-again-what-type-of-row-transformation-do-you",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 144,
+      "category": "guided",
+      "text": "Try again. What type of row transformation do you need?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-148-that-s-not-quite-right-try-again",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 148,
+      "category": "guided",
+      "text": "That's not quite right. Try again.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-152-that-s-not-quite-right-try-again",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 152,
+      "category": "guided",
+      "text": "That's not quite right. Try again.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-156-incorrect-try-again",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 156,
+      "category": "guided",
+      "text": "Incorrect. Try again.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-161-the-answer-is-x-y-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 161,
+      "category": "guided",
+      "text": "The answer is (x, y) = ({placeholder}, {placeholder}).",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-182-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 182,
+      "category": "guided",
+      "text": "{placeholder} {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-188-we-need-the-indicated-cell-to-be-a-1-click-or-ta",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 188,
+      "category": "guided",
+      "text": "We need the indicated cell to be a 1. Click or tap on it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-191-we-need-the-indicated-cell-to-be-a-0-click-or-ta",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 191,
+      "category": "guided",
+      "text": "We need the indicated cell to be a 0. Click or tap on it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-194-click-or-tap-on-the-correct-cell-to-continue",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 194,
+      "category": "guided",
+      "text": "Click or tap on the correct cell to continue.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-208-row-swap-is-only-used-when-the-bottom-left-entry",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 208,
+      "category": "guided",
+      "text": "Row swap is only used when the bottom-left entry is 1 — this one is not.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-211-row-replacement-is-used-to-turn-entries-into-0",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 211,
+      "category": "guided",
+      "text": "Row replacement is used to turn entries into 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-217-row-swap-moves-entire-rows",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 217,
+      "category": "guided",
+      "text": "Row swap moves entire rows.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-220-row-scaling-turns-a-pivot-into-1",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 220,
+      "category": "guided",
+      "text": "Row scaling turns a pivot into 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-226-row-scaling-changes-an-entry-to-1",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 226,
+      "category": "guided",
+      "text": "Row scaling changes an entry to 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-229-row-replacement-combines-rows-to-make-0",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 229,
+      "category": "guided",
+      "text": "Row replacement combines rows to make 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-guided-practice-wrong-recovery-306-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
+      "line": 306,
+      "category": "guided",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-184-r-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 184,
+      "category": "guided",
+      "text": "R{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-243-empty",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 243,
+      "category": "guided",
+      "text": "(empty)",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-252-empty",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 252,
+      "category": "guided",
+      "text": "(empty)",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-348-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 348,
+      "category": "guided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-353-enter-the-reciprocal-before-submitting",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 353,
+      "category": "guided",
+      "text": "Enter the reciprocal before submitting.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-354-enter-the-opposite-before-submitting",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 354,
+      "category": "guided",
+      "text": "Enter the opposite before submitting.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-355-empty",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 355,
+      "category": "guided",
+      "text": "(empty)",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-use-guided-practice-row-notation-recovery-362-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/hooks/use-guided-practice-row-notation-recovery.ts",
+      "line": 362,
+      "category": "guided",
+      "text": "{placeholder}/{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "help-fractionHelpTopics-25-need-help-with-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 25,
+      "category": "help",
+      "text": "Need help with fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-26-do-you-need-help-with-multiplying-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 26,
+      "category": "help",
+      "text": "Do you need help with multiplying fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-27-multiplying-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 27,
+      "category": "help",
+      "text": "Multiplying fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-28-multiply-the-numerators-together-and-the-denomin",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 28,
+      "category": "help",
+      "text": "Multiply the numerators together and the denominators together. Simplify the result if you can.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-33-need-help-with-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 33,
+      "category": "help",
+      "text": "Need help with fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-34-do-you-need-help-with-adding-or-subtracting-frac",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 34,
+      "category": "help",
+      "text": "Do you need help with adding or subtracting fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-35-adding-and-subtracting-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 35,
+      "category": "help",
+      "text": "Adding and subtracting fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-36-find-a-common-denominator-rewrite-each-fraction-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 36,
+      "category": "help",
+      "text": "Find a common denominator, rewrite each fraction, then add or subtract the numerators.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-41-need-help-with-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 41,
+      "category": "help",
+      "text": "Need help with fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-42-do-you-need-help-with-multiplying-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 42,
+      "category": "help",
+      "text": "Do you need help with multiplying fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-43-multiplying-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 43,
+      "category": "help",
+      "text": "Multiplying fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-44-multiply-the-numerators-together-and-the-denomin",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 44,
+      "category": "help",
+      "text": "Multiply the numerators together and the denominators together. Simplify the result if you can.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-49-need-help-with-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 49,
+      "category": "help",
+      "text": "Need help with fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-50-do-you-need-help-with-adding-or-subtracting-frac",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 50,
+      "category": "help",
+      "text": "Do you need help with adding or subtracting fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-51-adding-and-subtracting-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 51,
+      "category": "help",
+      "text": "Adding and subtracting fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-52-find-a-common-denominator-rewrite-each-fraction-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 52,
+      "category": "help",
+      "text": "Find a common denominator, rewrite each fraction, then add or subtract the numerators.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-61-fraction-help",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 61,
+      "category": "help",
+      "text": "Fraction help",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTopics-64-need-help-with-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTopics.ts",
+      "line": 64,
+      "category": "help",
+      "text": "Need help with fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-27-examples-1-and-2-show-you-how-to-multiply-a-frac",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 27,
+      "category": "help",
+      "text": "Examples 1 and 2 show you how to multiply a fraction by a whole number. Example 3 shows how to multiply fraction by fraction. Tab or click on the example you wish to see.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-30-tab-or-click-on-an-example-to-begin",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 30,
+      "category": "help",
+      "text": "Tab or click on an example to begin.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-32-rewrite-the-whole-number-by-putting-it-over-1",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 32,
+      "category": "help",
+      "text": "Rewrite the whole number by putting it over 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-34-multiply-the-top-two-numbers-together-and-the-bo",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 34,
+      "category": "help",
+      "text": "Multiply the top two numbers together and the bottom two numbers together, then simplify.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-36-multiply-the-top-two-new-numbers-together-and-th",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 36,
+      "category": "help",
+      "text": "Multiply the top two new numbers together and the bottom two new numbers together.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-38-you-can-also-simplify-first-divide-14-and-7-befo",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 38,
+      "category": "help",
+      "text": "You can also simplify first — divide 14 and 7 before you multiply.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-39-simplify-the-2-and-8-first",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 39,
+      "category": "help",
+      "text": "Simplify the 2 and 8 first.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-41-rewrite-the-whole-number-by-putting-it-over-1",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 41,
+      "category": "help",
+      "text": "Rewrite the whole number by putting it over 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-43-both-denominators-need-to-be-3-multiply-the-top-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 43,
+      "category": "help",
+      "text": "Both denominators need to be 3. Multiply the top and bottom of the first fraction by 3.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-45-both-denominators-need-to-be-4-multiply-the-top-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 45,
+      "category": "help",
+      "text": "Both denominators need to be 4. Multiply the top and bottom of the first fraction by 4.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-47-put-it-all-over-the-same-denominator-and-add-the",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 47,
+      "category": "help",
+      "text": "Put it all over the same denominator and add the numerators together.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-48-simplify-if-necessary",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 48,
+      "category": "help",
+      "text": "Simplify if necessary.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-50-multiply-each-side-by-what-it-needs-so-the-botto",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 50,
+      "category": "help",
+      "text": "Multiply each side by what it needs so the bottoms match.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-51-add-the-tops-and-keep-the-same-denominator",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 51,
+      "category": "help",
+      "text": "Add the tops and keep the same denominator.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-73-tab-or-click-next-to-go-to-example-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 73,
+      "category": "help",
+      "text": "Tab or click Next to go to example 2.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-90-tab-or-click-next-to-go-to-example-3",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 90,
+      "category": "help",
+      "text": "Tab or click Next to go to example 3.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-143-tab-or-click-next-to-go-to-example-2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 143,
+      "category": "help",
+      "text": "Tab or click Next to go to example 2.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-fractionHelpTutorialConfigs-165-tab-or-click-next-to-go-to-example-3",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
+      "line": 165,
+      "category": "help",
+      "text": "Tab or click Next to go to example 3.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-15-gp-fraction-help-feedback-absolute-inset-0-z-70-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
+      "line": 15,
+      "category": "help",
+      "text": "gp-fraction-help-feedback absolute inset-0 z-[70] flex items-center justify-center",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-18-fraction-help-feedback",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
+      "line": 18,
+      "category": "help",
+      "text": "Fraction help feedback",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-21-did-this-help-you-understand-multiplying-fractio",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
+      "line": 21,
+      "category": "help",
+      "text": "Did this help you understand multiplying fractions?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-8-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
+      "line": 8,
+      "category": "help",
+      "text": "row scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-8-row-replacement",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
+      "line": 8,
+      "category": "help",
+      "text": "row replacement",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-13-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
+      "line": 13,
+      "category": "help",
+      "text": "row scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-17-gp-fraction-help-feedback-absolute-inset-0-z-70-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
+      "line": 17,
+      "category": "help",
+      "text": "gp-fraction-help-feedback absolute inset-0 z-[70] flex items-center justify-center",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-20-placeholder-help-feedback",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
+      "line": 20,
+      "category": "help",
+      "text": "{placeholder} help feedback",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "help-helpTriggerCopy-7-multiplying-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
+      "line": 7,
+      "category": "help",
+      "text": "multiplying fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-helpTriggerCopy-8-adding-fractions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
+      "line": 8,
+      "category": "help",
+      "text": "adding fractions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-helpTriggerCopy-9-row-scaling-notation",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
+      "line": 9,
+      "category": "help",
+      "text": "row scaling notation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-helpTriggerCopy-10-row-replacement-notation",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
+      "line": 10,
+      "category": "help",
+      "text": "row replacement notation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-helpTriggerCopy-16-need-help-with-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
+      "line": 16,
+      "category": "help",
+      "text": "Need help with {placeholder}?",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "help-rowNotationHelpSteps-21-what-row-scaling-does",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 21,
+      "category": "help",
+      "text": "What row scaling does",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-23-row-scaling-multiplies-every-entry-in-one-row-by",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 23,
+      "category": "help",
+      "text": "Row scaling multiplies every entry in one row by the same number.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-24-use-it-when-a-pivot-position-needs-to-become-1",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 24,
+      "category": "help",
+      "text": "Use it when a pivot position needs to become 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-28-turning-the-pivot-into-1",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 28,
+      "category": "help",
+      "text": "Turning the pivot into 1",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-30-the-pivot-is-the-entry-you-picked",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 30,
+      "category": "help",
+      "text": "The pivot is the entry you picked.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-31-your-goal-is-to-turn-that-pivot-value-into-1",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 31,
+      "category": "help",
+      "text": "Your goal is to turn that pivot value into 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-35-finding-the-reciprocal",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 35,
+      "category": "help",
+      "text": "Finding the reciprocal",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-37-in-order-to-make-a-1-we-need-to-multiply-the-piv",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 37,
+      "category": "help",
+      "text": "In order to make a 1, we need to multiply the pivot value by its reciprocal.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-41-what-is-a-reciprocal",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 41,
+      "category": "help",
+      "text": "What is a reciprocal?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-43-the-reciprocal-of-a-number-is-what-you-get-when-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 43,
+      "category": "help",
+      "text": "The reciprocal of a number is what you get when you write the value as a fraction and flip it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-48-write-the-row-transformation",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 48,
+      "category": "help",
+      "text": "Write the row transformation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-50-once-you-find-the-reciprocal-of-your-pivot-multi",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 50,
+      "category": "help",
+      "text": "Once you find the reciprocal of your pivot, multiply every entry in that row by it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowNotationHelpSteps-51-row-transformation-notation-shows-that-like-this",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowNotationHelpSteps.ts",
+      "line": 51,
+      "category": "help",
+      "text": "Row transformation notation shows that like this:",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-14-what-row-replacement-does",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 14,
+      "category": "help",
+      "text": "What row replacement does",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-16-row-replacement-turns-a-non-pivot-entry-into-0-w",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 16,
+      "category": "help",
+      "text": "Row replacement turns a non-pivot entry into 0 while keeping the pivot as 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-17-you-add-a-multiple-of-the-pivot-row-to-another-r",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 17,
+      "category": "help",
+      "text": "You add a multiple of the pivot row to another row.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-21-take-the-opposite",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 21,
+      "category": "help",
+      "text": "Take the opposite",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-22-take-the-opposite-of-the-value-you-need-to-make-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 22,
+      "category": "help",
+      "text": "Take the opposite of the value you need to make 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-25-multiply-then-add",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 25,
+      "category": "help",
+      "text": "Multiply, then add",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-27-multiply-every-entry-in-the-pivot-row-by-that-op",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 27,
+      "category": "help",
+      "text": "Multiply every entry in the pivot row by that opposite number, then add to the row you are changing.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-29-2r1-r2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 29,
+      "category": "help",
+      "text": "-2R1 + R2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-32-the-new-row",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 32,
+      "category": "help",
+      "text": "The new row",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-33-this-now-becomes-the-new-r2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 33,
+      "category": "help",
+      "text": "This now becomes the new R2.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-rowReplacementNotationHelpSteps-34-2r1-r2-r2",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/rowReplacementNotationHelpSteps.ts",
+      "line": 34,
+      "category": "help",
+      "text": "-2R1 + R2 → R2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-11-matrix-app-hooks-use-tutorial-answer-log",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 11,
+      "category": "portal",
+      "text": "@matrix/app/hooks/use-tutorial-answer-log",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-12-matrix-app-types-matrix",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 12,
+      "category": "portal",
+      "text": "@matrix/app/types/matrix",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-14-matrix-gauss-jordan",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 14,
+      "category": "portal",
+      "text": "matrix/gauss-jordan",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-17-matrix-gauss-jordan-part-3",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 17,
+      "category": "portal",
+      "text": "matrix/gauss-jordan-part-3",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-19-gauss-jordan-method",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 19,
+      "category": "portal",
+      "text": "Gauss-Jordan Method",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-23-this-tutorial-is-going-to-teach-you-how-to-use-t",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 23,
+      "category": "portal",
+      "text": "This tutorial is going to teach you how to use the Gauss-Jordan method to put the augmented matrix in row-reduced echelon form.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-26-tutorial-complete",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 26,
+      "category": "portal",
+      "text": "Tutorial complete",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-29-if-you-need-to-review-anything-from-the-tutorial",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 29,
+      "category": "portal",
+      "text": "If you need to review anything from the tutorial, click Auto Solve. It summarizes every step.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-69-part-1-completed",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 69,
+      "category": "portal",
+      "text": "Part 1 completed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-72-part-2-completed",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 72,
+      "category": "portal",
+      "text": "Part 2 completed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "portal-matrixTutorialActivity-75-part-3-completed",
+      "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
+      "line": 75,
+      "category": "portal",
+      "text": "Part 3 completed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-52-absolute-z-30-flex-flex-col-items-center-pointer",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 52,
+      "category": "tutorial",
+      "text": "absolute z-30 flex flex-col items-center pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-54-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 54,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-55-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 55,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-56-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 56,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-59-relative-bg-blue-50-border-2-border-blue-200-rou",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 59,
+      "category": "tutorial",
+      "text": "relative bg-blue-50 border-2 border-blue-200 rounded-xl shadow-xl w-full min-h-[60px] p-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-59-tutorial-step-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 59,
+      "category": "tutorial",
+      "text": "Tutorial step {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-62-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 62,
+      "category": "tutorial",
+      "text": "absolute -top-4 -left-5 w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center text-white font-bold text-sm shadow-md z-10",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-66-text-sm-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 66,
+      "category": "tutorial",
+      "text": "text-sm text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-68-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 68,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-69-we-have-successfully-created-a-1-in-the-first-pi",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 69,
+      "category": "tutorial",
+      "text": "We have successfully created a 1 in the first pivot position. Now our goal is to get a 0 in the position below it.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-70-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 70,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-77-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 77,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-79-font-bold-text-blue-900",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 79,
+      "category": "tutorial",
+      "text": "font-bold text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-79-we-will-need-to-use-a-row-replacement-press-the",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 79,
+      "category": "tutorial",
+      "text": ", we will need to use a row replacement. Press the",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-85-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 85,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-89-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 89,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-96-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 96,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-98-font-bold-text-blue-900",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 98,
+      "category": "tutorial",
+      "text": "font-bold text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-104-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 104,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-112-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 112,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-114-font-bold-text-blue-900",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 114,
+      "category": "tutorial",
+      "text": "font-bold text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-120-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 120,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-128-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 128,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-130-font-bold-text-green-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 130,
+      "category": "tutorial",
+      "text": "font-bold text-green-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-130-has-been-eliminated-and-replaced-with",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 130,
+      "category": "tutorial",
+      "text": "has been eliminated and replaced with",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-132-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 132,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-139-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 139,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-140-write-the-new-matrix-in-part-d",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 140,
+      "category": "tutorial",
+      "text": "Write the new matrix in Part D.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-141-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 141,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-148-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 148,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-149-the-first-column-is-now-complete-let-s-recap-wha",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 149,
+      "category": "tutorial",
+      "text": "The first column is now complete. Let's recap what we did.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-150-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 150,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-157-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 157,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-158-two-moves-finish-every-column-here-s-the-first",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 158,
+      "category": "tutorial",
+      "text": "Two moves finish every column. Here's the first.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-159-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 159,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-166-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 166,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-167-s-the-pattern-now-let",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 167,
+      "category": "tutorial",
+      "text": "s the pattern. Now let",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-167-that-s-the-pattern-now-let-s-do-it-again-on-the-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 167,
+      "category": "tutorial",
+      "text": "That's the pattern. Now let's do it again on the second column.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-174-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 174,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-182-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 182,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-2-186-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-2.tsx",
+      "line": 186,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-30-flex-items-center-gap-2-my-2-justify-center",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 30,
+      "category": "tutorial",
+      "text": "flex items-center gap-2 my-2 justify-center",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-32-w-2-border-l-2-border-t-2-border-b-2-border-blue",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 32,
+      "category": "tutorial",
+      "text": "w-2 border-l-2 border-t-2 border-b-2 border-blue-800 h-12",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-34-grid-grid-cols-3-gap-x-3-gap-y-2-text-sm-leading",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 34,
+      "category": "tutorial",
+      "text": "grid grid-cols-3 gap-x-3 gap-y-2 text-sm leading-none font-mono text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-35-text-center-font-bold-text-green-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 35,
+      "category": "tutorial",
+      "text": "text-center font-bold text-green-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-36-text-center-text-blue-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 36,
+      "category": "tutorial",
+      "text": "text-center text-blue-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-37-text-center-border-l-border-blue-300-pl-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 37,
+      "category": "tutorial",
+      "text": "text-center border-l border-blue-300 pl-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-39-text-center-text-blue-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 39,
+      "category": "tutorial",
+      "text": "text-center text-blue-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-40-text-center-font-bold-text-green-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 40,
+      "category": "tutorial",
+      "text": "text-center font-bold text-green-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-41-text-center-border-l-border-blue-300-pl-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 41,
+      "category": "tutorial",
+      "text": "text-center border-l border-blue-300 pl-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-45-w-2-border-r-2-border-t-2-border-b-2-border-blue",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 45,
+      "category": "tutorial",
+      "text": "w-2 border-r-2 border-t-2 border-b-2 border-blue-800 h-12",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-99-absolute-z-30-flex-flex-col-items-center-pointer",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 99,
+      "category": "tutorial",
+      "text": "absolute z-30 flex flex-col items-center pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-101-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 101,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-102-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 102,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-123-relative-bg-blue-50-border-2-border-blue-200-rou",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 123,
+      "category": "tutorial",
+      "text": "relative bg-blue-50 border-2 border-blue-200 rounded-xl shadow-xl w-full min-h-[60px] p-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-123-tutorial-step-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 123,
+      "category": "tutorial",
+      "text": "Tutorial step {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-126-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 126,
+      "category": "tutorial",
+      "text": "absolute -top-4 -left-5 w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center text-white font-bold text-sm shadow-md z-10",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-130-text-sm-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 130,
+      "category": "tutorial",
+      "text": "text-sm text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-132-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 132,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-133-now-we-re-going-to-do-this-whole-thing-again-but",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 133,
+      "category": "tutorial",
+      "text": "Now we're going to do this whole thing again, but for the next pivot column. Click on the cell that we need to change to a 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-138-flex-items-start-gap-3",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 138,
+      "category": "tutorial",
+      "text": "flex items-start gap-3",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-140-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 140,
+      "category": "tutorial",
+      "text": "font-medium text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-153-what-row-transformation-do-we-use-to-do-that",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 153,
+      "category": "tutorial",
+      "text": "What row transformation do we use to do that?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-159-flex-items-center-gap-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 159,
+      "category": "tutorial",
+      "text": "flex items-center gap-1",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-160-row-swap",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 160,
+      "category": "tutorial",
+      "text": "Row Swap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-161-w-4-h-4-text-red-600",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 161,
+      "category": "tutorial",
+      "text": "w-4 h-4 text-red-600",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-166-flex-items-center-gap-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 166,
+      "category": "tutorial",
+      "text": "flex items-center gap-1",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-167-row-replacement",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 167,
+      "category": "tutorial",
+      "text": "Row Replacement",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-168-w-4-h-4-text-red-600",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 168,
+      "category": "tutorial",
+      "text": "w-4 h-4 text-red-600",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-172-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 172,
+      "category": "tutorial",
+      "text": "Row Scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-172-in-order-to-make-a-1-we-always-use",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 172,
+      "category": "tutorial",
+      "text": "In order to make a 1, we always use",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-172-row-scaling-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 172,
+      "category": "tutorial",
+      "text": "row scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-172-click-on",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 172,
+      "category": "tutorial",
+      "text": ". Click on",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-178-what-do-we-need-to-multiply-7-2-by-in-order-to-m",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 178,
+      "category": "tutorial",
+      "text": "What do we need to multiply 7/2 by in order to make it a 1? (Use fractions)",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-179-flex-items-center-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 179,
+      "category": "tutorial",
+      "text": "flex items-center gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-185-w-4-32rem-h-1-62rem-text-xs",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 185,
+      "category": "tutorial",
+      "text": "w-[4.32rem] h-[1.62rem] text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-200-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 200,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-300",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-209-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 209,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-211-text-red-600-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 211,
+      "category": "tutorial",
+      "text": "text-red-600 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-211-the-answer-is-incorrect",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 211,
+      "category": "tutorial",
+      "text": "The answer is incorrect.",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-212-of-7-2-is-2-7",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 212,
+      "category": "tutorial",
+      "text": "of 7/2 is 2/7.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-214-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 214,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-222-what-s-the-proper-notation-for-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 222,
+      "category": "tutorial",
+      "text": "What's the proper notation for row scaling?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-226-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 226,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-232-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 232,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-238-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 238,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-247-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 247,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-249-text-red-600-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 249,
+      "category": "tutorial",
+      "text": "text-red-600 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-249-that-s-not-quite-right",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 249,
+      "category": "tutorial",
+      "text": "That's not quite right.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-250-the-correct-answer-is",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 250,
+      "category": "tutorial",
+      "text": "The correct answer is",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-252-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 252,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-259-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 259,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-270-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 270,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-279-now-that-we-have-the-pivot-as-a-1-what-cell-do-w",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 279,
+      "category": "tutorial",
+      "text": "Now that we have the pivot as a 1, what cell do we need to make 0?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-284-flex-items-start-gap-3",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 284,
+      "category": "tutorial",
+      "text": "flex items-start gap-3",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-286-text-red-600-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 286,
+      "category": "tutorial",
+      "text": "text-red-600 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-286-incorrect-remember-we-want-to-get-the-matrix-to-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 286,
+      "category": "tutorial",
+      "text": "Incorrect, remember we want to get the matrix to look like this:",
+      "previewKind": "instruction-box-wrong",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-287-click-on-the-cell-that-needs-to-be-0",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 287,
+      "category": "tutorial",
+      "text": "Click on the cell that needs to be 0.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-296-which-row-transformation-do-we-use-to-make-0",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 296,
+      "category": "tutorial",
+      "text": "Which row transformation do we use to make 0?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-302-flex-items-center-gap-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 302,
+      "category": "tutorial",
+      "text": "flex items-center gap-1",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-303-row-swap",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 303,
+      "category": "tutorial",
+      "text": "Row Swap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-304-w-4-h-4-text-red-600",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 304,
+      "category": "tutorial",
+      "text": "w-4 h-4 text-red-600",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-309-flex-items-center-gap-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 309,
+      "category": "tutorial",
+      "text": "flex items-center gap-1",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-310-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 310,
+      "category": "tutorial",
+      "text": "Row Scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-311-w-4-h-4-text-red-600",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 311,
+      "category": "tutorial",
+      "text": "w-4 h-4 text-red-600",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-315-row-replacement",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 315,
+      "category": "tutorial",
+      "text": "Row Replacement",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-315-we-always-use",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 315,
+      "category": "tutorial",
+      "text": "We always use",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-315-row-replacement-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 315,
+      "category": "tutorial",
+      "text": "row replacement",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-315-to-make-zeros-click-on",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 315,
+      "category": "tutorial",
+      "text": "to make zeros. Click on",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-321-what-does-the-row-replacement-transformation-loo",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 321,
+      "category": "tutorial",
+      "text": "What does the row replacement transformation look like?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-325-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 325,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-331-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 331,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-337-text-xs-bg-white-border-2-border-blue-300-rounde",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 337,
+      "category": "tutorial",
+      "text": "text-xs bg-white border-2 border-blue-300 rounded-lg hover:bg-blue-50 text-center font-mono whitespace-nowrap transition-colors flex-1 min-w-0 px-2 py-1.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-346-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 346,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-348-text-red-600-font-medium",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 348,
+      "category": "tutorial",
+      "text": "text-red-600 font-medium",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-348-that-s-not-quite-right",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 348,
+      "category": "tutorial",
+      "text": "That's not quite right.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-349-the-correct-answer-is",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 349,
+      "category": "tutorial",
+      "text": "The correct answer is",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-351-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 351,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-358-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 358,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-360-record-the-row-transformation-in-part-g-and-writ",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 360,
+      "category": "tutorial",
+      "text": "Record the row transformation in Part G and write the sum in Part H.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-366-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 366,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-374-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 374,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-376-we-have-completed-the-gauss-jordan-elimination-a",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 376,
+      "category": "tutorial",
+      "text": "We have completed the Gauss-Jordan elimination and we are now in row reduced echelon form.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-377-record-this-final-matrix",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 377,
+      "category": "tutorial",
+      "text": "Record this final matrix.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-382-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 382,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-390-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 390,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-391-the-last-column-of-the-matrix-is-the-solution-so",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 391,
+      "category": "tutorial",
+      "text": "The last column of the matrix is the solution. So our answer is:",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-398-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 398,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-406-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 406,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-part-3-410-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
+      "line": 410,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-57-0-step",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 57,
+      "category": "tutorial",
+      "text": "= 0 && step",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-59-absolute-z-30-flex-flex-col-items-center-pointer",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 59,
+      "category": "tutorial",
+      "text": "absolute z-30 flex flex-col items-center pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-61-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 61,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-62-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 62,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-63-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 63,
+      "category": "tutorial",
+      "text": "{placeholder}px",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-66-relative-bg-blue-50-border-2-border-blue-200-rou",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 66,
+      "category": "tutorial",
+      "text": "relative bg-blue-50 border-2 border-blue-200 rounded-xl shadow-xl w-full min-h-[60px] {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-66-tutorial-step-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 66,
+      "category": "tutorial",
+      "text": "Tutorial step {placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-69-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 69,
+      "category": "tutorial",
+      "text": "absolute -top-4 -left-5 w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center text-white font-bold text-sm shadow-md z-10",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-73-text-sm-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 73,
+      "category": "tutorial",
+      "text": "text-sm text-blue-800",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-75-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 75,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-76-this-tutorial-is-going-to-teach-you-how-to-use-t",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 76,
+      "category": "tutorial",
+      "text": "This tutorial is going to teach you how to use the Gauss-Jordan method to put the augmented matrix in row-reduced echelon form.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-77-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 77,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-84-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 84,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-85-our-goal-is-to-transform-our-current-matrix-into",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 85,
+      "category": "tutorial",
+      "text": "Our goal is to transform our current matrix into row-reduced echelon form.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-90-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 90,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-98-first-we-need-to-start-here-click-on-the-indicat",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 98,
+      "category": "tutorial",
+      "text": "First, we need to start here. Click on the indicated cell.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-102-flex-items-start-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 102,
+      "category": "tutorial",
+      "text": "flex items-start justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-104-row-swap",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 104,
+      "category": "tutorial",
+      "text": "Row Swap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-104-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 104,
+      "category": "tutorial",
+      "text": "Row Scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-106-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 106,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-113-row-swap",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 113,
+      "category": "tutorial",
+      "text": "Row Swap",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-113-press-the",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 113,
+      "category": "tutorial",
+      "text": "Press the",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-113-button-to-see-what-happens",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 113,
+      "category": "tutorial",
+      "text": "button to see what happens.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-117-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 117,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-118-is-only-useful-if-the-number-underneath-is-a-1-s",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 118,
+      "category": "tutorial",
+      "text": "is only useful if the number underneath is a 1. Since this was a -2, the row swap doesn't help us any.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-123-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 123,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-131-row-scaling",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 131,
+      "category": "tutorial",
+      "text": "Row Scaling",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-131-instead-let-s-try",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 131,
+      "category": "tutorial",
+      "text": "Instead, let's try",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-131-click-on-the-row-scaling-button",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 131,
+      "category": "tutorial",
+      "text": ". Click on the Row Scaling button.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-135-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 135,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-136-row-scaling-involves-multiplying-a-number-to-eac",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 136,
+      "category": "tutorial",
+      "text": "Row scaling involves multiplying a number to each of the numbers in the row.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-137-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 137,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-144-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 144,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-145-in-this-case-because-we-want-to-get-a-1-in-this-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 145,
+      "category": "tutorial",
+      "text": "In this case, because we want to get a 1 in this position, we need to multiply it by the",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-146-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 146,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-153-flex-items-center-gap-0-5",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 153,
+      "category": "tutorial",
+      "text": "flex items-center gap-0.5",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-156-transformation-notation",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 156,
+      "category": "tutorial",
+      "text": "transformation notation",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-165-ml-auto-bg-blue-600-hover-bg-blue-700-text-white",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 165,
+      "category": "tutorial",
+      "text": "ml-auto bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-173-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 173,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-174-watch-how-each-number-in-row-1-gets-multiplied-b",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 174,
+      "category": "tutorial",
+      "text": "Watch how each number in Row 1 gets multiplied by 1/4.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-179-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 179,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0 disabled:opacity-50 disabled:cursor-not-allowed",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-187-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 187,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-188-great-we-have-now-successfully-converted-the",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 188,
+      "category": "tutorial",
+      "text": "Great! We have now successfully converted the",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-188-first-pivot-position",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 188,
+      "category": "tutorial",
+      "text": "first pivot position",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-188-to-a-1-which-is-now-our-new-row-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 188,
+      "category": "tutorial",
+      "text": "to a 1, which is now our new Row 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-189-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 189,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-196-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 196,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-197-write-this-new-matrix-down-on-the-paper-for-part",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 197,
+      "category": "tutorial",
+      "text": "Write this new matrix down on the paper for Part A.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-198-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 198,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-206-font-semibold-text-green-700",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 206,
+      "category": "tutorial",
+      "text": "font-semibold text-green-700",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-206-finished-that-s-the-end-of-part-1",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 206,
+      "category": "tutorial",
+      "text": "Finished! That's the end of Part 1.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-207-flex-items-center-justify-between-gap-2",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 207,
+      "category": "tutorial",
+      "text": "flex items-center justify-between gap-2",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-208-click-the-button-to-continue",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 208,
+      "category": "tutorial",
+      "text": "Click the button to continue.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "tutorial-matrix-tutorial-overlay-215-bg-blue-600-hover-bg-blue-700-text-white-h-7-px-",
+      "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
+      "line": 215,
+      "category": "tutorial",
+      "text": "bg-blue-600 hover:bg-blue-700 text-white h-7 px-3 text-xs shrink-0",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-unguidedPracticeCopy-7-use-gauss-jordan-elimination-to-solve-type-in-yo",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/unguidedPracticeCopy.ts",
+      "line": 7,
+      "category": "unguided",
+      "text": "Use Gauss-Jordan elimination to solve. Type in your answers. Tap or click on the ordered pair to enter your answer.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-79-read-x-and-y-from-the-reduced-matrix-x-is-the-to",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 79,
+      "category": "unguided",
+      "text": "Read x and y from the reduced matrix â€” x is the top constant, y is the bottom.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-81-that-s-not-quite-right-try-again",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 81,
+      "category": "unguided",
+      "text": "That's not quite right. Try again.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-83-perfect",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 83,
+      "category": "unguided",
+      "text": "Perfect!",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-83-great-job",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 83,
+      "category": "unguided",
+      "text": "Great job!",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-83-you-got-it",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 83,
+      "category": "unguided",
+      "text": "You got it!",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-83-nice-work",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 83,
+      "category": "unguided",
+      "text": "Nice work!",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-117-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 117,
+      "category": "unguided",
+      "text": "{placeholder}/{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-139-x-y-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 139,
+      "category": "unguided",
+      "text": "(x, y) = ({placeholder}, {placeholder})",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-141-the-answer-is-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 141,
+      "category": "unguided",
+      "text": "The answer is {placeholder}.",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-361-enter-a-valid-number-or-fraction-for-x-and-y",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 361,
+      "category": "unguided",
+      "text": "Enter a valid number or fraction for x and y.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-453-enter-a-valid-number-or-fraction",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 453,
+      "category": "unguided",
+      "text": "Enter a valid number or fraction.",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-523-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 523,
+      "category": "unguided",
+      "text": "-{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-527-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 527,
+      "category": "unguided",
+      "text": "{placeholder}{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-537-submit",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 537,
+      "category": "unguided",
+      "text": "Submit",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-551-guided-practice-solver-w-full-p-8-bg-background-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 551,
+      "category": "unguided",
+      "text": "guided-practice-solver w-full p-8 bg-background text-foreground relative",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-553-relative-flex-items-start-w-full-gap-3",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 553,
+      "category": "unguided",
+      "text": "relative flex items-start w-full gap-3",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-555-relative-shrink-0-self-start",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 555,
+      "category": "unguided",
+      "text": "relative shrink-0 self-start",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-571-absolute-left-0-top-full-z-30-mt-1-pointer-event",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 571,
+      "category": "unguided",
+      "text": "absolute left-0 top-full z-30 mt-1 pointer-events-auto",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-611-practice-instructions",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 611,
+      "category": "unguided",
+      "text": "Practice instructions",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-637-flex-flex-col-items-start-gap-1-5-shrink-0-self-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 637,
+      "category": "unguided",
+      "text": "flex flex-col items-start gap-1.5 shrink-0 self-start relative z-20",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-667-number-builder",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 667,
+      "category": "unguided",
+      "text": "Number builder",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-689-unguided-practice-celebration-shrink-0-self-cent",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 689,
+      "category": "unguided",
+      "text": "unguided-practice-celebration shrink-0 self-center relative z-40 flex items-center justify-center min-w-[7rem] min-h-[4.5rem]",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-699-flex-flex-col-items-center-justify-center-gap-2-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 699,
+      "category": "unguided",
+      "text": "flex flex-col items-center justify-center gap-2 pointer-events-none",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "unguided-UnguidedPracticeSolver-701-unguided-practice-celebration-message-m-0-text-c",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
+      "line": 701,
+      "category": "unguided",
+      "text": "unguided-practice-celebration__message m-0 text-center",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    }
+  ]
+}

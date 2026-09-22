@@ -188,15 +188,11 @@ as "where did we leave off" (`SESSIONS.md` history).
 ## Session tracking — bump as you go
 
 After each **completed deliverable** ("here's the fix", "done", a refactor phase) — not after
-every tool call — run
-`node scripts/append-session-scorecard.js --bump-file <delta.json>` with `chunkNote` and
-`navigationPath`. Procedure: **`agent docs/SESSION_TRACKING.md`**. **Never read**
-the generated HTML logs; give Chase **`http://127.0.0.1:8765/session-tracking-log.html`**.
-
-**Every bump must include `navigationPath`** — ordered steps showing where you looked first,
-what helped (✓), what routed you onward (→), what was a dead end (✗), and nested `steps` for
-Task sub-agents. **`partial` / `dead-end` on a doc step means you owe an index row** — close it
-before the session ends. Index did its job → `routed`, not `partial`.
+every tool call — run `node scripts/append-session-scorecard.js --note "<what you finished>"`.
+Add `--gap "<doc>: <what was missing>"` for any doc that should have routed you but left you
+grepping — **you own adding that row** before the session ends. Tokens, model and chat size are
+recorded automatically. Procedure: **`agent docs/SESSION_TRACKING.md`**. **Never read** the
+generated HTML logs; give Chase **`http://127.0.0.1:8765/session-tracking-log.html`**.
 
 End-of-session **metrics** finalize: **`agent docs/SESSION_METRICS.md`** →
 `http://127.0.0.1:8765/session-metrics-log.html`.

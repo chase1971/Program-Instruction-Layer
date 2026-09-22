@@ -1,8 +1,0 @@
-{
-  "chunkNote": "Simplified the preview controls into one unlabeled horizontal toolbar with spaced Live/Preview, Admin/Student tester, and Landscape/Portrait button groups.",
-  "navigationPath": [
-    {"target":"visualize/SKILL.md","kind":"doc","outcome":"helpful"},
-    {"target":"agent docs/scratch/teacher-console-concept.html","kind":"code","outcome":"helpful"}
-  ],
-  "filesEdited": ["agent docs/scratch/teacher-console-concept.html"]
-}

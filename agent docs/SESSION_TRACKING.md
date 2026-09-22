@@ -1,167 +1,77 @@
 # Session tracking
 
 > **Rung 5 procedure doc** — agents read **this file** for task bumps. Metrics finalize: [SESSION_METRICS.md](./SESSION_METRICS.md).  
-> **Trigger:** After each completed task (**bump**).
+> **Trigger:** After each completed deliverable (**bump**).
 
 Chase views: **`http://127.0.0.1:8765/session-tracking-log.html`**
 
 ---
 
-## What this is
-
-**One row per completed task** — not one row per chat session. Each bump appends a collapsible entry with:
-
-- What you did (`chunkNote`)
-- How long since the previous bump (`durationLabel`)
-- Ordered **navigation path** — where you looked, ✓ / ~ / ✗
-
-Greps, files read/edited, and end-of-session totals live on [session metrics](./SESSION_METRICS.md).
-
----
-
-## After each completed task (bump)
-
-When you finish a chunk of work and report to Chase, run:
+## After each completed deliverable — one command
 
 ```powershell
-node scripts/append-session-scorecard.js --bump-file agent docs/.scorecard-bump.json
+node scripts/append-session-scorecard.js --note "Fixed D2L download stall — removed pause without resume"
 ```
 
-Give Chase: **`http://127.0.0.1:8765/session-tracking-log.html`**
+If a doc you opened **should have routed you and didn't** (you still had to grep the tree), add one
+`--gap` per doc, as `"<doc path>: <what was missing>"`:
 
-### Bump JSON example — **this task only**
-
-```json
-{
-  "chunkNote": "Investigated course rename vs folder paths — confirmed safe",
-  "addGreps": 3,
-  "addTurns": 0,
-  "navigationPath": [
-    { "target": "agent docs/INDEX.md", "kind": "doc-index", "outcome": "partial", "note": "No row — routed to app AGENTS via row 22" },
-    { "target": "School Scrips/Macro App/AGENTS.md", "kind": "doc", "outcome": "helpful" },
-    { "target": "renderer/src/hooks/shell/useRenameCoursesModal.ts", "kind": "code", "outcome": "helpful", "note": "Label-only rename" },
-    { "target": "modules/d2l/rosters_paths.py", "kind": "code", "outcome": "helpful" }
-  ],
-  "filesRead": ["School Scrips/Macro App/modules/d2l/rosters_paths.py"],
-  "filesEdited": [],
-  "docsRulesOpened": ["School Scrips/Macro App/AGENTS.md"]
-}
+```powershell
+node scripts/append-session-scorecard.js --note "Moved grade sync button" --gap "School Scrips/Macro App/AGENTS.md: no row for grade sync"
 ```
 
-### Required fields
+That's the whole bump. Don't write a JSON file, don't list the steps you took, and don't count greps or files.
 
-| Field | Required | Meaning |
-|-------|----------|---------|
-| **`chunkNote`** | Yes | One-line description of what you finished |
-| **`navigationPath`** | Yes | Ordered lookup steps for **this task** |
-| `addGreps`, `filesRead`, `filesEdited` | Optional | Feeds the metrics running file (hooks also tally) |
+**`--gap` test:** after reading the doc, did you have to *grep the tree* to find the answer?
+**No** → not a gap, even if the doc only pointed you onward or said nothing narrower exists.
+**Yes** → gap. **You own the fix:** add the row before the session ends, or say in the note why none is warranted.
 
-**Bad bumps are rejected, not guessed at.** A missing `chunkNote`, an empty `navigationPath`, or a
-step with an unknown key (e.g. `"status"`) or no `outcome` makes the script exit with the reasons
-and log **nothing**. Fix the JSON and rerun. (Until 2026-09-11 such steps were silently saved as
-`helpful`.)
+`--bump-file <path>` with `{ "chunkNote": "…", "indexGaps": [{ "doc": "…", "note": "…" }] }` still
+works. A bump with no note is rejected and logs nothing.
 
-### navigationPath outcomes
-
-| `outcome` | Marker | Meaning |
-|-----------|--------|---------|
-| `helpful` | ✓ | Got you closer to the answer |
-| `routed` | → | **The index worked.** It sent you to the right next doc, *or* it correctly told you no narrower owner exists and you stayed scoped |
-| `partial` | ~ | Some value, not a direct hit — and it didn't route you either |
-| `dead-end` | ✗ | Checked but didn't help |
-
-### `routed` vs `partial` — the one call that matters
-
-`partial` and `dead-end` on a **doc** step feed the **Real index gaps** panel. That panel is a
-to-do list, so only put something there when a row really is missing.
-
-**Use this one test.** After reading the doc, did you have to *grep the tree* to find the answer?
-
-- **No** — the doc named the next file, or correctly told you no narrower owner exists → **`routed`**
-- **Yes** — you were left hunting → **`partial`**, or **`dead-end`** if the doc was wrong or stale
-
-> **This is the most-violated field in the log.** A 2026-09-08 audit of 342 bumps found **41% of
-> flagged gaps were mislabeled** — notes reading *"no narrower recipe was needed"* and *"routed via
-> APP_LOCATIONS"* logged as `partial`. Those are the definition of `routed`. The mislabels made
-> `recipes/INDEX.md` look like it failed 79% of the time when it was working correctly.
-> **Confirming that nothing narrower exists is the index succeeding, not failing.**
-
-**If you log a doc step `partial` or `dead-end`, you own the fix** — add the row, or say in the
-`note` why no row is warranted. See [END_OF_SESSION.md](./END_OF_SESSION.md) step 6.
-
-Nested **`steps`** array = Task sub-agent branch. Use `branch` label on the parent step.
-
-Legacy shorthand `{ "step": "…", "result": "✓" }` still parses.
-
-### Honesty rule
-
-Log every lookup that did not help as `dead-end` or `partial` (or `routed` — see above). The
-navigation path is a record of where you looked, not a highlight reel.
-
-### Bump granularity
-
-One bump per **deliverable** (a fix, a feature chunk, a doc update), not per chat exchange. Q&A threads where you ask several follow-ups without new code still get one bump when the answer is done.
+**Granularity:** one bump per **deliverable** (a fix, a feature chunk, a doc update), not per chat exchange.
 
 ---
 
-## Hook-verified fields (automatic)
-
-You do not set these. The hook records the tool timeline and the transcript path; the bump slices
-both for the task window. They appear on [session tracking](http://127.0.0.1:8765/session-tracking-log.html):
+## Recorded automatically — you set none of this
 
 | Field | Meaning |
 |-------|---------|
-| `billedTokens` | **Real tokens billed for this task** — cache read + cache write + input + output. **Claude Code only:** Cursor transcripts carry no usage, so Cursor bumps have none |
-| `tokensPerTurn` | Context dragged along per assistant turn. Rises with session length, not task difficulty |
-| `tokenTurns` | Assistant replies in the window, each counted once |
-| `chatUserMessages` / `chatTranscriptKB` | Chase's messages and transcript size for this chat so far — **the only cost signal in Cursor**. KB doesn't compare across hosts (Claude Code transcripts include tool output) |
-| `chatId` | First 8 characters of the chat's id — groups the bumps from one chat |
-| `activeMs` / `activeLabel` | First-to-last tool event in the window (excludes idle gaps) |
-| `observedSearches` / `observedDocReads` | Hook-counted searches and doc reads in the window |
-| `durationMs` / `durationLabel` | Wall-clock since previous bump — **includes idle; p90 was 9.6h.** Ignore it |
+| `billedTokens`, `tokensPerTurn`, `tokenTurns`, `tokensCacheRead`, `tokensOutput` | Real tokens for this task, each reply counted once. **Claude Code only** — Cursor transcripts carry no usage |
+| `model` | From the Claude Code transcript, or the hook payload where the host sends one |
+| `chatUserMessages` / `chatTranscriptKB` / `chatId` | Chat size so far — **the only cost signal in Cursor** |
+| `activeMs` | First to last tool call in the task window (excludes idle) |
+| `durationMs` | Wall-clock since previous bump — includes idle; mostly ignore |
 
-### Removed 2026-09-08 — do not re-add
+**What the cost data showed (2026-09-21, 44 costed tasks):** 98% of billed tokens were cache
+re-reads — the conversation re-sent on every reply. Eight tasks over 40 replies used half of all
+tokens. Cost tracks **session length**, so the lever is a momentum handoff before the chat gets
+long, not fewer searches.
 
-An audit of the first 342 bumps found three metrics were measuring their own instrumentation:
+---
 
-- **`indexFirst`** — scored 0/233 tasks. It watched the tool timeline, but `AGENTS.md` and
-  `CLAUDE.md` are auto-loaded by the harness and never pass through a Read tool. It was blind to
-  the most-used index in the tree.
-- **`unexplainedSearches`** — flagged 99.2% of searches. It only recognised a logged step as a
-  search when `kind` was `grep|glob|web|search`; agents used **59 different `kind` values**. It
-  measured vocabulary drift.
-- **`pathCoverage`** — median 0.24, but a bump covers a whole deliverable, so it mostly measured
-  how long it had been since the last bump.
+## Removed — do not re-add
 
-**Cost per task replaced all three.** Greps are free; tokens are not.
-
-### Fixed 2026-09-11 — token counts were 2–4× high
-
-The reader summed every transcript line with usage, but Claude Code writes one line per content
-block (thinking, text, each tool call), each repeating the reply's usage. It now counts each reply
-once by message id. Entries recomputed afterward carry `tokensRecountedAt`; any older `billedTokens`
-without it is still high. `tokensPerTurn` was roughly right all along (both halves were inflated).
+- **2026-09-08:** `indexFirst`, `unexplainedSearches`, `pathCoverage` measured their own
+  instrumentation (0/233, 99.2%, window length). Plain-language write-up:
+  `instructional-layer-htmls/measuring-agent-efficiency.html`.
+- **2026-09-21:** the step-by-step `navigationPath`, observed search/read counts, and the metrics
+  page's grep and file counts. Across 527 bumps, 85% of self-graded steps were "helpful" and 93%
+  of tasks said step 1 helped. Agents ran a median of 15 searches but logged 4 steps. A number
+  that comes out almost the same for every task can't tell you anything. The one real
+  signal in it, docs that failed to route, is now `--gap`. Old rows keep their `navigationPath`
+  in the jsonl, and their failed doc steps still show in the page's gap table.
 
 ---
 
 ## Write-only rule
 
-| Do | Don't |
-|----|--------|
-| `--bump-file` after each deliverable | Read `session-tracking-log.html` |
-| Include `navigationPath` every bump | Skip bumps and reconstruct at end |
+Bump with `--note`. **Never read** `session-tracking-log.html` (Chase's dashboard).
+**Archive:** `agent docs/session-tracking.jsonl`.
 
-**Archive:** `agent docs/session-tracking.jsonl` (one line per bump)  
-**View:** regenerated `session-tracking-log.html`
+The Stop hook blocks finishing when ≥2 files were edited with zero bumps — see
+[SESSION_METRICS.md](./SESSION_METRICS.md) § Enforcement.
 
 ---
 
-## Why bump as you go
-
-Summarize erases chat memory — disk entries survive. Each bump is a task boundary Chase can expand to audit doc routing.
-
-Hooks still block finish when ≥2 files edited and zero bumps — see [SESSION_METRICS.md](./SESSION_METRICS.md) § Enforcement.
-
----
-
-*Updated: 2026-09-11 — tokens counted once per reply; chat size for Cursor; bad bumps rejected*
+*Updated: 2026-09-21 — bump is one command (`--note`, optional `--gap`); navigationPath retired*
