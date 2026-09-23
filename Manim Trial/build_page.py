@@ -17,6 +17,52 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
 # folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
 PAGES = [
+    ('related_rates_lighthouse', 'LighthouseSweepRate', 'related-rates-lighthouse',
+     'Related rates &mdash; lighthouse problem', 'Lighthouse problem, related rates', None,
+     'A lighthouse sits on an island 3 km from the nearest point P on a straight '
+     'shoreline, centered in the frame, and its beam sweeps at a constant angular '
+     'rate all the way from one side of P to the other. The point where the beam '
+     "hits the shore does not move at a constant rate, though &mdash; it's x = "
+     '3&times;tan(&theta;), negative to the left of P and positive to the right '
+     '&mdash; so the point crawls slowly as it passes under the lighthouse and '
+     'accelerates hard toward either end as the beam nears parallel to the shore. '
+     'Marks x&nbsp;=&nbsp;1&nbsp;km, the distance the textbook question asks about. '
+     'The real 4 rev/min sweep (8&pi;/60&nbsp;&approx;&nbsp;0.42 rad/sec) would cover '
+     'this whole range in a couple of seconds &mdash; too fast to watch the '
+     'crawl-then-blur happen at both ends &mdash; so it is slowed to roughly a third '
+     'of real speed here; the 3 km distance and the tangent relationship stay exact.'),
+    ('related_rates_cone', 'ConeLevelRate', 'related-rates-cone',
+     'Related rates &mdash; conical tank problem', 'Cone problem, related rates', None,
+     "Water pours into a downward-pointing cone at a constant rate. The surface "
+     "radius is proportional to the depth (similar triangles, r/h = R/H) &mdash; a "
+     'blue arrow shows that radius directly as it grows. Because the cross-section '
+     "widens as the water rises, the depth's rise rate does the opposite of the "
+     'square and ladder clips: flashes start fast near the point and land farther '
+     'apart as the water climbs. Marks h&nbsp;=&nbsp;4&nbsp;cm, the depth the '
+     'textbook question asks about. Sped up 1.5&times; from the real 10 cm&sup3;/sec '
+     'pour-in rate.'),
+    ('related_rates_drain', 'TankDrainRate', 'related-rates-drain',
+     'Related rates &mdash; draining tank problem', 'Draining tank problem, related rates', None,
+     "Water drains from an upright cylindrical tank at a constant rate. Because the "
+     "tank's radius never changes with height, the water level flashes gold at even, "
+     'steady intervals &mdash; not speeding up like the square or ladder clips. That '
+     'evenness is the whole point of the &ldquo;constant dimension&rdquo; case: fixed '
+     'cross-sectional area means a fixed rate of drop. Sped up from the real ~0.02 '
+     'cm/sec drain rate so the pattern is visible in a few seconds.'),
+    ('related_rates_ladder', 'LadderSlideRate', 'related-rates-ladder',
+     'Related rates &mdash; ladder problem', 'Ladder problem, related rates', None,
+     "A 13 ft ladder's foot is pulled away from the wall at a constant 2 ft/sec. "
+     'The height on the wall flashes gold on every whole foot &mdash; the flashes '
+     "land closer together as the ladder falls, because the top's rate of descent "
+     "keeps climbing even though the foot's rate never does. Marks x&nbsp;=&nbsp;5 ft, "
+     'the distance the textbook question asks about. Plays in real time.'),
+    ('related_rates_square', 'SquareAreaRate', 'related-rates-square',
+     'Related rates &mdash; square problem', 'Square problem, related rates', None,
+     'A square\'s side grows at a constant rate. The area value ticks up and flashes '
+     'gold every time it crosses a whole number &mdash; the flashes land closer '
+     'together as the clip goes on, because the area\'s rate keeps climbing even '
+     'though the side\'s rate never does. Sped up from the textbook\'s 3 in/min so '
+     'the pattern is visible in a few seconds; the side still runs up to 9 in.'),
     ('fraction_add_fractions', 'FractionAddFractions', 'fraction-add-fractions',
      'Add fractions with common denominators', 'Fraction addition help',
      'fraction_add_fractions_marks.json',
