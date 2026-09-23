@@ -17,6 +17,18 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
 # folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
 PAGES = [
+    ('related_rates_rocket', 'RocketAngleRate', 'related-rates-rocket',
+     'Related rates &mdash; rocket problem', 'Rocket problem, related rates', None,
+     'A rocket launches straight up at a constant speed while you watch from a fixed '
+     "point 30 miles away. The angle of elevation doesn't grow at a constant rate, "
+     'though: tan(&theta;) = h/30 means the angle races upward right after launch, '
+     'while the rocket is still near the horizon, then grows slower and slower as it '
+     'climbs &mdash; flashes start fast and land farther apart, the same decelerating '
+     'family as the cone problem. A live arc at your position traces the angle '
+     'directly. Marks t&nbsp;=&nbsp;12&nbsp;min, the moment the textbook question asks '
+     'about. The real 4 mi/min climb would take the full 20 simulated minutes to play '
+     'out &mdash; far too slow to watch &mdash; so the flight is sped way up; the 30 '
+     'mile distance and the tangent relationship stay exact.'),
     ('related_rates_lighthouse', 'LighthouseSweepRate', 'related-rates-lighthouse',
      'Related rates &mdash; lighthouse problem', 'Lighthouse problem, related rates', None,
      'A lighthouse sits on an island 3 km from the nearest point P on a straight '
