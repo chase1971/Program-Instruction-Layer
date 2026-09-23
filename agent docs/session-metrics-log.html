@@ -68,11 +68,41 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>120</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:45 PM · Monday, Sep 21, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>121</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:45 PM · Tuesday, Sep 22, 2026</dd></div>
     </div>
     
     <section class="day-block">
+      <h2 class="day-title">Tuesday, Sep 22, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">9:45 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Shipped exit-ticket UX (Back/Next, year dropdown, hide after first submit), fixed survey save/delete bugs and restored Math Survey to 16 questions after an accidental diagnostic trim. Student Tester portal-access work from the handoff remains uncommitted across three repos.</p>
+    <div class="metric-grid"><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>39</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Chat messages</abbr></dt>
+    <dd>13</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>18</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>18 task(s)</summary>
+    <ul class="task-list"><li>3:03 PM — Teacher Console past announcements panel + recovered M1324 welcome announcement text from Supabase</li><li>3:08 PM — Past announcements separate Teacher Console screen with copy, edit, and permanent delete</li><li>5:46 PM — Exit ticket survey mode + short-answer text questions in parser, portal, and Supabase</li><li>5:56 PM — Exit ticket opt-in access: migration 055, roster bulk activate, publish navigates to Students &amp; responses</li><li>5:58 PM — Surveys use custom names only — removed auto Exit Ticket date titles and date labels in lists</li><li>6:02 PM — Fix stale survey titles in app switcher — sync ticket cache after rename/save</li><li>6:09 PM — Momentum handoff: student tester cross-course portal survey visibility</li><li>6:13 PM — Fixed roster Student Tester portal preview: no previewSection override, TC course-tab code switch</li><li>6:20 PM — Portal link email messages modal — save/edit templates like makeup exam</li><li>6:24 PM — Student Tester migrated to shared multi-section tester (W8K2P4); sync + portal section fix</li><li>6:28 PM — Fix Student Tester app access: include shared tester IDs, show Activate when not in course, strip legacy map rows</li><li>6:35 PM — Fixed Preview testers panel to constant width (teacher-console-workspaces.css)</li><li>6:44 PM — Found + fixed real bug: stale MATH-1314 section UUID in portalAccess.ts blocked whole portal since Sep 17; fix builds clean, not yet deployed (Chase chose Preview-first)</li><li>9:04 PM — Built 4 Manim related-rates clips (square, ladder, draining cylinder, cone) and delivered via localhost:8765; performed momentum handoff for the lighthouse problem</li><li>9:27 PM — Exit ticket UX: Back/Next nav, select/year dropdown paste type, hide once-policy tiles after submit</li><li>9:32 PM — Fix exit ticket save: restore delete-removed-questions, select type in update payload, header Back label</li><li>9:39 PM — Exit ticket edit UX: live paste vs DB count, save always re-parses; Math Survey DB verified</li><li>9:42 PM — Restored Math Survey to 16 questions after accidental diagnostic deletion</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Accidentally deleted 4 Math Survey questions during a DB diagnostic — restored from Chase's original paste in chat history. Do not run shrink tests against live activities.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Never mutate live Supabase activity rows during debugging — use read-only queries or a throwaway activity id.</div>
+    <p class="next"><strong>Next time:</strong> Chase edits Math Survey to his preferred 12 in TC (Parse → Save, watch paste vs database counts), verifies Preview with Student Tester, then asks to deploy student-portal when ready.</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Monday, Sep 21, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
