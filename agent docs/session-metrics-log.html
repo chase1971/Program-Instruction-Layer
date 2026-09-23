@@ -68,13 +68,38 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>122</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:18 PM · Tuesday, Sep 22, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>123</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:20 PM · Tuesday, Sep 22, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Tuesday, Sep 22, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:20 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="No task bumps were logged during this session, so the task list is missing.">No task bumps</span>
+      </div>
+      <div class="model">claude-sonnet-5</div>
+    </header>
+    <p class="summary-human">Audited the Teacher Console to Supabase to Student Portal pipeline for data safety and course switching. Removed the one-click Reset all progress, made course tabs move the preview tester via grant_student_membership, and deployed the portal with the M1314 section gate fix.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>1</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>—</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> A parallel session was editing the same repos (056/057 migrations, commits) at the same time; course map files carry stale sectionId values that do not match the database.</div>
+    <p class="next"><strong>Next time:</strong> Remaining audit items: exit-ticket access stored as sparse rows (055 silently turned off M1324 Math App Survey for 13 in-progress students); Copy SQL registration path uses stale map.sectionId; leftover ROSTER-STUDENT-TESTER code; per-student Clear scores still hard-deletes.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">10:18 PM</span>
