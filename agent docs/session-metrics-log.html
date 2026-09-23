@@ -68,8 +68,8 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>122</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:45 PM · Monday, Sep 21, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>125</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:20 PM · Tuesday, Sep 22, 2026</dd></div>
     </div>
     <section class="day-block">
       <h2 class="day-title">Current session (live tally)</h2>
@@ -90,19 +90,104 @@
     <dd>—</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
-    <dd>4</dd>
+    <dd>7</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
     <dd>0</dd>
   </div></div>
-    <details class="file-details"><summary>4 task(s)</summary>
-    <ul class="task-list"><li>10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</li><li>10:52 AM — Added toolbar gear button to open Settings, same dwell style as stylus</li><li>9:10 AM — Seating Chart queued retired MATH-0324 NCBO because it reads leftover d2l-courses.json entries, not Macro App's active list</li><li>9:23 AM — Seating Chart now hides Macro-retired leftover courses from the room queue and dropdown</li></ul>
+    <details class="file-details"><summary>7 task(s)</summary>
+    <ul class="task-list"><li>10:27 AM — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</li><li>10:52 AM — Added toolbar gear button to open Settings, same dwell style as stylus</li><li>9:10 AM — Seating Chart queued retired MATH-0324 NCBO because it reads leftover d2l-courses.json entries, not Macro App's active list</li><li>9:23 AM — Seating Chart now hides Macro-retired leftover courses from the room queue and dropdown</li><li>7:48 AM — Pulled relevant repos on the laptop: Macro App GP statistics, student-portal and Matrix GP submit fixes, electron-toolbar scroll-zone split, and merged Programs session tracking.</li><li>7:52 AM — Applied leftover Macro App stash: kept laptop preview hide/sync and editor caret fixes, left newer Guided Practice / first-paint files from the pull.</li><li>9:39 AM — Fix laptop sleep white shell: reload Vite dev renderer and reattach browser slots on resume/unlock (ERR_NETWORK_CHANGED).</li></ul>
   </details>
     
     
   </article></div>
     </section>
     <section class="day-block">
+      <h2 class="day-title">Tuesday, Sep 22, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:20 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="No task bumps were logged during this session, so the task list is missing.">No task bumps</span>
+      </div>
+      <div class="model">claude-sonnet-5</div>
+    </header>
+    <p class="summary-human">Audited the Teacher Console to Supabase to Student Portal pipeline for data safety and course switching. Removed the one-click Reset all progress, made course tabs move the preview tester via grant_student_membership, and deployed the portal with the M1314 section gate fix.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>1</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>—</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> A parallel session was editing the same repos (056/057 migrations, commits) at the same time; course map files carry stale sectionId values that do not match the database.</div>
+    <p class="next"><strong>Next time:</strong> Remaining audit items: exit-ticket access stored as sparse rows (055 silently turned off M1324 Math App Survey for 13 in-progress students); Copy SQL registration path uses stale map.sectionId; leftover ROSTER-STUDENT-TESTER code; per-student Clear scores still hard-deletes.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:18 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">claude-sonnet-5</div>
+    </header>
+    <p class="summary-human">Built and delivered the two 'angle' related-rates Manim clips (lighthouse #9, rocket #8) matching the existing square/ladder/drain/cone style, iterating on lighthouse per feedback to center it and show a signed left/right sweep. Wrapped the session: committed and pushed Programs, student-portal, and student-session-kit, and logged the first Manim Trial SESSIONS.md entry.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>7</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>1.4M</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>238k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>3</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>3 task(s)</summary>
+    <ul class="task-list"><li>9:51 PM — Built and wired in lighthouse (centered, symmetric sweep) and rocket related-rates Manim clips (worksheet #8/#9)</li><li>9:52 PM — Portal pipeline audit; removed Reset all progress; course tab now moves Student Tester/admin via grant_student_membership</li><li>9:55 PM — Deployed student portal to Netlify (M1314 section gate fix live)</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Rocket problem's marker is time-based (t = 12 min) rather than spatial, since the worksheet question is framed by elapsed time; first use of Manim's Angle mobject in this folder for a live elevation-angle arc.</div>
+    <p class="next"><strong>Next time:</strong> Worksheet problems #2-4 and #10-11 remain unbuilt if Chase wants more related-rates clips; nothing pending was requested.</p>
+  </article><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">9:45 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Shipped exit-ticket UX (Back/Next, year dropdown, hide after first submit), fixed survey save/delete bugs and restored Math Survey to 16 questions after an accidental diagnostic trim. Student Tester portal-access work from the handoff remains uncommitted across three repos.</p>
+    <div class="metric-grid"><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>39</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Chat messages</abbr></dt>
+    <dd>13</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>18</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>18 task(s)</summary>
+    <ul class="task-list"><li>3:03 PM — Teacher Console past announcements panel + recovered M1324 welcome announcement text from Supabase</li><li>3:08 PM — Past announcements separate Teacher Console screen with copy, edit, and permanent delete</li><li>5:46 PM — Exit ticket survey mode + short-answer text questions in parser, portal, and Supabase</li><li>5:56 PM — Exit ticket opt-in access: migration 055, roster bulk activate, publish navigates to Students &amp; responses</li><li>5:58 PM — Surveys use custom names only — removed auto Exit Ticket date titles and date labels in lists</li><li>6:02 PM — Fix stale survey titles in app switcher — sync ticket cache after rename/save</li><li>6:09 PM — Momentum handoff: student tester cross-course portal survey visibility</li><li>6:13 PM — Fixed roster Student Tester portal preview: no previewSection override, TC course-tab code switch</li><li>6:20 PM — Portal link email messages modal — save/edit templates like makeup exam</li><li>6:24 PM — Student Tester migrated to shared multi-section tester (W8K2P4); sync + portal section fix</li><li>6:28 PM — Fix Student Tester app access: include shared tester IDs, show Activate when not in course, strip legacy map rows</li><li>6:35 PM — Fixed Preview testers panel to constant width (teacher-console-workspaces.css)</li><li>6:44 PM — Found + fixed real bug: stale MATH-1314 section UUID in portalAccess.ts blocked whole portal since Sep 17; fix builds clean, not yet deployed (Chase chose Preview-first)</li><li>9:04 PM — Built 4 Manim related-rates clips (square, ladder, draining cylinder, cone) and delivered via localhost:8765; performed momentum handoff for the lighthouse problem</li><li>9:27 PM — Exit ticket UX: Back/Next nav, select/year dropdown paste type, hide once-policy tiles after submit</li><li>9:32 PM — Fix exit ticket save: restore delete-removed-questions, select type in update payload, header Back label</li><li>9:39 PM — Exit ticket edit UX: live paste vs DB count, save always re-parses; Math Survey DB verified</li><li>9:42 PM — Restored Math Survey to 16 questions after accidental diagnostic deletion</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Accidentally deleted 4 Math Survey questions during a DB diagnostic — restored from Chase's original paste in chat history. Do not run shrink tests against live activities.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Never mutate live Supabase activity rows during debugging — use read-only queries or a throwaway activity id.</div>
+    <p class="next"><strong>Next time:</strong> Chase edits Math Survey to his preferred 12 in TC (Parse → Save, watch paste vs database counts), verifies Preview with Student Tester, then asks to deploy student-portal when ready.</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Monday, Sep 21, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
