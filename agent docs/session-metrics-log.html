@@ -68,13 +68,43 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>127</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">1:50 PM · Wednesday, Sep 23, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>128</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:34 PM · Wednesday, Sep 23, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Wednesday, Sep 23, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">7:34 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">bugfix</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Found why the slim build's Settings window still got stuck under the browser on a fresh work laptop: a second race where the browser's first slow load finished while Settings was open and forced the browser back on top. Fixed it in both the renderer and main process with regression tests, rebuilt the slim installer, and copied it to the USB.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>17</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>2.0M</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>165k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>15</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>15 task(s)</summary>
+    <ul class="task-list"><li>4:24 PM — Math Survey statistics — response counts per option in Teacher Console Statistics tab</li><li>4:35 PM — Survey statistics polish — filter year dropdown, tighter bars, hover tooltips with student names, text response grouping</li><li>6:53 PM — Activity workspace scroll rails — roster, responses, and statistics tabs constrain height and scroll</li><li>7:00 PM — Identifying GP: inline badge hint replaces modal, per-problem trigger, overflow fix</li><li>7:01 PM — Hint modals: prominent sticky X, removed bottom Got it buttons</li><li>7:01 PM — Portal embed: eq-ask-highlight pulse CSS for equation highlighted value</li><li>7:09 PM — Transformations Homework: unified GP-style home, Start/Resume, resume popup fix</li><li>7:13 PM — Macro App: fixed Settings modal stuck under browser on fresh slim install (activation race: renderer ensureLiveBrowser + main post-await attach + empty detach)</li><li>7:15 PM — Fix identifying resume infinite loop — restore once, progress save on phase</li><li>7:17 PM — Built slim installer 0.1.33 with Settings-over-browser fix; copied to USB H:</li><li>7:21 PM — Identifying resume: no intro/hint popups on reload, portal intro gate, sessionStorage bootstrap</li><li>7:22 PM — Identifying GP: manual Next on all correct screens, removed auto-advance</li><li>7:26 PM — Macro TC preview Refresh: reload browser first, fix stuck Refreshing button</li><li>7:31 PM — Hide duplicate transformations classwork tiles; redirect legacy quiz routes to homework shell</li><li>7:33 PM — Momentum handoff: TC Preview Refresh broken + Transformations Homework local state</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> The 9/18 flushSync fix was real but incomplete; dev PCs can't reproduce because slots are already live. Built without build:python because the dev app locked python-runtime; version stayed 0.1.33 and overwrote the old broken 0.1.33 installer.</div>
+    <p class="next"><strong>Next time:</strong> Confirm the new 0.1.33 slim installer's Settings modal on the work laptop; if still stuck, capture the [BrowserSlot] log lines around the Settings click.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">1:50 PM</span>
