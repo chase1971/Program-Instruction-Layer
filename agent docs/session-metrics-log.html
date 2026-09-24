@@ -68,13 +68,43 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>128</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:34 PM · Wednesday, Sep 23, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>129</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:43 PM · Wednesday, Sep 23, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Wednesday, Sep 23, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">9:43 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">refactor</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+      </div>
+      <div class="model">claude-opus-5-5</div>
+    </header>
+    <p class="summary-human">Removed the Assignment Assistant engine's old patch system, 11 dead server endpoints and small leftovers, and wired the engine's node and pytest suites into ci:local and GitHub CI. Remaining cleanup is written up in docs/plans/AA_ENGINE_CLEANUP_REMAINING_PLAN.md.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>25</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>41.9M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>254k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>12</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>12 task(s)</summary>
+    <ul class="task-list"><li>8:04 PM — Assignment Assistant de-jank: keep-alive tab slot, freeze-after-load for email/stats/picker, log echo dedupe, no visibility overlay flash, no backdrop dismiss, sidebar portal/CSS scope, grade review seed, async python probe</li><li>8:15 PM — Fixed TC Preview Refresh: cache-bust navigate, await reload fallback, [PortalPreviewRefresh] DevTools logging, Console errors panel reverted</li><li>8:19 PM — TC Preview Refresh: reload-first (no section lookup block), button clears in ~12s, dev server waitUntilReady</li><li>8:30 PM — TC Preview Refresh root cause: slot restart + classwork cache bust on _tcRefresh; stale webview localStorage showed old transformation tiles</li><li>8:31 PM — AA engine phase 2: split quizGraderService.ts (1149 -&gt; barrel + 6 domain files, 37 dead exports removed) and useOption2Actions.ts (1682 -&gt; 81-line orchestrator + 7 factory files, 9 dead handlers removed); engine tsc no new errors, ci:local + real-engine vite build pass</li><li>8:36 PM — Fixed TC preview infinite activate loop (reloadSlot dep); removed ClassworkView from portal home; default preview source dev</li><li>8:45 PM — Restored teacher-posted app tiles (ClassworkView) on portal home — survey was removed by mistake</li><li>8:55 PM — AA engine phase 2 cont.: split grading_processor.py (1027 -&gt; 477 + zip_intake 257 + grading_steps 237, 2 dead fns) and routes/quiz.js (963 -&gt; 17-line mount + 3 sub-routers, 4 dead endpoints); AST/route-hash verified, engine pytest 34/34, headless server smoke, ci:local pass</li><li>9:06 PM — Fixed Transformations Homework infinite loop: portalHost no longer tracks live savedProgress; graphing restore applies once</li><li>9:18 PM — Removed AA engine patch system (patch-manager, runtime-config, /api/patches, PYTHONPATH/script override, showPatchManager state); ci:local, pytest, smoke test pass</li><li>9:28 PM — Removed 11 dead AA engine endpoints + 2 orphaned helpers; ci:local and smoke test pass</li><li>9:35 PM — AA leftovers: removed D2L_FRONTEND_STATIC_DIR block + prepare-python.bat; engine node+pytest suites wired into ci:local and GitHub CI</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Handoff's tsc baseline of 97 counts engine-src errors only; a temp tsconfig that includes renderer tests reports ~195. Engine pytest needs -s because user_messages/logger.py rewraps stdout.</div>
+    <p class="next"><strong>Next time:</strong> Check GitHub CI run for the new AA engine steps, then work AA_ENGINE_CLEANUP_REMAINING_PLAN.md starting with dead class_manager_cli.py subcommands.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">7:34 PM</span>
