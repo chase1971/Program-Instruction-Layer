@@ -56,13 +56,13 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>599</dd></div>
-      <div><dt>Tasks today</dt><dd>29</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.6M (of 54 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>182k</dd></div>
-      <div><dt>Total billed</dt><dd>233.8M</dd></div>
+      <div><dt>Total tasks</dt><dd>604</dd></div>
+      <div><dt>Tasks today</dt><dd>2</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.4M (of 55 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>186k</dd></div>
+      <div><dt>Total billed</dt><dd>235.1M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:35 PM · Wednesday, Sep 23, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:07 AM · Thursday, Sep 24, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
@@ -76,8 +76,56 @@
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Sep 23, 2026 <span class="day-count">29 tasks</span></h2>
+      <h2 class="day-title">Thursday, Sep 24, 2026 <span class="day-count">2 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:07 AM — Fixed Teacher Console embedded preview refresh and responsiveness: navigation now reuses the browser slot, optional phone emulation fails open after 750ms, and the Transformations session logger is referentially stable so portal progress no longer creates a render loop that delays refresh completion.</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>45m 1s since previous task (includes idle)<br>Chat so far: 3 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:22 AM — Fixed new Teacher Console launch hang: bounded preview phone-emulation debugger setup at 5s, detach and fail open so slot creation/navigation continue; added hung-debugger regression test. Repeated Refresh remains serialized and non-destructive.</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>8h 6m since previous task (includes idle)<br>Chat so far: 3 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Wednesday, Sep 23, 2026 <span class="day-count">32 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:15 PM — Fixed Teacher Console preview Refresh whiteout: replaced destructive WebContents restart with serialized cache-busted in-place navigation, removed uncancelled refresh timeout, unified initial load and Refresh ownership, and added repeated-refresh regression coverage.</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4s active tool time<br>2m 2s since previous task (includes idle)<br>Chat so far: 3 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:11 PM — Confirmed second-refresh whiteout from new runtime logs: preview restart stalls after blank slot creation while awaiting phone-emulation debugger setup; no thrown error reaches renderer.</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>21m 29s since previous task (includes idle)<br>Chat so far: 5 message(s), 1398 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:49 PM — Diagnosed Teacher Console embedded-preview Refresh hard crash: new destructive slot restart hangs on phone-emulation debugger attach; uncancelled timeout permits overlapping restart that kills Electron.</span>
+      <span class="pill p0">1.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 31s active tool time<br>6m 29s since previous task (includes idle)<br>1.3M tokens over 7 turn(s) · 186k/turn · 1.3M cache read · 2k output<br>Chat so far: 5 message(s), 1398 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">9:35 PM — AA leftovers: removed D2L_FRONTEND_STATIC_DIR block + prepare-python.bat; engine node+pytest suites wired into ci:local and GitHub CI</span>
       <span class="pill p0">2.4M tokens</span>

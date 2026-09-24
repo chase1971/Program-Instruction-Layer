@@ -68,13 +68,73 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>129</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:43 PM · Wednesday, Sep 23, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>130</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:13 PM · Wednesday, Sep 23, 2026</dd></div>
     </div>
+    <section class="day-block">
+      <h2 class="day-title">Current session (live tally)</h2>
+      <div class="day-sessions"><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:13 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p0" title="Updates after each completed task.">In progress</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Session in progress…</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>—</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>3</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>3 task(s)</summary>
+    <ul class="task-list"><li>10:15 PM — Fixed Teacher Console preview Refresh whiteout: replaced destructive WebContents restart with serialized cache-busted in-place navigation, removed uncancelled refresh timeout, unified initial load and Refresh ownership, and added repeated-refresh regression coverage.</li><li>6:22 AM — Fixed new Teacher Console launch hang: bounded preview phone-emulation debugger setup at 5s, detach and fail open so slot creation/navigation continue; added hung-debugger regression test. Repeated Refresh remains serialized and non-destructive.</li><li>7:07 AM — Fixed Teacher Console embedded preview refresh and responsiveness: navigation now reuses the browser slot, optional phone emulation fails open after 750ms, and the Transformations session logger is referentially stable so portal progress no longer creates a render loop that delays refresh completion.</li></ul>
+  </details>
     
+    
+  </article></div>
+    </section>
     <section class="day-block">
       <h2 class="day-title">Wednesday, Sep 23, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:13 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Fixed the Transformations Homework infinite React update loop on the student portal by snapshotting resume progress once and stopping the embed from re-firing onProgress when portalHost identity changed. Graphing restore now applies once like Identifying. Tests pass locally; portal and transformations-app commits exist but were not pushed per Chase.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>2</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>1.3M</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>186k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>2</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>2 task(s)</summary>
+    <ul class="task-list"><li>9:49 PM — Diagnosed Teacher Console embedded-preview Refresh hard crash: new destructive slot restart hangs on phone-emulation debugger attach; uncancelled timeout permits overlapping restart that kills Electron.</li><li>10:11 PM — Confirmed second-refresh whiteout from new runtime logs: preview restart stalls after blank slot creation while awaiting phone-emulation debugger setup; no thrown error reaches renderer.</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Chase still working on Teacher Console preview Refresh (whiteout on second refresh) — left uncommitted/unpushed.</div>
+    <p class="next"><strong>Next time:</strong> Finish TC preview Refresh fix in Macro App; deploy student-portal when Chase confirms Preview.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">9:43 PM</span>
