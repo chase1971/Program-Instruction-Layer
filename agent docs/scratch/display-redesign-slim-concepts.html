@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Display settings — slim hybrid-slider concepts</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 20px 18px 40px; }
+    .back {
+      display: inline-block;
+      min-height: 32px;
+      padding: 6px 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    h1 { margin: 0 0 6px; font-size: 1.35rem; }
+    .intro { margin: 0 0 8px; color: var(--muted); font-size: 0.92rem; }
+    .spec {
+      margin: 0 0 20px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: 0.88rem;
+    }
+    .spec strong { color: #1e40af; }
+    .concepts { display: flex; flex-direction: column; gap: 22px; }
+    .concept {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .concept__header { padding: 12px 14px 10px; border-bottom: 1px solid var(--border); }
+    .concept__header h2 { margin: 0 0 4px; font-size: 1.05rem; }
+    .concept__header p { margin: 0; font-size: 0.88rem; color: var(--muted); }
+    .concept__img-wrap { padding: 10px; background: #eef2f7; }
+    .concept__img-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/pages.html">← All pages</a>
+    <h1>Display settings — slim hybrid-slider concepts</h1>
+    <p class="intro">2026-09-24 · Normal desktop density · Short slider + ± end caps · 5% steps</p>
+    <p class="spec">
+      <strong>Control pattern:</strong> click the track to jump (~70% from 100% in one click);
+      ± buttons for fine tune in 5% steps. Slider is <em>short</em>, not full-width.
+      Portal preview on its own tab where noted.
+    </p>
+
+    <div class="concepts">
+      <article class="concept">
+        <div class="concept__header">
+          <h2>1 — Hybrid slider rows (baseline)</h2>
+          <p>App UI and Browser each: [−] short slider [+]. Location dropdown. Compact pills for active location.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-slim-concept-1-hybrid-slider.png" alt="Concept 1" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>2 — Portal sidebar tab</h2>
+          <p>Display · Portal · Computer · Logins. Display = hybrid sliders only. Optional “Link browser to app”.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-slim-concept-2-portal-tab.png" alt="Concept 2" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>3 — Quick chips + hybrid slider</h2>
+          <p>Jump chips (70…95, Fit) for coarse set; hybrid slider below for tweak. 5% tick marks on track.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-slim-concept-3-chips-plus-slider.png" alt="Concept 3" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>4 — Two-column</h2>
+          <p>Location list left; hybrid sliders right per location. Portal collapsed to one line.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-slim-concept-4-two-col-hybrid.png" alt="Concept 4" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>5 — Unified scale (linked by default)</h2>
+          <p>One hybrid slider for App &amp; browser; toggle reveals separate Browser slider. Portal on own tab.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-slim-concept-5-unified-hybrid.png" alt="Concept 5" />
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

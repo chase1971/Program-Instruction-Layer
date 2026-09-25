@@ -506,10 +506,12 @@ See `CODING_STANDARDS.md` (max 800 lines).
 
 This app is operated by head-mounted gyroscopic mouse + dwell-click. Every UI
 must have:
-- Large click targets (min 44px, prefer 60px+)
+- **Slim, normal desktop density** — do not inflate every button for dwell; see
+  [head-mouse-ui-density.md](./head-mouse-ui-density.md)
+- Scroll rails where regions scroll ([vertical-scroll-rail.md](./vertical-scroll-rail.md))
 - No hover-only menus or tooltips
 - No required typing
-- Dwell-friendly buttons (no fast-vanishing UI)
+- No fast-vanishing UI (no backdrop dismiss on modals)
 
 ## Module Pattern
 

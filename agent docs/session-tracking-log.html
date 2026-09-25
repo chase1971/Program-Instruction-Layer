@@ -56,28 +56,220 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>615</dd></div>
-      <div><dt>Tasks today</dt><dd>13</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.4M (of 55 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>186k</dd></div>
-      <div><dt>Total billed</dt><dd>235.1M</dd></div>
+      <div><dt>Total tasks</dt><dd>636</dd></div>
+      <div><dt>Tasks today</dt><dd>7</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.2M (of 60 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>175k</dd></div>
+      <div><dt>Total billed</dt><dd>247.8M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:22 PM · Thursday, Sep 24, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">1:35 PM · Friday, Sep 25, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>20</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>11</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>7</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>20</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>11</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li><li><code>APP_LOCATIONS.md</code> — No Teacher Console or matrix tutorial alias; added rows<span class="gap-task">3:32 PM · Sunday, Sep 13, 2026 — Refactoring survey of Teacher Console, student portal, and matrix tutorial (report only, no code edits)</span></li><li><code>agent docs/INDEX.md</code> — No Manim row existed — index gap repaid in this same task by adding the row<span class="gap-task">11:26 PM · Tuesday, Sep 8, 2026 — Made Manim Trial searchable, indexed, and version-controlled (pushed 6666e8b)</span></li><li><code>agent docs/rules/html-delivery.md</code> — Claimed the front door is agent docs/index.html at 8765/ - wrong, and the cause of the bad links. Rewritten with the shadowing warning.<span class="gap-task">11:14 PM · Tuesday, Sep 8, 2026 — Fixed silent URL shadowing: School documents/index.html won every collision at / and /index.html, so 39 back-links across 29 agent-docs pages landed on Pearson Exam Maps. Front door renamed to pages.html; all links and 3 generators repointed</span></li><li><code>APP_LOCATIONS.md</code> — L131 pointed at C:\Users\chase\Documents\D2L Assignment Assistant, deleted today; AA engine is vendored in Macro App. Owned the fix: repointed the row.<span class="gap-task">5:03 PM · Monday, Sep 7, 2026 — Diagnosed failed prod-renderer task (stale workspace folder broke all Grep calls); confirmed slim build already ships browser/makeup-exam/email; fixed stale APP_LOCATIONS row and added MISSING PATHS check to check-docs.js</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Gotchas cover an aborted build leaving slim build.config.json behind, but never say the slim build SHARES %APPDATA%/macro-app with the main app. That is the actual hazard and it cost a day of broken gradebooks. Owed doc row - added below.<span class="gap-task">12:08 PM · Monday, Sep 7, 2026 — Macro App: found slim build shared userData and clobbered the gradebook storage root; restored courses + root, isolated userData per build profile (Makeup Exam profile stays shared), added [boot] startup timing</span></li><li><code>electron-toolbar/docs/LAUNCHER_PANEL.md</code> — Path in root AGENTS.md line 125 does not exist — the file is at docs/recipes/LAUNCHER_PANEL.md. Fixed the link in root AGENTS.md.<span class="gap-task">11:38 AM · Monday, Sep 7, 2026 — Added a horizontal 812x460 Student Portal launcher as an apps.json view variant, wired it into the Launcher Panel grid, and fixed the dead LAUNCHER_PANEL.md path in root AGENTS.md</span></li><li><code>agent docs/recipes/INDEX.md</code> — Grepped for landscape/orientation — only Chrome window geometries in LAUNCHER.md. No recipe owns per-orientation layout; this is the first one in the tree. Row owed if the pattern spreads to a second app.<span class="gap-task">8:27 AM · Monday, Sep 7, 2026 — Student Portal: header hidden during a quiz with a Back button in its place, plus a landscape/short-viewport compact layout driven by CSS variables</span></li><li><code>agent docs/INDEX.md</code> — No row for phone/mobile/remote access to this tree. Owe a row once the worker is running.<span class="gap-task">6:34 PM · Sunday, Sep 6, 2026 — Researched phone-to-desktop Cursor access; installed agent CLI (2026.09.02-c22c1a3) on this machine. My Machines worker is the fit; blocked on Chase running `agent login`.</span></li><li><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code> — MY BUG: risk cards 4/5/7 still described the pre-fix state after last session's work landed, so Chase re-raised issues already closed. Fixed the cards; the lesson is that a status-bearing HTML must be updated in the same turn as the fix it describes<span class="gap-task">12:33 PM · Sunday, Sep 6, 2026 — Encrypted the Supabase service role key with DPAPI (mirrors vision-key-store); recorded Chase's 2026-09-06 positions on client-side grading, link sharing, dropped students, repo privacy, and per-teacher code prefixes; de-staled the pipeline infographic</span></li></ul>
+      <ul class="gap-list"><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li><li><code>APP_LOCATIONS.md</code> — No Teacher Console or matrix tutorial alias; added rows<span class="gap-task">3:32 PM · Sunday, Sep 13, 2026 — Refactoring survey of Teacher Console, student portal, and matrix tutorial (report only, no code edits)</span></li><li><code>agent docs/INDEX.md</code> — No Manim row existed — index gap repaid in this same task by adding the row<span class="gap-task">11:26 PM · Tuesday, Sep 8, 2026 — Made Manim Trial searchable, indexed, and version-controlled (pushed 6666e8b)</span></li><li><code>agent docs/rules/html-delivery.md</code> — Claimed the front door is agent docs/index.html at 8765/ - wrong, and the cause of the bad links. Rewritten with the shadowing warning.<span class="gap-task">11:14 PM · Tuesday, Sep 8, 2026 — Fixed silent URL shadowing: School documents/index.html won every collision at / and /index.html, so 39 back-links across 29 agent-docs pages landed on Pearson Exam Maps. Front door renamed to pages.html; all links and 3 generators repointed</span></li><li><code>APP_LOCATIONS.md</code> — L131 pointed at C:\Users\chase\Documents\D2L Assignment Assistant, deleted today; AA engine is vendored in Macro App. Owned the fix: repointed the row.<span class="gap-task">5:03 PM · Monday, Sep 7, 2026 — Diagnosed failed prod-renderer task (stale workspace folder broke all Grep calls); confirmed slim build already ships browser/makeup-exam/email; fixed stale APP_LOCATIONS row and added MISSING PATHS check to check-docs.js</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Gotchas cover an aborted build leaving slim build.config.json behind, but never say the slim build SHARES %APPDATA%/macro-app with the main app. That is the actual hazard and it cost a day of broken gradebooks. Owed doc row - added below.<span class="gap-task">12:08 PM · Monday, Sep 7, 2026 — Macro App: found slim build shared userData and clobbered the gradebook storage root; restored courses + root, isolated userData per build profile (Makeup Exam profile stays shared), added [boot] startup timing</span></li><li><code>electron-toolbar/docs/LAUNCHER_PANEL.md</code> — Path in root AGENTS.md line 125 does not exist — the file is at docs/recipes/LAUNCHER_PANEL.md. Fixed the link in root AGENTS.md.<span class="gap-task">11:38 AM · Monday, Sep 7, 2026 — Added a horizontal 812x460 Student Portal launcher as an apps.json view variant, wired it into the Launcher Panel grid, and fixed the dead LAUNCHER_PANEL.md path in root AGENTS.md</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Thursday, Sep 24, 2026 <span class="day-count">13 tasks</span></h2>
+      <h2 class="day-title">Friday, Sep 25, 2026 <span class="day-count">7 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:35 PM — Completed Phase 1 prior-session Diagnostics recovery: persisted log severity, bounded rotated-log issue hydration, IPC/preload/store startup wiring, docs, and focused regression coverage; no GUI launched.</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>8m 35s since previous task (includes idle)<br>Chat so far: 1 message(s), 1144 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:27 PM — Completed Macro App restore-failure visibility checkpoint: failed slots and partial restores now emit shared error-severity diagnostics with focused tests</span>
+      <span class="pill p0">329k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>16m 53s since previous task (includes idle)<br>329k tokens over 2 turn(s) · 165k/turn · 327k cache read · 1k output<br>Chat so far: 1 message(s), 1144 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:10 PM — AA engine cleanup item 4: engine TS errors 97 -&gt; 0 (type-only), typecheck:aa-engine gated in ci:local + GitHub CI</span>
+      <span class="pill p0">326k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>11s since previous task (includes idle)<br>326k tokens over 2 turn(s) · 163k/turn · 321k cache read · 2k output<br>Chat so far: 1 message(s), 1124 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:09 PM — Completed Teacher Console preview restore policy: hidden preview skips eager isolation restore; visible preview restores last and visible, with focused tests</span>
+      <span class="pill p0">4.0M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4m 3s since previous task (includes idle)<br>4.0M tokens over 29 turn(s) · 139k/turn · 4.0M cache read · 17k output<br>Chat so far: 1 message(s), 1096 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:05 PM — Completed Macro App isolation run-state checkpoint: D2L/Pearson runs stay registered through restore and clear only after the shared lease releases</span>
+      <span class="pill p0">1.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2h 58m active tool time<br>2h 59m since previous task (includes idle)<br>1.1M tokens over 14 turn(s) · 82k/turn · 1.1M cache read · 6k output<br>Chat so far: 1 message(s), 613 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:05 AM — AA MATH-2412 class switch: ruled out URL/partition (same as Browser tab; transient D2L 500); D2L error page/failed load now shows banner; hidden-window rAF stall fixed; bootstrap marks engine server online</span>
+      <span class="pill p0">6.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>20m 28s active tool time<br>23m 52s since previous task (includes idle)<br>6.9M tokens over 55 turn(s) · 125k/turn · 6.7M cache read · 27k output<br>Chat so far: 1 message(s), 1062 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:42 AM — Diagnosed AA MATH-2412 class-switch hang (AA slot lands on D2L error/500; Browser tab fine); momentum handoff written</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>11h 25m since previous task (includes idle)<br>Chat so far: 9 message(s), 219 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Thursday, Sep 24, 2026 <span class="day-count">27 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:16 PM — Completed Macro App app-wide browser isolation lock: D2L and Makeup Exam serialize destructive isolation through restore, with capture/restore lifecycle and concurrency tests</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>9m 5s since previous task (includes idle)<br>Chat so far: 9 message(s), 219 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:07 PM — Completed Macro App isolation-restore bounded-load checkpoint: extracted one shared 45-second loader, preserved slow-load continuation, and added focused timeout tests</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>5m 52s since previous task (includes idle)<br>Chat so far: 9 message(s), 219 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:01 PM — Fixed Macro App slot queue unhandled-rejection leak exposed by live Gradebook ERR_ABORTED diagnostics; added focused regression coverage</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>21m 11s since previous task (includes idle)<br>Chat so far: 9 message(s), 219 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:40 PM — Completed Macro App isolation-restore checkpoint: per-slot failure containment, structured restore results, visible-slot-last ordering, and focused headless tests</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>29s active tool time<br>2m 25s since previous task (includes idle)<br>Chat so far: 9 message(s), 219 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:37 PM — Portal tab: per-location icon grid, slim ± controls; uniform panel height</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3m 4s active tool time<br>3m 9s since previous task (includes idle)<br>Chat so far: 9 message(s), 177 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:34 PM — Fixed Display ± stale-state bug; icon grid for locations</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 28s active tool time<br>2m 31s since previous task (includes idle)<br>Chat so far: 8 message(s), 148 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:32 PM — Display tab concept 2 — Portal tab, hybrid sliders, real location list</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 9s active tool time<br>2m 26s since previous task (includes idle)<br>Chat so far: 7 message(s), 115 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:29 PM — Completed app-wide current-session diagnostics: severity-preserving shared log entries, global warning/error badge, Settings Diagnostics dual views, renderer error capture, and Teacher Console preview warning forwarding; focused tests, lint, typechecks, build, and docs checks passed</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>6m 40s active tool time<br>43m 51s since previous task (includes idle)<br>Chat so far: 6 message(s), 113 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:45 PM — Completed Phase 1 checkpoint 1: added durable main, renderer, and child-process crash diagnostics to the existing redacted Macro App log, with focused tests, lint, typecheck, and documentation</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>8m 6s since previous task (includes idle)<br>Chat so far: 4 message(s), 40 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:37 PM — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span>
+      <span class="pill p0">Chat: 4 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>18s active tool time<br>2m 34s since previous task (includes idle)<br>Chat so far: 4 message(s), 40 KB transcript</p>
+      <ul class="gap-list"><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:35 PM — Wrote independent Macro App restructure recommendations (TC smoothness in app-wide context) to Macro App docs/plans/MACRO_APP_RESTRUCTURE_RECOMMENDATIONS.md</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 48s active tool time<br>3m 7s since previous task (includes idle)<br>Chat so far: 4 message(s), 3 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:32 PM — Reframed the Teacher Console preview plan around an app-wide embedded-browser lifecycle architecture, with TC as the first migration rather than a compatibility constraint</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 30s since previous task (includes idle)<br>Chat so far: 3 message(s), 1 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:30 PM — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span>
+      <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">2 index gaps</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 16s active tool time<br>1m 47s since previous task (includes idle)<br>Chat so far: 3 message(s), 76 KB transcript</p>
+      <ul class="gap-list"><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale</li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:28 PM — Compared Macro App embedded-browser implementations and expanded the Teacher Console preview smoothness plan with shared lifecycle, reset, refresh, and slot-store findings</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>3m 28s active tool time<br>3m 31s since previous task (includes idle)<br>Chat so far: 3 message(s), 57 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">8:22 PM — Badge hint flash: once on problem 1 only for entire session, not per problem</span>
       <span class="pill p0">Chat: 7 msgs</span>

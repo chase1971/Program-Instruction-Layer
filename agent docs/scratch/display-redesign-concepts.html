@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Display settings — 5 redesign concepts</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+    .back {
+      display: inline-block;
+      min-height: 44px;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    h1 { margin: 0 0 8px; font-size: 1.5rem; }
+    .intro { margin: 0 0 24px; color: var(--muted); font-size: 1rem; }
+    .concepts {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .concept {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      overflow: hidden;
+    }
+    .concept__header {
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .concept__header h2 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+    .concept__header p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .concept__img-wrap {
+      padding: 12px;
+      background: #eef2f7;
+    }
+    .concept__img-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .banner {
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/pages.html">← All pages</a>
+    <h1>Display settings — 5 redesign concepts</h1>
+    <p class="intro">Macro App Settings → Display tab. Generated 2026-09-24. Pick a direction (or mix) for implementation.</p>
+    <p class="banner">One-off mockups — may not match live app pixel-perfect. Recommended lean: <strong>C + B</strong> (Portal sidebar tab + preset chips, no sliders).</p>
+
+    <div class="concepts">
+      <article class="concept">
+        <div class="concept__header">
+          <h2>A — Split sub-tabs</h2>
+          <p>App &amp; Browser | Portal preview pills inside Display. Location dropdown, − / % / + steppers, no sliders.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-redesign-concept-a-split-tabs.png" alt="Concept A mockup" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>B — Preset chips + collapsed portal</h2>
+          <p>75 / 85 / 95 / 99 / Fit chips. “Same scale for browser” toggle. Portal in accordion.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-redesign-concept-b-preset-chips.png" alt="Concept B mockup" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>C — Fourth sidebar tab: Portal</h2>
+          <p>Display · Portal · Computer · Logins. Display = location + preview + steppers only.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-redesign-concept-c-fourth-tab.png" alt="Concept C mockup" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>D — Two-column compact</h2>
+          <p>Location list left, S/M/L/XL/Fit right. Link browser zoom checkbox. Portal via link → sub-dialog.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-redesign-concept-d-two-column.png" alt="Concept D mockup" />
+        </div>
+      </article>
+
+      <article class="concept">
+        <div class="concept__header">
+          <h2>E — Card picker (dwell-friendly)</h2>
+          <p>Three big cards: Comfortable / Default / Fill window. Browser chips below. Portal gear → small overlay.</p>
+        </div>
+        <div class="concept__img-wrap">
+          <img src="/scratch/display-redesign-concepts/display-redesign-concept-e-wizard-cards.png" alt="Concept E mockup" />
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
