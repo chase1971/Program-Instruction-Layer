@@ -65,7 +65,7 @@ never touches this file.
 | You might say | Read this |
 |---|---|
 | "run the audit" · clean up the docs · is the instruction layer healthy | [INSTRUCTION_LAYER_AUDIT.md](./INSTRUCTION_LAYER_AUDIT.md) |
-| "run the conformance pass on \<app\>" · bring one app up to standard | [APP_CONFORMANCE_PASS.md](./APP_CONFORMANCE_PASS.md) |
+| "run the conformance pass on \<app\>" · bring one app up to standard · **document checks** · "check my documents" · docs that need judgment calls, not just link checks | [APP_CONFORMANCE_PASS.md](./APP_CONFORMANCE_PASS.md) |
 | how does this whole setup work · which tool reads which file · why did `.mdc` go away | [HOW_TO_INTERACT_WITH_AI.md](../HOW_TO_INTERACT_WITH_AI.md) |
 | explain my setup to another developer | [AGENT_SETUP_FOR_PEER_REVIEW.md](./AGENT_SETUP_FOR_PEER_REVIEW.md) |
 | "show me the diagram" · the pages on 8765 · how is the index laid out | [pages.html](./pages.html) → `instructional-layer-htmls/` (maintained) · `scratch/` (one-off, goes stale) |

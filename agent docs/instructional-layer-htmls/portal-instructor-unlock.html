@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student portal — instructor unlock</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2332;
+    --text: #e8edf4;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --green: #34d399;
+    --border: #334155;
+    --radius: 14px;
+    --font: "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    font-size: 18px;
+  }
+  .page { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  a.back {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    min-height: 48px;
+  }
+  a.back:hover, a.back:focus { background: var(--panel); outline: 2px solid var(--accent); }
+  h1 { font-size: clamp(1.6rem, 5vw, 2.1rem); margin-bottom: 0.75rem; }
+  .lede { color: var(--muted); margin-bottom: 2rem; }
+  h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 2rem 0 0.75rem;
+  }
+  p { margin-bottom: 1rem; }
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .bookmark {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 18px;
+    margin: 0.65rem 0;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    background: #0b2847;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .bookmark:hover, .bookmark:focus {
+    background: #12365c;
+    outline: 2px solid var(--green);
+  }
+  .bookmark.secondary { border-color: var(--green); background: #0b2e24; }
+  .bookmark.secondary:hover, .bookmark.secondary:focus { background: #104033; }
+  pre {
+    background: #0b1017;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    font-size: 0.82rem;
+    font-family: Consolas, monospace;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  ol { margin: 0 0 1rem 1.4rem; }
+  li { margin-bottom: 0.55rem; }
+  code {
+    background: var(--panel);
+    color: var(--accent);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 0.88em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="/pages.html">← All pages</a>
+
+  <h1>Student portal — instructor unlock</h1>
+  <p class="lede">
+    Firefox remembers one student code per site. These tools let you preview any student link
+    without clearing cookies — sign in as <strong>CHASE1</strong> once, then hop between students.
+  </p>
+
+  <h2>One-time setup — save a bookmark</h2>
+  <div class="box">
+    <p><strong>Drag one of these to your Firefox bookmarks bar</strong> (or right‑click → Bookmark Link).</p>
+
+    <a class="bookmark" id="unlock-bookmark" href="#">Unlock this browser (sign in CHASE1)</a>
+
+    <a class="bookmark secondary" id="switch-bookmark" href="#">Switch student (unlock + reload link)</a>
+  </div>
+
+  <h2>Every time you want a different student</h2>
+  <ol>
+    <li>Open the student’s personal portal link (or paste it in the address bar).</li>
+    <li>If you see “someone else’s link”, click <strong>Switch student</strong> in your bookmarks bar.</li>
+    <li>Or click <strong>Unlock</strong>, then open the student link again.</li>
+  </ol>
+
+  <h2>First time on this Firefox profile</h2>
+  <ol>
+    <li>Click <strong>Unlock this browser</strong> — it opens CHASE1 and marks this Firefox as yours.</li>
+    <li>After that, any student link should open without the block.</li>
+  </ol>
+
+  <h2>Console paste (on the portal site only)</h2>
+  <p>Open the portal, press F12 → Console, paste this, Enter:</p>
+  <pre id="console-snippet"></pre>
+
+  <div class="box">
+    <p style="margin:0;color:var(--muted);font-size:0.95rem;">
+      These run on <code>mathappsclass.netlify.app</code> only — localStorage does not cross sites.
+      A page on this helper site cannot unlock the live portal for you; use the bookmarks while on
+      the portal, or the console snippet there.
+    </p>
+  </div>
+</div>
+
+<script>
+  var PORTAL = 'https://mathappsclass.netlify.app';
+  var CHASE1 = PORTAL + '/?s=CHASE1';
+
+  var unlockCode =
+    "try{localStorage.setItem('mathapps.isInstructor','true');" +
+    "localStorage.setItem('mathapps.teacherDevice','true');" +
+    "location.href='" + CHASE1 + "';}catch(e){}";
+
+  var switchCode =
+    "try{localStorage.setItem('mathapps.isInstructor','true');" +
+    "localStorage.setItem('mathapps.teacherDevice','true');" +
+    "var s=new URLSearchParams(location.search).get('s');" +
+    "if(s){location.reload();}else{location.href='" + CHASE1 + "';}}catch(e){}";
+
+  var consolePaste =
+    "localStorage.setItem('mathapps.isInstructor','true');\n" +
+    "localStorage.setItem('mathapps.teacherDevice','true');\n" +
+    "location.reload();";
+
+  document.getElementById('unlock-bookmark').href = 'javascript:' + unlockCode;
+  document.getElementById('switch-bookmark').href = 'javascript:' + switchCode;
+  document.getElementById('console-snippet').textContent = consolePaste;
+</script>
+</body>
+</html>
