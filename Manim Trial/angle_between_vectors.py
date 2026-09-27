@@ -4,6 +4,12 @@ Sequel to dot_product_directions.py: clip one ended on different vector sizes;
 this clip answers that question with cos theta = (u dot v) / (||u|| ||v||), shows
 that dividing by the magnitudes is normalization, connects cosine to right
 triangles, and works the three textbook problems with u, v, and w.
+
+NOT ACCEPTED. Built by composer-2.5-fast on 2026-09-26 as a cheap-model trial and
+rejected on review: the mathematics is correct and every layout mark audits clean,
+but there is no teaching motion and the construction is imprecise. It needs
+re-cutting for choreography, not for math -- read docs/CHEAP_MODEL_TRIAL.md first,
+and reuse the verified numbers in ANGLE_BETWEEN_PLAN.md rather than recomputing them.
 """
 
 from manim import (

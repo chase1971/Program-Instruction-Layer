@@ -68,26 +68,27 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>134</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:30 PM · Saturday, Sep 26, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>135</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:37 PM · Saturday, Sep 26, 2026</dd></div>
     </div>
+    
     <section class="day-block">
-      <h2 class="day-title">Current session (live tally)</h2>
-      <div class="day-sessions"><article class="session-card in-progress">
+      <h2 class="day-title">Saturday, Sep 26, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
     <header class="session-head">
       <div class="pills">
-        <span class="time">11:30 PM</span>
-        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p0" title="Updates after each completed task.">In progress</span>
+        <span class="time">11:37 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
       </div>
       <div class="model">claude-opus-5</div>
     </header>
-    <p class="summary-human">Session in progress…</p>
+    <p class="summary-human">Built the Manim layout guardrails: an audit hooked into Narrated.mark() that reports collisions, off-frame content, caption-band intrusions and unreadable type as numbers a model can act on, plus named layout regions, a per-mark contact sheet, two test files and a recipe routed from both indexes. Proven both directions on the reference clip. The validation run then failed review: composer-2.5-fast cleared every layout finding and still produced a clip with no teaching motion and imprecise construction, so Chase rejected it and the finding is written up for another tool to pick up.</p>
     <div class="metric-grid"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
-    <dd>0</dd>
+    <dd>1</dd>
   </div><div class="metric">
-    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
-    <dd>—</dd>
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Chat messages</abbr></dt>
+    <dd>2</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
     <dd>1</dd>
@@ -98,13 +99,9 @@
     <details class="file-details"><summary>1 task(s)</summary>
     <ul class="task-list"><li>11:33 PM — Wrote up the cheap-model trial verdict: composer-2.5-fast rejected for these clips even with a verified spec and the layout audit - Manim Trial/docs/CHEAP_MODEL_TRIAL.md plus a served report page, and a warning at the top of LAYOUT_GUARDRAILS.md against retrying it that way</li></ul>
   </details>
-    
-    
-  </article></div>
-    </section>
-    <section class="day-block">
-      <h2 class="day-title">Saturday, Sep 26, 2026</h2>
-      <div class="day-sessions"><article class="session-card">
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> The guardrails worked and the cheap model still failed - it cleared 10 layout findings to 9 clean marks but produced a slideshow of correct equations. The audit also cannot see a MISSING element: composer resolved one overlap by deleting the gauge legend and that reports clean.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Layout guardrails do not make a low-tier model sufficient for Manim teaching clips - captured at the top of Manim Trial/docs/LAYOUT_GUARDRAILS.md pointing at docs/CHEAP_MODEL_TRIAL.md, so nobody plans that experiment again without reading what happened.</div>
+    <p class="next"><strong>Next time:</strong> Re-cut clip two for choreography and precision, not mathematics - reuse the verified numbers in ANGLE_BETWEEN_PLAN.md as-is. Do not re-cut clip one before Chase reviews it.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">11:30 PM</span>
