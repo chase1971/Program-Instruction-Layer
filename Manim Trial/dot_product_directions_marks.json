@@ -1,0 +1,26 @@
+[
+  {
+    "name": "no_commonality",
+    "time": 14.0
+  },
+  {
+    "name": "east_dot_north",
+    "time": 24.78
+  },
+  {
+    "name": "some_commonality",
+    "time": 33.22
+  },
+  {
+    "name": "east_dot_northeast",
+    "time": 46.56
+  },
+  {
+    "name": "unit_vectors_only",
+    "time": 56.44
+  },
+  {
+    "name": "open_question",
+    "time": 62.5
+  }
+]

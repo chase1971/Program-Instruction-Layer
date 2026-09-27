@@ -17,6 +17,43 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
 # folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
 PAGES = [
+    ('angle_between_vectors', 'AngleBetweenVectors', 'angle-between-vectors',
+     'Angle between vectors &mdash; normalize, then dot', 'Angle between vectors',
+     'angle_between_vectors_marks.json',
+     'Sequel to the introductory dot-product clip: when the vectors are different '
+     'sizes, divide by both magnitudes to standardize them, then dot. '
+     'cos&nbsp;&theta;&nbsp;=&nbsp;(u&middot;v)/(&#8741;u&#8741;&#8741;v&#8741;) is '
+     'just &ucirc;&middot;v&#770;, cosine is adjacent over hypotenuse, and three '
+     'textbook pairs &mdash; including u with w at exactly 90&deg; &mdash; land on '
+     'the verified cosines and unit-vector dot products.'),
+    ('vector_projection_force', 'VectorProjectionForce', 'vector-projection-force',
+     'Vector projection &mdash; the shadow of a force', 'Vector projection explained',
+     'vector_projection_force_marks.json',
+     'Two forces of 8 N and 22 N meet at a 50&deg; angle. Perpendicular light casts '
+     'the 22 N force onto the direction established by the 8 N force, making the '
+     'projection visible as a shadow. Its length is '
+     '22cos(50&deg;)&nbsp;&asymp;&nbsp;14.14 N.'),
+    ('dot_product_projection', 'DotProductProjection', 'dot-product-projection',
+     'Dot product &mdash; projection weighted by length', 'Dot product explained',
+     'dot_product_projection_marks.json',
+     'The 22 N force first projects 14.14 N onto the 8 N force direction. The dot '
+     'product then multiplies that projected amount by the other vector&rsquo;s '
+     '8 N magnitude: 14.14&times;8&nbsp;&asymp;&nbsp;113.13 N&sup2;. An area model '
+     'makes that multiplication visible and distinguishes it from projection and '
+     'cosine similarity.'),
+    ('dot_product_directions', 'DotProductDirections', 'dot-product-directions',
+     'Dot product &mdash; east, north, and northeast', 'Introductory dot product',
+     'dot_product_directions_marks.json',
+     'The dot product as directional similarity, seen before it is calculated. You '
+     'travel east at 1 mph and a friend travels north: the two directions share '
+     'nothing, so the similarity gauge sits empty &mdash; and only then does the '
+     'component arithmetic produce the zero that says the same thing. The friend '
+     'turns northeast, still 1 mph, the gauge fills most of the way, and the '
+     'calculation puts &radic;2/2&nbsp;&asymp;&nbsp;0.707 on it. The clip closes on '
+     'the limit of that reading: u&middot;v&nbsp;=&nbsp;&#8741;u&#8741;&#8741;v&#8741;cos&nbsp;&theta; '
+     'collapses to cos&nbsp;&theta; only because both magnitudes are 1 &mdash; so '
+     'what happens when the vectors are different sizes? That question is the hook '
+     'for the follow-up clip.'),
     ('related_rates_rocket', 'RocketAngleRate', 'related-rates-rocket',
      'Related rates &mdash; rocket problem', 'Rocket problem, related rates', None,
      'A rocket launches straight up at a constant speed while you watch from a fixed '

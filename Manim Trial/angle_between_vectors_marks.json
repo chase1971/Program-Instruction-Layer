@@ -1,0 +1,38 @@
+[
+  {
+    "name": "open_question",
+    "time": 4.32
+  },
+  {
+    "name": "angle_formula",
+    "time": 11.47
+  },
+  {
+    "name": "unit_dot_product",
+    "time": 16.63
+  },
+  {
+    "name": "standardize",
+    "time": 21.68
+  },
+  {
+    "name": "right_triangle",
+    "time": 28.32
+  },
+  {
+    "name": "problem_a",
+    "time": 37.26
+  },
+  {
+    "name": "problem_b",
+    "time": 45.26
+  },
+  {
+    "name": "problem_c",
+    "time": 55.58
+  },
+  {
+    "name": "unit_vectors_payoff",
+    "time": 61.16
+  }
+]

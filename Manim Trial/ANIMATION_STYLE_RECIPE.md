@@ -2,6 +2,11 @@
 
 Use this recipe when generating a new Manim animation for Chase's math apps.
 
+This file covers what the frames should **look like** and how the teaching should **move**.
+Keeping elements from colliding is a separate, automated job: see
+[docs/LAYOUT_GUARDRAILS.md](docs/LAYOUT_GUARDRAILS.md) for the audit that runs at every
+pause mark, the named layout regions, and the contact sheet.
+
 ## Teaching movement
 
 - Treat the original equation as written work. Put it on one baseline and keep it visible while the next line develops.

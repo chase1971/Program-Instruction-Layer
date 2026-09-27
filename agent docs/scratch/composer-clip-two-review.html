@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cheap-model trial — composer-2.5-fast on a Manim clip</title>
+<style>
+  body{margin:0;background:#101c30;color:#f2f5fa;font:19px/1.65 Segoe UI,sans-serif}
+  main{max-width:900px;margin:0 auto;padding:28px 22px 70px}
+  h1{font-size:30px;line-height:1.25;margin:0 0 6px}
+  h2{font-size:23px;margin:38px 0 10px;color:#ffc66d}
+  .dated{color:#b2c0d4;font-size:16px;margin:0 0 26px}
+  .verdict{background:#1b2740;border-left:6px solid #e97b78;border-radius:10px;
+           padding:18px 22px;margin:22px 0}
+  .verdict b{color:#ffc66d}
+  .card{background:#16223a;border-radius:10px;padding:16px 22px;margin:14px 0}
+  .good{border-left:6px solid #86c8ff}
+  .bad{border-left:6px solid #e97b78}
+  ul{padding-left:22px}li{margin:9px 0}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:17px}
+  th,td{border-bottom:1px solid #2b3a58;padding:9px 10px;text-align:left;vertical-align:top}
+  th{color:#b2c0d4}
+  code{background:#0b1425;border-radius:5px;padding:2px 6px;font-size:16px}
+  .quote{border-left:4px solid #ffc66d;padding:4px 0 4px 18px;margin:16px 0;color:#ffc66d}
+  a{color:#86c8ff}
+  .back{display:inline-block;margin-top:34px;background:#ffc66d;color:#101c30;
+        text-decoration:none;padding:16px 28px;border-radius:10px;font-size:19px}
+</style>
+<main>
+
+<h1>Cheap-model trial &mdash; composer-2.5-fast on a Manim teaching clip</h1>
+<p class="dated">Run 2026-09-26 &middot; clip <code>angle_between_vectors.py</code> &middot;
+one-off report, assume it goes stale &middot; durable copy:
+<code>Manim Trial/docs/CHEAP_MODEL_TRIAL.md</code></p>
+
+<div class="verdict">
+<p><b>Verdict: not good enough.</b> <code>composer-2.5-fast</code> &mdash; even with a
+higher-level model supplying a fully verified content spec, and an automated layout audit
+feeding it numeric corrections at every beat &mdash; produces animations that are
+<b>inexact and not correctly composed</b>. The result is a slideshow of accurate equations,
+not a taught animation. These clips need a higher-tier model.</p>
+<p>Be precise about what is wrong, or the next tool will hunt in the wrong place: the
+<b>mathematics on screen is correct</b>. What is wrong is the <b>animation craft</b> &mdash;
+elements placed approximately rather than deliberately, and essentially no teaching motion.
+There are no arithmetic errors to find.</p>
+</div>
+
+<h2>It was not under-briefed</h2>
+<table>
+<tr><th>Supplied</th><th>What it provided</th></tr>
+<tr><td><code>ANGLE_BETWEEN_PLAN.md</code></td><td>teaching order, exact captions, every number
+pre-verified, the wording traps, the textbook typo</td></tr>
+<tr><td><code>docs/LAYOUT_GUARDRAILS.md</code></td><td>the render &rarr; read audit &rarr; fix
+&rarr; re-render loop</td></tr>
+<tr><td><code>scene_layout.py</code></td><td>four named non-overlapping regions plus
+<code>fit_into()</code></td></tr>
+<tr><td><code>scene_audit.py</code></td><td>per-beat numeric findings: which element, how far it
+overlaps, the center coordinate or <code>.scale()</code> value that fixes it</td></tr>
+<tr><td><code>dot_product_directions.py</code></td><td>a finished sibling clip, named as the
+model to imitate</td></tr>
+<tr><td><code>ANIMATION_STYLE_RECIPE.md</code></td><td>the visual and teaching-motion
+conventions</td></tr>
+</table>
+<p>A higher-tier model wrote the spec; the cheap model was asked only to implement the layout
+and iterate against the audit. That division was the whole point of the experiment.</p>
+
+<h2>What it got right</h2>
+<div class="card good">
+<ul>
+<li><b>All mathematics correct.</b> <code>u&middot;v = &minus;6</code>, &theta; &asymp; 102.99&deg;;
+<code>v&middot;w = 52</code>, &theta; &asymp; 12.99&deg;; <code>u&middot;w = 0</code>, &theta; =
+90&deg; exactly. Magnitudes, cosines and unit-vector dot products all match the verified table.</li>
+<li><b>Avoided the wording trap.</b> Cosine is on screen as <i>&ldquo;the adjacent side as a
+fraction of the hypotenuse&rdquo;</i> &mdash; the right way round.</li>
+<li><b>Handled the textbook typo:</b> part (c) uses <code>w</code>, not a repeat of <code>v</code>.</li>
+<li><b>Cleared every layout finding.</b> Ten problems across four beats on its second pass &mdash;
+overlapping gauge labels, type below the readable floor &mdash; all fixed from the reported numbers
+alone, reaching nine clean marks in three renders. Verified independently under
+<code>MANIM_AUDIT_STRICT=1</code>: exit 0.</li>
+<li><b>Respected every hard constraint:</b> no window or preview opened, did not edit the checkers,
+did not touch clip one, wrote artifacts only under <code>media/</code>.</li>
+</ul>
+<p><b>So the guardrails worked.</b> Spatial correctness became mechanical and the cheap model
+handled it. That is not where it failed.</p>
+</div>
+
+<h2>What is actually wrong with the output</h2>
+<div class="card bad">
+<ul>
+<li><b>No teaching motion anywhere.</b> The sibling clip turns an arrow to northeast, sweeps a
+45&deg; arc, fills a gauge, and flies the computed zero up to sit beneath it. This clip writes
+static blocks of text onto a static diagram. Nothing transforms into anything.</li>
+<li><b>Imprecise construction.</b> The diagram is a small bare axis cross; the vectors are not drawn
+to any considered scale; the <code>u</code> and <code>v</code> labels are crowded at the origin. The
+right triangle is a crude shape rather than a figure constructed from the vectors being discussed.</li>
+<li><b>Prose dumped on screen.</b> The <code>standardize</code> beat is a paragraph of small muted
+text. That is a slide, not a beat.</li>
+<li><b>Said twice.</b> The <code>right_triangle</code> beat states the cosine sentence as caption
+text <i>and</i> again as a labeled formula beside the triangle.</li>
+<li><b>Continuity break.</b> The gauge&rsquo;s <i>opposite directions / same direction</i> legend is
+present through problem (a), then <b>disappears</b> for (b) and (c) &mdash; deleted to resolve an
+overlap rather than relocated. The audit accepted that, because an absent element cannot collide.</li>
+<li><b>A stray artifact</b> sits to the left of the gauge track in problem (c).</li>
+<li><b>Closing beat too dense:</b> six lines of algebra appearing at once.</li>
+</ul>
+</div>
+
+<h2>Why it failed &mdash; and what was actually tested</h2>
+<p>The guardrails turn <i>&ldquo;does this look right&rdquo;</i> into numbers, and a weak model can
+act on numbers. They say nothing about <b>choreography</b>, and choreography is where the teaching
+quality lives.</p>
+<p>The spec left motion unspecified on purpose &mdash; <code>ANGLE_BETWEEN_PLAN.md</code> says in so
+many words <i>&ldquo;Layout is not specified here&rdquo;</i>. So this run measured
+<b>content-spec-only</b>, and the finding is narrower than &ldquo;cheap models can&rsquo;t do
+Manim&rdquo;:</p>
+<p class="quote">A cheap model can be trusted with spatial <b>correctness</b>. It cannot be trusted
+with storyboard <b>taste</b> or precise construction.</p>
+<p>Two things were therefore <b>not</b> tested, and stay open if anyone retries: specifying the
+choreography transform by transform, or having the higher-tier model write
+<code>construct()</code> and the <code>self.play(...)</code> calls &mdash; where the taste lives,
+and comparatively few tokens &mdash; leaving the cheap model only the mechanical
+<code>make_*</code> factory functions. Neither is a prediction that they would work.</p>
+
+<h2>Picking this up</h2>
+<div class="card">
+<ul>
+<li><b>The clip is left as-is.</b> It needs re-cutting for <b>choreography and precision</b>, not
+for mathematics.</li>
+<li><b>Reuse the numbers in <code>ANGLE_BETWEEN_PLAN.md</code> exactly. Do not recompute them.</b>
+They are checked, including the sign on part (a) and the typo on part (c).</li>
+<li><b>Keep the audit in the loop.</b> It catches collisions regardless of author &mdash; the overlap
+it now flags in clip one&rsquo;s draft was shipped by a top-tier model and took a human eye to find.</li>
+<li><b>Do not re-cut <code>dot_product_directions.py</code></b> (clip one). Awaiting review.</li>
+<li><b>The audit cannot see a <i>missing</i> element.</b> If a fix deletes something to resolve an
+overlap, that regression reports as clean &mdash; check the contact sheet.</li>
+</ul>
+<p><code>angle_between_vectors.py</code> (465 lines, 9 marks, 61 s) &middot;
+<code>angle_between_vectors_marks.json</code> &middot; one <code>PAGES</code> row in
+<code>build_page.py</code> &middot; contact sheet at
+<code>media/audit/angle_between_vectors_contact.jpg</code>. Nothing is committed.</p>
+<p>Side by side: <a href="/scratch/angle-between-vectors-contact.html">clip two, beat by beat</a>
+&middot; <a href="/scratch/dot-product-directions-contact.html">clip one, beat by beat</a>
+&middot; <a href="/scratch/angle-between-vectors.html">clip two video</a></p>
+</div>
+
+<a class="back" href="/pages.html">&larr; All pages</a>
+</main>
+</html>

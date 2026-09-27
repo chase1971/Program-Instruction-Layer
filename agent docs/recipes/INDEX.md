@@ -49,6 +49,8 @@ into new code.
 | the window opened on the wrong monitor · display scaling · the Display button | [INIT_NEW_APP.md](./INIT_NEW_APP.md) § Step 4b |
 | hidden `.bat` launcher · no visible cmd window · spawn from Electron | [CODING_STANDARDS.md § Windows: Hidden Launchers](./CODING_STANDARDS.md#windows-hidden-launchers-bat--node-spawn) |
 | "am I done" · final build checklist · ready to ship | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Final Build Checklist |
+| manim · math explainer animation · "animate solving an equation" | [Manim Trial/ANIMATION_STYLE_RECIPE.md](../../Manim%20Trial/ANIMATION_STYLE_RECIPE.md) — render commands in that folder's [README](../../Manim%20Trial/README.md) |
+| "things don't align" · "things are intersecting other things" · animation frames overlap · have a cheaper model build the clip · check the frames before the final render | [Manim Trial/docs/LAYOUT_GUARDRAILS.md](../../Manim%20Trial/docs/LAYOUT_GUARDRAILS.md) |
 | just finished a refactor or hotfix · "write up what we learned" · integration doc | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Document the Lesson — exemplar `Macro App/docs/BROWSER_TAB_INTEGRATION.md` |
 | apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
 

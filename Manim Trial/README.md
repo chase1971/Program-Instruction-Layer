@@ -3,6 +3,8 @@
 Local experiment for AI-directed mathematical animation, separate from Math App Studio.
 
 Reusable style guidance: [ANIMATION_STYLE_RECIPE.md](ANIMATION_STYLE_RECIPE.md).
+Keeping frames from colliding: [docs/LAYOUT_GUARDRAILS.md](docs/LAYOUT_GUARDRAILS.md) — the
+audit that runs at every pause mark, the layout regions, and the contact sheet.
 
 ## Animation examples
 
@@ -50,15 +52,17 @@ search, the beats and the pitfalls. Kept as the record of why the clip is shaped
 `build_page.py` inlines a rendered MP4 into a page under `agent docs/scratch/`. Add a row
 to its `PAGES` table and run it; Chase gets the `127.0.0.1:8765` link, never a file path.
 
-Shared helpers: `scene_style.py` (palette, caption line, `PACE`, pause marks) and
-`dice.py` (die faces, white first die / blue second die).
+Shared helpers: `scene_style.py` (palette, caption line, `PACE`, pause marks),
+`scene_audit.py` + `scene_layout.py` + `contact_sheet.py` (layout guardrails — see the doc
+above) and `dice.py` (die faces, white first die / blue second die).
 
 ## Pace and pause marks
 
 `scene_style.PACE` scales every explicit `run_time` and every `wait` — 1.2 plays the
 clip 20% faster. Scenes call `self.mark('name')` on a hold, and `write_marks()` drops
 a JSON sidecar so an embedding app knows where it may pause without hand-transcribed
-timestamps going stale on the next render.
+timestamps going stale on the next render. A mark is also where the **layout audit** runs,
+so the render log says whether every held frame is readable.
 - `ellipse_definition.py`: centered ellipse, focal distances, fixed-sum meter,
   inside/outside comparison, and string-based tracing. Source references are linked
   in `ellipse-player.html`; rendered video is embedded in the delivered page at

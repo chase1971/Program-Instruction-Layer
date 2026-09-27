@@ -68,11 +68,74 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>133</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:45 PM · Friday, Sep 25, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>134</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:30 PM · Saturday, Sep 26, 2026</dd></div>
     </div>
-    
     <section class="day-block">
+      <h2 class="day-title">Current session (live tally)</h2>
+      <div class="day-sessions"><article class="session-card in-progress">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">11:30 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p0" title="Updates after each completed task.">In progress</span>
+      </div>
+      <div class="model">claude-opus-5</div>
+    </header>
+    <p class="summary-human">Session in progress…</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>0</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>—</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>1</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>1 task(s)</summary>
+    <ul class="task-list"><li>11:33 PM — Wrote up the cheap-model trial verdict: composer-2.5-fast rejected for these clips even with a verified spec and the layout audit - Manim Trial/docs/CHEAP_MODEL_TRIAL.md plus a served report page, and a warning at the top of LAYOUT_GUARDRAILS.md against retrying it that way</li></ul>
+  </details>
+    
+    
+  </article></div>
+    </section>
+    <section class="day-block">
+      <h2 class="day-title">Saturday, Sep 26, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">11:30 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+      </div>
+      <div class="model">claude-opus-5-thinking-high</div>
+    </header>
+    <p class="summary-human">Handed Chase the sandbox restore test, then fixed three live Macro App problems he hit: a Maximum update depth loop that made Settings slow, false 'Exam replaced by final' markers on hand-entered MATH-1324 grades, and Diagnostics rehydrating old sessions' warnings. Also found that startup auto-prune removed the sandbox course because its folder did not exist yet.</p>
+    <div class="metric-grid"><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>51</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>31.9M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>311k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>37</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div></div>
+    <details class="file-details"><summary>37 task(s)</summary>
+    <ul class="task-list"><li>5:58 PM — Macro App restructure Phase 1.5 + Phase 2 renderer slot lane</li><li>6:38 PM — Macro App restructure Phase 3: isolation lock IPC + bulk edit/makeup exam button states</li><li>6:58 PM — Momentum handoff: Macro App restructure Phases 1.5–3 done, Phase 4 next</li><li>7:03 PM — Macro App gradebook tab code review: prioritized bug + quality recommendations</li><li>7:04 PM — Macro App restructure Phase 4: preview identity owner, orphan TC deletions, grouped side-panel props</li><li>7:07 PM — Gradebook hardening + restore-point plan written (docs/plans/GRADEBOOK_HARDENING_PLAN.md)</li><li>7:16 PM — Independently reviewed Macro App Gradebook and restore-point behavior without reading the hardening plan; verified renderer build, 520 gradebook tests, and grade-related Python tests</li><li>7:31 PM — Wrote an independent snapshot-based Gradebook remediation plan covering containment, restore architecture, D2L push safety, UI cleanup, sandbox testing, rollout, and acceptance criteria</li><li>7:59 PM — Combined gradebook remediation plan written; both source plans archived</li><li>8:36 PM — Gradebook remediation Phase 0: restore disabled (view-only history), auto-push checkbox restored, D2L label</li><li>8:44 PM — Gradebook remediation Phase 1: close flush, crash-safe writes, safe unlock, clear race, history read errors (+11 node tests)</li><li>8:54 PM — Gradebook remediation Phase 2: FakeCourse restore harness + restore contract suite (7 known bugs pinned as it.fails); Phase 1 tests moved to Vitest so CI runs them</li><li>9:42 PM — Phase 3 snapshot restore points: sessionId, restore-point store, name-keyed restore; all 13 restore contract tests pass</li><li>7:17 PM — Phase 4 restore UX: preview confirm, History buttons, session banner + Undo restore; replay restore removed</li><li>8:44 PM — Fixed MacroAppRoot hooks crash: merged snapshot restore/undo into single useCallback, moved flush-on-close hooks to end of edit session; SettingsButton import order; tsc + restore contract tests pass</li><li>9:12 PM — Fixed launch resize flash: revealOnce guard (no double reveal), ensureWindowOnLaunchDisplay before show + skip when maximized, sync display scale on boot; launch-monitor test</li><li>9:18 PM — Launch flash round 2: window opens at launch-monitor work area, pre-show maximize path, skip redundant display scale + 3s boot grace; moved useGradebookStartupPrehydrate to end of hook list; main renderer console forward to log</li><li>9:23 PM — Fixed launch regression: browser hidden on boot + detach before reveal; reverted pre-show full-screen resize; keep revealOnce + skip redundant scale apply</li><li>9:27 PM — Momentum handoff: Macro App launch regression + gradebook/hooks work-in-progress for next agent</li><li>9:39 PM — Macro App launch: reverted launch-fix layer (launch-monitor, displayZoom, reveal hide, hidden boot) keeping revealOnce + renderer console forward</li><li>9:40 PM — Created and rendered a Manim vector-projection force animation with a light-and-shadow conceptual model, calculation, and review page.</li><li>9:48 PM — Created and rendered a companion Manim animation explaining dot product as projected amount times the other vector's length, with an area model and comparison to projection and cosine similarity.</li><li>9:56 PM — Created and rendered a slower coordinate-first Manim introduction to dot products using east, north, and northeast unit-speed travel, without relying on angle or projection formulas.</li><li>10:06 PM — Macro App launch regression root cause: 223MB ZIP-as-CSV sandbox gradebook (MATH-1314) read 5x sync at boot; quarantined files, added gradebook-text-read guard + tests, boot IPC/fs timing</li><li>10:15 PM — Macro App launch verified fixed (single browser-slot-ready reveal, no stalls); removed temp boot instrumentation; handoff marked resolved</li><li>10:15 PM — Revised the east/north/northeast dot-product clip to teach directional similarity before the calculation: similarity gauge, intuition-first beats, unit-vector qualification, and the unequal-magnitude closing question. Rendered 1080p30 (63.1s) and rebuilt the dot-product-directions page.</li><li>10:25 PM — Macro App: course label shortener keeps Sandbox (compactCourseLabel + test)</li><li>10:25 PM — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</li><li>10:32 PM — Momentum handoff: launch fixed, next gradebook sandbox test + Phase 5</li><li>10:42 PM — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</li><li>10:43 PM — Macro App: fixed Maximum update depth loop (log store notify deferred + stable filtered snapshots); removed guessed 'replaced by final' markers on hand-entered exam grades; found sandbox auto-prune cause</li><li>10:49 PM — scene_layout.py named regions (DIAGRAM/WORK/GAUGE/CENTER + fit_into) measured from clip one, with test_scene_layout.py asserting they stay disjoint and still hold that clip's content</li><li>10:49 PM — contact_sheet.py: one frame per mark montaged with names and per-beat audit problem counts burned in, plus a --page option that delivers it as a 127.0.0.1:8765 link</li><li>10:49 PM — Manim Trial/docs/LAYOUT_GUARDRAILS.md recipe written and routed from agent docs/recipes/INDEX.md, agent docs/INDEX.md, the Manim README and ANIMATION_STYLE_RECIPE.md</li><li>11:19 PM — Built angle_between_vectors Manim clip with layout guardrail loop; all 9 marks clean</li><li>11:21 PM — Validation run: composer-2.5-fast built clip two (angle_between_vectors.py, 9 marks, 61s) from the beat spec, iterating against the audit to all-clean in 3 renders; verified independently - checkers untampered, every number and the cosine wording correct</li><li>11:27 PM — Macro App: Diagnostics starts empty each launch (recover only current-run issues); React warnings now log component stack</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Electron console-message forwarding dropped React's %s component stack, so the loop was unattributable until rendererDiagnostics pre-substituted it. Sandbox disappearance traced via [Audit] auto-prune-missing-folder lines.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Replacement/modification markers must come only from actions Chase ran — never inferred from ordinary edits.</div>
+    <p class="next"><strong>Next time:</strong> Chase re-adds MATH-1314 Sandbox via Setup courses, runs the sandbox restore test, then Phase 5 (backup newest across New Year).</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Friday, Sep 25, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">

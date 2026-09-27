@@ -10,6 +10,8 @@ from pathlib import Path
 
 from manim import Text, FadeIn, FadeOut
 
+from scene_audit import audit_mark, audit_summary
+
 NAVY = '#101C30'
 INK = '#F2F5FA'
 GOLD = '#FFC66D'
@@ -70,11 +72,20 @@ class Narrated:
             self._inner = False
         self.elapsed += scaled
 
-    def mark(self, name):
-        """Record where the app should be able to pause. Pair with a hold."""
+    def mark(self, name, allow=()):
+        """Record where the app should be able to pause. Pair with a hold.
+
+        A mark is a frame the viewer actually reads, so it is also where the layout
+        audit runs. `allow` exempts deliberate text-on-text pairs: `allow=[(a, b)]`.
+        """
         if self.marks is None:
             self.marks = []
         self.marks.append({'name': name, 'time': round(self.elapsed, 2)})
+        audit_mark(self, name, allow)
+
+    def tear_down(self):
+        audit_summary(self)
+        super().tear_down()
 
     def write_marks(self, path):
         if self.marks:

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "projection",
+    "time": 5.83
+  },
+  {
+    "name": "dot_product",
+    "time": 11.0
+  },
+  {
+    "name": "area_model",
+    "time": 15.17
+  },
+  {
+    "name": "comparison",
+    "time": 20.92
+  }
+]
