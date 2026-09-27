@@ -12,6 +12,12 @@ audit that runs at every pause mark, the layout regions, and the contact sheet.
   cancel first, then multiply tops. Each product is two factors only (e.g. 1/3 × 15
   separately), then `2/7` with a negative and `2/7 × 3/8` simplified.
   `http://127.0.0.1:8765/scratch/fraction-times-whole.html`.
+- `dot_product_directions.py`: the dot product as shared direction, taught before it is
+  calculated — you travel east at 1 mph and a friend travels north, so the similarity gauge
+  sits empty and only then does the arithmetic produce the zero that says the same thing. The
+  friend turns northeast and the gauge fills to √2/2 ≈ 0.707. Closes on the limit of that
+  reading: `u·v = ‖u‖‖v‖cos θ` collapses to `cos θ` only because both magnitudes are 1.
+  `http://127.0.0.1:8765/scratch/dot-product-directions.html`.
 - `gcf_division.py` and `solve_factors.py`: factor and solve a quadratic.
 - `two_step_equation.py`: solve `3x + 7 = 22` by undoing the addition, then the
   multiplication, with each operation written beneath both sides. Delivered at
