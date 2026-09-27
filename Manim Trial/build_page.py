@@ -10,22 +10,81 @@ Then confirm the page answers 200 before handing over the link.
 
 import base64
 import glob
-import json
 import pathlib
 
 SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 
-# folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb
+# folder, scene class, page slug, on-page heading, browser tab title, marks file, blurb.
+# The blurb is a record of what the clip covers -- it is never rendered: Chase wants no
+# text under the player, only the Play/Replay and Previous/Next buttons.
 PAGES = [
     ('angle_between_vectors', 'AngleBetweenVectors', 'angle-between-vectors',
      'Angle between vectors &mdash; normalize, then dot', 'Angle between vectors',
      'angle_between_vectors_marks.json',
      'Sequel to the introductory dot-product clip: when the vectors are different '
-     'sizes, divide by both magnitudes to standardize them, then dot. '
-     'cos&nbsp;&theta;&nbsp;=&nbsp;(u&middot;v)/(&#8741;u&#8741;&#8741;v&#8741;) is '
-     'just &ucirc;&middot;v&#770;, cosine is adjacent over hypotenuse, and three '
-     'textbook pairs &mdash; including u with w at exactly 90&deg; &mdash; land on '
-     'the verified cosines and unit-vector dot products.'),
+     'sizes, shrink both to length 1 and dot the unit vectors. '
+     '(u/&#8741;u&#8741;)&middot;(v/&#8741;v&#8741;) combines into '
+     '(u&middot;v)/(&#8741;u&#8741;&#8741;v&#8741;), which is cos&nbsp;&theta;. Three '
+     'textbook pairs follow, each swinging one arrow while the similarity gauge '
+     'follows it &mdash; including u with w at exactly 90&deg;.'),
+    ('vector_projection_shadow', 'VectorProjectionShadow', 'vector-projection-shadow',
+     'Vector projection &mdash; the shadow u casts on v', 'Vector projection, the idea',
+     'vector_projection_shadow_marks.json',
+     'Light shines perpendicular to v, and the shadow u casts on v&rsquo;s line is '
+     'proj<sub>v</sub>u. First u is longer than v and the shadow runs past v&rsquo;s tip; '
+     'then v is longer and the shadow lands inside it. Stretching v alone never moves the '
+     'shadow &mdash; v only supplies a direction. Then two panels. First the length: '
+     'SOH CAH TOA turns ADJ into the shadow and HYP into &#8741;u&#8741;, and the '
+     '&#8741;u&#8741;&rsquo;s cancel to leave u&middot;v/&#8741;v&#8741;. Then the vector: '
+     'the unit vector v&#770; stretches to that length, giving '
+     'proj<sub>v</sub>u&nbsp;=&nbsp;(u&middot;v/&#8741;v&#8741;&sup2;)&nbsp;v.'),
+    ('vector_decomposition', 'VectorDecomposition', 'vector-decomposition',
+     'Decomposing a vector &mdash; along v and across v', 'Vector decomposition',
+     'vector_decomposition_marks.json',
+     'What decomposing means: u&nbsp;=&nbsp;3i&nbsp;+&nbsp;4j is already u split into two '
+     'perpendicular pieces along the axes. The perpendicular reference then swings around '
+     'u, since any pair works, and settles on v&rsquo;s direction: w<sub>1</sub> along v, '
+     'w<sub>2</sub> straight across it. w<sub>1</sub> is the part of u that goes in '
+     'v&rsquo;s direction (a copy of v shrinks onto it); w<sub>2</sub> is the part that has '
+     'nothing to do with v (climb it and u&rsquo;s shadow on v never moves). On a ramp along '
+     'v only w<sub>1</sub> moves you, and w<sub>1</sub> is clip three&rsquo;s shadow. Then the worksheet problem, u&nbsp;=&nbsp;3i&nbsp;+&nbsp;4j and '
+     'v&nbsp;=&nbsp;10i&nbsp;+&nbsp;2j, in three steps: project to get '
+     'w<sub>1</sub>&nbsp;=&nbsp;&lang;95/26,&nbsp;19/26&rang;, subtract to get '
+     'w<sub>2</sub>&nbsp;=&nbsp;&lang;&minus;17/26,&nbsp;85/26&rang;, and check that '
+     'w<sub>2</sub>&middot;v&nbsp;=&nbsp;0 and the pieces add back to u.'),
+    ('force_decomposition', 'ForceDecomposition', 'force-decomposition',
+     'The force problem &mdash; decompose, project, name the pieces', 'Force decomposition',
+     'force_decomposition_marks.json',
+     'Two forces of 8 N and 22 N meet at 50&deg;: how much of the 22 N force acts in the '
+     '8 N force&rsquo;s direction? Split u into u<sub>1</sub> along v and u<sub>2</sub> '
+     'across it; the question asks for the length of u<sub>1</sub>, u&rsquo;s shadow on v. '
+     'Changing v&rsquo;s size never moves the shadow. The projection formula with '
+     'u&middot;v&nbsp;=&nbsp;&#8741;u&#8741;&#8741;v&#8741;cos&nbsp;&theta; gives '
+     'u<sub>1</sub>&nbsp;&asymp;&nbsp;1.768v (v stretched to the shadow&rsquo;s length), so '
+     '&#8741;u<sub>1</sub>&#8741;&nbsp;&asymp;&nbsp;14.14&nbsp;N; the &#8741;v&#8741;&rsquo;s cancel to '
+     '22&nbsp;cos&nbsp;50&deg;. Then u<sub>2</sub>&nbsp;=&nbsp;u&nbsp;&minus;&nbsp;u<sub>1</sub>&nbsp;&asymp;&nbsp;&lang;0,&nbsp;16.85&rang;, '
+     'and a closing card names the pieces: parallel component (projection of u onto v) and '
+     'orthogonal component (rejection vector).'),
+    ('ramp_force', 'RampForce', 'ramp-force',
+     'The wagon on a hill &mdash; projection onto a ramp', 'Ramp force',
+     'ramp_force_marks.json',
+     'Worksheet problem 7: a 100 lb wagon on a 20&deg; hill. The weight '
+     'w&nbsp;=&nbsp;&lang;0,&nbsp;&minus;100&rang; splits into w<sub>1</sub> along the ramp (rolls the '
+     'wagon) and w<sub>2</sub> into the hill (the hill pushes back). w<sub>1</sub> is w&rsquo;s shadow on '
+     'the ramp, so project onto the unit vector r&nbsp;=&nbsp;&lang;cos&nbsp;20&deg;,&nbsp;sin&nbsp;20&deg;&rang;: '
+     'w&middot;r&nbsp;=&nbsp;&minus;100&nbsp;sin&nbsp;20&deg;&nbsp;&asymp;&nbsp;&minus;34.20, the minus sign meaning '
+     'down the hill, so holding it takes about 34.2 lb up the hill. Closes on the shortcut: '
+     'Force to remain stationary = Weight &times; sin&nbsp;&theta;.'),
+    ('work_wagon', 'WorkWagon', 'work-wagon',
+     'Work &mdash; only the part of the pull along the motion counts', 'Work',
+     'work_wagon_marks.json',
+     'Worksheet problem 9. Work is the energy a force transfers by moving something: pull '
+     '50 lb straight along the ground for 100 ft and W&nbsp;=&nbsp;&#8741;F&#8741;&#8741;PQ&#8741;&nbsp;=&nbsp;5000 ft&middot;lb. '
+     'Tilt the handle to 30&deg; and F splits into F<sub>1</sub> along the ground (does work) and '
+     'F<sub>2</sub> straight up (the wagon never rises: no work). F<sub>1</sub> is F&rsquo;s shadow on PQ, so '
+     'W&nbsp;=&nbsp;&#8741;proj<sub>PQ</sub>F&#8741;&#8741;PQ&#8741;&nbsp;=&nbsp;&#8741;F&#8741;&#8741;PQ&#8741;cos&nbsp;&theta;'
+     '&nbsp;=&nbsp;2500&radic;3&nbsp;&asymp;&nbsp;4330.13 ft&middot;lb, checked as the dot product F&middot;PQ. '
+     'Closing card: what work means, its three forms, and foot-pounds.'),
     ('vector_projection_force', 'VectorProjectionForce', 'vector-projection-force',
      'Vector projection &mdash; the shadow of a force', 'Vector projection explained',
      'vector_projection_force_marks.json',
@@ -153,12 +212,25 @@ PAGES = [
      'predicts the spread. That is the Central Limit Theorem.'),
 ]
 
+# Clips that play in order: slug -> the slug that follows it. Each page gets a Next
+# button to its successor and a Previous button back to its predecessor.
+SERIES = {
+    'dot-product-directions': 'angle-between-vectors',
+    'angle-between-vectors': 'vector-projection-shadow',
+    'vector-projection-shadow': 'vector-decomposition',
+    'vector-decomposition': 'force-decomposition',
+    'force-decomposition': 'ramp-force',
+    'ramp-force': 'work-wagon',
+}
+
 STYLE = (
     'body{margin:0;background:#101c30;color:#f2f5fa;font:20px Segoe UI,sans-serif;'
     'text-align:center}'
     'main{max-width:1150px;margin:20px auto;padding:16px}video{width:100%;border-radius:12px}'
-    'button{font:inherit;padding:18px 30px;margin:12px 6px;border:0;border-radius:10px;'
+    'button,a.step{font:inherit;display:inline-block;text-decoration:none;'
+    'box-sizing:border-box;padding:18px 30px;margin:12px 6px;border:0;border-radius:10px;'
     'background:#ffc66d;color:#101c30;cursor:pointer;min-width:145px}'
+    'a.step{background:#86c8ff}'
     'a{color:#86c8ff}p{line-height:1.6}small{color:#b2c0d4}'
     'ul{display:inline-block;text-align:left;color:#b2c0d4;font-size:18px}'
 )
@@ -171,18 +243,16 @@ SCRIPT = (
 )
 
 
-def mark_list(marks_file):
-    """Pause points, so Chase can see where an embedding app is allowed to stop."""
-    if not marks_file:
-        return ''
-    path = pathlib.Path(marks_file)
-    if not path.exists():
-        return ''
-    marks = json.loads(path.read_text(encoding='utf-8'))
-    items = ''.join(f"<li><b>{m['name'].replace('_', ' ')}</b> &mdash; {m['time']}s</li>"
-                    for m in marks)
-    return ('<p><small>Pause points (each sits on a 2s hold):</small></p>'
-            f'<ul>{items}</ul>')
+def series_buttons(slug):
+    """Previous / Next links for a clip that belongs to a SERIES chain."""
+    before = next((prior for prior, after in SERIES.items() if after == slug), None)
+    after = SERIES.get(slug)
+    links = ''
+    if before:
+        links += f'<a class="step" href="{before}.html">&larr; Previous clip</a>'
+    if after:
+        links += f'<a class="step" href="{after}.html">Next clip &rarr;</a>'
+    return f'<div>{links}</div>' if links else ''
 
 
 def build(folder, klass, slug, heading, tab, marks_file, blurb):
@@ -199,9 +269,56 @@ def build(folder, klass, slug, heading, tab, marks_file, blurb):
         f'<source src="data:video/mp4;base64,{data}" type="video/mp4"></video>'
         '<div><button id="play">Play / Pause</button>'
         '<button id="replay">Replay</button></div>'
-        f'<p>{blurb}</p>{mark_list(marks_file)}'
-        f'<p><small>Animation study &middot; source: Manim Trial/{folder}.py</small></p>'
+        f'{series_buttons(slug)}'
         f'<a href="/pages.html">&larr; All pages</a></main><script>{SCRIPT}</script></html>'
+    )
+    out = SCRATCH / f'{slug}.html'
+    out.write_text(html, encoding='utf-8')
+    return f'{slug}: {out.stat().st_size:,} bytes'
+
+
+SERIES_PAGE = ('vector-series', 'Vectors &mdash; the whole series', 'Vector series')
+
+# Each player borrows its video from that clip's own page, so this page stays a few KB
+# and never goes stale when a clip is re-rendered. Loads in order, so clip 1 is ready first.
+SERIES_SCRIPT = (
+    'const players=[...document.querySelectorAll("video")];'
+    'players.forEach((v,i)=>{'
+    'document.getElementById("play"+i).onclick=()=>{if(v.paused)v.play();else v.pause()};'
+    'document.getElementById("replay"+i).onclick=()=>{v.currentTime=0;v.play()};'
+    'v.onplay=()=>players.forEach(o=>{if(o!==v)o.pause()})});'
+    '(async()=>{for(const v of players){const b=document.getElementById("play"+players.indexOf(v));'
+    'try{const page=await(await fetch(v.dataset.page)).text();'
+    'const at=page.indexOf("data:video/mp4;base64,");'
+    'const uri=page.slice(at,page.indexOf(\'"\',at));'
+    'v.src=URL.createObjectURL(await(await fetch(uri)).blob());b.textContent="Play / Pause"}'
+    'catch(e){b.textContent="Could not load this clip"}}})();'
+)
+
+
+def series_order(first='dot-product-directions'):
+    order = [first]
+    while order[-1] in SERIES:
+        order.append(SERIES[order[-1]])
+    return order
+
+
+def build_series():
+    """One page, every SERIES clip stacked in order, each with its own player."""
+    slug, heading, tab = SERIES_PAGE
+    headings = {row[2]: row[3] for row in PAGES}
+    sections = ''.join(
+        f'<section><h2>{number}. {headings[clip]}</h2>'
+        f'<video data-page="{clip}.html" playsinline controls></video>'
+        f'<div><button id="play{number - 1}">Loading&hellip;</button>'
+        f'<button id="replay{number - 1}">Replay</button></div></section>'
+        for number, clip in enumerate(series_order(), start=1))
+    html = (
+        '<!doctype html><html lang="en"><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        f'<title>{tab}</title><style>{STYLE}section{{margin:0 0 56px}}</style>'
+        f'<main><h1>{heading}</h1>{sections}'
+        f'<a href="/pages.html">&larr; All pages</a></main><script>{SERIES_SCRIPT}</script></html>'
     )
     out = SCRATCH / f'{slug}.html'
     out.write_text(html, encoding='utf-8')
@@ -211,3 +328,4 @@ def build(folder, klass, slug, heading, tab, marks_file, blurb):
 if __name__ == '__main__':
     for row in PAGES:
         print(build(*row))
+    print(build_series())

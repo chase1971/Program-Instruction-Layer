@@ -1,38 +1,38 @@
 [
   {
     "name": "open_question",
-    "time": 4.32
+    "time": 2.44
+  },
+  {
+    "name": "different_lengths",
+    "time": 11.67
+  },
+  {
+    "name": "unit_vectors",
+    "time": 21.78
   },
   {
     "name": "angle_formula",
-    "time": 11.47
-  },
-  {
-    "name": "unit_dot_product",
-    "time": 16.63
+    "time": 35.78
   },
   {
     "name": "standardize",
-    "time": 21.68
-  },
-  {
-    "name": "right_triangle",
-    "time": 28.32
+    "time": 40.89
   },
   {
     "name": "problem_a",
-    "time": 37.26
+    "time": 55.56
   },
   {
     "name": "problem_b",
-    "time": 45.26
+    "time": 71.0
   },
   {
     "name": "problem_c",
-    "time": 55.58
+    "time": 87.44
   },
   {
     "name": "unit_vectors_payoff",
-    "time": 61.16
+    "time": 97.78
   }
 ]

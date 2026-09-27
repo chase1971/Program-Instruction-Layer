@@ -129,6 +129,11 @@ from a layout known to read well.
 - **A draft render leaves a 480p15 file** beside the 1080p30 one. `contact_sheet.py` takes
   the newest; `build_page.py` takes the first it globs, so **render final before building
   the page.**
+- **`TransformFromCopy` leaves the morphed *copy* on screen, not the target.** Into a
+  multi-part target (a fraction built from pieces) the copy is padded with duplicate parts,
+  which the audit reports as text overlapping itself, and later fades or strikes aimed at
+  the target miss it. Use `ReplacementTransform(src.copy(), target)` — `copy_into` in
+  `vector_projection_shadow.py`.
 - **Never `-p` / `--preview`**, and never open a player or a browser — nothing reaches
   Chase's screen without per-run permission. Headless renders and these scripts are fine.
 - The audit never fails a render on its own account: if the checker itself breaks it says so

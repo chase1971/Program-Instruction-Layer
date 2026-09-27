@@ -1,0 +1,42 @@
+[
+  {
+    "name": "question",
+    "time": 8.56
+  },
+  {
+    "name": "pieces",
+    "time": 26.78
+  },
+  {
+    "name": "shadow",
+    "time": 32.33
+  },
+  {
+    "name": "direction_only",
+    "time": 45.22
+  },
+  {
+    "name": "scale",
+    "time": 59.11
+  },
+  {
+    "name": "length",
+    "time": 71.78
+  },
+  {
+    "name": "cancel",
+    "time": 88.0
+  },
+  {
+    "name": "rejection",
+    "time": 105.22
+  },
+  {
+    "name": "answer",
+    "time": 112.56
+  },
+  {
+    "name": "summary",
+    "time": 130.89
+  }
+]

@@ -56,26 +56,326 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>677</dd></div>
-      <div><dt>Tasks today</dt><dd>27</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.6M (of 68 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>186k</dd></div>
-      <div><dt>Total billed</dt><dd>287.0M</dd></div>
+      <div><dt>Total tasks</dt><dd>710</dd></div>
+      <div><dt>Tasks today</dt><dd>33</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.3M (of 73 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>185k</dd></div>
+      <div><dt>Total billed</dt><dd>293.5M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:50 PM · Saturday, Sep 26, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">3:23 PM · Sunday, Sep 27, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>20</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>13</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>21</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>13</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li><li><code>APP_LOCATIONS.md</code> — No Teacher Console or matrix tutorial alias; added rows<span class="gap-task">3:32 PM · Sunday, Sep 13, 2026 — Refactoring survey of Teacher Console, student portal, and matrix tutorial (report only, no code edits)</span></li><li><code>agent docs/INDEX.md</code> — No Manim row existed — index gap repaid in this same task by adding the row<span class="gap-task">11:26 PM · Tuesday, Sep 8, 2026 — Made Manim Trial searchable, indexed, and version-controlled (pushed 6666e8b)</span></li><li><code>agent docs/rules/html-delivery.md</code> — Claimed the front door is agent docs/index.html at 8765/ - wrong, and the cause of the bad links. Rewritten with the shadowing warning.<span class="gap-task">11:14 PM · Tuesday, Sep 8, 2026 — Fixed silent URL shadowing: School documents/index.html won every collision at / and /index.html, so 39 back-links across 29 agent-docs pages landed on Pearson Exam Maps. Front door renamed to pages.html; all links and 3 generators repointed</span></li><li><code>APP_LOCATIONS.md</code> — L131 pointed at C:\Users\chase\Documents\D2L Assignment Assistant, deleted today; AA engine is vendored in Macro App. Owned the fix: repointed the row.<span class="gap-task">5:03 PM · Monday, Sep 7, 2026 — Diagnosed failed prod-renderer task (stale workspace folder broke all Grep calls); confirmed slim build already ships browser/makeup-exam/email; fixed stale APP_LOCATIONS row and added MISSING PATHS check to check-docs.js</span></li></ul>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li><li><code>APP_LOCATIONS.md</code> — No Teacher Console or matrix tutorial alias; added rows<span class="gap-task">3:32 PM · Sunday, Sep 13, 2026 — Refactoring survey of Teacher Console, student portal, and matrix tutorial (report only, no code edits)</span></li><li><code>agent docs/INDEX.md</code> — No Manim row existed — index gap repaid in this same task by adding the row<span class="gap-task">11:26 PM · Tuesday, Sep 8, 2026 — Made Manim Trial searchable, indexed, and version-controlled (pushed 6666e8b)</span></li><li><code>agent docs/rules/html-delivery.md</code> — Claimed the front door is agent docs/index.html at 8765/ - wrong, and the cause of the bad links. Rewritten with the shadowing warning.<span class="gap-task">11:14 PM · Tuesday, Sep 8, 2026 — Fixed silent URL shadowing: School documents/index.html won every collision at / and /index.html, so 39 back-links across 29 agent-docs pages landed on Pearson Exam Maps. Front door renamed to pages.html; all links and 3 generators repointed</span></li></ul>
     </details>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Sunday, Sep 27, 2026 <span class="day-count">33 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:23 PM — Fixed exit ticket list regression: backward-compatible REST select before migration 061</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>6m 37s active tool time<br>6m 39s since previous task (includes idle)<br>Chat so far: 12 message(s), 330 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:16 PM — Manim vector series clip 7: work_wagon.py (meaning of work, 50 lb at 30 deg over 100 ft = 4330.13 ft-lb via projection and F.PQ), added to PAGES/SERIES and series page</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 24s since previous task (includes idle)<br>Chat so far: 11 message(s), 329 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:15 PM — Reveal correct answers toggle, post-submit review, LaTeX in preview/stats, removed Responses sidebar charts</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>40m 3s active tool time<br>40m 9s since previous task (includes idle)<br>Chat so far: 11 message(s), 231 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:35 PM — Manim vector series clip 6: ramp_force.py (wagon on 20 deg hill, projection onto ramp, Force = Weight x sin theta), added to PAGES/SERIES and series page</span>
+      <span class="pill p0">2.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>7m 49s active tool time<br>7m 54s since previous task (includes idle)<br>2.3M tokens over 19 turn(s) · 122k/turn · 2.2M cache read · 25k output<br>Chat so far: 1 message(s), 2680 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:27 PM — Momentum handoff written for exit ticket teacher console session</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 55s active tool time<br>1m 56s since previous task (includes idle)<br>Chat so far: 9 message(s), 184 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:25 PM — Removed light beam from clips 4-5; clip pages show no text under player; vector-series.html stacks all five clips</span>
+      <span class="pill p0">341k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>7s active tool time<br>10s since previous task (includes idle)<br>341k tokens over 2 turn(s) · 171k/turn · 338k cache read · 1k output<br>Chat so far: 2 message(s), 3584 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:25 PM — Exit ticket preview: compact padding, parse flash, Save button stays visible</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 44s active tool time<br>2m 44s since previous task (includes idle)<br>Chat so far: 8 message(s), 165 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:22 PM — Exit ticket preview: half-width centered stage with side columns reserved</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>52s active tool time<br>53s since previous task (includes idle)<br>Chat so far: 7 message(s), 144 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:21 PM — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span>
+      <span class="pill p0">577k tokens</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>43s active tool time<br>53s since previous task (includes idle)<br>577k tokens over 5 turn(s) · 115k/turn · 572k cache read · 1k output<br>Chat so far: 1 message(s), 678 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:20 PM — Exit ticket workspace: compact back button, remove course subheading, preview scroll fit</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>6m 46s active tool time<br>6m 49s since previous task (includes idle)<br>Chat so far: 6 message(s), 136 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:14 PM — Testers exit ticket responses: click name for Reset data menu</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>7s active tool time<br>8s since previous task (includes idle)<br>Chat so far: 4 message(s), 98 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:13 PM — Manim clip five: force_decomposition.py (8 N / 22 N force problem as decomposition, u1/u2, named-pieces summary), added to PAGES and SERIES</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>7m 37s active tool time<br>7m 38s since previous task (includes idle)<br>Chat so far: 4 message(s), 98 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:06 PM — Fix Testers responses: include CHASE1 + Student Tester in exit ticket response rows</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 36s active tool time<br>2m 42s since previous task (includes idle)<br>Chat so far: 3 message(s), 84 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:03 PM — Exit ticket Statistics: per-question anonymous choice histograms; response grid green/red dots</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 18s active tool time<br>4m 22s since previous task (includes idle)<br>Chat so far: 2 message(s), 48 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:59 PM — Exit ticket locked options (!), Format rules modal, paste toolbar (Give to AI + Parse + rules)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 54s active tool time<br>4m 54s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:54 PM — Back button width fix + exit-ticket momentum handoff</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m active tool time<br>4m 6s since previous task (includes idle)<br>Chat so far: 10 message(s), 315 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:50 PM — Fix exit ticket layout squished to half width (CSS cascade + drop redundant wrapper)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 8s active tool time<br>4m 9s since previous task (includes idle)<br>Chat so far: 6 message(s), 289 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:45 PM — Clip four: explain 19/52 as the scale factor shrinking v to the shadow's length</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3s active tool time<br>30s since previous task (includes idle)<br>Chat so far: 5 message(s), 288 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:45 PM — Fix exit ticket nav click event error + widen builder/preview layout</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>17m 3s active tool time<br>17m 4s since previous task (includes idle)<br>Chat so far: 5 message(s), 280 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:28 PM — Clip four: added define-the-pieces beat (w1 = v shrunk, w2 never moves the shadow) and ramp framing</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 3s since previous task (includes idle)<br>Chat so far: 4 message(s), 273 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:27 PM — Domain/range quiz P: slide headers + rewritten paste format</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>19m 51s active tool time<br>19m 57s since previous task (includes idle)<br>Chat so far: 4 message(s), 223 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:07 PM — Manim clip four: vector_decomposition.py (meaning of decomposing, why, worksheet problem u=3i+4j onto v=10i+2j), chained after clip three</span>
+      <span class="pill p0">2.5M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 53s active tool time<br>12m 24s since previous task (includes idle)<br>2.5M tokens over 21 turn(s) · 118k/turn · 2.3M cache read · 34k output<br>Chat so far: 1 message(s), 1943 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:54 PM — Exit ticket edit/retake: migration 059, unified TC workspace, portal retake bypass + restrict_after_submit</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>18m 36s active tool time<br>18m 49s since previous task (includes idle)<br>Chat so far: 3 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:36 PM — Projection clip: two-panel formula ending (SOH CAH TOA length derivation with cancelling, then unit-vector stretch to the projection vector); fixed TransformFromCopy leftover duplicates</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>7m 30s active tool time<br>8m 54s since previous task (includes idle)<br>Chat so far: 2 message(s), 14 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:27 PM — Deployed student portal: multi-question slides, left-align, MC shuffle (deploy #39)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>12m 20s active tool time<br>12m 21s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:14 PM — Per-student shuffled multiple-choice option order on quiz open</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 30s active tool time<br>1m 31s since previous task (includes idle)<br>Chat so far: 13 message(s), 174 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:13 PM — Reject graded quizzes when every correct answer is same option letter</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 39s active tool time<br>2m 42s since previous task (includes idle)<br>Chat so far: 10 message(s), 166 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:10 PM — Page breaks (---), left-aligned numbered prompts, two questions per slide</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 24s active tool time<br>1m 27s since previous task (includes idle)<br>Chat so far: 9 message(s), 74 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:09 PM — New Manim clip vector_projection_shadow (light/shadow projection, two length cases, v-length independence, formula build); linked as clip three</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>8m 10s active tool time<br>8m 12s since previous task (includes idle)<br>Chat so far: 9 message(s), 74 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:00 PM — Linked dot-product clip pages with Next/Previous buttons via SERIES table in build_page.py</span>
+      <span class="pill p0">820k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 4s active tool time<br>2m 52s since previous task (includes idle)<br>820k tokens over 4 turn(s) · 205k/turn · 809k cache read · 3k output<br>Chat so far: 4 message(s), 4566 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:58 AM — Reordered angle_between_vectors: formula derived from unit vectors, triangle beat removed, gauge empty until part (a) arithmetic, 22% caption</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>34m 11s active tool time<br>37m 4s since previous task (includes idle)<br>Chat so far: 7 message(s), 41 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:21 AM — Re-cut Manim angle_between_vectors clip: fixed detached vectors, misplaced gauge fill, label placement; added normalize/zoom/swing motion; all 9 marks clean</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>7m 51s active tool time<br>8m 43s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:12 AM — Decoupled scroll zone from F13 scroll bar delivery modes</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>11h 21m active tool time<br>11h 21m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Saturday, Sep 26, 2026 <span class="day-count">27 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

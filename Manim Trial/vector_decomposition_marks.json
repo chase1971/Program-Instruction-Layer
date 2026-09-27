@@ -1,0 +1,50 @@
+[
+  {
+    "name": "axes_decomposition",
+    "time": 15.67
+  },
+  {
+    "name": "any_pair",
+    "time": 26.67
+  },
+  {
+    "name": "along_v",
+    "time": 37.78
+  },
+  {
+    "name": "pieces_defined",
+    "time": 61.33
+  },
+  {
+    "name": "why",
+    "time": 70.56
+  },
+  {
+    "name": "shadow",
+    "time": 77.22
+  },
+  {
+    "name": "plan",
+    "time": 88.67
+  },
+  {
+    "name": "scale_factor",
+    "time": 112.22
+  },
+  {
+    "name": "step_one",
+    "time": 118.33
+  },
+  {
+    "name": "step_two",
+    "time": 133.0
+  },
+  {
+    "name": "check",
+    "time": 145.89
+  },
+  {
+    "name": "answer",
+    "time": 153.0
+  }
+]

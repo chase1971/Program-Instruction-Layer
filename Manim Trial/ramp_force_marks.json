@@ -1,0 +1,38 @@
+[
+  {
+    "name": "question",
+    "time": 7.89
+  },
+  {
+    "name": "weight",
+    "time": 17.67
+  },
+  {
+    "name": "pieces",
+    "time": 33.44
+  },
+  {
+    "name": "shadow",
+    "time": 37.44
+  },
+  {
+    "name": "ramp_vector",
+    "time": 50.11
+  },
+  {
+    "name": "projection",
+    "time": 65.67
+  },
+  {
+    "name": "length",
+    "time": 74.44
+  },
+  {
+    "name": "answer",
+    "time": 84.67
+  },
+  {
+    "name": "shortcut",
+    "time": 108.22
+  }
+]

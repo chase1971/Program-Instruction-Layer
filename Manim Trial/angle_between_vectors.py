@@ -1,17 +1,22 @@
 """Find the angle between two vectors by normalizing, then dotting.
 
-Sequel to dot_product_directions.py: clip one ended on different vector sizes;
-this clip answers that question with cos theta = (u dot v) / (||u|| ||v||), shows
-that dividing by the magnitudes is normalization, connects cosine to right
-triangles, and works the three textbook problems with u, v, and w.
+Sequel to dot_product_directions.py. It opens on the question clip one closes on --
+what if the vectors are different sizes? -- and answers it by deriving the formula:
+shrink both vectors onto the circle of radius 1, dot the unit vectors, combine the
+fractions into (u . v) / (||u|| ||v||), and recognize that as cos theta. The three
+textbook problems are then worked by swinging one arrow at a time while the similarity
+gauge follows it; the gauge stays empty until part (a)'s arithmetic fills it.
 
-NOT ACCEPTED. Built by composer-2.5-fast on 2026-09-26 as a cheap-model trial and
-rejected on review: the mathematics is correct and every layout mark audits clean,
-but there is no teaching motion and the construction is imprecise. It needs
-re-cutting for choreography, not for math -- read docs/CHEAP_MODEL_TRIAL.md first,
-and reuse the verified numbers in ANGLE_BETWEEN_PLAN.md rather than recomputing them.
+Every number written on screen comes from ANGLE_BETWEEN_PLAN.md. The angles used
+below only draw the picture.
+
+History: a cheap-model draft of this clip was rejected (docs/CHEAP_MODEL_TRIAL.md).
+This is the re-cut.
 """
 
+import math
+
+import numpy as np
 from manim import (
     DOWN,
     LEFT,
@@ -19,25 +24,32 @@ from manim import (
     UP,
     Arc,
     Arrow,
+    Circle,
     Create,
-    DashedLine,
+    DashedVMobject,
     Dot,
     FadeIn,
     FadeOut,
-    LaggedStart,
+    FadeTransform,
+    GrowFromPoint,
     Line,
+    ManimColor,
     MathTex,
     Rectangle,
-    ReplacementTransform,
     Scene,
     SurroundingRectangle,
     TransformFromCopy,
+    TransformMatchingShapes,
+    UpdateFromAlphaFunc,
     VGroup,
+    VMobject,
     Write,
     config,
+    interpolate_color,
 )
 
-from scene_layout import CENTER, DIAGRAM, GAUGE, WORK, fit_into
+from dot_product_directions import make_open_question
+from scene_layout import WORK, fit_into
 from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
 
 config.background_color = NAVY
@@ -45,427 +57,473 @@ config.background_color = NAVY
 U_COLOR = BLUE
 V_COLOR = '#E97B78'
 W_COLOR = GOLD
-ORIGIN = [-2.4, -1.1, 0]
-VECTOR_SCALE = .38
+NEGATIVE = V_COLOR
 
-METER_WIDTH = 3.4
-METER_HEIGHT = .38
-METER_CENTER = [3.35, 2.35, 0]
+# Where theta sits for part (a): inside the wedge, clear of the horizontal axis.
+THETA_A = math.radians(22)
 
-# Verified textbook values — do not recompute.
-U = (2, -2)
-V = (5, 8)
-W = (4, 4)
-U_HAT = (0.7071, -0.7071)
-V_HAT = (0.5300, 0.8480)
-W_HAT = (0.7071, 0.7071)
+# Directions of the textbook vectors u = 2i - 2j, v = 5i + 8j, w = 4i + 4j.
+ANGLE_U = math.atan2(-2, 2)
+ANGLE_V = math.atan2(8, 5)
+ANGLE_W = math.atan2(4, 4)
+LENGTH_U = math.hypot(2, -2)
+LENGTH_V = math.hypot(5, 8)
+
+# Two views of one picture. FULL draws the vectors at their true lengths; UNIT zooms in
+# on the circle of radius 1 once they are normalized. The zoom blends one into the other,
+# so every arrow, arc and label is always built from the same origin and scale.
+FULL = dict(origin=(-3.8, -1.9), scale=.5, axes=(.9, 3.2, 1.4, 4.3), arc=.35, theta=.75)
+UNIT = dict(origin=(-3.1, -.55), scale=2.2, axes=(2.6, 2.6, 2.6, 2.6), arc=.6, theta=1.)
+
+# The gauge runs from -1 (opposite) through 0 (perpendicular) to 1 (same direction),
+# so a fill grows from the center: right and gold when positive, left and coral when not.
+GAUGE_CENTER = (3.93, 2.35)
+GAUGE_WIDTH = 4.3
+GAUGE_HEIGHT = .42
+GAUGE_VALUE_Y = 1.4
 
 
-def make_axes():
-    horizontal = Line(
-        [ORIGIN[0] - .4, ORIGIN[1], 0],
-        [ORIGIN[0] + 3.6, ORIGIN[1], 0],
-        color=MUTED,
-        stroke_width=2,
+def blend(first, second, alpha):
+    return {key: (1 - alpha) * np.array(first[key], dtype=float)
+            + alpha * np.array(second[key], dtype=float) for key in first}
+
+
+def lerp(start, end, alpha):
+    return start + (end - start) * alpha
+
+
+def origin_of(view):
+    return np.array([*view['origin'], 0.])
+
+
+def heading(angle):
+    return np.array([math.cos(angle), math.sin(angle), 0.])
+
+
+def point(view, angle, length):
+    """Screen point `length` vector units from the view's origin, in direction `angle`."""
+    return origin_of(view) + view['scale'] * length * heading(angle)
+
+
+def make_axes(view):
+    center = origin_of(view)
+    left, right, down, up = view['axes']
+    return VGroup(
+        Line(center + [-left, 0, 0], center + [right, 0, 0], color=MUTED, stroke_width=2),
+        Line(center + [0, -down, 0], center + [0, up, 0], color=MUTED, stroke_width=2),
+        Dot(center, radius=.05, color=INK),
     )
-    vertical = Line(
-        [ORIGIN[0], ORIGIN[1] - .4, 0],
-        [ORIGIN[0], ORIGIN[1] + 3.2, 0],
-        color=MUTED,
-        stroke_width=2,
-    )
-    start = Dot(ORIGIN, radius=.06, color=INK)
-    return VGroup(horizontal, vertical, start)
 
 
-def make_vector_arrow(components, color):
-    tip = [
-        ORIGIN[0] + VECTOR_SCALE * components[0],
-        ORIGIN[1] + VECTOR_SCALE * components[1],
-        0,
-    ]
+def make_vector(view, angle, length, color):
     return Arrow(
-        ORIGIN,
-        tip,
+        origin_of(view),
+        point(view, angle, length),
         buff=0,
         color=color,
         stroke_width=7,
-        max_tip_length_to_length_ratio=.12,
+        tip_length=.24,
+        max_tip_length_to_length_ratio=.35,
+        max_stroke_width_to_length_ratio=20,
     )
 
 
-def vector_label(tex, arrow, color, side=RIGHT):
-    tag = MathTex(tex, color=color).scale(.62)
-    tag.next_to(arrow, side, buff=.14)
-    return tag
+def make_tip_label(view, angle, length, tex, color, side=0.):
+    """Label just past an arrow's tip; `side` nudges it counterclockwise (+) or clockwise (-)."""
+    across = heading(angle + math.pi / 2)
+    spot = point(view, angle, length) + .3 * heading(angle) + side * across
+    return MathTex(tex, color=color).scale(.8).move_to(spot)
 
 
-def make_angle_arc(start_angle, sweep, radius=.65):
-    arc = Arc(
-        radius=radius,
-        start_angle=start_angle,
-        angle=sweep,
-        arc_center=ORIGIN,
+def make_unit_circle(view):
+    ring = Circle(radius=view['scale'], color=MUTED, stroke_width=2, stroke_opacity=.75)
+    return DashedVMobject(ring.move_to(origin_of(view)), num_dashes=56)
+
+
+def make_angle(view, first, second):
+    start, sweep = min(first, second), max(abs(second - first), 1e-3)
+    return Arc(radius=view['arc'], start_angle=start, angle=sweep,
+               arc_center=origin_of(view), color=MUTED, stroke_width=3)
+
+
+def make_theta(view, direction, reach=None):
+    reach = view['theta'] if reach is None else reach
+    return MathTex(r'\theta', color=INK).scale(.75).move_to(
+        origin_of(view) + reach * heading(direction))
+
+
+def make_corner(vertex, first, second, size):
+    """Square corner at `vertex` between two unit directions."""
+    corner = VMobject(color=MUTED, stroke_width=3)
+    corner.set_points_as_corners([
+        vertex + size * first,
+        vertex + size * (first + second),
+        vertex + size * second,
+    ])
+    return corner
+
+
+def make_gauge():
+    center = [*GAUGE_CENTER, 0]
+    track = Rectangle(width=GAUGE_WIDTH, height=GAUGE_HEIGHT, color=MUTED,
+                      stroke_width=3).move_to(center)
+    middle = Line(track.get_top(), track.get_bottom(), color=MUTED, stroke_width=2)
+    title = label('DIRECTIONAL SIMILARITY, −1 TO 1', 18, MUTED).next_to(track, UP, buff=.16)
+    low = label('opposite', 15, MUTED).next_to(track, DOWN, buff=.14).align_to(track, LEFT)
+    mid = label('perpendicular', 15, MUTED).next_to(track, DOWN, buff=.14)
+    high = label('same direction', 15, MUTED).next_to(track, DOWN, buff=.14)
+    high.align_to(track, RIGHT)
+    return VGroup(track, middle, title, low, mid, high)
+
+
+def make_fill(cosine):
+    """The gauge fill for a cosine: grows from the center toward -1 or 1."""
+    width = max(abs(cosine) * GAUGE_WIDTH / 2, .03)
+    color = GOLD if cosine >= 0 else NEGATIVE
+    x = GAUGE_CENTER[0] + math.copysign(width / 2, cosine)
+    return Rectangle(width=width, height=GAUGE_HEIGHT - .1, color=color, fill_color=color,
+                     fill_opacity=.85, stroke_width=0).move_to([x, GAUGE_CENTER[1], 0])
+
+
+def make_gauge_value(tex, cosine):
+    color = GOLD if cosine >= 0 else NEGATIVE
+    return MathTex(tex, color=color).scale(.85).move_to([GAUGE_CENTER[0], GAUGE_VALUE_Y, 0])
+
+
+def make_derivation():
+    """The formula, derived top to bottom: normalize, dot, combine, name it cos theta.
+
+    Row 1 is the plain dot product; it becomes row 2's left side once the vectors are
+    unit length, so the column is laid out once and every row is born in its final place.
+    """
+    plain = MathTex(r'\mathbf u\cdot\mathbf v', color=INK).scale(.85)
+    hats = MathTex(
+        r'\hat{\mathbf u}=\frac{\mathbf u}{\|\mathbf u\|},\qquad'
+        r'\hat{\mathbf v}=\frac{\mathbf v}{\|\mathbf v\|}',
         color=MUTED,
-        stroke_width=3,
-    )
-    return arc
+    ).scale(.8)
+    dotted = MathTex(
+        r'\hat{\mathbf u}\cdot\hat{\mathbf v}',
+        r'=\frac{\mathbf u}{\|\mathbf u\|}\cdot\frac{\mathbf v}{\|\mathbf v\|}',
+        r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
+        color=INK,
+    ).scale(.8)
+    cosine = MathTex(
+        r'\cos\theta', r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
+        color=INK,
+    ).scale(.85)
+    cosine[0].set_color(GOLD)
+    solved = MathTex(
+        r'\theta=\arccos\!\left(\frac{\mathbf u\cdot\mathbf v}'
+        r'{\|\mathbf u\|\,\|\mathbf v\|}\right)',
+        color=INK,
+    ).scale(.8)
+    column = VGroup(hats, dotted, cosine, solved).arrange(DOWN, buff=.42, aligned_edge=LEFT)
+    fit_into(column, WORK)
+    plain.move_to(dotted[0]).align_to(dotted, LEFT)
+    return plain, column
 
 
-def make_right_angle_at(corner_point):
-    size = .38
-    cx, cy = corner_point[0], corner_point[1]
-    across = Line([cx, cy, 0], [cx, cy + size, 0], color=MUTED, stroke_width=3)
-    over = Line([cx, cy + size, 0], [cx - size, cy + size, 0], color=MUTED, stroke_width=3)
-    return VGroup(across, over)
-
-
-def make_right_angle_marker():
-    return make_right_angle_at(ORIGIN)
-
-
-def make_right_triangle_diagram():
-    """Adjacent over hypotenuse — cosine as a fraction of the hypotenuse."""
-    corner_point = [-1.0, -1.0, 0]
-    base = Line(corner_point, [1.2, -1.0, 0], color=INK, stroke_width=4)
-    rise = Line([1.2, -1.0, 0], [1.2, .85, 0], color=INK, stroke_width=4)
-    hyp = Line(corner_point, [1.2, .85, 0], color=GOLD, stroke_width=4)
-    corner = make_right_angle_at([1.2, -1.0, 0])
-    adj = label('adjacent', 18, BLUE).next_to(base, DOWN, buff=.12)
-    hyp_l = label('hypotenuse', 18, GOLD).next_to(hyp, LEFT, buff=.12).shift(UP * .25)
-    ratio = MathTex(
-        r'\cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}}',
-        color=GOLD,
-    ).scale(.68).next_to(base, DOWN, buff=.75)
-    group = VGroup(base, rise, hyp, corner, adj, hyp_l, ratio)
-    return fit_into(group, DIAGRAM)
-
-
-def make_meter():
-    track = Rectangle(
-        width=METER_WIDTH,
-        height=METER_HEIGHT,
-        color=MUTED,
-        stroke_width=3,
-    ).move_to(METER_CENTER)
-    heading = label('COSINE READOUT', 17, MUTED).next_to(track, UP, buff=.14)
-    low = label('opposite directions', 15, MUTED)
-    low.next_to(track, DOWN, buff=.12).align_to(track, LEFT)
-    high = label('same direction', 15, MUTED)
-    high.next_to(track, DOWN, buff=.12).align_to(track, RIGHT)
-    return VGroup(track, heading, low, high)
-
-
-def make_meter_fill(fraction):
-    width = max(abs(fraction) * METER_WIDTH, .05)
-    fill = Rectangle(
-        width=width,
-        height=METER_HEIGHT - .1,
-        color=GOLD if fraction >= 0 else '#E97B78',
-        fill_color=GOLD if fraction >= 0 else '#E97B78',
-        fill_opacity=.85,
-        stroke_width=0,
-    )
-    left_edge = METER_CENTER[0] - METER_WIDTH / 2
-    center_x = left_edge + width / 2 if fraction >= 0 else left_edge + METER_WIDTH - width / 2
-    return fill.move_to([center_x, METER_CENTER[1], 0])
-
-
-def make_meter_value(tex):
-    value = MathTex(tex, color=GOLD).scale(.78)
-    return value.move_to([METER_CENTER[0], 1.22, 0])
-
-
-def make_open_question():
-    setup = label('Both speeds were exactly 1 mph.', 26, MUTED)
-    question = label('What happens when the vectors are different sizes?', 32, GOLD)
-    card = VGroup(setup, question).arrange(DOWN, buff=.55)
-    return fit_into(card, CENTER)
-
-
-def make_angle_formula():
-    rows = VGroup(
-        MathTex(
-            r'\cos\theta=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
-            color=INK,
-        ).scale(.88),
-        MathTex(
-            r'\theta=\arccos\!\left(\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}\right)',
-            color=GOLD,
-        ).scale(.78),
-    ).arrange(DOWN, buff=.38, aligned_edge=LEFT)
-    return fit_into(rows, WORK)
-
-
-def make_normalization_work():
-    rows = VGroup(
-        MathTex(
-            r'\frac{\mathbf u}{\|\mathbf u\|}\cdot\frac{\mathbf v}{\|\mathbf v\|}',
-            r'=\hat{\mathbf u}\cdot\hat{\mathbf v}',
-            r'=\cos\theta',
-            color=INK,
-        ).scale(.78),
-        MathTex(
-            r'\text{Normalize both vectors, then dot them.}',
-            color=MUTED,
-        ).scale(.55),
-    ).arrange(DOWN, buff=.35, aligned_edge=LEFT)
-    rows[0][2].set_color(GOLD)
-    return fit_into(rows, WORK)
-
-
-def make_standardize_note():
-    rows = VGroup(
-        label('Dividing by the magnitudes standardizes the vectors.', 22, INK),
-        label('The result reads as direction alone — a percentage, not a size.', 20, MUTED),
-        MathTex(
-            r'\hat{\mathbf u}\cdot\hat{\mathbf v}\in[-1,1]',
-            color=GOLD,
-        ).scale(.85),
-    ).arrange(DOWN, buff=.32)
-    return fit_into(rows, WORK)
-
-
-def make_cosine_percentage():
-    rows = VGroup(
-        label('Cosine is the adjacent side', 22, INK),
-        label('expressed as a fraction of the hypotenuse.', 22, GOLD),
-        MathTex(r'\cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}}', color=GOLD).scale(.82),
-    ).arrange(DOWN, buff=.28)
-    return fit_into(rows, WORK)
-
-
-def given_vectors():
-    return MathTex(
-        r'\mathbf u=2\mathbf i-2\mathbf j,\quad'
-        r'\mathbf v=5\mathbf i+8\mathbf j,\quad'
-        r'\mathbf w=4\mathbf i+4\mathbf j',
+def make_given():
+    given = MathTex(
+        r'\mathbf u=2\mathbf i-2\mathbf j,\quad\mathbf v=5\mathbf i+8\mathbf j,'
+        r'\quad\mathbf w=4\mathbf i+4\mathbf j',
         color=MUTED,
     ).scale(.62)
+    return given.move_to([WORK.left + .15 + given.width / 2,
+                          WORK.top - .1 - given.height / 2, 0])
 
 
-def make_problem_work(part, pair_tex, dot_val, mag_tex, cos_tex, theta_tex):
-    header = MathTex(rf'\text{{({part}) }}{pair_tex}', color=INK).scale(.68)
-    dot_line = MathTex(rf'\mathbf u\cdot\mathbf v={dot_val}', color=INK).scale(.66)
-    if part == 'b':
-        dot_line = MathTex(rf'\mathbf v\cdot\mathbf w={dot_val}', color=INK).scale(.66)
-    if part == 'c':
-        dot_line = MathTex(rf'\mathbf u\cdot\mathbf w={dot_val}', color=INK).scale(.66)
-    mags = MathTex(mag_tex, color=MUTED).scale(.58)
-    cosine = MathTex(cos_tex, color=INK).scale(.66)
-    angle = MathTex(theta_tex, color=GOLD).scale(.72)
-    rows = VGroup(header, dot_line, mags, cosine, angle)
-    rows.arrange(DOWN, buff=.22, aligned_edge=LEFT)
-    return fit_into(rows, WORK)
+def place_below(rows, anchor):
+    """Stack rows under `anchor`, left edges aligned, shrinking only if they overflow WORK."""
+    rows.arrange(DOWN, buff=.34, aligned_edge=LEFT)
+    room = WORK.right - .3 - anchor.get_left()[0]  # clears the result box too
+    if rows.width > room:
+        rows.scale(room / rows.width)
+    return rows.next_to(anchor, DOWN, buff=.45, aligned_edge=LEFT)
 
 
-def make_unit_vector_payoff():
+def make_problem_rows(anchor, dot, product, magnitudes, ratio, cosine, angle, degrees):
     rows = VGroup(
-        MathTex(r'\hat{\mathbf u}=\langle0.7071,-0.7071\rangle', color=MUTED).scale(.72),
-        MathTex(
-            r'\hat{\mathbf v}=\langle0.5300,0.8480\rangle,\;'
-            r'\hat{\mathbf w}=\langle0.7071,0.7071\rangle',
-            color=MUTED,
-        ).scale(.68),
-        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf v}=-0.22486', color=INK).scale(.72),
-        MathTex(r'\hat{\mathbf v}\cdot\hat{\mathbf w}=0.97439', color=INK).scale(.72),
-        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf w}=0', color=INK).scale(.72),
-        MathTex(
-            r'\text{Each unit-vector dot product equals its }\cos\theta.',
-            color=GOLD,
-        ).scale(.65),
-    ).arrange(DOWN, buff=.22, aligned_edge=LEFT)
-    return fit_into(rows, WORK)
+        MathTex(dot, product, color=INK).scale(.68),
+        MathTex(magnitudes, color=MUTED).scale(.64),
+        MathTex(ratio, cosine, color=INK).scale(.68),
+        MathTex(angle, degrees, color=INK).scale(.68),
+    )
+    for row in rows[2:]:
+        row[1].set_color(GOLD)
+    return place_below(rows, anchor)
+
+
+def make_unit_components(anchor):
+    rows = VGroup(
+        MathTex(r'\hat{\mathbf u}=\langle0.7071,-0.7071\rangle', color=U_COLOR),
+        MathTex(r'\hat{\mathbf v}=\langle0.5300,0.8480\rangle', color=V_COLOR),
+        MathTex(r'\hat{\mathbf w}=\langle0.7071,0.7071\rangle', color=W_COLOR),
+    ).scale(.66).arrange(DOWN, buff=.2, aligned_edge=LEFT)
+    return rows.move_to(anchor).align_to(anchor, LEFT).align_to(anchor, UP)
+
+
+def make_payoff_rows(anchor):
+    rows = VGroup(
+        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf v}\approx-0.22486',
+                r'\quad\theta\approx102.99^\circ', color=INK),
+        MathTex(r'\hat{\mathbf v}\cdot\hat{\mathbf w}\approx0.97439',
+                r'\quad\theta\approx12.99^\circ', color=INK),
+        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf w}=0',
+                r'\quad\theta=90^\circ', color=INK),
+    ).scale(.72)
+    for row in rows:
+        row[1].set_color(GOLD)
+    return place_below(rows, anchor)
+
+
+def rebuild(mobject, build):
+    """Animate a mobject by rebuilding it from scratch every frame -- exact at every alpha."""
+    return UpdateFromAlphaFunc(mobject, lambda m, alpha: m.become(build(alpha)))
+
+
 
 
 class AngleBetweenVectors(Narrated, Scene):
-    """Teach the angle formula as normalized dot products, then work three problems."""
+    """Normalize, dot, read the cosine, then work the three textbook problems."""
 
-    pace = .95
+    pace = .9
+    fill = None  # the gauge stays empty until part (a)'s arithmetic fills it
 
     def open_on_question(self):
-        self.hush()
+        """Clip one's closing card, identical, so the two clips cut together."""
         card = make_open_question()
-        self.play(FadeIn(card[0]), run_time=.7)
-        self.play(Write(card[1]), run_time=1.2)
+        self.add(card)
         self.wait(2.2)
         self.mark('open_question')
         self.play(FadeOut(card), run_time=.6)
-        return card
 
-    def show_formula(self):
-        self.say('Normalize by dividing each vector by its magnitude.')
-        self.axes = make_axes()
-        self.u_arrow = make_vector_arrow(U, U_COLOR)
-        self.v_arrow = make_vector_arrow(V, V_COLOR)
-        self.u_label = vector_label(r'\mathbf u', self.u_arrow, U_COLOR, UP)
-        self.v_label = vector_label(r'\mathbf v', self.v_arrow, V_COLOR, RIGHT)
-        diagram = VGroup(self.axes, self.u_arrow, self.v_arrow, self.u_label, self.v_label)
-        fit_into(diagram, DIAGRAM)
-        formula = make_angle_formula()
+    def draw_full_size(self):
+        """Different lengths on screen, with the angle between them still theta."""
+        self.say('Now the two vectors have different lengths.')
+        self.axes = make_axes(FULL)
+        self.first = make_vector(FULL, ANGLE_U, LENGTH_U, U_COLOR)
+        self.second = make_vector(FULL, ANGLE_V, LENGTH_V, V_COLOR)
+        u_label = make_tip_label(FULL, ANGLE_U, LENGTH_U, r'\mathbf u', U_COLOR)
+        v_label = make_tip_label(FULL, ANGLE_V, LENGTH_V, r'\mathbf v', V_COLOR)
         self.play(FadeIn(self.axes), run_time=.5)
-        self.play(Create(self.u_arrow), Create(self.v_arrow), run_time=1.0)
-        self.play(FadeIn(self.u_label), FadeIn(self.v_label), run_time=.6)
-        self.play(Write(formula[0]), run_time=1.0)
-        self.play(Write(formula[1]), run_time=1.1)
-        self.wait(2.0)
-        self.mark('angle_formula')
-        return formula
+        self.play(Create(self.first), Create(self.second), run_time=1.2)
+        self.play(FadeIn(u_label), FadeIn(v_label), run_time=.5)
+        self.say('The angle between them is still θ.')
+        self.arc = make_angle(FULL, ANGLE_U, ANGLE_V)
+        self.theta = make_theta(FULL, THETA_A)
+        self.play(Create(self.arc), FadeIn(self.theta), run_time=.8)
+        self.wait(.8)
 
-    def show_normalization(self, formula):
-        self.say('That fraction is just dotting the two unit vectors.')
-        work = make_normalization_work()
-        self.play(FadeOut(formula), run_time=.4)
-        self.play(Write(work[0]), run_time=1.2)
-        self.play(FadeIn(work[1]), run_time=.7)
-        self.wait(2.0)
-        self.mark('unit_dot_product')
-        return work
+        self.say('We want their dot product. But clip one only worked at length 1.')
+        self.plain, self.work = make_derivation()
+        self.play(Write(self.plain), run_time=.9)
+        self.wait(1.8)
+        self.mark('different_lengths')
+        return VGroup(u_label, v_label)
 
-    def show_standardization(self, work):
-        self.say('Standardizing lets the number express direction alone.')
-        note = make_standardize_note()
-        self.meter = make_meter()
-        self.meter_fill = make_meter_fill(.5)
-        gauge = VGroup(self.meter, self.meter_fill)
-        fit_into(gauge, GAUGE)
-        self.play(FadeOut(work), run_time=.4)
-        self.play(FadeIn(gauge), run_time=.7)
-        self.play(LaggedStart(*[FadeIn(row) for row in note], lag_ratio=.35), run_time=1.1)
-        self.wait(2.0)
-        self.mark('standardize')
-        return note
-
-    def show_right_triangle(self, note):
-        self.say('Cosine is the adjacent side as a fraction of the hypotenuse.')
-        triangle = make_right_triangle_diagram()
-        caption = make_cosine_percentage()
-        self.play(FadeOut(note), FadeOut(self.u_label), FadeOut(self.v_label), run_time=.5)
-        self.play(Create(triangle[0]), Create(triangle[1]), Create(triangle[2]), run_time=.9)
-        self.play(FadeIn(triangle[3]), FadeIn(triangle[4]), FadeIn(triangle[5]), run_time=.7)
-        self.play(Write(triangle[6]), run_time=.9)
-        self.play(FadeIn(caption), run_time=.7)
-        self.wait(2.0)
-        self.mark('right_triangle')
-        return triangle, caption
-
-    def clear_diagram_extras(self, *groups):
-        self.play(*[FadeOut(g) for g in groups if g is not None], run_time=.5)
-
-    def set_pair(self, first, second, first_comp, second_comp, first_color, second_color):
+    def normalize(self, labels):
+        """Shrink both arrows onto the circle of radius 1, then zoom in on it."""
+        self.say('So make them length 1: divide each vector by its own length.')
+        self.play(Write(self.work[0]), run_time=1.2)
+        ghosts = VGroup(self.first.copy(), self.second.copy()).set_opacity(.22)
+        self.add(ghosts)
+        self.circle = make_unit_circle(FULL)
+        self.play(FadeOut(labels), Create(self.circle), run_time=.7)
         self.play(
-            FadeOut(self.u_arrow),
-            FadeOut(self.v_arrow),
-            run_time=.3,
+            rebuild(self.first, lambda a: make_vector(FULL, ANGLE_U, lerp(LENGTH_U, 1, a), U_COLOR)),
+            rebuild(self.second, lambda a: make_vector(FULL, ANGLE_V, lerp(LENGTH_V, 1, a), V_COLOR)),
+            run_time=1.8,
         )
-        a = make_vector_arrow(first_comp, first_color)
-        b = make_vector_arrow(second_comp, second_color)
-        la = vector_label(first, a, first_color, UP)
-        lb = vector_label(second, b, second_color, RIGHT)
-        group = VGroup(a, b, la, lb)
-        fit_into(VGroup(self.axes, a, b, la, lb), DIAGRAM)
-        self.play(Create(a), Create(b), FadeIn(la), FadeIn(lb), run_time=.9)
-        return a, b, la, lb
+        self.wait(.6)
 
-    def show_meter(self, cos_tex, fraction):
-        value = make_meter_value(cos_tex)
-        fill = make_meter_fill(fraction)
-        self.play(ReplacementTransform(self.meter_fill, fill), run_time=.7)
-        self.meter_fill = fill
-        self.play(FadeIn(value), run_time=.6)
-        return value
-
-    def trim_meter_for_problems(self):
-        """Drop the end labels so the readout and given vectors fit in GAUGE."""
-        if hasattr(self, '_meter_trimmed') and self._meter_trimmed:
-            return
-        self.play(FadeOut(self.meter[2]), FadeOut(self.meter[3]), run_time=.3)
-        self._meter_trimmed = True
-
-    def work_problem_a(self, triangle, caption):
-        self.say('Part (a): u and v. A negative cosine means an obtuse angle.')
-        self.clear_diagram_extras(triangle, caption)
-        self.trim_meter_for_problems()
-        given = given_vectors().move_to([3.35, 1.72, 0])
-        self.play(FadeIn(given), run_time=.6)
-        a, b, la, lb = self.set_pair(
-            r'\mathbf u', r'\mathbf v', U, V, U_COLOR, V_COLOR,
+        self.say('Zoom in. Same directions, same angle θ — now both length 1.')
+        view = lambda a: blend(FULL, UNIT, a)
+        self.play(
+            FadeOut(ghosts),
+            rebuild(self.axes, lambda a: make_axes(view(a))),
+            rebuild(self.circle, lambda a: make_unit_circle(view(a))),
+            rebuild(self.first, lambda a: make_vector(view(a), ANGLE_U, 1, U_COLOR)),
+            rebuild(self.second, lambda a: make_vector(view(a), ANGLE_V, 1, V_COLOR)),
+            rebuild(self.arc, lambda a: make_angle(view(a), ANGLE_U, ANGLE_V)),
+            rebuild(self.theta, lambda a: make_theta(view(a), THETA_A)),
+            run_time=1.8,
         )
-        work = make_problem_work(
-            'a',
-            r'\mathbf u\text{ and }\mathbf v',
-            '-6',
-            r'\|\mathbf u\|=2\sqrt2\approx2.8284,\;\|\mathbf v\|=\sqrt{89}\approx9.4340',
-            r'\cos\theta=\frac{-6}{(2\sqrt2)(\sqrt{89})}=\frac{-3}{\sqrt{178}}\approx-0.22486',
-            r'\theta\approx102.99^\circ',
-        )
-        self.play(LaggedStart(*[Write(row) for row in work], lag_ratio=.25), run_time=2.0)
-        meter_val = self.show_meter(r'\cos\theta\approx-0.22486', -.22486)
-        self.wait(2.0)
-        self.mark('problem_a')
-        return VGroup(given, a, b, la, lb, work, meter_val)
-
-    def work_problem_b(self, prior):
-        self.say('Part (b): v and w — almost the same direction.')
-        self.play(FadeOut(prior), run_time=.5)
-        a, b, la, lb = self.set_pair(
-            r'\mathbf v', r'\mathbf w', V, W, V_COLOR, W_COLOR,
-        )
-        work = make_problem_work(
-            'b',
-            r'\mathbf v\text{ and }\mathbf w',
-            '52',
-            r'\|\mathbf v\|=\sqrt{89}\approx9.4340,\;\|\mathbf w\|=4\sqrt2\approx5.6569',
-            r'\cos\theta=\frac{52}{(\sqrt{89})(4\sqrt2)}=\frac{13}{\sqrt{178}}\approx0.97439',
-            r'\theta\approx12.99^\circ',
-        )
-        self.play(LaggedStart(*[Write(row) for row in work], lag_ratio=.25), run_time=2.0)
-        meter_val = self.show_meter(r'\cos\theta\approx0.97439', .97439)
-        self.wait(2.0)
-        self.mark('problem_b')
-        return VGroup(a, b, la, lb, work, meter_val)
-
-    def work_problem_c(self, prior):
-        self.say('Part (c): u and w share nothing — perpendicular directions.')
-        self.play(FadeOut(prior), run_time=.5)
-        a, b, la, lb = self.set_pair(
-            r'\mathbf u', r'\mathbf w', U, W, U_COLOR, W_COLOR,
-        )
-        corner = make_right_angle_marker()
-        fit_into(VGroup(self.axes, a, b, la, lb, corner), DIAGRAM)
-        self.play(Create(corner[0]), Create(corner[1]), run_time=.6)
+        self.first_label = make_tip_label(UNIT, ANGLE_U, 1, r'\hat{\mathbf u}', U_COLOR)
+        self.second_label = make_tip_label(UNIT, ANGLE_V, 1, r'\hat{\mathbf v}', V_COLOR, .22)
+        self.play(FadeIn(self.first_label), FadeIn(self.second_label), run_time=.6)
         self.wait(1.2)
-        self.say('Now let the arithmetic confirm the right angle.')
-        work = make_problem_work(
-            'c',
-            r'\mathbf u\text{ and }\mathbf w',
-            '0',
-            r'\|\mathbf u\|=2\sqrt2,\;\|\mathbf w\|=4\sqrt2',
-            r'\cos\theta=0',
-            r'\theta=90^\circ',
+        self.mark('unit_vectors')
+
+    def derive_formula(self):
+        """Dot the unit vectors, combine the fractions, and recognize cos theta."""
+        dotted, cosine, solved = self.work[1], self.work[2], self.work[3]
+        self.say('Now take the dot product of the two unit vectors.')
+        self.play(TransformMatchingShapes(self.plain, dotted[0]), run_time=1.)
+        self.play(TransformFromCopy(self.work[0], dotted[1]), run_time=1.3)
+        self.wait(.8)
+        self.say('The lengths are just numbers, so they combine into one fraction.')
+        self.play(Write(dotted[2]), run_time=1.2)
+        self.wait(.8)
+        self.say('From clip one: the dot product of unit vectors is cos θ.')
+        self.play(Write(cosine[0]), TransformFromCopy(dotted[2], cosine[1]), run_time=1.3)
+        self.wait(.8)
+        self.say('Undo the cosine to get the angle itself.')
+        self.play(Write(solved), run_time=1.2)
+        self.wait(1.8)
+        self.mark('angle_formula')
+
+    def standardize(self):
+        """One scale for every pair, whatever the lengths were."""
+        self.say('Dividing by the lengths standardizes them: direction alone is left.')
+        self.gauge = make_gauge()
+        self.play(FadeIn(self.gauge), run_time=.8)
+        self.wait(.6)
+        self.say('Every pair now reads on one scale, from −1 to 1.')
+        self.wait(2.)
+        self.mark('standardize')
+
+    def land_result(self, rows, value_tex, cosine):
+        """Box the computed cosine and fly it up onto the gauge."""
+        box = SurroundingRectangle(rows[2][1], color=GOLD, buff=.1)
+        self.play(Create(box), run_time=.4)
+        value = make_gauge_value(value_tex, cosine)
+        if self.fill is None:
+            # Part (a): the gauge has been empty until now -- the arithmetic fills it.
+            self.fill = make_fill(cosine)
+            self.play(TransformFromCopy(rows[2][1], value),
+                      GrowFromPoint(self.fill, [*GAUGE_CENTER, 0]), run_time=1.3)
+        else:
+            self.play(FadeOut(self.value), TransformFromCopy(rows[2][1], value), run_time=1.1)
+        self.value = value
+        return box
+
+    def write_rows(self, rows, count):
+        for row in rows[:count]:
+            self.play(Write(row), run_time=.9)
+            self.wait(.3)
+
+    def problem_a(self):
+        self.say('Part (a): u and v — the pair on screen.')
+        self.play(FadeOut(self.work), run_time=.6)
+        self.given = make_given()
+        self.play(FadeIn(self.given), run_time=.6)
+        rows = make_problem_rows(
+            self.given,
+            r'\mathbf u\cdot\mathbf v=(2)(5)+(-2)(8)', r'=-6',
+            r'\|\mathbf u\|\,\|\mathbf v\|=(2\sqrt2)(\sqrt{89})',
+            r'\cos\theta=\frac{-6}{(2\sqrt2)(\sqrt{89})}=\frac{-3}{\sqrt{178}}',
+            r'\approx-0.22486',
+            r'\theta=\arccos(-0.22486)', r'\approx102.99^\circ',
         )
-        self.play(LaggedStart(*[Write(row) for row in work], lag_ratio=.25), run_time=1.8)
-        meter_val = self.show_meter(r'\cos\theta=0', 0)
-        self.wait(2.0)
+        self.write_rows(rows, 3)
+        box = self.land_result(rows, r'\approx-0.22486', -0.22486)
+        self.say('Negative: about 22% of v’s direction points against u.')
+        self.wait(2.)
+        self.say('A negative cosine means an obtuse angle: about 102.99°.')
+        self.play(Write(rows[3]), run_time=.9)
+        self.wait(2.)
+        self.mark('problem_a')
+        return VGroup(rows, box)
+
+    def swing(self, arrow, start, end, start_color, end_color, fixed):
+        """Turn one unit arrow; the arc and the gauge fill follow it frame by frame."""
+        start_color, end_color = ManimColor(start_color), ManimColor(end_color)
+        turn = lambda a: lerp(start, end, a)
+        return [
+            rebuild(arrow, lambda a: make_vector(
+                UNIT, turn(a), 1, interpolate_color(start_color, end_color, a))),
+            rebuild(self.arc, lambda a: make_angle(UNIT, fixed, turn(a))),
+            rebuild(self.fill, lambda a: make_fill(math.cos(turn(a) - fixed))),
+        ]
+
+    def problem_b(self, prior):
+        self.say('Part (b): v and w. Swing u around to w.')
+        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta), run_time=.5)
+        w_label = make_tip_label(UNIT, ANGLE_W, 1, r'\hat{\mathbf w}', W_COLOR, -.22)
+        self.play(
+            *self.swing(self.first, ANGLE_U, ANGLE_W, U_COLOR, W_COLOR, ANGLE_V),
+            FadeTransform(self.first_label, w_label),
+            run_time=2.,
+        )
+        self.first_label = w_label
+        self.theta = make_theta(UNIT, ANGLE_W - .21)
+        self.play(FadeIn(self.theta), run_time=.4)
+        self.say('Almost the same direction, so the gauge nearly fills.')
+        self.wait(1.2)
+        rows = make_problem_rows(
+            self.given,
+            r'\mathbf v\cdot\mathbf w=(5)(4)+(8)(4)', r'=52',
+            r'\|\mathbf v\|\,\|\mathbf w\|=(\sqrt{89})(4\sqrt2)',
+            r'\cos\theta=\frac{52}{(\sqrt{89})(4\sqrt2)}=\frac{13}{\sqrt{178}}',
+            r'\approx0.97439',
+            r'\theta=\arccos(0.97439)', r'\approx12.99^\circ',
+        )
+        self.write_rows(rows, 3)
+        box = self.land_result(rows, r'\approx0.97439', 1)
+        self.say('Nearly all shared: an angle of about 12.99°.')
+        self.play(Write(rows[3]), run_time=.9)
+        self.wait(2.)
+        self.mark('problem_b')
+        return VGroup(rows, box)
+
+    def problem_c(self, prior):
+        self.say('Part (c): u and w. Swing v back around to u.')
+        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta), run_time=.5)
+        u_label = make_tip_label(UNIT, ANGLE_U, 1, r'\hat{\mathbf u}', U_COLOR)
+        self.play(
+            *self.swing(self.second, ANGLE_V, ANGLE_U, V_COLOR, U_COLOR, ANGLE_W),
+            FadeTransform(self.second_label, u_label),
+            run_time=2.2,
+        )
+        self.second_label = u_label
+        center = origin_of(UNIT)
+        square = make_corner(center, heading(ANGLE_U), heading(ANGLE_W), .3)
+        quarter = label('90°', 20, MUTED).move_to(center + [.95, .22, 0])
+        self.play(FadeOut(self.arc), Create(square), FadeIn(quarter), run_time=.7)
+        self.arc = VGroup(square, quarter)
+        self.say('A quarter turn apart: they share nothing, and the gauge sits at zero.')
+        self.wait(1.6)
+        self.say('Now let the arithmetic confirm the zero.')
+        rows = make_problem_rows(
+            self.given,
+            r'\mathbf u\cdot\mathbf w=(2)(4)+(-2)(4)', r'=0',
+            r'\|\mathbf u\|\,\|\mathbf w\|=(2\sqrt2)(4\sqrt2)',
+            r'\cos\theta=\frac{0}{(2\sqrt2)(4\sqrt2)}', r'=0',
+            r'\theta=\arccos(0)', r'=90^\circ',
+        )
+        self.write_rows(rows, 3)
+        box = self.land_result(rows, '0', 1)
+        self.play(Write(rows[3]), run_time=.9)
+        self.wait(2.)
         self.mark('problem_c')
-        return VGroup(a, b, la, lb, corner, work, meter_val)
+        return VGroup(rows, box)
 
     def unit_vector_payoff(self, prior):
-        self.say('Unit-vector dot products reproduce those cosines exactly.')
-        self.play(FadeOut(prior), FadeOut(self.meter), FadeOut(self.meter_fill), run_time=.5)
-        payoff = make_unit_vector_payoff()
-        self.play(LaggedStart(*[Write(row) for row in payoff], lag_ratio=.3), run_time=2.0)
+        self.say('Each unit-vector dot product is the cosine of its angle.')
+        v_arrow = make_vector(UNIT, ANGLE_V, 1, V_COLOR)
+        v_label = make_tip_label(UNIT, ANGLE_V, 1, r'\hat{\mathbf v}', V_COLOR, .22)
+        self.play(FadeOut(prior), run_time=.5)
+        components = make_unit_components(self.given)
+        self.play(TransformMatchingShapes(self.given, components),
+                  FadeIn(v_arrow), FadeIn(v_label), run_time=1.3)
+        self.wait(.8)
+        rows = make_payoff_rows(components)
+        for row in rows:
+            self.play(FadeIn(row, shift=DOWN * .15), run_time=.7)
+            self.wait(.6)
         self.wait(2.2)
         self.mark('unit_vectors_payoff')
         self.write_marks('angle_between_vectors_marks.json')
 
     def construct(self):
         self.open_on_question()
-        formula = self.show_formula()
-        work = self.show_normalization(formula)
-        note = self.show_standardization(work)
-        triangle, caption = self.show_right_triangle(note)
-        prior = self.work_problem_a(triangle, caption)
-        prior = self.work_problem_b(prior)
-        prior = self.work_problem_c(prior)
+        labels = self.draw_full_size()
+        self.normalize(labels)
+        self.derive_formula()
+        self.standardize()
+        prior = self.problem_a()
+        prior = self.problem_b(prior)
+        prior = self.problem_c(prior)
         self.unit_vector_payoff(prior)

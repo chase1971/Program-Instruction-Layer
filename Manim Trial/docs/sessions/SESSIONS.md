@@ -1,3 +1,28 @@
+## 2026-09-27 — Vector series clips six and seven: ramp force and work
+
+**Files changed:** `ramp_force.py` (new, 426), `work_wagon.py` (new, 418), `build_page.py`
+(+2 `PAGES` rows, `SERIES` extended to `ramp-force` then `work-wagon`), `README.md` (+2 lines),
+`agent docs/page-manifest.json` (series page now seven clips), new scratch pages
+`ramp-force.html` and `work-wagon.html`, rebuilt `vector-series.html` and `pages.html`.
+
+**What worked:** Both clips were modeled on `force_decomposition.py` from Chase's worksheet
+screenshots. Clip six (problem 7) splits a 100 lb wagon's weight on a 20° hill into w₁ along the
+ramp and w₂ into it, projects onto the unit vector r = ⟨cos 20°, sin 20°⟩, reads the minus sign in
+w·r ≈ −34.20 as "down the hill", answers 34.2 lb up the hill, and closes on Force to remain
+stationary = Weight × sin θ. Chase: "That looks good." Clip seven (problem 9) opens on what work
+means (level pull: 5000 ft·lb), tilts the handle to 30°, keeps only F₁ = proj_PQ F, and reaches
+W = ‖F‖‖PQ‖cos θ = 2500√3 ≈ 4330.13 ft·lb, checked as F · PQ, with a closing card on work.
+Both clips render 1080p30 with every mark clean under `MANIM_AUDIT_STRICT=1`, and their contact
+sheets were checked by eye. Gotcha hit again: Python heredocs mangle backslash escapes like `\t` in LaTeX strings,
+so use the Edit tool. `Text` also drops the `·` in "ft·lb", so on-screen text says "foot-pounds".
+
+**Current state:** Green — seven clips linked Previous/Next and on the series page.
+
+**File size flag:** `work_wagon.py` 418, `ramp_force.py` 426 (new, under cap).
+
+**Next session:** Chase called clip seven the last one; wait for his reaction to `work-wagon`
+and `vector-series`.
+
 ## 2026-09-26 — Layout guardrails, and the cheap-model trial that failed review
 
 **Files changed:** `scene_audit.py` (new, 438), `scene_layout.py` (new, 94),

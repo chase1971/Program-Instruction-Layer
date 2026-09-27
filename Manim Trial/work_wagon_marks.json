@@ -1,0 +1,30 @@
+[
+  {
+    "name": "straight_pull",
+    "time": 20.11
+  },
+  {
+    "name": "question",
+    "time": 30.11
+  },
+  {
+    "name": "pieces",
+    "time": 46.33
+  },
+  {
+    "name": "solve",
+    "time": 64.11
+  },
+  {
+    "name": "check",
+    "time": 79.89
+  },
+  {
+    "name": "answer",
+    "time": 87.22
+  },
+  {
+    "name": "summary",
+    "time": 105.67
+  }
+]

@@ -126,3 +126,24 @@ Neither is a prediction that they would work.
 `angle_between_vectors_marks.json` · one `PAGES` row in `build_page.py` ·
 contact sheet at `media/audit/angle_between_vectors_contact.jpg`.
 Nothing is committed.
+
+---
+
+## Re-cut — 2026-09-27 (Opus)
+
+`angle_between_vectors.py` was rewritten; the draft above is in git history (`c22a550`).
+The placement bugs Chase saw came from three mechanical causes, worth knowing because the
+audit cannot catch any of them:
+
+1. **`fit_into` called on a group that mixed on-screen and new objects.** The axes had
+   already been moved and scaled, and new arrows built at the raw `ORIGIN` were then fitted
+   *together* with them, so from part (a) on the vectors no longer started at the axes' origin.
+2. **The gauge was fitted into `GAUGE`, but the fill was still built from the raw
+   `METER_CENTER` / `METER_WIDTH` constants.** So the fills landed on the heading, and the
+   zero fill in (c) became the stray sliver to the left of the track.
+3. **Hard-coded label sides.** The `u` label sat `UP` of an arrow pointing down-right, which
+   put it at the origin.
+
+The fix is structural: every diagram object is built from one `view` (origin + scale), and
+motion is `rebuild(mob, lambda alpha: build(...))`, so arrows, arc, circle and gauge fill
+are exact on every frame, and none of them is ever positioned after it is built.
