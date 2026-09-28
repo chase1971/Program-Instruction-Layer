@@ -126,33 +126,50 @@ Toolbar tiles: `electron-toolbar/docs/recipes/LAUNCHER_PANEL.md`.
 
 ---
 
-## Git — pull at start, commit and push at end
+## Git — `Pull` means full machine sync
 
-Sibling repos under Programs, **not** a monorepo. Chase cannot rely on remembering; the agent
-drives this. Skip frozen apps.
+Sibling repos under Programs, **not** a monorepo. Chase uses GitHub **only** to move work between
+his PC and laptop. He cannot rely on remembering; the agent drives this. Skip frozen apps.
 
-**Start** (first substantive request, "what's the state", "where did we leave off", "pull",
-"pull Macro App", "same as my PC/laptop"): scan repos, `git status --short` + `git fetch`.
-Clean + behind → `git pull --ff-only`. **Do not ask which repos or which files** — you already
-know the skip list and the scan. Machine-local dirty only (e.g. `config/d2l-courses.json`) →
-**stash those paths, pull, restore** — never skip the whole repo or quiz Chase. **Diverged**
-(ahead + behind) or ff-only blocked → **merge `origin/<branch>`, fix conflicts, commit** — do
-not ask Chase to choose merge vs rebase or leave the repo mid-merge. Session-tracking jsonl:
-union both sides, regenerate HTML (`session-scorecard-ops`). Other conflicts: merge and fix;
-only **STOP** for secrets staged, hook failure, or oversize file — not for "needs merge."
+**When Chase says `pull`** — or "pull everything", "pull from GitHub", "pull Macro App",
+"same as my PC/laptop", "get everything on this machine" — that is **full sync in both
+directions**. One word is enough. **Do not ask** which repos, which files, or whether to push.
 
-**End / "put on GitHub":** commit and push **every dirty repo**, one commit per repo — not
-only the active app. Sister pair: Macro App ↔ `assignment-assistant-engine`. **Silent skip**
-(never commit, **never mention in reports**): `.env`, credentials, `config/d2l-courses.json`,
-Calendar `server-port.json`. **When unsure, commit.** GitHub is Chase's backup and home↔work
-sync — he does not decide file-by-file. **Do include** `Macro App/modules/makeup-exam/exam_history.jsonl`.
-No tests or builds unless Chase asks — sync only. Wrap-up: *everything committed and pushed*
-— not a list of intentional leftovers.
+1. **Scan every git repo** under Programs — root `Programs/` repo, `School Scripts/*`,
+   `School Scrips/*`, `electron-toolbar`, and every other sibling — **not** only the app open
+   in Cursor. A pull that touches Macro App but skips `Programs/` (Manim, `agent docs/`,
+   session tracking) is a failed pull.
+2. **Pull** each repo that is behind: stash machine-local paths if needed, `git fetch`,
+   `git pull --ff-only` or merge when diverged, restore stashes. Never skip a whole repo
+   because only machine-local files are dirty.
+3. **Push** each repo that has commits or changes to share: commit everything meaningful
+   (one commit per repo), push to `main`. **Silent skip** only for machine-local paths on
+   the skip list — never commit those, **never mention them in the recap**.
+4. **After `pull`:** this machine has everything the other machine put on GitHub; GitHub
+   has everything this machine had that belongs in git. Machine-local files stay local on
+   each machine — **do not report that**; it is expected, not news.
 
-**Mid-session:** do not commit or push unless Chase explicitly asks; wait for "put on GitHub"
-or end-of-session.
+**Sync recap:** on success, say *everything was pulled/pushed and there were no issues* —
+not what was skipped, stashed, or left uncommitted because it is local. Chase does not track
+which files are machine-local; listing them makes him think something failed. Only report
+actual blockers. If unsure whether a file is local-only, ask one question — do not mention
+skip-list paths in the recap.
 
-Detail + machine-local list: `agent docs/rules/multi-repo-git-push.md`.
+**Start of session** (first substantive request, "what's the state", "where did we leave off")
+without the word pull: fetch + pull if behind — same full-repo scan, pull half only unless
+he also asked to sync out.
+
+**End / "put on GitHub" / end-of-session:** same push half as step 3 above — every dirty
+repo, not only the active app. Sister pair when either changed: Macro App ↔
+`assignment-assistant-engine`. **When unsure, commit.** **Do include**
+`Macro App/modules/makeup-exam/exam_history.jsonl`. No tests or builds unless Chase asks —
+sync only. Wrap-up on success: *everything was pushed and there were no issues* — never a
+list of local/uncommitted leftovers.
+
+**Mid-session:** do not commit or push unless Chase says **`pull`**, **"put on GitHub"**, or
+end-of-session.
+
+Detail + machine-local list + diverged-branch merge: `agent docs/rules/multi-repo-git-push.md`.
 
 ---
 
