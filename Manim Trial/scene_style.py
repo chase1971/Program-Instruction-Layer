@@ -18,6 +18,15 @@ GOLD = '#FFC66D'
 BLUE = '#86C8FF'
 MUTED = '#B2C0D4'
 
+# Light theme: white paper, for the classroom projector and the student portal, where the
+# navy clips read poorly. Same roles as the navy palette above -- ink, blue, gold, muted.
+PAPER = '#FFFFFF'
+PAPER_INK = '#1A2332'
+PAPER_BLUE = '#1565C0'
+PAPER_GOLD = '#B45309'
+PAPER_MUTED = '#475569'
+PAPER_RED = '#C62828'
+
 # The caption rides along the top: it says what is going on, so it should be the
 # first thing read, not the last. Content therefore lives below about y = 2.5.
 CAPTION_Y = 3.3
@@ -48,6 +57,7 @@ class Narrated:
     marks = None
     _inner = False  # Scene.wait routes through Scene.play; don't scale or count twice.
     pace = PACE  # per-scene override point; a subclass can set its own without touching PACE.
+    caption_color = MUTED  # a light-theme scene sets PAPER_MUTED
 
     def play(self, *animations, **kwargs):
         if self._inner:
@@ -92,7 +102,7 @@ class Narrated:
             Path(path).write_text(json.dumps(self.marks, indent=2), encoding='utf-8')
 
     def say(self, words):
-        fresh = label(words).move_to([0, CAPTION_Y, 0])
+        fresh = label(words, color=self.caption_color).move_to([0, CAPTION_Y, 0])
         if self.note is None:
             self.note = fresh
             self.add(fresh)

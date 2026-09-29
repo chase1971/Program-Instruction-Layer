@@ -56,13 +56,13 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>719</dd></div>
-      <div><dt>Tasks today</dt><dd>42</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">2.3M (of 75 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>177k</dd></div>
-      <div><dt>Total billed</dt><dd>298.2M</dd></div>
+      <div><dt>Total tasks</dt><dd>752</dd></div>
+      <div><dt>Tasks today</dt><dd>33</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.9M (of 86 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>175k</dd></div>
+      <div><dt>Total billed</dt><dd>313.6M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:24 PM · Sunday, Sep 27, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:24 PM · Monday, Sep 28, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
@@ -72,10 +72,310 @@
       <tr><td><code>agent docs/INDEX.md</code></td><td>21</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>13</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li><li><code>APP_LOCATIONS.md</code> — No Teacher Console or matrix tutorial alias; added rows<span class="gap-task">3:32 PM · Sunday, Sep 13, 2026 — Refactoring survey of Teacher Console, student portal, and matrix tutorial (report only, no code edits)</span></li><li><code>agent docs/INDEX.md</code> — No Manim row existed — index gap repaid in this same task by adding the row<span class="gap-task">11:26 PM · Tuesday, Sep 8, 2026 — Made Manim Trial searchable, indexed, and version-controlled (pushed 6666e8b)</span></li></ul>
+      <ul class="gap-list"><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li><li><code>School Scrips/Macro App/docs/LAPTOP_LAUNCH.md</code> — Covers the old blank-splash cause (HTA/show:true); not this one<span class="gap-task">8:09 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.27 to USB (pip step skipped, runtime locked by dev app); diagnosed white launch splash from boot log, added main-thread stall watch to boot-timing</span></li></ul>
     </details>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Monday, Sep 28, 2026 <span class="day-count">33 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:24 PM — Manim: slope-intercept clips 1 and 2 switched to the brief style (clip 1 keeps the intro panel); caption returns to Step 2 after the flip</span>
+      <span class="pill p0">1.5M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>13m 43s active tool time<br>16m 32s since previous task (includes idle)<br>1.5M tokens over 11 turn(s) · 137k/turn · 1.5M cache read · 7k output<br>Chat so far: 5 message(s), 3257 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:07 PM — Manim: trimmed 2y + 8 &gt; -6x clip to Chase's brief version (no intro, step captions only, straight to graph)</span>
+      <span class="pill p0">1.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>3m 14s active tool time<br>3m 59s since previous task (includes idle)<br>1.1M tokens over 9 turn(s) · 125k/turn · 1.1M cache read · 7k output<br>Chat so far: 3 message(s), 2634 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:03 PM — Manim: third slope-intercept inequality clip, 2y + 8 &gt; -6x (move the constant, no swap, no flip); module generalized for x already on the right</span>
+      <span class="pill p0">119k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>54s since previous task (includes idle)<br>119k tokens over 1 turn(s) · 119k/turn · 118k cache read · 680 output<br>Chat so far: 3 message(s), 1871 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:03 PM — Manim clip 3: 2y + 8 &gt; -6x (move the constant, no flip), rendered 1080p30, page + series link</span>
+      <span class="pill p0">1.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 22s active tool time<br>7m 54s since previous task (includes idle)<br>1.9M tokens over 21 turn(s) · 89k/turn · 1.8M cache read · 15k output<br>Chat so far: 2 message(s), 1748 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:55 PM — Implemented gradebook browser coordinator: main load arbiter (browser-slot-ensure-url.js), ensureEnterGradesSlot + course-click 5s attempt with latched failure and App-view message, truthful readiness, identity/selector fixes, update-depth stack capture; gates green (vitest 1556, node 71)</span>
+      <span class="pill p0">1.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 24s active tool time<br>2m 30s since previous task (includes idle)<br>1.2M tokens over 5 turn(s) · 236k/turn · 1.2M cache read · 4k output<br>Chat so far: 9 message(s), 8473 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:52 PM — Slope-intercept clip 2 as &gt;= inequality with graph; graph window per problem</span>
+      <span class="pill p0">2.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4s active tool time<br>15m 54s since previous task (includes idle)<br>2.9M tokens over 13 turn(s) · 220k/turn · 2.8M cache read · 10k output<br>Chat so far: 8 message(s), 8387 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:36 PM — Captured Chase's negative notation: math_notation.py + test, recipe section, index rows</span>
+      <span class="pill p0">2.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>43s active tool time<br>2m 11s since previous task (includes idle)<br>2.2M tokens over 11 turn(s) · 204k/turn · 2.2M cache read · 8k output<br>Chat so far: 7 message(s), 6902 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:34 PM — Slope-intercept clip 1: short negative dash; notation rules in style recipe</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 28s active tool time<br>4m 40s since previous task (includes idle)<br>Chat so far: 7 message(s), 116 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:29 PM — Reviewed the plan's eight newly added browser-coordinator gaps against Macro App code; validated auto-pull ordering, click deadline timing, scoped error state, auth outcome, abort semantics, slot creation serialization, LRU protection, and non-cancelling retry behavior.</span>
+      <span class="pill p0">1.0M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>6m 19s active tool time<br>7m 47s since previous task (includes idle)<br>1.0M tokens over 9 turn(s) · 115k/turn · 1.0M cache read · 4k output<br>Chat so far: 1 message(s), 712 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:22 PM — Re-evaluated Codex review of gradebook browser coordinator plan against code; appended Second review section (8 gaps)</span>
+      <span class="pill p0">1.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 54s active tool time<br>4m 23s since previous task (includes idle)<br>1.6M tokens over 17 turn(s) · 92k/turn · 1.5M cache read · 10k output<br>Chat so far: 1 message(s), 635 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:17 PM — Redesigned Transformations result screen: confetti/rain, new copy, real buttons, instructor preview shortcuts</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>45s active tool time<br>46s since previous task (includes idle)<br>Chat so far: 6 message(s), 51 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:16 PM — Momentum handoff: gradebook browser coordinator plan (5s fail message requirement added)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 14s active tool time<br>1m 14s since previous task (includes idle)<br>Chat so far: 6 message(s), 51 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:15 PM — Added coordinator review comments, correctness gaps, regression cases, and implementation order to the Macro App gradebook browser-slot plan.</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>10m 48s active tool time<br>10m 54s since previous task (includes idle)<br>Chat so far: 6 message(s), 51 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:04 PM — Identifying wrong-answer phases keep answer grid and pulse correct buttons instead of text-only reveal</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3s since previous task (includes idle)<br>Chat so far: 5 message(s), 27 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:04 PM — Reviewed Macro App gradebook browser-slot coordinator plan against current code, runtime log, browser integration docs, and master architecture; identified scope and correctness gaps without changing app code.</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>11m 33s active tool time<br>11m 34s since previous task (includes idle)<br>Chat so far: 5 message(s), 27 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:53 PM — Macro App gradebook browser pipeline: diagnosed Pull deadlock, slot load races, sticky readiness, second render loop; wrote fix plan</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3s active tool time<br>1m 4s since previous task (includes idle)<br>Chat so far: 3 message(s), 23 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:52 PM — Identifying practice: ~30px equation room, directions mt-8, fix KaTeX overflow-x spurious vertical scrollbar</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 42s active tool time<br>1m 49s since previous task (includes idle)<br>Chat so far: 3 message(s), 14 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:50 PM — Deployed student portal #41 with KaTeX strict:false fix for identifying transformations htmlClass warnings</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>7m 23s active tool time<br>7m 27s since previous task (includes idle)<br>Chat so far: 2 message(s), 9 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:42 PM — Slope-intercept clip 1: negatives hang off fraction bars</span>
+      <span class="pill p0">1.5M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>3m 55s since previous task (includes idle)<br>1.5M tokens over 8 turn(s) · 181k/turn · 1.3M cache read · 7k output<br>Chat so far: 5 message(s), 6187 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:38 PM — Momentum handoff written for Macro App gradebook browser-slot render loop</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5<br>1h 1m active tool time<br>1h 1m since previous task (includes idle)<br>Chat so far: 3 message(s), 229 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:37 PM — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span>
+      <span class="pill p0">Chat: 2 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5<br>2m 25s active tool time<br>2m 36s since previous task (includes idle)<br>Chat so far: 2 message(s), 206 KB transcript</p>
+      <ul class="gap-list"><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:34 PM — Slope-intercept clip 1: graph beat (dashed line, shading)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5<br>2h 22m active tool time<br>2h 22m since previous task (includes idle)<br>Chat so far: 2 message(s), 206 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:12 PM — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5<br>24m 24s active tool time<br>24m 44s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:47 PM — Slope-intercept clip 1 as inequality (-2x-3y&lt;6), flip-the-sign beat</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2s active tool time<br>7s since previous task (includes idle)<br>Chat so far: 8 message(s), 115 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:47 PM — Momentum handoff: gradebook hidden browser load — deadlock fix unverified, latest.md written.</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3m 7s active tool time<br>3m 8s since previous task (includes idle)<br>Chat so far: 8 message(s), 96 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:44 PM — Fixed hidden gradebook load deadlock: bootstrap hidden slot like workspace preload; 5s timeout with describeEnterGradesSlotBlocker error.</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3m 32s active tool time<br>3m 35s since previous task (includes idle)<br>Chat so far: 7 message(s), 75 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:40 PM — Fixed gradebook browser loop + pull gate: in-flight guards stop max-update-depth; confirmGradebookSlotEnterGrades marks hidden loads ready.</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>31m 1s active tool time<br>31m 4s since previous task (includes idle)<br>Chat so far: 6 message(s), 57 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:09 PM — Slope-intercept clip 2 (-2y+5x=-8); module refactored to Problem records</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3s active tool time<br>2m 1s since previous task (includes idle)<br>Chat so far: 5 message(s), 54 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:07 PM — Gradebook course click now primes hidden Enter Grades immediately — suspends other warmup queue, bypasses attachOnly stall.</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3m 11s active tool time<br>3m 12s since previous task (includes idle)<br>Chat so far: 5 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:04 PM — Slope-intercept clip: negative moved to the numerator beat</span>
+      <span class="pill p0">502k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 40s active tool time<br>3m 43s since previous task (includes idle)<br>502k tokens over 4 turn(s) · 126k/turn · 495k cache read · 2k output<br>Chat so far: 2 message(s), 2956 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:00 PM — Pulled laptop pushes: Macro App (+2 commits, gradebook sync + CI type fixes) and Programs root (+1, git sync doc updates); preserved local Manim Trial work.</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>24m 16s active tool time<br>24m 20s since previous task (includes idle)<br>Chat so far: 4 message(s), 20 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:36 PM — Manim slope-intercept form clip (-2x-3y=6), first white-background clip; PAPER palette in scene_style</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 35s active tool time<br>3m 5s since previous task (includes idle)<br>Chat so far: 3 message(s), 20 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:33 PM — Pulled from GitHub: fetched 28 repos under Programs (Calendar 2.0 skipped); all current with origin, no pulls needed.</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>19h 59m active tool time<br>19h 59m since previous task (includes idle)<br>Chat so far: 2 message(s), 9 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Sunday, Sep 27, 2026 <span class="day-count">42 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

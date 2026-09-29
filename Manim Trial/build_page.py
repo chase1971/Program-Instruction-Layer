@@ -18,6 +18,33 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 # The blurb is a record of what the clip covers -- it is never rendered: Chase wants no
 # text under the player, only the Play/Replay and Previous/Next buttons.
 PAGES = [
+    ('slope_intercept_form', 'SlopeInterceptMoveConstant', 'slope-intercept-move-constant',
+     'Slope-intercept form &mdash; when x is already across', 'Slope-intercept form 3',
+     'slope_intercept_move_constant_marks.json',
+     '2y&nbsp;+&nbsp;8&nbsp;&gt;&nbsp;&minus;6x: x and y are already on opposite sides, so '
+     'step 1 moves the 8 instead (subtract 8 from both sides); the right side '
+     '&minus;6x&nbsp;&minus;&nbsp;8 is already x term first, so no swap. Divide every term '
+     'by 2 &mdash; positive, so no flip: y&nbsp;&gt;&nbsp;&minus;3x&nbsp;&minus;&nbsp;4. '
+     'Graph: intercept &minus;4, down 3 right 1, dashed line, shade above.'),
+    ('slope_intercept_form', 'SlopeInterceptYFirst', 'slope-intercept-y-first',
+     'Slope-intercept form &mdash; when y comes first', 'Slope-intercept form 2',
+     'slope_intercept_y_first_marks.json',
+     '&minus;2y&nbsp;+&nbsp;5x&nbsp;&ge;&nbsp;&minus;8, same beats as the first clip: subtract '
+     '5x from both sides, write the right side x term first as &minus;5x&nbsp;&minus;&nbsp;8, '
+     'divide every term by &minus;2 and flip &ge; to &le;. Negative over negative gives a '
+     'positive slope: y&nbsp;&le;&nbsp;&frac52;x&nbsp;+&nbsp;4. Graph: intercept 4, up 5 '
+     'right 2, solid line, shade below.'),
+    ('slope_intercept_form', 'SlopeInterceptForm', 'slope-intercept-form',
+     'Slope-intercept form &mdash; an inequality', 'Slope-intercept form',
+     'slope_intercept_form_marks.json',
+     'First clip on a white background. The goal is slope-intercept form, keeping the '
+     'inequality sign where the = goes; move the x term first, then divide every term by '
+     'the number next to y, flipping the sign if that number is negative. '
+     '&minus;2x&nbsp;&minus;&nbsp;3y&nbsp;&lt;&nbsp;6: add 2x, write the right side '
+     '2x&nbsp;+&nbsp;6, divide every term by &minus;3 and flip &lt; to &gt;, giving '
+     'y&nbsp;&gt;&nbsp;&minus;&frac23;x&nbsp;&minus;&nbsp;2, then move the negative to the '
+     'top number (Chase&rsquo;s convention, no reason given on screen). Ends on the graph: '
+     'intercept, down 2 right 3, dashed line (strict), shade above.'),
     ('angle_between_vectors', 'AngleBetweenVectors', 'angle-between-vectors',
      'Angle between vectors &mdash; normalize, then dot', 'Angle between vectors',
      'angle_between_vectors_marks.json',
@@ -221,6 +248,8 @@ SERIES = {
     'vector-decomposition': 'force-decomposition',
     'force-decomposition': 'ramp-force',
     'ramp-force': 'work-wagon',
+    'slope-intercept-form': 'slope-intercept-y-first',
+    'slope-intercept-y-first': 'slope-intercept-move-constant',
 }
 
 STYLE = (

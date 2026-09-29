@@ -1,0 +1,58 @@
+[
+  {
+    "name": "goal",
+    "time": 3.58
+  },
+  {
+    "name": "keep_inequality",
+    "time": 6.42
+  },
+  {
+    "name": "plan",
+    "time": 13.83
+  },
+  {
+    "name": "start",
+    "time": 17.0
+  },
+  {
+    "name": "move_x",
+    "time": 20.17
+  },
+  {
+    "name": "not_like_terms",
+    "time": 26.33
+  },
+  {
+    "name": "x_moved",
+    "time": 28.83
+  },
+  {
+    "name": "divide_every_term",
+    "time": 33.67
+  },
+  {
+    "name": "flip",
+    "time": 39.25
+  },
+  {
+    "name": "simplified",
+    "time": 44.83
+  },
+  {
+    "name": "negative_on_top",
+    "time": 47.75
+  },
+  {
+    "name": "answer",
+    "time": 49.83
+  },
+  {
+    "name": "line",
+    "time": 60.08
+  },
+  {
+    "name": "graph",
+    "time": 65.0
+  }
+]

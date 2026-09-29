@@ -8,6 +8,18 @@ audit that runs at every pause mark, the layout regions, and the contact sheet.
 
 ## Animation examples
 
+- `slope_intercept_form.py`: the first **white-background** clip (`PAPER_*` palette in
+  `scene_style.py`). Goal y = mx + b; x and y go on opposite sides, so move the x term
+  first, then divide by the number next to y. −2x − 3y < 6 (an inequality — the sign is kept, and flips
+  when dividing by −3): add 2x (it cancels on the
+  left), 6 and 2x are not like terms so the right side is written 2x + 6, divide every
+  term by −3, simplify to y > −2/3 x − 2, then move the negative to the top number (−2 over 3; Chase's graphing convention, stated without a reason). Meant as the first of several "ways to get to
+  slope-intercept form" clips. `http://127.0.0.1:8765/scratch/slope-intercept-form.html`.
+  Same module, second scene `SlopeInterceptYFirst`: −2y + 5x ≥ −8 → flips to
+  y ≤ 5/2 x + 4; solid line, shade below (x term second, slope positive, so no
+  negative-on-top beat) →
+  `http://127.0.0.1:8765/scratch/slope-intercept-y-first.html`. Each clip is one `Problem`
+  record at the top of the file; a new equation is a new record plus a two-line subclass.
 - `fraction_times_whole.py`: multiply a fraction by whole numbers — write as n/1,
   cancel first, then multiply tops. Each product is two factors only (e.g. 1/3 × 15
   separately), then `2/7` with a negative and `2/7 × 3/8` simplified.
@@ -65,7 +77,8 @@ search, the beats and the pitfalls. Kept as the record of why the clip is shaped
 `build_page.py` inlines a rendered MP4 into a page under `agent docs/scratch/`. Add a row
 to its `PAGES` table and run it; Chase gets the `127.0.0.1:8765` link, never a file path.
 
-Shared helpers: `scene_style.py` (palette, caption line, `PACE`, pause marks),
+Shared helpers: `math_notation.py` (`mathtex()` — Chase's negatives and negative fractions;
+see the recipe's "Chase's notation"), `scene_style.py` (palette, caption line, `PACE`, pause marks),
 `scene_audit.py` + `scene_layout.py` + `contact_sheet.py` (layout guardrails — see the doc
 above) and `dice.py` (die faces, white first die / blue second die).
 

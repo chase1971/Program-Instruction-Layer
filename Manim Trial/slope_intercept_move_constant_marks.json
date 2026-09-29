@@ -1,0 +1,34 @@
+[
+  {
+    "name": "start",
+    "time": 2.0
+  },
+  {
+    "name": "move_x",
+    "time": 4.67
+  },
+  {
+    "name": "not_like_terms",
+    "time": 10.83
+  },
+  {
+    "name": "divide_every_term",
+    "time": 15.67
+  },
+  {
+    "name": "simplified",
+    "time": 22.25
+  },
+  {
+    "name": "answer",
+    "time": 24.33
+  },
+  {
+    "name": "line",
+    "time": 34.58
+  },
+  {
+    "name": "graph",
+    "time": 39.5
+  }
+]

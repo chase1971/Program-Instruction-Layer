@@ -1,3 +1,28 @@
+## 2026-09-28 — Slope-intercept inequality clips (three), white background, short style
+
+**Files changed:** `slope_intercept_form.py` (new, 471), `math_notation.py` (new),
+`test_math_notation.py` (new), `scene_style.py` (PAPER palette + `caption_color`),
+`build_page.py` (3 `PAGES` rows, `SERIES` form → y-first → move-constant),
+`ANIMATION_STYLE_RECIPE.md` (Chase's notation for negatives; white background), `README.md`,
+marks JSONs, scratch pages `slope-intercept-form.html`, `slope-intercept-y-first.html`,
+`slope-intercept-move-constant.html`.
+
+**What worked:** Three clips from one data-driven module (a `Problem` record + two-line
+subclass each): −2x − 3y < 6 (flip, negative moved to the top), −2y + 5x ≥ −8 (x term second,
+flip), and 2y + 8 > −6x (x already across, so step 1 moves the 8; no swap, no flip). Chase then
+asked for a short style: `brief=True` skips the goal/plan panel, captions only the steps
+("Step 1: move the 8 by subtracting 8 from both sides", "Step 2: divide each term by 2"), and
+plays cancel / bring-down / swap / simplify silently; the flip and "move the negative to the top
+number" keep their captions, and the caption returns to Step 2 after a flip. `intro=True` keeps
+the panel on clip 1 only. A `None` caption means the beat is silent. All three render 1080p30
+with every audit mark clean.
+
+**Current state:** Green — three clips linked Previous/Next; Chase reviewed the short style.
+
+**File size flag:** `slope_intercept_form.py` 471 (new, under cap).
+
+**Next session:** Wait for Chase's next variation; add it as a `Problem` with `brief=True`.
+
 ## 2026-09-27 — Vector series clips six and seven: ramp force and work
 
 **Files changed:** `ramp_force.py` (new, 426), `work_wagon.py` (new, 418), `build_page.py`
