@@ -68,13 +68,43 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>140</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:45 PM · Monday, Sep 28, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>141</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:32 PM · Monday, Sep 28, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Monday, Sep 28, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">9:32 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">composer-2.5</div>
+    </header>
+    <p class="summary-human">Reviewed the implemented Gradebook browser coordinator and its eight plan gaps, then audited the live code paths for additional race and state issues. Fixed five coordinator problems, added regression coverage, and verified the build behavior was reported green.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>8</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>10.0M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>454k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>9</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>9 task(s)</summary>
+    <ul class="task-list"><li>9:02 PM — Preload all gradebooks at startup: per-machine Session checkbox, warmup queues every course, splash reveal hold (launch-reveal-hold.js, 20s cap), releases on finish/signed-out/wizard</li><li>9:06 PM — Fixed Pull/Push flicker: gradebook readiness now uses isLoadingMainFrame (sub-frame loads no longer clear ready); arbiter no longer reloads an already-loaded page while an iframe loads</li><li>9:11 PM — Diagnosed update-depth warning (log-store notify loop) and Settings lag; added [UpdateDepthRecentLog] and slow-Settings-open timing diagnostics</li><li>9:16 PM — Reviewed implemented Gradebook browser coordinator and preload follow-up; identified warmup restart race, lost retry signal, error-channel overwrite, and stale slot session state; focused tests and TypeScript check passed.</li><li>9:18 PM — Transformations TC reporting: grade dots, concept statistics, sessionLog on submit</li><li>9:20 PM — Graphing Linear Inequalities Video Examples app — viewer, portal tile, migration, 3 Manim clips</li><li>9:23 PM — Fixed five Gradebook/browser coordinator review findings: run-isolated warmup workers, retryable automatic course loads, preserved course-click error latch, destroyed-slot store cleanup, and exact-target hidden preloads; added regression coverage and passed full renderer suite.</li><li>9:25 PM — Moved Graphing Linear Inequalities Video Examples from M1314 to M1324 section gate</li><li>9:29 PM — Fix Transformations statistics fallback from attempt_items when session_log is null</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> The full renderer suite passed with 1,571 tests, and Chase reported no issues with the build.</div>
+    <p class="next"><strong>Next time:</strong> Continue normal Macro App work; revisit the coordinator only if new runtime evidence appears.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">8:45 PM</span>
