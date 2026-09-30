@@ -1,0 +1,42 @@
+[
+  {
+    "name": "scene",
+    "time": 2.67
+  },
+  {
+    "name": "real_light",
+    "time": 9.0
+  },
+  {
+    "name": "rays",
+    "time": 15.67
+  },
+  {
+    "name": "pixels",
+    "time": 19.83
+  },
+  {
+    "name": "normal",
+    "time": 25.0
+  },
+  {
+    "name": "closeup",
+    "time": 31.5
+  },
+  {
+    "name": "projection",
+    "time": 43.75
+  },
+  {
+    "name": "bounce",
+    "time": 54.67
+  },
+  {
+    "name": "highlight",
+    "time": 61.08
+  },
+  {
+    "name": "closing",
+    "time": 67.33
+  }
+]

@@ -112,6 +112,16 @@ PAGES = [
      'W&nbsp;=&nbsp;&#8741;proj<sub>PQ</sub>F&#8741;&#8741;PQ&#8741;&nbsp;=&nbsp;&#8741;F&#8741;&#8741;PQ&#8741;cos&nbsp;&theta;'
      '&nbsp;=&nbsp;2500&radic;3&nbsp;&asymp;&nbsp;4330.13 ft&middot;lb, checked as the dot product F&middot;PQ. '
      'Closing card: what work means, its three forms, and foot-pounds.'),
+    ('ray_tracing_reflection', 'RayTracingReflection', 'ray-tracing-reflection',
+     'Ray tracing &mdash; where a ray bounces is a projection', 'Ray tracing',
+     'ray_tracing_reflection_marks.json',
+     'Real-world use of vector projection. Light scatters everywhere and little reaches the eye, so '
+     'ray tracing runs it backward: one ray from the eye through each pixel, followed to the first '
+     'surface it hits, which supplies a color and a normal n. A shiny surface bounces the ray: d '
+     'splits into proj<sub>n</sub>d (into the surface) and the rest; reverse the first, so '
+     'r&nbsp;=&nbsp;d&nbsp;&minus;&nbsp;2&nbsp;proj<sub>n</sub>d. Worked: d&nbsp;=&nbsp;&lang;5,&nbsp;&minus;1&rang;, '
+     'n&nbsp;=&nbsp;&lang;&minus;1,&nbsp;1&rang;, proj&nbsp;=&nbsp;&lang;3,&nbsp;&minus;3&rang;, '
+     'r&nbsp;=&nbsp;&lang;&minus;1,&nbsp;5&rang;, which flies to the lamp for a highlight.'),
     ('vector_projection_force', 'VectorProjectionForce', 'vector-projection-force',
      'Vector projection &mdash; the shadow of a force', 'Vector projection explained',
      'vector_projection_force_marks.json',
