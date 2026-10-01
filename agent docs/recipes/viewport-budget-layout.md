@@ -74,3 +74,5 @@ fold might as well not exist.
 - **Matrix app / guided practice** phone-first: `School Scrips/Matrix app/AGENTS.md` keyword
   row points here.
 - **First paint:** `first-paint-gate.md` — no layout shift; viewport budget — no overflow.
+- **Instructor teleports / preview shortcuts:** `margin-teleport-buttons.md` — side margin,
+  not new rows under the card.

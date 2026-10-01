@@ -49,10 +49,23 @@ from manim import (
 )
 
 from dot_product_directions import make_open_question
-from scene_layout import WORK, fit_into
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
+from vector_portal_layout import WORK, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 U_COLOR = BLUE
 V_COLOR = '#E97B78'
@@ -285,7 +298,8 @@ def rebuild(mobject, build):
 
 
 
-class AngleBetweenVectors(Narrated, Scene):
+class AngleBetweenVectors(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Normalize, dot, read the cosine, then work the three textbook problems."""
 
     pace = .9

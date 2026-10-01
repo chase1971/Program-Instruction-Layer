@@ -39,12 +39,26 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from scene_layout import CENTER, CONTENT_TOP, WORK, fit_into
-from scene_style import BLUE, GOLD, INK, NAVY, Narrated, label
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_GOLD_STROKE,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 from vector_decomposition import arrow, place, settle
 from vector_projection_shadow import SHADOW, fraction, strike
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 U_COLOR = BLUE
 U1_COLOR = SHADOW  # the part along v is the pink shadow, as in clips three and four
@@ -245,7 +259,8 @@ def make_summary():
     return fit_into(VGroup(title, body).arrange(DOWN, buff=.4), CENTER)
 
 
-class ForceDecomposition(Narrated, Scene):
+class ForceDecomposition(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """How much of the 22 N force acts along the 8 N force: decompose, project, name."""
 
     pace = .9
@@ -411,7 +426,7 @@ class ForceDecomposition(Narrated, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(length), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, length), color=GOLD, buff=.2)
+        box = SurroundingRectangle(VGroup(words, length), color=PAPER_GOLD_STROKE, buff=.2)
         self.play(Create(box), Indicate(self.parts['u1'], color=U1_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')

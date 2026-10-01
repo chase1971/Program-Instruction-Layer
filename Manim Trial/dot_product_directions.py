@@ -34,26 +34,39 @@ from manim import (
     config,
 )
 
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 YOU_COLOR = BLUE
 FRIEND_COLOR = '#E97B78'
-ORIGIN = [-3.7, -1.25, 0]
-ARROW_LENGTH = 2.75
+ORIGIN = [-3.45, -1.25, 0]
+ARROW_LENGTH = 2.65
 NORTHEAST_COMPONENT = math.sqrt(2) / 2
-NORTHEAST_LABEL_CENTER = [-1.15, 1.45, 0]
-WORK_CENTER = [2.9, -.6, 0]
+NORTHEAST_LABEL_CENTER = [-1.05, 1.45, 0]
+WORK_CENTER = [2.85, -.6, 0]
 # The northeast work is three stacked fractions tall, so it sits lower than the
 # perpendicular work to stay clear of the gauge readout.
-NORTHEAST_WORK_CENTER = [2.95, -1.05, 0]
+NORTHEAST_WORK_CENTER = [2.9, -1.05, 0]
 
 # The similarity gauge is the clip's through-line: it appears empty for the
 # perpendicular pair and is still on screen when northeast fills it partway.
 METER_WIDTH = 3.7
 METER_HEIGHT = .42
-METER_CENTER = [3.35, 2.35, 0]
+METER_CENTER = [3.15, 2.35, 0]
 
 
 def make_compass():
@@ -62,13 +75,13 @@ def make_compass():
         [ORIGIN[0] - .35, ORIGIN[1], 0],
         [ORIGIN[0] + 3.35, ORIGIN[1], 0],
         color=MUTED,
-        stroke_width=2,
+        stroke_width=3,
     )
     vertical = Line(
         [ORIGIN[0], ORIGIN[1] - .35, 0],
         [ORIGIN[0], ORIGIN[1] + 3.35, 0],
         color=MUTED,
-        stroke_width=2,
+        stroke_width=3,
     )
     east = label('EAST', 18).next_to(horizontal, RIGHT, buff=.08)
     north = label('NORTH', 18).next_to(vertical, UP, buff=.08)
@@ -265,7 +278,8 @@ def make_open_question():
     return VGroup(setup, question).arrange(DOWN, buff=.6).move_to([0, .2, 0])
 
 
-class DotProductDirections(Narrated, Scene):
+class DotProductDirections(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Teach the dot product as shared direction, then confirm it with numbers."""
 
     pace = .9

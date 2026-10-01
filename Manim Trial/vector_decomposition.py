@@ -44,11 +44,25 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from scene_layout import CONTENT_TOP, WORK, Region, fit_into
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
+from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_GOLD_STROKE,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 from vector_projection_shadow import SHADOW, copy_into
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 U_COLOR = BLUE
 W1_COLOR = SHADOW  # the piece along v is clip three's pink shadow
@@ -309,7 +323,8 @@ def make_answer():
     return settle(column)
 
 
-class VectorDecomposition(Narrated, Scene):
+class VectorDecomposition(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Split u into a piece along v and a piece perpendicular to v, then work the problem."""
 
     pace = .9
@@ -558,7 +573,7 @@ class VectorDecomposition(Narrated, Scene):
         self.play(FadeOut(previous[2:]), copy_into(previous[0], along[0]),
                   copy_into(previous[1], across[0]), FadeOut(previous[:2]), run_time=1.2)
         self.play(Write(split), FadeIn(along[1]), FadeIn(across[1]), run_time=1.)
-        box = SurroundingRectangle(VGroup(along, across), color=GOLD, buff=.18)
+        box = SurroundingRectangle(VGroup(along, across), color=PAPER_GOLD_STROKE, buff=.18)
         self.play(Create(box), run_time=.6)
         self.wait(3.)
         self.mark('answer')

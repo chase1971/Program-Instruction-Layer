@@ -44,8 +44,9 @@ def diagram_content():
     )
 
 
-def work_content():
-    return VGroup(clip.make_perpendicular_work(), clip.make_northeast_work())
+def work_variants():
+    """Each work panel is shown alone; the union bbox is not a real frame."""
+    return (clip.make_perpendicular_work(), clip.make_northeast_work())
 
 
 def gauge_content():
@@ -88,14 +89,20 @@ TOUCHING = .01
 def test_reference_clip_fits_its_regions():
     """The proof the boxes are usable: a layout that reads well already lives inside them."""
     for build, region in (
-        (diagram_content, DIAGRAM), (work_content, WORK),
-        (gauge_content, GAUGE), (center_content, CENTER),
+        (diagram_content, DIAGRAM),
+        (gauge_content, GAUGE),
+        (center_content, CENTER),
     ):
         content = build()
         assert region.holds(content, slack=TOUCHING), (
             f"the reference clip's {region.name.lower()} content does not fit {region!r}: "
             f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}] '
             f'y [{content.get_bottom()[1]:.2f},{content.get_top()[1]:.2f}]'
+        )
+    for index, content in enumerate(work_variants()):
+        assert WORK.holds(content, slack=TOUCHING), (
+            f'the reference clip work panel {index} does not fit {WORK!r}: '
+            f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'
         )
     return 'diagram, work, gauge and closing cards all fit as built'
 
@@ -120,6 +127,62 @@ CHECKS = (
 )
 
 
+def _portal_suite():
+    import vector_portal_layout as portal_layout
+    from vector_portal_layout import CENTER as P_CENTER
+    from vector_portal_layout import DIAGRAM as P_DIAGRAM
+    from vector_portal_layout import GAUGE as P_GAUGE
+    from vector_portal_layout import PANELS as P_PANELS
+    from vector_portal_layout import REGIONS as P_REGIONS
+    from vector_portal_layout import WORK as P_WORK
+    from vector_portal_layout import fit_into as portal_fit_into
+
+    def portal_panels_disjoint():
+        for index, region in enumerate(P_PANELS):
+            for other in P_PANELS[index + 1:]:
+                assert not region.overlaps(other), f'{region.name} overlaps {other.name}'
+        return 'portal ' + ' + '.join(r.name for r in P_PANELS) + ' never collide'
+
+    def portal_on_frame():
+        for region in P_REGIONS:
+            assert region.left >= -portal_layout.FRAME_RIGHT, f'{region.name} off left'
+            assert region.right <= portal_layout.FRAME_RIGHT, f'{region.name} off right'
+            assert region.bottom >= portal_layout.FRAME_BOTTOM, f'{region.name} off bottom'
+            assert region.top <= portal_layout.CONTENT_TOP, f'{region.name} in caption band'
+        return f'portal {len(P_REGIONS)} regions on frame'
+
+    def portal_reference_fits():
+        for build, region in (
+            (diagram_content, P_DIAGRAM),
+            (gauge_content, P_GAUGE),
+            (center_content, P_CENTER),
+        ):
+            content = build()
+            assert region.holds(content, slack=TOUCHING), (
+                f'portal {region.name} does not fit: '
+                f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'
+            )
+        for index, content in enumerate(work_variants()):
+            assert P_WORK.holds(content, slack=TOUCHING), (
+                f'portal work panel {index} does not fit: '
+                f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'
+            )
+        return 'portal reference clip fits'
+
+    def test_portal_fit_into_shrink():
+        oversized = clip.make_unit_vector_note().scale(3)
+        portal_fit_into(oversized, P_WORK)
+        assert P_WORK.holds(oversized), 'portal fit_into left content outside WORK'
+        return 'portal fit_into shrinks oversized content'
+
+    return (
+        ('portal_panels_disjoint', portal_panels_disjoint),
+        ('portal_on_frame', portal_on_frame),
+        ('portal_reference_fits', portal_reference_fits),
+        ('test_portal_fit_into_shrink', test_portal_fit_into_shrink),
+    )
+
+
 def main():
     failures = 0
     for check in CHECKS:
@@ -128,6 +191,12 @@ def main():
         except Exception as problem:
             failures += 1
             print(f'FAIL  {check.__name__}\n    {problem}')
+    for name, check in _portal_suite():
+        try:
+            print(f'PASS  {name}\n      {check()}')
+        except Exception as problem:
+            failures += 1
+            print(f'FAIL  {name}\n    {problem}')
     print('\n' + ('all checks passed' if not failures else f'{failures} check(s) failed'))
     return 1 if failures else 0
 

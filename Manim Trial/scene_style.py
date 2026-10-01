@@ -18,14 +18,19 @@ GOLD = '#FFC66D'
 BLUE = '#86C8FF'
 MUTED = '#B2C0D4'
 
-# Light theme: white paper, for the classroom projector and the student portal, where the
-# navy clips read poorly. Same roles as the navy palette above -- ink, blue, gold, muted.
-PAPER = '#FFFFFF'
+# Light theme: matches student-portal `video-examples.css` / portal-base `#ffffff` so MP4
+# letterboxing blends with the app shell.
+PORTAL_PAGE_WHITE = '#FFFFFF'
+PAPER = PORTAL_PAGE_WHITE
 PAPER_INK = '#1A2332'
 PAPER_BLUE = '#1565C0'
 PAPER_GOLD = '#B45309'
+PAPER_GOLD_STROKE = '#92400E'
+PAPER_SHADOW = '#C2185B'
 PAPER_MUTED = '#475569'
 PAPER_RED = '#C62828'
+
+CAPTION_LINE_SPACING = 0.35
 
 # The caption rides along the top: it says what is going on, so it should be the
 # first thing read, not the last. Content therefore lives below about y = 2.5.
@@ -36,8 +41,16 @@ TITLE_Y = 2.75
 PACE = 1.2
 
 
-def label(words, font_size=25, color=MUTED):
-    return Text(words, font='Segoe UI', font_size=font_size, color=color)
+def label(words, font_size=25, color=MUTED, max_width=None):
+    kwargs = dict(font='Segoe UI', font_size=font_size, color=color)
+    if max_width is not None:
+        return Text(
+            words,
+            width=max_width,
+            line_spacing=CAPTION_LINE_SPACING,
+            **kwargs,
+        )
+    return Text(words, **kwargs)
 
 
 def banner(words):
@@ -102,7 +115,11 @@ class Narrated:
             Path(path).write_text(json.dumps(self.marks, indent=2), encoding='utf-8')
 
     def say(self, words):
-        fresh = label(words, color=self.caption_color).move_to([0, CAPTION_Y, 0])
+        wrap = getattr(self, 'caption_wrap_width', None)
+        size = getattr(self, 'caption_font_size', 25)
+        fresh = label(
+            words, font_size=size, color=self.caption_color, max_width=wrap,
+        ).move_to([0, CAPTION_Y, 0])
         if self.note is None:
             self.note = fresh
             self.add(fresh)
@@ -116,3 +133,20 @@ class Narrated:
         if self.note is not None:
             self.play(FadeOut(self.note), run_time=.25)
             self.note = None
+
+
+def apply_portal_paper_background():
+    """White frame matching the student portal video viewer."""
+    from manim import config
+
+    config.background_color = PORTAL_PAGE_WHITE
+
+
+from vector_portal_layout import CAPTION_MAX_WIDTH as _PORTAL_CAPTION_WIDTH
+
+
+class VectorPortalScene(Narrated):
+    """Narrated clips for the vector-projections portal app (wrap + inset)."""
+
+    caption_wrap_width = _PORTAL_CAPTION_WIDTH
+    caption_font_size = 24

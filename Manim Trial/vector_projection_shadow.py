@@ -42,13 +42,28 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from scene_layout import CONTENT_TOP, WORK, Region, fit_into
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated
+from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_GOLD_STROKE,
+    PAPER_INK,
+    PAPER_MUTED,
+    PAPER_SHADOW,
+    VectorPortalScene,
+    apply_portal_paper_background,
+)
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+GOLD_STROKE = PAPER_GOLD_STROKE
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 U_COLOR = BLUE
-SHADOW = '#FF5FA2'  # the projection's pink, as on Chase's worksheet
+SHADOW = PAPER_SHADOW
 
 # v lies along a tilted line so "perpendicular to v" can't be mistaken for "straight down".
 ORIGIN = np.array([-5.6, -2.6, 0.])
@@ -127,12 +142,12 @@ def make_beam(state):
     beam = Polygon(ORIGIN, foot(state), foot(state) + top, ORIGIN + top, stroke_width=0)
     # Behind the arrows (FadeIn would otherwise add it on top); fainter than .25, gold on
     # navy reads as gray.
-    return beam.set_fill(GOLD, opacity=.25).set_z_index(-1)
+    return beam.set_fill(GOLD_STROKE, opacity=.32).set_z_index(-1)
 
 
 def make_lamp(state):
     lamp = Polygon([-.34, -.12, 0], [.34, -.12, 0], [.2, .14, 0], [-.2, .14, 0],
-                   color=GOLD, fill_color=GOLD, fill_opacity=.85, stroke_width=2)
+                   color=GOLD_STROKE, fill_color=GOLD_STROKE, fill_opacity=.9, stroke_width=2)
     lamp.rotate(TILT)
     middle = ORIGIN + shadow_length(state) / 2 * ALONG
     return lamp.move_to(middle + (beam_height(state) + .2) * NORMAL)
@@ -245,7 +260,8 @@ def strike(mobject):
     return Line(mobject.get_corner(DL), mobject.get_corner(UR), color=GOLD, stroke_width=4)
 
 
-class VectorProjectionShadow(Narrated, Scene):
+class VectorProjectionShadow(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Light perpendicular to v; u's shadow on v's line is the projection."""
 
     pace = .9
@@ -347,7 +363,7 @@ class VectorProjectionShadow(Narrated, Scene):
         strikes = VGroup(strike(swapped[2]), strike(swapped[3][2][0]))
         self.play(Create(strikes), run_time=.8)
         self.play(Write(cancelled), run_time=1.)
-        box = SurroundingRectangle(cancelled[1], color=GOLD, buff=.12)
+        box = SurroundingRectangle(cancelled[1], color=GOLD_STROKE, buff=.12)
         self.play(Create(box), run_time=.5)
         self.say('So the length of the shadow is u·v over ‖v‖.')
         self.wait(2.4)
@@ -390,7 +406,7 @@ class VectorProjectionShadow(Narrated, Scene):
         self.wait(1.)
         self.say('The two ‖v‖’s multiply into ‖v‖²: the projection formula.')
         self.play(Write(formula), run_time=1.2)
-        self.play(Create(SurroundingRectangle(formula[1:], color=GOLD, buff=.12)), run_time=.5)
+        self.play(Create(SurroundingRectangle(formula[1:], color=GOLD_STROKE, buff=.12)), run_time=.5)
         self.wait(2.6)
         self.mark('projection_vector')
         self.write_marks('vector_projection_shadow_marks.json')

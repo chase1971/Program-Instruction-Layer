@@ -41,12 +41,26 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from scene_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_GOLD_STROKE,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 from vector_decomposition import arrow, place
 from vector_projection_shadow import SHADOW
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 F_COLOR = BLUE
 PQ_COLOR = V_COLOR
@@ -263,7 +277,8 @@ def make_summary():
     return fit_into(card, CENTER)
 
 
-class WorkWagon(Narrated, Scene):
+class WorkWagon(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Worksheet problem 9: the work done pulling a wagon 100 ft at 30 degrees."""
 
     pace = .9
@@ -382,7 +397,7 @@ class WorkWagon(Narrated, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(work), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, work), color=GOLD, buff=.2)
+        box = SurroundingRectangle(VGroup(words, work), color=PAPER_GOLD_STROKE, buff=.2)
         self.play(Create(box), Indicate(self.parts['f1'], color=F1_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')

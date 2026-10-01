@@ -44,12 +44,26 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, make_corner
-from scene_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
-from scene_style import BLUE, GOLD, INK, MUTED, NAVY, Narrated, label
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
+from scene_style import (
+    PAPER,
+    PAPER_BLUE,
+    PAPER_GOLD,
+    PAPER_GOLD_STROKE,
+    PAPER_INK,
+    PAPER_MUTED,
+    VectorPortalScene,
+    apply_portal_paper_background,
+    label,
+)
 from vector_decomposition import arrow, place
 from vector_projection_shadow import SHADOW
 
-config.background_color = NAVY
+apply_portal_paper_background()
+BLUE = PAPER_BLUE
+GOLD = PAPER_GOLD
+INK = PAPER_INK
+MUTED = PAPER_MUTED
 
 W_COLOR = BLUE
 R_COLOR = V_COLOR
@@ -265,7 +279,8 @@ def make_shortcut():
     return fit_into(card, CENTER)
 
 
-class RampForce(Narrated, Scene):
+class RampForce(VectorPortalScene, Scene):
+    caption_color = PAPER_MUTED
     """Worksheet problem 7: the force that holds a 100 lb wagon on a 20 degree hill."""
 
     pace = .9
@@ -365,7 +380,11 @@ class RampForce(Narrated, Scene):
     def minus_sign(self):
         result, length = self.work[4], self.work[5]
         self.say('Why negative? r points up the hill, and w₁ points the opposite way: down the hill.')
-        self.play(Indicate(result[2], color=GOLD), Indicate(self.parts['r'], color=R_COLOR), run_time=1.)
+        self.play(
+            Indicate(result[2], color=PAPER_GOLD_STROKE),
+            Indicate(self.parts['r'], color=R_COLOR),
+            run_time=1.,
+        )
         self.play(Indicate(self.parts['w1'], color=W1_COLOR), run_time=1.)
         self.wait(1.2)
         self.say('The size is what we need: w₁ pulls about 34.20 lb down the hill.')
@@ -382,7 +401,7 @@ class RampForce(Narrated, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(force), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, force), color=GOLD, buff=.2)
+        box = SurroundingRectangle(VGroup(words, force), color=PAPER_GOLD_STROKE, buff=.2)
         self.play(Create(box), Indicate(self.parts['f'], color=F_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')
@@ -405,7 +424,7 @@ class RampForce(Narrated, Scene):
         self.play(Write(length), run_time=1.2)
         self.wait(1.4)
         self.say('That is the force that keeps anything from sliding down a ramp.')
-        box = SurroundingRectangle(boxed, color=GOLD, buff=.2)
+        box = SurroundingRectangle(boxed, color=PAPER_GOLD_STROKE, buff=.2)
         self.play(FadeIn(boxed), Create(box), run_time=1.2)
         self.wait(2.)
         self.say('Our wagon: 100 × sin 20° ≈ 34.2 lb, the same answer.')

@@ -68,41 +68,44 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>146</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:49 PM · Tuesday, Sep 29, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>147</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:03 PM · Wednesday, Sep 30, 2026</dd></div>
     </div>
+    
     <section class="day-block">
-      <h2 class="day-title">Current session (live tally)</h2>
-      <div class="day-sessions"><article class="session-card in-progress">
+      <h2 class="day-title">Wednesday, Sep 30, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
     <header class="session-head">
       <div class="pills">
-        <span class="time">7:49 PM</span>
-        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p0" title="Updates after each completed task.">In progress</span>
+        <span class="time">9:03 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
       </div>
       <div class="model">claude-sonnet-5-5</div>
     </header>
-    <p class="summary-human">Session in progress…</p>
-    <div class="metric-grid"><div class="metric">
+    <p class="summary-human">Reviewed the Transformations homework in the student portal for student-facing data loss and fixed the failed-submit, pending-survey and Start-over problems. Deployed the portal to Netlify with teleport buttons kept for testing.</p>
+    <div class="metric-grid"><div class="metric metric-warn">
     <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
-    <dd>11</dd>
+    <dd>64</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
-    <dd>—</dd>
+    <dd>26.7M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>294k</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
-    <dd>9</dd>
+    <dd>39</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
     <dd>0</dd>
   </div></div>
-    <details class="file-details"><summary>9 task(s)</summary>
-    <ul class="task-list"><li>7:53 PM — Fixed transformationsResultPreview TS errors by syncing session_types stub in transformations-app.d.ts</li><li>8:54 PM — Macro App Track B0 regression tests; Track D marked complete</li><li>8:55 PM — Netlify deploy 42 + Supabase confirmed up to date (064)</li><li>8:59 PM — Macro App Track B1: retire legacy show/ensureSession, detached loads, CDP deadline</li><li>9:58 PM — Macro App Track B2 step 1 + B3 step 1: failed navigates surface; slot URL is navigation truth</li><li>10:18 PM — Macro App Track B2 remainder: error line, server status, unified Refresh, context-preserving Reset</li><li>6:16 AM — Macro App Track B3 remainder: ready gating, switching-class label, slot command guard + contract tests</li><li>6:34 AM — Macro App Track B4: preview slot loading dim + phone-mode warning</li><li>6:43 AM — Ray tracing reflection clip (Manim Trial) built, audited clean, page delivered</li></ul>
+    <details class="file-details"><summary>39 task(s)</summary>
+    <ul class="task-list"><li>7:53 PM — Fixed transformationsResultPreview TS errors by syncing session_types stub in transformations-app.d.ts</li><li>8:54 PM — Macro App Track B0 regression tests; Track D marked complete</li><li>8:55 PM — Netlify deploy 42 + Supabase confirmed up to date (064)</li><li>8:59 PM — Macro App Track B1: retire legacy show/ensureSession, detached loads, CDP deadline</li><li>9:58 PM — Macro App Track B2 step 1 + B3 step 1: failed navigates surface; slot URL is navigation truth</li><li>10:18 PM — Macro App Track B2 remainder: error line, server status, unified Refresh, context-preserving Reset</li><li>6:16 AM — Macro App Track B3 remainder: ready gating, switching-class label, slot command guard + contract tests</li><li>6:34 AM — Macro App Track B4: preview slot loading dim + phone-mode warning</li><li>6:43 AM — Ray tracing reflection clip (Manim Trial) built, audited clean, page delivered</li><li>2:22 PM — Momentum handoff written for Macro App Track B</li><li>2:26 PM — Macro App Track B6: roster changes reload TC preview via one debounced onRosterMutation</li><li>4:12 PM — Macro App Track B complete: B6 + return-to-Preview fix on main; momentum handoff</li><li>4:15 PM — M2412 roster diagnosis: codes+Supabase OK; TC match fix for D2L label vs Drive folder</li><li>4:24 PM — Gradebook course-click: 10s startup grace + Try again button</li><li>4:29 PM — TC roster without apps: M2412 blank Students workspace fixed</li><li>4:31 PM — Gradebook A2 (backup year from mtime) + A3 (close-time after snapshot)</li><li>4:37 PM — Dedicated class roster view: Manage Open roster + side panel emails; Students roster app-only</li><li>5:22 PM — Momentum handoff: M2412 class roster + TC split (latest.md written)</li><li>5:24 PM — A4 split 1: useGradebookArchiveSync 777-&gt;560</li><li>6:57 PM — M2412 TC roster headless verify; Vector Projections portal gallery (7 clips, M2412 gate, migration 065, Macro built-in)</li><li>7:08 PM — Identifying Transformations post-survey: migration, deferred submit, portal wizard, Macro Feedback tab</li><li>7:14 PM — Fix TC preview blank flash: route-scoped access gate, latch first paint, no access refetch null</li><li>7:18 PM — Restored Transformations homework home to original layout (no teleports / landscape crush)</li><li>7:20 PM — Margin teleport buttons on Transformations homework + margin-teleport-buttons recipe</li><li>7:22 PM — Fix identifying post-survey Submit using next-btn footer (not absolute submit-btn)</li><li>7:24 PM — Identifying post-survey in guided-practice shell + navy header like GP</li><li>7:34 PM — Transformations result: confetti burst, compact layout, review button on preview</li><li>7:37 PM — Fix confetti z-index above result body + center compact result layout</li><li>7:38 PM — Override portal result-body flex-start so Transformations result centers vertically</li><li>7:40 PM — Align fail Transformations result with pass: rain, Review answers label, button row</li><li>7:48 PM — Graphing Transformations post-survey: parity with Identifying (migration 067, portal flow, Macro Feedback, tests, builds)</li><li>7:48 PM — Vector gallery YouTube layout + PAPER theme on 7 Manim clips; portal re-render running</li><li>7:54 PM — A4 split 2: useGradebookImport 776-&gt;606</li><li>8:03 PM — A4 split 3: useGradebook 756-&gt;609</li><li>8:04 PM — Re-rendered portal vector clips 5–7 (white PAPER) after batch job stopped at clip 6</li><li>8:06 PM — A4 split 4: useGradebookEditSession 702-&gt;595</li><li>8:53 PM — Domain/Range exit ticket: PDF with 3 equations in student-portal public/</li><li>9:02 PM — Vector portal Manim pass: inset layout, wrapped captions, PAPER white + contrast, 7 MP4s re-rendered, portal CSS seamless #ffffff</li><li>9:02 PM — Transformations launch review: fixed submit data loss, pending-survey Start, start-over confirm; deployed</li></ul>
   </details>
     
-    
+    <p class="next"><strong>Next time:</strong> Live-test the fixes, then remove teleport buttons before wider student use.</p>
   </article></div>
-    </section>
-    <section class="day-block">
+    </section><section class="day-block">
       <h2 class="day-title">Tuesday, Sep 29, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
