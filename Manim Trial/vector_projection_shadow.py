@@ -31,8 +31,7 @@ from manim import (
     FadeTransform,
     GrowArrow,
     Line,
-    MathTex,
-    Polygon,
+        Polygon,
     ReplacementTransform,
     Scene,
     SurroundingRectangle,
@@ -44,6 +43,7 @@ from manim import (
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
 from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -112,7 +112,7 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return MathTex(r'\mathbf v', color=V_COLOR).scale(.85).move_to(
+    return portal_math(r'\mathbf v', color=V_COLOR, scale=.85).move_to(
         ORIGIN + (state['v'] - .15) * ALONG + .38 * NORMAL)
 
 
@@ -122,7 +122,7 @@ def make_u(state):
 
 def make_u_label(state):
     direction = TILT + state['theta']
-    return MathTex(r'\mathbf u', color=U_COLOR).scale(.85).move_to(
+    return portal_math(r'\mathbf u', color=U_COLOR).scale(.85).move_to(
         ORIGIN + .55 * state['u'] * heading(direction) + .35 * heading(direction + math.pi / 2))
 
 
@@ -132,7 +132,7 @@ def make_arc(state):
 
 
 def make_theta(state):
-    return MathTex(r'\theta', color=INK).scale(.7).move_to(
+    return portal_math(r'\theta', color=INK).scale(.7).move_to(
         ORIGIN + 1.08 * heading(TILT + state['theta'] / 2))
 
 
@@ -166,7 +166,7 @@ def make_shadow(state):
 
 
 def make_shadow_label(state):
-    return MathTex(r'\operatorname{proj}_{\mathbf v}\mathbf u', color=SHADOW).scale(.8).move_to(
+    return portal_math(r'\operatorname{proj}_{\mathbf v}\mathbf u', color=SHADOW).scale(.8).move_to(
         ORIGIN + shadow_length(state) / 2 * ALONG - .55 * NORMAL)
 
 
@@ -190,7 +190,7 @@ V_LENGTH = r'\|\mathbf v\|'
 
 
 def tex(source, color=INK):
-    return MathTex(source, color=color).scale(.85)
+    return portal_math(source, color=color).scale(.85)
 
 
 def fraction(top, bottom):

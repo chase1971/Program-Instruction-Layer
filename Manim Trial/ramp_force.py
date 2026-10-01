@@ -34,7 +34,6 @@ from manim import (
     GrowArrow,
     Indicate,
     Line,
-    MathTex,
     Rectangle,
     Scene,
     SurroundingRectangle,
@@ -46,6 +45,7 @@ from manim import (
 from angle_between_vectors import V_COLOR, heading, make_corner
 from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -103,7 +103,7 @@ def make_hill(_state):
 def make_angle(_state):
     arc = VGroup(*[Line(FOOT + 1.1 * heading(THETA * k / 10), FOOT + 1.1 * heading(THETA * (k + 1) / 10),
                         color=INK, stroke_width=2) for k in range(10)])
-    mark = MathTex(r'20^\circ', color=INK).scale(.6).move_to(FOOT + 1.6 * heading(THETA / 2))
+    mark = portal_math(r'20^\circ', color=INK, scale=.6).move_to(FOOT + 1.6 * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
@@ -121,7 +121,7 @@ def make_w(_state):
 
 
 def make_w_label(_state):
-    return MathTex(r'\mathbf w', r'=100\text{ lb}', color=W_COLOR).scale(.7).next_to(
+    return portal_math(r'\mathbf w', r'=100\text{ lb}', color=W_COLOR).scale(.7).next_to(
         (P + W_TIP) / 2 + .15 * DOWN, RIGHT, buff=.2)
 
 
@@ -134,11 +134,11 @@ def make_w2(_state):
 
 
 def make_w1_label(_state):
-    return MathTex(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(W1_TIP + .55 * OUT_OF_HILL + .25 * LEFT)
+    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(W1_TIP + .55 * OUT_OF_HILL + .25 * LEFT)
 
 
 def make_w2_label(_state):
-    return MathTex(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to((W1_TIP + W_TIP) / 2 + .45 * LEFT)
+    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to((W1_TIP + W_TIP) / 2 + .45 * LEFT)
 
 
 def make_corner_mark(_state):
@@ -150,7 +150,7 @@ def make_r(_state):
 
 
 def make_r_label(_state):
-    return MathTex(r'\mathbf r', color=R_COLOR).scale(.8).move_to(
+    return portal_math(r'\mathbf r', color=R_COLOR).scale(.8).move_to(
         R_START + .5 * R_LENGTH * UP_RAMP + .42 * OUT_OF_HILL)
 
 
@@ -160,8 +160,8 @@ def make_r_legs(_state):
     corner = np.array([tip[0], R_START[1], 0.])
     across = DashedLine(R_START, corner, color=MUTED, stroke_width=2.5, dash_length=.08)
     up = DashedLine(corner, tip, color=MUTED, stroke_width=2.5, dash_length=.08)
-    cos = MathTex(r'\cos 20^\circ', color=INK).scale(.5).next_to(across, DOWN, buff=.1)
-    sin = MathTex(r'\sin 20^\circ', color=INK).scale(.5).next_to(up, RIGHT, buff=.1)
+    cos = portal_math(r'\cos 20^\circ', color=INK).scale(.5).next_to(across, DOWN, buff=.1)
+    sin = portal_math(r'\sin 20^\circ', color=INK).scale(.5).next_to(up, RIGHT, buff=.1)
     return VGroup(across, up, cos, sin)
 
 
@@ -170,7 +170,7 @@ def make_f(_state):
 
 
 def make_f_label(_state):
-    return MathTex(r'\approx 34.2\text{ lb}', color=F_COLOR).scale(.7).next_to(
+    return portal_math(r'\approx 34.2\text{ lb}', color=F_COLOR).scale(.7).next_to(
         F_TIP + .3 * UP, RIGHT, buff=.2)  # clear of the wagon's handle
 
 
@@ -192,7 +192,7 @@ SYMBOLS = {'w': r'\mathbf w', 'r': r'\mathbf r', 'w1': r'\mathbf w_1', 'w2': r'\
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = MathTex(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -268,7 +268,7 @@ def make_shortcut():
     setup = m('w', '=', r'\langle 0,\,-W\rangle', r',\qquad', 'r', '=', r'\langle\cos\theta,\,\sin\theta\rangle')
     dot = m(r'\mathbf w\cdot\mathbf r', '=', r'(0)(\cos\theta)+(-W)(\sin\theta)', '=', r'-W\sin\theta')
     length = m(r'\|\mathbf r\|=1', r'\;\;\Rightarrow\;\;', '|proj|', '=', r'W\sin\theta')
-    rule = MathTex(r'\text{Force to remain stationary}', '=', r'\text{Weight}\times\sin\theta',
+    rule = portal_math(r'\text{Force to remain stationary}', '=', r'\text{Weight}\times\sin\theta',
                    color=INK).scale(.95)
     rule[0].set_color(F_COLOR)
     where = label('where θ is the angle of the ramp', font_size=24)

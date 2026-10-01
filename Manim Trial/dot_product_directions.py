@@ -23,7 +23,6 @@ from manim import (
     FadeOut,
     LaggedStart,
     Line,
-    MathTex,
     Rectangle,
     ReplacementTransform,
     Scene,
@@ -35,6 +34,7 @@ from manim import (
 )
 
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -108,7 +108,7 @@ def make_travel_arrow(direction, color):
 
 def make_vector_label(tex, arrow, color, side):
     """Place a label beside its arrow."""
-    vector_label = MathTex(tex, color=color).scale(.7)
+    vector_label = portal_math(tex, color=color, scale=.7)
     vector_label.next_to(arrow, side, buff=.18)
     return vector_label
 
@@ -182,7 +182,7 @@ def make_meter_value(tex):
 
     Kept to one line of type -- a stacked fraction here would reach the work.
     """
-    value = MathTex(tex, color=GOLD).scale(.85)
+    value = portal_math(tex, color=GOLD).scale(.85)
     return value.move_to([METER_CENTER[0], METER_CENTER[1] - .95, 0])
 
 
@@ -192,10 +192,10 @@ def make_northeast_components(northeast_arrow):
     corner = [tip[0], ORIGIN[1], 0]
     east_component = DashedLine(ORIGIN, corner, color=GOLD, dash_length=.12)
     north_component = DashedLine(corner, tip, color=GOLD, dash_length=.12)
-    east_label = MathTex(
+    east_label = portal_math(
         r'\frac{\sqrt2}{2}\text{ east}', color=GOLD,
     ).scale(.55).next_to(east_component, UP, buff=.1)
-    north_label = MathTex(
+    north_label = portal_math(
         r'\frac{\sqrt2}{2}\text{ north}', color=GOLD,
     ).scale(.55).next_to(north_component, RIGHT, buff=.1)
     return VGroup(east_component, north_component, east_label, north_label)
@@ -203,15 +203,15 @@ def make_northeast_components(northeast_arrow):
 
 def make_perpendicular_work():
     """Create the component calculation for east dot north."""
-    symbolic = MathTex(
+    symbolic = portal_math(
         r'\langle 1,0\rangle\cdot\langle 0,1\rangle',
         color=INK,
     ).scale(.85)
-    named = MathTex(
+    named = portal_math(
         r'(\text{east})(\text{east})+(\text{north})(\text{north})',
         color=MUTED,
     ).scale(.5)
-    numeric = MathTex(
+    numeric = portal_math(
         r'(1)(0)+(0)(1)', r'=0', color=INK,
     ).scale(.9)
     numeric[1].set_color(GOLD)
@@ -222,17 +222,17 @@ def make_perpendicular_work():
 
 def make_northeast_work():
     """Create the component calculation for east dot northeast."""
-    vectors = MathTex(
+    vectors = portal_math(
         r'\langle1,0\rangle\cdot'
         r'\left\langle\frac{\sqrt2}{2},\frac{\sqrt2}{2}\right\rangle',
         color=INK,
     ).scale(.68)
-    products = MathTex(
+    products = portal_math(
         r'(1)\left(\frac{\sqrt2}{2}\right)'
         r'+(0)\left(\frac{\sqrt2}{2}\right)',
         color=INK,
     ).scale(.66)
-    simplified = MathTex(
+    simplified = portal_math(
         r'\frac{\sqrt2}{2}+0',
         r'\;=\;',
         r'\frac{\sqrt2}{2}\approx0.707',
@@ -246,12 +246,12 @@ def make_northeast_work():
 
 def make_unit_vector_note():
     """State the general dot product, then reduce it for unit vectors."""
-    general = MathTex(
+    general = portal_math(
         r'\mathbf u\cdot\mathbf v=\|\mathbf u\|\,\|\mathbf v\|\cos\theta',
         color=INK,
     ).scale(.9)
-    unit = MathTex(r'\|\mathbf u\|=\|\mathbf v\|=1', color=BLUE).scale(.8)
-    reduced = MathTex(r'\mathbf u\cdot\mathbf v=\cos\theta', color=GOLD).scale(.95)
+    unit = portal_math(r'\|\mathbf u\|=\|\mathbf v\|=1', color=BLUE).scale(.8)
+    reduced = portal_math(r'\mathbf u\cdot\mathbf v=\cos\theta', color=GOLD).scale(.95)
     rows = VGroup(general, unit, reduced).arrange(DOWN, buff=.45)
     return rows.move_to([0, .6, 0])
 
@@ -259,8 +259,8 @@ def make_unit_vector_note():
 def make_case_summary():
     """Restate both results as the cosine of the angle between the directions."""
     rows = VGroup(
-        MathTex(r'\text{east and north: }', r'\cos 90^\circ=0', color=INK),
-        MathTex(
+        portal_math(r'\text{east and north: }', r'\cos 90^\circ=0', color=INK),
+        portal_math(
             r'\text{east and northeast: }',
             r'\cos 45^\circ=\frac{\sqrt2}{2}\approx0.707',
             color=INK,

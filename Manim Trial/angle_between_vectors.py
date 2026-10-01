@@ -34,7 +34,6 @@ from manim import (
     GrowFromPoint,
     Line,
     ManimColor,
-    MathTex,
     Rectangle,
     Scene,
     SurroundingRectangle,
@@ -51,6 +50,7 @@ from manim import (
 from dot_product_directions import make_open_question
 from vector_portal_layout import WORK, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -145,7 +145,7 @@ def make_tip_label(view, angle, length, tex, color, side=0.):
     """Label just past an arrow's tip; `side` nudges it counterclockwise (+) or clockwise (-)."""
     across = heading(angle + math.pi / 2)
     spot = point(view, angle, length) + .3 * heading(angle) + side * across
-    return MathTex(tex, color=color).scale(.8).move_to(spot)
+    return portal_math(tex, color=color, scale=.8).move_to(spot)
 
 
 def make_unit_circle(view):
@@ -161,7 +161,7 @@ def make_angle(view, first, second):
 
 def make_theta(view, direction, reach=None):
     reach = view['theta'] if reach is None else reach
-    return MathTex(r'\theta', color=INK).scale(.75).move_to(
+    return portal_math(r'\theta', color=INK).scale(.75).move_to(
         origin_of(view) + reach * heading(direction))
 
 
@@ -200,7 +200,7 @@ def make_fill(cosine):
 
 def make_gauge_value(tex, cosine):
     color = GOLD if cosine >= 0 else NEGATIVE
-    return MathTex(tex, color=color).scale(.85).move_to([GAUGE_CENTER[0], GAUGE_VALUE_Y, 0])
+    return portal_math(tex, color=color).scale(.85).move_to([GAUGE_CENTER[0], GAUGE_VALUE_Y, 0])
 
 
 def make_derivation():
@@ -209,24 +209,24 @@ def make_derivation():
     Row 1 is the plain dot product; it becomes row 2's left side once the vectors are
     unit length, so the column is laid out once and every row is born in its final place.
     """
-    plain = MathTex(r'\mathbf u\cdot\mathbf v', color=INK).scale(.85)
-    hats = MathTex(
+    plain = portal_math(r'\mathbf u\cdot\mathbf v', color=INK).scale(.85)
+    hats = portal_math(
         r'\hat{\mathbf u}=\frac{\mathbf u}{\|\mathbf u\|},\qquad'
         r'\hat{\mathbf v}=\frac{\mathbf v}{\|\mathbf v\|}',
         color=MUTED,
     ).scale(.8)
-    dotted = MathTex(
+    dotted = portal_math(
         r'\hat{\mathbf u}\cdot\hat{\mathbf v}',
         r'=\frac{\mathbf u}{\|\mathbf u\|}\cdot\frac{\mathbf v}{\|\mathbf v\|}',
         r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
         color=INK,
     ).scale(.8)
-    cosine = MathTex(
+    cosine = portal_math(
         r'\cos\theta', r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
         color=INK,
     ).scale(.85)
     cosine[0].set_color(GOLD)
-    solved = MathTex(
+    solved = portal_math(
         r'\theta=\arccos\!\left(\frac{\mathbf u\cdot\mathbf v}'
         r'{\|\mathbf u\|\,\|\mathbf v\|}\right)',
         color=INK,
@@ -238,7 +238,7 @@ def make_derivation():
 
 
 def make_given():
-    given = MathTex(
+    given = portal_math(
         r'\mathbf u=2\mathbf i-2\mathbf j,\quad\mathbf v=5\mathbf i+8\mathbf j,'
         r'\quad\mathbf w=4\mathbf i+4\mathbf j',
         color=MUTED,
@@ -258,10 +258,10 @@ def place_below(rows, anchor):
 
 def make_problem_rows(anchor, dot, product, magnitudes, ratio, cosine, angle, degrees):
     rows = VGroup(
-        MathTex(dot, product, color=INK).scale(.68),
-        MathTex(magnitudes, color=MUTED).scale(.64),
-        MathTex(ratio, cosine, color=INK).scale(.68),
-        MathTex(angle, degrees, color=INK).scale(.68),
+        portal_math(dot, product, color=INK).scale(.68),
+        portal_math(magnitudes, color=MUTED).scale(.64),
+        portal_math(ratio, cosine, color=INK).scale(.68),
+        portal_math(angle, degrees, color=INK).scale(.68),
     )
     for row in rows[2:]:
         row[1].set_color(GOLD)
@@ -270,20 +270,20 @@ def make_problem_rows(anchor, dot, product, magnitudes, ratio, cosine, angle, de
 
 def make_unit_components(anchor):
     rows = VGroup(
-        MathTex(r'\hat{\mathbf u}=\langle0.7071,-0.7071\rangle', color=U_COLOR),
-        MathTex(r'\hat{\mathbf v}=\langle0.5300,0.8480\rangle', color=V_COLOR),
-        MathTex(r'\hat{\mathbf w}=\langle0.7071,0.7071\rangle', color=W_COLOR),
+        portal_math(r'\hat{\mathbf u}=\langle0.7071,-0.7071\rangle', color=U_COLOR),
+        portal_math(r'\hat{\mathbf v}=\langle0.5300,0.8480\rangle', color=V_COLOR),
+        portal_math(r'\hat{\mathbf w}=\langle0.7071,0.7071\rangle', color=W_COLOR),
     ).scale(.66).arrange(DOWN, buff=.2, aligned_edge=LEFT)
     return rows.move_to(anchor).align_to(anchor, LEFT).align_to(anchor, UP)
 
 
 def make_payoff_rows(anchor):
     rows = VGroup(
-        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf v}\approx-0.22486',
+        portal_math(r'\hat{\mathbf u}\cdot\hat{\mathbf v}\approx-0.22486',
                 r'\quad\theta\approx102.99^\circ', color=INK),
-        MathTex(r'\hat{\mathbf v}\cdot\hat{\mathbf w}\approx0.97439',
+        portal_math(r'\hat{\mathbf v}\cdot\hat{\mathbf w}\approx0.97439',
                 r'\quad\theta\approx12.99^\circ', color=INK),
-        MathTex(r'\hat{\mathbf u}\cdot\hat{\mathbf w}=0',
+        portal_math(r'\hat{\mathbf u}\cdot\hat{\mathbf w}=0',
                 r'\quad\theta=90^\circ', color=INK),
     ).scale(.72)
     for row in rows:

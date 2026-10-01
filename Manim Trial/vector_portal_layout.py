@@ -13,7 +13,10 @@ from manim import config
 # Extra inset per side beyond the audit edge margin (~30px at 1080p width).
 VECTOR_H_INSET = 0.30
 
-CONTENT_TOP = CAPTION_FLOOR - 0.05
+PORTAL_MATH_SCALE = 1.15
+
+# Extra gap below the caption band before diagram/work content.
+CONTENT_TOP = CAPTION_FLOOR - 0.18
 FRAME_RIGHT = config.frame_width / 2 - EDGE_MARGIN - VECTOR_H_INSET
 FRAME_BOTTOM = -(config.frame_height / 2 - EDGE_MARGIN)
 
@@ -22,9 +25,9 @@ CAPTION_MAX_WIDTH = config.frame_width - 2 * CAPTION_SIDE_INSET - 0.2
 
 DEFAULT_GROW = 1.15
 
-DIAGRAM = Region('DIAGRAM', -FRAME_RIGHT, 0.55, FRAME_BOTTOM, 2.55)
-WORK = Region('WORK', 1.0, FRAME_RIGHT, FRAME_BOTTOM, 0.95)
-GAUGE = Region('GAUGE', 1.0, FRAME_RIGHT, 1.15, CONTENT_TOP)
+DIAGRAM = Region('DIAGRAM', -FRAME_RIGHT, 0.55, FRAME_BOTTOM, 2.40)
+WORK = Region('WORK', 1.0, FRAME_RIGHT, FRAME_BOTTOM, 0.80)
+GAUGE = Region('GAUGE', 1.0, FRAME_RIGHT, 1.00, CONTENT_TOP)
 CENTER = Region('CENTER', -FRAME_RIGHT, FRAME_RIGHT, FRAME_BOTTOM, CONTENT_TOP)
 
 PANELS = (DIAGRAM, WORK, GAUGE)

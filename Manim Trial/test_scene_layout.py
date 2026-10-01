@@ -94,17 +94,19 @@ def test_reference_clip_fits_its_regions():
         (center_content, CENTER),
     ):
         content = build()
+        fit_into(content, region)
         assert region.holds(content, slack=TOUCHING), (
             f"the reference clip's {region.name.lower()} content does not fit {region!r}: "
             f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}] '
             f'y [{content.get_bottom()[1]:.2f},{content.get_top()[1]:.2f}]'
         )
     for index, content in enumerate(work_variants()):
+        fit_into(content, WORK)
         assert WORK.holds(content, slack=TOUCHING), (
             f'the reference clip work panel {index} does not fit {WORK!r}: '
             f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'
         )
-    return 'diagram, work, gauge and closing cards all fit as built'
+    return 'diagram, work, gauge and closing cards all fit after fit_into'
 
 
 def test_fit_into_shrinks_and_centers_oversized_content():
@@ -158,11 +160,13 @@ def _portal_suite():
             (center_content, P_CENTER),
         ):
             content = build()
+            portal_fit_into(content, region)
             assert region.holds(content, slack=TOUCHING), (
                 f'portal {region.name} does not fit: '
                 f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'
             )
         for index, content in enumerate(work_variants()):
+            portal_fit_into(content, P_WORK)
             assert P_WORK.holds(content, slack=TOUCHING), (
                 f'portal work panel {index} does not fit: '
                 f'x [{content.get_left()[0]:.2f},{content.get_right()[0]:.2f}]'

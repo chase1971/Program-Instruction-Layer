@@ -31,7 +31,6 @@ from manim import (
     GrowArrow,
     Indicate,
     Line,
-    MathTex,
     Rectangle,
     Scene,
     SurroundingRectangle,
@@ -43,6 +42,7 @@ from manim import (
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
 from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -94,7 +94,7 @@ def make_ground(_state):
     ground = Line([-6.75, GROUND_Y, 0], [.2, GROUND_Y, 0], color=MUTED, stroke_width=3)
     ticks = VGroup(*[Line([x, GROUND_Y - .12, 0], [x, GROUND_Y + .12, 0], color=MUTED, stroke_width=3)
                      for x in (P_X, Q_X)])
-    names = VGroup(*[MathTex(name, color=INK).scale(.7).move_to([x, GROUND_Y - .42, 0])
+    names = VGroup(*[portal_math(name, color=INK, scale=.7).move_to([x, GROUND_Y - .42, 0])
                      for name, x in (('P', P_X), ('Q', Q_X))])
     return VGroup(ground, ticks, names).set_z_index(-2)
 
@@ -115,14 +115,14 @@ def make_f(state):
 def make_f_label(state):
     start = front(state)
     middle = start + PER_POUND * FORCE / 2 * heading(state['phi'])
-    return MathTex(r'\mathbf F', r'=50\text{ lb}', color=F_COLOR).scale(.7).move_to(
+    return portal_math(r'\mathbf F', r'=50\text{ lb}', color=F_COLOR).scale(.7).move_to(
         middle + .5 * heading(state['phi'] + math.pi / 2) + .15 * LEFT)
 
 
 def make_angle(_state):
     arc = VGroup(*[Line(A + .55 * heading(THETA * k / 10), A + .55 * heading(THETA * (k + 1) / 10),
                         color=INK, stroke_width=2) for k in range(10)])
-    mark = MathTex(r'30^\circ', color=INK).scale(.55).move_to(A + 1.0 * heading(THETA / 2))
+    mark = portal_math(r'30^\circ', color=INK).scale(.55).move_to(A + 1.0 * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
@@ -131,7 +131,7 @@ def make_pq(_state):
 
 
 def make_pq_label(_state):
-    return MathTex(r'\|\overrightarrow{PQ}\|=100\text{ ft}', color=PQ_COLOR).scale(.65).move_to(
+    return portal_math(r'\|\overrightarrow{PQ}\|=100\text{ ft}', color=PQ_COLOR).scale(.65).move_to(
         [(P_X + Q_X) / 2, GROUND_Y - .45, 0])
 
 
@@ -144,11 +144,11 @@ def make_f2(_state):
 
 
 def make_f1_label(_state):
-    return MathTex(r'\mathbf F_1', color=F1_COLOR).scale(.8).move_to((A + F1_TIP) / 2 + .32 * DOWN + .2 * RIGHT)
+    return portal_math(r'\mathbf F_1', color=F1_COLOR).scale(.8).move_to((A + F1_TIP) / 2 + .32 * DOWN + .2 * RIGHT)
 
 
 def make_f2_label(_state):
-    return MathTex(r'\mathbf F_2', color=F2_COLOR).scale(.8).move_to((F1_TIP + F_TIP) / 2 + .38 * RIGHT)
+    return portal_math(r'\mathbf F_2', color=F2_COLOR).scale(.8).move_to((F1_TIP + F_TIP) / 2 + .38 * RIGHT)
 
 
 def make_corner_mark(_state):
@@ -174,7 +174,7 @@ SYMBOLS = {'F': r'\mathbf F', 'PQ': PQ, '|F|': r'\|\mathbf F\|', '|PQ|': rf'\|{P
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = MathTex(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])

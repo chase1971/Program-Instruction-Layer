@@ -8,7 +8,7 @@ new scenes import from here.
 import json
 from pathlib import Path
 
-from manim import Text, FadeIn, FadeOut
+from manim import MathTex, Text, FadeIn, FadeOut
 
 from scene_audit import audit_mark, audit_summary
 
@@ -143,6 +143,12 @@ def apply_portal_paper_background():
 
 
 from vector_portal_layout import CAPTION_MAX_WIDTH as _PORTAL_CAPTION_WIDTH
+from vector_portal_layout import PORTAL_MATH_SCALE
+
+
+def portal_math(*args, scale=1.0, **kwargs):
+    """Portal clip equations — scaled by PORTAL_MATH_SCALE (default +15%)."""
+    return MathTex(*args, **kwargs).scale(scale * PORTAL_MATH_SCALE)
 
 
 class VectorPortalScene(Narrated):

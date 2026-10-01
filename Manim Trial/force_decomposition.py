@@ -30,8 +30,7 @@ from manim import (
     GrowArrow,
     Indicate,
     Line,
-    MathTex,
-    Scene,
+        Scene,
     SurroundingRectangle,
     VGroup,
     Write,
@@ -41,6 +40,7 @@ from manim import (
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
 from vector_portal_layout import CENTER, CONTENT_TOP, WORK, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -87,7 +87,7 @@ def make_u(_state):
 
 def make_u_label(_state):
     side = heading(THETA + math.pi / 2)
-    return MathTex(r'\mathbf u', r'=22\text{ N}', color=U_COLOR).scale(.75).move_to(
+    return portal_math(r'\mathbf u', r'=22\text{ N}', color=U_COLOR, scale=.75).move_to(
         (ORIGIN + U_TIP) / 2 + .8 * side)
 
 
@@ -96,14 +96,14 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return MathTex(r'\mathbf v', rf'={state["v"]:.0f}\text{{ N}}', color=V_COLOR).scale(.75).move_to(
+    return portal_math(r'\mathbf v', rf'={state["v"]:.0f}\text{{ N}}', color=V_COLOR).scale(.75).move_to(
         (ORIGIN + v_tip(state)) / 2 + .45 * DOWN)
 
 
 def make_angle(_state):
     arc = VGroup(*[Line(ORIGIN + .75 * heading(THETA * k / 12), ORIGIN + .75 * heading(THETA * (k + 1) / 12),
                         color=INK, stroke_width=2) for k in range(12)])
-    mark = MathTex(r'50^\circ', color=INK).scale(.6).move_to(ORIGIN + 1.2 * heading(THETA / 2))
+    mark = portal_math(r'50^\circ', color=INK).scale(.6).move_to(ORIGIN + 1.2 * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
@@ -116,11 +116,11 @@ def make_u2(_state):
 
 
 def make_u1_label(_state):
-    return MathTex(r'\mathbf u_1', color=U1_COLOR).scale(.8).move_to(U1_TIP + np.array([-.75, .4, 0]))
+    return portal_math(r'\mathbf u_1', color=U1_COLOR).scale(.8).move_to(U1_TIP + np.array([-.75, .4, 0]))
 
 
 def make_u2_label(_state):
-    return MathTex(r'\mathbf u_2', color=U2_COLOR).scale(.8).move_to((U1_TIP + U_TIP) / 2 + .5 * EAST)
+    return portal_math(r'\mathbf u_2', color=U2_COLOR).scale(.8).move_to((U1_TIP + U_TIP) / 2 + .5 * EAST)
 
 
 def make_right_angle(_state):
@@ -150,7 +150,7 @@ SYMBOLS = {'u': r'\mathbf u', 'v': r'\mathbf v', 'u1': r'\mathbf u_1', 'u2': r'\
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = MathTex(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -158,7 +158,7 @@ def m(*pieces):
 
 
 def t(source):
-    return MathTex(source, color=INK).scale(.75)
+    return portal_math(source, color=INK).scale(.75)
 
 
 def line_up(anchor, index, *rows):

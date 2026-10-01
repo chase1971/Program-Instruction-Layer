@@ -34,8 +34,7 @@ from manim import (
     GrowArrow,
     Indicate,
     Line,
-    MathTex,
-    ReplacementTransform,
+        ReplacementTransform,
     Scene,
     SurroundingRectangle,
     VGroup,
@@ -46,6 +45,7 @@ from manim import (
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
 from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
 from scene_style import (
+    portal_math,
     PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
@@ -133,7 +133,7 @@ def make_u(state):
 
 def make_u_label(state):
     spot = to_screen(state, .55 * U) + .38 * np.array([-.8, .6, 0])
-    return MathTex(r'\mathbf u', color=U_COLOR).scale(.85).move_to(spot)
+    return portal_math(r'\mathbf u', color=U_COLOR, scale=.85).move_to(spot)
 
 
 def make_v(state):
@@ -141,7 +141,7 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return MathTex(r'\mathbf v', color=V_COLOR).scale(.85).move_to(
+    return portal_math(r'\mathbf v', color=V_COLOR).scale(.85).move_to(
         to_screen(state, V) + np.array([-.25, .38, 0]))
 
 
@@ -169,19 +169,19 @@ def w2_spot(state):
 
 
 def make_i_label(state):
-    return MathTex(r'3\mathbf i', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
+    return portal_math(r'3\mathbf i', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
 
 
 def make_j_label(state):
-    return MathTex(r'4\mathbf j', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
+    return portal_math(r'4\mathbf j', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
 
 
 def make_w1_label(state):
-    return MathTex(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
+    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
 
 
 def make_w2_label(state):
-    return MathTex(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
+    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
 
 
 def make_right_angle(state):
@@ -208,7 +208,7 @@ SYMBOLS = {'u': r'\mathbf u', 'v': r'\mathbf v', 'w1': r'\mathbf w_1', 'w2': r'\
 
 def m(*pieces):
     """One row of math. A piece named 'u', 'v', 'w1' or 'w2' is that vector, in its color."""
-    row = MathTex(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
