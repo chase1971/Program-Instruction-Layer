@@ -38,7 +38,7 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from vector_portal_layout import CENTER, CONTENT_TOP, WORK, fit_into
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, cs, fit_into, ms
 from scene_style import (
     portal_math,
     PAPER,
@@ -70,8 +70,11 @@ ALONG = U_NEWTONS * math.cos(THETA)   # ~14.14 N, the answer
 ACROSS = U_NEWTONS * math.sin(THETA)  # ~16.85 N
 SCALE = ALONG / V_NEWTONS             # ~1.768: stretch v by this to reach the shadow
 
-ORIGIN = np.array([-5.5, -2.55, 0.])
-PER_NEWTON = .25  # screen units per newton
+# Strokes, arrowheads, labels and type are 30% larger for the phone player (cs/ms). The
+# diagram grows x1.2: u (22 N) must clear the caption and the 20 N stretch of v must end
+# before the work column, so the origin sits lower and further left instead.
+ORIGIN = np.array([-5.6, -2.9, 0.])
+PER_NEWTON = .30  # screen units per newton
 EAST = RIGHT
 U_TIP = ORIGIN + PER_NEWTON * U_NEWTONS * heading(THETA)
 U1_TIP = ORIGIN + PER_NEWTON * ALONG * EAST
@@ -87,8 +90,8 @@ def make_u(_state):
 
 def make_u_label(_state):
     side = heading(THETA + math.pi / 2)
-    return portal_math(r'\mathbf u', r'=22\text{ N}', color=U_COLOR, scale=.75).move_to(
-        (ORIGIN + U_TIP) / 2 + .8 * side)
+    return portal_math(r'\mathbf u', r'=22\text{ N}', color=U_COLOR, scale=ms(.75)).move_to(
+        (ORIGIN + U_TIP) / 2 + cs(.8) * side)
 
 
 def make_v(state):
@@ -96,14 +99,14 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return portal_math(r'\mathbf v', rf'={state["v"]:.0f}\text{{ N}}', color=V_COLOR).scale(.75).move_to(
-        (ORIGIN + v_tip(state)) / 2 + .45 * DOWN)
+    return portal_math(r'\mathbf v', rf'={state["v"]:.0f}\text{{ N}}', color=V_COLOR).scale(ms(.75)).move_to(
+        (ORIGIN + v_tip(state)) / 2 + cs(.45) * DOWN)
 
 
 def make_angle(_state):
-    arc = VGroup(*[Line(ORIGIN + .75 * heading(THETA * k / 12), ORIGIN + .75 * heading(THETA * (k + 1) / 12),
-                        color=INK, stroke_width=2) for k in range(12)])
-    mark = portal_math(r'50^\circ', color=INK).scale(.6).move_to(ORIGIN + 1.2 * heading(THETA / 2))
+    arc = VGroup(*[Line(ORIGIN + cs(.75) * heading(THETA * k / 12), ORIGIN + cs(.75) * heading(THETA * (k + 1) / 12),
+                        color=INK, stroke_width=cs(2)) for k in range(12)])
+    mark = portal_math(r'50^\circ', color=INK).scale(ms(.6)).move_to(ORIGIN + cs(1.2) * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
@@ -116,15 +119,15 @@ def make_u2(_state):
 
 
 def make_u1_label(_state):
-    return portal_math(r'\mathbf u_1', color=U1_COLOR).scale(.8).move_to(U1_TIP + np.array([-.75, .4, 0]))
+    return portal_math(r'\mathbf u_1', color=U1_COLOR).scale(ms(.8)).move_to(U1_TIP + np.array([-cs(.75), cs(.4), 0]))
 
 
 def make_u2_label(_state):
-    return portal_math(r'\mathbf u_2', color=U2_COLOR).scale(.8).move_to((U1_TIP + U_TIP) / 2 + .5 * EAST)
+    return portal_math(r'\mathbf u_2', color=U2_COLOR).scale(ms(.8)).move_to((U1_TIP + U_TIP) / 2 + cs(.5) * EAST)
 
 
 def make_right_angle(_state):
-    return make_corner(U1_TIP, LEFT, UP, .2)
+    return make_corner(U1_TIP, LEFT, UP, cs(.2))
 
 
 # Draw order: arrows first, labels last.
@@ -150,7 +153,7 @@ SYMBOLS = {'u': r'\mathbf u', 'v': r'\mathbf v', 'u1': r'\mathbf u_1', 'u2': r'\
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(ms(.75))
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -158,7 +161,7 @@ def m(*pieces):
 
 
 def t(source):
-    return portal_math(source, color=INK).scale(.75)
+    return portal_math(source, color=INK).scale(ms(.75))
 
 
 def line_up(anchor, index, *rows):
@@ -172,18 +175,19 @@ def make_given():
               r'\theta=50^\circ')
     given[0].set_color(U_COLOR)
     given[2].set_color(V_COLOR)
+    given.scale(min(1, (WORK.width - .2) / given.width))
     return given.move_to([WORK.left + .1, CONTENT_TOP - .1, 0], aligned_edge=UP + LEFT)
 
 
 def make_definitions():
     """What the two pieces are, in words, each under its symbol -- clip four's card."""
-    rows = VGroup(*[VGroup(math, label(words, font_size=24, color=INK)).arrange(
-        DOWN, buff=.16, aligned_edge=LEFT) for math, words in (
-        (m('u1'), 'the part of u that goes in v’s direction'),
-        (m('u2'), 'the part of u that has nothing to do with v'),
+    rows = VGroup(*[VGroup(math, label(words, font_size=round(cs(24)), color=INK)).arrange(
+        DOWN, buff=cs(.16), aligned_edge=LEFT) for math, words in (
+        (m('u1'), 'the part of u that goes\nin v’s direction'),
+        (m('u2'), 'the part of u that has\nnothing to do with v'),
         (m('u', '=', 'u1', '+', 'u2'), 'together: the whole 22 N force'),
         (m(r'\text{How much?}', r'\;\to\;', '|u1|'), 'what the question asks for'))])
-    return settle(place(rows, buff=.42))
+    return settle(place(rows, buff=cs(.42)))
 
 
 def make_formula_work():
@@ -193,7 +197,7 @@ def make_formula_work():
     square = m(r'\|\mathbf v\|^{2}', '=', '8^{2}', '=', '64')
     scaled = m('u1', r'\approx', r'\frac{113.13}{64}', 'v', r'\approx', '1.768', 'v')
     length = m('|u1|', r'\approx', r'1.768\,(8\text{ N})', r'\approx', r'14.14\text{ N}')
-    column = place(VGroup(proj, dot, numbers, square, scaled, length), buff=.32)
+    column = place(VGroup(proj, dot, numbers, square, scaled, length), buff=cs(.32))
     line_up(dot, 1, numbers)
     return settle(column)
 
@@ -201,15 +205,15 @@ def make_formula_work():
 def make_cancel_work():
     """||u1|| = (u.v / ||v||^2) ||v||, with u.v opened up so the ||v||'s can be struck."""
     start = m('|u1|', '=', r'\frac{\mathbf u\cdot\mathbf v}{\|\mathbf v\|^{2}}\,\|\mathbf v\|')
-    top = VGroup(t(r'\|\mathbf u\|'), t(r'\|\mathbf v\|'), t(r'\cos\theta')).arrange(RIGHT, buff=.08)
-    bottom = VGroup(t(r'\|\mathbf v\|'), t(r'\|\mathbf v\|')).arrange(RIGHT, buff=.08)
-    opened = VGroup(t('='), fraction(top, bottom), t(r'\|\mathbf v\|')).arrange(RIGHT, buff=.14)
+    top = VGroup(t(r'\|\mathbf u\|'), t(r'\|\mathbf v\|'), t(r'\cos\theta')).arrange(RIGHT, buff=cs(.08))
+    bottom = VGroup(t(r'\|\mathbf v\|'), t(r'\|\mathbf v\|')).arrange(RIGHT, buff=cs(.08))
+    opened = VGroup(t('='), fraction(top, bottom), t(r'\|\mathbf v\|')).arrange(RIGHT, buff=cs(.14))
     short = m('=', r'\|\mathbf u\|\cos\theta')
     value = m('=', r'22\cos 50^\circ', r'\approx', r'14.14\text{ N}')
     value[3].set_color(U1_COLOR)
     share = VGroup(m(r'\cos 50^\circ\approx 0.643'),
-                   label('about 64% of u’s length lies along v', font_size=24, color=INK)
-                   ).arrange(DOWN, buff=.16, aligned_edge=LEFT)
+                   label('about 64% of u’s length lies along v', font_size=round(cs(24)), color=INK)
+                   ).arrange(DOWN, buff=cs(.16), aligned_edge=LEFT)
     column = place(VGroup(start, opened, short, value, share))
     line_up(start, 1, opened, short, value)
     share.shift(DOWN * .15)
@@ -219,31 +223,31 @@ def make_cancel_work():
 
 
 def make_rejection_work():
-    setup = VGroup(label('Put v along the x-axis:', font_size=24, color=INK),
-                   m('v', '=', r'\langle 8,\,0\rangle')).arrange(RIGHT, buff=.3)
+    setup = VGroup(label('Put v along the x-axis:', font_size=round(cs(24)), color=INK),
+                   m('v', '=', r'\langle 8,\,0\rangle')).arrange(RIGHT, buff=cs(.3))
     u = m('u', '=', r'\langle 22\cos 50^\circ,\ 22\sin 50^\circ\rangle')
     u_value = m(r'\approx', r'\langle 14.14,\ 16.85\rangle')
     u1 = m('u1', r'\approx', r'\langle 14.14,\ 0\rangle')
     u2 = m('u2', '=', 'u', '-', 'u1', r'\approx', r'\langle 0,\ 16.85\rangle')
     check = m('u2', r'\cdot', 'v', r'\approx', r'(0)(8)+(16.85)(0)', '=', '0')
-    column = place(VGroup(setup, u, u_value, u1, u2, check), buff=.34)
+    column = place(VGroup(setup, u, u_value, u1, u2, check), buff=cs(.34))
     line_up(u, 1, u_value)
     return settle(column)
 
 
 def make_answer():
-    words = VGroup(label('About 14.14 N of the 22 N force', font_size=26, color=INK),
-                   label('acts in the direction of the 8 N force.', font_size=26, color=INK)
-                   ).arrange(DOWN, buff=.14, aligned_edge=LEFT)
-    column = place(VGroup(words, m('|proj|', '=', '|u1|', r'\approx', r'14.14\text{ N}')), buff=.4)
-    return settle(column).shift(LEFT * .2)  # room for the answer box on the right
+    words = VGroup(label('About 14.14 N of the 22 N force', font_size=round(cs(26)), color=INK),
+                   label('acts in the direction of the 8 N force.', font_size=round(cs(26)), color=INK)
+                   ).arrange(DOWN, buff=cs(.14), aligned_edge=LEFT)
+    column = place(VGroup(words, m('|proj|', '=', '|u1|', r'\approx', r'14.14\text{ N}')), buff=cs(.4))
+    return settle(column).shift(LEFT * .2 + DOWN * cs(.5))  # room for the answer box on the right
 
 
 def make_summary():
     """Chase's formal definition, with this problem's numbers beside each piece."""
-    title = label('Projection and decomposition', font_size=30, color=GOLD)
+    title = label('Projection and decomposition', font_size=round(cs(30)), color=GOLD)
     split = VGroup(m('u', '=', 'u1', '+', 'u2'),
-                   label('u and v nonzero', font_size=22)).arrange(RIGHT, buff=.4)
+                   label('u and v nonzero', font_size=round(cs(22)))).arrange(RIGHT, buff=cs(.4))
     blocks = [split]
     for math, here, words in (
             (m('u1', '=', 'proj', '=', FORMULA, 'v'), 'here: 14.14 N along v',
@@ -252,11 +256,11 @@ def make_summary():
              'the orthogonal component of u (with v), or the rejection vector'),
             (m('|proj|'), 'here: 14.14 N',
              'how much of u lies in v’s direction, ignoring the perpendicular part')):
-        top = VGroup(math, label(here, font_size=22)).arrange(RIGHT, buff=.45)
-        blocks.append(VGroup(top, label(words, font_size=24, color=INK)).arrange(
-            DOWN, buff=.14, aligned_edge=LEFT))
-    body = place(VGroup(*blocks), buff=.4)
-    return fit_into(VGroup(title, body).arrange(DOWN, buff=.4), CENTER)
+        top = VGroup(math, label(here, font_size=round(cs(22)))).arrange(RIGHT, buff=cs(.45))
+        blocks.append(VGroup(top, label(words, font_size=round(cs(24)), color=INK)).arrange(
+            DOWN, buff=cs(.14), aligned_edge=LEFT))
+    body = place(VGroup(*blocks), buff=cs(.4))
+    return fit_into(VGroup(title, body).arrange(DOWN, buff=cs(.4)), CENTER)
 
 
 class ForceDecomposition(VectorPortalScene, Scene):
@@ -359,7 +363,7 @@ class ForceDecomposition(VectorPortalScene, Scene):
         scaled, length = self.work[4], self.work[5]
         self.say('What is 1.768? It is how much to stretch v so it matches the shadow.')
         self.play(Indicate(scaled[5], color=GOLD), run_time=1.)
-        below = .4 * DOWN
+        below = cs(.4) * DOWN
         self.hide('v_label', 'u1_label', run_time=.4)
         copy = make_v(EIGHT)
         self.play(copy.animate.shift(below), run_time=.6)
@@ -426,7 +430,7 @@ class ForceDecomposition(VectorPortalScene, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(length), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, length), color=PAPER_GOLD_STROKE, buff=.2)
+        box = SurroundingRectangle(VGroup(words, length), color=PAPER_GOLD_STROKE, buff=cs(.2))
         self.play(Create(box), Indicate(self.parts['u1'], color=U1_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')

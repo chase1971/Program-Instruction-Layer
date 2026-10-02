@@ -43,7 +43,7 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
+from vector_portal_layout import CONTENT_TOP, WORK, Region, cs, fit_into, ms
 from scene_style import (
     portal_math,
     PAPER,
@@ -71,16 +71,20 @@ U = np.array([3., 4.])
 V = np.array([10., 2.])
 PHI_V = math.atan2(V[1], V[0])
 SCALE = np.dot(U, V) / np.dot(V, V)  # 19/52: w1 = SCALE * v
-NOTE_SPOT = np.array([-3.3, -3.25, 0])  # under the diagram, clear of the work
+NOTE_SPOT = np.array([-3.2, 1.9, 0])  # above the (low, wide) diagram, clear of the work
 
 # One state draws the whole diagram. `phi` is the direction of the perpendicular
 # reference (0 = the x and y axes); every other key places or scales the picture.
-BIG = dict(ox=-3.4, oy=-2.35, scale=1.05, phi=0., x0=-1., x1=4.8, y0=-.8, y1=4.7,
-           reach1=4.9, reach2=4.6, axes_op=1.)
+# Strokes, arrowheads, labels and type are 30% larger for the phone player (cs/ms). The
+# diagram itself grows only as far as the frame allows: u must clear the caption, v (10
+# long) must end before the work column, and the rotating reference must stay on screen --
+# so BIG is x1.2, FAR a hair larger, and the reference lines are trimmed to fit.
+BIG = dict(ox=-4.6, oy=-2.55, scale=1.26, phi=0., x0=-.8, x1=3.6, y0=-.5, y1=4.1,
+           reach1=3.3, reach2=2.5, axes_op=1.)
 TILTED = dict(BIG, phi=math.radians(35), axes_op=.35)
 LOW = dict(TILTED, phi=math.radians(-15))
-FAR = dict(ox=-6.05, oy=-2.2, scale=.62, phi=math.radians(-15), x0=-1.1, x1=10.9,
-           y0=-.9, y1=4.9, reach1=11., reach2=4.6, axes_op=.35)
+FAR = dict(ox=-6.0, oy=-1.9, scale=.64, phi=math.radians(-15), x0=-.85, x1=10.5,
+           y0=-.9, y1=4.9, reach1=10.5, reach2=4.6, axes_op=.35)
 ALONG_V = dict(FAR, phi=PHI_V)
 
 
@@ -105,13 +109,13 @@ def pieces(state):
 
 
 def arrow(start, end, color, width=7):
-    return Arrow(start, end, buff=0, color=color, stroke_width=width, tip_length=.24,
+    return Arrow(start, end, buff=0, color=color, stroke_width=cs(width), tip_length=cs(.24),
                  max_tip_length_to_length_ratio=.3, max_stroke_width_to_length_ratio=20)
 
 
 def make_axes(state):
     s = lambda x, y: to_screen(state, (x, y))
-    style = dict(buff=0, color=MUTED, stroke_width=2.5, tip_length=.18,
+    style = dict(buff=0, color=MUTED, stroke_width=cs(2.5), tip_length=cs(.18),
                  max_tip_length_to_length_ratio=.5)
     return VGroup(Arrow(s(state['x0'], 0), s(state['x1'], 0), **style),
                   Arrow(s(0, state['y0']), s(0, state['y1']), **style)
@@ -122,7 +126,7 @@ def make_cross(state):
     """The chosen perpendicular reference: two dashed lines through the origin."""
     e1, e2 = frame(state)
     return VGroup(*[DashedLine(to_screen(state, -.8 * e), to_screen(state, reach * e), color=INK,
-                               dash_length=.12, stroke_width=2, stroke_opacity=.55)
+                               dash_length=cs(.12), stroke_width=cs(2), stroke_opacity=.55)
                     for e, reach in ((e1, state['reach1']), (e2, state['reach2']))]
                   ).set_z_index(-1)
 
@@ -132,8 +136,8 @@ def make_u(state):
 
 
 def make_u_label(state):
-    spot = to_screen(state, .55 * U) + .38 * np.array([-.8, .6, 0])
-    return portal_math(r'\mathbf u', color=U_COLOR, scale=.85).move_to(spot)
+    spot = to_screen(state, .55 * U) + cs(.38) * np.array([-.8, .6, 0])
+    return portal_math(r'\mathbf u', color=U_COLOR, scale=ms(.85)).move_to(spot)
 
 
 def make_v(state):
@@ -141,8 +145,8 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return portal_math(r'\mathbf v', color=V_COLOR).scale(.85).move_to(
-        to_screen(state, V) + np.array([-.25, .38, 0]))
+    return portal_math(r'\mathbf v', color=V_COLOR).scale(ms(.85)).move_to(
+        to_screen(state, V) + np.array([-cs(.25), cs(.38), 0]))
 
 
 def make_w1(state):
@@ -158,30 +162,30 @@ def make_w2(state):
 def w1_spot(state):
     w1, _ = pieces(state)
     _, e2 = frame(state)
-    return to_screen(state, w1 / 2) - .45 * np.array([*e2, 0])
+    return to_screen(state, w1 / 2) - cs(.45) * np.array([*e2, 0])
 
 
 def w2_spot(state):
     w1, _ = pieces(state)
     e1, _ = frame(state)
     side = 1 if np.dot(U, e1) >= 0 else -1
-    return to_screen(state, (w1 + U) / 2) + .5 * side * np.array([*e1, 0])
+    return to_screen(state, (w1 + U) / 2) + cs(.5) * side * np.array([*e1, 0])
 
 
 def make_i_label(state):
-    return portal_math(r'3\mathbf i', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
+    return portal_math(r'3\mathbf i', color=W1_COLOR).scale(ms(.8)).move_to(w1_spot(state))
 
 
 def make_j_label(state):
-    return portal_math(r'4\mathbf j', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
+    return portal_math(r'4\mathbf j', color=W2_COLOR).scale(ms(.8)).move_to(w2_spot(state))
 
 
 def make_w1_label(state):
-    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(w1_spot(state))
+    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(ms(.8)).move_to(w1_spot(state))
 
 
 def make_w2_label(state):
-    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to(w2_spot(state))
+    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(ms(.8)).move_to(w2_spot(state))
 
 
 def make_right_angle(state):
@@ -190,7 +194,7 @@ def make_right_angle(state):
     toward_origin = -np.sign(np.dot(U, e1)) * e1
     toward_u = np.sign(np.dot(U, e2)) * e2
     return make_corner(to_screen(state, w1), np.array([*toward_origin, 0]),
-                       np.array([*toward_u, 0]), .2)
+                       np.array([*toward_u, 0]), cs(.2))
 
 
 # Draw order: reference lines under the arrows, labels last.
@@ -208,7 +212,7 @@ SYMBOLS = {'u': r'\mathbf u', 'v': r'\mathbf v', 'w1': r'\mathbf w_1', 'w2': r'\
 
 def m(*pieces):
     """One row of math. A piece named 'u', 'v', 'w1' or 'w2' is that vector, in its color."""
-    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(ms(.75))
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -231,7 +235,10 @@ def make_given():
     short = m('u', '=', GIVEN_U)
     full = m('u', '=', GIVEN_U, r',\quad', 'v', '=', GIVEN_V)
     top_left = np.array([WORK.left + .1, CONTENT_TOP - .1, 0])
+    # One shared shrink, so the short row still morphs cleanly into the front of the full one.
+    fit = min(1, (WORK.width - .2) / full.width)
     for row in (short, full):
+        row.scale(fit)
         row.move_to(top_left, aligned_edge=UP + LEFT)
     return short, full
 
@@ -240,7 +247,7 @@ def make_given():
 BELOW_GIVEN = Region('BELOW_GIVEN', WORK.left, WORK.right, WORK.bottom, CONTENT_TOP - .75)
 
 
-def place(column, buff=.36):
+def place(column, buff=cs(.36)):
     """Stack rows downward like handwriting, top-left of the work area."""
     column.arrange(DOWN, buff=buff, aligned_edge=LEFT)
     return column
@@ -254,24 +261,24 @@ def settle(column):
 
 def make_definitions():
     """What the two pieces are, in words, each under its symbol like the plan's steps."""
-    rows = VGroup(*[VGroup(math, label(words, font_size=24, color=INK)).arrange(
-        DOWN, buff=.16, aligned_edge=LEFT) for math, words in (
-        (m('w1'), 'the part of u that goes in v’s direction'),
-        (m('w2'), 'the part of u that has nothing to do with v'),
-        (m('u', '=', 'w1', '+', 'w2'), 'every bit of u is in one or the other'))])
-    return settle(place(rows, buff=.5))
+    rows = VGroup(*[VGroup(math, label(words, font_size=round(cs(24)), color=INK)).arrange(
+        DOWN, buff=cs(.16), aligned_edge=LEFT) for math, words in (
+        (m('w1'), 'the part of u that goes\nin v’s direction'),
+        (m('w2'), 'the part of u that has\nnothing to do with v'),
+        (m('u', '=', 'w1', '+', 'w2'), 'every bit of u is in\none or the other'))])
+    return settle(place(rows, buff=cs(.5)))
 
 
 def make_plan():
     steps = VGroup()
     for words, math in (('1.  Along v: project u onto v', m('w1', '=', r'\frac{\mathbf u\cdot\mathbf v}{\|\mathbf v\|^{2}}', 'v')),
                         ('2.  Across v: what is left over', m('w2', '=', 'u', '-', 'w1')),
-                        ('3.  Check: perpendicular means dot = 0', m('w2', r'\cdot', 'v', '=', '0'))):
-        steps.add(VGroup(label(words, font_size=24, color=INK), math).arrange(
-            DOWN, buff=.18, aligned_edge=LEFT))
+                        ('3.  Check: perpendicular\nmeans dot = 0', m('w2', r'\cdot', 'v', '=', '0'))):
+        steps.add(VGroup(label(words, font_size=round(cs(24)), color=INK), math).arrange(
+            DOWN, buff=cs(.18), aligned_edge=LEFT))
     for step in steps:
-        step[1].shift(RIGHT * .45)
-    return settle(place(steps, buff=.45))
+        step[1].shift(RIGHT * cs(.45))
+    return settle(place(steps, buff=cs(.45)))
 
 
 def make_step_one():
@@ -316,10 +323,10 @@ def make_step_three():
 def make_answer():
     split = m('u', '=', 'w1', '+', 'w2')
     along = VGroup(m('w1', '=', r'\frac{95}{26}\mathbf i+\frac{19}{26}\mathbf j'),
-                   label('along v', font_size=22)).arrange(RIGHT, buff=.35)
+                   label('along v', font_size=round(cs(22)))).arrange(RIGHT, buff=cs(.35))
     across = VGroup(m('w2', '=', r'-\frac{17}{26}\mathbf i+\frac{85}{26}\mathbf j'),
-                    label('perpendicular to v', font_size=22)).arrange(RIGHT, buff=.35)
-    column = place(VGroup(split, along, across), buff=.45).scale(.9)
+                    label('perpendicular to v', font_size=round(cs(22)))).arrange(RIGHT, buff=cs(.35))
+    column = place(VGroup(split, along, across), buff=cs(.45)).scale(ms(.9))
     return settle(column)
 
 
@@ -403,7 +410,7 @@ class VectorDecomposition(VectorPortalScene, Scene):
         """Slide a copy of v out beside its line and shrink it to w1's length."""
         state = ALONG_V
         _, e2 = frame(state)
-        self.below = below = -.34 * np.array([*e2, 0])
+        self.below = below = -cs(.34) * np.array([*e2, 0])
         zero = to_screen(state, (0, 0))
         self.hide('w1_label', run_time=.4)
         copy = make_v(state)
@@ -438,8 +445,8 @@ class VectorDecomposition(VectorPortalScene, Scene):
         self.wait(.8)
         self.say('Slide along w₁, and your shadow on v slides with you.')
         base, top = to_screen(state, w1), to_screen(state, U)
-        climber = Dot(zero, radius=.08, color=INK).set_z_index(3)
-        shadow = Circle(radius=.15, color=W1_COLOR, stroke_width=4).move_to(zero).set_z_index(3)
+        climber = Dot(zero, radius=cs(.08), color=INK).set_z_index(3)
+        shadow = Circle(radius=cs(.15), color=W1_COLOR, stroke_width=cs(4)).move_to(zero).set_z_index(3)
         self.play(FadeIn(climber), FadeIn(shadow), run_time=.4)
         self.play(climber.animate.move_to(base), shadow.animate.move_to(base), run_time=1.6)
         self.say('Climb w₂, and the shadow does not move at all.')
@@ -573,7 +580,7 @@ class VectorDecomposition(VectorPortalScene, Scene):
         self.play(FadeOut(previous[2:]), copy_into(previous[0], along[0]),
                   copy_into(previous[1], across[0]), FadeOut(previous[:2]), run_time=1.2)
         self.play(Write(split), FadeIn(along[1]), FadeIn(across[1]), run_time=1.)
-        box = SurroundingRectangle(VGroup(along, across), color=PAPER_GOLD_STROKE, buff=.18)
+        box = SurroundingRectangle(VGroup(along, across), color=PAPER_GOLD_STROKE, buff=cs(.18))
         self.play(Create(box), run_time=.6)
         self.wait(3.)
         self.mark('answer')

@@ -29,7 +29,8 @@ def diagram_content():
     friend_label = clip.make_vector_label(
         r'\text{friend: }\left\langle\frac{\sqrt2}{2},\frac{\sqrt2}{2}\right\rangle',
         friend_arrow, clip.FRIEND_COLOR, RIGHT,
-    ).move_to(clip.NORTHEAST_LABEL_CENTER)
+    )
+    clip.place_northeast_label(friend_label)
     return VGroup(
         clip.make_compass(),
         east_arrow,

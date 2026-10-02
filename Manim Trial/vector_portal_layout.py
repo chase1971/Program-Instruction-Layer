@@ -15,6 +15,19 @@ VECTOR_H_INSET = 0.30
 
 PORTAL_MATH_SCALE = 1.15
 
+# Phone-player legibility: diagram, gauge, work and card content (never captions) is drawn
+# 30% larger than the original clip size. cs() scales lengths and type sizes, ms() scales
+# MathTex.
+CONTENT_SCALE = 1.30
+
+
+def cs(length):
+    return length * CONTENT_SCALE
+
+
+def ms(scale):
+    return scale * CONTENT_SCALE
+
 # Extra gap below the caption band before diagram/work content.
 CONTENT_TOP = CAPTION_FLOOR - 0.18
 FRAME_RIGHT = config.frame_width / 2 - EDGE_MARGIN - VECTOR_H_INSET

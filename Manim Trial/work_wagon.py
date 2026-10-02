@@ -40,7 +40,7 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, cs, fit_into, ms
 from scene_style import (
     portal_math,
     PAPER,
@@ -71,11 +71,14 @@ DISTANCE = 100.
 THETA = math.radians(30)
 ALONG = FORCE * math.cos(THETA)  # ~43.30 lb
 
-GROUND_Y = -1.6
-P_X, Q_X = -5.35, -2.0  # the wagon's front travels from P to Q
-WHEEL = .15
-BODY = (1.2, .5)
-PER_POUND = .04  # screen units per pound
+# Strokes, arrowheads, the wagon, labels and type are 30% larger for the phone player
+# (cs/ms). F1 must end before the work column, so the wagon's trip from P to Q is shortened
+# a little rather than the diagram being allowed to run into the work.
+GROUND_Y = -1.7
+P_X, Q_X = -4.9, -2.1  # the wagon's front travels from P to Q
+WHEEL = cs(.15)
+BODY = (cs(1.2), cs(.5))
+PER_POUND = cs(.034)  # screen units per pound (x1.15: F1 and the F2 label must clear the work)
 AXLE_Y = GROUND_Y + 2 * WHEEL + BODY[1] / 2  # the handle leaves the wagon's front here
 A = np.array([Q_X, AXLE_Y, 0.])  # where F is drawn once the wagon has arrived
 F_TIP = A + PER_POUND * FORCE * heading(THETA)
@@ -91,19 +94,19 @@ def front(state):
 
 
 def make_ground(_state):
-    ground = Line([-6.75, GROUND_Y, 0], [.2, GROUND_Y, 0], color=MUTED, stroke_width=3)
-    ticks = VGroup(*[Line([x, GROUND_Y - .12, 0], [x, GROUND_Y + .12, 0], color=MUTED, stroke_width=3)
+    ground = Line([-6.75, GROUND_Y, 0], [.2, GROUND_Y, 0], color=MUTED, stroke_width=cs(3))
+    ticks = VGroup(*[Line([x, GROUND_Y - cs(.12), 0], [x, GROUND_Y + cs(.12), 0], color=MUTED, stroke_width=cs(3))
                      for x in (P_X, Q_X)])
-    names = VGroup(*[portal_math(name, color=INK, scale=.7).move_to([x, GROUND_Y - .42, 0])
+    names = VGroup(*[portal_math(name, color=INK, scale=ms(.7)).move_to([x, GROUND_Y - cs(.42), 0])
                      for name, x in (('P', P_X), ('Q', Q_X))])
     return VGroup(ground, ticks, names).set_z_index(-2)
 
 
 def make_wagon(state):
-    body = Rectangle(width=BODY[0], height=BODY[1], color=INK, stroke_width=3).move_to(
+    body = Rectangle(width=BODY[0], height=BODY[1], color=INK, stroke_width=cs(3)).move_to(
         front(state) + BODY[0] / 2 * LEFT)
-    wheels = VGroup(*[Circle(radius=WHEEL, color=INK, stroke_width=3).move_to(
-        [state['x'] - BODY[0] / 2 + s * .42, GROUND_Y + WHEEL, 0]) for s in (-1, 1)])
+    wheels = VGroup(*[Circle(radius=WHEEL, color=INK, stroke_width=cs(3)).move_to(
+        [state['x'] - BODY[0] / 2 + s * cs(.42), GROUND_Y + WHEEL, 0]) for s in (-1, 1)])
     return VGroup(body, wheels).set_z_index(-1)
 
 
@@ -115,14 +118,14 @@ def make_f(state):
 def make_f_label(state):
     start = front(state)
     middle = start + PER_POUND * FORCE / 2 * heading(state['phi'])
-    return portal_math(r'\mathbf F', r'=50\text{ lb}', color=F_COLOR).scale(.7).move_to(
-        middle + .5 * heading(state['phi'] + math.pi / 2) + .15 * LEFT)
+    return portal_math(r'\mathbf F', r'=50\text{ lb}', color=F_COLOR).scale(ms(.7)).move_to(
+        middle + cs(.5) * heading(state['phi'] + math.pi / 2) + cs(.6) * LEFT)
 
 
 def make_angle(_state):
-    arc = VGroup(*[Line(A + .55 * heading(THETA * k / 10), A + .55 * heading(THETA * (k + 1) / 10),
-                        color=INK, stroke_width=2) for k in range(10)])
-    mark = portal_math(r'30^\circ', color=INK).scale(.55).move_to(A + 1.0 * heading(THETA / 2))
+    arc = VGroup(*[Line(A + cs(.55) * heading(THETA * k / 10), A + cs(.55) * heading(THETA * (k + 1) / 10),
+                        color=INK, stroke_width=cs(2)) for k in range(10)])
+    mark = portal_math(r'30^\circ', color=INK).scale(ms(.55)).move_to(A + cs(1.0) * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
@@ -131,8 +134,8 @@ def make_pq(_state):
 
 
 def make_pq_label(_state):
-    return portal_math(r'\|\overrightarrow{PQ}\|=100\text{ ft}', color=PQ_COLOR).scale(.65).move_to(
-        [(P_X + Q_X) / 2, GROUND_Y - .45, 0])
+    return portal_math(r'\|\overrightarrow{PQ}\|=100\text{ ft}', color=PQ_COLOR).scale(ms(.65)).move_to(
+        [(P_X + Q_X) / 2, GROUND_Y - cs(1.05), 0])  # below the P and Q labels
 
 
 def make_f1(_state):
@@ -144,15 +147,15 @@ def make_f2(_state):
 
 
 def make_f1_label(_state):
-    return portal_math(r'\mathbf F_1', color=F1_COLOR).scale(.8).move_to((A + F1_TIP) / 2 + .32 * DOWN + .2 * RIGHT)
+    return portal_math(r'\mathbf F_1', color=F1_COLOR).scale(ms(.8)).move_to((A + F1_TIP) / 2 + cs(.32) * DOWN + cs(.2) * RIGHT)
 
 
 def make_f2_label(_state):
-    return portal_math(r'\mathbf F_2', color=F2_COLOR).scale(.8).move_to((F1_TIP + F_TIP) / 2 + .38 * RIGHT)
+    return portal_math(r'\mathbf F_2', color=F2_COLOR).scale(ms(.8)).move_to((F1_TIP + F_TIP) / 2 + cs(.38) * RIGHT)
 
 
 def make_corner_mark(_state):
-    return make_corner(F1_TIP, LEFT, UP, .18)
+    return make_corner(F1_TIP, LEFT, UP, cs(.18))
 
 
 # Draw order: shapes first, labels last.
@@ -174,7 +177,7 @@ SYMBOLS = {'F': r'\mathbf F', 'PQ': PQ, '|F|': r'\|\mathbf F\|', '|PQ|': rf'\|{P
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(ms(.75))
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -189,12 +192,12 @@ def line_up(anchor, index, *rows):
 
 # The givens stay pinned top right; the work develops beneath them.
 PINNED_TOP = CONTENT_TOP - .1
-BELOW_PINNED = Region('BELOW_PINNED', WORK.left, WORK.right, WORK.bottom, 1.5)
+BELOW_PINNED = Region('BELOW_PINNED', WORK.left, WORK.right, WORK.bottom, .85)
 
 
 def make_given():
     rows = VGroup(m('|F|', r'=50\text{ lb}', r',\;\;', r'\theta=30^\circ'),
-                  m('|PQ|', r'=100\text{ ft}')).arrange(DOWN, buff=.3, aligned_edge=LEFT)
+                  m('|PQ|', r'=100\text{ ft}')).arrange(DOWN, buff=cs(.3), aligned_edge=LEFT)
     rows[0][0].set_color(F_COLOR)
     return rows.move_to([WORK.left + .1, PINNED_TOP, 0], aligned_edge=UP + LEFT)
 
@@ -206,24 +209,24 @@ def settle(column):
 
 
 def make_straight_work():
-    rule = VGroup(label('Force along the motion:', font_size=24, color=INK),
-                  label('work = force × distance', font_size=24, color=INK)
-                  ).arrange(DOWN, buff=.12, aligned_edge=LEFT)
+    rule = VGroup(label('Force along the motion:', font_size=round(cs(24)), color=INK),
+                  label('work = force × distance', font_size=round(cs(24)), color=INK)
+                  ).arrange(DOWN, buff=cs(.12), aligned_edge=LEFT)
     formula = m('W', '=', '|F|', r'\,', '|PQ|')
     value = m('=', r'(50)(100)', '=', r'5000\text{ ft}\cdot\text{lb}')
-    column = place(VGroup(rule, formula, value), buff=.35)
+    column = place(VGroup(rule, formula, value), buff=cs(.35))
     line_up(formula, 1, value)
     return settle(column)
 
 
 def make_definitions():
     """What the two pieces of the pull are, in words, each under its symbol."""
-    rows = VGroup(*[VGroup(math, label(words, font_size=24, color=INK)).arrange(
-        DOWN, buff=.16, aligned_edge=LEFT) for math, words in (
+    rows = VGroup(*[VGroup(math, label(words, font_size=round(cs(24)), color=INK)).arrange(
+        DOWN, buff=cs(.16), aligned_edge=LEFT) for math, words in (
         (m('F1'), 'moves the wagon along: does work'),
         (m('F2'), 'lifts, but the wagon never rises: no work'),
         (m('F1', '=', 'proj'), 'F’s shadow on the direction of motion'))])
-    return settle(place(rows, buff=.4))
+    return settle(place(rows, buff=cs(.4)))
 
 
 def make_angled_work():
@@ -233,47 +236,47 @@ def make_angled_work():
     general = m('W', '=', r'\|\mathbf F\|\,\|\overrightarrow{PQ}\|\cos\theta')
     numbers = m('=', r'(50)(100)\cos 30^\circ')
     value = m('=', r'2500\sqrt3', r'\approx', r'4330.13\text{ ft}\cdot\text{lb}')
-    column = place(VGroup(formula, shadow, shadow_value, general, numbers, value), buff=.3)
+    column = place(VGroup(formula, shadow, shadow_value, general, numbers, value), buff=cs(.3))
     line_up(shadow, 1, shadow_value)
     line_up(general, 1, numbers, value)
     return settle(column)
 
 
 def make_check_work():
-    intro = label('Clip two: that is a dot product, W = F · PQ.', font_size=24, color=INK)
+    intro = label('Clip two: that is a dot product, W = F · PQ.', font_size=round(cs(24)), color=INK)
     f = m('F', r'\approx', r'\langle 43.30,\ 25\rangle')
     pq = m('PQ', '=', r'\langle 100,\ 0\rangle')
     dot = m('F', r'\cdot', 'PQ', r'\approx', r'(43.30)(100)+(25)(0)')
     dot_value = m(r'\approx', r'4330.13')
     share = VGroup(m(r'\cos 30^\circ\approx 0.866'),
-                   label('about 87% of what a level pull would do', font_size=24, color=INK)
-                   ).arrange(DOWN, buff=.16, aligned_edge=LEFT)
-    column = place(VGroup(intro, f, pq, dot, dot_value, share), buff=.3)
+                   label('about 87% of what a level pull would do', font_size=round(cs(24)), color=INK)
+                   ).arrange(DOWN, buff=cs(.16), aligned_edge=LEFT)
+    column = place(VGroup(intro, f, pq, dot, dot_value, share), buff=cs(.3))
     line_up(dot, 3, dot_value)
-    share.shift(DOWN * .15)
+    share.shift(DOWN * cs(.15))
     return settle(column)
 
 
 def make_answer():
-    words = VGroup(*[label(line, font_size=26, color=INK) for line in (
+    words = VGroup(*[label(line, font_size=round(cs(26)), color=INK) for line in (
         'Pulling the wagon 100 ft', 'with 50 lb at 30° does about', '4330 foot-pounds of work.')]
-                   ).arrange(DOWN, buff=.14, aligned_edge=LEFT)
-    column = place(VGroup(words, m('W', r'\approx', r'4330.13\text{ ft}\cdot\text{lb}')), buff=.4)
-    return settle(column).shift(LEFT * .2 + DOWN * .3)  # room for the answer box
+                   ).arrange(DOWN, buff=cs(.14), aligned_edge=LEFT)
+    column = place(VGroup(words, m('W', r'\approx', r'4330.13\text{ ft}\cdot\text{lb}')), buff=cs(.4))
+    return settle(column).shift(LEFT * .2 + DOWN * cs(.3))  # room for the answer box
 
 
 def make_summary():
     """What work is, and the three ways the worksheet writes it."""
-    title = label('Work', font_size=30, color=GOLD)
-    meaning = label('the energy a force transfers by moving something', font_size=26, color=INK)
-    only = label('Only the part of the force along the motion counts.', font_size=24)
+    title = label('Work', font_size=round(cs(30)), color=GOLD)
+    meaning = label('the energy a force transfers by moving something', font_size=round(cs(26)), color=INK)
+    only = label('Only the part of the force along the motion counts.', font_size=round(cs(24)))
     rows = VGroup(m('W', '=', '|proj|', r'\,', '|PQ|'),
                   m('=', r'\|\mathbf F\|\,\|\overrightarrow{PQ}\|\cos\theta'),
                   m('=', 'F', r'\cdot', 'PQ'))
-    place(rows, buff=.3)
+    place(rows, buff=cs(.3))
     line_up(rows[0], 1, *rows[1:])
-    units = label('force × distance, so the units are foot-pounds', font_size=24)
-    card = VGroup(title, meaning, only, rows, units).arrange(DOWN, buff=.38)
+    units = label('force × distance, so the units are foot-pounds', font_size=round(cs(24)))
+    card = VGroup(title, meaning, only, rows, units).arrange(DOWN, buff=cs(.38))
     return fit_into(card, CENTER)
 
 
@@ -397,7 +400,7 @@ class WorkWagon(VectorPortalScene, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(work), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, work), color=PAPER_GOLD_STROKE, buff=.2)
+        box = SurroundingRectangle(VGroup(words, work), color=PAPER_GOLD_STROKE, buff=cs(.2))
         self.play(Create(box), Indicate(self.parts['f1'], color=F1_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')

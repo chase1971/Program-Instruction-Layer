@@ -31,6 +31,7 @@ PAPER_MUTED = '#475569'
 PAPER_RED = '#C62828'
 
 CAPTION_LINE_SPACING = 0.35
+CAPTION_MAX_GROW = 1.3
 
 # The caption rides along the top: it says what is going on, so it should be the
 # first thing read, not the last. Content therefore lives below about y = 2.5.
@@ -44,12 +45,12 @@ PACE = 1.2
 def label(words, font_size=25, color=MUTED, max_width=None):
     kwargs = dict(font='Segoe UI', font_size=font_size, color=color)
     if max_width is not None:
-        return Text(
-            words,
-            width=max_width,
-            line_spacing=CAPTION_LINE_SPACING,
-            **kwargs,
-        )
+        # Fit to max_width, but never stretch a short caption past CAPTION_MAX_GROW: Text's
+        # own width= argument stretches to exactly max_width, which blows a three-word
+        # caption up off the top of the frame.
+        text = Text(words, line_spacing=CAPTION_LINE_SPACING, **kwargs)
+        text.scale(min(max_width / text.width, CAPTION_MAX_GROW))
+        return text
     return Text(words, **kwargs)
 
 

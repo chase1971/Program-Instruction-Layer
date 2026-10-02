@@ -43,7 +43,7 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, make_corner
-from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, fit_into
+from vector_portal_layout import CENTER, CONTENT_TOP, WORK, Region, cs, fit_into, ms
 from scene_style import (
     portal_math,
     PAPER,
@@ -80,39 +80,44 @@ DOWN_RAMP = -UP_RAMP
 INTO_HILL = np.array([math.sin(THETA), -math.cos(THETA), 0.])  # perpendicular, into the ramp
 OUT_OF_HILL = -INTO_HILL
 
-FOOT = np.array([-6.55, -2.3, 0.])  # bottom of the hill, where the 20 degree angle sits
+# Strokes, arrowheads, the wagon, labels and type are 30% larger for the phone player
+# (cs/ms). The ramp's length stays put -- it must end before the work column -- so the foot
+# of the hill is raised instead, which gives the longer weight arrow room below the wagon.
+FOOT = np.array([-6.45, -1.0, 0.])  # bottom of the hill, where the 20 degree angle sits
 TOP = FOOT + 7.2 * UP_RAMP
-PER_POUND = .03  # screen units per pound
+PER_POUND = cs(.03)  # screen units per pound
 WAGON_AT = 5.  # distance up the ramp from the foot
-WHEEL = .13
-BODY_HEIGHT = .46
+WHEEL = cs(.13)
+BODY_HEIGHT = cs(.46)
 P = FOOT + WAGON_AT * UP_RAMP + (2 * WHEEL + BODY_HEIGHT / 2) * OUT_OF_HILL  # wagon center
 W_TIP = P + PER_POUND * WEIGHT * DOWN
 W1_TIP = P + PER_POUND * ALONG * DOWN_RAMP
 F_TIP = P + PER_POUND * ALONG * UP_RAMP
-R_START = FOOT + 1.9 * UP_RAMP
-R_LENGTH = 1.3  # a unit vector, drawn at whatever size reads
+# r is a free vector (only its direction matters), so it floats above the ramp in the open
+# upper left, clear of the angle mark, w2 and the wagon.
+R_START = FOOT + .6 * UP_RAMP + cs(1.2) * OUT_OF_HILL
+R_LENGTH = cs(1.15)  # a unit vector, drawn at whatever size reads
 
 
 def make_hill(_state):
-    ramp = Line(FOOT, TOP, color=MUTED, stroke_width=4)
-    ground = Line(FOOT, FOOT + 7.2 * math.cos(THETA) * RIGHT, color=MUTED, stroke_width=3)
+    ramp = Line(FOOT, TOP, color=MUTED, stroke_width=cs(4))
+    ground = Line(FOOT, FOOT + 7.2 * math.cos(THETA) * RIGHT, color=MUTED, stroke_width=cs(3))
     return VGroup(ground, ramp).set_z_index(-2)
 
 
 def make_angle(_state):
-    arc = VGroup(*[Line(FOOT + 1.1 * heading(THETA * k / 10), FOOT + 1.1 * heading(THETA * (k + 1) / 10),
-                        color=INK, stroke_width=2) for k in range(10)])
-    mark = portal_math(r'20^\circ', color=INK, scale=.6).move_to(FOOT + 1.6 * heading(THETA / 2))
+    arc = VGroup(*[Line(FOOT + cs(1.1) * heading(THETA * k / 10), FOOT + cs(1.1) * heading(THETA * (k + 1) / 10),
+                        color=INK, stroke_width=cs(2)) for k in range(10)])
+    mark = portal_math(r'20^\circ', color=INK, scale=ms(.6)).move_to(FOOT + cs(1.6) * heading(THETA / 2))
     return VGroup(arc, mark)
 
 
 def make_wagon(_state):
-    body = Rectangle(width=1.25, height=BODY_HEIGHT, color=INK, stroke_width=3).rotate(THETA).move_to(P)
+    body = Rectangle(width=cs(1.25), height=BODY_HEIGHT, color=INK, stroke_width=cs(3)).rotate(THETA).move_to(P)
     base = P + (BODY_HEIGHT / 2 + WHEEL) * INTO_HILL
-    wheels = VGroup(*[Circle(radius=WHEEL, color=INK, stroke_width=3).move_to(base + s * .4 * UP_RAMP)
+    wheels = VGroup(*[Circle(radius=WHEEL, color=INK, stroke_width=cs(3)).move_to(base + s * cs(.4) * UP_RAMP)
                       for s in (-1, 1)])
-    handle = Line(P + .62 * UP_RAMP, P + 1.1 * UP_RAMP + .3 * OUT_OF_HILL, color=INK, stroke_width=3)
+    handle = Line(P + cs(.62) * UP_RAMP, P + cs(1.1) * UP_RAMP + cs(.3) * OUT_OF_HILL, color=INK, stroke_width=cs(3))
     return VGroup(body, wheels, handle).set_z_index(-1)
 
 
@@ -121,8 +126,8 @@ def make_w(_state):
 
 
 def make_w_label(_state):
-    return portal_math(r'\mathbf w', r'=100\text{ lb}', color=W_COLOR).scale(.7).next_to(
-        (P + W_TIP) / 2 + .15 * DOWN, RIGHT, buff=.2)
+    return portal_math(r'\mathbf w', r'=100\text{ lb}', color=W_COLOR).scale(ms(.7)).next_to(
+        (P + W_TIP) / 2 + cs(.75) * DOWN, RIGHT, buff=cs(.2))  # below the ground line
 
 
 def make_w1(_state):
@@ -134,15 +139,15 @@ def make_w2(_state):
 
 
 def make_w1_label(_state):
-    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(.8).move_to(W1_TIP + .55 * OUT_OF_HILL + .25 * LEFT)
+    return portal_math(r'\mathbf w_1', color=W1_COLOR).scale(ms(.8)).move_to(W1_TIP + cs(.55) * OUT_OF_HILL + cs(.25) * LEFT)
 
 
 def make_w2_label(_state):
-    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(.8).move_to((W1_TIP + W_TIP) / 2 + .45 * LEFT)
+    return portal_math(r'\mathbf w_2', color=W2_COLOR).scale(ms(.8)).move_to((W1_TIP + W_TIP) / 2 + cs(.45) * LEFT)
 
 
 def make_corner_mark(_state):
-    return make_corner(W1_TIP, UP_RAMP, INTO_HILL, .2)
+    return make_corner(W1_TIP, UP_RAMP, INTO_HILL, cs(.2))
 
 
 def make_r(_state):
@@ -150,18 +155,18 @@ def make_r(_state):
 
 
 def make_r_label(_state):
-    return portal_math(r'\mathbf r', color=R_COLOR).scale(.8).move_to(
-        R_START + .5 * R_LENGTH * UP_RAMP + .42 * OUT_OF_HILL)
+    return portal_math(r'\mathbf r', color=R_COLOR).scale(ms(.8)).move_to(
+        R_START + .5 * R_LENGTH * UP_RAMP + cs(.42) * OUT_OF_HILL)
 
 
 def make_r_legs(_state):
     """cos 20 across, sin 20 up: a unit vector at 20 degrees, as on clip two's unit circle."""
     tip = R_START + R_LENGTH * UP_RAMP
     corner = np.array([tip[0], R_START[1], 0.])
-    across = DashedLine(R_START, corner, color=MUTED, stroke_width=2.5, dash_length=.08)
-    up = DashedLine(corner, tip, color=MUTED, stroke_width=2.5, dash_length=.08)
-    cos = portal_math(r'\cos 20^\circ', color=INK).scale(.5).next_to(across, DOWN, buff=.1)
-    sin = portal_math(r'\sin 20^\circ', color=INK).scale(.5).next_to(up, RIGHT, buff=.1)
+    across = DashedLine(R_START, corner, color=MUTED, stroke_width=cs(2.5), dash_length=cs(.08))
+    up = DashedLine(corner, tip, color=MUTED, stroke_width=cs(2.5), dash_length=cs(.08))
+    cos = portal_math(r'\cos 20^\circ', color=INK).scale(ms(.5)).next_to(across, DOWN, buff=cs(.1))
+    sin = portal_math(r'\sin 20^\circ', color=INK).scale(ms(.5)).next_to(up, RIGHT, buff=cs(.1))
     return VGroup(across, up, cos, sin)
 
 
@@ -170,8 +175,8 @@ def make_f(_state):
 
 
 def make_f_label(_state):
-    return portal_math(r'\approx 34.2\text{ lb}', color=F_COLOR).scale(.7).next_to(
-        F_TIP + .3 * UP, RIGHT, buff=.2)  # clear of the wagon's handle
+    return portal_math(r'\approx 34.2\text{ lb}', color=F_COLOR).scale(ms(.7)).move_to(
+        F_TIP + cs(.75) * UP)  # above the tip: clear of the wagon's handle and the pinned rows
 
 
 # Draw order: shapes first, labels last.
@@ -192,7 +197,7 @@ SYMBOLS = {'w': r'\mathbf w', 'r': r'\mathbf r', 'w1': r'\mathbf w_1', 'w2': r'\
 
 def m(*pieces):
     """One row of math. A piece named in SYMBOLS is that vector, in its color."""
-    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(.75)
+    row = portal_math(*[SYMBOLS.get(piece, piece) for piece in pieces], color=INK).scale(ms(.75))
     for part, piece in zip(row, pieces):
         if piece in COLORS:
             part.set_color(COLORS[piece])
@@ -207,11 +212,16 @@ def line_up(anchor, index, *rows):
 
 # The worksheet's blanks (a) and (b) stay pinned top right; the work develops beneath them.
 PINNED_TOP = CONTENT_TOP - .1
-BELOW_PINNED = Region('BELOW_PINNED', WORK.left, WORK.right, WORK.bottom, .9)
+BELOW_PINNED = Region('BELOW_PINNED', WORK.left, WORK.right, WORK.bottom, .75)
+
+
+# The three pinned rows share one shrink so the widest, (b), stays inside the right margin.
+PIN_SCALE = .88
 
 
 def pin(row, index):
-    return row.move_to([WORK.left + .1, PINNED_TOP - .75 * index, 0], aligned_edge=UP + LEFT)
+    row.scale(PIN_SCALE)
+    return row.move_to([WORK.left + .1, PINNED_TOP - cs(.55) * index, 0], aligned_edge=UP + LEFT)
 
 
 def make_given():
@@ -234,12 +244,12 @@ def settle(column):
 
 def make_definitions():
     """What the two pieces of the weight are, in words, each under its symbol."""
-    rows = VGroup(*[VGroup(math, label(words, font_size=24, color=INK)).arrange(
-        DOWN, buff=.16, aligned_edge=LEFT) for math, words in (
+    rows = VGroup(*[VGroup(math, label(words, font_size=round(cs(24)), color=INK)).arrange(
+        DOWN, buff=cs(.16), aligned_edge=LEFT) for math, words in (
         (m('w1'), 'pulls the wagon down the hill'),
         (m('w2'), 'presses it into the hill; the hill pushes back'),
         (m(r'\text{How much?}', r'\;\to\;', r'\|\mathbf w_1\|'), 'the push we have to match'))])
-    return settle(place(rows, buff=.4))
+    return settle(place(rows, buff=cs(.4)))
 
 
 def make_projection_work():
@@ -249,33 +259,33 @@ def make_projection_work():
     value = m('=', r'-100\sin 20^\circ', r'\approx', r'-34.20')
     result = m('proj', r'\approx', r'-34.20\,', 'r')
     length = m(r'\text{(c)}\;\;', '|proj|', r'\approx', r'34.20\text{ lb}')
-    column = place(VGroup(proj, unit, dot, value, result, length), buff=.3)
+    column = place(VGroup(proj, unit, dot, value, result, length), buff=cs(.3))
     line_up(dot, 1, value)
     return settle(column)
 
 
 def make_answer():
-    words = VGroup(label('It takes about 34.2 lb, pushing up the hill,', font_size=26, color=INK),
-                   label('to keep the wagon from rolling down.', font_size=26, color=INK)
-                   ).arrange(DOWN, buff=.14, aligned_edge=LEFT)
-    column = place(VGroup(words, m('F', r'\approx', r'34.2\text{ lb}')), buff=.4)
-    return settle(column).shift(LEFT * .2 + DOWN * .3)  # room for the answer box
+    words = VGroup(label('It takes about 34.2 lb, pushing up the hill,', font_size=round(cs(26)), color=INK),
+                   label('to keep the wagon from rolling down.', font_size=round(cs(26)), color=INK)
+                   ).arrange(DOWN, buff=cs(.14), aligned_edge=LEFT)
+    column = place(VGroup(words, m('F', r'\approx', r'34.2\text{ lb}')), buff=cs(.4))
+    return settle(column).shift(LEFT * .2 + DOWN * cs(.3))  # room for the answer box
 
 
 def make_shortcut():
     """Any weight W on any ramp at angle theta: the dot product is always -W sin theta."""
-    title = label('Every ramp works the same way', font_size=30, color=GOLD)
+    title = label('Every ramp works the same way', font_size=round(cs(30)), color=GOLD)
     setup = m('w', '=', r'\langle 0,\,-W\rangle', r',\qquad', 'r', '=', r'\langle\cos\theta,\,\sin\theta\rangle')
     dot = m(r'\mathbf w\cdot\mathbf r', '=', r'(0)(\cos\theta)+(-W)(\sin\theta)', '=', r'-W\sin\theta')
     length = m(r'\|\mathbf r\|=1', r'\;\;\Rightarrow\;\;', '|proj|', '=', r'W\sin\theta')
     rule = portal_math(r'\text{Force to remain stationary}', '=', r'\text{Weight}\times\sin\theta',
-                   color=INK).scale(.95)
+                   color=INK).scale(ms(.95))
     rule[0].set_color(F_COLOR)
-    where = label('where θ is the angle of the ramp', font_size=24)
+    where = label('where θ is the angle of the ramp', font_size=round(cs(24)))
     check = m(r'100\times\sin 20^\circ', r'\approx', r'34.2\text{ lb}')
-    work = place(VGroup(setup, dot, length), buff=.3)
-    boxed = VGroup(rule, where).arrange(DOWN, buff=.18)
-    card = VGroup(title, work, boxed, check).arrange(DOWN, buff=.42)
+    work = place(VGroup(setup, dot, length), buff=cs(.3))
+    boxed = VGroup(rule, where).arrange(DOWN, buff=cs(.18))
+    card = VGroup(title, work, boxed, check).arrange(DOWN, buff=cs(.42))
     return fit_into(card, CENTER)
 
 
@@ -401,7 +411,7 @@ class RampForce(VectorPortalScene, Scene):
         self.play(FadeOut(self.work), run_time=.6)
         self.play(FadeIn(words), run_time=1.)
         self.play(Write(force), run_time=1.)
-        box = SurroundingRectangle(VGroup(words, force), color=PAPER_GOLD_STROKE, buff=.2)
+        box = SurroundingRectangle(VGroup(words, force), color=PAPER_GOLD_STROKE, buff=cs(.2))
         self.play(Create(box), Indicate(self.parts['f'], color=F_COLOR), run_time=1.)
         self.wait(2.4)
         self.mark('answer')
@@ -424,7 +434,7 @@ class RampForce(VectorPortalScene, Scene):
         self.play(Write(length), run_time=1.2)
         self.wait(1.4)
         self.say('That is the force that keeps anything from sliding down a ramp.')
-        box = SurroundingRectangle(boxed, color=PAPER_GOLD_STROKE, buff=.2)
+        box = SurroundingRectangle(boxed, color=PAPER_GOLD_STROKE, buff=cs(.2))
         self.play(FadeIn(boxed), Create(box), run_time=1.2)
         self.wait(2.)
         self.say('Our wagon: 100 × sin 20° ≈ 34.2 lb, the same answer.')

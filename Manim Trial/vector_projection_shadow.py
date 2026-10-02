@@ -41,7 +41,7 @@ from manim import (
 )
 
 from angle_between_vectors import V_COLOR, heading, lerp, make_corner, rebuild
-from vector_portal_layout import CONTENT_TOP, WORK, Region, fit_into
+from vector_portal_layout import CONTENT_TOP, WORK, Region, cs, fit_into, ms
 from scene_style import (
     portal_math,
     PAPER,
@@ -66,14 +66,18 @@ U_COLOR = BLUE
 SHADOW = PAPER_SHADOW
 
 # v lies along a tilted line so "perpendicular to v" can't be mistaken for "straight down".
-ORIGIN = np.array([-5.6, -2.6, 0.])
+# Type, strokes and arrowheads are drawn 30% larger for the phone player (cs/ms). Vector
+# *lengths* grow only x1.1: v already spans the left column up to the formula panel, so the
+# diagram moves down and left instead and keeps every length that fits.
+LENGTH_SCALE = 1.1
+ORIGIN = np.array([-5.6, -2.75, 0.])
 TILT = math.radians(15)
 ALONG = heading(TILT)
 NORMAL = heading(TILT + math.pi / 2)
 
-LONG_U = dict(u=5.0, v=2.6, theta=math.radians(40))
-LONG_V = dict(u=4.0, v=6.0, theta=math.radians(40))
-SHORT_V = dict(u=4.0, v=1.9, theta=math.radians(40))
+LONG_U = dict(u=5.0 * LENGTH_SCALE, v=2.6 * LENGTH_SCALE, theta=math.radians(40))
+LONG_V = dict(u=4.0 * LENGTH_SCALE, v=6.0 * LENGTH_SCALE, theta=math.radians(40))
+SHORT_V = dict(u=4.0 * LENGTH_SCALE, v=1.9 * LENGTH_SCALE, theta=math.radians(40))
 
 
 def blend(first, second, alpha):
@@ -93,17 +97,17 @@ def foot(state):
 
 
 def beam_height(state):
-    return state['u'] * math.sin(state['theta']) + .55
+    return state['u'] * math.sin(state['theta']) + cs(.55)
 
 
 def arrow(start, end, color, width=7):
-    return Arrow(start, end, buff=0, color=color, stroke_width=width, tip_length=.26,
+    return Arrow(start, end, buff=0, color=color, stroke_width=cs(width), tip_length=cs(.26),
                  max_tip_length_to_length_ratio=.3, max_stroke_width_to_length_ratio=20)
 
 
 def make_line(_state):
-    return DashedLine(ORIGIN - .4 * ALONG, ORIGIN + 6.5 * ALONG, color=MUTED,
-                      dash_length=.12, stroke_opacity=.6)
+    return DashedLine(ORIGIN - cs(.4) * ALONG, ORIGIN + 6.5 * LENGTH_SCALE * ALONG, color=MUTED,
+                      dash_length=cs(.12), stroke_opacity=.6)
 
 
 def make_v(state):
@@ -112,8 +116,8 @@ def make_v(state):
 
 
 def make_v_label(state):
-    return portal_math(r'\mathbf v', color=V_COLOR, scale=.85).move_to(
-        ORIGIN + (state['v'] - .15) * ALONG + .38 * NORMAL)
+    return portal_math(r'\mathbf v', color=V_COLOR, scale=ms(.85)).move_to(
+        ORIGIN + (state['v'] - .15) * ALONG + cs(.38) * NORMAL)
 
 
 def make_u(state):
@@ -122,18 +126,18 @@ def make_u(state):
 
 def make_u_label(state):
     direction = TILT + state['theta']
-    return portal_math(r'\mathbf u', color=U_COLOR).scale(.85).move_to(
-        ORIGIN + .55 * state['u'] * heading(direction) + .35 * heading(direction + math.pi / 2))
+    return portal_math(r'\mathbf u', color=U_COLOR).scale(ms(.85)).move_to(
+        ORIGIN + .55 * state['u'] * heading(direction) + cs(.35) * heading(direction + math.pi / 2))
 
 
 def make_arc(state):
-    return Arc(radius=.75, start_angle=TILT, angle=state['theta'], arc_center=ORIGIN,
-               color=MUTED, stroke_width=3)
+    return Arc(radius=cs(.75), start_angle=TILT, angle=state['theta'], arc_center=ORIGIN,
+               color=MUTED, stroke_width=cs(3))
 
 
 def make_theta(state):
-    return portal_math(r'\theta', color=INK).scale(.7).move_to(
-        ORIGIN + 1.08 * heading(TILT + state['theta'] / 2))
+    return portal_math(r'\theta', color=INK).scale(ms(.7)).move_to(
+        ORIGIN + cs(1.08) * heading(TILT + state['theta'] / 2))
 
 
 def make_beam(state):
@@ -147,18 +151,18 @@ def make_beam(state):
 
 def make_lamp(state):
     lamp = Polygon([-.34, -.12, 0], [.34, -.12, 0], [.2, .14, 0], [-.2, .14, 0],
-                   color=GOLD_STROKE, fill_color=GOLD_STROKE, fill_opacity=.9, stroke_width=2)
-    lamp.rotate(TILT)
+                   color=GOLD_STROKE, fill_color=GOLD_STROKE, fill_opacity=.9, stroke_width=cs(2))
+    lamp.scale(cs(1)).rotate(TILT)
     middle = ORIGIN + shadow_length(state) / 2 * ALONG
-    return lamp.move_to(middle + (beam_height(state) + .2) * NORMAL)
+    return lamp.move_to(middle + (beam_height(state) + cs(.2)) * NORMAL)
 
 
 def make_drop(state):
-    return DashedLine(u_tip(state), foot(state), color=INK, dash_length=.1, stroke_width=2.5)
+    return DashedLine(u_tip(state), foot(state), color=INK, dash_length=cs(.1), stroke_width=cs(2.5))
 
 
 def make_right_angle(state):
-    return make_corner(foot(state), -ALONG, NORMAL, .2)
+    return make_corner(foot(state), -ALONG, NORMAL, cs(.2))
 
 
 def make_shadow(state):
@@ -166,8 +170,8 @@ def make_shadow(state):
 
 
 def make_shadow_label(state):
-    return portal_math(r'\operatorname{proj}_{\mathbf v}\mathbf u', color=SHADOW).scale(.8).move_to(
-        ORIGIN + shadow_length(state) / 2 * ALONG - .55 * NORMAL)
+    return portal_math(r'\operatorname{proj}_{\mathbf v}\mathbf u', color=SHADOW).scale(ms(.8)).move_to(
+        ORIGIN + shadow_length(state) / 2 * ALONG - cs(.55) * NORMAL)
 
 
 # No gauge in this clip, so the formula may use the whole right side, WORK plus GAUGE.
@@ -190,18 +194,18 @@ V_LENGTH = r'\|\mathbf v\|'
 
 
 def tex(source, color=INK):
-    return portal_math(source, color=color).scale(.85)
+    return portal_math(source, color=color).scale(ms(.85))
 
 
 def fraction(top, bottom):
     """A fraction built from pieces, so the top and bottom can each move on their own."""
-    width = max(top.width, bottom.width) + .14
-    bar = Line(LEFT * width / 2, RIGHT * width / 2, color=INK, stroke_width=3)
-    return VGroup(top, bar, bottom).arrange(DOWN, buff=.1)
+    width = max(top.width, bottom.width) + cs(.14)
+    bar = Line(LEFT * width / 2, RIGHT * width / 2, color=INK, stroke_width=cs(3))
+    return VGroup(top, bar, bottom).arrange(DOWN, buff=cs(.1))
 
 
 def row(*parts):
-    return VGroup(*parts).arrange(RIGHT, buff=.22)  # room for a result box beside '='
+    return VGroup(*parts).arrange(RIGHT, buff=cs(.22))  # room for a result box beside '='
 
 
 def line_up(anchor, *rows):
@@ -223,7 +227,7 @@ def make_length_panel():
     swapped = row(tex(PROJ_LENGTH, SHADOW), tex('='), tex(U_LENGTH, U_COLOR),
                   fraction(tex(DOT), row(tex(U_LENGTH, U_COLOR), tex(V_LENGTH))))
     cancelled = row(tex('='), fraction(tex(DOT), tex(V_LENGTH)))
-    column = VGroup(named, solved, swapped, cancelled).arrange(DOWN, buff=.42, aligned_edge=LEFT)
+    column = VGroup(named, solved, swapped, cancelled).arrange(DOWN, buff=cs(.42), aligned_edge=LEFT)
     line_up(swapped, cancelled)
     trig.move_to(named).align_to(named, LEFT)
     fit_into(VGroup(column, trig), RIGHT_SIDE)
@@ -242,9 +246,9 @@ def make_vector_panel():
     formula = row(tex('='), fraction(tex(DOT), tex(r'\|\mathbf v\|^{2}')),
                   tex(r'\mathbf v', V_COLOR))
     column = VGroup(length, unit, product, filled, formula)
-    column.arrange(DOWN, buff=.4, aligned_edge=LEFT)
+    column.arrange(DOWN, buff=cs(.4), aligned_edge=LEFT)
     line_up(product, filled, formula)
-    return fit_into(column, RIGHT_SIDE)
+    return fit_into(column, RIGHT_SIDE, buff=.25)
 
 
 def copy_into(source, target):
@@ -257,7 +261,7 @@ def copy_into(source, target):
 
 
 def strike(mobject):
-    return Line(mobject.get_corner(DL), mobject.get_corner(UR), color=GOLD, stroke_width=4)
+    return Line(mobject.get_corner(DL), mobject.get_corner(UR), color=GOLD, stroke_width=cs(4))
 
 
 class VectorProjectionShadow(VectorPortalScene, Scene):
@@ -327,7 +331,7 @@ class VectorProjectionShadow(VectorPortalScene, Scene):
         trig, named, solved, swapped, cancelled = make_length_panel()
         self.say('Think SOH CAH TOA: cosine is the adjacent side over the hypotenuse.')
         # Wider words than the single letter u, so they sit further off the arrow.
-        off_u = .4 * heading(TILT + LONG_V['theta'] + math.pi / 2)
+        off_u = cs(.4) * heading(TILT + LONG_V['theta'] + math.pi / 2)
         hyp = tex(r'\text{HYP}', U_COLOR).move_to(parts['u_label']).shift(off_u)
         adj = tex(r'\text{ADJ}', SHADOW).move_to(parts['shadow_label'])
         self.play(FadeTransform(parts['u_label'], hyp),
@@ -363,7 +367,7 @@ class VectorProjectionShadow(VectorPortalScene, Scene):
         strikes = VGroup(strike(swapped[2]), strike(swapped[3][2][0]))
         self.play(Create(strikes), run_time=.8)
         self.play(Write(cancelled), run_time=1.)
-        box = SurroundingRectangle(cancelled[1], color=GOLD_STROKE, buff=.12)
+        box = SurroundingRectangle(cancelled[1], color=GOLD_STROKE, buff=cs(.12))
         self.play(Create(box), run_time=.5)
         self.say('So the length of the shadow is u·v over ‖v‖.')
         self.wait(2.4)
@@ -384,8 +388,8 @@ class VectorProjectionShadow(VectorPortalScene, Scene):
 
         self.say('Its direction is v’s, shrunk to length 1: the unit vector v̂.')
         pointer = arrow(ORIGIN, ORIGIN + ALONG, GOLD, width=8).set_z_index(2)
-        pointer_label = tex(r'\hat{\mathbf v}', GOLD).move_to(ORIGIN + .45 * ALONG - .5 * NORMAL)
-        self.play(shadow_length_label.animate.shift(.35 * ALONG - .1 * NORMAL),
+        pointer_label = tex(r'\hat{\mathbf v}', GOLD).move_to(ORIGIN + .45 * ALONG - cs(.5) * NORMAL)
+        self.play(shadow_length_label.animate.shift(cs(.35) * ALONG - cs(.1) * NORMAL),
                   parts['shadow'].animate.set_opacity(.25), run_time=.6)
         self.play(GrowArrow(pointer), FadeIn(pointer_label), run_time=.9)
         self.play(Write(unit), run_time=1.)
@@ -406,7 +410,7 @@ class VectorProjectionShadow(VectorPortalScene, Scene):
         self.wait(1.)
         self.say('The two ‖v‖’s multiply into ‖v‖²: the projection formula.')
         self.play(Write(formula), run_time=1.2)
-        self.play(Create(SurroundingRectangle(formula[1:], color=GOLD_STROKE, buff=.12)), run_time=.5)
+        self.play(Create(SurroundingRectangle(formula[1:], color=GOLD_STROKE, buff=cs(.12))), run_time=.5)
         self.wait(2.6)
         self.mark('projection_vector')
         self.write_marks('vector_projection_shadow_marks.json')
