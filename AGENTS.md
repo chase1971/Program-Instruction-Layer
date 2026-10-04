@@ -48,6 +48,20 @@ Detail + the incident that caused this rule: `agent docs/rules/never-display-wit
 
 ---
 
+## Netlify — never deploy unless Chase says so in that message
+
+**Do not run** `npm run deploy:prod`, `netlify deploy --prod`, or any student-portal
+production Netlify deploy unless Chase **explicitly asks in the same message** (e.g.
+"deploy to Netlify", "ship the portal live", "run deploy prod").
+
+**Not permission:** pushing to GitHub, fixing a live bug, `db:push`, end-of-session sync,
+or "deploy everything" when Chase meant **git sync only** — if unclear, **ask one question**
+before any Netlify deploy.
+
+Detail: `School Scrips/student-portal/AGENTS.md` § Shipping.
+
+---
+
 ## Don't hand Chase a keyboard-driven interface
 
 Never hand Chase an interactive terminal prompt, arrow-key menu, or type-to-filter box as the
