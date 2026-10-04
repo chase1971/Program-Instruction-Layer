@@ -28,6 +28,7 @@ never touches this file.
 | **teleport button** · preview shortcut · white space beside a home menu | [recipes/margin-teleport-buttons.md](./recipes/margin-teleport-buttons.md) |
 | manim · "animate solving an equation" · math explainer video · the animation guide we wrote · any math animation · how I write negatives · dividing by a negative · fraction bar too long | [Manim Trial/ANIMATION_STYLE_RECIPE.md](../Manim%20Trial/ANIMATION_STYLE_RECIPE.md) — scenes and render command in that folder's [README](../Manim%20Trial/README.md) |
 | animation frames misaligned · "things are intersecting other things" · have a cheaper model build the clip · layout audit · contact sheet | [Manim Trial/docs/LAYOUT_GUARDRAILS.md](../Manim%20Trial/docs/LAYOUT_GUARDRAILS.md) |
+| reuse animation · animation list · division/fraction animation examples · build five animations · animation batch · refresh animation patterns | [Manim Trial/docs/ANIMATION_REUSE.md](../Manim%20Trial/docs/ANIMATION_REUSE.md) |
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
 | school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
 | "do this from my phone" · send a task from my phone · my PC isn't showing up · desktop missing from the machine list | [PHONE_AGENT_ACCESS.md](./PHONE_AGENT_ACCESS.md) |
