@@ -32,6 +32,7 @@ never touches this file.
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
 | school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
 | "do this from my phone" · send a task from my phone · my PC isn't showing up · desktop missing from the machine list | [PHONE_AGENT_ACCESS.md](./PHONE_AGENT_ACCESS.md) |
+| **Mechabellum Panel** · mechabellum units · bot unit list · what's on the board in Mechabellum | [Mechabellum Panel/AGENTS.md](../Mechabellum%20Panel/AGENTS.md) · live page `http://127.0.0.1:8765/scratch/mechabellum-panel.html` |
 
 ## The detail behind an always-on rule
 

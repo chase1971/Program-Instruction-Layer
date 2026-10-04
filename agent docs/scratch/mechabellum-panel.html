@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mechabellum panel</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#0a0d11;color:#e8eef5;
+ font:20px/1.45 "Segoe UI",system-ui,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:16px 18px 32px;display:flex;flex-direction:column;gap:14px}
+header{border:1px solid #24313f;border-radius:10px;padding:14px 16px;background:#0e131a}
+h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.meta{font-size:16px;color:#9fb0c3}
+.meta strong{color:#dce8f4}
+.status-wait{color:#c9b86a}
+.status-error{color:#f0a0a0}
+.status-live{color:#7ad2a4}
+.pane{border:1px solid #24313f;border-radius:10px;padding:12px 14px;background:#111823;flex:1}
+.pane-opponent{border-color:#4a3550;background:#151018}
+.pane-self{border-color:#2a4a3a;background:#0d1512}
+.pane h2{font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:#8fa3b8;margin-bottom:8px}
+.pname{font-size:24px;font-weight:700;color:#f2f6fa;margin-bottom:4px}
+.pstats{font-size:17px;color:#9fb0c3;margin-bottom:10px}
+.units{display:flex;flex-direction:column;gap:8px}
+.unit{border:1px solid #2a3848;border-radius:8px;padding:12px 14px;background:#0c1016}
+.unit-name{font-size:26px;font-weight:700;line-height:1.2}
+.unit-detail{font-size:17px;color:#9fb0c3;margin-top:4px}
+.empty{font-size:18px;color:#7b8b9d;padding:8px 0}
+footer{font-size:13px;color:#5d6b7c;word-break:break-all}
+</style></head><body><div class="wrap"><header><h1>Mechabellum unit panel</h1><p class="meta"><strong class="status-wait">Start Mechabellum and enter a bot or single-player match.</strong></p><p class="meta">—</p></header><section class="pane pane-opponent"><h2>Opponent</h2><p class="empty">—</p></section><section class="pane pane-self"><h2>You</h2><p class="empty">—</p></section><footer>Build hash: —</footer></div><script>
+(function(){
+ var mine="idle";
+ if(!mine) return;
+ setInterval(function(){
+  fetch('mechabellum-panel-stamp.txt?t='+Date.now(),{cache:'no-store'})
+   .then(function(r){return r.ok?r.text():null;})
+   .then(function(t){ if(t&&t.trim()&&t.trim()!==mine) location.reload(); })
+   .catch(function(){});
+ },1500);
+})();
+</script></body></html>

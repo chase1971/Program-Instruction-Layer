@@ -3,6 +3,10 @@
 Local experiment for AI-directed mathematical animation, separate from Math App Studio.
 
 Reusable style guidance: [ANIMATION_STYLE_RECIPE.md](ANIMATION_STYLE_RECIPE.md).
+Before building a clip or batch: [animation reuse catalog](docs/ANIMATION_REUSE.md) —
+eight broad teaching patterns, exact code references, verification, and a compact handoff workflow.
+Static formula color comparison: [Visual Test](../School%20Scrips/student-portal/src/features/visual-test/README.md) —
+`export_visual_test.py` captures the original angle-problem geometry for the portal test.
 Keeping frames from colliding: [docs/LAYOUT_GUARDRAILS.md](docs/LAYOUT_GUARDRAILS.md) — the
 audit that runs at every pause mark, the layout regions, and the contact sheet.
 

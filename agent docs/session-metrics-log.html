@@ -68,11 +68,44 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>151</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:34 PM · Saturday, Oct 3, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>152</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">12:35 AM · Sunday, Oct 4, 2026</dd></div>
     </div>
     
     <section class="day-block">
+      <h2 class="day-title">Sunday, Oct 4, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">12:35 AM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">feature</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">claude-sonnet-5-5</div>
+    </header>
+    <p class="summary-human">Built a guided onboarding tutorial for the Macro App slim build: a welcome window, flashing buttons and floating text boxes that walk a new user through D2L sign-in, Setup courses, saving a login, the Makeup Exam profile and a spotlighted walkthrough of the Makeup Exam screen. Split it into two tutorials that hand off seamlessly, added an auto-fill profile button, hid Pearson login in slim, and rebuilt the unpacked slim build repeatedly for testing.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>8</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>1.9M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>467k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>3</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>3 task(s)</summary>
+    <ul class="task-list"><li>11:39 PM — Explained Macro App hidden workspace tabs: cold-evict destroys embedded browsers; visible tabs stay preloaded; hiding tabs speeds startup.</li><li>12:31 AM — Mechabellum Panel: live memory watcher + two-pane HTML on 8765 (FogMoe collector, Chase GameAssembly layout row)</li><li>12:34 AM — Macro App slim build: onboarding tutorial split into setup + makeup-exam tutorials (login, profile, walkthrough with spotlight), auto-fill profile button, Pearson login hidden in slim, slow-open warning quieted</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> The native browser view paints over DOM, so any tutorial box or dim that lands on the browser area must freeze (detach) it first; the profile modal closing re-attached the browser under the coach box and a quick Makeup Exam tab click after the setup wizard once left the browser stuck PAUSED (cause unconfirmed, mitigated). Slim builds reuse saved settings, so a hidden Browser tab or filled profile from earlier runs hides first-run behavior.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Any floating UI over the Macro App browser area must freeze the native browser first (see docs/ONBOARDING_TUTORIAL.md).</div>
+    <p class="next"><strong>Next time:</strong> Chase tests the two tutorials on the slim build tomorrow (blank the slim profile at %APPDATA%\macro-app-slim\makeup-exam\settings.json for the empty-profile path); fix whatever he reports.</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Saturday, Oct 3, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">

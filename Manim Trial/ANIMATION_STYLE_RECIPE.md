@@ -2,6 +2,9 @@
 
 Use this recipe when generating a new Manim animation for Chase's math apps.
 
+Before implementing, select existing teaching patterns from the
+[animation reuse catalog](docs/ANIMATION_REUSE.md); it also covers batches and future inventory updates.
+
 This file covers what the frames should **look like** and how the teaching should **move**.
 Keeping elements from colliding is a separate, automated job: see
 [docs/LAYOUT_GUARDRAILS.md](docs/LAYOUT_GUARDRAILS.md) for the audit that runs at every
