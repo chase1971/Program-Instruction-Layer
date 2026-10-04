@@ -34,6 +34,14 @@ PAGES = [
      'divide every term by &minus;2 and flip &ge; to &le;. Negative over negative gives a '
      'positive slope: y&nbsp;&le;&nbsp;&frac52;x&nbsp;+&nbsp;4. Graph: intercept 4, up 5 '
      'right 2, solid line, shade below.'),
+    ('quadratic_domain_range', 'QuadraticDomainRange', 'quadratic-domain-range',
+     'Quadratic domain and range &mdash; vertex form', 'Quadratic domain and range',
+     'quadratic_domain_range_marks.json',
+     'Two examples on one clip: f(x)&nbsp;=&nbsp;2(x&nbsp;&minus;&nbsp;1)<sup>2</sup>&nbsp;+&nbsp;3 '
+     'and f(x)&nbsp;=&nbsp;&minus;2(x&nbsp;&minus;&nbsp;1)<sup>2</sup>&nbsp;+&nbsp;3. '
+     'Highlight the square, domain (&minus;&infin;,&nbsp;&infin;), copy a beside a&nbsp;&gt;&nbsp;0 '
+     'or a&nbsp;&lt;&nbsp;0, pop k into [k,&nbsp;&infin;) or (&minus;&infin;,&nbsp;k]. '
+     'Mark ex2_start splits portal Example&nbsp;1 / Example&nbsp;2 tabs.'),
     ('slope_intercept_form', 'SlopeInterceptForm', 'slope-intercept-form',
      'Slope-intercept form &mdash; an inequality', 'Slope-intercept form',
      'slope_intercept_form_marks.json',

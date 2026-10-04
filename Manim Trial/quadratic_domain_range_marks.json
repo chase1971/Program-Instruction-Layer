@@ -1,0 +1,86 @@
+[
+  {
+    "name": "ex1_form",
+    "time": 2.56
+  },
+  {
+    "name": "ex1_quadratic",
+    "time": 4.89
+  },
+  {
+    "name": "ex1_domain",
+    "time": 8.11
+  },
+  {
+    "name": "ex1_vertex_form",
+    "time": 11.22
+  },
+  {
+    "name": "ex1_emphasize_a",
+    "time": 15.0
+  },
+  {
+    "name": "ex1_sign",
+    "time": 20.89
+  },
+  {
+    "name": "ex1_range",
+    "time": 24.44
+  },
+  {
+    "name": "ex1_emphasize_k",
+    "time": 28.22
+  },
+  {
+    "name": "ex1_interval",
+    "time": 32.0
+  },
+  {
+    "name": "ex1_hold",
+    "time": 34.33
+  },
+  {
+    "name": "ex2_start",
+    "time": 35.72
+  },
+  {
+    "name": "ex2_form",
+    "time": 38.28
+  },
+  {
+    "name": "ex2_quadratic",
+    "time": 40.61
+  },
+  {
+    "name": "ex2_domain",
+    "time": 43.83
+  },
+  {
+    "name": "ex2_vertex_form",
+    "time": 46.94
+  },
+  {
+    "name": "ex2_emphasize_a",
+    "time": 50.72
+  },
+  {
+    "name": "ex2_sign",
+    "time": 56.61
+  },
+  {
+    "name": "ex2_range",
+    "time": 60.17
+  },
+  {
+    "name": "ex2_emphasize_k",
+    "time": 63.94
+  },
+  {
+    "name": "ex2_interval",
+    "time": 67.72
+  },
+  {
+    "name": "ex2_hold",
+    "time": 70.06
+  }
+]

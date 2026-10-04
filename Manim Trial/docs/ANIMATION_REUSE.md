@@ -44,6 +44,9 @@ pausing are supporting actions within them, not additional catalog entries.
    transitions. Different signs, expression lengths, and diagram ranges can break
    a layout that worked on the first problem. Fix the common cause when shared;
    do not accumulate per-problem offsets to hide a broken layout model.
+   **Portal stop frame:** when the clip ends (or an example segment ends), the last
+   visible frame must still show the lesson — not a fade to blank. See
+   [ANIMATION_STYLE_RECIPE.md](../ANIMATION_STYLE_RECIPE.md) § Portal clips (“When playback stops”).
 6. **Deliver through the existing pipeline.** Follow [README](../README.md) for
    rendering and pages, and [layout guardrails](LAYOUT_GUARDRAILS.md) for audits
    and contact sheets. Check that inspection artifacts belong to the current
@@ -175,6 +178,15 @@ preserves the source and leaves the actual target object on screen; see the
 For an explicit anchor index, see [vector_decomposition.py](../vector_decomposition.py),
 `line_up(anchor, index, *rows)`. For formula → substitution → numerical answer,
 see [work_wagon.py](../work_wagon.py), `make_angled_work` and `WorkWagon.solve`.
+For **formula parameter -> rule / interval** (general form written above the example,
+parameters pulse together, a value drops down into an inequality, then replaces `k` in the
+interval), see [quadratic_domain_range.py](../quadratic_domain_range.py),
+`QuadraticDomainRange.teach_example`, and [rational_domain_range.py](../rational_domain_range.py),
+`RationalDomainRange.teach_example` (template condition -> real denominator -> solve for x ->
+number line with open circle -> split interval; also `fraction()` / `function_row()` for
+a fraction whose pieces need separate colours). Portrait frame, fixed rows, `copy_into` / `Indicate` /
+`ReplacementTransform`; reuse for square-root domain/range clips. Caption,
+colour, pacing and delivery rules: ANIMATION_STYLE_RECIPE.md "Portal clips".
 These builders use scene-specific symbols, sizes, and regions. Check alignment
 after fitting the entire panel, preserve meaningful term colors, and verify that
 fades/strikes affect the objects actually visible after each transform.

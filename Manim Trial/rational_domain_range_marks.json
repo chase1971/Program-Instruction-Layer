@@ -1,0 +1,134 @@
+[
+  {
+    "name": "ex1_form",
+    "time": 2.56
+  },
+  {
+    "name": "ex1_general",
+    "time": 5.0
+  },
+  {
+    "name": "ex1_finding_domain",
+    "time": 6.78
+  },
+  {
+    "name": "ex1_template",
+    "time": 10.56
+  },
+  {
+    "name": "ex1_actual",
+    "time": 13.78
+  },
+  {
+    "name": "ex1_x_value",
+    "time": 16.94
+  },
+  {
+    "name": "ex1_circle",
+    "time": 20.5
+  },
+  {
+    "name": "ex1_arrows",
+    "time": 24.17
+  },
+  {
+    "name": "ex1_domain_form",
+    "time": 27.61
+  },
+  {
+    "name": "ex1_domain",
+    "time": 31.39
+  },
+  {
+    "name": "ex1_zero",
+    "time": 35.17
+  },
+  {
+    "name": "ex1_never",
+    "time": 38.83
+  },
+  {
+    "name": "ex1_never_value",
+    "time": 42.61
+  },
+  {
+    "name": "ex1_range_form",
+    "time": 46.06
+  },
+  {
+    "name": "ex1_range",
+    "time": 49.83
+  },
+  {
+    "name": "ex1_hold",
+    "time": 52.17
+  },
+  {
+    "name": "ex2_start",
+    "time": 53.56
+  },
+  {
+    "name": "ex2_form",
+    "time": 56.11
+  },
+  {
+    "name": "ex2_general",
+    "time": 58.56
+  },
+  {
+    "name": "ex2_finding_domain",
+    "time": 60.33
+  },
+  {
+    "name": "ex2_template",
+    "time": 64.11
+  },
+  {
+    "name": "ex2_actual",
+    "time": 67.33
+  },
+  {
+    "name": "ex2_x_value",
+    "time": 70.5
+  },
+  {
+    "name": "ex2_circle",
+    "time": 74.06
+  },
+  {
+    "name": "ex2_arrows",
+    "time": 77.72
+  },
+  {
+    "name": "ex2_domain_form",
+    "time": 81.17
+  },
+  {
+    "name": "ex2_domain",
+    "time": 84.94
+  },
+  {
+    "name": "ex2_zero",
+    "time": 88.72
+  },
+  {
+    "name": "ex2_never",
+    "time": 92.39
+  },
+  {
+    "name": "ex2_never_value",
+    "time": 96.17
+  },
+  {
+    "name": "ex2_range_form",
+    "time": 99.61
+  },
+  {
+    "name": "ex2_range",
+    "time": 103.39
+  },
+  {
+    "name": "ex2_hold",
+    "time": 105.72
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "name": "ex1_form",
+    "time": 2.56
+  },
+  {
+    "name": "ex1_inside",
+    "time": 6.22
+  },
+  {
+    "name": "ex1_solved",
+    "time": 14.78
+  },
+  {
+    "name": "ex1_circle",
+    "time": 20.11
+  },
+  {
+    "name": "ex1_arrow",
+    "time": 23.67
+  },
+  {
+    "name": "ex1_domain_form",
+    "time": 27.11
+  },
+  {
+    "name": "ex1_domain",
+    "time": 30.89
+  },
+  {
+    "name": "ex1_range_intro",
+    "time": 34.11
+  },
+  {
+    "name": "ex1_emphasize_a",
+    "time": 37.89
+  },
+  {
+    "name": "ex1_sign",
+    "time": 43.78
+  },
+  {
+    "name": "ex1_range",
+    "time": 47.33
+  },
+  {
+    "name": "ex1_emphasize_d",
+    "time": 51.11
+  },
+  {
+    "name": "ex1_interval",
+    "time": 54.89
+  },
+  {
+    "name": "ex1_hold",
+    "time": 57.22
+  },
+  {
+    "name": "ex2_start",
+    "time": 58.61
+  },
+  {
+    "name": "ex2_form",
+    "time": 61.17
+  },
+  {
+    "name": "ex2_inside",
+    "time": 64.83
+  },
+  {
+    "name": "ex2_solved",
+    "time": 77.28
+  },
+  {
+    "name": "ex2_circle",
+    "time": 82.61
+  },
+  {
+    "name": "ex2_arrow",
+    "time": 86.17
+  },
+  {
+    "name": "ex2_domain_form",
+    "time": 89.61
+  },
+  {
+    "name": "ex2_domain",
+    "time": 93.39
+  },
+  {
+    "name": "ex2_range_intro",
+    "time": 96.61
+  },
+  {
+    "name": "ex2_emphasize_a",
+    "time": 100.39
+  },
+  {
+    "name": "ex2_sign",
+    "time": 106.28
+  },
+  {
+    "name": "ex2_range",
+    "time": 109.83
+  },
+  {
+    "name": "ex2_emphasize_d",
+    "time": 113.61
+  },
+  {
+    "name": "ex2_interval",
+    "time": 117.39
+  },
+  {
+    "name": "ex2_hold",
+    "time": 119.72
+  }
+]

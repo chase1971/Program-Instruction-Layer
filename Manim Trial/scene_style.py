@@ -6,9 +6,10 @@ new scenes import from here.
 """
 
 import json
+import re
 from pathlib import Path
 
-from manim import MathTex, Text, FadeIn, FadeOut
+from manim import MarkupText, MathTex, Text, FadeIn, FadeOut
 
 from scene_audit import audit_mark, audit_summary
 
@@ -42,8 +43,37 @@ TITLE_Y = 2.75
 PACE = 1.2
 
 
-def label(words, font_size=25, color=MUTED, max_width=None):
+CAPTION_SUPERSAMPLE = 4
+
+
+def wrap_words(words, max_width, **kwargs):
+    """Break `words` into lines no wider than max_width, measured with the real font."""
+    lines, current = [], ''
+    kind = MarkupText if '<' in words else Text
+    # Split on spaces outside <...> so a tag with attributes stays in one piece.
+    for word in re.split(r'\s+(?![^<]*>)', words.strip()):
+        trial = f'{current} {word}'.strip()
+        if current and kind(trial, **kwargs).width > max_width:
+            lines.append(current)
+            current = word
+        else:
+            current = trial
+    lines.append(current)
+    return '\n'.join(lines)
+
+
+def label(words, font_size=25, color=MUTED, max_width=None, wrap=False):
     kwargs = dict(font='Segoe UI', font_size=font_size, color=color)
+    if wrap and max_width is not None:
+        # Narrow (portrait) frames: break into lines at full size instead of shrinking one
+        # long line until it cannot be read.
+        # Set the text at 4x and shrink it: Pango snaps glyph advances to whole pixels at
+        # small sizes, which made the gaps between words uneven.
+        big = {**kwargs, 'font_size': font_size * CAPTION_SUPERSAMPLE}
+        # Markup (<i>a</i>) is allowed in a wrapped caption, so a variable can be set in italics.
+        kind = MarkupText if '<' in words else Text
+        return kind(wrap_words(words, max_width * CAPTION_SUPERSAMPLE, **big),
+                    line_spacing=CAPTION_LINE_SPACING, **big).scale(1 / CAPTION_SUPERSAMPLE)
     if max_width is not None:
         # Fit to max_width, but never stretch a short caption past CAPTION_MAX_GROW: Text's
         # own width= argument stretches to exactly max_width, which blows a three-word
@@ -120,6 +150,7 @@ class Narrated:
         size = getattr(self, 'caption_font_size', 25)
         fresh = label(
             words, font_size=size, color=self.caption_color, max_width=wrap,
+            wrap=getattr(self, 'caption_wraps', False),
         ).move_to([0, CAPTION_Y, 0])
         if self.note is None:
             self.note = fresh

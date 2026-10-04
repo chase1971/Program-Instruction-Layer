@@ -32,8 +32,8 @@ example on a blank frame** — freeze on the finished board (or a summary), not 
 - White **PAPER** palette; every `MathTex`/`mathtex` gets `color=INK` (white default is invisible).
 - **No draft renders** in the portal — only final 1080×1350.
 - When an example **ends in the player**, he should see **all the math still there**, not white.
-- If a blank transition between two examples in one MP4 is needed, that's fine **between** tabs —
-  each tab's stop time must be **before** that fade.
+- If a blank transition between two examples in one MP4 is needed, that's fine **between**
+  segments only; each tab's stop time must be **before** that fade.
 
 ## Accepted decisions
 
