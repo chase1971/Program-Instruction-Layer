@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domain &amp; Range — Four Function Families</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --text: #e8eef4;
+      --muted: #9db0c4;
+      --accent: #5eb8ff;
+      --accent2: #7ee787;
+      --warn: #f0b429;
+      --purple: #d2a8ff;
+      --border: #3d5166;
+      --domain: #5eb8ff;
+      --range: #7ee787;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 18px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
+    .nav {
+      margin-bottom: 1rem;
+    }
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.35rem 0;
+      display: inline-block;
+      min-height: 44px;
+      line-height: 44px;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
+    .subtitle { color: var(--muted); margin-bottom: 1.25rem; max-width: 42rem; }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 900px) {
+      .quick { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .quick { grid-template-columns: 1fr; }
+    }
+    .quick-cell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 0.85rem;
+      font-size: 0.92rem;
+    }
+    .quick-cell strong { display: block; font-size: 1rem; margin-bottom: 0.35rem; }
+    .quick-cell .d { color: var(--domain); }
+    .quick-cell .r { color: var(--range); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card-head {
+      padding: 0.85rem 1rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .card-head h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+    .form {
+      margin-top: 0.35rem;
+      font-family: "Cambria Math", "Times New Roman", serif;
+      font-size: 1.2rem;
+      color: var(--purple);
+    }
+    .card-body { padding: 0.85rem 1rem 1rem; }
+
+    .step-block {
+      margin-bottom: 0.85rem;
+      padding: 0.65rem 0.75rem;
+      border-radius: 8px;
+      border-left: 4px solid;
+    }
+    .step-block:last-child { margin-bottom: 0; }
+    .step-block.domain {
+      background: rgba(94, 184, 255, 0.08);
+      border-left-color: var(--domain);
+    }
+    .step-block.range {
+      background: rgba(126, 231, 135, 0.08);
+      border-left-color: var(--range);
+    }
+    .step-block h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .step-block.domain h3 { color: var(--domain); }
+    .step-block.range h3 { color: var(--range); }
+    .step-block ol, .step-block ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    .step-block li { margin-bottom: 0.25rem; }
+    .step-block li:last-child { margin-bottom: 0; }
+
+    .result {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.65rem;
+      background: #151c26;
+      border-radius: 6px;
+      font-family: "Cambria Math", "Times New Roman", serif;
+      font-size: 1.15rem;
+    }
+    .result .label {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .branch {
+      margin-top: 0.45rem;
+      padding-left: 0.5rem;
+      border-left: 2px solid var(--border);
+    }
+    .branch + .branch { margin-top: 0.55rem; }
+
+    .note {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .note strong { color: var(--warn); }
+
+    sup, sub { font-size: 0.78em; }
+    .mono { font-family: ui-monospace, Consolas, monospace; font-size: 0.92em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="nav"><a href="/pages.html">← All pages</a></p>
+    <h1>Domain &amp; range cheat sheet</h1>
+    <p class="subtitle">
+      Four families in the forms you graph from — vertex form for quadratics and square roots,
+      graphing form for rationals. Interval notation at the end of each block.
+    </p>
+
+    <div class="quick" aria-label="At-a-glance summary">
+      <div class="quick-cell">
+        <strong>Linear</strong>
+        <span class="d">Domain: (−∞, ∞)</span>
+        <span class="r">Range: (−∞, ∞)</span>
+      </div>
+      <div class="quick-cell">
+        <strong>Quadratic</strong>
+        <span class="d">Domain: (−∞, ∞)</span>
+        <span class="r">Range: depends on <em>a</em>, <em>k</em></span>
+      </div>
+      <div class="quick-cell">
+        <strong>Square root</strong>
+        <span class="d">Domain: radicand ≥ 0</span>
+        <span class="r">Range: depends on <em>a</em>, <em>k</em></span>
+      </div>
+      <div class="quick-cell">
+        <strong>Rational</strong>
+        <span class="d">Domain: <em>x</em> ≠ <em>c</em></span>
+        <span class="r">Range: <em>y</em> ≠ <em>d</em></span>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Linear</h2>
+          <p class="form"><em>f</em>(<em>x</em>) = <em>mx</em> + <em>b</em></p>
+        </div>
+        <div class="card-body">
+          <div class="step-block domain">
+            <h3>Domain</h3>
+            <ol>
+              <li>No denominator, even root, or log — input can be any real number.</li>
+            </ol>
+            <p class="result"><span class="label">Interval notation</span>(−∞, ∞)</p>
+          </div>
+          <div class="step-block range">
+            <h3>Range</h3>
+            <ol>
+              <li>Unless the line is horizontal (<em>m</em> = 0), outputs hit every real <em>y</em>.</li>
+              <li>If <em>m</em> = 0, the range is the single value <em>y</em> = <em>b</em>.</li>
+            </ol>
+            <p class="result"><span class="label">Typical (non-horizontal)</span>(−∞, ∞)</p>
+            <p class="result"><span class="label">Horizontal line only</span>{<em>b</em>}</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Quadratic (vertex form)</h2>
+          <p class="form"><em>f</em>(<em>x</em>) = <em>a</em>(<em>x</em> − <em>h</em>)<sup>2</sup> + <em>k</em></p>
+        </div>
+        <div class="card-body">
+          <div class="step-block domain">
+            <h3>Domain</h3>
+            <ol>
+              <li>Polynomial — no input restrictions.</li>
+            </ol>
+            <p class="result"><span class="label">Interval notation</span>(−∞, ∞)</p>
+          </div>
+          <div class="step-block range">
+            <h3>Range</h3>
+            <ol>
+              <li>Vertex is (<em>h</em>, <em>k</em>). That <em>k</em> is the smallest or largest output.</li>
+              <li>Use the sign of <em>a</em> (opens up or down).</li>
+            </ol>
+            <div class="branch">
+              <strong>If <em>a</em> &gt; 0</strong> (opens up): minimum <em>y</em> = <em>k</em>.
+              <p class="result">[<em>k</em>, ∞)</p>
+            </div>
+            <div class="branch">
+              <strong>If <em>a</em> &lt; 0</strong> (opens down): maximum <em>y</em> = <em>k</em>.
+              <p class="result">(−∞, <em>k</em>]</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Square root (graphing form)</h2>
+          <p class="form"><em>f</em>(<em>x</em>) = <em>a</em>√(<em>x</em> − <em>h</em>) + <em>k</em></p>
+        </div>
+        <div class="card-body">
+          <div class="step-block domain">
+            <h3>Domain</h3>
+            <ol>
+              <li>Whatever is under the root must be ≥ 0.</li>
+              <li>Set <em>x</em> − <em>h</em> ≥ 0 and solve for <em>x</em>.</li>
+            </ol>
+            <p class="result"><span class="label">Inequality → interval</span><em>x</em> ≥ <em>h</em>&nbsp;&nbsp;⟹&nbsp;&nbsp;[<em>h</em>, ∞)</p>
+          </div>
+          <div class="step-block range">
+            <h3>Range</h3>
+            <ol>
+              <li>Endpoint of the graph is (<em>h</em>, <em>k</em>) — same idea as the quadratic vertex.</li>
+              <li>Sign of <em>a</em> tells you whether outputs grow up or down from <em>k</em>.</li>
+            </ol>
+            <div class="branch">
+              <strong>If <em>a</em> &gt; 0</strong> ( rises to the right ):
+              <p class="result">[<em>k</em>, ∞)</p>
+            </div>
+            <div class="branch">
+              <strong>If <em>a</em> &lt; 0</strong> ( falls to the right ):
+              <p class="result">(−∞, <em>k</em>]</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Rational (graphing form)</h2>
+          <p class="form"><em>f</em>(<em>x</em>) = <em>a</em> / (<em>x</em> − <em>c</em>) + <em>d</em></p>
+        </div>
+        <div class="card-body">
+          <div class="step-block domain">
+            <h3>Domain</h3>
+            <ol>
+              <li>Denominator cannot be zero.</li>
+              <li>Set <em>x</em> − <em>c</em> ≠ 0 ⟹ <em>x</em> ≠ <em>c</em>.</li>
+            </ol>
+            <p class="result"><span class="label">Interval notation</span>(−∞, <em>c</em>) ∪ (<em>c</em>, ∞)</p>
+          </div>
+          <div class="step-block range">
+            <h3>Range</h3>
+            <ol>
+              <li>Horizontal asymptote <em>y</em> = <em>d</em> is approached but never reached.</li>
+              <li>So <em>y</em> can be anything except <em>d</em>.</li>
+            </ol>
+            <p class="result"><span class="label">Interval notation</span>(−∞, <em>d</em>) ∪ (<em>d</em>, ∞)</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="note">
+      <strong>Animation hook:</strong> quadratics and square roots share the same range pattern —
+      read <em>a</em>, anchor at <em>k</em>, then pick [<em>k</em>, ∞) vs (−∞, <em>k</em>].
+      Rationals flip the idea: two values (<em>c</em> and <em>d</em>) are <em>removed</em> from domain and range.
+    </p>
+  </div>
+</body>
+</html>
