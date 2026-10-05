@@ -10,17 +10,27 @@ gauge follows it; the gauge stays empty until part (a)'s arithmetic fills it.
 Every number written on screen comes from ANGLE_BETWEEN_PLAN.md. The angles used
 below only draw the picture.
 
+PORTRAIT: this clip is drawn for the phone player in a 4:5 frame (see portrait_frame.py),
+6.4 x 8 units. The figure sits in a short band at the top (unit circle left, vertical
+gauge right) and the written work stacks full-width underneath it, so the type can stay
+large. The other six vector clips are still landscape.
+
 History: a cheap-model draft of this clip was rejected (docs/CHEAP_MODEL_TRIAL.md).
 This is the re-cut.
 """
 
-import math
+# The frame must be set before any other project module is imported: they read
+# config.frame_width at import time.
+from portrait_frame import apply_portrait_frame
 
-import numpy as np
-from manim import (
+apply_portrait_frame()
+
+import math  # noqa: E402
+
+import numpy as np  # noqa: E402
+from manim import (  # noqa: E402
     DOWN,
     LEFT,
-    RIGHT,
     UP,
     Arc,
     Arrow,
@@ -37,22 +47,20 @@ from manim import (
     Rectangle,
     Scene,
     SurroundingRectangle,
+    Transform,
     TransformFromCopy,
     TransformMatchingShapes,
     UpdateFromAlphaFunc,
     VGroup,
     VMobject,
     Write,
-    config,
     interpolate_color,
 )
 
-from dot_product_directions import make_open_question
-from scene_layout import Region
-from vector_portal_layout import WORK, cs, fit_into, ms
-from scene_style import (
+from scene_layout import Region  # noqa: E402
+from vector_portal_layout import fit_into  # noqa: E402
+from scene_style import (  # noqa: E402
     portal_math,
-    PAPER,
     PAPER_BLUE,
     PAPER_GOLD,
     PAPER_INK,
@@ -83,25 +91,29 @@ ANGLE_W = math.atan2(4, 4)
 LENGTH_U = math.hypot(2, -2)
 LENGTH_V = math.hypot(5, 8)
 
+# Frame is 6.4 x 8. Content stays inside +-EDGE sideways; the caption owns y > 2.95.
+EDGE = 2.85
+WORK_AREA = Region('WORK_AREA', -EDGE, EDGE, -3.75, -.6)
+
 # Two views of one picture. FULL draws the vectors at their true lengths; UNIT zooms in
 # on the circle of radius 1 once they are normalized. The zoom blends one into the other,
-# so every arrow, arc and label is always built from the same origin and scale.
-# Everything is drawn 30% larger for the phone player (cs/ms); the diagram sits low and left,
-# where the frame has room. FULL's vector scale is fitted rather than a plain x1.3: v rises
-# eight units and must still clear the caption.
-FULL = dict(origin=(-5.3, -2.2), scale=.54, axes=(1.1, 4.1, 1.4, 4.9), arc=cs(.35), theta=cs(.75))
-UNIT = dict(origin=(-3.3, -.7), scale=cs(2.2), axes=(3.15, 2.9, 2.95, 2.95), arc=cs(.6), theta=cs(1.))
+# so every arrow, arc and label is always built from the same origin and scale. FULL's
+# scale is fitted so v (eight units tall) still clears the caption; its axes stop above
+# WORK_AREA so the written work never lands on them.
+FULL = dict(origin=(-1.4, .15), scale=.28, axes=(1.1, 1.8, .55, 2.3), arc=.5, theta=.8)
+UNIT = dict(origin=(-1.4, 1.2), scale=1., axes=(1.25, 1.25, 1.1, 1.1), arc=.4, theta=.72)
 
-# The gauge runs from -1 (opposite) through 0 (perpendicular) to 1 (same direction),
-# so a fill grows from the center: right and gold when positive, left and coral when not.
-GAUGE_CENTER = (3.75, 2.0)
-GAUGE_WIDTH = cs(4.3)
-GAUGE_HEIGHT = cs(.42)
-GAUGE_VALUE_Y = .85
+# The gauge runs from -1 (opposite) through 0 (perpendicular) to 1 (same direction), so a
+# fill grows from the middle: up and gold when positive, down and coral when not. It is
+# vertical because the frame has more height than width.
+GAUGE_X, GAUGE_Y = .9, 1.2
+GAUGE_W, GAUGE_H = .34, 1.8
+GAUGE_LABEL_X = GAUGE_X + GAUGE_W / 2 + .15
+GAUGE_VALUE_CENTER = (1.75, -.02)
+GAUGE_VALUE_MAX_WIDTH = 2.2
 
-# The right column below the gauge value. Starts left of WORK because the unit circle ends
-# near x = -0.4, and stops under the value readout.
-PROBLEM_WORK = Region('PROBLEM_WORK', .15, WORK.right, -3.7, .45)
+STROKE = 6
+TIP_LABEL = .55
 
 
 def blend(first, second, alpha):
@@ -130,9 +142,9 @@ def make_axes(view):
     center = origin_of(view)
     left, right, down, up = view['axes']
     return VGroup(
-        Line(center + [-left, 0, 0], center + [right, 0, 0], color=MUTED, stroke_width=cs(2)),
-        Line(center + [0, -down, 0], center + [0, up, 0], color=MUTED, stroke_width=cs(2)),
-        Dot(center, radius=cs(.05), color=INK),
+        Line(center + [-left, 0, 0], center + [right, 0, 0], color=MUTED, stroke_width=2),
+        Line(center + [0, -down, 0], center + [0, up, 0], color=MUTED, stroke_width=2),
+        Dot(center, radius=.05, color=INK),
     )
 
 
@@ -142,8 +154,8 @@ def make_vector(view, angle, length, color):
         point(view, angle, length),
         buff=0,
         color=color,
-        stroke_width=cs(7),
-        tip_length=cs(.24),
+        stroke_width=STROKE,
+        tip_length=.2,
         max_tip_length_to_length_ratio=.35,
         max_stroke_width_to_length_ratio=20,
     )
@@ -152,30 +164,30 @@ def make_vector(view, angle, length, color):
 def make_tip_label(view, angle, length, tex, color, side=0.):
     """Label just past an arrow's tip; `side` nudges it counterclockwise (+) or clockwise (-)."""
     across = heading(angle + math.pi / 2)
-    spot = point(view, angle, length) + cs(.3) * heading(angle) + cs(side) * across
-    return portal_math(tex, color=color, scale=ms(.8)).move_to(spot)
+    spot = point(view, angle, length) + .28 * heading(angle) + side * across
+    return portal_math(tex, color=color, scale=TIP_LABEL).move_to(spot)
 
 
 def make_unit_circle(view):
-    ring = Circle(radius=view['scale'], color=MUTED, stroke_width=cs(2), stroke_opacity=.75)
+    ring = Circle(radius=view['scale'], color=MUTED, stroke_width=2, stroke_opacity=.75)
     return DashedVMobject(ring.move_to(origin_of(view)), num_dashes=56)
 
 
 def make_angle(view, first, second):
     start, sweep = min(first, second), max(abs(second - first), 1e-3)
     return Arc(radius=view['arc'], start_angle=start, angle=sweep,
-               arc_center=origin_of(view), color=MUTED, stroke_width=cs(3))
+               arc_center=origin_of(view), color=MUTED, stroke_width=3)
 
 
 def make_theta(view, direction, reach=None):
     reach = view['theta'] if reach is None else reach
-    return portal_math(r'\theta', color=INK).scale(ms(.75)).move_to(
+    return portal_math(r'\theta', color=INK, scale=.6).move_to(
         origin_of(view) + reach * heading(direction))
 
 
 def make_corner(vertex, first, second, size):
     """Square corner at `vertex` between two unit directions."""
-    corner = VMobject(color=MUTED, stroke_width=cs(3))
+    corner = VMobject(color=MUTED, stroke_width=3)
     corner.set_points_as_corners([
         vertex + size * first,
         vertex + size * (first + second),
@@ -185,92 +197,111 @@ def make_corner(vertex, first, second, size):
 
 
 def make_gauge():
-    center = [*GAUGE_CENTER, 0]
-    track = Rectangle(width=GAUGE_WIDTH, height=GAUGE_HEIGHT, color=MUTED,
-                      stroke_width=cs(3)).move_to(center)
-    middle = Line(track.get_top(), track.get_bottom(), color=MUTED, stroke_width=cs(2))
-    title = label('DIRECTIONAL SIMILARITY, −1 TO 1', round(cs(18)), MUTED).next_to(track, UP, buff=cs(.16))
-    low = label('opposite', round(cs(15)), MUTED).next_to(track, DOWN, buff=cs(.14)).align_to(track, LEFT)
-    mid = label('perpendicular', round(cs(15)), MUTED).next_to(track, DOWN, buff=cs(.14))
-    high = label('same direction', round(cs(15)), MUTED).next_to(track, DOWN, buff=cs(.14))
-    high.align_to(track, RIGHT)
-    return VGroup(track, middle, title, low, mid, high)
+    center = [GAUGE_X, GAUGE_Y, 0]
+    track = Rectangle(width=GAUGE_W, height=GAUGE_H, color=MUTED, stroke_width=3).move_to(center)
+    middle = Line(track.get_left(), track.get_right(), color=MUTED, stroke_width=2)
+    title = label('DIRECTIONAL\nSIMILARITY', 15, MUTED).move_to([1.85, 2.62, 0])
+    entries = []
+    for words, y in (('same direction', track.get_top()[1]),
+                     ('perpendicular', GAUGE_Y),
+                     ('opposite', track.get_bottom()[1])):
+        text = label(words, 15, MUTED)
+        entries.append(text.move_to([GAUGE_LABEL_X + text.width / 2, y, 0]))
+    return VGroup(track, middle, title, *entries)
 
 
 def make_fill(cosine):
-    """The gauge fill for a cosine: grows from the center toward -1 or 1."""
-    width = max(abs(cosine) * GAUGE_WIDTH / 2, cs(.03))
+    """The gauge fill for a cosine: grows from the middle toward -1 or 1."""
+    height = max(abs(cosine) * GAUGE_H / 2, .03)
     color = GOLD if cosine >= 0 else NEGATIVE
-    x = GAUGE_CENTER[0] + math.copysign(width / 2, cosine)
-    return Rectangle(width=width, height=GAUGE_HEIGHT - cs(.1), color=color, fill_color=color,
-                     fill_opacity=.85, stroke_width=0).move_to([x, GAUGE_CENTER[1], 0])
+    y = GAUGE_Y + math.copysign(height / 2, cosine)
+    return Rectangle(width=GAUGE_W - .1, height=height, color=color, fill_color=color,
+                     fill_opacity=.85, stroke_width=0).move_to([GAUGE_X, y, 0])
 
 
 def make_gauge_value(tex, cosine):
     color = GOLD if cosine >= 0 else NEGATIVE
-    return portal_math(tex, color=color).scale(ms(.85)).move_to([GAUGE_CENTER[0], GAUGE_VALUE_Y, 0])
+    value = portal_math(tex, color=color, scale=.6)
+    if value.width > GAUGE_VALUE_MAX_WIDTH:
+        value.scale(GAUGE_VALUE_MAX_WIDTH / value.width)
+    return value.move_to([*GAUGE_VALUE_CENTER, 0])
+
+
+def make_open_question():
+    """Clip one's closing question, re-set for the narrow frame."""
+    setup = label('Both speeds were exactly 1 mph.', 22, MUTED, max_width=5., wrap=True)
+    question = label('What happens when the vectors are different sizes?', 28, GOLD,
+                     max_width=5., wrap=True)
+    return VGroup(setup, question).arrange(DOWN, buff=.5).move_to([0, .3, 0])
 
 
 def make_derivation():
     """The formula, derived top to bottom: normalize, dot, combine, name it cos theta.
 
-    Row 1 is the plain dot product; it becomes row 2's left side once the vectors are
-    unit length, so the column is laid out once and every row is born in its final place.
+    Row 1 is the plain dot product; it becomes the left of row 2 once the vectors are unit
+    length, so the column is laid out once and every row is born in its final place. Every
+    step is its own line (the landscape layout ran three of them together sideways).
     """
-    plain = portal_math(r'\mathbf u\cdot\mathbf v', color=INK).scale(ms(.85))
+    plain = portal_math(r'\mathbf u\cdot\mathbf v', color=INK, scale=.85)
     hats = portal_math(
-        r'\hat{\mathbf u}=\frac{\mathbf u}{\|\mathbf u\|},\qquad'
+        r'\hat{\mathbf u}=\frac{\mathbf u}{\|\mathbf u\|},\quad'
         r'\hat{\mathbf v}=\frac{\mathbf v}{\|\mathbf v\|}',
-        color=MUTED,
-    ).scale(ms(.8))
+        color=MUTED, scale=.8,
+    )
     dotted = portal_math(
         r'\hat{\mathbf u}\cdot\hat{\mathbf v}',
         r'=\frac{\mathbf u}{\|\mathbf u\|}\cdot\frac{\mathbf v}{\|\mathbf v\|}',
+        color=INK, scale=.8,
+    )
+    combined = portal_math(
         r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
-        color=INK,
-    ).scale(ms(.8))
-    cosine = portal_math(
-        r'\cos\theta', r'=\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}',
-        color=INK,
-    ).scale(ms(.85))
-    cosine[0].set_color(GOLD)
+        r'=\cos\theta',
+        color=INK, scale=.85,
+    )
+    combined[1].set_color(GOLD)
     solved = portal_math(
         r'\theta=\arccos\!\left(\frac{\mathbf u\cdot\mathbf v}'
         r'{\|\mathbf u\|\,\|\mathbf v\|}\right)',
-        color=INK,
-    ).scale(ms(.8))
-    column = VGroup(hats, dotted, cosine, solved).arrange(DOWN, buff=cs(.42), aligned_edge=LEFT)
-    fit_into(column, WORK)
+        color=INK, scale=.8,
+    )
+    column = VGroup(hats, dotted, combined, solved).arrange(
+        DOWN, buff=.2, aligned_edge=LEFT)
+    combined.align_to(dotted[1], LEFT)
+    fit_into(column, WORK_AREA)
     plain.move_to(dotted[0]).align_to(dotted, LEFT)
     return plain, column
 
 
-def make_given():
-    """The textbook vectors, one line, shrunk to the column width and parked at its top-left."""
-    given = portal_math(
-        r'\mathbf u=2\mathbf i-2\mathbf j,\quad\mathbf v=5\mathbf i+8\mathbf j,'
-        r'\quad\mathbf w=4\mathbf i+4\mathbf j',
-        color=MUTED,
-    ).scale(ms(.62))
-    room = PROBLEM_WORK.width - .15
+PAIR_TEX = {
+    'u': r'\mathbf u=2\mathbf i-2\mathbf j',
+    'v': r'\mathbf v=5\mathbf i+8\mathbf j',
+    'w': r'\mathbf w=4\mathbf i+4\mathbf j',
+}
+
+
+def make_given(first, second):
+    """The pair's vectors, one line, parked at the top-left of the work area."""
+    given = portal_math(PAIR_TEX[first] + r',\quad ' + PAIR_TEX[second],
+                        color=MUTED, scale=.62)
+    room = WORK_AREA.width - .1
     if given.width > room:
         given.scale(room / given.width)
-    return given.move_to([PROBLEM_WORK.left + .15 + given.width / 2,
-                          PROBLEM_WORK.top - given.height / 2, 0])
+    return given.move_to([WORK_AREA.left + given.width / 2,
+                          WORK_AREA.top - given.height / 2, 0])
 
 
 def place_below(rows, anchor, factor=None):
-    """Stack rows under `anchor`, left edges aligned, sized to what is left of the column.
+    """Stack rows under `anchor`, left edges aligned, sized to what is left of the work area.
 
     The fitted scale is kept on `rows.fit_factor`, so the next problem reuses it and the
     given line above never has to move.
     """
-    rows.arrange(DOWN, buff=cs(.3), aligned_edge=LEFT)
-    gap = cs(.4)
+    rows.arrange(DOWN, buff=.14, aligned_edge=LEFT)
+    gap = .2
     if factor is None:
-        room_w = PROBLEM_WORK.right - .3 - anchor.get_left()[0]
-        room_h = anchor.get_bottom()[1] - gap - PROBLEM_WORK.bottom
-        factor = min(1, room_w / rows.width, room_h / rows.height)
+        room_w = WORK_AREA.width - .1
+        room_h = anchor.get_bottom()[1] - gap - WORK_AREA.bottom
+        factor = min(1.25, room_w / rows.width, room_h / rows.height)
     rows.scale(factor)
     rows.fit_factor = factor
     return rows.next_to(anchor, DOWN, buff=gap, aligned_edge=LEFT)
@@ -286,16 +317,16 @@ def make_problem_rows(anchor, dot, product, magnitudes, ratio, cosine, angle, de
     split = ratio.rfind(r'=\frac')
     if split > first_fraction >= 0:
         cos_rows = [
-            portal_math(ratio[:split], color=INK).scale(ms(.68)),
-            portal_math(ratio[split:] + r'\;', cosine, color=INK).scale(ms(.68)),
+            portal_math(ratio[:split], color=INK, scale=.68),
+            portal_math(ratio[split:] + r'\;', cosine, color=INK, scale=.68),
         ]
     else:
-        cos_rows = [portal_math(ratio, cosine, color=INK).scale(ms(.68))]
+        cos_rows = [portal_math(ratio, cosine, color=INK, scale=.68)]
     rows = VGroup(
-        portal_math(dot, product, color=INK).scale(ms(.68)),
-        portal_math(magnitudes, color=MUTED).scale(ms(.64)),
+        portal_math(dot, product, color=INK, scale=.68),
+        portal_math(magnitudes, color=MUTED, scale=.64),
         *cos_rows,
-        portal_math(angle, degrees, color=INK).scale(ms(.68)),
+        portal_math(angle, degrees, color=INK, scale=.68),
     )
     rows.result = cos_rows[-1]
     rows.final = rows[-1]
@@ -309,19 +340,19 @@ def make_unit_components(anchor):
         portal_math(r'\hat{\mathbf u}=\langle0.7071,-0.7071\rangle', color=U_COLOR),
         portal_math(r'\hat{\mathbf v}=\langle0.5300,0.8480\rangle', color=V_COLOR),
         portal_math(r'\hat{\mathbf w}=\langle0.7071,0.7071\rangle', color=W_COLOR),
-    ).scale(ms(.66)).arrange(DOWN, buff=cs(.2), aligned_edge=LEFT)
+    ).scale(.6).arrange(DOWN, buff=.14, aligned_edge=LEFT)
     return rows.move_to(anchor).align_to(anchor, LEFT).align_to(anchor, UP)
 
 
 def make_payoff_rows(anchor):
     rows = VGroup(
         portal_math(r'\hat{\mathbf u}\cdot\hat{\mathbf v}\approx-0.22486',
-                r'\quad\theta\approx102.99^\circ', color=INK),
+                    r'\quad\theta\approx102.99^\circ', color=INK),
         portal_math(r'\hat{\mathbf v}\cdot\hat{\mathbf w}\approx0.97439',
-                r'\quad\theta\approx12.99^\circ', color=INK),
+                    r'\quad\theta\approx12.99^\circ', color=INK),
         portal_math(r'\hat{\mathbf u}\cdot\hat{\mathbf w}=0',
-                r'\quad\theta=90^\circ', color=INK),
-    ).scale(ms(.72))
+                    r'\quad\theta=90^\circ', color=INK),
+    ).scale(.72)
     for row in rows:
         row[1].set_color(GOLD)
     return place_below(rows, anchor)
@@ -332,17 +363,17 @@ def rebuild(mobject, build):
     return UpdateFromAlphaFunc(mobject, lambda m, alpha: m.become(build(alpha)))
 
 
-
-
 class AngleBetweenVectors(VectorPortalScene, Scene):
-    caption_color = PAPER_MUTED
     """Normalize, dot, read the cosine, then work the three textbook problems."""
 
+    caption_color = PAPER_MUTED
+    caption_wraps = True
+    caption_font_size = 20
     pace = .9
     fill = None  # the gauge stays empty until part (a)'s arithmetic fills it
 
     def open_on_question(self):
-        """Clip one's closing card, identical, so the two clips cut together."""
+        """Clip one's closing card, re-set for this frame, so the two clips still cut together."""
         card = make_open_question()
         self.add(card)
         self.wait(2.2)
@@ -408,16 +439,16 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
 
     def derive_formula(self):
         """Dot the unit vectors, combine the fractions, and recognize cos theta."""
-        dotted, cosine, solved = self.work[1], self.work[2], self.work[3]
+        dotted, combined, solved = self.work[1], self.work[2], self.work[3]
         self.say('Now take the dot product of the two unit vectors.')
         self.play(TransformMatchingShapes(self.plain, dotted[0]), run_time=1.)
         self.play(TransformFromCopy(self.work[0], dotted[1]), run_time=1.3)
         self.wait(.8)
         self.say('The lengths are just numbers, so they combine into one fraction.')
-        self.play(Write(dotted[2]), run_time=1.2)
+        self.play(Write(combined[0]), run_time=1.2)
         self.wait(.8)
         self.say('From clip one: the dot product of unit vectors is cos θ.')
-        self.play(Write(cosine[0]), TransformFromCopy(dotted[2], cosine[1]), run_time=1.3)
+        self.play(Write(combined[1]), run_time=1.3)
         self.wait(.8)
         self.say('Undo the cosine to get the angle itself.')
         self.play(Write(solved), run_time=1.2)
@@ -436,14 +467,14 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
 
     def land_result(self, rows, value_tex, cosine):
         """Box the computed cosine and fly it up onto the gauge."""
-        box = SurroundingRectangle(rows.result[1], color=GOLD, buff=cs(.1))
+        box = SurroundingRectangle(rows.result[1], color=GOLD, buff=.08)
         self.play(Create(box), run_time=.4)
         value = make_gauge_value(value_tex, cosine)
         if self.fill is None:
             # Part (a): the gauge has been empty until now -- the arithmetic fills it.
             self.fill = make_fill(cosine)
             self.play(TransformFromCopy(rows.result[1], value),
-                      GrowFromPoint(self.fill, [*GAUGE_CENTER, 0]), run_time=1.3)
+                      GrowFromPoint(self.fill, [GAUGE_X, GAUGE_Y, 0]), run_time=1.3)
         else:
             self.play(FadeOut(self.value), TransformFromCopy(rows.result[1], value), run_time=1.1)
         self.value = value
@@ -457,7 +488,7 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
     def problem_a(self):
         self.say('Part (a): u and v — the pair on screen.')
         self.play(FadeOut(self.work), run_time=.6)
-        self.given = make_given()
+        self.given = make_given('u', 'v')
         rows = make_problem_rows(
             self.given,
             r'\mathbf u\cdot\mathbf v=(2)(5)+(-2)(8)', r'=-6',
@@ -491,7 +522,8 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
 
     def problem_b(self, prior):
         self.say('Part (b): v and w. Swing u around to w.')
-        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta), run_time=.5)
+        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta),
+                  Transform(self.given, make_given('v', 'w')), run_time=.5)
         w_label = make_tip_label(UNIT, ANGLE_W, 1, r'\hat{\mathbf w}', W_COLOR, -.22)
         self.play(
             *self.swing(self.first, ANGLE_U, ANGLE_W, U_COLOR, W_COLOR, ANGLE_V),
@@ -522,7 +554,8 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
 
     def problem_c(self, prior):
         self.say('Part (c): u and w. Swing v back around to u.')
-        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta), run_time=.5)
+        self.play(FadeOut(prior), FadeOut(self.value), FadeOut(self.theta),
+                  Transform(self.given, make_given('u', 'w')), run_time=.5)
         u_label = make_tip_label(UNIT, ANGLE_U, 1, r'\hat{\mathbf u}', U_COLOR)
         self.play(
             *self.swing(self.second, ANGLE_V, ANGLE_U, V_COLOR, U_COLOR, ANGLE_W),
@@ -531,8 +564,8 @@ class AngleBetweenVectors(VectorPortalScene, Scene):
         )
         self.second_label = u_label
         center = origin_of(UNIT)
-        square = make_corner(center, heading(ANGLE_U), heading(ANGLE_W), cs(.3))
-        quarter = label('90°', round(cs(20)), MUTED).move_to(center + [cs(.95), cs(.22), 0])
+        square = make_corner(center, heading(ANGLE_U), heading(ANGLE_W), .25)
+        quarter = label('90°', 18, MUTED).move_to(center + [.62, .2, 0])
         self.play(FadeOut(self.arc), Create(square), FadeIn(quarter), run_time=.7)
         self.arc = VGroup(square, quarter)
         self.say('A quarter turn apart: they share nothing, and the gauge sits at zero.')
