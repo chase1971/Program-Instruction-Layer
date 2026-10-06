@@ -93,7 +93,9 @@ the Cursor workspace folder instead of scanning all sibling repos.
 | `Programs/` (root) | Manim Trial, `agent docs/`, session tracking, momentum handoffs |
 | `School Scripts/Macro-App` and `School Scrips/Macro App` | Main app (either spelling on disk) |
 | `assignment-assistant-engine` | Sister to Macro when vendored separately |
-| `student-portal`, Matrix app(s), `electron-toolbar` | Portal / matrix / toolbar work |
+| **`School Scrips/student-session-kit`** (either machine spelling) | **Supabase schema** — migrations portal + Macro App depend on; **never skip** on pull/push |
+| **`School Scrips/student-portal`** | Portal app code; ships with session-kit (sister repos) |
+| Matrix app(s), `electron-toolbar` | Matrix source / toolbar work |
 | Every other `School Scripts/*` and `School Scrips/*` git repo | Chase expects parity, not curation |
 
 Skip only **frozen** apps (`agent docs/rules/frozen-apps.md` — Calendar 2.0).
@@ -110,6 +112,16 @@ These may differ per machine and must **not** block a pull or get committed on s
 | `agent docs/session-*.jsonl`, `agent docs/session-*-log.html` | Per-machine session bumps; merge on pull (see below) |
 | Calendar `server-port.json` | Port per machine |
 | `.env`, credentials, secrets | Never sync |
+
+**Student portal on the laptop — git vs Supabase access:** Full `pull` **does** move
+`student-session-kit` (SQL migrations, docs) and `student-portal` (app code) through GitHub —
+same as Macro App. There is **no** reason to exclude them. What **does not** ride git is each
+machine's **`.env`** in those two folders (CLI token, DB password, `VITE_SUPABASE_*`). Without
+that file, `npm run db:push` and local portal dev fail with "no Supabase access" even when git
+is current. **One-time per machine:** copy `.env` from the other computer, or follow
+`student-session-kit/README.md` § Setup (then copy `VITE_*` into `student-portal/.env` if
+portal dev is needed). Do **not** commit `.env`. After portal/schema work on a machine that
+never had Supabase set up, say once what is missing and point at that README — not every pull.
 
 AppData prefs (Drive roots, machine-profile) live **outside** the repo — leave them alone.
 

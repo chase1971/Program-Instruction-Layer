@@ -152,7 +152,8 @@ directions**. One word is enough. **Do not ask** which repos, which files, or wh
 1. **Scan every git repo** under Programs — root `Programs/` repo, `School Scripts/*`,
    `School Scrips/*`, `electron-toolbar`, and every other sibling — **not** only the app open
    in Cursor. A pull that touches Macro App but skips `Programs/` (Manim, `agent docs/`,
-   session tracking) is a failed pull.
+   session tracking) is a failed pull. **`student-session-kit` and `student-portal` are never
+   optional** — always pull/push with the rest (schema + portal stay paired).
 2. **Pull** each repo that is behind: stash machine-local paths if needed, `git fetch`,
    `git pull --ff-only` or merge when diverged, restore stashes. Never skip a whole repo
    because only machine-local files are dirty.
