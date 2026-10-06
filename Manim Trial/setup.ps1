@@ -33,8 +33,12 @@ function Ensure-Python {
 
 function Ensure-Uv {
     Write-Step 'Checking uv'
+    $prevEap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
     & python -m uv --version *> $null
-    if ($LASTEXITCODE -ne 0) {
+    $uvExit = $LASTEXITCODE
+    $ErrorActionPreference = $prevEap
+    if ($uvExit -ne 0) {
         Write-Host 'Installing uv with pip'
         & python -m pip install --upgrade uv
         if ($LASTEXITCODE -ne 0) { throw 'Failed to install uv.' }

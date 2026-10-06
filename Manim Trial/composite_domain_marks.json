@@ -1,0 +1,62 @@
+[
+  {
+    "name": "form",
+    "time": 2.67
+  },
+  {
+    "name": "f_quadratic",
+    "time": 5.67
+  },
+  {
+    "name": "f_domain",
+    "time": 8.89
+  },
+  {
+    "name": "g_inside",
+    "time": 13.22
+  },
+  {
+    "name": "g_solved",
+    "time": 17.22
+  },
+  {
+    "name": "g_domain",
+    "time": 21.33
+  },
+  {
+    "name": "composite_setup",
+    "time": 25.44
+  },
+  {
+    "name": "g_drops_in",
+    "time": 28.56
+  },
+  {
+    "name": "g_tag",
+    "time": 32.89
+  },
+  {
+    "name": "squared",
+    "time": 37.0
+  },
+  {
+    "name": "simplified",
+    "time": 40.56
+  },
+  {
+    "name": "domain_trap",
+    "time": 43.44
+  },
+  {
+    "name": "domain_carry",
+    "time": 48.11
+  },
+  {
+    "name": "composite_domain",
+    "time": 51.56
+  },
+  {
+    "name": "hold",
+    "time": 53.89
+  }
+]
