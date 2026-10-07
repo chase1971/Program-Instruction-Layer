@@ -13,50 +13,90 @@
   },
   {
     "name": "g_inside",
-    "time": 13.22
+    "time": 13.33
+  },
+  {
+    "name": "g_op",
+    "time": 15.44
   },
   {
     "name": "g_solved",
-    "time": 17.22
+    "time": 18.89
+  },
+  {
+    "name": "g_circle",
+    "time": 25.56
+  },
+  {
+    "name": "g_arrow",
+    "time": 29.11
   },
   {
     "name": "g_domain",
-    "time": 21.33
+    "time": 33.44
   },
   {
-    "name": "composite_setup",
-    "time": 25.44
+    "name": "composite_x",
+    "time": 37.56
   },
   {
-    "name": "g_drops_in",
-    "time": 28.56
+    "name": "composite_paren",
+    "time": 40.44
   },
   {
-    "name": "g_tag",
-    "time": 32.89
+    "name": "composite_written",
+    "time": 44.56
+  },
+  {
+    "name": "cancel",
+    "time": 47.33
   },
   {
     "name": "squared",
-    "time": 37.0
+    "time": 49.78
   },
   {
     "name": "simplified",
-    "time": 40.56
+    "time": 53.33
   },
   {
-    "name": "domain_trap",
-    "time": 43.44
+    "name": "domain_intro",
+    "time": 56.67
   },
   {
-    "name": "domain_carry",
-    "time": 48.11
+    "name": "domain_linear",
+    "time": 60.11
   },
   {
-    "name": "composite_domain",
-    "time": 51.56
+    "name": "nl_all",
+    "time": 66.89
+  },
+  {
+    "name": "not_composite",
+    "time": 68.67
+  },
+  {
+    "name": "domain_follows",
+    "time": 71.0
+  },
+  {
+    "name": "g_back",
+    "time": 79.22
+  },
+  {
+    "name": "merge",
+    "time": 86.89
+  },
+  {
+    "name": "cleanup",
+    "time": 89.78
+  },
+  {
+    "name": "overlap",
+    "time": 93.56
   },
   {
     "name": "hold",
-    "time": 53.89
+    "time": 98.44
   }
 ]

@@ -76,6 +76,8 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | **"teleport"**, teleport button, instructor preview shortcut, white space beside the menu, don't stack under Start/Resume | [margin-teleport-buttons.md](./margin-teleport-buttons.md) | ✅ | student-portal home menus — exemplar Transformations Homework |
 | "buttons too big", "too bulky", "slim and condensed", "dwell doesn't mean huge", "normal button size", "I'm accurate with my mouse" | [head-mouse-ui-density.md](./head-mouse-ui-density.md) | ✅ | Macro App settings/modals; any Programs UI for Chase |
 | "assignment isn't available", "deactivated but tile still shows", "error cut off in header", "access off inside quiz", "full page error not overlay" | [portal-assignment-gate.md](./portal-assignment-gate.md) | ✅ | student-portal exit tickets, Matrix tutorial, future portal apps |
+| "instruction box", "tutorial tip", "blue text box", "how to do hints in the portal" | [portal-instruction-box.md](./portal-instruction-box.md) | ✅ | student-portal Logic Homework, Practice intro; Matrix guided practice (Tailwind twin) |
+| **"save progress"**, **"pause resume"**, **"save on every click"**, pick up mid-problem, Start / Resume | [portal-pause-resume.md](./portal-pause-resume.md) | ✅ | All student-portal assignments — exemplar Transformations + Logic embed hooks |
 
 ## Where everything else went (2026-08-08)
 

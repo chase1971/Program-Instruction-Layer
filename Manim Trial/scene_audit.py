@@ -348,6 +348,10 @@ def _allowed(a, b, allow):
 
 def audit_mobjects(mobjects, caption=None, allow=()):
     """Check one frame. Works on any list of mobjects, so it is testable without a render."""
+    if caption is not None and type(caption).__name__ == 'VGroup':
+        # a caption set from several pieces (words + LaTeX, see math_caption.py) is the
+        # caption as a whole; its parts are not content
+        mobjects = [mob for mob in mobjects if mob is not caption]
     boxes = boxes_for(mobjects)
     findings = []
     texts = [box for box in boxes if box.is_text]

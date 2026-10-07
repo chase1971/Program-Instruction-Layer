@@ -63,6 +63,9 @@ def wrap_words(words, max_width, **kwargs):
 
 
 def label(words, font_size=25, color=MUTED, max_width=None, wrap=False):
+    if '$' in words:
+        from math_caption import math_caption
+        return math_caption(words, font_size, color, max_width or 5.9)
     kwargs = dict(font='Segoe UI', font_size=font_size, color=color)
     if wrap and max_width is not None:
         # Narrow (portrait) frames: break into lines at full size instead of shrinking one
