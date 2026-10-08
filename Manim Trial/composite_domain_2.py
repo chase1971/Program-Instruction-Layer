@@ -3,9 +3,10 @@
     f(x) = sqrt(x),  g(x) = 4x + 2   ->   g(f(x)) = 4 sqrt(x) + 2,  domain [0, infinity)
 
 Same structure as composite_domain.py (example 1): each function beside its own domain, the
-composite built by wrapping x in parentheses and flying f in, then the board is cleared and the
-function plugged in brings its domain back. Here g accepts every real number, so there is nothing
-to merge: the composite's domain is simply the domain of f, the function that was plugged in.
+composite built by wrapping x in parentheses and flying f in, then the board is cleared. The
+plugged-in function's domain is brought back briefly (with a number line) to explain why the
+composite keeps f's domain; then f and the line are cleared so the hold is only g(f(x)) and
+Domain: [0, infinity) beneath it. Here g accepts every real number, so there is nothing to merge.
 
 Row helpers, sizes and the number line are shared with example 1 (composite_domain.py).
 """
@@ -49,8 +50,6 @@ LHS = r'g(f(x))'
 SQRT = r'\sqrt{x}'
 INSIDE_Y = -0.6
 NL_F_Y = 0.1
-DOM_Y = -1.05
-
 # Caption math: f is the function that gets plugged in, so it is the blue one.
 F_WORD = '$@b f$'
 G_WORD = '$g$'
@@ -94,13 +93,13 @@ class CompositeDomainTwo(Narrated, Scene):
         c4 = row(LHS, '=', '4', SQRT, '+', '2', y=-1.7, size=COMP_SIZE, left=left)
         c4[3].set_color(G_COLOR)
 
-        # the closing board: the composite on top, f brought back with its domain and line
+        # closing: composite on top; f returns mid-explanation only; final hold is composite + domain
         top_fn = row(LHS, '=', '4', SQRT, '+', '2', y=ROW_Y['top'], size=COMP_SIZE)
         top_fn[3].set_color(G_COLOR)
         f2 = row('f(x)', '=', SQRT, y=0)
         f2[2].set_color(G_COLOR)
         f2, f2_dom = pair(f2, domain_row(r'[0,\infty)', 0), ROW_Y['y_row'])
-        c_dom = domain_row(r'[0,\infty)', DOM_Y, size=36)
+        c_dom = domain_row(r'[0,\infty)', ROW_Y['y_row'], size=36)
 
         # solving f: a proper number line (dot on 0, arrow to the right)
         solve_nl = tick_number_line(LINE_Y)
@@ -218,6 +217,10 @@ class CompositeDomainTwo(Narrated, Scene):
         self.beat('same_domain', READ_LONG)
 
         self.say(f'The domain of the composite is $[0,\\infty)$, the same as {F_WORD}.')
-        self.play(FadeIn(c_dom), run_time=1.3)
+        self.play(
+            FadeOut(VGroup(f2, f2_dom, nl_f.everything, f_ray)),
+            FadeIn(c_dom),
+            run_time=1.3,
+        )
         self.beat('hold', READ_LONG)
         self.write_marks('composite_domain_2_marks.json')
