@@ -8,7 +8,7 @@ solved below with "Solve for x" (operation under both sides) and the solved line
 g's domain. The composite is built from x^2: x gets parentheses, then a copy of g flies down
 into them while they widen; it is squared and simplified to x + 4.
 
-Then the board is cleared: (f o g)(x) on top with y = x + 4 under it and ITS domain beside that
+Then the board is cleared: (f o g)(x) = x + 4 on top with y = x + 4 under it and ITS domain beside that
 (all reals; "this isn't the domain of the composite"). g comes back with its domain; both number
 lines merge onto a third, everything else is cleared, the overlap pulses and the answer is
 [2, infinity).
@@ -150,7 +150,7 @@ class CompositeDomain(Narrated, Scene):
         c4 = row(LHS, '=', 'x+4', y=ROW_Y['c4'], size=COMP_SIZE, left=left)
 
         # the closing board: (f o g)(x) on top, y = x + 4 beside ITS domain, g beside its domain
-        top_fn = row(LHS, y=ROW_Y['top'], size=COMP_SIZE)
+        top_fn = row(LHS, '=', 'x+4', y=ROW_Y['top'], size=COMP_SIZE)
         y_row, y_dom = pair(
             row('y', '=', 'x+4', y=0), domain_row(r'(-\infty,\infty)', 0), ROW_Y['y_row'])
         g2 = row('g(x)', '=', SQRT, y=0)
@@ -296,10 +296,12 @@ class CompositeDomain(Narrated, Scene):
         # ---- clear the board: (f o g)(x) on top, y = x + 4 underneath -------------------
         self.say('Now the domain of the composite. Start with the result, $x+4$.')
         self.play(
-            FadeOut(VGroup(f_row, f_dom, g_row, g_dom, c3, c4[1], c4[2])),
-            ReplacementTransform(c4[0], top_fn),
+            FadeOut(VGroup(f_row, f_dom, g_row, g_dom, c3)),
             FadeIn(VGroup(y_row[0], y_row[1])),
             copy_into(c4[2], y_row[2]),
+            ReplacementTransform(c4[0], top_fn[0]),
+            ReplacementTransform(c4[1], top_fn[1]),
+            ReplacementTransform(c4[2], top_fn[2]),
             run_time=1.4,
         )
         self.beat('domain_intro', READ_SHORT)

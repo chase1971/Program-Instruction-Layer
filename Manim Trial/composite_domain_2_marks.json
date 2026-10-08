@@ -1,0 +1,62 @@
+[
+  {
+    "name": "form",
+    "time": 2.67
+  },
+  {
+    "name": "f_inside",
+    "time": 7.11
+  },
+  {
+    "name": "f_circle",
+    "time": 13.78
+  },
+  {
+    "name": "f_arrow",
+    "time": 17.33
+  },
+  {
+    "name": "f_domain",
+    "time": 21.67
+  },
+  {
+    "name": "g_domain",
+    "time": 25.89
+  },
+  {
+    "name": "composite_x",
+    "time": 30.0
+  },
+  {
+    "name": "composite_paren",
+    "time": 32.89
+  },
+  {
+    "name": "composite_written",
+    "time": 37.0
+  },
+  {
+    "name": "simplified",
+    "time": 40.56
+  },
+  {
+    "name": "domain_intro",
+    "time": 43.89
+  },
+  {
+    "name": "domain_follows",
+    "time": 46.22
+  },
+  {
+    "name": "f_back",
+    "time": 54.44
+  },
+  {
+    "name": "same_domain",
+    "time": 58.11
+  },
+  {
+    "name": "hold",
+    "time": 61.89
+  }
+]

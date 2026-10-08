@@ -1,0 +1,154 @@
+[
+  {
+    "name": "form",
+    "time": 2.89
+  },
+  {
+    "name": "f_inside",
+    "time": 7.44
+  },
+  {
+    "name": "f_op",
+    "time": 9.56
+  },
+  {
+    "name": "f_solved",
+    "time": 13.0
+  },
+  {
+    "name": "f_circle",
+    "time": 19.56
+  },
+  {
+    "name": "f_arrows",
+    "time": 23.33
+  },
+  {
+    "name": "f_domain",
+    "time": 27.67
+  },
+  {
+    "name": "g_inside",
+    "time": 32.11
+  },
+  {
+    "name": "g_op",
+    "time": 34.22
+  },
+  {
+    "name": "g_s1",
+    "time": 37.67
+  },
+  {
+    "name": "g_bars",
+    "time": 40.44
+  },
+  {
+    "name": "g_solved",
+    "time": 45.67
+  },
+  {
+    "name": "g_circle",
+    "time": 52.33
+  },
+  {
+    "name": "g_arrow",
+    "time": 55.89
+  },
+  {
+    "name": "g_domain",
+    "time": 60.22
+  },
+  {
+    "name": "composite_x",
+    "time": 64.33
+  },
+  {
+    "name": "composite_paren",
+    "time": 67.22
+  },
+  {
+    "name": "composite_written",
+    "time": 71.33
+  },
+  {
+    "name": "simplified",
+    "time": 74.89
+  },
+  {
+    "name": "domain_intro",
+    "time": 78.22
+  },
+  {
+    "name": "y_row",
+    "time": 81.33
+  },
+  {
+    "name": "y_bottom",
+    "time": 85.89
+  },
+  {
+    "name": "y_op",
+    "time": 88.0
+  },
+  {
+    "name": "y_s1",
+    "time": 91.44
+  },
+  {
+    "name": "y_s2",
+    "time": 96.67
+  },
+  {
+    "name": "y_op2",
+    "time": 98.78
+  },
+  {
+    "name": "y_s3",
+    "time": 102.22
+  },
+  {
+    "name": "y_s4",
+    "time": 106.22
+  },
+  {
+    "name": "y_cant",
+    "time": 109.67
+  },
+  {
+    "name": "y_domain",
+    "time": 114.11
+  },
+  {
+    "name": "nl_all",
+    "time": 121.33
+  },
+  {
+    "name": "not_composite",
+    "time": 123.11
+  },
+  {
+    "name": "domain_follows",
+    "time": 125.44
+  },
+  {
+    "name": "g_back",
+    "time": 133.67
+  },
+  {
+    "name": "merge",
+    "time": 141.33
+  },
+  {
+    "name": "cleanup",
+    "time": 144.22
+  },
+  {
+    "name": "overlap",
+    "time": 148.0
+  },
+  {
+    "name": "hold",
+    "time": 152.89
+  }
+]
