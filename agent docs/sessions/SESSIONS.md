@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-08 — GitHub sync workflow (wrap up, pull registry, session-guided pull)
+
+**Repos touched:** `.` (Programs root — `agent docs/`, `scripts/serve-programs-docs.js`, `scripts/sync-pull-registry-ops.js`)
+
+**Files changed:** `agent docs/WRAP_UP.md`, `agent docs/END_OF_SESSION.md`, `agent docs/rules/multi-repo-git-push.md`, root `AGENTS.md`, `agent docs/INDEX.md`, `agent docs/sync-pull-registry.json`, `instructional-layer-htmls/github-sync-and-app-map.html` (rewritten), `instructional-layer-htmls/sync-pull-registry.html`, `page-manifest.json`; Macro App `AGENTS.md` (pull row).
+
+**What worked:** Split **wrap up** (document only, no git) from **put on GitHub** / end-of-session. Session-guided **pull from GitHub** + **sync-pull-registry.json** (17 Pull / 27 Skip after Chase saved toggles). Pull/skip UI with server save endpoint. Rewrote sync reference HTML to match current procedure. Clarified portal embeds (logic / transformations / Matrix) vs standalone apps.
+
+**Current state:** Green — docs and registry on disk; **not pushed** this wrap-up (Chase pushes at end of night).
+
+**File size flag:** None
+
+**Next session:** **Put on GitHub** when ready so laptop gets registry + docs; then **pull from GitHub** on other machine.
+
 ## 2026-09-16 — Guided-practice fraction help and viewport tuning
 
 **Files changed:** Matrix app guided-practice builders, session hook, fraction-help components and MP4 asset; student-portal guided-practice screens and scoped styles; `Manim Trial/fraction_times_whole.py` and pause marks; viewport-budget recipe, app routing docs, momentum handoffs, and generated session logs.

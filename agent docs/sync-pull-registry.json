@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "updated": "2026-10-08T21:36:33.396Z",
+  "repos": [
+    {
+      "path": ".",
+      "label": "Programs root — Manim, agent docs, session tracking",
+      "group": "core",
+      "pull": true
+    },
+    {
+      "path": "android-auto-scroll",
+      "label": "android-auto-scroll",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "CourseAgent",
+      "label": "CourseAgent",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Calendar",
+      "label": "Calendar",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/D2L-Assignment-Assistant",
+      "label": "D2L-Assignment-Assistant",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/d2l-assignment-assistant-app",
+      "label": "d2l-assignment-assistant-app",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/D2L-Assignment-Platform",
+      "label": "D2L-Assignment-Platform",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/D2L-Macro",
+      "label": "D2L-Macro",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Makeup-Exam-Platform/source-snapshots/makeup-exam-seed-default",
+      "label": "makeup-exam-seed-default",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Makeup-Exam-Platform/source-snapshots/makeup-exam-seed-personal",
+      "label": "makeup-exam-seed-personal",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/File-extraction",
+      "label": "File-extraction",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/Interface-Project",
+      "label": "Interface-Project",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/Make-Up-Exam-Macro",
+      "label": "Make-Up-Exam-Macro",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/Make-Up-Exam-Macro - Copy",
+      "label": "Make-Up-Exam-Macro - Copy",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/Quiz-extraction",
+      "label": "Quiz-extraction",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Deprecated apps/Old Apps/Quiz-extraction-BACKUP",
+      "label": "Quiz-extraction-BACKUP",
+      "group": "deprecated",
+      "pull": false
+    },
+    {
+      "path": "Disk Space Finder",
+      "label": "Disk Space Finder",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "electron-toolbar",
+      "label": "electron-toolbar",
+      "group": "toolbar",
+      "pull": true
+    },
+    {
+      "path": "Hearthstone Overlay 3.0",
+      "label": "Hearthstone Overlay 3.0",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "mt2-dwell-floors",
+      "label": "mt2-dwell-floors",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "qud-mods",
+      "label": "qud-mods",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/App Dashboard",
+      "label": "App Dashboard",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Calendar 2.0",
+      "label": "Calendar 2.0",
+      "group": "school",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/canvas-kit",
+      "label": "canvas-kit",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Extra credit extractor v2",
+      "label": "Extra credit extractor v2",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/factoring-app",
+      "label": "factoring-app",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Fractions-App",
+      "label": "Fractions-App",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/logic-app",
+      "label": "logic-app",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Macro App",
+      "label": "Macro App",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/makeup-exam-standalone",
+      "label": "makeup-exam-standalone",
+      "group": "school",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/Math App Studio",
+      "label": "Math App Studio",
+      "group": "school",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/Matrix app",
+      "label": "Matrix app",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Probability App",
+      "label": "Probability App",
+      "group": "school",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/School documents",
+      "label": "School documents",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/scripts/code_synopsis_annotator",
+      "label": "code_synopsis_annotator",
+      "group": "school",
+      "pull": false
+    },
+    {
+      "path": "School Scrips/Seating-Chart",
+      "label": "Seating-Chart",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Solving Quadratics App",
+      "label": "Solving Quadratics App",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Statistics app",
+      "label": "Statistics app",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/student-portal",
+      "label": "student-portal",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/student-session-kit",
+      "label": "student-session-kit",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/transformations-app",
+      "label": "transformations-app",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "spire-overlay",
+      "label": "spire-overlay",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "sts2-dwell-targeting",
+      "label": "sts2-dwell-targeting",
+      "group": "other",
+      "pull": false
+    },
+    {
+      "path": "Video Player",
+      "label": "Video Player",
+      "group": "toolbar",
+      "pull": false
+    }
+  ]
+}

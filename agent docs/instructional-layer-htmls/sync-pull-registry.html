@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Git repos — pull or skip</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --red:#f87171; --amber:#fbbf24; --radius:14px;
+    --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.45; font-size:18px; }
+  .page { max-width:960px; margin:0 auto; padding:1.5rem 1rem 3rem; }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1rem; }
+  h1 { font-size:1.75rem; margin-bottom:.5rem; }
+  .lead { color:var(--muted); font-size:.98rem; max-width:42rem; margin-bottom:1rem; }
+  .stats { display:flex; flex-wrap:wrap; gap:.65rem; margin:1rem 0; }
+  .pill { background:var(--panel); border:1px solid var(--border); border-radius:999px; padding:.45rem .95rem; font-size:.88rem; }
+  .pill b { color:var(--green); }
+  .pill.skip b { color:var(--muted); }
+  .toolbar { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0 1.25rem; }
+  .tbtn {
+    padding:.85rem 1.2rem; font-size:1rem; font-weight:700; border-radius:10px; border:2px solid var(--border);
+    background:var(--panel); color:var(--text); cursor:pointer; min-width:140px;
+  }
+  .tbtn.active { border-color:var(--blue); background:var(--panel2); }
+  .save {
+    padding:1rem 1.5rem; font-size:1.05rem; font-weight:800; border:none; border-radius:12px;
+    background:var(--green); color:#0f1419; cursor:pointer; margin:.5rem 0 1rem; min-width:200px;
+  }
+  .save:disabled { opacity:.5; cursor:default; }
+  .status { min-height:1.5rem; color:var(--muted); font-size:.95rem; margin-bottom:.75rem; }
+  .status.err { color:var(--red); font-weight:600; }
+  .status.ok { color:var(--green); font-weight:600; }
+  .group-title {
+    font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:1.5rem 0 .5rem; padding-bottom:.35rem; border-bottom:1px solid var(--border);
+  }
+  .row {
+    display:grid; grid-template-columns:1fr auto; gap:.75rem; align-items:center;
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:.85rem 1rem; margin-bottom:.55rem;
+  }
+  .row.skip-repo { opacity:.72; border-left:4px solid var(--muted); }
+  .row.pull-repo { border-left:4px solid var(--green); }
+  .path { font-weight:700; font-size:.95rem; word-break:break-word; }
+  .hint { color:var(--muted); font-size:.82rem; margin-top:.2rem; }
+  .toggle { display:flex; gap:.45rem; }
+  .pbtn {
+    padding:.75rem 1.1rem; min-width:88px; font-weight:800; font-size:.95rem; border-radius:10px;
+    border:2px solid var(--border); background:var(--panel2); color:var(--muted); cursor:pointer;
+  }
+  .pbtn.on-pull { background:#1e3d32; border-color:var(--green); color:var(--green); }
+  .pbtn.on-skip { background:#3d2424; border-color:var(--red); color:var(--red); }
+  .note { background:var(--panel2); border-left:5px solid var(--amber); padding:.85rem 1rem; border-radius:10px;
+    color:var(--muted); font-size:.92rem; margin:1rem 0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="/pages.html">&larr;&nbsp; All pages</a>
+  <h1>Git repos — pull or skip</h1>
+  <p class="lead">Choose which repos agents sync when you say <strong>pull everything</strong>. Skip repos are invisible in sync recaps unless you name that repo explicitly. Saves to <code>agent docs/sync-pull-registry.json</code> (commit on end-of-night push).</p>
+
+  <div class="stats" id="stats"></div>
+  <div class="note">Docs server must be running (<code>node scripts/serve-programs-docs.js</code>). After changing the server script, restart it once so Save works.</div>
+
+  <div class="toolbar" id="filters"></div>
+  <button type="button" class="save" id="saveBtn">Save choices</button>
+  <div class="status" id="status" aria-live="polite"></div>
+  <div id="list"></div>
+</div>
+<script>
+(function () {
+  const REGISTRY_URL = '/sync-pull-registry.json';
+  const SAVE_URL = '/__registry/sync-pull-registry';
+  const GROUP_ORDER = ['core', 'school', 'toolbar', 'other', 'deprecated'];
+  const GROUP_LABELS = {
+    core: 'Core',
+    school: 'School apps',
+    toolbar: 'Toolbar & utilities',
+    other: 'Other / games',
+    deprecated: 'Deprecated (default skip)',
+  };
+
+  let registry = null;
+  let filter = 'all';
+
+  const statsEl = document.getElementById('stats');
+  const listEl = document.getElementById('list');
+  const statusEl = document.getElementById('status');
+  const saveBtn = document.getElementById('saveBtn');
+  const filtersEl = document.getElementById('filters');
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg || '';
+    statusEl.className = 'status' + (kind ? ' ' + kind : '');
+  }
+
+  function updateStats() {
+    const pull = registry.repos.filter(r => r.pull).length;
+    const skip = registry.repos.length - pull;
+    statsEl.innerHTML =
+      '<span class="pill"><b>' + pull + '</b> pull on &ldquo;everything&rdquo;</span>' +
+      '<span class="pill skip"><b>' + skip + '</b> skip</span>' +
+      '<span class="pill">' + registry.repos.length + ' total repos</span>';
+  }
+
+  function renderFilters() {
+    filtersEl.innerHTML = '';
+    [['all', 'Show all'], ['pull', 'Pull only'], ['skip', 'Skip only']].forEach(([id, label]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tbtn' + (filter === id ? ' active' : '');
+      b.textContent = label;
+      b.addEventListener('click', () => { filter = id; renderFilters(); renderList(); });
+      filtersEl.appendChild(b);
+    });
+  }
+
+  function renderList() {
+    listEl.innerHTML = '';
+    const byGroup = {};
+    registry.repos.forEach(r => {
+      if (filter === 'pull' && !r.pull) return;
+      if (filter === 'skip' && r.pull) return;
+      const g = r.group || 'other';
+      if (!byGroup[g]) byGroup[g] = [];
+      byGroup[g].push(r);
+    });
+    const groups = GROUP_ORDER.filter(g => byGroup[g] && byGroup[g].length);
+    Object.keys(byGroup).forEach(g => {
+      if (groups.indexOf(g) === -1) groups.push(g);
+    });
+    groups.forEach(g => {
+      const h = document.createElement('div');
+      h.className = 'group-title';
+      h.textContent = GROUP_LABELS[g] || g;
+      listEl.appendChild(h);
+      byGroup[g].forEach(repo => listEl.appendChild(rowEl(repo)));
+    });
+  }
+
+  function setPull(repo, pull) {
+    repo.pull = pull;
+    updateStats();
+    renderList();
+    setStatus('Unsaved changes — press Save choices.', '');
+  }
+
+  function rowEl(repo) {
+    const row = document.createElement('div');
+    row.className = 'row ' + (repo.pull ? 'pull-repo' : 'skip-repo');
+    const left = document.createElement('div');
+    const path = document.createElement('div');
+    path.className = 'path';
+    path.textContent = repo.path === '.' ? 'Programs root (.)' : repo.path;
+    const hint = document.createElement('div');
+    hint.className = 'hint';
+    hint.textContent = repo.label || '';
+    left.appendChild(path);
+    left.appendChild(hint);
+
+    const toggle = document.createElement('div');
+    toggle.className = 'toggle';
+    const pullBtn = document.createElement('button');
+    pullBtn.type = 'button';
+    pullBtn.className = 'pbtn' + (repo.pull ? ' on-pull' : '');
+    pullBtn.textContent = 'Pull';
+    pullBtn.addEventListener('click', () => setPull(repo, true));
+    const skipBtn = document.createElement('button');
+    skipBtn.type = 'button';
+    skipBtn.className = 'pbtn' + (!repo.pull ? ' on-skip' : '');
+    skipBtn.textContent = 'Skip';
+    skipBtn.addEventListener('click', () => setPull(repo, false));
+    toggle.appendChild(pullBtn);
+    toggle.appendChild(skipBtn);
+
+    row.appendChild(left);
+    row.appendChild(toggle);
+    return row;
+  }
+
+  async function load() {
+    setStatus('Loading…', '');
+    try {
+      const res = await fetch(REGISTRY_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      registry = await res.json();
+      updateStats();
+      renderFilters();
+      renderList();
+      setStatus('', '');
+    } catch (e) {
+      setStatus('Could not load registry. Is the docs server running on port 8765?', 'err');
+    }
+  }
+
+  saveBtn.addEventListener('click', async () => {
+    if (!registry) return;
+    saveBtn.disabled = true;
+    setStatus('Saving…', '');
+    try {
+      const res = await fetch(SAVE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(registry),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'save failed');
+      setStatus('Saved. Agents read agent docs/sync-pull-registry.json on pull.', 'ok');
+    } catch (e) {
+      setStatus('Save failed — restart docs server if you updated serve-programs-docs.js. ' + e.message, 'err');
+    } finally {
+      saveBtn.disabled = false;
+    }
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

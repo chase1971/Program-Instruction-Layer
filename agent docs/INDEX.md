@@ -43,7 +43,7 @@ never touches this file.
 |---|---|
 | "don't put that on my screen" · launch the app · GUI or UI test · change the display config | [rules/never-display-without-permission.md](./rules/never-display-without-permission.md) |
 | PowerShell error · `&&` didn't work · curl failed · shell syntax | [rules/powershell-shell-commands.md](./rules/powershell-shell-commands.md) |
-| **pull** · "pull everything" · "pull from GitHub" · "put it on GitHub" · "pull Macro App" · "same as my PC/laptop" · push at end · which repos get committed · laptop vs PC files · don't tell me what's uncommitted · commit everything · GitHub backup · full machine sync | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
+| **pull** · "pull everything" · "pull from GitHub" · "put it on GitHub" · "pull Macro App" · "same as my PC/laptop" · push at end · which repos get committed · laptop vs PC files · don't tell me what's uncommitted · commit everything · GitHub backup · full machine sync · **why is pull slow** · **gradebook / portal / logic which repo** · home ↔ work sync · **which repos to pull** · skip a repo on sync | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) · [github-sync-and-app-map.html](http://127.0.0.1:8765/instructional-layer-htmls/github-sync-and-app-map.html) · toggles [sync-pull-registry.html](http://127.0.0.1:8765/instructional-layer-htmls/sync-pull-registry.html) |
 | `.gitignore` didn't work · ignored file still shows in git · runtime file keeps changing | [rules/multi-repo-git-push.md](./rules/multi-repo-git-push.md) |
 | frozen apps · Calendar 2.0 · "don't touch that one" | [rules/frozen-apps.md](./rules/frozen-apps.md) |
 | "make me an HTML page I can click" · deliver a link · the docs server on 8765 | [rules/html-delivery.md](./rules/html-delivery.md) |
@@ -53,7 +53,8 @@ never touches this file.
 
 | You might say | Read this |
 |---|---|
-| "end of session protocol" · wrap the session · we're done for now | [END_OF_SESSION.md](./END_OF_SESSION.md) — the seven steps and the log template |
+| **wrap up the session** · wrap up · log this chat · document only no git | [WRAP_UP.md](./WRAP_UP.md) — SESSIONS entry + **Repos touched:** · no commit/push |
+| "end of session protocol" · we're done for now · **put on GitHub** (full save) | [END_OF_SESSION.md](./END_OF_SESSION.md) — the seven steps, commit/push, log template |
 | "perform a momentum handoff" · switch to a fresh task · give the next agent our momentum | [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) — write [momentum-handoffs/latest.md](./momentum-handoffs/latest.md), then copy-ready prompt |
 | **"read the latest momentum handoff"** · continue from the handoff · pick up the momentum handoff · what did the last agent leave off (fresh task) | **[momentum-handoffs/latest.md](./momentum-handoffs/latest.md)** first, then [MOMENTUM_HANDOFF.md](./MOMENTUM_HANDOFF.md) § Read — check the Written date; stale → ask Chase |
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |

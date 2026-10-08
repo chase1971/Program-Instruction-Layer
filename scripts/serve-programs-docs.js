@@ -4,10 +4,10 @@
  * Usage: node scripts/serve-programs-docs.js
  * Then open: http://127.0.0.1:8765/context-engineering-infographic.html
  *
- * Also accepts ONE kind of write: POST /__comments/<page path> saves reader comments
- * to <page>.comments.json beside the page, so a page can collect Chase's notes and an
- * agent can read them straight off disk. Nothing else is writable. Detail:
- * agent docs/rules/html-delivery.md § Reader comments.
+ * Writable POST endpoints (agents read the files on disk):
+ * - POST /__comments/<page path> → <page>.comments.json beside the page
+ * - POST /__registry/sync-pull-registry → agent docs/sync-pull-registry.json
+ * Detail: agent docs/rules/html-delivery.md
  */
 'use strict';
 
@@ -52,7 +52,10 @@ function resolveFile(rel) {
 
 const COMMENTS_PREFIX = '/__comments/';
 const COMMENTS_SUFFIX = '.comments.json';
+const REGISTRY_SAVE_PATH = '/__registry/sync-pull-registry';
+const REGISTRY_FILE = path.join(AGENT_DOCS, 'sync-pull-registry.json');
 const MAX_COMMENT_BODY = 512 * 1024;
+const MAX_REGISTRY_BODY = 256 * 1024;
 
 /**
  * Where a page's comments file lives: beside the page, in whichever served root
@@ -113,8 +116,67 @@ function handleSaveComments(req, res, rel) {
   });
 }
 
+function handleSavePullRegistry(req, res) {
+  let body = '';
+  let tooBig = false;
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_REGISTRY_BODY) {
+      tooBig = true;
+      req.destroy();
+    }
+  });
+  req.on('end', () => {
+    if (tooBig) {
+      res.writeHead(413, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"too large"}');
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(body || '{}');
+    } catch {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"bad json"}');
+      return;
+    }
+    if (!parsed || parsed.version !== 1 || !Array.isArray(parsed.repos)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"invalid registry shape"}');
+      return;
+    }
+    for (const r of parsed.repos) {
+      if (!r || typeof r.path !== 'string' || typeof r.pull !== 'boolean') {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end('{"ok":false,"error":"each repo needs path and pull boolean"}');
+        return;
+      }
+    }
+    parsed.updated = new Date().toISOString();
+    try {
+      fs.writeFileSync(REGISTRY_FILE, JSON.stringify(parsed, null, 2) + '\n', 'utf8');
+      console.log('sync-pull-registry saved');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+    }
+  });
+}
+
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
+
+  if (rel === REGISTRY_SAVE_PATH) {
+    if (req.method !== 'POST') {
+      res.writeHead(405, { 'Content-Type': 'application/json' });
+      res.end('{"ok":false,"error":"POST only"}');
+      return;
+    }
+    handleSavePullRegistry(req, res);
+    return;
+  }
 
   if (rel.startsWith(COMMENTS_PREFIX)) {
     if (req.method !== 'POST') {

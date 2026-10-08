@@ -73,8 +73,9 @@ omitted entirely. Only report **broken** or **blocked**.
 ## Why `Pull` must not ask — and must not stop at one repo
 
 Chase works on **two machines** (desktop PC and laptop). GitHub is how files move between them.
-When he says **`pull`** — or "pull everything", "pull from GitHub", "pull Macro App",
+When he says **`pull`** — or "pull everything", "pull from GitHub",
 "same as my PC/laptop", "get everything relevant" — he means **full machine sync**:
+(Scoped: "pull macro app", "pull portal", etc. — § Sync bundles.)
 
 - **Down:** every repo under Programs that is behind `origin/main` gets pulled (or merged if diverged).
 - **Up:** every repo with work to share gets committed and pushed.
@@ -86,7 +87,87 @@ When he says **`pull`** — or "pull everything", "pull from GitHub", "pull Macr
 scratch pages). He had to ask twice before the animation links worked. **Root cause:** scoped sync to
 the Cursor workspace folder instead of scanning all sibling repos.
 
-**Minimum scan set** (every `Pull`, no exceptions):
+## Pull registry — which repos exist for sync
+
+**Owner file:** `agent docs/sync-pull-registry.json` — edit via
+**http://127.0.0.1:8765/instructional-layer-htmls/sync-pull-registry.html** (Save writes JSON).
+
+| `pull` | Agent behavior |
+|---|---|
+| **true** | Included in **pull everything**, session-guided pull, and end-of-night push scan |
+| **false** | **Silent skip** — no fetch, no mention in recap, no “left uncommitted” lines |
+
+**Override:** Chase **names** a skipped repo or app (“pull Hearthstone overlay”) → sync that repo
+once; do not flip the registry unless he asks.
+
+**New repo on disk:** run `node scripts/sync-pull-registry-ops.js refresh` to append it (default
+pull follows deprecated/frozen rules in that script).
+
+**Minimum scan set** (below) means repos that must not be **forgotten** when they are **`pull:
+true`** — not “scan every folder on disk.”
+
+## Efficient sync — enumerate, fetch, act on diff
+
+For every repo **in scope** (full pull = all registry entries with `pull: true`; scoped pull = one
+bundle — § Sync bundles; intersect with registry unless Chase named the repo explicitly):
+
+1. `git fetch origin`
+2. Compare — behind, ahead, or dirty (shareable changes only)
+3. **Skip heavy work** when already aligned with `origin` and the tree is clean (or dirty only on machine-local paths)
+4. Pull / merge / stash / commit / push **only** where the comparison says so
+
+Network time scales with **repos in scope × fetch**, not with “pull every file again.” Slowness usually means too wide a scope, unpushed work on this machine (push half runs), or a merge (often Programs root session-tracking).
+
+## Sync bundles — scoped `pull` (Chase names one area)
+
+When Chase names a **specific app or area** — not “everything” / “same as my laptop” — sync **only** the repos in that bundle (still fetch + diff + push within the bundle). Reference page: **`http://127.0.0.1:8765/instructional-layer-htmls/github-sync-and-app-map.html`**.
+
+| Chase might say | Repos in scope |
+|---|---|
+| **Macro App**, macro, **gradebook**, **Teacher Console**, Pearson, roster, D2L automations | `School Scrips/Macro App` (or laptop spelling `School Scripts/Macro-App`) |
+| **Portal**, student portal, exit tickets, custom quiz, Supabase schema | **`student-session-kit` + `student-portal`** — always both |
+| Portal + **matrix** tutorial | Portal bundle + `School Scrips/Matrix app` |
+| Portal + **logic** homework / logic app | Portal bundle + `School Scrips/logic-app` |
+| Portal + **transformations** / graphing embed | Portal bundle + `transformations-app` |
+| **Animations**, Manim, **agent docs**, instruction layer | Programs **root** repo (`Program-Instruction-Layer`) |
+| **School documents**, exam maps | `School Scrips/School documents` |
+| **Toolbar**, electron toolbar, launcher panel | `electron-toolbar` (+ a named satellite repo only if that session touched it) |
+
+**Full machine sync** — triggers in § Explicit full `Pull` below — still uses the **minimum scan set**, not a bundle.
+
+## Session-guided pull (default for “pull from GitHub”)
+
+Chase wraps agents during the day ([WRAP_UP.md](../WRAP_UP.md) — log only, no push) and pushes at
+night. On the other machine he says **pull from GitHub** without naming Macro vs portal. Use
+**pushed** session logs on GitHub as the repo list — not a blind scan of all 44 repos first.
+
+**Limitation:** Wrap-up entries that were **never pushed** do not exist on GitHub yet. Only
+**Repos touched:** lines from commits already on `origin` can guide pull. Same-day unpushed work
+stays invisible until end-of-night sync.
+
+**Procedure**
+
+1. **Waterline (local):** Newest `## YYYY-MM-DD` date in **this machine’s**
+   `agent docs/sessions/SESSIONS.md` before updating. (Not calendar “yesterday” unless Chase
+   says so — gaps between work days are normal.)
+2. **Bootstrap:** `fetch` + pull Programs **root** if behind — updates
+   `agent docs/sessions/SESSIONS.md` from GitHub.
+3. **Collect entries:** Every `## YYYY-MM-DD` block in `agent docs/sessions/SESSIONS.md` **newer
+   than the waterline** (compare header dates). Also scan app logs listed in those entries
+   (e.g. “logged in `student-portal/docs/sessions/SESSIONS.md`”) if bootstrap pulled those repos;
+   include their **`Repos touched:`** too.
+4. **Build repo set:** Union all **`Repos touched:`** paths from those entries. Map paths via
+   [APP_LOCATIONS.md](../../APP_LOCATIONS.md). Apply pair rules (portal → add `student-session-kit`).
+5. **Sync each repo in the set:** § Efficient sync (fetch, act on diff, pull/push/stash as needed).
+6. **Safety expand:** If any repo in the **minimum scan set** (below) is behind after step 5 but
+   was **not** in the session set — **sync it anyway** and mention one line (“also behind: Programs
+   root”). If the session set is **empty** (no new entries since waterline) → run **full** § Explicit
+   full `Pull` (fetch every Programs repo, act on diff).
+
+**Optional:** Chase may still say **pull macro app** / **pull portal** (§ Sync bundles) — skips
+reading SESSIONS.
+
+**Minimum scan set** (every **full** `Pull`, no exceptions):
 
 | Repo | Why it is never optional |
 |---|---|
@@ -149,13 +230,19 @@ remote for generated/scratch you did not touch this session. Commit when clean.
 **Only STOP (surface to Chase):** secret/credential accidentally staged, pre-commit hook failure,
 file too large for GitHub — not because a merge exists.
 
-## Explicit `Pull` — full sync (pull + push)
+## Explicit full `Pull` — every Programs repo (pull + push)
 
-Trigger: **`pull`**, "pull everything", "pull from GitHub", "pull Macro App", "pull all",
-"same as my PC/laptop", "get everything on this machine", "everything relevant from GitHub".
+Trigger: **`pull everything`**, "pull all", "same as my PC/laptop", "get everything on this
+machine", "everything relevant from GitHub". Plain **`pull`** / **pull from GitHub** → §
+Session-guided pull first; escalate here when session set is empty or safety expand finds gaps.
 **Before any other work.** This **is** permission to commit and push mid-session.
 
-For **each** repo in the minimum scan set (and any other git repo under Programs):
+**Scoped triggers** (bundle only — § Sync bundles): e.g. "pull macro app", "pull portal",
+"pull animations", "pull school documents", "pull toolbar". Same commit/push permission,
+but **only** repos in that bundle — no SESSIONS read required.
+
+For **each** repo in scope (full pull = every `pull: true` row in `sync-pull-registry.json`, still
+applying § Minimum scan set as a safety check when `pull: true`; scoped = one bundle ∩ registry):
 
 1. `git fetch origin`
 2. If dirty **only** on machine-local paths → stash those paths (see § Machine-local paths).
@@ -163,7 +250,7 @@ For **each** repo in the minimum scan set (and any other git repo under Programs
 4. If dirty with shareable work → stage, commit (one message per repo), **push** to `main`.
 5. If ahead after pull → **push** even when the working tree is clean.
 6. Restore machine-local stashes. Union-merge session-tracking jsonl when both sides bumped.
-7. **Do not stop** after the first repo. Named app ("pull Macro App") still means **all** repos.
+7. **Do not stop** after the first repo in scope. Full pull still means **all** repos, not Macro alone.
 
 Summary for Chase (§ Sync recap): on success, *everything was pulled/pushed and there were no
 issues* — optional one line on repos that had meaningful commits. **No** local-file footnotes.
@@ -181,8 +268,10 @@ steps as above (steps 1–3, 6–7), but **do not commit or push** unless he als
 
 Also: Cursor Automation, nightly backup. **No npm test / pytest / builds** unless Chase asks — sync only.
 
-1. Same multi-repo scan; skip frozen apps.
-2. Commit + push **every dirty repo** with meaningful changes — not only the active app. One repo per commit.
+1. Same repo set as pull everything — `pull: true` in `sync-pull-registry.json` (§ Pull registry); skip
+   `pull: false` silently unless Chase named that repo.
+2. Commit + push **every dirty repo in that set** with meaningful changes — not only the active app. One
+   repo per commit.
 3. Sister pair when either changed: Macro App ↔ assignment-assistant-engine.
 4. **Silent skip** (exclude from add and from Chase's report): `.env`, credentials, `config/d2l-courses.json`, Calendar `server-port.json`. See § Silent skip list above.
 5. **Do include:** `Macro App/modules/makeup-exam/exam_history.jsonl` (tracked sync log). **Default:** commit any other dirty tracked or untracked file unless it is on the silent skip list.

@@ -145,21 +145,32 @@ Toolbar tiles: `electron-toolbar/docs/recipes/LAUNCHER_PANEL.md`.
 Sibling repos under Programs, **not** a monorepo. Chase uses GitHub **only** to move work between
 his PC and laptop. He cannot rely on remembering; the agent drives this. Skip frozen apps.
 
-**When Chase says `pull`** — or "pull everything", "pull from GitHub", "pull Macro App",
-"same as my PC/laptop", "get everything on this machine" — that is **full sync in both
-directions**. One word is enough. **Do not ask** which repos, which files, or whether to push.
+**When Chase says `pull`** — or "pull everything", "pull from GitHub",
+"same as my PC/laptop", "get everything on this machine" — that is **sync in both directions**.
+Default: **session-guided pull** (`agent docs/rules/multi-repo-git-push.md` § Session-guided
+pull) — bootstrap from pushed `SESSIONS.md` **`Repos touched:`** lines, then fetch/pull/push
+only those repos (plus safety expand if git says more is behind). He does not have to name Macro
+vs portal. **Pull everything** uses only repos with **`pull: true`** in
+`agent docs/sync-pull-registry.json` (UI:
+http://127.0.0.1:8765/instructional-layer-htmls/sync-pull-registry.html). **Silent skip**
+`pull: false` — no mention unless he names that repo. Escalate to all on-disk repos only when
+session-guided finds nothing and registry rows look stale (`node scripts/sync-pull-registry-ops.js refresh`).
+**Do not ask** which files or whether to push.
 
-1. **Scan every git repo** under Programs — root `Programs/` repo, `School Scripts/*`,
-   `School Scrips/*`, `electron-toolbar`, and every other sibling — **not** only the app open
-   in Cursor. A pull that touches Macro App but skips `Programs/` (Manim, `agent docs/`,
-   session tracking) is a failed pull. **`student-session-kit` and `student-portal` are never
-   optional** — always pull/push with the rest (schema + portal stay paired).
-2. **Pull** each repo that is behind: stash machine-local paths if needed, `git fetch`,
-   `git pull --ff-only` or merge when diverged, restore stashes. Never skip a whole repo
-   because only machine-local files are dirty.
-3. **Push** each repo that has commits or changes to share: commit everything meaningful
-   (one commit per repo), push to `main`. **Silent skip** only for machine-local paths on
-   the skip list — never commit those, **never mention them in the recap**.
+**When he names one area** ("pull macro app", "pull portal", "pull animations", …) — **scoped
+sync**: only the repos in that bundle (`agent docs/rules/multi-repo-git-push.md` § Sync bundles).
+Still pull + push within the bundle. Reference:
+`http://127.0.0.1:8765/instructional-layer-htmls/github-sync-and-app-map.html`.
+
+1. **Enumerate every git repo in scope** — full pull: all under Programs (root, `School Scripts/*`,
+   `School Scrips/*`, `electron-toolbar`, siblings). **Fetch each, act only where behind/ahead/dirty**
+   — not a blind pull in every repo. A full pull that skips `Programs/` (Manim, `agent docs/`) is
+   failed. **`student-session-kit` and `student-portal` are never optional** on a full pull (schema +
+   portal stay paired).
+2. **Pull** repos that are behind: stash machine-local paths if needed, `git pull --ff-only` or merge
+   when diverged, restore stashes. Never skip a repo because only machine-local files are dirty.
+3. **Push** repos with commits or shareable dirty work: commit (one per repo), push to `main`.
+   **Silent skip** only for machine-local paths on the skip list.
 4. **After `pull`:** this machine has everything the other machine put on GitHub; GitHub
    has everything this machine had that belongs in git. Machine-local files stay local on
    each machine — **do not report that**; it is expected, not news.
@@ -234,11 +245,21 @@ if a chunk finished without a bump.
 
 ---
 
+## Wrap up — this chat only (no git)
+
+On **"wrap up the session"**, **"wrap up"** (ending *this* agent’s work) → follow
+**`agent docs/WRAP_UP.md`**. **No commit, no push.** Log what **this conversation** did in the
+right `SESSIONS.md` with a **`Repos touched:`** line so a later pull can find those repos.
+
+Parallel agents may still be working; Chase saves to GitHub at night via end-of-session or
+**"put on GitHub"**.
+
 ## End-of-Session Protocol
 
-On **"end of session protocol"**, "wrap the session", "we're done for now" → follow
-**`agent docs/END_OF_SESSION.md`**. Invoking it *is* permission to commit and push, and
-means **Chase is done** — wrap up silently; **never ask him to run, launch, or verify anything**.
+On **"end of session protocol"**, **"we're done for now"**, **"put on GitHub"** (full save) →
+follow **`agent docs/END_OF_SESSION.md`**. Invoking it *is* permission to commit and push, and
+means **Chase is done moving work to GitHub for now** — agent-only wrap; **never ask him to run,
+launch, or verify anything**.
 
 On "what's the state" / "where did we leave off" → read the latest `SESSIONS.md` entry and
 summarize in 2–3 lines. That is not this protocol.

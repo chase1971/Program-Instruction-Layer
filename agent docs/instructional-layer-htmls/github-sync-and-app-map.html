@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GitHub sync — how it works now</title>
+<style>
+  :root {
+    --bg:#0f1419; --panel:#1a2332; --panel2:#243044; --text:#e8edf4;
+    --muted:#94a3b8; --border:#334155; --blue:#38bdf8; --green:#34d399;
+    --amber:#fbbf24; --radius:14px; --font:"Segoe UI",system-ui,sans-serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.55; font-size:18px; }
+  .page { max-width:920px; margin:0 auto; padding:1.75rem 1rem 3rem; }
+  a { color:var(--blue); }
+  a.back { display:inline-block; color:var(--muted); text-decoration:none; font-size:.9rem;
+    padding:.65rem 1.15rem; border:1px solid var(--border); border-radius:9px; margin-bottom:1.25rem; }
+  h1 { font-size:1.85rem; margin-bottom:.4rem; }
+  .lead { color:var(--muted); max-width:44rem; margin-bottom:1.25rem; }
+  h2 { font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--blue);
+    font-weight:800; margin:2rem 0 .75rem; padding-bottom:.4rem; border-bottom:1px solid var(--border); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden; margin:.5rem 0 1rem; }
+  th, td { padding:.72rem .85rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--panel2); font-size:.76rem; text-transform:uppercase; letter-spacing:.06em; }
+  td { color:var(--muted); font-size:.92rem; }
+  td b { color:var(--text); }
+  tr:last-child td { border-bottom:0; }
+  ul { margin:.5rem 0 1rem 1.2rem; color:var(--muted); font-size:.95rem; }
+  li { margin:.4rem 0; }
+  .card { background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--green);
+    border-radius:var(--radius); padding:1rem 1.1rem; margin:1rem 0; }
+  .card p { color:var(--muted); font-size:.93rem; margin-top:.35rem; }
+  .card b { color:var(--text); }
+  .links { display:flex; flex-wrap:wrap; gap:.65rem; margin:1rem 0; }
+  .links a { display:inline-block; padding:.85rem 1.2rem; background:var(--panel2); border:2px solid var(--border);
+    border-radius:10px; text-decoration:none; font-weight:700; color:var(--text); font-size:.95rem; }
+  .links a:hover, .links a:focus { border-color:var(--blue); outline:none; }
+  footer { margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--border); color:var(--muted); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="/pages.html">&larr;&nbsp; All pages</a>
+
+  <h1>GitHub sync — how it works now</h1>
+  <p class="lead">Home ↔ school backup. Updated 2026-10-08. Procedure owners:
+    <code>agent docs/WRAP_UP.md</code>, <code>agent docs/END_OF_SESSION.md</code>,
+    <code>agent docs/rules/multi-repo-git-push.md</code>.</p>
+
+  <h2>What to say</h2>
+  <table>
+    <thead><tr><th>Say this</th><th>Git?</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Wrap up the session</b></td>
+        <td>No</td>
+        <td>Log <strong>this chat</strong> in the right <code>SESSIONS.md</code>. Required line: <b>Repos touched:</b> (folder paths). Other agents can keep working.</td>
+      </tr>
+      <tr>
+        <td><b>Put on GitHub</b> · <b>end of session protocol</b></td>
+        <td>Yes</td>
+        <td>Commit + push every dirty repo in your <b>Pull</b> list (see registry). End of night — cloud matches disk.</td>
+      </tr>
+      <tr>
+        <td><b>Pull from GitHub</b></td>
+        <td>Yes</td>
+        <td>Session-guided sync + only repos marked <b>Pull</b> in the registry. Fetch each; pull/push only where different. Skip repos are silent.</td>
+      </tr>
+      <tr>
+        <td><b>Pull everything</b></td>
+        <td>Yes</td>
+        <td>Full sweep of the <b>Pull</b> list (not every folder on disk — not deprecated/games you skipped).</td>
+      </tr>
+      <tr>
+        <td><b>Pull macro app</b> · <b>pull portal</b> · …</td>
+        <td>Yes</td>
+        <td>That bundle only (portal always includes <code>student-portal</code> + <code>student-session-kit</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Pull from GitHub — agent steps</h2>
+  <ol style="margin-left:1.2rem;color:var(--muted);font-size:.95rem;">
+    <li>Load <code>agent docs/sync-pull-registry.json</code> — only <code>pull: true</code> repos unless you named one explicitly.</li>
+    <li>Pull Programs root if behind (session logs + registry file on GitHub).</li>
+    <li>Read new <code>SESSIONS.md</code> entries since this machine’s last date; union <b>Repos touched:</b> from those entries.</li>
+    <li>Fetch → compare → pull/push/stash only where needed.</li>
+    <li>If something important is behind but missing from logs, sync it anyway (one-line mention only if blocked).</li>
+  </ol>
+  <p style="color:var(--muted);font-size:.92rem;">Unpushed wrap-ups are not on GitHub yet — laptop cannot see tonight’s log until <b>put on GitHub</b>.</p>
+
+  <div class="links">
+    <a href="/instructional-layer-htmls/sync-pull-registry.html">Pull / Skip toggles (all repos)</a>
+  </div>
+
+  <h2>Portal apps vs folders</h2>
+  <table>
+    <thead><tr><th>You change…</th><th>Repo (usually)</th></tr></thead>
+    <tbody>
+      <tr><td>Gradebook, Teacher Console, D2L automations</td><td><b>School Scrips/Macro App</b></td></tr>
+      <tr><td>Portal tiles, attempts, deploy, portal CSS</td><td><b>student-portal</b> + <b>student-session-kit</b> (schema)</td></tr>
+      <tr><td>Logic problem UI, generator, panels</td><td><b>logic-app</b> (portal embeds via <code>@logic/</code>)</td></tr>
+      <tr><td>Transformations identifying / graphing</td><td><b>transformations-app</b></td></tr>
+      <tr><td>Matrix tutorial (Gauss-Jordan, etc.)</td><td><b>Matrix app</b></td></tr>
+      <tr><td>Manim, agent docs, this page</td><td><b>Programs root</b> (<code>.</code>)</td></tr>
+      <tr><td>Factoring / Fractions standalone Chrome apps</td><td>Own repos — <em>not</em> in portal home today unless you add them</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--muted);font-size:.92rem;">Keep <b>Pull</b> on portal + logic + transformations + Matrix if you edit embedded apps in those sibling folders.</p>
+
+  <h2>Habits</h2>
+  <ul>
+    <li>Wrap each agent when that task pauses; one <b>put on GitHub</b> when done for the night.</li>
+    <li><code>.env</code> in portal / session-kit stays local — copy once per machine for Supabase.</li>
+    <li>Naming a skipped repo (“pull Hearthstone”) still syncs that repo once.</li>
+  </ul>
+
+  <div class="card">
+    <b>Recap line agents should use on success</b>
+    <p>Everything was pulled and pushed and there were no issues. — No lists of skipped or machine-local files.</p>
+  </div>
+
+  <footer>Index: <code>agent docs/INDEX.md</code> · App folders: <code>APP_LOCATIONS.md</code></footer>
+</div>
+</body>
+</html>

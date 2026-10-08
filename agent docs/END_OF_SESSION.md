@@ -3,29 +3,28 @@
 > **Rung 5 — on demand.** The always-on trigger is root `AGENTS.md` § End-of-session; this file
 > holds the steps.
 >
-> **Fires on:** "end of session protocol" · "wrap the session" · "we're done for now".
+> **Fires on:** "end of session protocol" · "we're done for now" · **"put on GitHub"** (full sync).
 >
-> **Invoking it *is* permission to commit and push.** No separate ask needed.
+> **Not** **"wrap up the session"** — that is [WRAP_UP.md](./WRAP_UP.md) (documentation only, no git).
 >
-> **Invoking it also means:** Chase is **done** — no more coding, no more running
-> anything tonight. Assume he already tested what mattered (or accepts headless CI).
-> **Do not ask him to run, launch, restart, open, or verify anything** — not apps, not
-> servers, not browsers, not smoke tests, not "quick checks."
+> **Invoking this *is* permission to commit and push.** No separate ask needed.
+>
+> **Invoking this also means:** Chase is **done for the night** (or done moving work to GitHub) —
+> no more coding on this machine for now. Assume he already tested what mattered (or accepts headless CI).
+> **Do not ask him to run, launch, restart, open, or verify anything.**
 
 ---
 
 ## What this phrase means
 
-**"End of session protocol" = I'm done.** Wrap-up is **agent-only**: git, scorecard,
-session log, commit/push, check-docs, one-line report — then stop.
+**End-of-session = document + save everything to GitHub.** Wrap-up during the day is
+[WRAP_UP.md](./WRAP_UP.md) (log only). This protocol is the **full save to the cloud**.
 
 - **Never** ask Chase to run anything as part of wrap-up.
 - **Never** end with handoff steps directed at him ("restart and confirm…", "want to
   launch…?", "smoke-test these three things…").
 - Headless checks during the session are enough for **Current state** unless he said
   something is still broken.
-- If he confirmed it works in chat, log **Green** — not "Green headlessly — live test
-  needed."
 - **Next session** in the log is for a *future* agent/session, not a to-do list for Chase
   tonight.
 
@@ -43,12 +42,13 @@ anything on Chase's screen without asking.
    ([SESSION_TRACKING.md](./SESSION_TRACKING.md)). Finalize writes the metrics card only —
    see [SESSION_METRICS.md](./SESSION_METRICS.md). **Don't re-guess counts** from memory.
 
-3. **Append a session entry, newest at top.** Which log depends on what the work touched:
+3. **Append a session entry, newest at top** (if this chat has not already wrapped with
+   [WRAP_UP.md](./WRAP_UP.md) for the same work). Which log depends on what the work touched:
 
    | Work was… | Log |
    |---|---|
    | Inside one app | `<app>/docs/sessions/SESSIONS.md` |
-   | **The instruction layer itself** — `agent docs/`, root `AGENTS.md`/`CLAUDE.md`, `agent docs/recipes/INDEX.md`, `agent docs/recipes/INDEX.md`, the capture skill, `check-docs.js` and friends | **`agent docs/sessions/SESSIONS.md`** |
+   | **The instruction layer itself** — `agent docs/`, root `AGENTS.md`/`CLAUDE.md`, `agent docs/recipes/INDEX.md`, the capture skill, `check-docs.js` and friends | **`agent docs/sessions/SESSIONS.md`** |
    | Cross-app work with no instructional-layer content (touched several apps' code, not their docs) | The most-touched app's `SESSIONS.md`; name the others in the entry |
 
    **This log is for the documentation system, not a catch-all cross-app diary.** If it touched
@@ -60,6 +60,8 @@ anything on Chase's screen without asking.
 
    ```
    ## YYYY-MM-DD — [Brief title]
+
+   **Repos touched:** [git repo roots — required; see WRAP_UP.md]
 
    **Files changed:** [files with line-count deltas if relevant]
 
