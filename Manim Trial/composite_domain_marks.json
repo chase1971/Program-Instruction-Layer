@@ -1,102 +1,110 @@
 [
   {
+    "name": "problem_title",
+    "time": 1.11
+  },
+  {
+    "name": "problem_intro",
+    "time": 4.11
+  },
+  {
     "name": "form",
-    "time": 2.67
+    "time": 7.0
   },
   {
     "name": "f_quadratic",
-    "time": 5.67
+    "time": 10.0
   },
   {
     "name": "f_domain",
-    "time": 8.89
+    "time": 13.22
   },
   {
     "name": "g_inside",
-    "time": 13.33
+    "time": 17.67
   },
   {
     "name": "g_op",
-    "time": 15.44
+    "time": 19.78
   },
   {
     "name": "g_solved",
-    "time": 18.89
+    "time": 23.22
   },
   {
     "name": "g_circle",
-    "time": 25.56
+    "time": 28.44
   },
   {
     "name": "g_arrow",
-    "time": 29.11
+    "time": 31.39
   },
   {
     "name": "g_domain",
-    "time": 33.44
+    "time": 35.72
   },
   {
     "name": "composite_x",
-    "time": 37.56
+    "time": 44.94
   },
   {
     "name": "composite_paren",
-    "time": 40.44
+    "time": 47.83
   },
   {
     "name": "composite_written",
-    "time": 44.56
+    "time": 51.94
   },
   {
     "name": "cancel",
-    "time": 47.33
+    "time": 54.72
   },
   {
     "name": "squared",
-    "time": 49.78
+    "time": 57.17
   },
   {
     "name": "simplified",
-    "time": 53.33
+    "time": 60.72
   },
   {
     "name": "domain_intro",
-    "time": 56.67
+    "time": 64.06
   },
   {
     "name": "domain_linear",
-    "time": 60.11
+    "time": 67.5
   },
   {
     "name": "nl_all",
-    "time": 66.89
+    "time": 71.94
   },
   {
     "name": "not_composite",
-    "time": 68.67
+    "time": 73.72
   },
   {
     "name": "domain_follows",
-    "time": 71.0
+    "time": 76.06
   },
   {
     "name": "g_back",
-    "time": 79.22
+    "time": 82.5
   },
   {
     "name": "merge",
-    "time": 86.89
+    "time": 88.39
   },
   {
     "name": "cleanup",
-    "time": 89.78
+    "time": 91.28
   },
   {
     "name": "overlap",
-    "time": 93.56
+    "time": 95.06
   },
   {
     "name": "hold",
-    "time": 98.44
+    "time": 99.94
   }
 ]

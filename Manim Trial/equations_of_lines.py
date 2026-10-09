@@ -21,6 +21,12 @@ Each scene is one Problem. Verified (Fraction arithmetic in Problem.__post_init_
         y + 4 = -4/3 (x - 3)  ->  3(y + 4) = -4(x - 3)  ->  3y + 12 = -4x + 12
         ->  3y = -4x (subtract 12 from both sides)  ->  y = -4/3 x    check (3, -4): -4
 
+    PerpendicularStandard: perpendicular to 8x - 4y = 8 through (-2, 6), standard form
+        -4y = -8x + 8  ->  y = 2x - 2, so the given slope is 2; perpendicular: negative reciprocal
+        m = -1/2, then the same beats with (-2, 6):
+        y - 6 = -1/2 (x + 2)  ->  2(y - 6) = -1(x + 2)  ->  2y - 12 = -x - 2
+        ->  x + 2y = 10 (add x and 12 to both sides)    check (-2, 6): -2 + 12 = 10
+
 PORTRAIT: drawn for the phone player in the 4:5 frame (portrait_frame.py), 6.4 x 8 units.
 Every row is built once at its final spot and only fades in, except the cleared row, which
 slides to the top once so the rest of the work can stack under it (the slope-intercept clips do
@@ -91,8 +97,8 @@ class Problem:
 
     `first` is a second point on the line: when given, the clip finds the slope from the two
     points first (so num/den must match them). `line` = (A, B, C) is a given line Ax + By = C the
-    new line is `relation` ('parallel') to: the clip finds that line's slope first. `ending` is
-    the form asked for. x1 is a positive whole number (y1 is negative only for slope-intercept),
+    new line is `relation` ('parallel' or 'perpendicular') to: the clip finds that line's slope first. `ending` is
+    the form asked for. x1 is a nonzero whole number (y1 is negative only for slope-intercept),
     the slope is in lowest terms and the result divides cleanly -- the beats show those numbers,
     they do not simplify anything beyond the slope itself.
     """
@@ -107,8 +113,8 @@ class Problem:
     ending: str = 'slope-intercept'
 
     def __post_init__(self):
-        if min(self.den, self.x1) < 1 or self.y1 == 0 or self.num == 0:
-            raise ValueError('Only a positive x, a nonzero y and a nonzero slope are built so far.')
+        if self.den < 1 or self.x1 == 0 or self.y1 == 0 or self.num == 0:
+            raise ValueError('Only a nonzero x, a nonzero y and a nonzero slope are built so far.')
         if self.y1 < 0 and self.ending != 'slope-intercept':
             raise ValueError('A negative y is built for slope-intercept only.')
         if gcd(abs(self.num), self.den) != 1:
@@ -126,10 +132,15 @@ class Problem:
                 raise ValueError('The result does not pass through the first point.')
         if self.line:
             a, b, c = self.line
-            if self.relation != 'parallel' or a < 1 or b < 1:
-                raise ValueError('Only a parallel line Ax + By = C with A, B > 0 is built.')
-            if Fraction(-a, b) != slope:
-                raise ValueError("The slope is not the given line's slope.")
+            if self.relation not in ('parallel', 'perpendicular') or a < 1 or b == 0:
+                raise ValueError('Only a parallel/perpendicular line Ax + By = C, A > 0, is built.')
+            given_slope = Fraction(-a, b)
+            if self.relation == 'perpendicular':
+                if b > 0 or given_slope.denominator != 1 or given_slope < 1:
+                    raise ValueError('Perpendicular is built for B < 0 and a whole positive slope.')
+                given_slope = -1 / given_slope
+            if given_slope != slope:
+                raise ValueError("The slope does not match the given line.")
         if self.ending == 'standard':
             # den*y - den*y1 = num*x - num*x1  ->  (-num)x + den*y = c, x term positive
             self.a, self.b = -self.num, self.den
@@ -147,6 +158,8 @@ TWO_POINTS = Problem(num=-2, den=3, x1=2, y1=8, first=(11, 2), ending='standard'
                      marks_file='equations_of_lines_two_points_marks.json')
 PARALLEL = Problem(num=-4, den=3, x1=3, y1=-4, line=(8, 6, 15), relation='parallel',
                    marks_file='equations_of_lines_parallel_marks.json')
+PERPENDICULAR = Problem(num=-1, den=2, x1=-2, y1=6, line=(8, -4, 8), relation='perpendicular',
+                        ending='standard', marks_file='equations_of_lines_perpendicular_marks.json')
 
 
 def tex(*parts, size=MATH_SIZE, color=INK):
@@ -178,6 +191,11 @@ def slope_tex(p):
     if p.num < 0:
         return hanging_fraction(str(abs(p.num)), str(p.den))
     return rf'\frac{{{p.num}}}{{{p.den}}}'
+
+
+def coef(n):
+    """A coefficient written in front of x: 1 is left off, -1 is just the negative."""
+    return {1: '', -1: '-'}.get(n, str(n))
 
 
 def signed(n):
@@ -244,15 +262,17 @@ class EquationsOfLines(Narrated, Scene):
     def find_line_slope(self, p, given):
         """A line is given: put it in slope-intercept form, read its slope, carry it to `given`.
 
-        Returns the point pieces of `given` still to fade in.
+        Parallel: that slope is the new slope. Perpendicular: flip it and change the sign first.
         """
         a, b, c = p.line
+        perp = p.relation == 'perpendicular'
         slope = Fraction(-a, b)
-        # -a/b and c/b, then both reduced.
-        raw = hanging_fraction(str(a), str(b))
         const = Fraction(c, b)
+        whole = slope.denominator == 1 and const.denominator == 1  # no fraction to reduce
+        sign_b = '-' if b < 0 else '+'
+        const_sign = '+' if const > 0 else '-'
 
-        r1 = tex(f'{a}x', '+', f'{b}y', '=', str(c)).move_to([0, LINE_Y[0], 0])
+        r1 = tex(f'{a}x', sign_b, f'{abs(b)}y', '=', str(c)).move_to([0, LINE_Y[0], 0])
         slope_intercept = tex('y', '=', 'm', 'x', '+', 'b', size=FORM_SIZE).move_to([0, LINE_Y[1], 0])
         slope_intercept[2].set_color(M_COLOR)
         r2 = tex(f'{b}y', '=', f'{-a}x', '+', str(c)).move_to([0, LINE_Y[1], 0])
@@ -263,18 +283,36 @@ class EquationsOfLines(Narrated, Scene):
             op.move_to([op.get_center()[0], level, 0])
         cancel_a = strike_pair(r1[0], take)
         bars, divisors = divide_bars([r2[0], r2[2], r2[4]], str(b))
-        r3 = tex('y', '=', raw, 'x', '+', rf'\frac{{{c}}}{{{b}}}').move_to([0, LINE_Y[2], 0])
-        r4 = tex('y', '=', hanging_fraction(str(abs(slope.numerator)), str(slope.denominator)),
-                 'x', '+', rf'\frac{{{const.numerator}}}{{{const.denominator}}}'
-                 ).move_to([0, LINE_Y[3], 0])
-        r4[2].set_color(M_COLOR)
+        if whole:   # the division comes out in whole numbers: r3 is already the answer row
+            r3 = tex('y', '=', str(slope.numerator), 'x', const_sign, str(abs(const.numerator))
+                     ).move_to([0, LINE_Y[2], 0])
+            r4 = None
+            slope_row = r3
+        else:
+            r3 = tex('y', '=', hanging_fraction(str(a), str(b)), 'x', '+',
+                     rf'\frac{{{c}}}{{{b}}}').move_to([0, LINE_Y[2], 0])
+            r4 = tex('y', '=', hanging_fraction(str(abs(slope.numerator)), str(slope.denominator)),
+                     'x', '+', rf'\frac{{{const.numerator}}}{{{const.denominator}}}'
+                     ).move_to([0, LINE_Y[3], 0])
+            slope_row = r4
+        slope_row[2].set_color(M_COLOR)
         g = gcd(a, b)
+        r1_y = VGroup(r1[1], r1[2]) if b < 0 else r1[2]   # a negative b brings its sign along
+        flip_from = tex('m', '=', rf'\frac{{{slope.numerator}}}{{1}}',
+                        size=FORM_SIZE).move_to([0, LINE_Y[3], 0])
+        flip_to = tex('m', '=', slope_tex(p), size=FORM_SIZE).move_to([0, LINE_Y[3], 0])
+        flip_from[2].set_color(M_COLOR)
+        flip_to[2].set_color(M_COLOR)
 
-        self.say("To write a parallel line, we need the given line's slope.")
+        kind = 'perpendicular' if perp else 'parallel'
+        self.say(f"To write a {kind} line, we need the given line's slope.")
         self.play(FadeIn(r1), run_time=1.2)
         self.beat('need-slope', READ_LONG)
 
-        self.say('Parallel lines have the same slope.')
+        if perp:
+            self.say('Perpendicular slopes are negative reciprocals.')
+        else:
+            self.say('Parallel lines have the same slope.')
         self.beat('same-slope', READ_SHORT)
 
         self.say('In order to find the slope, we need to rewrite it in slope-intercept form.')
@@ -289,12 +327,13 @@ class EquationsOfLines(Narrated, Scene):
 
         self.play(Create(cancel_a[0]), run_time=.6)
         self.play(Create(cancel_a[1]), run_time=.6)
-        self.play(copy_into(r1[2], r2[0]), copy_into(r1[3], r2[1]),
+        self.play(copy_into(r1_y, r2[0]), copy_into(r1[3], r2[1]),
                   copy_into(take_right, r2[2]), copy_into(r1[4], r2[4]),
                   FadeIn(r2[3]), run_time=1.5)
         self.beat('line-isolated', READ_LONG)
 
-        self.say(f'Divide every term by {b}.')
+        negative = 'negative ' if b < 0 else ''
+        self.say(f'Divide every term by {negative}{abs(b)}.')
         for bar, divisor in zip(bars, divisors):
             self.play(Create(bar), FadeIn(divisor, shift=DOWN * .15), run_time=.8)
         self.beat('line-divide', READ_LONG)
@@ -306,18 +345,35 @@ class EquationsOfLines(Narrated, Scene):
                   copy_into(VGroup(r2[4], divisors[2]), r3[5]), run_time=1.6)
         self.beat('line-alone', READ_LONG)
 
-        self.say(f'Reduce each fraction by dividing by {g}.')
-        self.play(copy_into(r3, r4), run_time=1.4)
-        self.beat('line-reduced', READ_LONG)
+        if not whole:
+            self.say(f'Reduce each fraction by dividing by {g}.')
+            self.play(copy_into(r3, r4), run_time=1.4)
+            self.beat('line-reduced', READ_LONG)
 
         self.say(f'The number in front of {var("x", PAPER_BLUE)} is the slope.')
-        self.play(Indicate(r4[2], color=M_COLOR, scale_factor=1.3), run_time=1.1)
+        self.play(Indicate(slope_row[2], color=M_COLOR, scale_factor=1.3), run_time=1.1)
         self.beat('line-slope', READ_SHORT)
 
-        self.say(f'Parallel lines have the same slope, so this is {var("m", PAPER_BLUE)}.')
-        self.play(FadeIn(VGroup(given[0], given[1])), copy_into(r4[2], given[2]),
-                  FadeOut(VGroup(r1, r2, r3, r4, take, take_right, cancel_a, bars, divisors)),
-                  run_time=1.5)
+        gone = [r1, r2, r3, take, take_right, cancel_a, bars, divisors]
+        if r4 is not None:
+            gone.append(r4)
+        if perp:
+            self.say('Write the slope as a fraction.')
+            self.play(FadeIn(VGroup(flip_from[0], flip_from[1])),
+                      copy_into(slope_row[2], flip_from[2]), run_time=1.2)
+            self.beat('slope-fraction', READ_SHORT)
+
+            self.say('Flip the fraction and change the sign.')
+            self.play(ReplacementTransform(flip_from, flip_to), run_time=1.5)
+            self.beat('negative-reciprocal', READ_LONG)
+
+            self.say(f'This is the slope of the new line, {var("m", PAPER_BLUE)}.')
+            self.play(FadeIn(VGroup(given[0], given[1])), copy_into(flip_to[2], given[2]),
+                      FadeOut(VGroup(*gone, flip_to)), run_time=1.5)
+        else:
+            self.say(f'Parallel lines have the same slope, so this is {var("m", PAPER_BLUE)}.')
+            self.play(FadeIn(VGroup(given[0], given[1])), copy_into(slope_row[2], given[2]),
+                      FadeOut(VGroup(*gone)), run_time=1.5)
         self.beat('slope-given', READ_LONG)
 
     def construct(self):
@@ -325,7 +381,9 @@ class EquationsOfLines(Narrated, Scene):
         # ---- every row, built once at its final spot ------------------------------------
         y_sign = '+' if p.y1 < 0 else '-'   # y - (-4) is y + 4
         y_abs = abs(p.y1)
-        given = tex('m', '=', slope_tex(p), r'\qquad(', str(p.x1), r',\ ',
+        x_sign = '+' if p.x1 < 0 else '-'   # x - (-2) is x + 2
+        x_abs = abs(p.x1)
+        given = tex('m', '=', slope_tex(p), r'\qquad(', signed(p.x1), r',\ ',
                     signed(p.y1), ')', size=FORM_SIZE).move_to([0, GIVEN_Y, 0])
         given[2].set_color(M_COLOR)
         given[4].set_color(PT_COLOR)
@@ -340,19 +398,32 @@ class EquationsOfLines(Narrated, Scene):
         left = tex('y', y_sign, str(y_abs), '=')
         left[2].set_color(PT_COLOR)
         slope = fraction(str(p.num), str(p.den), color=M_COLOR)
-        right = tex('(', 'x', '-', str(p.x1), ')')
+        right = tex('(', 'x', x_sign, str(x_abs), ')')
         right[3].set_color(PT_COLOR)
         plug = VGroup(left, slope, right).arrange(RIGHT, buff=0.14)
         slope.shift(UP * (left[3].get_center()[1] - slope[1].get_center()[1]))
         plug.move_to([0, PLUG_Y, 0])
         right_side = VGroup(slope, right)
 
+        # A negative point is plugged in as written -- y - (-4), x - (-2) -- and only then
+        # turned into the plus. The raw row is the same row with the minus still showing.
+        negative = p.y1 < 0 or p.x1 < 0
+        if negative:
+            raw_left = tex('y', '-', f'({signed(p.y1)})' if p.y1 < 0 else str(p.y1), '=')
+            raw_slope = fraction(str(p.num), str(p.den), color=M_COLOR)
+            raw_right = tex('(', 'x', '-', f'({signed(p.x1)})' if p.x1 < 0 else str(p.x1), ')')
+            raw_left[2].set_color(PT_COLOR)
+            raw_right[3].set_color(PT_COLOR)
+            raw_plug = VGroup(raw_left, raw_slope, raw_right).arrange(RIGHT, buff=0.14)
+            raw_slope.shift(UP * (raw_left[3].get_center()[1] - raw_slope[1].get_center()[1]))
+            raw_plug.move_to([0, PLUG_Y, 0])
+
         # The same row with a 7 inserted in front of each side: the left side's stays, the
         # right side's cancels the fraction's denominator.
         times_left = tex(str(p.den), '(', 'y', y_sign, str(y_abs), ')', '=')
         times_right = tex(str(p.den), r'\cdot')
         times_slope = fraction(str(p.num), str(p.den), color=M_COLOR)
-        times_x = tex('(', 'x', '-', str(p.x1), ')')
+        times_x = tex('(', 'x', x_sign, str(x_abs), ')')
         times = VGroup(times_left, times_right, times_slope, times_x).arrange(RIGHT, buff=0.24)
         times_slope.shift(UP * (times_left[6].get_center()[1] - times_slope[1].get_center()[1]))
         if times.width > MAX_WIDTH:
@@ -362,15 +433,15 @@ class EquationsOfLines(Narrated, Scene):
             gold.set_color(PT_COLOR)
         strikes = strike_pair(times_slope[2], times_right[0])  # the 7, not the dot
 
-        clear = tex(str(p.den), '(', 'y', y_sign, str(y_abs), ')', '=', str(p.num), '(', 'x', '-',
-                    str(p.x1), ')').move_to([0, CLEAR_Y, 0])
+        clear = tex(str(p.den), '(', 'y', y_sign, str(y_abs), ')', '=', str(p.num), '(', 'x', x_sign,
+                    str(x_abs), ')').move_to([0, CLEAR_Y, 0])
         clear[0].set_color(PT_COLOR)   # the multiplier arrives gold, like the op it came from
         clear[4].set_color(PT_COLOR)
         clear[7].set_color(M_COLOR)
         clear[11].set_color(PT_COLOR)
 
         dist_sign = '+' if p.num * p.x1 < 0 else '-'  # distributing a negative flips the sign
-        dist = tex(f'{p.den}y', y_sign, str(p.den * y_abs), '=', f'{p.num}x', dist_sign,
+        dist = tex(f'{p.den}y', y_sign, str(p.den * y_abs), '=', f'{coef(p.num)}x', dist_sign,
                    str(abs(p.num * p.x1))).move_to([0, DIST_Y, 0])
 
         op_sign = '-' if p.y1 < 0 else '+'   # undoes the constant on the left
@@ -378,8 +449,8 @@ class EquationsOfLines(Narrated, Scene):
         add_left = op_under(op_sign, str(p.den * y_abs), dist[2])
         add_right = op_under(op_sign, str(p.den * y_abs), dist[6])
         if p.ending == 'standard':
-            add_x_left = op_under('+', f'{p.a}x', dist[0])
-            add_x_right = op_under('+', f'{p.a}x', dist[4])
+            add_x_left = op_under('+', f'{coef(p.a)}x', dist[0])
+            add_x_right = op_under('+', f'{coef(p.a)}x', dist[4])
             ops = (add_left, add_right, add_x_left, add_x_right)
         else:
             ops = (add_left, add_right)
@@ -390,7 +461,7 @@ class EquationsOfLines(Narrated, Scene):
         cancel_right = strike_pair(dist[5:7], add_right)   # used only when the constants cancel
         if p.ending == 'standard':
             cancel_x = strike_pair(dist[4], add_x_right)
-            answer = tex(f'{p.a}x', '+', f'{p.b}y', '=', str(p.c),
+            answer = tex(f'{coef(p.a)}x', '+', f'{p.b}y', '=', str(p.c),
                          size=MATH_SIZE + 8).move_to([0, STANDARD_ANSWER_Y, 0])
         else:
             sign = '+' if p.c > 0 else '-'
@@ -451,16 +522,22 @@ class EquationsOfLines(Narrated, Scene):
         self.say('Plug the slope and the point into the formula.')
         self.play(Indicate(general[4], color=M_COLOR, scale_factor=1.4),
                   Indicate(given[2], color=M_COLOR, scale_factor=1.3), run_time=1.1)
-        self.play(copy_into(given[2], slope),
-                  *[FadeIn(piece) for piece in (left[0], left[1], left[3], right[0], right[1],
-                                                right[2], right[4])], run_time=1.2)
-        if p.y1 < 0:
-            self.say('Subtracting a negative is the same as adding.')
+        in_left, in_slope, in_right = (raw_left, raw_slope, raw_right) if negative else (
+            left, slope, right)
+        self.play(copy_into(given[2], in_slope),
+                  *[FadeIn(piece) for piece in (in_left[0], in_left[1], in_left[3], in_right[0],
+                                                in_right[1], in_right[2], in_right[4])],
+                  run_time=1.2)
         self.play(Indicate(general[2], color=PT_COLOR, scale_factor=1.5),
                   Indicate(general[8], color=PT_COLOR, scale_factor=1.5),
                   Indicate(given[4], color=PT_COLOR, scale_factor=1.4),
                   Indicate(given[6], color=PT_COLOR, scale_factor=1.4), run_time=1.1)
-        self.play(copy_into(given[6], left[2]), copy_into(given[4], right[3]), run_time=1.2)
+        self.play(copy_into(given[6], in_left[2]), copy_into(given[4], in_right[3]), run_time=1.2)
+        if negative:
+            self.beat('plug-negative', READ_SHORT)
+            self.say('Subtracting a negative is the same as adding.')
+            self.play(*[ReplacementTransform(old, new) for old, new in (
+                (raw_left, left), (raw_slope, slope), (raw_right, right))], run_time=1.5)
         self.beat('plug', READ_LONG)
 
         # ---- 2. clear the fraction --------------------------------------------------------
@@ -506,7 +583,7 @@ class EquationsOfLines(Narrated, Scene):
         if p.ending == 'standard':
             self.say('Standard form: the x term comes first and is positive, with no fractions.')
             self.wait(READ_LONG)
-            self.say(f'Add {p.a}x to both sides.')
+            self.say(f'Add {coef(p.a)}x to both sides.')
             self.play(FadeIn(add_x_left, shift=DOWN * .15), FadeIn(add_x_right, shift=DOWN * .15),
                       run_time=1.0)
             self.beat('add-x', READ_SHORT)
@@ -587,3 +664,8 @@ class TwoPointsStandard(EquationsOfLines):
 class ParallelSlopeIntercept(EquationsOfLines):
     """Problem 3: parallel to 8x + 6y = 15 through (3, -4), written in slope-intercept form."""
     problem = PARALLEL
+
+
+class PerpendicularStandard(EquationsOfLines):
+    """Problem 4: perpendicular to 8x - 4y = 8 through (-2, 6), written in standard form."""
+    problem = PERPENDICULAR

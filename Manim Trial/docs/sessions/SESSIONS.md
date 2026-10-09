@@ -1,3 +1,17 @@
+## 2026-10-08 — Equations of Lines problem 4 (perpendicular), negative-plug animation, Slow-mode Back
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
+
+**Files changed:** `equations_of_lines.py` (589 -> 671: `PerpendicularStandard`, `Problem` accepts negative x / perpendicular / negative B, `coef()`, raw `y - (-4)` / `x - (-2)` plug row morphing to the plus), `equations_of_lines_perpendicular_{marks,steps}.json`, re-rendered problem 3; portal `equationsOfLinesExamples.ts` (+ problem 4, holds 93.56 / 93.22), `problem-3/4.mp4` + steps, `equationsOfLines.test.ts`, `equations-of-lines.css` (Back to problems label left-aligned), `useVideoExamplePlayer.ts` (Slow-mode Back stays enabled while playing; Back mid-animation returns to the hold just left).
+
+**What worked:** Problem 4 (`8x - 4y = 8`, (-2, 6), standard form): given line -> y = 2x - 2 (m = 2) -> write 2/1, flip and change sign -> m = -1/2 -> the problem 3 beats -> `x + 2y = 10`. Plugging a negative point now shows the minus-negative first, then converges to the plus (problems 3 and 4). Audit clean, contact sheets read, vitest green.
+
+**Current state:** Green — Chase has not yet watched problems 3-4 in the portal; no Netlify deploy.
+
+**File size flag:** None (`equations_of_lines.py` under 700).
+
+**Next session:** Chase's review of problems 3-4; Teacher Console still does not list Equations of Lines.
+
 ## 2026-09-28 — Slope-intercept inequality clips (three), white background, short style
 
 **Files changed:** `slope_intercept_form.py` (new, 471), `math_notation.py` (new),

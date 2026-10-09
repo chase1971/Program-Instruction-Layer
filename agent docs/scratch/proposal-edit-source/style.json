@@ -1,0 +1,138 @@
+{
+  "input": "C:\\Users\\chase\\Desktop\\College Algebra Skills Hub Proposal Draft.docx",
+  "fonts_by_char_count": {},
+  "direct_run_formatting_runs": 93,
+  "direct_paragraph_formatting_paragraphs": 141,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 108,
+      "text": "Primary request",
+      "style": "Normal"
+    },
+    {
+      "para_index": 110,
+      "text": "Additional request",
+      "style": "Normal"
+    },
+    {
+      "para_index": 112,
+      "text": "Project period",
+      "style": "Normal"
+    },
+    {
+      "para_index": 114,
+      "text": "Level of support",
+      "style": "Normal"
+    },
+    {
+      "para_index": 115,
+      "text": "Student question",
+      "style": "Normal"
+    },
+    {
+      "para_index": 116,
+      "text": "Resource type",
+      "style": "Normal"
+    },
+    {
+      "para_index": 129,
+      "text": "Deliverable",
+      "style": "Normal"
+    },
+    {
+      "para_index": 130,
+      "text": "Completion standard",
+      "style": "Normal"
+    },
+    {
+      "para_index": 149,
+      "text": "Content area",
+      "style": "Normal"
+    },
+    {
+      "para_index": 150,
+      "text": "Possible skills",
+      "style": "Normal"
+    },
+    {
+      "para_index": 171,
+      "text": "Evaluation area",
+      "style": "Normal"
+    },
+    {
+      "para_index": 172,
+      "text": "Evidence",
+      "style": "Normal"
+    },
+    {
+      "para_index": 185,
+      "text": "Risk",
+      "style": "Normal"
+    },
+    {
+      "para_index": 186,
+      "text": "Response",
+      "style": "Normal"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 2,
+        "text": "A D2L based resource for review instruction and practice",
+        "style": "Normal"
+      },
+      {
+        "para_index": 13,
+        "text": "\u2022  Give every College Algebra student a consistent location for prerequisite review and course support.",
+        "style": "Normal"
+      },
+      {
+        "para_index": 14,
+        "text": "\u2022  Present algebra skills using the same notation, language, and problem-solving methods students encounter in class.",
+        "style": "Normal"
+      },
+      {
+        "para_index": 15,
+        "text": "\u2022  Offer different levels of support so students can choose a quick reminder, independent practice, guided practice, or ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 16,
+        "text": "\u2022  Give instructors a specific resource to assign or recommend when a student has an identifiable skill gap.",
+        "style": "Normal"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 2,
+        "run_text": "A D2L based resource for review instruction and practice",
+        "style": "Normal"
+      },
+      {
+        "para_index": 108,
+        "run_text": "Primary request",
+        "style": "Normal"
+      },
+      {
+        "para_index": 109,
+        "run_text": "One course of summer release time for concentrated development",
+        "style": "Normal"
+      },
+      {
+        "para_index": 110,
+        "run_text": "Additional request",
+        "style": "Normal"
+      },
+      {
+        "para_index": 111,
+        "run_text": "Funding for professional AI development tools at $200 per month during the appro",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}

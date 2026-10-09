@@ -1,89 +1,136 @@
-# Momentum handoff — Composite Examples clip: Example 1 redesign shipped, Example 2 built
+# Momentum handoff — Composite Examples player + portal video standard doc
 
-Written: 2026-10-07 (America/Chicago)
-Workspace: C:\Users\chase\Documents\Programs
-Phase: Both Composite Examples clips are rendered at final quality and copied into the
-student-portal assets; the guide has an Example 2 tab. **Chase has not yet reviewed Example 2**
-(or the final Example 1 tweak) in the Teacher Console preview. **Nothing committed, pushed or
-deployed** (not asked).
+**Written:** 2026-10-08 (Thursday)
+
+---
+
+## Objective and current phase
+
+**Composite Examples** (M1314 student portal) is the **reference implementation** for how Manim
+math clips ship in the portal: caption-based **Auto / Slow** steps, shared Back/Next marks,
+opening frame with the problem on board, and documented end-to-end in
+`agent docs/recipes/portal-math-video-examples.md`.
+
+**Current phase:** Player and UX work from this session are **implemented and unit-tested**.
+Chase has **not** given final sign-off on every control after the last round (Auto **Next**
+continues playing, mode switch without restart, control layout, tap-on-video). **Documentation
+for “let’s make an animation” is done.** Next product work is either **Chase’s review feedback**
+on Composite only, or **retrofit Writing Equations of Lines** to the new standard (Chase said
+that is the one old guide to fix — **not** other legacy clips).
+
+---
+
+## Chase's desired feel
+
+- **Caption bar only** — never duplicate “Find …” on the board under `f(x)` / `g(x)`.
+- **Say before you show** in Manim (`READ_LONG` / read waits after notation).
+- **Opening frame:** directions caption + **f(x) and g(x) already written** (portal starts at
+  **2.5 s**, not 0).
+- **Auto / Slow share the same step times** (`*_steps.json` from caption beats, not raw audit
+  marks). Switching modes **continues from the current frame**, does not restart.
+- **Slow:** step on **Next**; **Back** to previous hold; **Restart** in mode row; no Play/Replay
+  row; **Next** pulses when paused and ready; **tap video:** pause while playing, advance when
+  paused.
+- **Auto:** autoplays on open; **Back/Next** jump by step; **Next** must **keep playing** after
+  the jump; **Pause** left of **Back** in the step row; **tap video** = pause/play.
+- **Control layout (do not rearrange without asking):** mode row = **Auto | Slow | Restart**
+  (unchanged Auto/Slow positions); step row = **[Pause if Auto] Back | Next** (Back/Next stay
+  where they were).
+
+---
+
+## Accepted decisions (shipped this session)
+
+| Area | Decision |
+|---|---|
+| Step data | `Narrated.caption_step_times()` → `<scene>_steps.json`; portal imports `*-steps.json`; first step dropped when opening frame already shows that caption (`steps.slice(1)`). |
+| Ex2 hold | **73.61 s** — `composite-examples-2.mp4` + guide |
+| Segment start | `COMPOSITE_EXAMPLES_START_SECONDS = 2.5` for all three Composite tabs |
+| Auto **Next** | Seek to next step mark, then **`play()`** (except final hold) |
+| Mode toggle | No restart on Auto/Slow click; active mode click is no-op |
+| Docs | **`agent docs/recipes/portal-math-video-examples.md`** owns portal delivery + player; **`ANIMATION_STYLE_RECIPE.md`** owns visuals; INDEX + student-portal `AGENTS.md` route “let’s make an animation” there |
+| Legacy clips | No retrofit except **Equations of Lines** when Chase asks |
+
+Prior (still true): Ex2 domain narration order; Composite-only Auto/Slow scope; no Netlify
+without explicit ask; no GUI launch without permission.
+
+---
+
+## Rejected directions (do not redo)
+
+- Single merged control bar (Chase: put controls back — only move Restart + Pause).
+- Restart/Auto/Slow/Back/Next repositioning beyond Restart-after-Slow and Pause-before-Back.
+- Slow mode using raw audit marks only for steps (caption `*_steps.json` is the standard).
+- Auto **Next** pausing at each mark (regression fixed this session).
+- Replay label (use **Restart**).
+
+---
+
+## Current implementation state
+
+**Manim:** `scene_style.py` — `caption_starts`, `caption_step_times()`, `write_marks` writes
+steps JSON. Exemplar scenes `composite_domain*.py`; dry-run regenerates steps.
+
+**Portal — player:** `useVideoExamplePlayer.ts` — `stepNavigationActive`, Auto vs Slow
+`stepNext`/`stepBack`, mode-switch effect, RAF step stops in Slow.
+
+**Portal — UI:** `VideoExamplesPlayerStage.tsx` — layout above; video wrap tap handler.
+
+**Portal — guide:** `compositeExamplesGuide.ts`, assets under
+`src/assets/video-examples/composite/` (`*-steps.json`, MP4s).
+
+**Docs:** `portal-math-video-examples.md`, pointers in `INDEX.md`, `recipes/INDEX.md`,
+`ANIMATION_STYLE_RECIPE.md`, `student-portal/AGENTS.md`.
+
+**Verification:** `videoExampleStepPauses.test.ts` + `compositeExamples.test.ts` pass (8 tests).
+
+**Likely uncommitted:** Manim `scene_style.py`, composite scenes/marks/steps, portal MP4s,
+player/stage/CSS, guide, agent docs, equations-of-lines work from **other sessions** may also
+be dirty on disk.
+
+**Note:** `latest.md` before this write described **Equations of Lines problem 4**; archived
+copy: `2026-10-08_equations-of-lines-problem3.md`. That thread is **separate** until Chase
+prioritizes it.
+
+---
+
+## Open questions
+
+- Final **Composite** UX sign-off after Chase uses Auto/Slow, Restart, tap-on-video, and Ex2
+  domain copy on device.
+- **Equations of Lines retrofit:** steps JSON, `enableSlowMode`, opening frame — follow
+  `portal-math-video-examples.md` when Chase says go (problem 3 review / problem 4 still open
+  in parallel handoff archive).
+- Persist Auto/Slow in `localStorage` — out of scope unless asked.
+
+---
+
+## Constraints
+
+- Re-render: `Manim Trial/.venv/Scripts/python.exe -m manim -r 1080,1350 --fps 30
+  --disable_caching …` from `Manim Trial`; sync MP4 + steps + hold in guide.
+- Modals / portal rules unchanged. **Calendar 2.0** frozen.
+
+---
 
 ## Read first
 
-1. Root `AGENTS.md` — no GUI/browser launches without per-run permission; **never deploy to
-   Netlify unless Chase says so in that message**; handoff is a statement, not a question;
-   file cap 800 / extract before 700.
-2. `Manim Trial/ANIMATION_STYLE_RECIPE.md` — house style (white `PAPER_*`, `mathtex`, LaTeX captions).
-3. `Manim Trial/composite_domain.py` (Example 1), `composite_domain_2.py` (Example 2, imports
-   `row`, `domain_row`, `pair`, sizes and `ROW_Y` from Example 1), `tick_number_line.py`,
-   `math_caption.py`.
-4. Portal: `School Scrips/student-portal/src/features/video-examples/compositeExamplesGuide.ts`
-   and `src/assets/video-examples/composite/` (`composite-examples.mp4`, `composite-examples-2.mp4`).
+1. This file.
+2. [`agent docs/recipes/portal-math-video-examples.md`](../recipes/portal-math-video-examples.md)
+3. [`Manim Trial/ANIMATION_STYLE_RECIPE.md`](../../Manim%20Trial/ANIMATION_STYLE_RECIPE.md)
+4. [`School Scrips/student-portal/src/features/video-examples/useVideoExamplePlayer.ts`](../../School%20Scrips/student-portal/src/features/video-examples/useVideoExamplePlayer.ts)
+5. [`School Scrips/student-portal/src/features/video-examples/VideoExamplesPlayerStage.tsx`](../../School%20Scrips/student-portal/src/features/video-examples/VideoExamplesPlayerStage.tsx)
 
-## Objective
-
-Teach composite-function domains in the portal's "Composite Examples" clip (portrait 4:5, phones).
-Chase reviews in the Macro App Teacher Console preview (embedded portal, dev origin reads local
-`src/assets`; re-render + copy shows up after **his** Refresh — state it, don't ask).
-
-## Chase's desired feel (his language)
-
-- Math in captions is **LaTeX**, never plain text. Domains **beside** functions with a real gap;
-  work centered. Solve steps tight; proper number lines (ticks, integer labels, arrows, dot).
-- **Number lines build left to right** (−7 … 7 placed in order, axis extending) — applies to all lines.
-- Don't mislead: never put a domain beside `(f∘g)(x)` that belongs to a different expression.
-- At the end the composite must **still be on screen** with its answer domain.
-- Example 2: "same structure"; it's `g(f(x))`, explain that you're plugging f in; **no merge panel**
-  because the composite's domain equals the plugged-in function's domain.
-
-## Accepted decisions / what is built
-
-**Example 1** — f(x)=x²+6, g(x)=√(x−2), (f∘g)(x)=x+4, domain [2,∞). Closing board: top shows
-`(f∘g)(x) = x+4`; underneath `y = x+4` with its own domain `(−∞,∞)` beside it ("this isn't the
-actual domain of the composite"); all-reals line; g returns with domain and line; both merge onto a
-third line; cleanup removes `y=x+4`, g and their lines, merged line moves up under the composite;
-blue ray pulses twice, gold fades, `Domain: [2,∞)` below. Hold 98.44 s (const in guide), md5 of
-asset == render (`087d3ab3…`).
-
-**Example 2** — f(x)=√x, g(x)=4x+2, g(f(x))=4√x+2, domain [0,∞). Solve `x ≥ 0` on a number line
-(dot on 0) → f's domain; g linear → all reals; build `4x+2` → `4(x)+2` → f flies in (blue) → drop
-parentheses; clear; composite at top; "any function plugged into another brings its domain with
-it"; f returns with domain + line; composite keeps f's domain; final `Domain: [0,∞)` under the
-line, composite still on top. Hold 61.89 s (`COMPOSITE_EXAMPLES_2_HOLD_SECONDS`), asset md5
-`6de7a323…` == render. 15 audit marks clean; frames reviewed (draft). Caption wording was my
-choice (e.g. "A line has no restrictions, so g's domain is all real numbers.", "Drop the
-parentheses.") — Chase hasn't seen it.
-
-## Rejected / do not rediscover
-
-- `Domain: (−∞,∞)` next to `(f∘g)(x)` (wrong math). `x ≥ 2` tag beside the result. Italic-markup
-  variables in captions. Stacked domains. Left drift in composite rows (rows share a left head
-  position on purpose so the head swaps without double print — don't "fix").
-
-## Pitfalls that cost time
-
-- **`play()` without `run_time` counts as 1.0 s in the marks clock** (`Narrated.play`) even if the
-  animation is longer → marks drift from video. Always pass `run_time=` (builds:
-  `self.play(nl.build(), run_time=3.0)`).
-- `manim -qh` writes to `media/videos/<scene_file>/1350p60/`, not `1350p30`; always `md5sum` the
-  copy. Render with `Manim Trial/.venv/Scripts/python.exe -m manim` and MiKTeX on PATH
-  (`%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64`); system python has no manim.
-- After a final render set the hold const to the last mark in `*_marks.json`.
-- Write Python with Write/Edit (or a python heredoc script), not shell heredocs with quotes.
-- `tsc --noEmit` in student-portal shows pre-existing generic-quiz type errors; none in composite files.
-
-## Other uncommitted work (Macro App, separate repo, from earlier this day)
-
-Teacher Console preview auto-flip portrait/landscape (`portalPreviewRouteAspect.ts`,
-`useTeacherConsolePreviewRouteAspect.ts`); route→aspect mapping partly **guessed** (matrix and
-logic routes unconfirmed). Macro App must be restarted to try it.
-
-## Git / constraints
-
-Programs root, student-portal (2 mp4s + guide) and Macro App are dirty. No commit/push/deploy
-requested. Netlify never unless asked in that message. Don't open windows/browsers uninvited.
+---
 
 ## Exact next step
 
-Wait for Chase's feedback on Example 2 (and the Example 1 top line `(f∘g)(x)=x+4`) after he
-refreshes the preview; apply tweaks in `composite_domain_2.py`, re-render `-qh`, re-copy from
-`media/videos/composite_domain_2/1350p60/`, verify md5, update `COMPOSITE_EXAMPLES_2_HOLD_SECONDS`.
+Chase chooses one path:
+
+- **A — Composite polish:** Review Composite Examples in the portal (Auto, Slow, Restart, tap
+  video, Ex2 domain). Report only wording/pacing/step issues; apply **only** that feedback in
+  Manim copy or step data — **do not** move control buttons.
+- **B — Equations of Lines retrofit:** Read archived handoff
+  `2026-10-08_equations-of-lines-problem3.md` for problem 3/4 state, then upgrade the Equations
+  guide to `portal-math-video-examples.md` (steps JSON, Auto/Slow, opening frame) after Chase
+  confirms priority.

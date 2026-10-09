@@ -1,5 +1,10 @@
 ﻿# Math explanation animation recipe
 
+> **Portal delivery (Auto/Slow, steps JSON, guide wiring):**
+> [agent docs/recipes/portal-math-video-examples.md](../agent%20docs/recipes/portal-math-video-examples.md).
+> When Chase says **"let's make an animation"** for the student portal, read **that recipe
+> first**, then this file for teaching motion and visuals.
+
 Use this recipe when generating a new Manim animation for Chase's math apps.
 
 Before implementing, select existing teaching patterns from the
@@ -141,22 +146,18 @@ and was still unusable. **Exemplar to copy: `quadratic_domain_range.py`** (formu
 Chase watches every clip in the student portal, nowhere else. A render under `Manim Trial/media`
 is not delivered.
 
-- **Put it in the portal and replace the old version.** Copy the final MP4 into
-  `School Scrips/student-portal/src/assets/video-examples/` (exemplar:
-  `domain-range/quadratic-domain-range.mp4`, wired by
-  `features/domain-range-chart/domainRangeQuadraticExample.ts`) and update the
-  per-example segment times from the clip's marks JSON: Example 1 ends at `ex1_hold`,
-  Example 2 starts at `ex2_form` (not `ex2_start`, which is after the fade between examples).
-  The shared player also seeks ~0.08 s before each segment end so a mistimed mark still lands
-  on content (`useVideoExamplePlayer.ts`); authors should still mark and hold the full board.
-- **Final size only, never a draft.** Render `-r 1080,1350 --fps 30` for the portrait frame
-  (1920x1080 for old landscape clips). Soft text in the portal was a 700 px draft stretched
-  to phone width. Check frames with a contact sheet, but do not leave a draft anywhere a
-  preview can pick it up.
-- **Examples autoplay.** Any portal example that plays an animation starts as soon as the
-  student opens it: `useVideoExamplePlayer(examples, { autoPlay: true })`
-  (`features/video-examples/useVideoExamplePlayer.ts`). The default is still tap-to-start,
-  so new example views must pass the option.
+**New work (2026-10-08 onward):** follow
+[agent docs/recipes/portal-math-video-examples.md](../agent%20docs/recipes/portal-math-video-examples.md)
+— Composite Examples is the exemplar (marks + **steps** JSON, Auto/Slow, opening frame).
+
+Legacy notes still true for older guides:
+
+- Copy the final MP4 into `School Scrips/student-portal/src/assets/video-examples/` and set
+  segment times from marks JSON (`hold`, or `ex1_hold` / `ex2_form` for multi-example files).
+  The player seeks ~0.08 s before segment end (`useVideoExamplePlayer.ts`).
+- **Final size only:** `-r 1080,1350 --fps 30` for portrait clips.
+- **Autoplay:** pass `autoPlay` from the guide entry; with Auto/Slow, only Auto autoplays on
+  open (`VideoExamplesView`).
 
 ## Solving an equation or inequality on screen -- the one house style (Chase, 2026-10-04)
 

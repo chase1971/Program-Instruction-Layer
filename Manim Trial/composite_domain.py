@@ -50,6 +50,7 @@ from scene_style import (  # noqa: E402
 from solve_steps import op_under, strike_pair  # noqa: E402
 from tick_number_line import HALF, tick_number_line  # noqa: E402
 from vector_projection_shadow import copy_into  # noqa: E402
+from composite_problem_intro import COMPOSITE_INTRO_1, play_composite_problem_intro  # noqa: E402
 
 apply_portal_paper_background()
 
@@ -77,6 +78,12 @@ LINE_Y = -1.9
 
 READ_SHORT = 1.0
 READ_LONG = 1.5
+READ_CAPTION_EXTRA = 2.5  # longer teaching captions before the next beat
+
+NL_BUILD_RUN = 1.1  # tick_number_line.build() — domain solve rows
+NL_WIDE_BUILD_RUN = 1.4  # wider merge / all-reals lines
+NL_ARROW_RUN = 0.55
+NL_HIGHLIGHT_RUN = 0.5  # all_reals, all_but gold arrow
 
 LHS = r'(f\circ g)(x)'
 SQRT = r'\sqrt{x-2}'
@@ -135,6 +142,8 @@ class CompositeDomain(Narrated, Scene):
         g_row[2].set_color(G_COLOR)
         g_row, g_dom = pair(g_row, domain_row(r'[2,\infty)', 0), ROW_Y['g'])
 
+        play_composite_problem_intro(self, COMPOSITE_INTRO_1, f_row, g_row)
+
         inside_row = row('x', '-2', r'\geq', '0', y=ROW_Y['inside'], size=STEP_SIZE)
         moved, zero = inside_row[1], inside_row[3]
         solved = row('x', r'\geq', '2', y=ROW_Y['solved'], size=STEP_SIZE)
@@ -172,7 +181,6 @@ class CompositeDomain(Narrated, Scene):
 
         # ---- the two functions, each beside its own domain ------------------------------
         self.say('Start with the domain of each function.')
-        self.play(Write(f_row), Write(g_row), run_time=1.4)
         self.beat('form', 1.0)
 
         self.say(f'The squared term means {F_WORD} is a quadratic.')
@@ -214,7 +222,7 @@ class CompositeDomain(Narrated, Scene):
         self.beat('g_solved', READ_LONG)
 
         self.say(f'Closed circle on $2$, because {X_WORD} can equal it.')
-        self.play(solve_nl.build(), run_time=2.4)
+        self.play(solve_nl.build(), run_time=NL_BUILD_RUN)
         self.play(FadeIn(VGroup(minus_inf, plus_inf)), run_time=0.5)
         self.play(
             FadeIn(solve_ray[1]),
@@ -224,7 +232,7 @@ class CompositeDomain(Narrated, Scene):
         self.beat('g_circle', READ_LONG)
 
         self.say(f'{X_WORD} is at least $2$, so the arrow points right.')
-        self.play(GrowArrow(solve_ray[0]), run_time=1.1)
+        self.play(GrowArrow(solve_ray[0]), run_time=NL_ARROW_RUN)
         self.beat('g_arrow', READ_LONG)
 
         self.say(f'In interval notation, that is the domain of {G_WORD}.')
@@ -236,7 +244,10 @@ class CompositeDomain(Narrated, Scene):
         self.beat('g_domain', READ_LONG)
 
         # ---- the composite: x^2 -> (x)^2 -> g flies in ----------------------------------
-        self.say(f'Now the composite: put {G_WORD} in for every {X_WORD} in {F_WORD}.')
+        self.say(r'The $\circ$ in $(f\circ g)(x)$ means $f$ composed with $@b g$.')
+        self.wait(READ_LONG)
+        self.say(f'This means {G_WORD} replaces every {X_WORD} in {F_WORD}.')
+        self.wait(READ_CAPTION_EXTRA)
         self.play(Indicate(f_row[2], color=TAG_COLOR, scale_factor=1.3), run_time=1.0)
         self.play(FadeIn(c_x[0]), FadeIn(c_x[1]), copy_into(f_row[2:], c_x[2:]), run_time=1.1)
         self.beat('composite_x', READ_SHORT)
@@ -311,9 +322,9 @@ class CompositeDomain(Narrated, Scene):
         self.beat('domain_linear', READ_LONG)
 
         self.say('On a number line, that is every number in both directions.')
-        self.play(nl_all.build(), run_time=3.0)
+        self.play(nl_all.build(), run_time=NL_WIDE_BUILD_RUN)
         all_reals = nl_all.all_reals()
-        self.play(Create(all_reals), run_time=1.0)
+        self.play(Create(all_reals), run_time=NL_HIGHLIGHT_RUN)
         self.beat('nl_all', READ_LONG)
 
         self.say("This isn't the actual domain of the composite.")
@@ -324,13 +335,13 @@ class CompositeDomain(Narrated, Scene):
 
         self.say(f'Since {G_WORD} was plugged into {F_WORD}, bring its domain into the composite.')
         self.play(FadeIn(g2), FadeIn(g2_dom), run_time=1.1)
-        self.play(nl_g.build(), run_time=3.0)
+        self.play(nl_g.build(), run_time=NL_WIDE_BUILD_RUN)
         g_ray = nl_g.from_two()
         self.play(copy_into(g2_dom[1], g_ray), run_time=1.2)
         self.beat('g_back', READ_LONG)
 
         self.say('The domain of the composite is where the two lines overlap.')
-        self.play(nl_merge.build(), run_time=3.0)
+        self.play(nl_merge.build(), run_time=NL_WIDE_BUILD_RUN)
         merged_all = nl_merge.all_reals()
         merged_g = nl_merge.from_two()
         self.play(

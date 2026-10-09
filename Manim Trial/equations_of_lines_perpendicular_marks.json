@@ -1,0 +1,98 @@
+[
+  {
+    "name": "need-slope",
+    "time": 3.0
+  },
+  {
+    "name": "same-slope",
+    "time": 4.78
+  },
+  {
+    "name": "slope-intercept-form",
+    "time": 8.44
+  },
+  {
+    "name": "subtract-x",
+    "time": 12.0
+  },
+  {
+    "name": "line-isolated",
+    "time": 16.67
+  },
+  {
+    "name": "line-divide",
+    "time": 21.67
+  },
+  {
+    "name": "line-alone",
+    "time": 25.78
+  },
+  {
+    "name": "line-slope",
+    "time": 28.78
+  },
+  {
+    "name": "slope-fraction",
+    "time": 31.89
+  },
+  {
+    "name": "negative-reciprocal",
+    "time": 35.89
+  },
+  {
+    "name": "slope-given",
+    "time": 39.89
+  },
+  {
+    "name": "given",
+    "time": 42.78
+  },
+  {
+    "name": "form",
+    "time": 46.0
+  },
+  {
+    "name": "plug-negative",
+    "time": 52.89
+  },
+  {
+    "name": "plug",
+    "time": 56.89
+  },
+  {
+    "name": "multiply",
+    "time": 60.89
+  },
+  {
+    "name": "cancel",
+    "time": 64.0
+  },
+  {
+    "name": "cleared",
+    "time": 67.33
+  },
+  {
+    "name": "distribute",
+    "time": 74.0
+  },
+  {
+    "name": "add-x",
+    "time": 79.22
+  },
+  {
+    "name": "cancel-x",
+    "time": 81.67
+  },
+  {
+    "name": "add",
+    "time": 84.56
+  },
+  {
+    "name": "answer",
+    "time": 90.89
+  },
+  {
+    "name": "hold",
+    "time": 93.22
+  }
+]

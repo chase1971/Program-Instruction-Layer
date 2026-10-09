@@ -4,9 +4,9 @@
 
 Same structure as composite_domain.py (example 1): each function beside its own domain, the
 composite built by wrapping x in parentheses and flying f in, then the board is cleared. The
-plugged-in function's domain is brought back briefly (with a number line) to explain why the
-composite keeps f's domain; then f and the line are cleared so the hold is only g(f(x)) and
-Domain: [0, infinity) beneath it. Here g accepts every real number, so there is nothing to merge.
+Domain of the composite starts from $y=4\\sqrt{x}+2$ alone (square root restriction), shown to
+match f's domain; then f returns so the plug-in rule lands; g accepts all reals so the intervals
+match. Final hold: g(f(x)) and Domain: [0, infinity).
 
 Row helpers, sizes and the number line are shared with example 1 (composite_domain.py).
 """
@@ -32,6 +32,10 @@ from composite_domain import (  # noqa: E402
     G_COLOR,
     INK,
     LINE_Y,
+    NL_ARROW_RUN,
+    NL_BUILD_RUN,
+    NL_WIDE_BUILD_RUN,
+    READ_CAPTION_EXTRA,
     READ_LONG,
     READ_SHORT,
     ROW_Y,
@@ -43,13 +47,13 @@ from composite_domain import (  # noqa: E402
 from scene_style import PAPER_INK, Narrated, apply_portal_paper_background  # noqa: E402
 from tick_number_line import HALF, tick_number_line  # noqa: E402
 from vector_projection_shadow import copy_into  # noqa: E402
+from composite_problem_intro import COMPOSITE_INTRO_2, play_composite_problem_intro  # noqa: E402
 
 apply_portal_paper_background()
 
 LHS = r'g(f(x))'
 SQRT = r'\sqrt{x}'
 INSIDE_Y = -0.6
-NL_F_Y = 0.1
 # Caption math: f is the function that gets plugged in, so it is the blue one.
 F_WORD = '$@b f$'
 G_WORD = '$g$'
@@ -81,6 +85,8 @@ class CompositeDomainTwo(Narrated, Scene):
             row('g(x)', '=', '4', 'x', '+', '2', y=0),
             domain_row(r'(-\infty,\infty)', 0), ROW_Y['g'])
 
+        play_composite_problem_intro(self, COMPOSITE_INTRO_2, f_row, g_row)
+
         inside_row = row('x', r'\geq', '0', y=INSIDE_Y, size=FORM_SIZE)
 
         comp_y = -0.6
@@ -96,9 +102,12 @@ class CompositeDomainTwo(Narrated, Scene):
         # closing: composite on top; f returns mid-explanation only; final hold is composite + domain
         top_fn = row(LHS, '=', '4', SQRT, '+', '2', y=ROW_Y['top'], size=COMP_SIZE)
         top_fn[3].set_color(G_COLOR)
+        y_row = row('y', '=', '4', SQRT, '+', '2', y=0)
+        y_row[3].set_color(G_COLOR)
+        y_row, y_dom = pair(y_row, domain_row(r'[0,\infty)', 0), ROW_Y['y_row'])
         f2 = row('f(x)', '=', SQRT, y=0)
         f2[2].set_color(G_COLOR)
-        f2, f2_dom = pair(f2, domain_row(r'[0,\infty)', 0), ROW_Y['y_row'])
+        f2, f2_dom = pair(f2, domain_row(r'[0,\infty)', 0), ROW_Y['g_again'])
         c_dom = domain_row(r'[0,\infty)', ROW_Y['y_row'], size=36)
 
         # solving f: a proper number line (dot on 0, arrow to the right)
@@ -108,11 +117,10 @@ class CompositeDomainTwo(Narrated, Scene):
         plus_inf = row(r'\infty', y=LINE_Y - 0.8, size=30).set_x(HALF)
         number_line = VGroup(solve_nl.everything, minus_inf, plus_inf, solve_ray)
 
-        nl_f = tick_number_line(NL_F_Y)
+        nl_f = tick_number_line(ROW_Y['nl_g'])
 
         # ---- the two functions, each beside its own domain ------------------------------
         self.say('Start with the domain of each function.')
-        self.play(Write(f_row), Write(g_row), run_time=1.4)
         self.beat('form', 1.0)
 
         # ---- domain of f: the inside of the root must be at least 0 ----------------------
@@ -127,7 +135,7 @@ class CompositeDomainTwo(Narrated, Scene):
         self.beat('f_inside', READ_LONG)
 
         self.say(f'Closed circle on $0$, because {X_WORD} can equal it.')
-        self.play(solve_nl.build(), run_time=2.4)
+        self.play(solve_nl.build(), run_time=NL_BUILD_RUN)
         self.play(FadeIn(VGroup(minus_inf, plus_inf)), run_time=0.5)
         self.play(
             FadeIn(solve_ray[1]),
@@ -137,7 +145,7 @@ class CompositeDomainTwo(Narrated, Scene):
         self.beat('f_circle', READ_LONG)
 
         self.say(f'{X_WORD} is at least $0$, so the arrow points right.')
-        self.play(GrowArrow(solve_ray[0]), run_time=1.1)
+        self.play(GrowArrow(solve_ray[0]), run_time=NL_ARROW_RUN)
         self.beat('f_arrow', READ_LONG)
 
         self.say(f'In interval notation, that is the domain of {F_WORD}.')
@@ -151,7 +159,10 @@ class CompositeDomainTwo(Narrated, Scene):
         self.beat('g_domain', READ_LONG)
 
         # ---- the composite: 4x + 2 -> 4(x) + 2 -> f flies in -----------------------------
-        self.say(f'Now the composite: put {F_WORD} in for every {X_WORD} in {G_WORD}.')
+        self.say(r'Another way to write a composite is $g(f(x))$.')
+        self.wait(READ_LONG)
+        self.say(r'That is the same as $(g\circ f)(x)$: $g$ composed with $@b f$.')
+        self.wait(READ_CAPTION_EXTRA)
         self.play(Indicate(g_row[3], color=TAG_COLOR, scale_factor=1.4), run_time=1.0)
         self.play(FadeIn(c_x[0]), FadeIn(c_x[1]), copy_into(g_row[2:], c_x[2:]), run_time=1.1)
         self.beat('composite_x', READ_SHORT)
@@ -192,33 +203,47 @@ class CompositeDomainTwo(Narrated, Scene):
         )
         self.beat('simplified', READ_LONG)
 
-        # ---- clear the board: the composite rises to the top -----------------------------
-        self.say('Now the domain of the composite.')
+        # ---- clear the board: composite on top, y = ... alone for domain ----------------
+        self.say(r'Now the domain of the composite. Start with $4\sqrt{x}+2$.')
         self.play(
             FadeOut(VGroup(f_row, f_dom, g_row, g_dom, c_full[2:])),
             FadeOut(VGroup(c_full[0], c_full[1])),
             *[ReplacementTransform(c4[i], top_fn[i]) for i in range(6)],
+            FadeIn(VGroup(y_row[0], y_row[1])),
+            copy_into(
+                VGroup(top_fn[2], top_fn[3], top_fn[4], top_fn[5]),
+                VGroup(y_row[2], y_row[3], y_row[4], y_row[5]),
+            ),
             run_time=1.4,
         )
         self.beat('domain_intro', READ_SHORT)
+
+        self.say('The inside of the square root must be at least $0$.')
+        rad_y = VGroup(*y_row[3].submobjects[2:])
+        self.play(Indicate(rad_y, color=G_COLOR, scale_factor=1.3), run_time=0.8)
+        self.beat('y_inside', READ_SHORT)
+
+        self.say(f'By itself, that gives domain $[0,\\infty)$, the same as {F_WORD}.')
+        self.play(FadeIn(y_dom), run_time=1.0)
+        self.play(nl_f.build(), run_time=NL_WIDE_BUILD_RUN)
+        comp_ray = nl_f.from_point(0)
+        self.play(copy_into(y_dom[1], comp_ray), run_time=1.2)
+        self.beat('y_domain', READ_LONG)
 
         self.say('Any function plugged into another brings its domain with it.')
         self.beat('domain_follows', READ_LONG)
 
         self.say(f'Since {F_WORD} was plugged into {G_WORD}, bring its domain over.')
         self.play(FadeIn(f2), FadeIn(f2_dom), run_time=1.1)
-        self.play(nl_f.build(), run_time=3.0)
-        f_ray = nl_f.from_point(0)
-        self.play(copy_into(f2_dom[1], f_ray), run_time=1.2)
         self.beat('f_back', READ_LONG)
 
-        self.say(f'{G_WORD} accepts every number, so the composite keeps the domain of {F_WORD}.')
-        self.play(Indicate(f_ray, color=G_COLOR, scale_factor=1.15), run_time=1.2)
+        self.say(f'{G_WORD} accepts every number, so the domains match.')
+        self.play(Indicate(comp_ray, color=G_COLOR, scale_factor=1.15), run_time=1.2)
         self.beat('same_domain', READ_LONG)
 
         self.say(f'The domain of the composite is $[0,\\infty)$, the same as {F_WORD}.')
         self.play(
-            FadeOut(VGroup(f2, f2_dom, nl_f.everything, f_ray)),
+            FadeOut(VGroup(y_row, y_dom, f2, f2_dom, nl_f.everything, comp_ray)),
             FadeIn(c_dom),
             run_time=1.3,
         )

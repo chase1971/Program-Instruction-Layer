@@ -1,62 +1,78 @@
 [
   {
+    "name": "problem_title",
+    "time": 1.11
+  },
+  {
+    "name": "problem_intro",
+    "time": 4.11
+  },
+  {
     "name": "form",
-    "time": 2.67
+    "time": 7.0
   },
   {
     "name": "f_inside",
-    "time": 7.11
+    "time": 11.44
   },
   {
     "name": "f_circle",
-    "time": 13.78
+    "time": 16.67
   },
   {
     "name": "f_arrow",
-    "time": 17.33
+    "time": 19.61
   },
   {
     "name": "f_domain",
-    "time": 21.67
+    "time": 23.94
   },
   {
     "name": "g_domain",
-    "time": 25.89
+    "time": 28.17
   },
   {
     "name": "composite_x",
-    "time": 30.0
+    "time": 37.39
   },
   {
     "name": "composite_paren",
-    "time": 32.89
+    "time": 40.28
   },
   {
     "name": "composite_written",
-    "time": 37.0
+    "time": 44.39
   },
   {
     "name": "simplified",
-    "time": 40.56
+    "time": 47.94
   },
   {
     "name": "domain_intro",
-    "time": 43.89
+    "time": 51.28
+  },
+  {
+    "name": "y_inside",
+    "time": 53.94
+  },
+  {
+    "name": "y_domain",
+    "time": 60.28
   },
   {
     "name": "domain_follows",
-    "time": 46.22
+    "time": 62.61
   },
   {
     "name": "f_back",
-    "time": 54.44
+    "time": 66.17
   },
   {
     "name": "same_domain",
-    "time": 58.11
+    "time": 69.83
   },
   {
     "name": "hold",
-    "time": 61.89
+    "time": 73.61
   }
 ]

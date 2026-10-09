@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro App plan — in plain language</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --line: #334155; --text: #e2e8f0; --muted: #94a3b8;
+    --blue: #60a5fa; --green: #4ade80; --amber: #fbbf24; --grey: #64748b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 20px/1.55 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 24px 80px; }
+  .back { display: inline-block; padding: 14px 22px; border-radius: 12px; background: var(--card);
+          border: 2px solid var(--line); color: var(--blue); text-decoration: none; font-weight: 600; }
+  .banner { margin: 20px 0; padding: 14px 18px; border-left: 6px solid var(--grey);
+            background: #172033; color: var(--muted); border-radius: 8px; font-size: 17px; }
+  h1 { font-size: 36px; margin: 18px 0 6px; }
+  h2 { font-size: 27px; margin: 44px 0 14px; }
+  .lead { font-size: 22px; color: var(--muted); margin-top: 0; }
+  .card { background: var(--card); border: 2px solid var(--line); border-radius: 16px;
+          padding: 20px 24px; margin: 16px 0; }
+  .card h3 { margin: 0 0 8px; font-size: 23px; }
+  .card p { margin: 6px 0; }
+  .tag { display: inline-block; font-size: 15px; font-weight: 700; padding: 3px 12px;
+         border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+  .tag.big { background: #14532d; color: var(--green); }
+  .tag.mid { background: #422006; color: var(--amber); }
+  .tag.opt { background: #1e293b; color: var(--muted); border: 1px solid var(--grey); }
+  .num { display: inline-flex; width: 40px; height: 40px; border-radius: 50%; background: var(--blue);
+         color: #0f172a; font-weight: 800; align-items: center; justify-content: center; margin-right: 10px; }
+  .feel { color: var(--green); }
+  ul { margin: 8px 0; padding-left: 26px; }
+  li { margin: 6px 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+  .keep { border-color: #1d4ed8; }
+  .merge { border-color: #15803d; }
+  .small { color: var(--muted); font-size: 17px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/pages.html">← All pages</a>
+  <div class="banner">Snapshot written October 8, 2026. A plain-language summary of the Macro App plan as it stood that day. It will not update itself as work gets done.</div>
+
+  <h1>Macro App plan, in plain language</h1>
+  <p class="lead">What the plan is trying to do, without the code details.</p>
+
+  <h2>The goal in one sentence</h2>
+  <div class="card">
+    <p>Do all the loading <strong>while the splash screen is up</strong>, so that once the app appears, everything you click is already there, with no waiting and no "starting…" messages.</p>
+  </div>
+
+  <h2>The three rules the plan follows</h2>
+  <div class="card">
+    <h3>1. Wait at the start, not during use</h3>
+    <p>A longer launch is fine. Hiccups when you click a tab, a course, or the student preview are not. Using more memory to keep things loaded is fine.</p>
+  </div>
+  <div class="card">
+    <h3>2. One traffic controller for all the browsers</h3>
+    <p>The app has many little built-in browsers (D2L, Pearson, gradebook pages, the student preview). Instead of each part of the app loading pages on its own and tripping over the others, one controller handles every page load. Parts of the app just say "I need this page" and the controller handles it.</p>
+  </div>
+  <div class="card">
+    <h3>3. No doing the same job twice</h3>
+    <p>Where two pieces of the app do the same thing, combine them, or write down why both are needed.</p>
+  </div>
+
+  <h2>Where things stand today</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Already working</h3>
+      <ul>
+        <li>The traffic controller exists and every browser already goes through it.</li>
+        <li>Gradebook courses load in the background, and the splash can wait for them.</li>
+        <li>Each visible tab gets its page loaded in the background after you're signed in.</li>
+        <li>The student preview refreshes reliably and shows the right class.</li>
+        <li>Crashes and errors get logged where you can see them.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Still causing hiccups</h3>
+      <ul>
+        <li>The student preview server doesn't start until you open the preview.</li>
+        <li>That server also throws away its saved work every time, so it starts slow.</li>
+        <li>The splash only waits for gradebook. Other tabs may still be loading when the app appears.</li>
+        <li>Tabs like Managing Grades only have your <em>current</em> course ready. Switching courses there loads on click.</li>
+        <li>Four different pieces each do their own warm-up, with no one in charge.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>The steps, in order</h2>
+
+  <div class="card">
+    <h3><span class="num">1</span>Have the student preview ready at launch <span class="tag big">You'll feel this most</span></h3>
+    <p>Start the student portal preview while the splash is up, and stop it throwing away its saved work every time, so it starts fast. Also load the preview page itself in the background.</p>
+    <p class="feel">What you'll notice: open Teacher Console → Preview and the phone is already showing the portal. No more "Starting preview server…".</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">2</span>One warm-up list, and the splash waits for it <span class="tag big">You'll feel this</span></h3>
+    <p>Combine the four separate warm-ups into one list of everything that should be ready: gradebook courses, every visible tab, the student preview, and the background servers. The splash stays up until that list is done. If something is very slow, the app opens anyway after a time limit you choose.</p>
+    <p class="feel">What you'll notice: right after the splash closes, every tab you click is already loaded.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">3</span>Keep every course ready in the other course tabs <span class="tag opt">Your call</span></h3>
+    <p>Today only gradebook can keep all your courses loaded. This would do the same for tabs like Managing Grades and Managing Dates, so switching courses there is instant too. It uses more memory, so you'd decide whether it's worth it and which tab to do first.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">4</span>One honest answer to "is this page ready?" <span class="tag mid">Behind the scenes</span></h3>
+    <p>Right now gradebook keeps its own separate list of which pages are ready, apart from the main list. Merge them into one. Also make every browser action report clearly whether it worked and, if not, why, instead of sometimes quietly pretending it worked.</p>
+    <p class="feel">What you'll notice: fewer "the button did nothing" moments, and clearer messages when something can't load.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">5</span>Make the traffic controller the only way in <span class="tag mid">Behind the scenes</span></h3>
+    <p>Today the app still has a second, older line for loading pages alongside the traffic controller. When the two get mixed up you get freezes, like the September Pull freeze. Move everything onto the controller so that line can be retired. Each part of the app will just say "I want this page, shown or hidden" and the controller does the rest.</p>
+    <p class="feel">What you'll notice: race-condition bugs stop coming back every time a new feature is added.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">6</span>Student preview leftovers <span class="tag opt">Small</span></h3>
+    <p>Check whether switching between Preview and other screens still flashes. Only if it does, show a still picture during the switch. Tidy up a few small things about how the preview frame lines up.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="num">7</span>General tidying <span class="tag opt">Only when already working nearby</span></h3>
+    <p>Break up a few files that have grown too big, simplify how the Teacher Console passes information around, and finish small gradebook and Assignment Assistant cleanups. These get done when someone is already working in that area, not as a separate project.</p>
+  </div>
+
+  <h2>Things that look like duplicates</h2>
+  <div class="grid2">
+    <div class="card keep">
+      <h3>Keeping both</h3>
+      <p><strong>The two Vite servers.</strong> A Vite server is what shows an app's code while you're editing it. One shows the Macro App itself. The other shows your own copy of the student portal, so the preview can show changes you haven't put online yet. They're two separate projects, and the portal has to keep working on its own for Netlify. The plan starts them together at launch instead of merging them. If you're not editing the portal, setting the preview to "Live" means the second one isn't needed at all.</p>
+      <p><strong>The two calendars.</strong> You said earlier they're meant to be different, so they stay separate.</p>
+    </div>
+    <div class="card merge">
+      <h3>Combining</h3>
+      <ul>
+        <li>Four warm-up pieces → one warm-up list.</li>
+        <li>Two "is it ready?" lists → one.</li>
+        <li>Two ways of loading browser pages → the one traffic controller.</li>
+        <li>The gradebook-only splash wait → one wait that covers everything.</li>
+        <li>Two places that remember "signed in to D2L" → one.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Things the plan deliberately won't do</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Load tabs only when you click them.</strong> It would make launch faster, but you'd feel the hitch later.</li>
+      <li><strong>Limit how many courses stay loaded.</strong> Memory is the price you chose to pay.</li>
+      <li><strong>Switch to an installed version for speed.</strong> You change the app constantly, so it stays in edit mode.</li>
+      <li><strong>Rewrite the app in something else.</strong> The slowness comes from what the app does, not the tools it's built with.</li>
+    </ul>
+  </div>
+
+  <h2>Questions you'll be asked along the way</h2>
+  <div class="card">
+    <p class="small">One at a time, only when that step comes up.</p>
+    <ul>
+      <li><strong>Step 2:</strong> How long should the splash be allowed to wait before opening the app anyway?</li>
+      <li><strong>Step 3:</strong> Keep every course loaded in the other course tabs, and which tab first?</li>
+      <li><strong>Step 6:</strong> Show a still picture when switching back to the preview, or is it fine without?</li>
+      <li><strong>Step 6:</strong> Default the preview to the live site when your local copy isn't running?</li>
+      <li><strong>Step 7:</strong> A small structural choice about how the Teacher Console shares information.</li>
+    </ul>
+  </div>
+</main>
+</body>
+</html>

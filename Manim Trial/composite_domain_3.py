@@ -39,7 +39,12 @@ from composite_domain import (  # noqa: E402
     FORM_SIZE,
     G_COLOR,
     INK,
+    NL_ARROW_RUN,
+    NL_BUILD_RUN,
+    NL_HIGHLIGHT_RUN,
+    NL_WIDE_BUILD_RUN,
     OP_SIZE,
+    READ_CAPTION_EXTRA,
     READ_LONG,
     READ_SHORT,
     ROW_Y,
@@ -54,6 +59,7 @@ from scene_style import PAPER_INK, PAPER_RED, Narrated, apply_portal_paper_backg
 from solve_steps import divide_bars, op_under, strike_pair  # noqa: E402
 from tick_number_line import HALF, tick_number_line  # noqa: E402
 from vector_projection_shadow import copy_into  # noqa: E402
+from composite_problem_intro import COMPOSITE_INTRO_3, play_composite_problem_intro  # noqa: E402
 
 apply_portal_paper_background()
 
@@ -119,6 +125,8 @@ class CompositeDomainThree(Narrated, Scene):
         g_row[2].set_color(G_COLOR)
         g_row, g_dom = pair(g_row, domain_row(r'(-\infty,2]', 0), G_Y)
 
+        play_composite_problem_intro(self, COMPOSITE_INTRO_3, f_row, g_row)
+
         # ---- solving f: bottom can't be 0 ------------------------------------------------
         fin_row = row('x', '-4', r'\neq', '0', y=SOLVE_Y['f_inside'], size=STEP_SIZE)
         fin_moved, fin_zero = fin_row[1], fin_row[3]
@@ -177,7 +185,6 @@ class CompositeDomainThree(Narrated, Scene):
 
         # ===================================================================================
         self.say('Start with the domain of each function.')
-        self.play(Write(f_row), Write(g_row), run_time=1.6)
         self.beat('form', 1.0)
 
         # ---- domain of f ------------------------------------------------------------------
@@ -207,13 +214,13 @@ class CompositeDomainThree(Narrated, Scene):
         self.beat('f_solved', READ_LONG)
 
         self.say(f"Open circle on $4$, because {X_WORD} can't equal it.")
-        self.play(f_nl.build(), run_time=2.4)
+        self.play(f_nl.build(), run_time=NL_BUILD_RUN)
         self.play(FadeIn(VGroup(f_minus, f_plus)), run_time=0.5)
         self.play(FadeIn(f_nl_all[1]), run_time=0.9)
         self.beat('f_circle', READ_LONG)
 
         self.say(f'{X_WORD} can be any other number, so the arrows go both ways.')
-        self.play(Create(f_nl_all[0]), run_time=1.3)
+        self.play(Create(f_nl_all[0]), run_time=NL_HIGHLIGHT_RUN + 0.15)
         self.bring_to_front(f_nl_all[1])
         self.beat('f_arrows', READ_LONG)
 
@@ -271,7 +278,7 @@ class CompositeDomainThree(Narrated, Scene):
         self.beat('g_solved', READ_LONG)
 
         self.say(f'Closed circle on $2$, because {X_WORD} can equal it.')
-        self.play(g_nl.build(), run_time=2.4)
+        self.play(g_nl.build(), run_time=NL_BUILD_RUN)
         self.play(FadeIn(VGroup(g_minus, g_plus)), run_time=0.5)
         self.play(
             FadeIn(g_ray0[1]),
@@ -281,7 +288,7 @@ class CompositeDomainThree(Narrated, Scene):
         self.beat('g_circle', READ_LONG)
 
         self.say(f'{X_WORD} is at most $2$, so the arrow points left.')
-        self.play(GrowArrow(g_ray0[0]), run_time=1.1)
+        self.play(GrowArrow(g_ray0[0]), run_time=NL_ARROW_RUN)
         self.beat('g_arrow', READ_LONG)
 
         self.say(f'In interval notation, that is the domain of {G_WORD}.')
@@ -293,7 +300,10 @@ class CompositeDomainThree(Narrated, Scene):
         self.beat('g_domain', READ_LONG)
 
         # ---- the composite: 1/(x-4) -> 1/((x)-4) -> g flies in -----------------------------
-        self.say(f'Now the composite: put {G_WORD} in for every {X_WORD} in {F_WORD}.')
+        self.say(r'The $\circ$ in $(f\circ g)(x)$ means $f$ composed with $@b g$.')
+        self.wait(READ_LONG)
+        self.say(f'This means {G_WORD} replaces every {X_WORD} in {F_WORD}.')
+        self.wait(READ_CAPTION_EXTRA)
         self.play(Indicate(f_row[2], color=TAG_COLOR, scale_factor=1.2), run_time=1.0)
         self.play(FadeIn(c_x.head), copy_into(f_row[2], c_x.frac), run_time=1.1)
         self.beat('composite_x', READ_SHORT)
@@ -444,9 +454,9 @@ class CompositeDomainThree(Narrated, Scene):
 
         # ---- number lines: all but -14, then g's, then the overlap ---------------------------
         self.say('On a number line: every number except $-14$.')
-        self.play(nl_all.build(), run_time=3.0)
+        self.play(nl_all.build(), run_time=NL_WIDE_BUILD_RUN)
         all_but = nl_all.all_but(-14)
-        self.play(Create(all_but[0]), run_time=1.0)
+        self.play(Create(all_but[0]), run_time=NL_HIGHLIGHT_RUN)
         self.play(FadeIn(all_but[1]), run_time=0.4)
         self.beat('nl_all', READ_LONG)
 
@@ -458,13 +468,13 @@ class CompositeDomainThree(Narrated, Scene):
 
         self.say(f'Since {G_WORD} was plugged into {F_WORD}, bring its domain into the composite.')
         self.play(FadeIn(g2), FadeIn(g2_dom), run_time=1.1)
-        self.play(nl_g.build(), run_time=3.0)
+        self.play(nl_g.build(), run_time=NL_WIDE_BUILD_RUN)
         g_ray = nl_g.from_point(2, -1)
         self.play(copy_into(g2_dom[1], g_ray), run_time=1.2)
         self.beat('g_back', READ_LONG)
 
         self.say('The composite domain is where the lines overlap.')
-        self.play(nl_merge.build(), run_time=3.0)
+        self.play(nl_merge.build(), run_time=NL_WIDE_BUILD_RUN)
         merged_all = nl_merge.all_but(-14)
         merged_g = nl_merge.from_point(2, -1)
         merged_hole = nl_merge.hole(-14, G_COLOR)

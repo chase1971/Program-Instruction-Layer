@@ -147,8 +147,38 @@ class Narrated:
     def write_marks(self, path):
         if self.marks:
             Path(path).write_text(json.dumps(self.marks, indent=2), encoding='utf-8')
+        steps = self.caption_step_times()
+        if steps:
+            steps_path = Path(path).with_name(Path(path).stem.replace('_marks', '_steps') + '.json')
+            steps_path.write_text(json.dumps(steps), encoding='utf-8')
+
+    def caption_step_times(self):
+        """Slow-mode pause times: one per caption, at the end of its beat.
+
+        A caption's beat ends the instant the next `say()` starts (before its fade-out), so the
+        frame is the finished board with that caption still up. The last step is the final
+        mark (the hold). Portal Slow mode pauses here, one Next per caption.
+        """
+        starts = getattr(self, 'caption_starts', None)
+        if not starts or not self.marks:
+            return []
+        gap = 0.04  # stop just before the next caption begins to fade out
+        steps = [round(t - gap, 2) for t in starts[1:]]
+        steps.append(self.marks[-1]['time'])
+        # A long run with no caption change (board work only) keeps its own marks as steps.
+        long_gap = 8.0
+        extra = []
+        previous = 0.
+        for step in steps:
+            if step - previous > long_gap:
+                extra += [m['time'] for m in self.marks if previous + 2 < m['time'] < step - 2]
+            previous = step
+        return sorted(set(steps + extra))
 
     def say(self, words):
+        if getattr(self, 'caption_starts', None) is None:
+            self.caption_starts = []
+        self.caption_starts.append(round(self.elapsed, 2))
         wrap = getattr(self, 'caption_wrap_width', None)
         size = getattr(self, 'caption_font_size', 25)
         fresh = label(

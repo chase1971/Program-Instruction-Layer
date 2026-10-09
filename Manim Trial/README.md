@@ -74,6 +74,21 @@ audit that runs at every pause mark, the layout regions, and the contact sheet.
   `http://127.0.0.1:8765/scratch/dice-series.html` (17.9 MB page — a few seconds to load).
   Re-run it after re-rendering any part, then re-run `build_page.py`.
 
+- `equations_of_lines.py`: M1314 2.5 Equations of Lines, portrait portal clip. One `Problem`
+  record (slope num/den + point) drives the beats: point-slope form, plug in, multiply both sides
+  by the denominator (gold ×7 under both sides, denominators struck), distribute, add to both sides,
+  divide every term by the denominator. Scene `SlopePointSlopeIntercept` = problem 1,
+  m = 5/7 through (3, 4) -> y = 5/7 x + 13/7. Delivered in the portal only
+  (`student-portal/src/features/equations-of-lines/equationsOfLinesExamples.ts`). Scene `TwoPointsStandard` =
+  problem 2, (11, 2) and (2, 8) -> m = -2/3, then 2x + 3y = 28 (slope-formula beat first, add 2x and 24
+  instead of dividing). Each scene has its own marks file (`equations_of_lines_two_points_marks.json`);
+  `contact_sheet.py` only knows `<module>_marks.json`, so sheet problem 2 with a small script that calls
+  its `grab_frame`/`montage` with that file. Scene `ParallelSlopeIntercept` = problem 3, parallel to
+  `8x + 6y = 15` through (3, -4): the problem is written out as on the worksheet, the given line is put in
+  slope-intercept form to read m = -4/3 (`Problem.line`/`relation`), that slope is carried up to `m = ...`, then
+  the same beats with a negative y (`y + 4`, subtract 12) end on `y = -4/3 x` (constants cancel, `p.c == 0`).
+  Marks: `equations_of_lines_parallel_marks.json`.
+
 American spellings on screen — "center", never "centre".
 
 **`PART4_PLAN.md`** is the handoff doc part 4 was built from — verified numbers, the seed

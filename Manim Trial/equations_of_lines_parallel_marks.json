@@ -48,43 +48,47 @@
     "time": 42.78
   },
   {
+    "name": "plug-negative",
+    "time": 49.67
+  },
+  {
     "name": "plug",
-    "time": 50.89
+    "time": 53.67
   },
   {
     "name": "multiply",
-    "time": 54.89
+    "time": 57.67
   },
   {
     "name": "cancel",
-    "time": 58.0
+    "time": 60.78
   },
   {
     "name": "cleared",
-    "time": 61.33
+    "time": 64.11
   },
   {
     "name": "distribute",
-    "time": 68.0
+    "time": 70.78
   },
   {
     "name": "add",
-    "time": 72.67
+    "time": 75.44
   },
   {
     "name": "isolated",
-    "time": 79.33
+    "time": 82.11
   },
   {
     "name": "divide",
-    "time": 83.44
+    "time": 86.22
   },
   {
     "name": "answer",
-    "time": 88.44
+    "time": 91.22
   },
   {
     "name": "hold",
-    "time": 90.78
+    "time": 93.56
   }
 ]
