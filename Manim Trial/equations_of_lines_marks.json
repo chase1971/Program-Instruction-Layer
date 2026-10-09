@@ -1,0 +1,50 @@
+[
+  {
+    "name": "form",
+    "time": 2.56
+  },
+  {
+    "name": "given",
+    "time": 5.44
+  },
+  {
+    "name": "plug",
+    "time": 12.89
+  },
+  {
+    "name": "multiply",
+    "time": 16.89
+  },
+  {
+    "name": "cancel",
+    "time": 20.0
+  },
+  {
+    "name": "cleared",
+    "time": 23.33
+  },
+  {
+    "name": "distribute",
+    "time": 30.0
+  },
+  {
+    "name": "add",
+    "time": 34.67
+  },
+  {
+    "name": "isolated",
+    "time": 39.33
+  },
+  {
+    "name": "divide",
+    "time": 44.33
+  },
+  {
+    "name": "answer",
+    "time": 49.33
+  },
+  {
+    "name": "hold",
+    "time": 51.67
+  }
+]
