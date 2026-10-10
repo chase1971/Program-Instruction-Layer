@@ -1,0 +1,58 @@
+[
+  {
+    "name": "setup",
+    "time": 5.33
+  },
+  {
+    "name": "focus-length",
+    "time": 9.11
+  },
+  {
+    "name": "directrix-length",
+    "time": 12.89
+  },
+  {
+    "name": "equal",
+    "time": 15.22
+  },
+  {
+    "name": "trace",
+    "time": 21.44
+  },
+  {
+    "name": "definition",
+    "time": 27.67
+  },
+  {
+    "name": "set-equal",
+    "time": 33.11
+  },
+  {
+    "name": "square",
+    "time": 37.0
+  },
+  {
+    "name": "expand",
+    "time": 40.89
+  },
+  {
+    "name": "cancel",
+    "time": 44.33
+  },
+  {
+    "name": "combine",
+    "time": 47.11
+  },
+  {
+    "name": "equation",
+    "time": 51.67
+  },
+  {
+    "name": "purpose",
+    "time": 55.11
+  },
+  {
+    "name": "hold",
+    "time": 57.44
+  }
+]

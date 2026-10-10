@@ -1,0 +1,30 @@
+[
+  {
+    "name": "cone_form",
+    "time": 2.22
+  },
+  {
+    "name": "cone_hold",
+    "time": 6.11
+  },
+  {
+    "name": "circle",
+    "time": 11.28
+  },
+  {
+    "name": "ellipse",
+    "time": 17.61
+  },
+  {
+    "name": "parabola",
+    "time": 27.72
+  },
+  {
+    "name": "hyperbola",
+    "time": 37.94
+  },
+  {
+    "name": "hold",
+    "time": 42.56
+  }
+]

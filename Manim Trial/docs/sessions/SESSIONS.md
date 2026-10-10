@@ -1,3 +1,31 @@
+## 2026-10-09 (late) — Parabola: Opens Left clip, "multiply both sides" recipe, always-wire-into-portal rule, Auto-mode Back fix
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
+
+**Files changed:** new `parabola_opens_left.py` (~300 lines; `LeftProblem`, class `ParabolaOpensLeft` extends `ParabolaOpensUp`), `parabola_opens_left_{marks,steps}.json`, `ANIMATION_STYLE_RECIPE.md` (new "Multiply both sides" entry), `solve_steps.py` docstring, `scene_audit.py` (a `DecimalNumber` is one readout, not per-digit text); portal `conicsGuide.ts` (entry 4, hold 99.78), `conics-intro/parabola-opens-left.mp4` + steps, `conicsGuide.test.ts`, `portalHomeApps.ts` ("4 clips"), `useVideoExamplePlayer.ts` (Auto-mode Back now keeps playing) + `src/test/useVideoExamplePlayer.test.ts`; root `AGENTS.md` + `portal-math-video-examples.md` (animations are always wired into the portal; Chase never views an MP4).
+
+**What worked:** Worksheet problem 2, `-(1/4)y^2 = x - 2`: multiply both sides by -4 with the gold multiplier on each side and only the two 4s struck (negatives never mentioned), then the vertex with a "be careful, the order is flipped, (2, 0) not (0, 2)" beat, p = -1 opens left, focus (1, 0), focal width 4, vertical directrix x = 3, horizontal axis y = 0. Rendered 1080x1350, audit clean at 23 marks, wired in. Found the "stuck in Auto" report was the shared player: Back paused and disabled Pause/Resume; fixed with a failing-then-passing test.
+
+**Current state:** Green — Chase has not yet watched Opens Left or the Back fix in the portal; no Netlify deploy.
+
+**File size flag:** None.
+
+**Next session:** Chase's review of Opens Left. Remaining parabola variants if wanted: opens down, opens right, equation from focus and directrix; `LeftProblem` only handles k = 0, h > 0, opening left.
+
+## 2026-10-09 — Parabola directrix clip redone: definition + equation derivation, portal button labels, render-and-wire rule
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `parabola_directrix.py` (rewritten, ~230 lines), `parabola_directrix_steps.json`/`_marks.json`, `conicsGuide.ts` (directrix hold 57.44), portal assets `conics-intro/parabola-directrix.mp4` + `-steps.json`, `VideoExamplesPlayerStage.tsx` (clip nav buttons relabelled "Previous clip"/"Next clip"), root `AGENTS.md` + `portal-math-video-examples.md` (an animation is not done until rendered and playing in the portal, including edits).
+
+**What worked:** Directrix clip is now ~57 s: one point, blue length to the focus, gold length straight down to the directrix, equal; slide the point keeping them equal and the parabola traces (3.5 s); state the definition; derive (x-2)^2 = 12(y+1) from sqrt((x-2)^2+(y-2)^2) = y+4; closing "why we care" captions. Rendered and copied into the portal; conicsGuide test passes 5/5. The two Back/Next pairs were step nav vs clip nav, now labelled differently (shared component, so Vectors & Projections picks it up too).
+
+**Current state:** Green — rendered and in the portal; Chase has not yet watched it. No Netlify deploy.
+
+**File size flag:** None.
+
+**Next session:** If Chase wants the eccentricity (focus/directrix ratio) idea or the (x, y) label nudged off the curve, edit `parabola_directrix.py`, re-render, re-copy, update the hold constant. Portal needs `npm run deploy:prod` only when Chase asks.
+
 ## 2026-10-08 — Equations of Lines problem 4 (perpendicular), negative-plug animation, Slow-mode Back
 
 **Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
@@ -142,3 +170,11 @@ self-contained `related_rates_*.py` files.
 (square #1, drain #5, cone #6, ladder #7, rocket #8, lighthouse #9). Problems #2-4 (circle,
 sphere-melting, sphere-surface-area) and #10-11 (business/demand) remain unbuilt if Chase asks for
 more; nothing pending was requested this session.
+
+## 2026-10-09 — Conics intro clip + Conics portal app (M2412)
+
+**Repos touched:** Programs (Manim Trial, agent docs), School Scrips/student-portal, School Scrips/student-session-kit, School Scrips/Macro App
+
+**Done:** `conics_intro.py` — 3D double cone, one slice tilting circle -> ellipse -> parabola (parallel to side, red generator) -> hyperbola (both nappes), ends on a four-curve board; ~42.6 s, 1080x1350. `scene_style.Narrated` gained a `caption_ready` hook so 3D scenes pin captions. New Conics gallery app in the portal (`conicsGuide.ts`, `ConicsGuideEntry.tsx`, route `conics`, precalc tile, `precalc/conics`), migration `079` pushed, Macro App teacher-console toggle + catalog + preview aspect. Not deployed to Netlify.
+
+**Next session:** More conics clips = one more `examples` entry in `conicsGuide.ts` (update the tile subtitle count in `portalHomeApps.ts`). Degenerate cases (point/line/two lines) not built. Portal needs `npm run deploy:prod` when Chase asks.

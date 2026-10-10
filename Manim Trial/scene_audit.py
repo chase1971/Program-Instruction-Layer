@@ -26,7 +26,7 @@ import math
 import os
 from pathlib import Path
 
-from manim import DEFAULT_FONT_SIZE, config
+from manim import DEFAULT_FONT_SIZE, DecimalNumber, config
 from manim.mobject.text.tex_mobject import SingleStringMathTex
 from manim.mobject.text.text_mobject import MarkupText, Text
 
@@ -126,7 +126,8 @@ def _units(mob, group=None):
     instead of once per dash. `group` is the nearest ancestor holding more than one piece
     of text, which is the thing a fix should move.
     """
-    if isinstance(mob, TEXT_TYPES) or not any(
+    # A DecimalNumber is one readout: its digits are separate MathTex only because it is built so.
+    if isinstance(mob, (TEXT_TYPES, DecimalNumber)) or not any(
         isinstance(part, TEXT_TYPES) for part in mob.get_family()
     ):
         yield mob, group

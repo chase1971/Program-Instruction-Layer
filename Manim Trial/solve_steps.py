@@ -7,6 +7,10 @@ Pattern (from SlopeInterceptForm.move_x / .divide -- copy it, never reinvent it)
                      from copies (copy_into) of what is left.
     DIVIDE           NEVER a division sign. A fraction bar is drawn under EVERY term and the
                      divisor goes under each bar, in gold. The next line is built from copies.
+    MULTIPLY         The multiplier in gold in front of BOTH sides, then the cancelling pair
+                     (multiplier digit and the fraction's denominator, then any two negatives)
+                     struck in red with strike_pair. See ANIMATION_STYLE_RECIPE.md "Multiply
+                     both sides"; exemplars equations_of_lines.py and parabola_opens_left.py.
     FLIP             Dividing or multiplying an inequality by a negative: the old sign pulses red,
                      the new sign is copied in red, then settles to ink.
 

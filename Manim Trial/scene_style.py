@@ -185,6 +185,7 @@ class Narrated:
             words, font_size=size, color=self.caption_color, max_width=wrap,
             wrap=getattr(self, 'caption_wraps', False),
         ).move_to([0, CAPTION_Y, 0])
+        self.caption_ready(fresh)
         if self.note is None:
             self.note = fresh
             self.add(fresh)
@@ -192,6 +193,9 @@ class Narrated:
         self.play(FadeOut(self.note), run_time=.25)
         self.note = fresh
         self.play(FadeIn(fresh), run_time=.35)
+
+    def caption_ready(self, caption):
+        """Hook: a 3D scene overrides this to pin the new caption to the screen."""
 
     def hush(self):
         """Clear the caption. Questions get the screen to themselves."""

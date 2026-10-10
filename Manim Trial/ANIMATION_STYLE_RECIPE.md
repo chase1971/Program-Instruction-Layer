@@ -171,6 +171,23 @@ When a clip says "solve this", do it exactly as `slope_intercept_form.py` does (
   being solved.
 - **Divide: never a division sign (`\div`).** A **fraction bar under every term** with the divisor
   under each bar in gold (`divide_bars`), then the next line is built from copies.
+- **Multiply both sides (clear a fraction, or get a squared term alone):** exemplar
+  `equations_of_lines.py` ("clear the fraction", `times_*`, `strikes`) and
+  `parabola_opens_left.py` (the same beat with a negative). Never "multiply both sides" as
+  narration alone, and never a `	imes` sign:
+  1. Caption: "multiply both sides by N." Rewrite the row **in place** (`ReplacementTransform`
+     the old pieces, `FadeIn` only what is new) with the multiplier **in gold** in front of
+     **each side**, each side in parentheses so it clearly multiplies the whole side.
+  2. **Show the cancelling.** Strike in red (`strike_pair`) the multiplier's digits against the
+     fraction's **denominator** -- one `say()` ("The 4s cancel."), the two slashes drawn one
+     after the other. Only the pair that cancels is struck; the other side is left alone.
+  3. If both are negative, the negatives are a **second, separate strike** with its own caption
+     ("A negative times a negative is positive, so those cancel too."): build the multiplier as
+     `tex(NEG, '4', '(')` so its negative is its own glyph, and strike it with the fraction's
+     top negative (`frac[0][0][0]`, the rule glyph; `frac[0][0]` is the whole `-1`).
+  4. The next line is built from `copy_into` copies of what is left (not a morph of the old
+     row), the multiplier arriving gold; then fade the multiplied row and its strikes.
+  Same two beats every time: **multiply both sides -> struck pairs -> clean line.**
 - **Flip:** dividing an inequality by a negative -- the old sign pulses red, the new sign is
   copied in red, then settles to ink.
 - **Bring down only what is being solved.** "The inside must be >= 0" copies the radicand

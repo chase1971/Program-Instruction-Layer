@@ -1,0 +1,78 @@
+[
+  {
+    "name": "problem",
+    "time": 4.22
+  },
+  {
+    "name": "form",
+    "time": 8.67
+  },
+  {
+    "name": "opposites",
+    "time": 11.89
+  },
+  {
+    "name": "vertex",
+    "time": 15.56
+  },
+  {
+    "name": "plug",
+    "time": 21.11
+  },
+  {
+    "name": "plug-plus",
+    "time": 26.11
+  },
+  {
+    "name": "divide",
+    "time": 33.78
+  },
+  {
+    "name": "p",
+    "time": 37.78
+  },
+  {
+    "name": "direction",
+    "time": 42.33
+  },
+  {
+    "name": "list",
+    "time": 46.67
+  },
+  {
+    "name": "vertex-dot",
+    "time": 49.56
+  },
+  {
+    "name": "focus",
+    "time": 55.33
+  },
+  {
+    "name": "width",
+    "time": 59.0
+  },
+  {
+    "name": "end-dots",
+    "time": 64.22
+  },
+  {
+    "name": "curve",
+    "time": 69.33
+  },
+  {
+    "name": "directrix-down",
+    "time": 72.56
+  },
+  {
+    "name": "directrix",
+    "time": 77.89
+  },
+  {
+    "name": "aos",
+    "time": 82.78
+  },
+  {
+    "name": "hold",
+    "time": 86.56
+  }
+]

@@ -118,6 +118,19 @@ rule, or the modal rule.
 
 ---
 
+## Animations — "done" means rendered and playing in the student portal
+
+Any time you create **or change** an animation (new clip, edited scene, caption/timing fix),
+"done" means all of this has happened, with no step left for Chase:
+**final render** (`-r 1080,1350 --fps 30`) → MP4 + steps JSON copied into the portal assets →
+guide hold seconds/entry updated → portal test passes. A dry run or an edited `.py` is
+**never** done. There is no way to finish an animation that isn't already in the portal ready to
+view; never say "done" earlier, never tell him to render it, and never offer ("want me to wire it
+in?"). Chase never views an MP4 or `Manim Trial/media/` — he reviews in the app only; the
+handoff is "open <tile> in the portal". Detail: `agent docs/recipes/portal-math-video-examples.md`.
+
+---
+
 ## Windows launchers — never a visible console
 
 **Applies to every launcher, everywhere** — App Dashboard, the electron-toolbar **Launcher Panel**,

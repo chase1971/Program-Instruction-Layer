@@ -6,6 +6,21 @@
 > for frames, captions, pacing, and algebra on screen. This file owns **delivery + player
 > behavior**. The style recipe owns **what the clip looks like**.
 
+> **Non-negotiable — an animation is not done until it is RENDERED and plays in the student
+> portal.** This covers every change, not only new clips: editing a scene, fixing a caption or
+> timing, or redoing a beat all end with a **final render**, assets copied, guide hold seconds
+> updated, and the portal test green. A dry run is a sanity check, never the finish line, and
+> Chase is never told to render anything himself.
+
+> **Non-negotiable — an animation is not done until it plays in the student portal.**
+> Chase never opens an MP4 or anything under `Manim Trial/media/`; he reviews every clip
+> in the app, as a student would see it. So "make an animation" always means Manim scene
+> **and** portal wiring (assets, steps JSON, guide entry, tile/route, test) in the same
+> job — and the handoff is "open <tile> in the portal", never "watch the MP4", a `media/`
+> path, or a `file:///` link. Why: he can't use loose video files, and a clip reviewed
+> outside the player hides the Auto/Slow behavior he is actually judging. The only
+> exception is a clip he says is not for the portal. (Captured 2026-10-09.)
+
 **Exemplar app (copy this shape):** Composite Examples — Manim
 `composite_domain.py` / `composite_domain_2.py` / `composite_domain_3.py`; portal
 `School Scrips/student-portal/src/features/video-examples/compositeExamplesGuide.ts` and
@@ -28,7 +43,7 @@ Each **example tab** is one portrait MP4. The shared viewer (`VideoExamplesView`
 | Control | Behavior |
 |---|---|
 | **Auto / Slow** | Same step times; switching modes **does not restart** — picks up at the current frame. |
-| **Auto** | Clip **autoplays** on open. **Back / Next** jump one **caption step** (see below). **Next** keeps **playing** after the jump. **Pause** (left of Back) and **tap video** toggle pause/play. |
+| **Auto** | Clip **autoplays** on open. **Back / Next** jump one **caption step** (see below). **Back and Next both keep playing** after the jump (Back used to pause and disable Pause/Resume - fixed 2026-10-09; test in `src/test/useVideoExamplePlayer.test.ts`). **Pause** (left of Back) and **tap video** toggle pause/play. |
 | **Slow** | **No autoplay** between steps. **Next** plays the animation to the next step hold; **Back** seeks to the previous hold. **Next** while playing skips to the **start of the following** step and keeps playing. **Tap video:** pause while playing; when paused, tap = **Next**. Pulsing **Next** when paused and ready. No Play/Replay row — use **Restart** in the mode row. |
 | **Restart** | Mode row, after **Slow** — rewinds the **current example** to its opening frame. |
 | **Full screen** | Top-right of the player column — expands the clip + controls (shared `VideoExamplesPlayerStage`). |
@@ -133,6 +148,18 @@ player in **`portal-quiz--video-examples`** (see `equations-of-lines.css`).
 
 ---
 
+## File map (Conics — gallery app, one clip per entry)
+
+| Layer | Path |
+|---|---|
+| Manim scene (3D double cone, `ThreeDScene` + `Narrated`) | `Manim Trial/conics_intro.py` |
+| Portal assets | `student-portal/src/assets/video-examples/conics-intro/` (MP4 + `-steps.json`) |
+| Guide (add each new clip as one `examples` entry) | `student-portal/src/features/video-examples/conicsGuide.ts` |
+| Entry (gallery -> player, Auto/Slow) | `student-portal/src/features/video-examples/ConicsGuideEntry.tsx` |
+| Access | activity `precalc/conics` (migration `079`), tile gate `precalc`, Macro App `videoSlotCatalog.ts` + teacher console M2412 list |
+
+A 3D scene pins captions with the `caption_ready` hook in `scene_style.py` and skips the flat layout audit — check frames.
+
 ## New guide vs one-off clip
 
 | Pattern | When |
@@ -152,7 +179,8 @@ below).
 2. Pick Manim exemplar scene closest to the math (Composite for domain/composite; quadratic
    for vertex form; `slope_intercept_form.py` for solve-on-screen).
 3. Implement scene → dry-run → render → copy assets → guide TS → entry/route/tile → tests.
-4. Chase reviews in the **portal**, not in `Manim Trial/media`.
+4. Wiring is part of the job, not an offer. Chase reviews in the **portal** only — never
+   point him at `Manim Trial/media` or the MP4 (see the non-negotiable at the top).
 
 Do **not** ship a draft resolution MP4. Do **not** deploy Netlify unless Chase asks in that
 message.
