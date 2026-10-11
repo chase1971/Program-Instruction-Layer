@@ -1,3 +1,56 @@
+## 2026-10-11 — Definition of an Ellipse (3 parts): foci, a/b/c figure, full derivation
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `Manim Trial/ellipse_definition.py` (new, ~215 lines, Part 1), `Manim Trial/ellipse_standard_form.py` (new mixin, ~265 lines, Parts 2-3), portal `conicsGuide.ts` (new "Definition of an Ellipse" entry, parts 0 / 51.4 / 103.52, hold 226.89; definition group lists parabola then ellipse), `src/test/conicsGuide.test.ts`, `conics-intro/ellipse-definition.mp4` + `-steps.json`, `agent docs/recipes/portal-math-video-examples.md`.
+
+**What worked:** Part 1: definition d1 + d2 = constant, two foci, a point with live d1/d2/sum readouts (sum stays 6.00 around the whole ellipse), string-drawing caption, vertex check, constant = 2a. Part 2: grid and numbers go, generic figure with center (h,k), vertex a, focus c, co-vertex b; point moves to the co-vertex so each distance is a; right triangle gives b^2 + c^2 = a^2 then a^2 - c^2 = b^2 (used in Part 3 at the "factor" step). Part 3 opens on a joke warning caption ("a lot of algebra ahead, you do not need to know this"), then the distance formulas and the full derivation with X = x - h, Y = y - k as single terms. Chase found the derivation heavy; a hyperbola definition would be equally heavy (two squarings), so he may want it without the algebra.
+
+**Current state:** Green — rendered at 1080x1350, wired, conicsGuide and player tests pass, layout audit clean. Chase had not yet watched it in the portal. Not deployed to Netlify.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews the ellipse definition in the portal. Possible follow-ups: move a^2 - c^2 = b^2 from the end of Part 2 to where Part 3 needs it; a Definition of a Hyperbola clip (consider dropping the algebra); vertical-major-axis variant not done.
+﻿## 2026-10-11 — Definition of a Parabola: focus triangle, set-equal, Part 3, ending; Conics Exit button; Drive HTML refresh
+
+**Repos touched:** `Programs/` root (Manim Trial), `School Scrips/student-portal`, `School Scrips/student-session-kit`. Outside git: `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/` (`index.html`, `player.html`, `Conic Sections.html`, `videos/`).
+
+**Files changed:** `Manim Trial/parabola_directrix.py` (new `zoom_figure`, `focus_triangle`, `equate_distances`; derive reworked; ending trimmed; ~640 lines), portal `conicsGuide.ts` (Part 3 at 119.18, hold 216.22), `src/test/conicsGuide.test.ts` (3 parts), `conics-intro/parabola-directrix.mp4` + `-steps.json`, `ConicsGuideEntry.tsx` (header Exit button via `PortalQuizHeaderExitButton`, hidden on the menu).
+
+**What worked:** The "If the focus is at (h, k+p)" slide keeps the figure (zoomed, curve and directrix redrawn so they stay on screen), writes the distance formula over it, then draws a point, the segment to the focus, horizontal and vertical legs, braces x-h and y-(k+p), and the Pythagorean beat, with leg colors matching the formula terms. The "set equal" slide clears the legs and draws the drop to the directrix, both segments get tick marks, and the equation sits on ONE line (sqrt(...) = y-(k-p), size 29 so it fits). Part 3 ("Part 3. Deriving the formula. Distribute...") cuts at the end of the set-equal hold (a step time, never mid-animation) and opens on a ~5 s hold. Ending now stops on the standard form with "The derivation for the other directions is similar" (example and purpose beats removed). Drive Conics HTML: re-copied directrix and hyperbola MP4s, directrix stops/3 parts, hyperbola tile and clip; Next no longer grays out mid-step (skips to the start of the next step and keeps playing) in `player.html` and `Conic Sections.html`.
+
+**Current state:** Green — rendered, wired, conicsGuide + player tests pass, audit clean on the new marks; Chase had not yet watched the final Part 3 / ending in the portal. Not deployed to Netlify, nothing committed.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews the focus triangle, set-equal, and Part 3 in the portal. Known: in Slow mode a part button shows the end of the previous slide (shared player convention, left alone). Later steps after set-equal still use the two-row equation layout; make them one line if he asks.
+## 2026-10-11 — Hyperbola: Vertical clip (divide-by-4 opener)
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `Manim Trial/hyperbola_vertical.py` (new, ~440 lines; imports helpers from `hyperbola_horizontal.py`), portal `conicsGuide.ts` (new "Hyperbola: Vertical" entry, hold 179.11, Part 2 at 93.74, hyperbola group list), `src/test/conicsGuide.test.ts` (new test; ellipse-definition index 6 -> 7), `conics-intro/hyperbola-vertical.mp4` + `-steps.json`, `agent docs/recipes/portal-math-video-examples.md` (Conics row: all six graphing clips done).
+
+**What worked:** Worksheet problem 2, (y+3)^2 - (x+2)^2 = 4. Opens with the divide step (`divide_bars`: bars and 4s morph into the fractions and the 1). Then the same beats as the horizontal clip with y in front: up/down first, vertical transverse axis, c triangle at the lower-right corner so the diagonal pivots down once (other focus only appears). Slope 2/2 -> 1 beat; c = sqrt(8) simplified to 2 sqrt(2) (added, not asked). Layout audit clean on all 42 marks; final frames checked. Draft 10 fps frames drift from the marks, so check frames from the 30 fps render only.
+
+**Current state:** Green — rendered, wired, conicsGuide test passes; Chase has not yet watched it in the portal. Another agent was editing `conicsGuide.ts` at the same time; nothing committed.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews Hyperbola: Vertical in the portal (Conics > Hyperbola > Vertical); drop the 2 sqrt(2) simplify beat if he wants it unsimplified.
+## 2026-10-11 — Definition clip Part 2 figure, Auto pause between parts, formula chart order, Macro App lint fixes
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`, `School Scrips/Macro App`
+
+**Files changed:** `parabola_directrix.py` (new `explain_figure`; Part 1 now ends on the vertex/p slide; wipe moved after the next caption), portal `conicsGuide.ts` (Part 2 at 43.18, hold 187.22), `useVideoExamplePlayer.ts` (`partStops`: Auto pauses at each part start; now ~726 lines), `conicsFormulas.ts` (parabola, ellipse, hyperbola), `conics-intro/parabola-directrix.mp4` + steps; Macro App `gradebookRestoreService.ts` (prefer-const), `macroAppStudentProgress.d.ts` (`multi`), `electron-app/gradebook-file-arbiter.js` (JSDoc types) so its pre-commit and pre-push pass; `agent docs/momentum-handoffs/latest.md`.
+
+**What worked:** Part 2 drops the grid and numbers, shows y = k - p on the directrix, then braces y - k, p and the whole y - k + p on a generic figure. Found why Slow-mode holds landed after a wipe: a step time is just before the NEXT say(), so the board change must come after that say(). Macro App was blocked by one eslint error, one typing gap and one JS typecheck error; all fixed and pushed.
+
+**Current state:** Green — rendered, wired, tests green, pushed; Chase has not yet watched Part 2 or the Auto pause in the portal.
+
+**File size flag:** `useVideoExamplePlayer.ts` ~726 lines (cap 800, extract before 700).
+
+**Next session:** Split `useVideoExamplePlayer.ts` (step/part navigation into its own module) per the momentum handoff, then Chase's review of the clip.
+
 ## 2026-10-10 — "Definition of a Parabola" clip: textbook captions, step-by-step expansion, Part 1 / Part 2 buttons
 
 **Repos touched:** `Programs/` root (Manim Trial), `School Scrips/student-portal`
@@ -192,3 +245,4 @@ more; nothing pending was requested this session.
 **Done:** `conics_intro.py` — 3D double cone, one slice tilting circle -> ellipse -> parabola (parallel to side, red generator) -> hyperbola (both nappes), ends on a four-curve board; ~42.6 s, 1080x1350. `scene_style.Narrated` gained a `caption_ready` hook so 3D scenes pin captions. New Conics gallery app in the portal (`conicsGuide.ts`, `ConicsGuideEntry.tsx`, route `conics`, precalc tile, `precalc/conics`), migration `079` pushed, Macro App teacher-console toggle + catalog + preview aspect. Not deployed to Netlify.
 
 **Next session:** More conics clips = one more `examples` entry in `conicsGuide.ts` (update the tile subtitle count in `portalHomeApps.ts`). Degenerate cases (point/line/two lines) not built. Portal needs `npm run deploy:prod` when Chase asks.
+

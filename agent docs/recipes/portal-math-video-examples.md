@@ -158,6 +158,23 @@ player in **`portal-quiz--video-examples`** (see `equations-of-lines.css`).
 | Entry (gallery -> player, Auto/Slow) | `student-portal/src/features/video-examples/ConicsGuideEntry.tsx` |
 | Access | activity `precalc/conics` (migration `079`), tile gate `precalc`, Macro App `videoSlotCatalog.ts` + teacher console M2412 list |
 
+**Graphing clips in the gallery** (parabola / ellipse / hyperbola groups, `CLIP_LABELS_BY_GROUP` in
+`conicsGuide.ts`): scenes are `parabola_walkthrough.py`, `ellipse_horizontal.py`,
+`ellipse_vertical.py`, `hyperbola_horizontal.py` (each subclasses `ParabolaOpensUp`; the
+hyperbola reuses `ellipse_row(..., op='-')`). A new clip = final render, copy MP4 + `*_steps.json`
+to `conics-intro/`, add a start/hold/part-two constant trio and an `examples` entry with `parts`
+(Part 2 starts at the step time just before the zoom), list its label in its group, extend
+`src/test/conicsGuide.test.ts`. All six graphing clips are done; `hyperbola_vertical.py` is the one
+with a leading divide step (`divide_bars`) when the right side is not 1.
+
+**Definition clips** (`definition` group, "Definition of Conics" menu): `parabola_directrix.py` (3 parts)
+and `ellipse_definition.py` (`EllipseDefinition`, 3 parts: foci and the constant sum 2a; generic
+figure a, b, c and a^2 - c^2 = b^2; a joke "warning, lots of algebra" opener then the full
+derivation to standard form). Parts 2-3 live in the mixin `ellipse_standard_form.py`. Subclasses
+`EllipseHorizontal`. Assets `conics-intro/ellipse-definition*.{mp4,json}`; guide constants
+`CONICS_ELLIPSE_DEF_*` (parts at 0 / 51.4 / 103.52). Hyperbola definition would follow the same shape
+(difference of distances, c^2 = a^2 + b^2) and is equally heavy; Chase found the algebra heavy.
+
 A 3D scene pins captions with the `caption_ready` hook in `scene_style.py` and skips the flat layout audit — check frames.
 
 ## New guide vs one-off clip

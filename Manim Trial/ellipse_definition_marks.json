@@ -1,0 +1,162 @@
+[
+  {
+    "name": "definition",
+    "time": 6.44
+  },
+  {
+    "name": "foci",
+    "time": 10.44
+  },
+  {
+    "name": "first-distance",
+    "time": 13.78
+  },
+  {
+    "name": "second-distance",
+    "time": 17.11
+  },
+  {
+    "name": "sum",
+    "time": 21.44
+  },
+  {
+    "name": "around",
+    "time": 33.78
+  },
+  {
+    "name": "string",
+    "time": 38.78
+  },
+  {
+    "name": "vertex",
+    "time": 46.11
+  },
+  {
+    "name": "part-one-end",
+    "time": 51.44
+  },
+  {
+    "name": "figure",
+    "time": 59.44
+  },
+  {
+    "name": "d-labels",
+    "time": 64.44
+  },
+  {
+    "name": "a",
+    "time": 69.78
+  },
+  {
+    "name": "c",
+    "time": 75.11
+  },
+  {
+    "name": "b",
+    "time": 80.44
+  },
+  {
+    "name": "each-a",
+    "time": 87.11
+  },
+  {
+    "name": "triangle",
+    "time": 92.67
+  },
+  {
+    "name": "pythagorean",
+    "time": 98.11
+  },
+  {
+    "name": "a2-c2",
+    "time": 103.56
+  },
+  {
+    "name": "warning",
+    "time": 109.78
+  },
+  {
+    "name": "distances",
+    "time": 115.11
+  },
+  {
+    "name": "substitute",
+    "time": 120.56
+  },
+  {
+    "name": "xy",
+    "time": 126.0
+  },
+  {
+    "name": "isolate",
+    "time": 131.44
+  },
+  {
+    "name": "square",
+    "time": 136.89
+  },
+  {
+    "name": "unroot",
+    "time": 142.33
+  },
+  {
+    "name": "expand",
+    "time": 147.78
+  },
+  {
+    "name": "cancel",
+    "time": 155.11
+  },
+  {
+    "name": "left-over",
+    "time": 160.56
+  },
+  {
+    "name": "add-2cx",
+    "time": 166.0
+  },
+  {
+    "name": "minus-4a2",
+    "time": 171.44
+  },
+  {
+    "name": "divide",
+    "time": 176.89
+  },
+  {
+    "name": "square-again",
+    "time": 182.33
+  },
+  {
+    "name": "expand-again",
+    "time": 187.78
+  },
+  {
+    "name": "cancel-again",
+    "time": 193.22
+  },
+  {
+    "name": "collect",
+    "time": 198.67
+  },
+  {
+    "name": "factor",
+    "time": 204.11
+  },
+  {
+    "name": "substitute-b",
+    "time": 209.56
+  },
+  {
+    "name": "divide-ab",
+    "time": 215.0
+  },
+  {
+    "name": "standard",
+    "time": 220.44
+  },
+  {
+    "name": "hold",
+    "time": 226.89
+  }
+]

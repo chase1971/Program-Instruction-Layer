@@ -20,6 +20,8 @@ apply_portrait_frame()
 
 import math  # noqa: E402
 
+import numpy as np  # noqa: E402
+
 TAU = 2 * math.pi
 
 from manim import (  # noqa: E402
@@ -38,10 +40,14 @@ from manim import (  # noqa: E402
     Group,
     Indicate,
     Line,
+    MathTex,
+    RightAngle,
     ReplacementTransform,
+    Transform,
     TransformFromCopy,
     ValueTracker,
     VGroup,
+    VMobject,
     Write,
     always_redraw,
     linear,
@@ -58,7 +64,7 @@ from parabola_walkthrough import (  # noqa: E402
     P_COLOR,
     ParabolaOpensUp,
 )
-from scene_style import PAPER_BLUE, PAPER_GOLD, PAPER_MUTED  # noqa: E402
+from scene_style import PAPER_BLUE, PAPER_GOLD, PAPER_MUTED, PAPER_SHADOW  # noqa: E402
 from solve_steps import op_under, strike_pair  # noqa: E402
 
 FOCUS_COLOR = PAPER_BLUE        # the focus and every distance to it
@@ -68,8 +74,12 @@ NUMBER_X = 0.9                  # left edge of the numbers
 DEF_Y = 2.35                    # the definition row, above the graph
 DERIVE_Y = (2.0, 1.6, .6)       # the two-row stage, the one-row lines, and this graph's equation
 DERIVE_SIZE = 32
+ONE_LINE_SIZE = 29               # small enough that sqrt(...) = y-(k-p) fits on one line
 WORK_Y = .2                     # the (y-k-p)^2 worked out below the equation
 RESULT_Y = -1.2                 # and what it multiplies out to
+LEG_COLORS = (PAPER_SHADOW, '#2E7D32')  # the horizontal leg (x-h) and the vertical leg (y-(k+p))
+FIGURE_SCALE = 1.7              # the figure grows this much when the right triangle is drawn
+FOCUS_Y = .65                   # and the focus sits here, under the formula
 
 
 class ParabolaDirectrix(ParabolaOpensUp):
@@ -257,20 +267,17 @@ class ParabolaDirectrix(ParabolaOpensUp):
         figure = Group(focus_dot, focus_label, directrix_line, directrix_label, curve, to_focus,
                        to_directrix, dot, label_pt, vertex_dot, vertex_label, brace_up, label_up,
                        brace_dn, label_dn)
-        self.explain_figure(plane, total_second, figure, bracket, c2p, (h, k), (x_second, y_second))
+        clutter = self.explain_figure(plane, total_second, figure, bracket, c2p, (h, k),
+                                      (x_second, y_second))
 
         # ---- 8. the equation falls out of the definition -----------------------------------------
         # The next caption goes up first, so a Slow-mode hold on the figure is still the figure.
-        self.derive()
+        self.derive(figure, Group(clutter, definition, to_focus, to_directrix, dot, label_pt), c2p,
+                    dict(curve=curve, focus_label=focus_label, directrix_line=directrix_line,
+                         directrix_label=directrix_label,
+                         vertex_bits=Group(vertex_dot, vertex_label, brace_up, label_up, brace_dn,
+                                           label_dn)))
 
-        # ---- 9. why we care ----------------------------------------------------------------------
-        self.say('The directrix is the rule that determines the shape of the parabola. The '
-                 'farther it is from the focus, the wider the parabola.')
-        self.beat('purpose', READ_LONG + 1.0)
-
-        self.say('The focus is where a dish or a headlight sends everything, while the '
-                 'directrix decides the shape.')
-        self.beat('hold', READ_LONG)
         self.write_marks('parabola_directrix_marks.json')
 
     def stage(self, left, right, y, left_color=INK, right_color=INK):
@@ -331,6 +338,144 @@ class ParabolaDirectrix(ParabolaOpensUp):
         whole_label.shift(DOWN * .75)  # below the (h,k) label, still beside its brace
         self.play(FadeIn(whole_brace), FadeIn(whole_label), run_time=1.0)
         self.beat('y-k-plus-p', slow + 1.0)
+        return Group(line_label, level, up_brace, up_label, down_brace, down_label, whole_brace,
+                     whole_label)
+
+    def zoom_figure(self, figure, stale, c2p, named):
+        """Grow the figure (the curve and directrix are redrawn to stay on screen).
+
+        Returns at(x, y): where a graph point lands on screen after the zoom.
+        """
+        p = self.problem
+        h, k = p.h, p.k
+        lift = UP * .5
+        anchor = c2p(h, p.focus[1]) + lift
+        shift = LEFT * anchor[0] + UP * (FOCUS_Y - anchor[1])
+        unit = (c2p(h + 1, 0)[0] - c2p(h, 0)[0]) * FIGURE_SCALE
+
+        def at(x, y):
+            return anchor + (c2p(x, y) + lift - anchor) * FIGURE_SCALE + shift
+
+        redrawn = (named['curve'], named['directrix_line'], named['directrix_label'])
+        dead = set(map(id, stale.get_family())) | set(map(id, redrawn))
+        kept = [m for m in figure.submobjects if id(m) not in dead]
+        words = [m for m in kept if isinstance(m, MathTex)]   # keep their type size: move only
+        grown = Group(*[m for m in kept if not isinstance(m, MathTex)])
+        reach = 2.9 / unit    # graph units from the axis to the edge of the safe area
+        arc = VMobject(color=CURVE_COLOR, stroke_width=5).set_points_smoothly(
+            [at(x, k + (x - h) ** 2 / p.c) for x in
+             [h - reach + .1 + i * (2 * reach - .2) / 40 for i in range(41)]])
+        line = DashedLine(at(h - reach + .1, p.directrix), at(h + reach - .1, p.directrix),
+                          color=DIRECTRIX_COLOR, stroke_width=4, dash_length=.12)
+        name = tex(r'\text{directrix}', size=28, color=DIRECTRIX_COLOR).next_to(
+            at(h - reach + 1.3, p.directrix), UP, buff=.06)
+        self.play(FadeOut(stale), run_time=.8)
+        self.play(grown.animate.scale(FIGURE_SCALE, about_point=anchor).shift(shift),
+                  *[m.animate.move_to(anchor + (m.get_center() - anchor) * FIGURE_SCALE + shift)
+                    for m in words],
+                  Transform(named['curve'], arc), Transform(named['directrix_line'], line),
+                  Transform(named['directrix_label'], name), run_time=1.3)
+        return at
+
+    def focus_triangle(self, figure, stale, c2p, named, top):
+        """The distance formula on the figure: the segment to the focus is a right triangle's slant.
+
+        The figure stays (parabola, focus, directrix, vertex, p). Part 2's braces and the old
+        point go; the figure grows and the formula goes up above it. Then one new point
+        gets its segment to the focus, a horizontal and a vertical leg, and each leg is matched to
+        its term in the formula.
+        """
+        p = self.problem
+        h, k = p.h, p.k
+        fy = p.focus[1]
+        slow = READ_LONG + 1.5
+        at = self.zoom_figure(figure, stale, c2p, named)
+        new_label = tex(r'\text{focus }(h,k+p)', size=26, color=FOCUS_COLOR).next_to(
+            at(h, fy), LEFT, buff=.5)
+        self.play(ReplacementTransform(named['focus_label'], new_label), run_time=.9)
+        self.play(Write(top), run_time=1.5)
+        self.beat('distance-formula', slow)
+
+        x2 = h + 1.8
+        y2 = k + (x2 - h) ** 2 / p.c
+        focus, corner, point = at(h, fy), at(x2, fy), at(x2, y2)
+        self.say('Choose a point $(x,y)$ on the parabola. Its distance to the focus is the length '
+                 'of this segment.')
+        dot = Dot(point, color=INK, radius=.12)
+        label = tex('(x,y)', size=28, color=INK).next_to(dot, DOWN + RIGHT, buff=.04)
+        slant = Line(focus, point, color=FOCUS_COLOR, stroke_width=7)
+        self.play(FadeIn(dot), Write(label), Create(slant), run_time=1.2)
+        self.beat('focus-segment', slow)
+
+        self.say('Draw a horizontal segment from the focus and a vertical segment from $(x,y)$. '
+                 'Together with the first segment, they form a right triangle.')
+        across = Line(focus, corner, color=LEG_COLORS[0], stroke_width=6)
+        down = Line(corner, point, color=LEG_COLORS[1], stroke_width=6)
+        square = RightAngle(Line(corner, focus), Line(corner, point), length=.2, color=INK,
+                            stroke_width=3)
+        self.play(Create(across), run_time=.9)
+        self.play(Create(down), FadeIn(square), run_time=.9)
+        self.beat('right-triangle', slow)
+
+        self.say('The horizontal leg is the difference of the $x$-coordinates, $x-h$.')
+        across_brace = Brace(across, UP, buff=.05, color=LEG_COLORS[0])
+        across_label = tex('x-h', size=28, color=LEG_COLORS[0])
+        across_brace.put_at_tip(across_label, buff=.04)
+        self.play(FadeIn(across_brace), FadeIn(across_label), run_time=.9)
+        self.play(Indicate(top[1], color=LEG_COLORS[0], scale_factor=1.15), run_time=1.1)
+        self.beat('leg-x', slow)
+
+        self.say('The vertical leg is the difference of the $y$-coordinates, $y-(k+p)$.')
+        down_brace = Brace(down, RIGHT, buff=.05, color=LEG_COLORS[1])
+        down_label = tex('y-(k+p)', size=26, color=LEG_COLORS[1])
+        down_brace.put_at_tip(down_label, buff=.02)
+        down_label.shift(UP * .2)    # clear of the curve, which climbs to the right of the point
+        self.play(FadeIn(down_brace), FadeIn(down_label), run_time=.9)
+        self.play(Indicate(top[3], color=LEG_COLORS[1], scale_factor=1.15), run_time=1.1)
+        self.beat('leg-y', slow)
+
+        self.say('By the Pythagorean theorem, the distance from $(x,y)$ to the focus is '
+                 '$\\sqrt{(x-h)^2+(y-(k+p))^2}$.')
+        self.play(Indicate(slant, color=FOCUS_COLOR, scale_factor=1.04),
+                  Indicate(top, color=FOCUS_COLOR, scale_factor=1.08), run_time=1.4)
+        self.beat('pythagorean', slow)
+        return dict(slant=slant, dot=dot, label=label, point=point, at=at,
+                    clutter=Group(across, down, square, across_brace, across_label, down_brace,
+                                  down_label, named['vertex_bits']))
+
+    def equate_distances(self, info, top, line):
+        """Set the two lengths equal on the figure: the slant to the focus and the drop to the directrix.
+
+        Both segments get matching tick marks, and the equation is written on ONE line, the
+        square root left where it was and '= y-(k-p)' written to its right.
+        """
+        p = self.problem
+        slant, dot, label, point, at = (info[key] for key in ('slant', 'dot', 'label', 'point', 'at'))
+        foot = np.array([point[0], at(0, p.directrix)[1], 0])
+        drop = Line(point, foot, color=DIRECTRIX_COLOR, stroke_width=7)
+        brace = Brace(drop, RIGHT, buff=.16, color=DIRECTRIX_COLOR)    # clear of the tick marks
+        brace_label = tex('y-(k-p)', size=24, color=DIRECTRIX_COLOR)
+        brace.put_at_tip(brace_label, buff=.02)
+
+        def ticks(a, b):
+            """Two short crossing marks at the middle of a segment: the 'these are equal' sign."""
+            along = (b - a) / np.linalg.norm(b - a)
+            across = np.array([-along[1], along[0], 0])
+            mid = (a + b) / 2
+            return VGroup(*[Line(mid + along * s + across * .13, mid + along * s - across * .13,
+                                 color=INK, stroke_width=4) for s in (-.07, .07)])
+
+        marks = VGroup(ticks(slant.get_start(), slant.get_end()), ticks(point, foot))
+        self.say('Set this equal to the distance down to the directrix, which is $y-(k-p)$.')
+        self.play(FadeOut(info['clutter']), label.animate.next_to(dot, DOWN + LEFT, buff=.04),
+                  run_time=.9)
+        self.play(Create(drop), run_time=1.0)
+        self.play(FadeIn(brace), FadeIn(brace_label), run_time=.8)
+        self.play(top.animate.move_to(VGroup(*line[:5]).get_center()), Write(line[5]),
+                  FadeIn(marks), run_time=1.4)
+        self.play(Indicate(slant, color=FOCUS_COLOR, scale_factor=1.04),
+                  Indicate(drop, color=DIRECTRIX_COLOR, scale_factor=1.04), run_time=1.2)
+        self.beat('set-equal', READ_LONG + 1.5)
 
     def arrows(self, starts, ends, up, color=PAPER_GOLD):
         """Curved arrows from each start term to each end term, arcing above (up) or below."""
@@ -388,30 +533,34 @@ class ParabolaDirectrix(ParabolaOpensUp):
         self.beat('expand-left', slow)
         return top5, bottom5
 
-    def derive(self):
+    def derive(self, figure, stale, c2p, named):
         """Distance to the focus = distance down to the directrix, simplified one step at a time."""
         slow = READ_LONG + 1.5
         y = DERIVE_Y[0]
-        dist = r'\sqrt{(x-h)^2+(y-(k+p))^2}'
         dist2 = r'\sqrt{(x-h)^2+(y-k-p)^2}'
 
         self.say('If the focus is at $(h,k+p)$, then the distance from $(x,y)$ to the '
                  'focus is found by applying the distance formula.')
-        top, bottom = self.stage([dist], ['=y-(k-p)'], y, FOCUS_COLOR, DIRECTRIX_COLOR)
-        self.play(FadeOut(Group(*[m for m in self.mobjects if m is not self.note])),
-                  run_time=.8)
-        self.play(Write(top), run_time=1.5)
-        self.beat('distance-formula', slow)
+        root = [r'\sqrt{', '(x-h)^2', '+', '(y-(k+p))^2', '}']
+        top = tex(*root, size=ONE_LINE_SIZE, color=FOCUS_COLOR).move_to([0, y, 0])
+        line = tex(*root, '=y-(k-p)', size=ONE_LINE_SIZE, color=FOCUS_COLOR).move_to([0, y, 0])
+        line[5].set_color(DIRECTRIX_COLOR)
+        for row in (top, line):
+            row[1].set_color(LEG_COLORS[0])
+            row[3].set_color(LEG_COLORS[1])
+        info = self.focus_triangle(figure, stale, c2p, named, top)
+        self.equate_distances(info, top, line)
+        bottom = line[5]
 
-        self.say('Set this equal to the distance down to the directrix, which is $y-(k-p)$.')
-        self.play(Write(bottom), run_time=1.2)
-        self.beat('set-equal', slow)
-
-        self.say('Distribute the negative signs on both sides.')
+        # Part 3 starts here: the portal cuts at the step just before this caption (the end of the
+        # 'set-equal' hold), so the caption and the first move of the algebra are what the part opens on.
+        self.say('Part 3. Deriving the formula. Distribute the negative signs on both sides.')
         top2, bottom2 = self.stage([dist2], ['=y-k+p'], y, FOCUS_COLOR, DIRECTRIX_COLOR)
-        self.play(ReplacementTransform(top, top2), ReplacementTransform(bottom, bottom2),
+        self.play(FadeOut(Group(*[m for m in self.mobjects if m is not self.note
+                                  and m is not top and m is not bottom])),
+                  ReplacementTransform(top, top2), ReplacementTransform(bottom, bottom2),
                   run_time=1.2)
-        self.beat('distribute', slow)
+        self.beat('distribute', slow + 2.0)   # the part's opening frame: long enough to read both sentences
 
         self.say('Square both sides to eliminate the square root.')
         top3, bottom3 = self.stage([r'\left(' + dist2 + r'\right)^2'], ['=(y-k+p)^2'], y,
@@ -466,12 +615,7 @@ class ParabolaDirectrix(ParabolaOpensUp):
         self.play(FadeOut(Group(kept, add_left, add_right, zero)), FadeIn(final), run_time=1.0)
         self.beat('four-p', slow)
 
-        self.say('This is the standard form of the equation of a parabola that opens up.')
+        self.say('This is the standard form of a parabola that opens up. The derivation for '
+                 'the other directions is similar.')
         self.play(Indicate(final, color=P_COLOR, scale_factor=1.08), run_time=1.2)
-        self.beat('equation', slow)
-
-        self.say('For this graph, $h=2$, $k=-1$, and $p=3$.')
-        example = tex('(x-2)^2', '=', '12(y+1)', size=DERIVE_SIZE + 2).move_to(
-            [0, DERIVE_Y[2], 0])
-        self.play(FadeIn(example), run_time=.8)
-        self.beat('example', slow)
+        self.beat('hold', slow + 1.0)

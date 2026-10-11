@@ -2,6 +2,62 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-11 — Hyperbola: Horizontal clip (build, full-graph foci, pivot for c)
+
+**Repos touched:** `.` (Programs root — `Manim Trial/`, `agent docs/`), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `Manim Trial/hyperbola_horizontal.py` (new, ~540 lines), `hyperbola_horizontal_{marks,steps}.json`, `Manim Trial/ellipse_horizontal.py` (`ellipse_row(..., op='+')`, default unchanged), `student-portal/src/features/video-examples/conicsGuide.ts` (hyperbola entry, Part 1/2, group list), `src/test/conicsGuide.test.ts`, `src/assets/video-examples/conics-intro/hyperbola-horizontal.mp4` + `-steps.json`, `agent docs/recipes/portal-math-video-examples.md` (Conics graphing-clip note).
+
+**What worked:** `(x-1)^2/25 - y^2/49 = 1` clip. Part 1: a² is always under the FIRST term (formula numerators swap with `Swap`, a²/b² stay put), the variable in front gives direction and vertices, center, a = 5 / b = 7, transverse and conjugate axes, graph the center and vertices, dashed box, full-length asymptotes through the box corners (graph window x -10..14, y -10..10, drawn zoomed out), curves approaching them. Part 2 on the FULL graph (no zoomed quarter, which cut the hyperbola off): box triangle a, b, c; a² + b² = c² (plus, unlike the ellipse); c = √74; the blue diagonal pivots like a clock hand onto the transverse axis (right side only) to show the focus is c from the center; left focus just appears; asymptotes via up 7 / over 5, slope ±7/5, point-slope with the center. Hold 168.56 s, Part 2 starts 94.4 s. conicsGuide test 9/9, audit clean on all 39 marks.
+
+**Current state:** Green — rendered, in the portal, tests pass; not deployed to Netlify, nothing committed. Chase has reviewed the foci beat and approved the pivot approach; the rest of the final build is not yet re-confirmed in the player.
+
+**File size flag:** None.
+
+**Next session:** Build "Hyperbola: Vertical" (add its label to the `hyperbola` group in `conicsGuide.ts`, slope is ±a/b there); optionally put the hyperbola clip in the Macro App teacher console list if Chase wants it.
+
+## 2026-10-11 — Ellipse: Horizontal clip (build, foci derivation, final-graph fix)
+
+**Repos touched:** `.` (Programs root — `Manim Trial/`), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `Manim Trial/ellipse_horizontal.py` (new, ~400 lines), `ellipse_horizontal_{marks,steps}.json`, `student-portal/src/features/video-examples/conicsGuide.ts` (ellipse entry, Part 1/2 buttons), `src/test/conicsGuide.test.ts`, `src/assets/video-examples/conics-intro/ellipse-horizontal.mp4` + `-steps.json`.
+
+**What worked:** `x^2/9 + (y-3)^2/4 = 1` clip: formula under the intro, center, a = 3 / b = 2 from the square roots, major axis, graph + answer list, then Part 2 finding c — zoom in, dashed major axis, right triangle (b² + c² = a²), 9 − 4 = 5, c = √5 exact, c follows the vertices, foci (0 ± √5, 3), all answers back on the graph. Fixed a bug where the zoom `ReplacementTransform` reshaped the original graph objects in place, so the final graph came back zoomed and off the grid (now returns to `.copy()`s). Another chat later reworded the opener and re-rendered (see the entry above).
+
+**Current state:** Green — in the portal, test passes; not deployed to Netlify, final player view not yet confirmed by Chase.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews Conics → Ellipse in the portal; hyperbola clips not built.
+
+## 2026-10-11 — Ellipse: Vertical clip + ellipse form caption
+
+**Repos touched:** `.` (Programs root — `Manim Trial/`), `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `Manim Trial/ellipse_vertical.py` (new, mirrors `ellipse_horizontal.py`; problem `(x-2)^2/9 + (y+1)^2/16 = 1`), `Manim Trial/ellipse_horizontal.py` (opener reworded, new `form` beat), `student-portal/src/features/video-examples/conicsGuide.ts`, `src/test/conicsGuide.test.ts`, `src/assets/video-examples/conics-intro/ellipse-{horizontal,vertical}.mp4` + `-steps.json`.
+
+**What worked:** Built and rendered the vertical ellipse clip (center (2,-1), y+1 shown as y-(-1), a = bigger half-length so a^2 sits under y, foci (2, -1 ± sqrt7)); wired as the second Ellipse clip. Per Chase, both ellipse clips now open with "Since both x and y are squared and we are adding, this is an ellipse" and get a separate caption when the formula appears ("For ellipses, a is always the bigger number..."). Re-rendered both; hold 117.78 s, Part 2 starts 62.18 s. conicsGuide test 7/7.
+
+**Current state:** Green — clips are in the portal; not deployed to Netlify, not viewed in the player yet.
+
+**File size flag:** None (`ellipse_vertical.py` ~440 lines).
+
+**Next session:** Chase reviews both Ellipse clips in the portal (Conics → Ellipse). Hyperbola clips still not built.
+
+## 2026-10-11 — Conics classroom HTML set (M2412 Drive folder)
+
+**Repos touched:** `.` (Programs root — `Manim Trial/conics_intro.py`)
+
+**Files changed:** `Manim Trial/conics_intro.py` (hyperbola plane now extends through both cones, camera faces it); outside the repo, in `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/`: `index.html`, `player.html`, `Conic Sections.html`, `videos/*.mp4` (6 clips copied from the portal assets; intro re-rendered).
+
+**What worked:** Removed my first interactive 3D page (wrong ask). Built the Conics index (intro + Parabolas/Ellipses/Hyperbolas lists) and a shared `player.html?clip=` with Back/Auto/Next/Restart/Full screen and Part buttons, styled like the M2413 linear-approximation page. No step/caption text. Next only starts the next step (disabled while playing). Re-rendered the intro so the hyperbola plane visibly cuts both cones.
+
+**Current state:** Green — not opened in a browser; frames checked headlessly.
+
+**File size flag:** None
+
+**Next session:** Hyperbola clips when made (add to `index.html` + `CLIPS` in `player.html`). The portal still holds the old intro MP4; the re-rendered one lives only in the Drive folder.
+
 ## 2026-10-08 — GitHub sync workflow (wrap up, pull registry, session-guided pull)
 
 **Repos touched:** `.` (Programs root — `agent docs/`, `scripts/serve-programs-docs.js`, `scripts/sync-pull-registry-ops.js`)

@@ -1,0 +1,170 @@
+[
+  {
+    "name": "problem",
+    "time": 4.22
+  },
+  {
+    "name": "divide",
+    "time": 10.33
+  },
+  {
+    "name": "one",
+    "time": 14.67
+  },
+  {
+    "name": "form",
+    "time": 19.56
+  },
+  {
+    "name": "y-front",
+    "time": 23.11
+  },
+  {
+    "name": "negative",
+    "time": 28.22
+  },
+  {
+    "name": "center",
+    "time": 33.11
+  },
+  {
+    "name": "updown",
+    "time": 38.0
+  },
+  {
+    "name": "across",
+    "time": 42.89
+  },
+  {
+    "name": "front",
+    "time": 46.56
+  },
+  {
+    "name": "transverse",
+    "time": 50.0
+  },
+  {
+    "name": "conjugate",
+    "time": 53.44
+  },
+  {
+    "name": "list",
+    "time": 57.78
+  },
+  {
+    "name": "center-dot",
+    "time": 60.67
+  },
+  {
+    "name": "updown-dots",
+    "time": 65.33
+  },
+  {
+    "name": "vertices",
+    "time": 69.0
+  },
+  {
+    "name": "transverse-axis",
+    "time": 73.44
+  },
+  {
+    "name": "conjugate-axis",
+    "time": 79.44
+  },
+  {
+    "name": "box",
+    "time": 84.22
+  },
+  {
+    "name": "diagonals",
+    "time": 88.33
+  },
+  {
+    "name": "curve",
+    "time": 93.78
+  },
+  {
+    "name": "clear",
+    "time": 97.22
+  },
+  {
+    "name": "leg-a",
+    "time": 100.22
+  },
+  {
+    "name": "leg-b",
+    "time": 103.22
+  },
+  {
+    "name": "hyp",
+    "time": 107.0
+  },
+  {
+    "name": "pyth",
+    "time": 110.67
+  },
+  {
+    "name": "plug",
+    "time": 114.44
+  },
+  {
+    "name": "total",
+    "time": 117.67
+  },
+  {
+    "name": "c-value",
+    "time": 120.89
+  },
+  {
+    "name": "c-simple",
+    "time": 124.67
+  },
+  {
+    "name": "swing",
+    "time": 131.44
+  },
+  {
+    "name": "focus",
+    "time": 135.0
+  },
+  {
+    "name": "follows",
+    "time": 139.89
+  },
+  {
+    "name": "foci",
+    "time": 143.67
+  },
+  {
+    "name": "up-over",
+    "time": 149.11
+  },
+  {
+    "name": "slope",
+    "time": 152.78
+  },
+  {
+    "name": "slope-one",
+    "time": 156.56
+  },
+  {
+    "name": "point-slope",
+    "time": 160.22
+  },
+  {
+    "name": "plugged",
+    "time": 164.67
+  },
+  {
+    "name": "tidy",
+    "time": 169.67
+  },
+  {
+    "name": "all",
+    "time": 175.33
+  },
+  {
+    "name": "hold",
+    "time": 179.11
+  }
+]

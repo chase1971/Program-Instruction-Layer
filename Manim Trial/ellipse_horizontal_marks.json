@@ -1,110 +1,114 @@
 [
   {
     "name": "problem",
-    "time": 5.56
+    "time": 4.22
+  },
+  {
+    "name": "form",
+    "time": 7.89
   },
   {
     "name": "zero",
-    "time": 10.67
+    "time": 13.0
   },
   {
     "name": "center",
-    "time": 15.56
+    "time": 17.89
   },
   {
     "name": "across",
-    "time": 20.44
+    "time": 22.78
   },
   {
     "name": "updown",
-    "time": 25.33
+    "time": 27.67
   },
   {
     "name": "major",
-    "time": 30.11
+    "time": 32.44
   },
   {
     "name": "list",
-    "time": 34.44
+    "time": 36.78
   },
   {
     "name": "center-dot",
-    "time": 37.33
+    "time": 39.67
   },
   {
     "name": "across-dots",
-    "time": 42.0
+    "time": 44.33
   },
   {
     "name": "vertices",
-    "time": 45.67
+    "time": 48.0
   },
   {
     "name": "updown-dots",
-    "time": 50.89
+    "time": 53.22
   },
   {
     "name": "co-vertices",
-    "time": 54.56
+    "time": 56.89
   },
   {
     "name": "curve",
-    "time": 59.89
+    "time": 62.22
   },
   {
     "name": "zoom",
-    "time": 64.22
+    "time": 66.56
   },
   {
     "name": "leg-b",
-    "time": 67.22
+    "time": 69.56
   },
   {
     "name": "axis",
-    "time": 70.44
+    "time": 72.78
   },
   {
     "name": "hyp",
-    "time": 75.11
+    "time": 77.44
   },
   {
     "name": "leg-c",
-    "time": 78.67
+    "time": 81.0
   },
   {
     "name": "pyth",
-    "time": 82.33
+    "time": 84.67
   },
   {
     "name": "formula",
-    "time": 86.33
+    "time": 88.67
   },
   {
     "name": "plug",
-    "time": 90.11
+    "time": 92.44
   },
   {
     "name": "five",
-    "time": 93.33
+    "time": 95.67
   },
   {
     "name": "c-value",
-    "time": 97.11
+    "time": 99.44
   },
   {
     "name": "follows",
-    "time": 102.0
+    "time": 104.33
   },
   {
     "name": "foci",
-    "time": 105.78
+    "time": 108.11
   },
   {
     "name": "all",
-    "time": 111.67
+    "time": 114.0
   },
   {
     "name": "hold",
-    "time": 115.44
+    "time": 117.78
   }
 ]

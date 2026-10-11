@@ -114,11 +114,20 @@ def slice_curve(tilt_degrees):
 
 
 def slice_plane(tilt_degrees):
-    """The cutting plane z = x tan(tilt) + HEIGHT, drawn as a square tilted about (0, 0, HEIGHT)."""
+    """The cutting plane z = x tan(tilt) + HEIGHT, drawn as a square tilted about (0, 0, HEIGHT).
+
+    Past the side-parallel tilt (45) the lower edge reaches down through the lower cone, so the
+    plane visibly cuts both nappes and the second branch lies on it.
+    """
     a = np.radians(tilt_degrees)
+    sin_a = max(np.sin(a), 0.01)
+    upper = min(PLANE_HALF, (ZMAX + 0.1 - HEIGHT) / sin_a)
+    full_lower = -min(4.0, (ZMAX + 0.1 + HEIGHT) / sin_a)
+    blend = float(np.clip((tilt_degrees - 45) / 23.0, 0, 1))
+    lower = -2.2 + blend * (full_lower + 2.2)
     return Surface(
         lambda u, v: np.array([u * np.cos(a), v, u * np.sin(a) + HEIGHT]),
-        u_range=[-2.2, min(PLANE_HALF, (ZMAX + 0.1 - HEIGHT) / max(np.sin(a), 0.01))], v_range=[-PLANE_HALF, PLANE_HALF], resolution=(2, 2),
+        u_range=[lower, upper], v_range=[-PLANE_HALF, PLANE_HALF], resolution=(2, 2),
         fill_color=PAPER_GOLD, fill_opacity=0.32,
         stroke_color=PAPER_GOLD, stroke_width=1.5, checkerboard_colors=False,
     )
@@ -207,7 +216,7 @@ class ConicsIntro(Narrated, ThreeDScene):
         self.say('Tilt steeper than the side and the slice cuts both cones.')
         tag = self.swap_tag(tag, None)
         self.play(tilt.animate.set_value(68), run_time=3.0, rate_func=smooth)
-        self.move_camera(theta=-64 * DEGREES, run_time=1.5, rate_func=smooth)
+        self.move_camera(theta=-32 * DEGREES, run_time=1.5, rate_func=smooth)
         self.wait(READ_SHORT)
         self.say('Two separate branches: a hyperbola.')
         tag = self.swap_tag(tag, 'Hyperbola')

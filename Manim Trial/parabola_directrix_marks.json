@@ -65,90 +65,98 @@
   },
   {
     "name": "distance-formula",
-    "time": 77.56
+    "time": 80.0
+  },
+  {
+    "name": "focus-segment",
+    "time": 85.33
+  },
+  {
+    "name": "right-triangle",
+    "time": 91.33
+  },
+  {
+    "name": "leg-x",
+    "time": 97.56
+  },
+  {
+    "name": "leg-y",
+    "time": 103.78
+  },
+  {
+    "name": "pythagorean",
+    "time": 109.33
   },
   {
     "name": "set-equal",
-    "time": 82.89
+    "time": 119.22
   },
   {
     "name": "distribute",
-    "time": 88.22
+    "time": 126.78
   },
   {
     "name": "square",
-    "time": 93.56
+    "time": 132.11
   },
   {
     "name": "unroot",
-    "time": 98.89
+    "time": 137.44
   },
   {
     "name": "expand-term",
-    "time": 105.33
+    "time": 143.89
   },
   {
     "name": "times-itself",
-    "time": 110.67
+    "time": 149.22
   },
   {
     "name": "distribute-first",
-    "time": 117.11
+    "time": 155.67
   },
   {
     "name": "distribute-second",
-    "time": 123.78
+    "time": 162.33
   },
   {
     "name": "combine",
-    "time": 129.11
+    "time": 167.67
   },
   {
     "name": "expand-left",
-    "time": 134.67
+    "time": 173.22
   },
   {
     "name": "expand-right",
-    "time": 140.22
+    "time": 178.78
   },
   {
     "name": "cancel-square",
-    "time": 145.33
+    "time": 183.89
   },
   {
     "name": "cancel-p-squared",
-    "time": 150.44
+    "time": 189.0
   },
   {
     "name": "left-over",
-    "time": 156.0
+    "time": 194.56
   },
   {
     "name": "add-both",
-    "time": 161.0
+    "time": 199.56
   },
   {
     "name": "cancel-left",
-    "time": 166.11
+    "time": 204.67
   },
   {
     "name": "four-p",
-    "time": 171.22
-  },
-  {
-    "name": "equation",
-    "time": 176.56
-  },
-  {
-    "name": "example",
-    "time": 181.44
-  },
-  {
-    "name": "purpose",
-    "time": 184.89
+    "time": 209.78
   },
   {
     "name": "hold",
-    "time": 187.22
+    "time": 216.22
   }
 ]

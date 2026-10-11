@@ -1,0 +1,158 @@
+[
+  {
+    "name": "problem",
+    "time": 4.22
+  },
+  {
+    "name": "form",
+    "time": 9.11
+  },
+  {
+    "name": "swap",
+    "time": 14.67
+  },
+  {
+    "name": "y-front",
+    "time": 18.22
+  },
+  {
+    "name": "x-front",
+    "time": 23.78
+  },
+  {
+    "name": "zero",
+    "time": 28.89
+  },
+  {
+    "name": "center",
+    "time": 33.78
+  },
+  {
+    "name": "across",
+    "time": 38.67
+  },
+  {
+    "name": "updown",
+    "time": 43.56
+  },
+  {
+    "name": "front",
+    "time": 47.22
+  },
+  {
+    "name": "transverse",
+    "time": 50.67
+  },
+  {
+    "name": "conjugate",
+    "time": 54.11
+  },
+  {
+    "name": "list",
+    "time": 58.44
+  },
+  {
+    "name": "center-dot",
+    "time": 61.33
+  },
+  {
+    "name": "across-dots",
+    "time": 66.0
+  },
+  {
+    "name": "vertices",
+    "time": 69.67
+  },
+  {
+    "name": "transverse-axis",
+    "time": 74.11
+  },
+  {
+    "name": "conjugate-axis",
+    "time": 80.11
+  },
+  {
+    "name": "box",
+    "time": 84.89
+  },
+  {
+    "name": "diagonals",
+    "time": 89.0
+  },
+  {
+    "name": "curve",
+    "time": 94.44
+  },
+  {
+    "name": "clear",
+    "time": 97.89
+  },
+  {
+    "name": "leg-a",
+    "time": 100.89
+  },
+  {
+    "name": "leg-b",
+    "time": 103.89
+  },
+  {
+    "name": "hyp",
+    "time": 107.67
+  },
+  {
+    "name": "pyth",
+    "time": 111.33
+  },
+  {
+    "name": "plug",
+    "time": 115.11
+  },
+  {
+    "name": "total",
+    "time": 118.33
+  },
+  {
+    "name": "c-value",
+    "time": 122.11
+  },
+  {
+    "name": "swing",
+    "time": 128.89
+  },
+  {
+    "name": "focus",
+    "time": 132.44
+  },
+  {
+    "name": "follows",
+    "time": 137.33
+  },
+  {
+    "name": "foci",
+    "time": 141.89
+  },
+  {
+    "name": "up-over",
+    "time": 147.33
+  },
+  {
+    "name": "slope",
+    "time": 151.0
+  },
+  {
+    "name": "point-slope",
+    "time": 154.67
+  },
+  {
+    "name": "plugged",
+    "time": 159.11
+  },
+  {
+    "name": "all",
+    "time": 164.78
+  },
+  {
+    "name": "hold",
+    "time": 168.56
+  }
+]

@@ -56,28 +56,244 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1062</dd></div>
-      <div><dt>Tasks today</dt><dd>15</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.9M (of 144 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>175k</dd></div>
-      <div><dt>Total billed</dt><dd>491.9M</dd></div>
+      <div><dt>Total tasks</dt><dd>1086</dd></div>
+      <div><dt>Tasks today</dt><dd>39</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 150 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>174k</dd></div>
+      <div><dt>Total billed</dt><dd>497.4M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">1:16 PM · Sunday, Oct 11, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">5:18 PM · Sunday, Oct 11, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>22</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>13</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>22</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Documents only the unpacked --dir hand-off; the NSIS slim installer path (build-profile.cjs slim without --dir, output dist-installer/slim) is not written down<span class="gap-task">9:20 PM · Sunday, Sep 13, 2026 — Macro App: slim NSIS installer 0.1.28 to USB H:\ (splash fix, Makeup Exam class + calculator + contact fields once); pip step skipped, runtime import verified</span></li></ul>
+      <ul class="gap-list"><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>agent docs/recipes/vertical-scroll-rail.md</code> — In-app hover rails, not OS stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Sunday, Oct 11, 2026 <span class="day-count">15 tasks</span></h2>
+      <h2 class="day-title">Sunday, Oct 11, 2026 <span class="day-count">39 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:18 PM — Conics graphing: tabbed gallery with inline definition; removed Definition menu</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 19s active tool time<br>4m 20s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:14 PM — Wrap-up: hyperbola horizontal clip session logged</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>16m 40s active tool time<br>16m 41s since previous task (includes idle)<br>Chat so far: 2 message(s), 93 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:57 PM — Hyperbola: Vertical clip (hyperbola_vertical.py) rendered, wired into conics guide + test</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 47s active tool time<br>5m 48s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:51 PM — Definition of an Ellipse Parts 2-3: figure (a,b,c) and standard-form derivation rendered, parts wired, test green</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>9m 8s active tool time<br>9m 16s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:42 PM — Hyperbola foci: dropped the left-side pivot animation, left focus just appears; re-rendered, portal assets and hold updated</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>12m 43s active tool time<br>12m 47s since previous task (includes idle)<br>Chat so far: 6 message(s), 154 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:29 PM — Makeup exam history: hide/save custom text only when Specify=Custom (fix stale notecard line on None)</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 18s active tool time<br>4m 21s since previous task (includes idle)<br>Chat so far: 3 message(s), 42 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:25 PM — Makeup Exam: History button + modal — per-course scheduling history from exam_history.jsonl</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>20m 48s active tool time<br>20m 50s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:04 PM — Definition of an Ellipse Part 1: ellipse_definition.py rendered, wired into Conics Definition group, test green</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 5s active tool time<br>8m 4s since previous task (includes idle)<br>Chat so far: 6 message(s), 135 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:56 PM — Conics: Exit button top right on every screen except the menu, returns to the portal tiles</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 20s active tool time<br>2m 31s since previous task (includes idle)<br>Chat so far: 5 message(s), 121 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:53 PM — Hyperbola foci: replaced unexplained arc with c-first then pivot-the-diagonal-onto-the-axis beats; portal assets updated</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>19m 18s active tool time<br>19m 21s since previous task (includes idle)<br>Chat so far: 5 message(s), 137 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:34 PM — Definition of a Parabola: added Part 3 (the algebra) cut at end of set-equal hold; rendered, wired, tests green</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 28s active tool time<br>2m 45s since previous task (includes idle)<br>Chat so far: 4 message(s), 107 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:31 PM — Hyperbola foci/c beat redrawn on the full graph (no zoomed quarter); portal assets updated</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m active tool time<br>3m 3s since previous task (includes idle)<br>Chat so far: 3 message(s), 117 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:28 PM — Definition of a Parabola ending: removed example and purpose beats, last slide says derivation for other directions is similar; rendered, wired</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>9m 23s active tool time<br>9m 32s since previous task (includes idle)<br>Chat so far: 3 message(s), 97 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:18 PM — Definition of a Parabola set-equal slide: slant and drop segments on the figure with tick marks, equation on one line; rendered, wired, tests green</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m 48s active tool time<br>3m 55s since previous task (includes idle)<br>Chat so far: 2 message(s), 75 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:15 PM — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 42s active tool time<br>8m 6s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:06 PM — Definition of a Parabola: focus (h,k+p) slide keeps the figure and animates the distance formula as a right triangle; rendered, wired, tests green</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1h 12m active tool time<br>1h 12m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:54 PM — Split useVideoExamplePlayer step/part navigation into useVideoStepNavigation.ts (726 -&gt; 561 lines); tests green</span>
+      <span class="pill p0">606k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>39s active tool time<br>1m 23s since previous task (includes idle)<br>606k tokens over 6 turn(s) · 101k/turn · 541k cache read · 8k output<br>Chat so far: 1 message(s), 567 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:52 PM — Wrap up logged</span>
+      <span class="pill p0">558k tokens</span><span class="pill p2">Heavy context — 279k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>8s active tool time<br>16s since previous task (includes idle)<br>558k tokens over 2 turn(s) · 279k/turn · 555k cache read · 1k output<br>Chat so far: 8 message(s), 7843 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:52 PM — Conics front-page regroup + Opens Left vertex rewrite</span>
+      <span class="pill p0">463k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1s active tool time<br>7s since previous task (includes idle)<br>463k tokens over 3 turn(s) · 154k/turn · 459k cache read · 944 output<br>Chat so far: 1 message(s), 1537 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:52 PM — Conics classroom HTML set (index, player, Conic Sections intro, hyperbola re-render)</span>
+      <span class="pill p0">448k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 17s active tool time<br>2m 22s since previous task (includes idle)<br>448k tokens over 3 turn(s) · 149k/turn · 445k cache read · 959 output<br>Chat so far: 10 message(s), 1857 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:49 PM — D2L slots: allow real popups for MyLab/LTI (not merge into Manage Grades)</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>16m 27s active tool time<br>16m 28s since previous task (includes idle)<br>Chat so far: 4 message(s), 52 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:33 PM — Pearson tab: removed post-login recreate, auto blank-iframe recovery, course-home auto-reset</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>3m 12s active tool time<br>3m 14s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:30 PM — Auto pause at part boundary, formula chart order, momentum handoff</span>
+      <span class="pill p0">3.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>8m 58s active tool time<br>10m 58s since previous task (includes idle)<br>3.2M tokens over 24 turn(s) · 132k/turn · 3.1M cache read · 21k output<br>Chat so far: 10 message(s), 1382 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:19 PM — Ellipse clips (horizontal+vertical): added 'a is always the bigger number' form caption, reworded opener, re-rendered, portal updated</span>
+      <span class="pill p0">330k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>59s active tool time<br>2m 42s since previous task (includes idle)<br>330k tokens over 3 turn(s) · 110k/turn · 328k cache read · 859 output<br>Chat so far: 4 message(s), 620 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">1:16 PM — Definition clip Part 2: grid removed, y=k-p and y-k+p explained on a generic figure; Part 1 ends on vertex/p slide</span>
       <span class="pill p0">339k tokens</span>

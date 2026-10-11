@@ -116,10 +116,13 @@ def frac(top_parts, bottom, size):
     return VGroup(t, bar, b).arrange(DOWN, buff=0.1)
 
 
-def ellipse_row(top_x, top_y, bottom_x, bottom_y, size):
-    """top_x/bottom_x + top_y/bottom_y = 1 on one baseline, the signs sitting at the fraction bars."""
+def ellipse_row(top_x, top_y, bottom_x, bottom_y, size, op='+'):
+    """top_x/bottom_x + top_y/bottom_y = 1 on one baseline, the signs sitting at the fraction bars.
+
+    op='-' builds the hyperbola's difference of two fractions with the same layout.
+    """
     fx, fy = frac(top_x, bottom_x, size), frac(top_y, bottom_y, size)
-    plus, eq = tex('+', size=size), tex('=', '1', size=size)
+    plus, eq = tex(op, size=size), tex('=', '1', size=size)
     row = VGroup(fx, plus, fy, eq).arrange(RIGHT, buff=0.16)
     fy.shift(UP * (fx[1].get_center()[1] - fy[1].get_center()[1]))
     bar_y = fx[1].get_center()[1]
