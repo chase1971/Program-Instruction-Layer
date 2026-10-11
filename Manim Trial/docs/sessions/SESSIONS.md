@@ -1,3 +1,17 @@
+## 2026-10-10 — "Definition of a Parabola" clip: textbook captions, step-by-step expansion, Part 1 / Part 2 buttons
+
+**Repos touched:** `Programs/` root (Manim Trial), `School Scrips/student-portal`
+
+**Files changed:** `parabola_directrix.py` (~440 lines; new `derive`, `expand_left`, `arrows`, `stage`, `strike`), `parabola_directrix_{marks,steps}.json`; portal `conicsGuide.ts` (tile renamed "Definition of a Parabola", hold 162.67, `parts`), `conics-intro/parabola-directrix.mp4` + steps, `videoExamplesTypes.ts` (`parts`), `useVideoExamplePlayer.ts` (`jumpToPart`, exposes `stepTimes`), `VideoExamplesPlayerStage.tsx` (1 / 2 part row above Back/Next), `video-examples.css`, `conicsGuide.test.ts`.
+
+**What worked:** Opens on the formal definition; the graph, focus and definition row clear when the derivation starts. The left-side expansion is worked below the equation: (y-k-p)^2 -> two factors with y-k kept as one term -> gold arrows distributing -> like terms combined -> substituted back; the right side just shows its answer. All captions rewritten in textbook voice with `$...$` math instead of spelled-out plus/minus. Part buttons jump to a step time; Part 2 must be the step time of the beat BEFORE the Part 2 caption (a step time is the END of a beat, so the part's own first step skips its caption).
+
+**Current state:** Green — rendered 1080x1350, wired, vitest green; Chase has not yet used the 1/2 buttons in the portal; no Netlify deploy.
+
+**File size flag:** `useVideoExamplePlayer.ts` ~690 lines (cap 800; extract before 700).
+
+**Next session:** Chase's review of the Definition clip and the Part buttons; if he wants the buttons on other clips, add `parts` to those entries. Extract part/step navigation from `useVideoExamplePlayer.ts` before adding more.
+
 ## 2026-10-09 (late) — Parabola: Opens Left clip, "multiply both sides" recipe, always-wire-into-portal rule, Auto-mode Back fix
 
 **Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`

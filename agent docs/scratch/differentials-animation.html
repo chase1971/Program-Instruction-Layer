@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Differentials: dy approximates Δy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+  :root {
+    --bg: #ffffff; --ink: #14181f; --muted: #5a6473; --card: #f3f5f9; --line: #c9d0dc;
+    --curve: #1769c9; --tan: #d4167f; --gap: #e8590c; --btn: #12305c; --btn-ink: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11151c; --ink: #eef1f6; --muted: #a2adbd; --card: #1b212b; --line: #3a4352;
+      --curve: #5aa9ff; --tan: #ff5fb0; --gap: #ff8a4c; --btn: #2c5fa8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 18px/1.45 "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 12px 16px 28px; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    flex-wrap: wrap; }
+  .top a { color: var(--curve); font-weight: 600; text-decoration: none; padding: 8px 0; }
+  .top small { color: var(--muted); }
+  h1 { font-size: 26px; margin: 4px 0 8px; }
+  #fig { width: 100%; height: auto; background: var(--card); border-radius: 12px;
+    border: 1px solid var(--line); display: block; }
+  .math { font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif; font-style: italic; }
+  .caption { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 18px; margin: 12px 0; min-height: 4.6em; font-size: 22px; line-height: 1.4; }
+  .caption .katex { font-size: 1.1em; }
+  .tag { color: var(--muted); font-size: 15px; display: block; margin-bottom: 2px; }
+  .readout { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; min-height: 52px; }
+  .readout div { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 6px 14px; font-size: 20px; font-variant-numeric: tabular-nums; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; }
+  button { flex: 1 1 140px; min-height: 68px; font-size: 22px; font-weight: 600; border: 0;
+    border-radius: 12px; background: var(--btn); color: var(--btn-ink); cursor: pointer; }
+  button.on { outline: 4px solid var(--tan); }
+  .dots { display: flex; gap: 8px; justify-content: center; margin: 10px 0 0; }
+  .dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+  .dots i.here { background: var(--tan); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/pages.html">← All pages</a>
+    <small>Scratch page · 2026-10-10 · not tied to any class</small>
+  </div>
+  <h1>Differentials: how <span class="math">dy</span> approximates <span class="math">Δy</span></h1>
+
+  <svg id="fig" viewBox="0 0 680 460" role="img" aria-label="Animated graph of a curve, its tangent line, and the differentials dy and Δy">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--tan)"/></marker>
+    </defs>
+    <g id="g"></g>
+  </svg>
+
+  <div class="caption" id="caption"></div>
+  
+  <div class="controls">
+    <button id="back">◀ Back</button>
+    <button id="auto" class="on">⏸ Pause</button>
+    <button id="next">Next ▶</button>
+    <button id="restart">⟲ Restart</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</div>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var f = function (x) { return 2.6 * Math.sqrt(x); };
+  var fp = function (x) { return 1.3 / Math.sqrt(x); };
+  var X = 2.0, DX0 = 3.5, DX_MIN = 0.6, Zv = 1;
+  var OX = 70, OY = 400, SX = 52, SY = 42;
+  // Zoom keeps P fixed on screen and magnifies everything around it (Z = 1 is the normal view).
+  var Z = 1, P0X = OX + X * SX, Y0 = 2.6 * Math.sqrt(X), P0Y = OY - Y0 * SY;
+  var px = function (x) { return P0X + (x - X) * SX * Z; };
+  var py = function (y) { return P0Y - (y - Y0) * SY * Z; };
+  var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  var ease = function (t) { return t * t * (3 - 2 * t); };
+
+  var STEPS = [
+    { hold: 3.5, text: "Here is a curve $y = f(x)$ and a point $P$ on it, at $x$." },
+    { hold: 4.5, text: "Move a small distance to the right: $dx = \\Delta x$. Now we are at $x + \\Delta x$." },
+    { hold: 5.5, text: "The curve really rises by $\\Delta y = f(x + \\Delta x) - f(x)$. That is the exact change, but it can be hard to calculate." },
+    { hold: 5.5, text: "So use the tangent line at $P$ instead. Its slope is $f'(x)$." },
+    { hold: 6.5, text: "Follow the tangent over the same $dx$. It rises by $dy = f'(x)\\,dx$, which is just slope $\\times$ run. Easy." },
+    { hold: 5.5, text: "$dy$ and $\\Delta y$ are close. The small orange gap is the error: $\\Delta y \\approx dy$." },
+    { hold: 12, text: "Now shrink $dx$. Slide $x + \\Delta x$ toward $x$ and watch the gap. The smaller $dx$ is, the better $dy$ matches $\\Delta y$." },
+    { hold: 0, text: "So $f(x + \\Delta x) \\approx f(x) + dy = f(x) + f'(x)\\,dx$.<br>Example: $\\sqrt{4.1} \\approx \\sqrt{4} + \\dfrac{1}{2\\sqrt{4}}(0.1) = 2.025$ (true value 2.02485...)." }
+  ];
+  // Caption math is LaTeX ($...$), rendered by KaTeX; falls back to plain text if it cannot load.
+  function renderMath(str) {
+    return str.replace(/\$([^$]+)\$/g, function (m, t) {
+      if (window.katex) { try { return window.katex.renderToString(t, { throwOnError: false }); } catch (e) {} }
+      return '<span class="math">' + t.replace(/\\/g, '') + '</span>';
+    });
+  }
+  var capKey = '';
+  var LAST = STEPS.length - 1;
+  var STEP_SECONDS = 1.2;
+
+  var cur = -1, target = 0, holdT = 0, auto = true, dxv = DX0, shrinkT = 0;
+  var SHRINK_SECONDS = 7;
+  // The shrink: slide dx in once, then zoom in once. u runs 0..1.
+  function setU(u) {
+    dxv = lerp(DX0, DX_MIN, ease(u)); Zv = 1;
+  }
+
+  var g = document.getElementById('g');
+  var capEl = document.getElementById('caption');
+  var roEl = { innerHTML: '' };
+  var dotsEl = document.getElementById('dots');
+  var autoBtn = document.getElementById('auto');
+  STEPS.forEach(function () { dotsEl.appendChild(document.createElement('i')); });
+
+  var out;
+  function add(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    g.appendChild(e);
+    return e;
+  }
+  function line(x1, y1, x2, y2, r, attrs) {
+    if (r <= 0) return;
+    var a = { x1: x1, y1: y1, x2: lerp(x1, x2, r), y2: lerp(y1, y2, r), 'stroke-linecap': 'round' };
+    for (var k in attrs) a[k] = attrs[k];
+    add('line', a);
+  }
+  function dot(x, y, r, color) {
+    if (r <= 0) return;
+    add('circle', { cx: x, cy: y, r: 6 * r, fill: color || 'var(--ink)', opacity: r });
+  }
+  function label(x, y, s, r, color, size) {
+    if (r <= 0) return;
+    add('text', { x: x, y: y, class: 'math', 'font-size': size || 24, fill: color || 'var(--ink)',
+      opacity: r, 'text-anchor': 'middle' }, s);
+  }
+  // A curly brace along A->B, bulging toward the hint direction.
+  function brace(ax, ay, bx, by, hx, hy, off, r, color) {
+    if (r <= 0) return;
+    var L = Math.hypot(bx - ax, by - ay);
+    if (L < 14) return;
+    var ux = (bx - ax) / L, uy = (by - ay) / L;
+    var nx = -uy, ny = ux;
+    if (nx * hx + ny * hy < 0) { nx = -nx; ny = -ny; }
+    var d = Math.min(8, L / 5), s = Math.min(10, L / 4);
+    var m = function (a, t) {
+      return (ax + ux * a + nx * (t + off)).toFixed(1) + ' ' + (ay + uy * a + ny * (t + off)).toFixed(1);
+    };
+    var p = 'M' + m(0, 0) + ' Q' + m(0, d) + ' ' + m(s, d) + ' L' + m(L / 2 - s, d) +
+      ' Q' + m(L / 2, d) + ' ' + m(L / 2, 2 * d) + ' Q' + m(L / 2, d) + ' ' + m(L / 2 + s, d) +
+      ' L' + m(L - s, d) + ' Q' + m(L, d) + ' ' + m(L, 0);
+    add('path', { d: p, fill: 'none', stroke: color, 'stroke-width': 2.5, opacity: r,
+      'stroke-linecap': 'round' });
+  }
+
+  function draw() {
+    g.textContent = '';
+    Z = Zv;
+    var r0 = clamp(cur + 1), r1 = clamp(cur), r2 = clamp(cur - 1), r3 = clamp(cur - 2),
+        r4 = clamp(cur - 3), r5 = clamp(cur - 4), r6 = clamp(cur - 5);
+    var shrink = 1 - r6;               // braces and labels fade out while dx shrinks
+    var x1 = X + dxv, y0 = f(X), y1 = f(x1), m = fp(X), yr = y0 + m * dxv;
+    var P = [px(X), py(y0)], S = [px(x1), py(y0)], Q = [px(x1), py(y1)], R = [px(x1), py(yr)];
+
+    // axes
+    var ax = 1 - clamp((Z - 1) / 0.5);       // axes fade out once we start zooming
+    if (ax > 0) {
+      add('line', { x1: OX, y1: OY, x2: 660, y2: OY, stroke: 'var(--ink)', 'stroke-width': 2, opacity: ax });
+      add('line', { x1: OX, y1: OY, x2: OX, y2: 24, stroke: 'var(--ink)', 'stroke-width': 2, opacity: ax });
+      label(652, OY + 26, 'x', ax, null, 24);
+      label(OX - 18, 36, 'y', ax, null, 24);
+      label(OX - 14, OY + 22, '0', ax, null, 20);
+    }
+
+    // curve (draws in)
+    var pts = [], xlo = Math.max(0, X - (P0X - OX) / (SX * Z)),
+        xhi = Math.min(10.5, X + (700 - P0X) / (SX * Z)), n = 200;
+    for (var i = 0; i <= n; i++) {
+      var cx = lerp(xlo, xhi, i / n);
+      pts.push(px(cx).toFixed(1) + ',' + py(f(cx)).toFixed(1));
+    }
+    add('polyline', { points: pts.join(' '), fill: 'none', stroke: 'var(--curve)',
+      'stroke-width': 4, pathLength: 1, 'stroke-dasharray': r0 + ' 1.001', 'stroke-linecap': 'round' });
+    label(px(10.2), py(f(10.2)) - 14, 'y = f(x)', r0 * ax, 'var(--curve)', 22);
+
+    // x and x+dx guides on the axis
+    dot(P[0], P[1], r0);
+    line(P[0], P[1], P[0], OY, r0, { stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '5 5' });
+    label(P[0] - (dxv < 1.4 ? 22 : 0), OY + 26, 'x', r0, null, 24);
+    label(P[0] - 16, P[1] - 12, 'P', r0 * shrink, null, 24);
+
+    // step 1: dx
+    if (r1 > 0) {
+      line(S[0], S[1], S[0], OY, r1, { stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '5 5' });
+      label(S[0] + (dxv < 1.4 ? 34 : 0), OY + 26, 'x + Δx', r1, null, 22);
+      line(P[0], P[1], S[0], S[1], r1, { stroke: 'var(--ink)', 'stroke-width': 3 });
+      dot(S[0], S[1], r1);
+      label(S[0] + 18, S[1] + 22, 'S', r1 * shrink, null, 24);
+      brace(P[0], P[1], S[0], S[1], 0, 1, 6, r1 * shrink, 'var(--ink)');
+      label((P[0] + S[0]) / 2, S[1] + 46, 'dx = Δx', r1 * shrink, null, 22);
+    }
+    // step 2: dy true (blue) = Δy
+    if (r2 > 0) {
+      line(S[0], S[1], Q[0], Q[1], r2, { stroke: 'var(--ink)', 'stroke-width': 3 });
+      dot(Q[0], Q[1], r2);
+      label(Q[0] - 16, Q[1] + 24, 'Q', r2 * shrink, null, 24);
+      brace(S[0], S[1], Q[0], Q[1], 1, 0, 6, r2 * shrink, 'var(--curve)');
+      label(S[0] + 46, (S[1] + Q[1]) / 2 + 8, 'Δy', r2 * shrink, 'var(--curve)', 24);
+    }
+    // step 3: tangent line
+    if (r3 > 0) {
+      var xe = Math.min(X + (8.6 - y0) / m, X + (700 - P0X) / (SX * Z)),
+          xs = Math.max(0.25, X - (P0X - OX) / (SX * Z));
+      line(px(xs), py(y0 + m * (xs - X)), px(xe), py(y0 + m * (xe - X)), r3,
+        { stroke: 'var(--tan)', 'stroke-width': 3.5 });
+    }
+    // step 4: R and dy
+    if (r4 > 0) {
+      line(S[0], S[1], R[0], R[1], r4, { stroke: 'var(--ink)', 'stroke-width': 3 });
+      dot(R[0], R[1], r4, 'var(--ink)');
+      label(R[0] - 16, R[1] - 12, 'R', r4 * shrink, null, 24);
+      var xd = px(8.9);
+      line(S[0] + 8, S[1], xd, S[1], r4 * shrink, { stroke: 'var(--tan)', 'stroke-width': 1.5, 'stroke-dasharray': '4 4' });
+      line(R[0] + 8, R[1], xd, R[1], r4 * shrink, { stroke: 'var(--tan)', 'stroke-width': 1.5, 'stroke-dasharray': '4 4' });
+      if (r4 * shrink > 0) {
+        add('line', { x1: xd, y1: S[1], x2: xd, y2: lerp(S[1], R[1], r4), stroke: 'var(--tan)',
+          'stroke-width': 3, 'marker-end': 'url(#arr)', 'marker-start': 'url(#arr)', opacity: shrink });
+        label(xd + 28, (S[1] + R[1]) / 2 + 8, 'dy', r4 * shrink, 'var(--tan)', 26);
+      }
+    }
+    // step 5: the gap
+    var gapR = r5 * shrink;
+    if (gapR > 0) {
+      line(Q[0], Q[1], R[0], R[1], gapR, { stroke: 'var(--gap)', 'stroke-width': 6 });
+      label(R[0] - 78, R[1] - 36, 'gap = error', gapR, 'var(--gap)', 20);
+    }
+    // step 6: dy and Δy side by side while dx shrinks
+    if (r6 > 0) {
+      var yq = y1 - y0, yd = m * dxv;
+      [['Δx = ' + dxv.toFixed(2), 'var(--ink)', 270], ['Δy = ' + yq.toFixed(4), 'var(--curve)', 304],
+       ['dy = ' + yd.toFixed(4), 'var(--tan)', 338], ['gap = ' + Math.abs(yd - yq).toFixed(4), 'var(--gap)', 372]
+      ].forEach(function (t) {
+        add('text', { x: 440, y: t[2], class: 'math', 'font-size': 24, fill: t[1],
+          opacity: r6, 'text-anchor': 'start' }, t[0]);
+      });
+    }
+
+    // text
+    var k = Math.round(Math.max(0, Math.min(LAST, cur)));
+    var idx = Math.min(LAST, target);
+    var key = idx + (window.katex ? 'k' : 'p');
+    if (key !== capKey) {
+      capKey = key;
+      capEl.innerHTML = '<span class="tag">Step ' + (idx + 1) + ' of ' + STEPS.length + '</span>' + renderMath(STEPS[idx].text);
+    }
+    Array.prototype.forEach.call(dotsEl.children, function (d, j) { d.className = j === idx ? 'here' : ''; });
+    roEl.innerHTML = '';
+  }
+
+  var last = null;
+  function frame(t) {
+    var dt = last == null ? 0 : Math.min(0.1, (t - last) / 1000);
+    last = t;
+    if (cur < target) cur = Math.min(target, cur + dt / STEP_SECONDS);
+    else if (cur === target) {
+      if (target === 6) {
+        shrinkT += dt;
+        setU(clamp(shrinkT / SHRINK_SECONDS));
+      }
+      if (auto && target < LAST) {
+        holdT += dt;
+        if (holdT >= STEPS[target].hold) { target += 1; holdT = 0; }
+      }
+    }
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  function go(n) {
+    n = Math.max(0, Math.min(LAST, n));
+    if (n < 6) { setU(0); shrinkT = 0; }
+    if (n === 6 && target !== 6) { setU(0); shrinkT = 0; }
+    if (n === 7 && target < 6) { setU(1); }
+    target = n; cur = n; holdT = 0;
+  }
+  document.getElementById('back').onclick = function () { go(target - 1); };
+  document.getElementById('next').onclick = function () {
+    if (cur < target) { cur = target; return; }
+    var n = Math.min(LAST, target + 1);
+    if (n === 6) { setU(0); shrinkT = 0; }
+    if (n === 7 && target < 6) setU(1);
+    target = n; holdT = 0;
+  };
+  document.getElementById('restart').onclick = function () {
+    setU(0); shrinkT = 0; cur = -1; target = 0; holdT = 0;
+  };
+  autoBtn.onclick = function () {
+    auto = !auto;
+    autoBtn.textContent = auto ? '⏸ Pause' : '▶ Auto';
+    autoBtn.className = auto ? 'on' : '';
+  };
+
+  // Still frames for checking: ?cur=3.5 freezes at that point.
+  var q = /[?&]cur=([\d.]+)/.exec(location.search);
+  if (q) {
+    cur = target = parseFloat(q[1]); auto = false;
+    if (cur >= 6) { shrinkT = SHRINK_SECONDS * (cur - 6 > 0 ? 1 : 0.5); setU(cur > 6 ? 1 : 0.3); }
+    target = Math.round(cur);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

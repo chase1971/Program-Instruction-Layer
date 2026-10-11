@@ -1,58 +1,138 @@
 [
   {
+    "name": "definition",
+    "time": 6.44
+  },
+  {
     "name": "setup",
-    "time": 5.33
+    "time": 11.11
   },
   {
     "name": "focus-length",
-    "time": 9.11
+    "time": 14.33
   },
   {
     "name": "directrix-length",
-    "time": 12.89
+    "time": 17.56
   },
   {
-    "name": "equal",
-    "time": 15.22
+    "name": "four",
+    "time": 20.56
+  },
+  {
+    "name": "y-up",
+    "time": 23.56
+  },
+  {
+    "name": "y-plus-4",
+    "time": 26.44
+  },
+  {
+    "name": "again",
+    "time": 32.44
   },
   {
     "name": "trace",
-    "time": 21.44
+    "time": 36.22
   },
   {
-    "name": "definition",
-    "time": 27.67
+    "name": "definition-again",
+    "time": 39.89
+  },
+  {
+    "name": "vertex-p",
+    "time": 43.22
+  },
+  {
+    "name": "general-length",
+    "time": 46.44
+  },
+  {
+    "name": "distance-formula",
+    "time": 53.0
   },
   {
     "name": "set-equal",
-    "time": 33.11
+    "time": 58.33
+  },
+  {
+    "name": "distribute",
+    "time": 63.67
   },
   {
     "name": "square",
-    "time": 37.0
+    "time": 69.0
   },
   {
-    "name": "expand",
-    "time": 40.89
+    "name": "unroot",
+    "time": 74.33
   },
   {
-    "name": "cancel",
-    "time": 44.33
+    "name": "expand-term",
+    "time": 80.78
+  },
+  {
+    "name": "times-itself",
+    "time": 86.11
+  },
+  {
+    "name": "distribute-first",
+    "time": 92.56
+  },
+  {
+    "name": "distribute-second",
+    "time": 99.22
   },
   {
     "name": "combine",
-    "time": 47.11
+    "time": 104.56
+  },
+  {
+    "name": "expand-left",
+    "time": 110.11
+  },
+  {
+    "name": "expand-right",
+    "time": 115.67
+  },
+  {
+    "name": "cancel-square",
+    "time": 120.78
+  },
+  {
+    "name": "cancel-p-squared",
+    "time": 125.89
+  },
+  {
+    "name": "left-over",
+    "time": 131.44
+  },
+  {
+    "name": "add-both",
+    "time": 136.44
+  },
+  {
+    "name": "cancel-left",
+    "time": 141.56
+  },
+  {
+    "name": "four-p",
+    "time": 146.67
   },
   {
     "name": "equation",
-    "time": 51.67
+    "time": 152.0
+  },
+  {
+    "name": "example",
+    "time": 156.89
   },
   {
     "name": "purpose",
-    "time": 55.11
+    "time": 160.33
   },
   {
     "name": "hold",
-    "time": 57.44
+    "time": 162.67
   }
 ]
