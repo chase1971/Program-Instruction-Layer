@@ -58,7 +58,7 @@ from parabola_walkthrough import (  # noqa: E402
     P_COLOR,
     ParabolaOpensUp,
 )
-from scene_style import PAPER_BLUE, PAPER_GOLD  # noqa: E402
+from scene_style import PAPER_BLUE, PAPER_GOLD, PAPER_MUTED  # noqa: E402
 from solve_steps import op_under, strike_pair  # noqa: E402
 
 FOCUS_COLOR = PAPER_BLUE        # the focus and every distance to it
@@ -233,7 +233,7 @@ class ParabolaDirectrix(ParabolaOpensUp):
         self.freeze(probe)
         curve.clear_updaters()
         label_pt = tex('(x,y)', size=28, color=INK).next_to(
-            c2p(x_second, y_second), DOWN + RIGHT, buff=.05)
+            c2p(x_second, y_second), UP + RIGHT, buff=.02)
         self.play(FadeIn(label_pt), run_time=.4)
         self.beat('trace', READ_LONG)
 
@@ -249,22 +249,21 @@ class ParabolaDirectrix(ParabolaOpensUp):
                                                                 buff=.05)
         brace_up, label_up = bracket(h, k, fy, LEFT, 'p', P_COLOR)
         brace_dn, label_dn = bracket(h, p.directrix, k, LEFT, 'p', P_COLOR)
-        general = tex('y-k+p', size=28, color=DIRECTRIX_COLOR).next_to(
-            c2p(x_second, -2.8), LEFT, buff=.15)
         self.say('Let the vertex be $(h,k)$. The focus is a distance $p$ above it, and the directrix is a distance $p$ below it.')
         self.play(FadeIn(vertex_dot), Write(vertex_label), FadeIn(brace_up), FadeIn(label_up),
                   FadeIn(brace_dn), FadeIn(label_dn), run_time=.9)
         self.beat('vertex-p', READ_LONG)
-        self.say('Then the directrix is the line $y=k-p$, so the distance down to it is $y-(k-p)=y-k+p$.')
-        self.play(ReplacementTransform(total_second, general), run_time=.8)
-        self.beat('general-length', READ_LONG)
+        # ---- 7. part 2: the grid goes, the figure is described in h, k and p ----------------------
+        figure = Group(focus_dot, focus_label, directrix_line, directrix_label, curve, to_focus,
+                       to_directrix, dot, label_pt, vertex_dot, vertex_label, brace_up, label_up,
+                       brace_dn, label_dn)
+        self.explain_figure(plane, total_second, figure, bracket, c2p, (h, k), (x_second, y_second))
 
-        # ---- 7. the equation falls out of the definition -----------------------------------------
-        # The graph, the focus and the definition row all go: the derivation gets the whole board.
-        self.play(FadeOut(Group(*[m for m in self.mobjects if m is not self.note])), run_time=.8)
+        # ---- 8. the equation falls out of the definition -----------------------------------------
+        # The next caption goes up first, so a Slow-mode hold on the figure is still the figure.
         self.derive()
 
-        # ---- 8. why we care ----------------------------------------------------------------------
+        # ---- 9. why we care ----------------------------------------------------------------------
         self.say('The directrix is the rule that determines the shape of the parabola. The '
                  'farther it is from the focus, the wider the parabola.')
         self.beat('purpose', READ_LONG + 1.0)
@@ -287,6 +286,51 @@ class ParabolaDirectrix(ParabolaOpensUp):
         for slash in slashes:
             self.play(Create(slash), run_time=.5)
         return slashes
+
+    def explain_figure(self, plane, total, figure, bracket, c2p, vertex, point):
+        """Part 2: drop the grid and the numbers, then show why the distance down is y - k + p."""
+        slow = READ_LONG + 1.5
+        h, k = vertex
+        x2, y2 = point
+        lift = UP * .5
+        directrix_y = self.problem.directrix
+
+        def lifted(*mobjects):
+            return Group(*mobjects).shift(lift)
+
+        self.say('Part 2. To build the equation, remove the grid and look only at the figure: '
+                 'the vertex $(h,k)$, the focus, and the directrix.')
+        self.play(FadeOut(plane), FadeOut(total), figure.animate.shift(lift), run_time=1.4)
+        self.beat('figure', slow)
+
+        self.say('The directrix is a distance $p$ below the vertex, so it is the line $y=k-p$.')
+        line_label = tex('y=k-p', size=28, color=DIRECTRIX_COLOR).next_to(
+            c2p(-3.4, directrix_y) + lift, DOWN, buff=.08)
+        self.play(Indicate(figure[-2], color=P_COLOR, scale_factor=1.2), FadeIn(line_label),
+                  run_time=1.2)
+        self.beat('directrix-line', slow)
+
+        self.say('The point $(x,y)$ is $y-k$ above the level of the vertex.')
+        level = DashedLine(c2p(h, k) + lift, c2p(x2, k) + lift, color=PAPER_MUTED,
+                           stroke_width=3, dash_length=.1)
+        up_brace, up_label = (lifted(m) for m in bracket(x2, k, y2, RIGHT, 'y-k', INK))
+        self.play(Create(level), run_time=.8)
+        self.play(FadeIn(up_brace), FadeIn(up_label), run_time=.8)
+        self.beat('y-minus-k', slow)
+
+        self.say('From the level of the vertex down to the directrix is another $p$.')
+        down_brace, down_label = (lifted(m) for m in bracket(x2, directrix_y, k, RIGHT, 'p',
+                                                              P_COLOR))
+        self.play(FadeIn(down_brace), FadeIn(down_label), run_time=.8)
+        self.beat('p-down', slow)
+
+        self.say('So the distance from $(x,y)$ down to the directrix is $(y-k)+p$, which is '
+                 '$y-k+p$.')
+        whole_brace, whole_label = (lifted(m) for m in bracket(x2, directrix_y, y2, LEFT, 'y-k+p',
+                                                                DIRECTRIX_COLOR))
+        whole_label.shift(DOWN * .75)  # below the (h,k) label, still beside its brace
+        self.play(FadeIn(whole_brace), FadeIn(whole_label), run_time=1.0)
+        self.beat('y-k-plus-p', slow + 1.0)
 
     def arrows(self, starts, ends, up, color=PAPER_GOLD):
         """Curved arrows from each start term to each end term, arcing above (up) or below."""
@@ -351,9 +395,11 @@ class ParabolaDirectrix(ParabolaOpensUp):
         dist = r'\sqrt{(x-h)^2+(y-(k+p))^2}'
         dist2 = r'\sqrt{(x-h)^2+(y-k-p)^2}'
 
-        self.say('Part 2. If the focus is at $(h,k+p)$, then the distance from $(x,y)$ to the '
+        self.say('If the focus is at $(h,k+p)$, then the distance from $(x,y)$ to the '
                  'focus is found by applying the distance formula.')
         top, bottom = self.stage([dist], ['=y-(k-p)'], y, FOCUS_COLOR, DIRECTRIX_COLOR)
+        self.play(FadeOut(Group(*[m for m in self.mobjects if m is not self.note])),
+                  run_time=.8)
         self.play(Write(top), run_time=1.5)
         self.beat('distance-formula', slow)
 

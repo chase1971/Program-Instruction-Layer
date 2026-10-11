@@ -154,13 +154,15 @@ class ParabolaOpensLeft(ParabolaOpensUp):
                      size=FORM_SIZE).move_to([0, VERTEX_Y, 0])
         for i in (1, 3, 7, 9):
             vertex[i].set_color(PT_COLOR)
-        raw = tex('(', 'y', '-', str(k), ')^2', '=', '4p', '(', 'x', '-', str(h), ')',
-                  size=FORM_SIZE).move_to([0, FORM_Y, 0])
-        plug = tex('y^2', '=', '4p', '(', 'x', '-', str(h), ')',
-                   size=FORM_SIZE).move_to([0, FORM_Y, 0])
-        for i in (3, 10):
-            raw[i].set_color(PT_COLOR)
-        plug[6].set_color(PT_COLOR)
+        # (y - 0)^2 = c(x - h): the problem row rewritten so the missing k shows as a 0.
+        problem_k = tex('(', 'y', '-', str(k), ')^2', '=', signed(p.c), '(', 'x', '-', str(h), ')',
+                        size=MATH_SIZE).move_to([0, PROBLEM_Y, 0])
+        if problem_k.width > 6.1:
+            problem_k.scale(6.1 / problem_k.width).move_to([0, PROBLEM_Y, 0])
+        problem_k[3].set_color(PT_COLOR)
+        problem_k[6].set_color(PT_COLOR)
+        vertex[7].set_opacity(0)   # the h and k values are slid in from the problem row
+        vertex[9].set_opacity(0)
         four_p = tex('4p', '=', signed(p.c), size=MATH_SIZE).move_to([0, FOUR_P_Y, 0])
         bars, divisors = divide_bars([four_p[0], four_p[2]], '4')
         p_row = tex('p', '=', signed(p.p), size=MATH_SIZE).move_to([0, P_Y, 0])
@@ -248,42 +250,49 @@ class ParabolaOpensLeft(ParabolaOpensUp):
                   Indicate(form[10], color=PT_COLOR, scale_factor=1.5), run_time=1.1)
         self.beat('form', READ_SHORT)
 
-        self.say('Be careful. This one is flipped, with the y in front. The x part is still h, '
-                 'so the vertex is (2, 0), not (0, 2).')
-        self.play(Indicate(form[1], color=PAPER_BLUE, scale_factor=1.5),
-                  Indicate(form[8], color=PAPER_BLUE, scale_factor=1.5), run_time=1.2)
-        self.beat('flipped', READ_LONG)
+        self.say('Find h and k by determining what number was plugged into the formula.')
+        self.play(Indicate(form[10], color=PT_COLOR, scale_factor=1.6),
+                  Indicate(problem[6], color=PT_COLOR, scale_factor=1.6), run_time=1.3)
+        self.beat('find-hk', READ_LONG)
 
-        self.say('The h and k values come out as the opposite of the numbers you see. '
-                 'There is no number with the y, so k is 0.')
-        self.play(Indicate(problem[5], color=PT_COLOR, scale_factor=1.6),
-                  Indicate(problem[6], color=PT_COLOR, scale_factor=1.6),
-                  Indicate(problem[0], color=PT_COLOR, scale_factor=1.3), run_time=1.3)
-        self.beat('opposites', READ_LONG)
+        self.play(FadeIn(vertex), run_time=1.0)
+        h_copy = problem[6].copy()
+        self.play(h_copy.animate.scale(vertex[7].height / h_copy.height).move_to(vertex[7]),
+                  run_time=1.2)
+        self.remove(h_copy)
+        vertex[7].set_opacity(1)
+        self.beat('h-down', READ_SHORT)
 
-        self.say(f'So (h, k) equals ({h}, {k}).')
-        self.play(FadeIn(vertex), run_time=1.2)
+        self.say('There is no number with the y, so write it as y minus 0.')
+        self.play(
+            ReplacementTransform(problem[0], VGroup(*problem_k[0:5])),
+            *[ReplacementTransform(problem[i], problem_k[i + 4]) for i in range(1, 8)],
+            run_time=1.4)
+        problem = problem_k
+        self.beat('minus-zero', READ_LONG)
+
+        self.play(Indicate(form[3], color=PT_COLOR, scale_factor=1.6),
+                  Indicate(problem[3], color=PT_COLOR, scale_factor=1.6), run_time=1.3)
+        k_copy = problem[3].copy()
+        self.play(k_copy.animate.scale(vertex[9].height / k_copy.height).move_to(vertex[9]),
+                  run_time=1.2)
+        self.remove(k_copy)
+        vertex[9].set_opacity(1)
+        self.beat('k-down', READ_SHORT)
+
+        self.say(f'So the vertex (h, k) is ({h}, {k}).')
+        self.play(FadeOut(form), vertex.animate.move_to([0, VERTEX_UP_Y, 0]), run_time=1.0)
         self.beat('vertex', READ_LONG)
 
-        self.say('Plug these values in, and you get the original expression.')
-        self.play(Indicate(vertex[7], color=PT_COLOR, scale_factor=1.4),
-                  Indicate(vertex[9], color=PT_COLOR, scale_factor=1.4), run_time=1.1)
-        # The values fly up into the form that is already on screen: h and k are replaced in place.
-        self.play(*[ReplacementTransform(form[i], raw[i]) for i in range(12) if i not in (3, 10)],
-                  FadeOut(VGroup(form[3], form[10])),
-                  copy_into(vertex[7], raw[10]), copy_into(vertex[9], raw[3]), run_time=1.8)
-        self.beat('plug', READ_LONG)
-
-        self.say('Subtracting zero changes nothing, so the y is just squared.')
-        self.play(ReplacementTransform(raw, plug), run_time=1.4)
-        self.beat('plug-zero', READ_LONG)
-
-        self.play(FadeOut(plug), vertex.animate.move_to([0, VERTEX_UP_Y, 0]), run_time=1.0)
+        self.say('<b>Be careful.</b> When the y is in front, the h and k are flipped.')
+        self.play(Indicate(problem[1], color=PAPER_BLUE, scale_factor=1.5),
+                  Indicate(problem[8], color=PAPER_BLUE, scale_factor=1.5), run_time=1.2)
+        self.beat('flipped', READ_LONG)
 
         # ---- 3. p ----------------------------------------------------------------------------
         self.say(f'Now find p. The number in front is 4p, so divide {p.c} by 4.')
-        self.play(Indicate(problem[2], color=P_COLOR, scale_factor=1.5), run_time=1.0)
-        self.play(FadeIn(VGroup(four_p[0], four_p[1])), copy_into(problem[2], four_p[2]),
+        self.play(Indicate(problem[6], color=P_COLOR, scale_factor=1.5), run_time=1.0)
+        self.play(FadeIn(VGroup(four_p[0], four_p[1])), copy_into(problem[6], four_p[2]),
                   run_time=1.2)
         for bar, divisor in zip(bars, divisors):
             self.play(Create(bar), FadeIn(divisor, shift=DOWN * .15), run_time=.8)

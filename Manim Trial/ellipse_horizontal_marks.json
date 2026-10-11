@@ -1,0 +1,110 @@
+[
+  {
+    "name": "problem",
+    "time": 5.56
+  },
+  {
+    "name": "zero",
+    "time": 10.67
+  },
+  {
+    "name": "center",
+    "time": 15.56
+  },
+  {
+    "name": "across",
+    "time": 20.44
+  },
+  {
+    "name": "updown",
+    "time": 25.33
+  },
+  {
+    "name": "major",
+    "time": 30.11
+  },
+  {
+    "name": "list",
+    "time": 34.44
+  },
+  {
+    "name": "center-dot",
+    "time": 37.33
+  },
+  {
+    "name": "across-dots",
+    "time": 42.0
+  },
+  {
+    "name": "vertices",
+    "time": 45.67
+  },
+  {
+    "name": "updown-dots",
+    "time": 50.89
+  },
+  {
+    "name": "co-vertices",
+    "time": 54.56
+  },
+  {
+    "name": "curve",
+    "time": 59.89
+  },
+  {
+    "name": "zoom",
+    "time": 64.22
+  },
+  {
+    "name": "leg-b",
+    "time": 67.22
+  },
+  {
+    "name": "axis",
+    "time": 70.44
+  },
+  {
+    "name": "hyp",
+    "time": 75.11
+  },
+  {
+    "name": "leg-c",
+    "time": 78.67
+  },
+  {
+    "name": "pyth",
+    "time": 82.33
+  },
+  {
+    "name": "formula",
+    "time": 86.33
+  },
+  {
+    "name": "plug",
+    "time": 90.11
+  },
+  {
+    "name": "five",
+    "time": 93.33
+  },
+  {
+    "name": "c-value",
+    "time": 97.11
+  },
+  {
+    "name": "follows",
+    "time": 102.0
+  },
+  {
+    "name": "foci",
+    "time": 105.78
+  },
+  {
+    "name": "all",
+    "time": 111.67
+  },
+  {
+    "name": "hold",
+    "time": 115.44
+  }
+]

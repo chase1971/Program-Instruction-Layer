@@ -20,75 +20,79 @@
     "time": 18.78
   },
   {
-    "name": "flipped",
-    "time": 22.44
+    "name": "find-hk",
+    "time": 22.56
   },
   {
-    "name": "opposites",
-    "time": 26.22
+    "name": "h-down",
+    "time": 26.11
+  },
+  {
+    "name": "minus-zero",
+    "time": 30.0
+  },
+  {
+    "name": "k-down",
+    "time": 33.89
   },
   {
     "name": "vertex",
-    "time": 29.89
+    "time": 37.33
   },
   {
-    "name": "plug",
-    "time": 35.44
-  },
-  {
-    "name": "plug-zero",
-    "time": 39.33
+    "name": "flipped",
+    "time": 41.0
   },
   {
     "name": "divide",
-    "time": 47.0
+    "time": 47.56
   },
   {
     "name": "p",
-    "time": 51.0
+    "time": 51.56
   },
   {
     "name": "direction",
-    "time": 55.56
+    "time": 56.11
   },
   {
     "name": "list",
-    "time": 59.89
+    "time": 60.44
   },
   {
     "name": "vertex-dot",
-    "time": 62.78
+    "time": 63.33
   },
   {
     "name": "focus",
-    "time": 68.56
+    "time": 69.11
   },
   {
     "name": "width",
-    "time": 72.22
+    "time": 72.78
   },
   {
     "name": "end-dots",
-    "time": 77.44
+    "time": 78.0
   },
   {
     "name": "curve",
-    "time": 82.56
+    "time": 83.11
   },
   {
     "name": "directrix-right",
-    "time": 85.78
+    "time": 86.33
   },
   {
     "name": "directrix",
-    "time": 91.11
+    "time": 91.67
   },
   {
     "name": "aos",
-    "time": 96.0
+    "time": 96.56
   },
   {
     "name": "hold",
-    "time": 99.78
+    "time": 100.33
   }
 ]

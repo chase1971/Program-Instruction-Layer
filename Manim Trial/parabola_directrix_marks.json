@@ -44,95 +44,111 @@
     "time": 43.22
   },
   {
-    "name": "general-length",
-    "time": 46.44
+    "name": "figure",
+    "time": 48.78
+  },
+  {
+    "name": "directrix-line",
+    "time": 54.11
+  },
+  {
+    "name": "y-minus-k",
+    "time": 59.89
+  },
+  {
+    "name": "p-down",
+    "time": 64.78
+  },
+  {
+    "name": "y-k-plus-p",
+    "time": 71.0
   },
   {
     "name": "distance-formula",
-    "time": 53.0
+    "time": 77.56
   },
   {
     "name": "set-equal",
-    "time": 58.33
+    "time": 82.89
   },
   {
     "name": "distribute",
-    "time": 63.67
+    "time": 88.22
   },
   {
     "name": "square",
-    "time": 69.0
+    "time": 93.56
   },
   {
     "name": "unroot",
-    "time": 74.33
+    "time": 98.89
   },
   {
     "name": "expand-term",
-    "time": 80.78
+    "time": 105.33
   },
   {
     "name": "times-itself",
-    "time": 86.11
+    "time": 110.67
   },
   {
     "name": "distribute-first",
-    "time": 92.56
+    "time": 117.11
   },
   {
     "name": "distribute-second",
-    "time": 99.22
+    "time": 123.78
   },
   {
     "name": "combine",
-    "time": 104.56
+    "time": 129.11
   },
   {
     "name": "expand-left",
-    "time": 110.11
+    "time": 134.67
   },
   {
     "name": "expand-right",
-    "time": 115.67
+    "time": 140.22
   },
   {
     "name": "cancel-square",
-    "time": 120.78
+    "time": 145.33
   },
   {
     "name": "cancel-p-squared",
-    "time": 125.89
+    "time": 150.44
   },
   {
     "name": "left-over",
-    "time": 131.44
+    "time": 156.0
   },
   {
     "name": "add-both",
-    "time": 136.44
+    "time": 161.0
   },
   {
     "name": "cancel-left",
-    "time": 141.56
+    "time": 166.11
   },
   {
     "name": "four-p",
-    "time": 146.67
+    "time": 171.22
   },
   {
     "name": "equation",
-    "time": 152.0
+    "time": 176.56
   },
   {
     "name": "example",
-    "time": 156.89
+    "time": 181.44
   },
   {
     "name": "purpose",
-    "time": 160.33
+    "time": 184.89
   },
   {
     "name": "hold",
-    "time": 162.67
+    "time": 187.22
   }
 ]
