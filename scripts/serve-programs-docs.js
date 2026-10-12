@@ -34,6 +34,7 @@ const MIME = {
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.pdf': 'application/pdf',
+  '.mp4': 'video/mp4',
 };
 
 function resolveFile(rel) {
@@ -195,13 +196,43 @@ const server = http.createServer((req, res) => {
     res.end('Not found');
     return;
   }
+  const contentType = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
+  const rangeMatch = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+  if (rangeMatch) {
+    // Video seeking needs HTTP Range; browsers reset currentTime to 0 without it.
+    fs.stat(file, (statErr, stat) => {
+      if (statErr || !stat.isFile()) {
+        res.writeHead(404);
+        res.end('Not found');
+        return;
+      }
+      const size = stat.size;
+      let start = rangeMatch[1] === '' ? size - Number(rangeMatch[2]) : Number(rangeMatch[1]);
+      let end = rangeMatch[1] === '' || rangeMatch[2] === '' ? size - 1 : Number(rangeMatch[2]);
+      start = Math.max(0, start);
+      end = Math.min(size - 1, end);
+      if (Number.isNaN(start) || Number.isNaN(end) || start > end) {
+        res.writeHead(416, { 'Content-Range': `bytes */${size}` });
+        res.end();
+        return;
+      }
+      res.writeHead(206, {
+        'Content-Type': contentType,
+        'Accept-Ranges': 'bytes',
+        'Content-Range': `bytes ${start}-${end}/${size}`,
+        'Content-Length': end - start + 1,
+      });
+      fs.createReadStream(file, { start, end }).pipe(res);
+    });
+    return;
+  }
   fs.readFile(file, (err, data) => {
     if (err) {
       res.writeHead(404);
       res.end('Not found');
       return;
     }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, { 'Content-Type': contentType, 'Accept-Ranges': 'bytes' });
     res.end(data);
   });
 });

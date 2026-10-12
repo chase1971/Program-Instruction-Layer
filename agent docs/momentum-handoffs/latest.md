@@ -1,39 +1,67 @@
-# Momentum handoff — Definition of a Parabola clip + video example player split
+# Momentum handoff — D2L Conics animations hub (sandbox)
 
 **Written:** 2026-10-11
 
 ## Read first
-- `Manim Trial/ANIMATION_STYLE_RECIPE.md` (§ Solving an equation on screen), `agent docs/recipes/portal-math-video-examples.md`
-- `School Scrips/student-portal/AGENTS.md`; recipes `INDEX.md` for file-size rules
+- This conversation arc (D2L Manage Files + Content iframe); no dedicated recipe yet.
+- `School Scrips/School documents/conics-d2l/index.html` — canonical hub source.
+- `School Scrips/Macro App/scripts/probe_manage_files_paths.py` (`--mp4-links` scrapes `viewFile.d2lfile` hrefs when Manage Files → **animations** is open).
+- `School Scrips/Macro App/scripts/diagnose_conics_hub_video.py` — tests index/MP4 URL shapes via CDP (`127.0.0.1:9224`).
+- Optional prior art (different layout): `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/index.html` + `player.html` (links to `player.html?clip=` and `videos/*.mp4` — **do not** upload that pair to D2L animations unless paths are fixed).
 
 ## Objective and phase
-Conics app (student portal) tile **"Definition of a Parabola"** (Manim `Manim Trial/parabola_directrix.py`, class `ParabolaDirectrix`). It is rendered, wired and pushed (portal + root, `main`). Chase had not yet watched the latest build in the player when this was written. Latest asks all done: two parts, Auto pauses between parts, formula chart order parabola / ellipse / hyperbola.
+Chase wants **Conics Manim clips inside Brightspace** without the student portal: MP4s in course files, a **single hub UI** students reach by opening a **Content module** (not a separate browser tab). Phase: **sandbox proof on M1314 test course** (`ou=1726642`). Module description **iframe** works when pointed at `index.html`; **clip playback** was still broken at handoff — root causes identified, **link-based `index.html` written but not yet confirmed** after re-upload to D2L.
 
-## Exact next step (do this first)
-**Split `School Scrips/student-portal/src/features/video-examples/useVideoExamplePlayer.ts`** (now ~726 lines; extract before 700, hard cap 800). Pull the step/part navigation out into its own hook or module: `jumpToPart`, `partStops` + the `stopAtPartStart` rAF check, `stepNext` / `stepBack` / `pauseSlowAtStep`, `stepIndexAtTime`. Keep behavior identical. `src/test/useVideoExamplePlayer.test.ts` and `src/test/conicsGuide.test.ts` must stay green. One owner per concept; do not build a second player mechanism. No GUI launching without asking.
-
-## Chase's desired feel (his words matter)
-- Captions must read like a **textbook**, with capitalized sentences: "Part 1. The definition of a parabola is the set of all points…", "If the focus is at (h, k+p), then the distance … is found by applying the distance formula." Never telegraphic fragments. Math in captions uses `$...$` (LaTeX font), never spelled-out "plus/minus".
-- Students must follow the algebra **step by step**: slow, one caption per move. He may make the derivation a bonus test question.
-- For expansion: treat y−k as ONE term; show distribution arrows (like the in-clip `expand_left`), not FOIL on single letters.
-- Generic figure beats specific numbers: Part 2 removes the grid/axes/y+4 and explains y = k − p and y − k + p with braces on the figure.
+## Chase's desired feel
+- Stay **inside D2L** (Brightspace chrome); module opens to the hub — **no extra click** on a “Web Page” topic if possible (iframe in **module description**, not a linked topic).
+- Same general idea as portal Conics gallery / Drive `Conics` index: **Parabolas / Ellipses / Hyperbolas**, big dwell-friendly targets.
+- **No Math Portal** for this experiment unless he changes mind later.
+- Duplicates like `parabola-opens-up(1).mp4` are fine as long as **plain** `parabola-opens-up.mp4` exists.
 
 ## Accepted decisions
-- Two parts in one MP4. `parts` on the guide entry (`conicsGuide.ts`: `CONICS_DIRECTRIX_PART_TWO_SECONDS = 43.18`, hold 187.22); the player shows **1 / 2** buttons above Back/Next (`VideoExamplesPlayerStage.tsx`). A part's start time must be a step time (steps are the END of a beat, 0.04 s before the next caption), so Part 2 starts at the Part 1 hold.
-- Auto mode **pauses at the start of each part after the first** (Chase asked); jumps (Next/Back/part buttons) never pause.
-- Ordering rule learned: put the next `say()` BEFORE any board wipe or the Slow-mode hold lands after the wipe.
-- Formula chart order is parabola, ellipse, hyperbola (`conicsFormulas.ts`).
+- **Manage Files folder:** `/content/enforced/1726642-SA_1588_1785419431/animations/` (all MP4s + `index.html` siblings, flat names).
+- **Student entry:** Content module → **Description** → Source Code → iframe:
+  ```html
+  <iframe
+    src="/content/enforced/1726642-SA_1588_1785419431/animations/index.html"
+    title="Conics animations"
+    style="width:100%; min-height:900px; border:0;"
+  ></iframe>
+  ```
+- **No separate “index” Content topic required** once description iframe works (Chase deleted that topic; description must keep the iframe).
+- **Google Drive copy** for sync: `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/animations/` (8 gallery MP4s + `index.html`; optional extra `conics-intro.mp4` not in hub list).
+- **Portal clip list** (8 files): `parabola-opens-up`, `parabola-directrix`, `parabola-opens-left`, `ellipse-horizontal`, `ellipse-vertical`, `ellipse-definition`, `hyperbola-horizontal`, `hyperbola-vertical` — see `student-portal/.../conicsGuide.ts`.
 
 ## Rejected / don't rediscover
-- A separate "Part 2" title slide (too brief; merged into the first Part 2 caption).
-- Word-form captions ("minus", "plus"), "Definition of a parabola:" colon style.
-- Do not deploy to Netlify unless Chase asks in that message.
+- **External link** to Netlify portal for this test.
+- **Assuming** `/content/enforced/.../file.mp4` works in `<video src>` — on Lone Star it returned **`text/html`** (not MP4 bytes) in CDP checks; embedded `<video>` + absolute enforced URLs **will not play**.
+- **Old white `index.html`** on D2L (title “Conics”, links to `player.html?clip=...`) — that file was live at `…/animations/index.html` and explains “links do nothing” (`player.html` not in folder).
+- **Fully automated Manage Files upload** via CDP — file chooser worked; commit Upload flaky; **Chase uploaded MP4s manually**.
+- **Duplicate MP4 names** as the cause of failure — originals with correct names are present.
 
 ## Implementation state
-- Pushed: root repo `Programs` and `School Scrips/student-portal`; Macro App lint/typecheck blockers fixed and pushed.
-- Any change to the clip means: final render `-r 1080,1350 --fps 30 --disable_caching` from `Manim Trial` (`.venv\Scripts\python.exe -m manim …`), copy MP4 + `parabola_directrix_steps.json` into `student-portal/src/assets/video-examples/conics-intro/`, update hold and part constants in `conicsGuide.ts`, update `conicsGuide.test.ts`. "Done" = rendered and playing in the portal.
-- Another agent was editing `conicsGuide.ts` (clip groups: parabola / ellipse / hyperbola / definition); re-read it before editing.
+- **On D2L (Chase):** MP4s uploaded to **animations**; module iframe showed hub at least once; clip links failed with old index + video-tag approach.
+- **Repo / Drive (source of truth for next upload):**
+  - `School Scrips/School documents/conics-d2l/index.html` — **link-based hub** (dark theme, `<a href="*.mp4">` per clip, no JS, no `<video>`). Copied to Drive `…/Conics/animations/index.html`.
+- **Macro App helpers (uncommitted utilities):**
+  - `scripts/upload_manage_files_animations.py` — folder create + upload (incomplete).
+  - `scripts/probe_manage_files_paths.py` — paths + `--mp4-links`.
+  - `scripts/diagnose_conics_hub_video.py` — index/MP4 probes.
+- **Not done:** Chase has **not** confirmed the **new link-based** `index.html` after overwrite on D2L. No git commit requested this session.
 
-## Open
-- Whether Chase wants Auto-pause on other clips (only this clip has `parts`).
-- Chase has not yet reviewed Part 2's figure and the auto-pause in the portal.
+## Verified via CDP (Macro App, logged-in)
+- `https://d2l.lonestar.edu/content/enforced/1726642-SA_1588_1785419431/animations/index.html` served **old** hub (no `#player`, links to `player.html`).
+- `GET …/animations/parabola-opens-up.mp4` → **200** but **`Content-Type: text/html`**, body starts with `<!DOCTYPE html>`.
+- Manage Files table links use **`/d2l/common/viewFile.d2lfile/...`** (working path for file open); scrape when **inside animations** folder.
+
+## Open questions
+- Do **same-tab `.mp4` links** from the new `index.html` inside the module iframe open D2L’s native video viewer? **Test first** after re-upload.
+- If links still fail: rebuild hub with **hardcoded or scraped `viewFile.d2lfile` URLs** per file (run `--mp4-links` with Manage Files on animations).
+- Chase may want **one-page player** (portal-style) later — needs viewFile URLs or different hosting, not enforced-path `<video>`.
+- Production course path will differ from `1726642-SA_1588_1785419431` — update iframe + any baked URLs when moving off sandbox.
+
+## Exact next step (do this first)
+1. Ask Chase to confirm he **re-uploaded** `index.html` from `…/Conics/animations/` and replaced the old file on D2L (page title should be **“Conics Animations”**, dark background, eight `.mp4` links — **not** “Conics” white page with `player.html`).
+2. **View as Student** → open the module → click **Opens up** → report: video plays, blank, or download only.
+3. If fail: Macro App open → Manage Files → **animations** → run `python scripts/probe_manage_files_paths.py --mp4-links`, wire those hrefs into `index.html` (or a small generator script), re-upload, retest.
+4. Do **not** launch GUI or Netlify deploy without asking.
