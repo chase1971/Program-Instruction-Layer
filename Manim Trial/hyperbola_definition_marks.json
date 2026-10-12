@@ -1,0 +1,66 @@
+[
+  {
+    "name": "definition",
+    "time": 7.56
+  },
+  {
+    "name": "foci",
+    "time": 11.56
+  },
+  {
+    "name": "first-distance",
+    "time": 14.89
+  },
+  {
+    "name": "second-distance",
+    "time": 18.22
+  },
+  {
+    "name": "difference",
+    "time": 24.22
+  },
+  {
+    "name": "along",
+    "time": 36.11
+  },
+  {
+    "name": "other-branch",
+    "time": 47.67
+  },
+  {
+    "name": "vertex",
+    "time": 54.22
+  },
+  {
+    "name": "part-one-end",
+    "time": 59.56
+  },
+  {
+    "name": "figure",
+    "time": 67.56
+  },
+  {
+    "name": "d-labels",
+    "time": 72.56
+  },
+  {
+    "name": "a",
+    "time": 77.89
+  },
+  {
+    "name": "c",
+    "time": 83.22
+  },
+  {
+    "name": "triangle",
+    "time": 90.33
+  },
+  {
+    "name": "pythagorean",
+    "time": 95.89
+  },
+  {
+    "name": "hold",
+    "time": 103.67
+  }
+]
