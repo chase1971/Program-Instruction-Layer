@@ -1,67 +1,66 @@
-# Momentum handoff — D2L Conics animations hub (sandbox)
+# Momentum handoff — Car position/area animation: Part 2 fixed, Parts 3 and 4 need the same treatment
 
-**Written:** 2026-10-11
+**Written:** 2026-10-12
 
 ## Read first
-- This conversation arc (D2L Manage Files + Content iframe); no dedicated recipe yet.
-- `School Scrips/School documents/conics-d2l/index.html` — canonical hub source.
-- `School Scrips/Macro App/scripts/probe_manage_files_paths.py` (`--mp4-links` scrapes `viewFile.d2lfile` hrefs when Manage Files → **animations** is open).
-- `School Scrips/Macro App/scripts/diagnose_conics_hub_video.py` — tests index/MP4 URL shapes via CDP (`127.0.0.1:9224`).
-- Optional prior art (different layout): `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/index.html` + `player.html` (links to `player.html?clip=` and `videos/*.mp4` — **do not** upload that pair to D2L animations unless paths are fixed).
+- This file, then the animation itself: `C:\Users\chase\My Drive\M2413\Unit 4 Integration\car-position-area-animation.html` (single self-contained file, outside git, ~480 lines). Read the whole `<script>` before editing.
+- Sibling, older and **not** updated to the new controls: `fundamental-theorem-animation.html` (same folder; F(x)=x²+3x beside f(x)=2x+3). Leave it alone unless Chase asks.
+- Style exemplar for the page shell: `My Drive\M2413\Unit 3 Derivative Applications\Blank\linear-approximation-animation.html`.
+- Root `AGENTS.md` rules that bite here: never open a browser/GUI on Chase's screen without asking (verify headlessly, then hand off as a flat statement, never "want me to…?"); no commit/push mid-session.
 
 ## Objective and phase
-Chase wants **Conics Manim clips inside Brightspace** without the student portal: MP4s in course files, a **single hub UI** students reach by opening a **Content module** (not a separate browser tab). Phase: **sandbox proof on M1314 test course** (`ou=1726642`). Module description **iframe** works when pointed at `index.html`; **clip playback** was still broken at handoff — root causes identified, **link-based `index.html` written but not yet confirmed** after re-upload to D2L.
+Chase teaches M2413 Unit 4 (integration). His worksheet has three cars: constant v=20, linear v=2t, non-linear v(t)=t(10−t). Goal of the animation: let him **grasp and explain why plugging into the position function p gives the area under the velocity graph**. He can do the mechanics; the gap is the *why*. The page has 4 part buttons: 1 constant speed, 2 changing speed, 3 why p equals the area, 4 a curve geometry can't handle.
 
-## Chase's desired feel
-- Stay **inside D2L** (Brightspace chrome); module opens to the hub — **no extra click** on a “Web Page” topic if possible (iframe in **module description**, not a linked topic).
-- Same general idea as portal Conics gallery / Drive `Conics` index: **Parabolas / Ellipses / Hyperbolas**, big dwell-friendly targets.
-- **No Math Portal** for this experiment unless he changes mind later.
-- Duplicates like `parabola-opens-up(1).mp4` are fine as long as **plain** `parabola-opens-up.mp4` exists.
+**Part 1 and Part 2 are done and Chase approved Part 2 ("That looks good").** Parts 3 and 4 are first drafts Chase has **not reviewed yet**. The job: restructure them the way Part 2 was restructured (below).
 
-## Accepted decisions
-- **Manage Files folder:** `/content/enforced/1726642-SA_1588_1785419431/animations/` (all MP4s + `index.html` siblings, flat names).
-- **Student entry:** Content module → **Description** → Source Code → iframe:
-  ```html
-  <iframe
-    src="/content/enforced/1726642-SA_1588_1785419431/animations/index.html"
-    title="Conics animations"
-    style="width:100%; min-height:900px; border:0;"
-  ></iframe>
-  ```
-- **No separate “index” Content topic required** once description iframe works (Chase deleted that topic; description must keep the iframe).
-- **Google Drive copy** for sync: `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/animations/` (8 gallery MP4s + `index.html`; optional extra `conics-intro.mp4` not in hub list).
-- **Portal clip list** (8 files): `parabola-opens-up`, `parabola-directrix`, `parabola-opens-left`, `ellipse-horizontal`, `ellipse-vertical`, `ellipse-definition`, `hyperbola-horizontal`, `hyperbola-vertical` — see `student-portal/.../conicsGuide.ts`.
+## The core explanation (accepted — keep it)
+Bucket / odometer idea: the total-distance bucket **is** the odometer p(t). A sliver of area v·dt is one tick of the odometer because p′=v (in time dt the odometer rises p′·dt = v·dt). Adding slivers = adding ticks = total rise of the odometer = p(b)−p(a). So p(5)=25 is not a shortcut around the sum; the odometer had been adding the whole time. Any antiderivative works since a constant cancels in p(10)−p(0). Also true here: p(0)=0, so p(t) *is* "area from 0".
 
-## Rejected / don't rediscover
-- **External link** to Netlify portal for this test.
-- **Assuming** `/content/enforced/.../file.mp4` works in `<video src>` — on Lone Star it returned **`text/html`** (not MP4 bytes) in CDP checks; embedded `<video>` + absolute enforced URLs **will not play**.
-- **Old white `index.html`** on D2L (title “Conics”, links to `player.html?clip=...`) — that file was live at `…/animations/index.html` and explains “links do nothing” (`player.html` not in folder).
-- **Fully automated Manage Files upload** via CDP — file chooser worked; commit Upload flaky; **Chase uploaded MP4s manually**.
-- **Duplicate MP4 names** as the cause of failure — originals with correct names are present.
+## Chase's desired feel (his words matter)
+- **Small, discrete, readable screens.** He wants each idea on its own screen, built up one piece at a time, then the pieces shown together. Not a sweep he has to catch.
+- **Start from zero**, not from an arbitrary t (he rejected "t=3" and "t=1 to 2" first slivers: "start from zero to one… then one to two, then two to three, then show all the results together").
+- Show the **actual numbers** being multiplied (speed × time = distance) and drop them into the **bucket**; he wants units to make sense.
+- Show what a chunk **misses** (speed changes inside the chunk) and that it only becomes exact as dt→0 (limit). He wants: chunks 1 s → 0.5 s → 0.1 s, "better the closer we get".
+- **No clutter**: he rejected a one-line note `dt = 1 → 90   dt = 0.5 → 95 …` as "too clustered, hard to follow"; a small table was accepted instead.
+- **Write the integral the way the lesson argues it**: `lim_{dt→0} Σ v(t)dt = ∫ … = 100` (limit of the sum first), not "integral = limit".
+- **No auto-play, no fades.** Everything on a step prints at once. Only genuinely moving things animate, and then he wants a visible indicator.
 
-## Implementation state
-- **On D2L (Chase):** MP4s uploaded to **animations**; module iframe showed hub at least once; clip links failed with old index + video-tag approach.
-- **Repo / Drive (source of truth for next upload):**
-  - `School Scrips/School documents/conics-d2l/index.html` — **link-based hub** (dark theme, `<a href="*.mp4">` per clip, no JS, no `<video>`). Copied to Drive `…/Conics/animations/index.html`.
-- **Macro App helpers (uncommitted utilities):**
-  - `scripts/upload_manage_files_animations.py` — folder create + upload (incomplete).
-  - `scripts/probe_manage_files_paths.py` — paths + `--mp4-links`.
-  - `scripts/diagnose_conics_hub_video.py` — index/MP4 probes.
-- **Not done:** Chase has **not** confirmed the **new link-based** `index.html` after overwrite on D2L. No git commit requested this session.
+## What was done to Part 2 (the pattern to repeat)
+Old Part 2 had a 0.1 s sliver at t=3 and an auto-cycling chunk sweep. Replaced by 8 static steps: setup → chunk 0→1 (speed 0, adds 0 m, misses everything) → chunk 1→2 (2 m) → chunk 2→3 (4 m, bucket 6 m) → all ten 1 s chunks (90 m, off by 10) → 0.5 s chunks (95) → 0.1 s chunks (99) → limit table + limit-first integral → "why does p(10)=100 work instantly?".
+Mechanics worth reusing:
+- `kind:'p2one'` with `c` (chunk start) draws previous chunks blue, current chunk orange + pink "missed" triangle, connector lines to the zoom box, bucket = cumulative.
+- `zoom(vtxt, prodtxt, o, dtxt, miss)` — `miss={v0,v1}` scales the schematic (17.5 px per m/s) and puts `speed × 1 = distance` above it.
+- `kind:'p2chunk'` with `dt` draws all chunks, bucket total, missed amount.
+- `p2limit` draws a 3-column table (chunk size / total / off by) in the empty right half.
 
-## Verified via CDP (Macro App, logged-in)
-- `https://d2l.lonestar.edu/content/enforced/1726642-SA_1588_1785419431/animations/index.html` served **old** hub (no `#player`, links to `player.html`).
-- `GET …/animations/parabola-opens-up.mp4` → **200** but **`Content-Type: text/html`**, body starts with `<!DOCTYPE html>`.
-- Manage Files table links use **`/d2l/common/viewFile.d2lfile/...`** (working path for file open); scrape when **inside animations** folder.
+## Controls and engine (accepted; don't redesign)
+- No Auto. **Each step plays once then stops.** Real motion is declared in the `DUR` map (seconds) near the top of the script; **a step not in `DUR` is static**: no bar, Next flashes immediately, everything visible at once. Currently animated: `p1bucket`, `p1repeat`, `both5`, `stack`, `slope`.
+- Real Pause/Play (resumes instantly), progress bar **only for animated steps** and it is a **draggable scrubber** with a knob (click/drag = jump within the step); dots are clickable (jump to step, replay from start). Next flashes (`.ready`) when the step is done; disabled on the last step.
+- Layout fits one window height (flex column, SVG shrinks), controls never scroll off. Everything is drawn as a pure function of `ts` (time in step), which is what makes scrubbing work. `p` is forced to 1 (no fades).
+- `?part=2&step=3` (0-based) freezes a frame for checking.
+
+## Next step: do Part 3 and Part 4 "the Part-2 way"
+Treat these as **proposals** (Chase has not seen them, so confirm direction by showing him the result, not by asking a menu):
+
+**Part 3 (why p equals the area), v=2t, p=t².** Current steps: `both5` (animated sweep to t=5, "area so far" vs "p(t)" readouts), `ticks` (two callouts using the t=3, dt=0.1 sliver — the same arbitrary-start problem Chase rejected in Part 2), `stack` (animated 10 slivers stacking into the odometer rise), `slope` (animated slide), `concl`.
+- Replace the sweeps with **discrete static screens at chosen times** (e.g. t=1, 2, 3, then 5): each shows area so far = p(t) side by side, built one at a time, then "all together". Use exact numbers (area ½·t·2t = t²: 1, 4, 9, 25).
+- Redo the sliver/tick explanation **starting from zero**: one small piece from 0, then the next, etc., each showing its area (v·dt) *and* the odometer tick (p′·dt) as the same number, then show the ticks stacking into p(5)−p(0)=25 one piece at a time (static steps, or keep `stack` animated only if it stays clear — add a table/readout, not a long note line).
+- Keep the slope step as stops (slide to t=2, pause and explain: height of v = slope of p; then t=4), the way Chase liked in the earlier fundamental-theorem file: "when it gets to two and four, stop and explain".
+- Keep the conclusion: p(10)−p(0)=100−0=100 is the sum of every sliver.
+
+**Part 4 (v=t(10−t), p=5t²−t³/3, p(10)=500/3≈166.7).** Current: setup, geom ("no formula"), slope, plug. Make it the payoff of Parts 2–3: geometry is stuck → chunks approach the answer → p(10) gives it exactly.
+- Verified chunk totals (left-endpoint, same method as Part 2): **dt=1 → 165; dt=0.5 → 166.25; dt=0.1 → 166.65; limit 166.67 (=500/3)**. A table like Part 2's limit table fits.
+- **Caution:** the curve rises then falls, so left-endpoint chunks overshoot on the falling half and undershoot on the rising half; the Part 2 "missed (orange)" shading and "off by" wording are **one-sided there and would be wrong**. Show over/under honestly or just show totals vs the true 166.67.
+- Then the slope step (stops, not a continuous slide) and the plug step.
+
+**Conventions to follow while doing it:**
+- Captions: textbook sentences, `$…$` math, step by step. LaTeX backslashes must be **doubled inside JS strings** (`\\cdot`, `\\lim`). **Gotcha:** Bash/Python heredocs silently collapsed backslashes this session (captions rendered as "2cdot1"). Edit captions with the Edit/Write tools, then scan the file for single backslashes (build the char with `chr(92)`; the only legitimate singles are in the regex inside `renderMath`).
+- Headless check before handing off: syntax-check the extracted `<script>`, and run a stub-DOM Node harness that calls `draw()` for every part × step × several `ts` values (the harness exposes `draw/cur/setPart` via a `window.__t` shim). Don't launch a browser unasked.
+- Handoff to Chase is a flat statement: what changed, what to look at (e.g. "open it, check Part 3 steps X–Y"), no "want me to…".
 
 ## Open questions
-- Do **same-tab `.mp4` links** from the new `index.html` inside the module iframe open D2L’s native video viewer? **Test first** after re-upload.
-- If links still fail: rebuild hub with **hardcoded or scraped `viewFile.d2lfile` URLs** per file (run `--mp4-links` with Manage Files on animations).
-- Chase may want **one-page player** (portal-style) later — needs viewFile URLs or different hosting, not enforced-path `<video>`.
-- Production course path will differ from `1726642-SA_1588_1785419431` — update iframe + any baked URLs when moving off sandbox.
+- None blocking. Whether the older `fundamental-theorem-animation.html` should get the new controls/layout is undecided (Chase hasn't asked).
 
-## Exact next step (do this first)
-1. Ask Chase to confirm he **re-uploaded** `index.html` from `…/Conics/animations/` and replaced the old file on D2L (page title should be **“Conics Animations”**, dark background, eight `.mp4` links — **not** “Conics” white page with `player.html`).
-2. **View as Student** → open the module → click **Opens up** → report: video plays, blank, or download only.
-3. If fail: Macro App open → Manage Files → **animations** → run `python scripts/probe_manage_files_paths.py --mp4-links`, wire those hrefs into `index.html` (or a small generator script), re-upload, retest.
-4. Do **not** launch GUI or Netlify deploy without asking.
+## State
+- Files changed this session (all outside git, in `My Drive\M2413\Unit 4 Integration\`): `fundamental-theorem-animation.html`, `car-position-area-animation.html` (new). Nothing committed or pushed; repo changes are only these handoff docs.
+- Verification so far: `<script>` syntax OK and all 4 parts × all steps draw without exceptions headlessly. **Chase has watched Parts 1–2 and approved Part 2; Parts 3–4 unreviewed.**

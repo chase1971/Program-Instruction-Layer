@@ -170,7 +170,10 @@ with a leading divide step (`divide_bars`) when the right side is not 1.
 **Definition clips** (`definition` group, "Definition of Conics" menu): `parabola_directrix.py` (3 parts)
 and `ellipse_definition.py` (`EllipseDefinition`, 3 parts: foci and the constant sum 2a; generic
 figure a, b, c and a^2 - c^2 = b^2; a joke "warning, lots of algebra" opener then the full
-derivation to standard form). Parts 2-3 live in the mixin `ellipse_standard_form.py`. Subclasses
+derivation to standard form). Parts 2-3 live in the mixin `ellipse_standard_form.py`. **Hyperbola**
+(`hyperbola_definition.py` + mixin `hyperbola_standard_form.py`, assets `hyperbola-definition*`,
+`CONICS_HYPERBOLA_DEF_*`): Parts 1-2 done (parts at 0 / 59.52, hold 103.67, ends on
+c^2 = a^2 + b^2); Part 3 (algebra) not built. Subclasses
 `EllipseHorizontal`. Assets `conics-intro/ellipse-definition*.{mp4,json}`; guide constants
 `CONICS_ELLIPSE_DEF_*` (parts at 0 / 51.4 / 103.52). Hyperbola definition would follow the same shape
 (difference of distances, c^2 = a^2 + b^2) and is equally heavy; Chase found the algebra heavy.

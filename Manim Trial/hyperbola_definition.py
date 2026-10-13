@@ -240,7 +240,7 @@ class HyperbolaDefinition(HyperbolaStandardForm, HyperbolaHorizontal):
         # Part 2 starts at this step time: the portal cuts here, so its caption opens the part.
         self.beat('part-one-end', READ_LONG + 1.0)
 
-        board = dict(plane=plane, c2p=c2p, point=point, tracker=tracker, foci=foci, side=side,
+        board = dict(finished=finished, plane=plane, c2p=c2p, point=point, tracker=tracker, foci=foci, side=side,
                      curves=(right_curve, left_curve), center_dot=center_dot,
                      focus_dots=focus_dots, focus_labels=focus_labels, dot=dot,
                      to_first=to_first, to_second=to_second, axis=Group(axis, axis_label),

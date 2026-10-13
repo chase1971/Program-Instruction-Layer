@@ -40,6 +40,8 @@ into new code.
 | "modal over the browser" · snapshot · freeze browser · PAUSED stuck · can't close modal | [modal-shell.md](./modal-shell.md) § Macro App embedded browser → then `School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md` |
 | "extract a hook" · too many useStates · service layer · no inline fetch · state extraction | [react-patterns.md](./react-patterns.md) |
 | report grid · compact grid · matrix report · logins table · gradebook-style grid · grid scroll · table doesn't fill · exit ticket Responses · natural column width · hover tooltip offset · zoom tooltip | [report-grid-layout.md](./report-grid-layout.md) |
+| **survey statistics** · Portal Check results · exit ticket Statistics tab · how class survey charts look · ranked survey answers · disagree follow-up names | [teacher-console-exit-ticket-survey-statistics.md](./teacher-console-exit-ticket-survey-statistics.md) |
+| **where survey questions live** · exit ticket copy in git · portal survey wording · Studying Survey text · code vs Teacher Console surveys | [portal-survey-copy-index.md](./portal-survey-copy-index.md) |
 | what do I name this · naming · casing conventions | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Naming |
 | "put a header on it" · file header format | [file-headers.md](./file-headers.md) |
 | "refactor this" · "clean it up" · "make it 9/10" | [refactoring-checklist.md](./refactoring-checklist.md) |

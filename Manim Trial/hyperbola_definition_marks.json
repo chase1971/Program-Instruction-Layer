@@ -52,15 +52,27 @@
     "time": 83.22
   },
   {
-    "name": "triangle",
+    "name": "arc",
     "time": 90.33
   },
   {
-    "name": "pythagorean",
+    "name": "vertical",
     "time": 95.89
   },
   {
+    "name": "hypotenuse",
+    "time": 102.56
+  },
+  {
+    "name": "triangle",
+    "time": 109.22
+  },
+  {
+    "name": "pythagorean",
+    "time": 115.89
+  },
+  {
     "name": "hold",
-    "time": 103.67
+    "time": 123.67
   }
 ]

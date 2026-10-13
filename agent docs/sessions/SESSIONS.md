@@ -2,6 +2,34 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-12 — Car position/area animation: Parts 3–5 rebuilt (odometer gains, cancellation, hill picture)
+
+**Repos touched:** none for the animation itself (`C:\Users\chase\My Drive\M2413\Unit 4 Integration\car-position-area-animation.html` lives outside git); `Programs/` root for this log and session-tracking files only.
+
+**Files changed:** `car-position-area-animation.html` (~500 lines, single file, outside git).
+
+**What worked:** Part 3 (v=2t) rebuilt as 16 static steps: area vs p(t) at t=1,2,3,5 in a growing table → slope stops at t=2,4 → odometer readings and exact gains chunk by chunk from zero (1 s, then 0.5 s) → the rectangle guess `v·dt` vs the exact gain → all gains → a clean cancellation screen (each gain as end − start, middle readings struck, p(0) and p(10) boxed) → limit-first integral. Part 4 (v=t(10−t)) got the same treatment (22 steps), with chunk totals built from zero (165 / 166.25 / 166.65) and honest over/under wording. New Part 5, "the hill picture": steepness = height gained per second of ground, steepness × ground = climb (same as speed × time), height of v = steepness of p, sum of rectangles vs total climb, and "your height is your start plus every climb so far". The key conceptual fix for Chase: the position function does no summing; it is accumulated change, so the middle terms cancel. A tick is distance gained in a chunk, not time; the exact gain `p(b)−p(a)` is the exact area, only `v·dt` is a guess. Also fixed the `?part=&step=` regex (was `\\d`). Fixed Part 5 text clipping off the right edge.
+
+**Current state:** Green — script syntax OK and all 5 parts × all steps draw headlessly; Chase has seen Part 5 steps 1–2 render and the clipping was fixed, other Part 3–5 steps not yet reviewed in the browser.
+
+**File size flag:** `car-position-area-animation.html` now ~560 lines of one self-contained file (outside git; no size cap applied).
+
+**Next session:** Chase reviews Part 3 steps 7–16, Part 4 steps 3–22 and Part 5 in the browser for crowding (decimal tables, gain brackets about 6 px tall). `fundamental-theorem-animation.html` still has the old controls; untouched.
+
+## 2026-10-12 — Portal survey copy index + exit-ticket statistics recipe
+
+**Repos touched:** `Programs/` root, `School Scrips/Macro App`
+
+**Files changed:** `agent docs/recipes/portal-survey-copy-index.md`, `teacher-console-exit-ticket-survey-statistics.md`, `agent docs/recipes/INDEX.md`; Macro `AGENTS.md` keyword rows; implementation lives in Macro App (see that repo’s SESSIONS entry same date).
+
+**What worked:** Single map for where survey wording lives (TC → `content/exit-tickets/*.txt` vs code-owned `*Copy.ts`). Not a dump of all question text in one markdown.
+
+**Current state:** Green — local only until git push.
+
+**File size flag:** None
+
+**Next session:** Same as Macro App wrap-up entry 2026-10-12.
+
 ## 2026-10-11 — Hyperbola: Horizontal clip (build, full-graph foci, pivot for c)
 
 **Repos touched:** `.` (Programs root — `Manim Trial/`, `agent docs/`), `School Scrips/student-portal`, `School Scrips/student-session-kit`
