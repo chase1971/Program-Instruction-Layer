@@ -43,7 +43,7 @@ FONT_PATH = r'C:\Windows\Fonts\segoeui.ttf'
 
 def row_for(folder):
     for row in PAGES:
-        if row[0] == folder:
+        if row[0] == folder or row[2] == folder.replace('_', '-'):
             return {'folder': row[0], 'klass': row[1], 'slug': row[2], 'marks': row[5]}
     return {'folder': folder, 'klass': None, 'slug': folder.replace('_', '-'),
             'marks': f'{folder}_marks.json'}

@@ -18,6 +18,22 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 # The blurb is a record of what the clip covers -- it is never rendered: Chase wants no
 # text under the player, only the Play/Replay and Previous/Next buttons.
 PAGES = [
+    ('fundamental_theorem_calculus', 'FtcTriangleSquare', 'ftc-triangle-square',
+     'FTC &mdash; linear area equals position change', 'FTC: linear area',
+     'ftc_triangle_square_marks.json',
+     'For v(t)=2t, the triangle has base T and height 2T, so its area is T squared.'),
+    ('fundamental_theorem_calculus', 'FtcAddedArea', 'ftc-added-area',
+     'FTC &mdash; nonlinear accumulation', 'FTC: nonlinear accumulation',
+     'ftc_added_area_marks.json',
+     'For v(t)=t(10-t), a shrinking strip shows why added area per added time approaches v(t).'),
+    ('fundamental_theorem_calculus', 'FtcSqueezeProof', 'ftc-squeeze-proof',
+     'FTC &mdash; the squeeze proof', 'FTC: squeeze proof',
+     'ftc_squeeze_proof_marks.json',
+     'Lower and upper rectangles trap the average added area and both heights approach v(t).'),
+    ('fundamental_theorem_calculus', 'FtcPositionConnection', 'ftc-position-connection',
+     'FTC &mdash; area equals position change', 'FTC: position change',
+     'ftc_position_connection_marks.json',
+     'Area and position have the same derivative; Riemann rectangles are velocity times time.'),
     ('slope_intercept_form', 'SlopeInterceptMoveConstant', 'slope-intercept-move-constant',
      'Slope-intercept form &mdash; when x is already across', 'Slope-intercept form 3',
      'slope_intercept_move_constant_marks.json',

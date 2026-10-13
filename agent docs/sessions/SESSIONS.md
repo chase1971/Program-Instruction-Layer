@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-13 — Factoring Guided Practice momentum + session finalize
+
+**Repos touched:** `Programs/` root, `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal` (app detail in those SESSIONS)
+
+**Files changed:** `agent docs/momentum-handoffs/latest.md` + dated copies; session tracking/metrics logs; student-portal `AGENTS.md` Factoring keyword (matrix-embed key override / `stepLinesPct`).
+
+**What worked:** Momentum handoff for portal GCF→solve path; end-of-session metrics finalize.
+
+**Current state:** Green.
+
+**File size flag:** None.
+
+**Next session:** See Factoring Guided Practice 2026-10-13 entry.
+
 ## 2026-10-12 — Car position/area animation: Parts 3–5 rebuilt (odometer gains, cancellation, hill picture)
 
 **Repos touched:** none for the animation itself (`C:\Users\chase\My Drive\M2413\Unit 4 Integration\car-position-area-animation.html` lives outside git); `Programs/` root for this log and session-tracking files only.

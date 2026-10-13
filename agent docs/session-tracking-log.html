@@ -56,28 +56,397 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1133</dd></div>
-      <div><dt>Tasks today</dt><dd>6</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 154 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>174k</dd></div>
-      <div><dt>Total billed</dt><dd>507.4M</dd></div>
+      <div><dt>Total tasks</dt><dd>1174</dd></div>
+      <div><dt>Tasks today</dt><dd>47</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 164 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>173k</dd></div>
+      <div><dt>Total billed</dt><dd>519.7M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:23 AM · Tuesday, Oct 13, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">4:16 PM · Tuesday, Oct 13, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>22</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>23</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li><li><code>electron-toolbar/AGENTS.md</code> — No stylus-speed row; sent to scroll-calculation (F13 bar). Added keyword row.<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li><li><code>electron-toolbar/docs/recipes/scroll-calculation.md</code> — Owns F13 two-zone bar, not laptop stylus overlay<span class="gap-task">10:27 AM · Tuesday, Sep 15, 2026 — Added configurable laptop stylus-scroll speed in Electron Toolbar Settings</span></li></ul>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Tuesday, Oct 13, 2026 <span class="day-count">6 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Oct 13, 2026 <span class="day-count">47 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:16 PM — Logic Gates Extra Credit: submit statement, undo, click-to-move, wire cut, save, Example 1, phone scaling</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2s active tool time<br>9s since previous task (includes idle)<br>Chat so far: 8 message(s), 177 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:13 PM — Factoring solve UI: one-line prompt, no answer cell, step2 side-by-side + independent drag, Move-box Undo stack</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>14m 51s active tool time<br>14m 54s since previous task (includes idle)<br>Chat so far: 7 message(s), 123 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:58 PM — Factoring: after set-equal-to-zero show step 2 (3x=0, x+4=0); Solve for x + comma hint; roots builder with comma and /; matchesRootsList</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>14m 42s active tool time<br>14m 48s since previous task (includes idle)<br>Chat so far: 6 message(s), 72 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:43 PM — Baked Factoring portal layout from Chase Copy (info/equation/stepLinePct v8)</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 31s active tool time<br>7m 40s since previous task (includes idle)<br>Chat so far: 5 message(s), 67 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:35 PM — Factoring step line: float 1.) vs math separately; linked drag (shared Y, independent X); stepLinePct bake; default number left so 3x under 3x^2</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 30s active tool time<br>6m 35s since previous task (includes idle)<br>Chat so far: 4 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:29 PM — Factoring builder keys: fixed 1.7rem columns (no horizontal stretch), digits 12px readable, pad fit-content width</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 43s active tool time<br>1m 52s since previous task (includes idle)<br>Chat so far: 2 message(s), 17 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:27 PM — Simplified FTC Part 1 to the general v(t)=2t identity and t=10 check; rebuilt Part 2 around v(t)=t(10-t) with side-by-side position, a shrinking A(t+h)-A(t) strip, v(t)h approximation, and matching values; rendered, audited, wired, and verified.</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 46s active tool time<br>4m 14s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:23 PM — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 9s active tool time<br>2m 14s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:20 PM — Momentum handoff: Factoring GP portal GCF flow + layout tuner bake</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 16s active tool time<br>1m 28s since previous task (includes idle)<br>Chat so far: 13 message(s), 221 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:19 PM — Wrap-up: logged Logic Gates Extra Credit session in logic-app SESSIONS.md; momentum handoff written</span>
+      <span class="pill p0">1.1M tokens</span><span class="pill p2">Heavy context — 264k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 44s active tool time<br>1m 46s since previous task (includes idle)<br>1.1M tokens over 4 turn(s) · 264k/turn · 1.1M cache read · 2k output<br>Chat so far: 9 message(s), 2989 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:17 PM — Logic Homework: store classification pick + correct answer (logic-app → portal attempt_items) and show Classification mix-ups in Macro App Logic statistics</span>
+      <span class="pill p0">172k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 32s since previous task (includes idle)<br>172k tokens over 1 turn(s) · 172k/turn · 171k cache read · 770 output<br>Chat so far: 2 message(s), 1211 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:16 PM — Teacher Console preview side panel: App status green/red light per live (non-archived) app for the selected class</span>
+      <span class="pill p0">1.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>5m 40s since previous task (includes idle)<br>1.9M tokens over 21 turn(s) · 92k/turn · 1.9M cache read · 9k output<br>Chat so far: 1 message(s), 638 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:10 PM — Factoring GP polish: compact builder; 1.) spacing; ? in big parens; numbered next-step choices; info box grows for choices</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>38s active tool time<br>46s since previous task (includes idle)<br>Chat so far: 11 message(s), 205 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:09 PM — Rebuilt FTC Part 1 around the prior v(t)=2t and p(t)=t^2 problem with side-by-side checkpoint comparisons; rendered, audited, wired into the portal and standalone HTML, and verified tests/build.</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 25s active tool time<br>3m 31s since previous task (includes idle)<br>Chat so far: 11 message(s), 205 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:06 PM — Macro App: Logic Connective misses tab redesigned as miss-rate bars + per-student chips; abandoned attempts no longer count</span>
+      <span class="pill p0">594k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 54s since previous task (includes idle)<br>594k tokens over 5 turn(s) · 119k/turn · 585k cache read · 4k output<br>Chat so far: 2 message(s), 821 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:03 PM — Factoring GP: numbered partial line; inner builder with +/minus/small neg; What happens next 3 choices</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 17s active tool time<br>5m 18s since previous task (includes idle)<br>Chat so far: 10 message(s), 167 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:58 PM — Fixed the standalone FTC HTML player to match the established Slow-mode behavior: pulsing Next at holds, Next interrupts an active beat and advances into the following beat, and a persistent playing/ready status shows when motion needs attention.</span>
+      <span class="pill p0">151k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 41s since previous task (includes idle)<br>151k tokens over 1 turn(s) · 151k/turn · 150k cache read · 477 output<br>Chat so far: 1 message(s), 982 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:55 PM — Macro App: Logic survey Feedback bars open a names modal per answer</span>
+      <span class="pill p0">1.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 20s active tool time<br>3m 39s since previous task (includes idle)<br>1.2M tokens over 8 turn(s) · 145k/turn · 1.1M cache read · 6k output<br>Chat so far: 1 message(s), 975 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:51 PM — Pinned Factoring GP problem 1 to fixed solvable GCF: 3x^2+12x=0 (PIN_SOLVABLE_GCF_AS_PROBLEM_1)</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 2s active tool time<br>3m 5s since previous task (includes idle)<br>Chat so far: 9 message(s), 153 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:48 PM — Factoring GCF entry: Matrix-style answer cell + expression builder under prompt (digits, minus, x, x2, Enter submits)</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>23s active tool time<br>24s since previous task (includes idle)<br>Chat so far: 8 message(s), 123 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:48 PM — Generated a self-contained served HTML player for the four FTC animations with large part buttons, Slow-mode Back/Next controls, and verified the localhost page returns HTTP 200.</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>30s active tool time<br>32s since previous task (includes idle)<br>Chat so far: 8 message(s), 123 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:47 PM — Macro App: Logic Homework Statistics Feedback tab shows logic/post-survey results</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m active tool time<br>2m 22s since previous task (includes idle)<br>Chat so far: 8 message(s), 123 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:45 PM — Created and rendered four Fundamental Theorem of Calculus proof animations, wired them into an instructor-only Calculus portal guide with Slow-mode Next steps, and verified layout, tests, and production build.</span>
+      <span class="pill p0">1.7M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2s active tool time<br>1m 52s since previous task (includes idle)<br>1.7M tokens over 16 turn(s) · 105k/turn · 1.6M cache read · 11k output<br>Chat so far: 1 message(s), 733 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:43 PM — Baked Factoring GP equation xPct 18.6; Copy button flashes Copied for 1.5s</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 42s active tool time<br>1m 47s since previous task (includes idle)<br>Chat so far: 7 message(s), 116 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:41 PM — Factoring GP layout coords: padding-free stage; always float equation with baked layout; session override only while Move box on (v3)</span>
+      <span class="pill p0">761k tokens</span><span class="pill p2">Heavy context — 254k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>6s active tool time<br>27s since previous task (includes idle)<br>761k tokens over 3 turn(s) · 254k/turn · 759k cache read · 701 output<br>Chat so far: 7 message(s), 2830 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:41 PM — Teacher Console: Students &amp; Responses opens on Responses instead of Roster</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9s active tool time<br>11s since previous task (includes idle)<br>Chat so far: 6 message(s), 96 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:40 PM — Migration 087 student_app_access_log (trigger + source-labelled RPC overloads) pushed; Macro App passes source labels; app-access IPC extracted to student-progress-app-access.js</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9m 4s active tool time<br>9m 30s since previous task (includes idle)<br>Chat so far: 6 message(s), 96 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:31 PM — Baked Factoring GP portal layout: info 39.3/0/28.7/28.8, equation 0.9/1.4/44.7/18.8; useFloatingInfoBlock true; CSS tightened to match</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 38s active tool time<br>4m 46s since previous task (includes idle)<br>Chat so far: 5 message(s), 89 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:26 PM — Factoring GP tuner: Move box on no longer shifts anything (seeds from measured layout); placement persists when toggled off</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 18s active tool time<br>7m 23s since previous task (includes idle)<br>Chat so far: 4 message(s), 67 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:19 PM — Factoring GP tuner: Move box + Copy moved to navy header; equation now draggable; Copy JSON includes equationRectPct</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>14s active tool time<br>28s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:18 PM — Gates v4: truth table column (A|B|Output, 1/0, Logic App styling, tap row to preview), plain small A/B inputs, small OUTPUT box, gates 0.85x</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m 27s active tool time<br>3m 31s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:15 PM — Factoring GP layout tuner: whole box drags, tiny Copy button in nav, removed Move bar/green panel, equation pane keeps left column, nav no longer overlaps header</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>4m 20s active tool time<br>4m 26s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:10 PM — Momentum handoff: Factoring GP portal layout tuner + bake-next steps</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 23s active tool time<br>4m 29s since previous task (includes idle)<br>Chat so far: 8 message(s), 181 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:06 PM — Gates v3: shrink gates (1.15x), terminals 96x60, smaller ports/wires; remove grip dots</span>
+      <span class="pill p0">796k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>5m 45s since previous task (includes idle)<br>796k tokens over 4 turn(s) · 199k/turn · 786k cache read · 3k output<br>Chat so far: 4 message(s), 2058 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:00 PM — Gates v2: canvas fills screen, 1.6x gates, movable A/B/OUT, pulsing wire dots, smaller 'AND gate' buttons; portal navy banner (Back to home + fullscreen, centered title, Exit); new recipe portal-app-banner.md + index/AGENTS/pipeline pointers</span>
+      <span class="pill p0">4.0M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>11m 28s active tool time<br>11m 54s since previous task (includes idle)<br>4.0M tokens over 24 turn(s) · 165k/turn · 3.9M cache read · 28k output<br>Chat so far: 3 message(s), 1995 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:48 PM — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span>
+      <span class="pill p0">Chat: 6 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>38s since previous task (includes idle)<br>Chat so far: 6 message(s), 160 KB transcript</p>
+      <ul class="gap-list"><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:48 PM — Factoring GP: layout tuner (?factoring-layout=1), Problem N/total nav, bare larger equation, smaller Yes/No</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 43s active tool time<br>1m 51s since previous task (includes idle)<br>Chat so far: 6 message(s), 110 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:42 PM — Factoring guided practice portal layout matched GCF tutorial (equation left, info block right)</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 28s active tool time<br>1m 31s since previous task (includes idle)<br>Chat so far: 4 message(s), 79 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:41 PM — Logic App: Logic Gates Extra Credit sandbox (AND/OR/NOT gates, drag, click-or-drag wiring, live 0/1 output, XOR goal)</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>1m 49s since previous task (includes idle)<br>Chat so far: 3 message(s), 78 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:39 PM — Factoring Guided Practice portal UI aligned with Matrix guided-practice shell</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>5m 53s active tool time<br>5m 59s since previous task (includes idle)<br>Chat so far: 3 message(s), 44 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:33 PM — Re-enabled Factoring Guided Practice on desktop portal (flag + embed entry)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>5h 24m active tool time<br>5h 24m since previous task (includes idle)<br>Chat so far: 2 message(s), 35 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">9:23 AM — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span>
       <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">1 index gap</span>

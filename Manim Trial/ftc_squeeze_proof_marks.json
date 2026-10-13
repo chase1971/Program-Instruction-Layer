@@ -1,0 +1,26 @@
+[
+  {
+    "name": "interval",
+    "time": 1.47
+  },
+  {
+    "name": "rectangles",
+    "time": 5.05
+  },
+  {
+    "name": "area_bounds",
+    "time": 8.53
+  },
+  {
+    "name": "average_bounds",
+    "time": 11.3
+  },
+  {
+    "name": "squeeze",
+    "time": 15.98
+  },
+  {
+    "name": "hold",
+    "time": 20.27
+  }
+]
