@@ -68,11 +68,44 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>166</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:52 PM · Monday, Oct 12, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>167</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:19 AM · Tuesday, Oct 13, 2026</dd></div>
     </div>
     
     <section class="day-block">
+      <h2 class="day-title">Tuesday, Oct 13, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:19 AM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">claude-sonnet-5-5</div>
+    </header>
+    <p class="summary-human">Fixed Transformations gradebook scoring and survey topic labels, then diagnosed M1314 Push-to-D2L false success from a leftover feedback URL and restored pending cells.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>7</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>13.1M</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>210k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>20</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>1</dd>
+  </div></div>
+    <details class="file-details"><summary>20 task(s)</summary>
+    <ul class="task-list"><li>5:09 PM — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</li><li>9:07 AM — Makeup Exam isolation skips a browser tab whose page is already gone instead of aborting Start.</li><li>9:28 AM — Reduced grade-extraction crop to the centered 292x112 px estimate and temporarily disabled red isolation behind its existing processing path; added a crop-setting regression test.</li><li>9:42 AM — Added click-to-view grade crop images in extracted-grade review, including a class-folder-restricted image endpoint and service-layer loader; preserved feedback-name clicks for non-extraction review and reduced the review modal from 715 to 672 lines.</li><li>9:55 AM — Diagnosed grade crop viewer 404 as a stale Assignment Assistant backend, restarted the headless server through its existing Electron IPC, and verified the crop endpoint returns image/png.</li><li>10:07 AM — Confirmed the stuck Macro App, renderer, and Assignment Assistant backend processes ended; ports 5328, 5430, and 9224 are clear.</li><li>10:19 AM — Fixed sequential Assignment Assistant crop loading by routing Electron directly to its API instead of the Vite proxy; verified Deanna, Timothy, and William endpoints and renderer/typecheck builds.</li><li>4:25 PM — Eliminated sequential grade-crop hangs: removed renderer fetch/blob/revoke lifecycle, serve buffered no-cache images on isolated connections, and added request start/completion diagnostics. Verified three sequential real student crops, renderer build, AA typecheck, and targeted lint.</li><li>4:37 PM — Diagnosed cumulative crop delay from timestamps: server completed all reads in 12-34ms while Chromium delayed issuing/displaying later requests. Removed browser HTTP entirely; crops now load through secure Assignment Assistant IPC with a shared validated file reader. Four sequential real crops read in 9-26ms; renderer build, Electron lint/typecheck, and AA typecheck passed.</li><li>4:53 PM — Grade crop clicks now open the saved PNG in Windows instead of loading it inside Electron.</li><li>12:15 PM — Gradebook exam hover shows class average with and without scores below 15%.</li><li>12:17 PM — Read M1314 Unit 2 graded quiz scores from the combined PDF</li><li>12:34 PM — Pulled Programs animations and docs, Macro App, and the rest of the machine sync.</li><li>8:03 PM — Pulled Programs root, Macro App, student portal, session kit, and logic app</li><li>10:08 AM — Pulled remaining updates: Programs root, Macro App, portal, session kit, logic app, School documents</li><li>7:48 AM — Pulled Programs root, student portal, session kit, and App Dashboard</li><li>8:08 AM — Turned off Factoring Guided Practice on the portal so the missing sibling app no longer blocks startup</li><li>8:14 AM — Fixed makeup exam history showing the day before a saved calendar date</li><li>8:26 AM — TC Transformations Send to Gradebook for Homework 2.7 App</li><li>9:23 AM — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Import Save confirm treated leftover feedback=/d2l_change= as already saved, advanced baseline while D2L stayed blank.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Before apply, leave post-save feedback Enter Grades URLs; only accept a new feedback URL after Save.</div>
+    <p class="next"><strong>Next time:</strong> After Macro App reload, Push to D2L for M1314 pending Unit 2 Completion + Homework 2.7 (and related) cells.</p>
+  </article></div>
+    </section><section class="day-block">
       <h2 class="day-title">Monday, Oct 12, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">
