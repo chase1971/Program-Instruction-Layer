@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-08T21:36:33.396Z",
+  "updated": "2026-10-13T13:08:46.292Z",
   "repos": [
     {
       "path": ".",
@@ -149,6 +149,12 @@
     {
       "path": "School Scrips/Extra credit extractor v2",
       "label": "Extra credit extractor v2",
+      "group": "school",
+      "pull": true
+    },
+    {
+      "path": "School Scrips/Factoring Guided Practice",
+      "label": "Factoring Guided Practice",
       "group": "school",
       "pull": true
     },
