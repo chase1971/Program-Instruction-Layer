@@ -56,28 +56,154 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1174</dd></div>
-      <div><dt>Tasks today</dt><dd>47</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 164 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>173k</dd></div>
-      <div><dt>Total billed</dt><dd>519.7M</dd></div>
+      <div><dt>Total tasks</dt><dd>1188</dd></div>
+      <div><dt>Tasks today</dt><dd>61</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 165 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>172k</dd></div>
+      <div><dt>Total billed</dt><dd>521.4M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:16 PM · Tuesday, Oct 13, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">8:52 PM · Tuesday, Oct 13, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>23</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs/instructional-layer-htmls/student-portal-pipeline.html</code></td><td>1</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>23</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>agent docs INDEX</code></td><td>1</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li><li><code>Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code> — slot table omits student-portal-preview/d2l-email/discussion; key-file paths stale<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>Macro App/AGENTS.md</code> — TC live preview row points at orphaned ConsoleAppLiveScreen.tsx<span class="gap-task">8:30 PM · Thursday, Sep 24, 2026 — Macro App whole-app survey (slot layering, TC structure, IPC/crash/isolation) to re-scope TC preview plan</span></li><li><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code> — Covers profile vs branch and the build commands, but said nothing about build:manifest:release auto-bumping the patch version - led me to tell Chase the version needed a manual bump. Fixed: added a 'version bumps itself' block to the doc<span class="gap-task">8:50 PM · Sunday, Sep 20, 2026 — Macro App: confirmed slim 0.1.32 predated the Settings/embedded-browser flushSync fix; rebuilt slim NSIS installer 0.1.33 and copied to USB H:\</span></li></ul>
+      <ul class="gap-list"><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)<span class="gap-task">8:06 PM · Tuesday, Oct 13, 2026 — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span></li><li><code>agent docs INDEX</code> — no row for Teacher Console preview auto-orientation (portalPreviewRouteAspect.ts) - found by grep<span class="gap-task">7:55 PM · Tuesday, Oct 13, 2026 — Logic Gates: starts on truth table; video panel sets ?view=gates-watch so Teacher Console flips preview to portrait, back to landscape on leaving</span></li><li><code>Macro App AGENTS.md</code> — portal preview frame size / StepNudgeControl not in keyword table<span class="gap-task">7:17 PM · Tuesday, Oct 13, 2026 — Portal preview frame +/- buttons: hover-hold ticks every 500ms (StepNudgeControl)</span></li><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li><li><code>student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md</code> — attempt policy section does not warn that the deployed portal conflated attempt_policy=once with blocking retakes, so a completed ticket vanishes on Live until deploy<span class="gap-task">4:13 PM · Sunday, Sep 27, 2026 — Diagnosed Live-vs-Preview exit ticket vanishing: deployed portal hides completed attempt_policy=once tickets; fixed in local code, needs deploy</span></li><li><code>agent docs/INDEX.md</code> — 'document checks' / 'check my documents' didn't route to APP_CONFORMANCE_PASS.md or INSTRUCTION_LAYER_AUDIT.md<span class="gap-task">2:21 PM · Sunday, Sep 27, 2026 — Macro App conformance pass Phase 1 report (doc vs code judgment check)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim row at all, so nothing routed me to the animation work<span class="gap-task">10:42 PM · Saturday, Sep 26, 2026 — scene_audit.py built and hooked into Narrated.mark(); clip one passes clean on a draft render, and the pre-fix east_dot_northeast overlap is flagged with a numeric fix (regression test in test_scene_audit.py)</span></li><li><code>agent docs/recipes/INDEX.md</code> — no Manim Trial row at all - nothing routes an agent to ANIMATION_STYLE_RECIPE.md or the render/page-delivery loop when asked to build a math animation.<span class="gap-task">10:25 PM · Saturday, Sep 26, 2026 — Momentum handoff written for the animation layout guardrails build (audit inside mark(), layout regions, contact sheet, recipe) plus the verified spec for the angle-between-vectors/cosine-similarity clip.</span></li><li><code>School Scrips/Macro App/AGENTS.md</code> — no routing row for Macro App restructure recommendations; added one<span class="gap-task">8:37 PM · Thursday, Sep 24, 2026 — Compared the independent Macro App restructure recommendations with the Teacher Console browser-runtime plan and corrected the isolation concurrency analysis</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Tuesday, Oct 13, 2026 <span class="day-count">47 tasks</span></h2>
+      <h2 class="day-title">Tuesday, Oct 13, 2026 <span class="day-count">61 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:52 PM — Baked double-bubble portal layout v11 + 10% paren scale</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 3s active tool time<br>2m 5s since previous task (includes idle)<br>Chat so far: 2 message(s), 17 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:50 PM — Logic Gates: removed hallway-light animation entirely (portal panel, assets, URL flag, Manim scene); kept truth table &lt;-&gt; circuit banner toggle</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>12s active tool time<br>37s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:49 PM — Fixed double-bubble parentheses layout (CSS co-located + flex fallbacks)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>30m 53s active tool time<br>30m 57s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:18 PM — Factoring double bubble: constants entry, animated inner/outer products, flip signs, Check/Swap/New last/New first knob, digits keypad, enlarged empty-paren choice</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>11m 47s active tool time<br>11m 51s since previous task (includes idle)<br>Chat so far: 12 message(s), 174 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:06 PM — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span>
+      <span class="pill p0">Chat: 10 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 24s active tool time<br>8m 23s since previous task (includes idle)<br>Chat so far: 10 message(s), 169 KB transcript</p>
+      <ul class="gap-list"><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:58 PM — Factoring guided practice: baked layout info block xPct 50.6 (prompt + keypad)</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 29s active tool time<br>2m 32s since previous task (includes idle)<br>Chat so far: 9 message(s), 143 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:55 PM — Logic Gates: starts on truth table; video panel sets ?view=gates-watch so Teacher Console flips preview to portrait, back to landscape on leaving</span>
+      <span class="pill p0">Chat: 8 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2m 6s active tool time<br>2m 9s since previous task (includes idle)<br>Chat so far: 8 message(s), 131 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs INDEX</code> — no row for Teacher Console preview auto-orientation (portalPreviewRouteAspect.ts) - found by grep</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:53 PM — Factoring guided practice: firstMove question + paren skeleton step; pin 121x^2-25</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>51s active tool time<br>52s since previous task (includes idle)<br>Chat so far: 7 message(s), 76 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:52 PM — Logic Gates video panel: landscape layout gives clip full height, controls beside it</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>8m 26s active tool time<br>8m 27s since previous task (includes idle)<br>Chat so far: 7 message(s), 76 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:44 PM — Logic Gates third panel: hallway-light XOR animation rendered, wired into portal (Watch/Truth table/Circuit banner cycle), test green</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 49s active tool time<br>3m 1s since previous task (includes idle)<br>Chat so far: 3 message(s), 62 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:41 PM — Factoring Use answer: moved beside answer cell / outside info box so layout bake stays</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 1s active tool time<br>4m 2s since previous task (includes idle)<br>Chat so far: 2 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:37 PM — Factoring guided practice: Use answer cheat (same hasAdminCheats gate as matrix)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 58s active tool time<br>3m 59s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:33 PM — Logic Gates extra credit: Example 2 (XOR), truth-table mode + banner toggle + match status</span>
+      <span class="pill p0">1.8M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>14m 33s active tool time<br>15m 34s since previous task (includes idle)<br>1.8M tokens over 19 turn(s) · 92k/turn · 1.7M cache read · 11k output<br>Chat so far: 2 message(s), 662 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:17 PM — Portal preview frame +/- buttons: hover-hold ticks every 500ms (StepNudgeControl)</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3h active tool time<br>3h since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>Macro App AGENTS.md</code> — portal preview frame size / StepNudgeControl not in keyword table</li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">4:16 PM — Logic Gates Extra Credit: submit statement, undo, click-to-move, wire cut, save, Example 1, phone scaling</span>
       <span class="pill p0">Chat: 8 msgs</span>

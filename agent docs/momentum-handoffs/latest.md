@@ -1,91 +1,105 @@
-# Momentum handoff — Factoring Guided Practice (portal GCF flow + layout)
+# Momentum handoff — Factoring Guided Practice: double bubble
 
-**Written:** 2026-10-13 · Topic: Factoring Guided Practice in student portal
+**Written:** 2026-10-13 (day-valid only)
+**Repos touched:** `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal`
+**Git:** nothing committed or pushed. No GitHub, no end-of-session actions.
+(Logic-homework files in `student-portal` are dirty from a different chat — not this work.)
 
-## Read first
+---
 
-1. This file.
-2. Root `Programs/AGENTS.md` (never display without permission, no ephemeral toasts unless asked, modal rules N/A here).
-3. Portal host: `School Scrips/student-portal/src/features/factoring-guided-practice/FactoringGuidedPracticeEntry.tsx`
-4. Portal CSS: `School Scrips/student-portal/src/styles/factoring-guided-embed.css`
-5. Practice UI (Vite alias `@factoring-guided/`): `School Scrips/Factoring Guided Practice/src/app/components/` + `src/engine/` + `src/app/hooks/`
-6. Baked layout: `School Scrips/Factoring Guided Practice/src/app/config/factoringPortalEmbedLayout.ts`
-7. Exemplars Chase named: Matrix horizontal **value builder**; Transformations problem label; GCF tutorial info card; animation notation for **small negative vs full minus** (`Manim Trial/ANIMATION_STYLE_RECIPE.md` § negatives).
+## 1. Objective and phase
 
-## 1. Objective and current phase
-
-Bring **Factoring Guided Practice** into the **student portal** with Matrix-like guided feel: floating prompt box, equation placement, and a step-by-step GCF→factor→“what happens next” flow. Chase is **testing the solvable GCF binomial path** on a pinned problem 1. Phase: **UI/flow working through “What happens next?”**; solve-for-roots steps after that still use the older ExpressionKeypad (not yet rebuilt as Matrix builder). Layout is baked; tuner still available for instructors.
+Chase is building out **Factoring Guided Practice**, used in the student portal (`@factoring-guided/`
+alias) and the Macro App preview. The "Double bubble products" plan
+(`C:\Users\chase\.cursor\plans\double_bubble_products_3b7e2795.plan.md` — do **not** edit it) was
+fully implemented this session. **Phase: built and headless-verified, not yet seen by Chase.**
+Next is his visual review: he drags the new layout with Move box and pastes the tuner JSON back.
 
 ## 2. Chase's desired feel
 
-- Prompt lives in a **blue GCF-style info card** (not a bottom instruction bar); Yes/No and prompts should stay **compact** — do **not** widen the baked box globally just to fit a later step.
-- Instructor layout tuner: **Move box** + tiny **Copy** in the **navy header** (not problem nav). Whole box drags; corner grip resizes. No giant green JSON panel. Copy flashes **Copied** on the button (he asked for that).
-- Turning Move box on must **not** jump layout; turning off must **lock** placement. Coordinates are **% of padding-free `.factoring-gcf-stage`**, not viewport/`fixed`.
-- GCF / inner answers: **answer cell** + **builder under the card** (Matrix value-builder look). Vertical space is premium — **compact keys**.
-- Minus (subtract) = full-size key; **negative = smaller shorter dash**.
-- Partial factoring line: `1.)` with clear spacing from the math, dropped a bit under the original equation; incomplete inner uses **`?` inside slightly larger parens**, not `\cdots`. No “Your factoring so far” label.
-- After inner is correct: show `1.) 3x(x+4)=0`, then ask **What happens next?** with **numbered 1/2/3 rows** (small number buttons + label text), not giant blue menu buttons. Box may widen **only on that step**.
+- Mirrors his standalone `factoring-app` "double bubble" (Bubble / ProductArrows): red arrows,
+  inner product below, outer product above. His words: "this will be an animation… it's gonna do
+  what the inner product and the outer product does in the other app."
+- Bigger bubble, "make the parentheses bigger even." Arrows, product boxes and the control row
+  must move **with** the bubble when he uses Move box.
+- Student flow: coefficients (Enter after each) → left constant, right constant (Enter after
+  each) → products animate → the `+` signs **flash** and he clicks them to flip to `−` → products
+  update live → Check answer. **No sum before Check.** Check shows the sum with ✓ / ✗.
+- A "control knob" row directly under the bubble: **Check answer, Swap last, New last, New first.**
+  "Just do the best you can. I just need to see something on there so I can evaluate."
+- "Set up parentheses" choice: only two empty, bigger parentheses plus `= 0`. Nothing inside.
 
-## 3. Accepted decisions
+## 3. Accepted decisions (all implemented)
 
-| Decision | Why |
-|---|---|
-| Portal shell + floating info/equation via baked `%` on `.factoring-gcf-stage` | Stable coordinate space after padding mismatch bugs |
-| `PIN_SOLVABLE_GCF_AS_PROBLEM_1 = true` → always `3x^2 + 12x = 0` as problem 1 | Predictable test path (GCF + solve) |
-| Builder for `gcfEntry` + `innerEntry`; Enter commits + checks | Same interaction as Matrix cell builder |
-| `doneQuestion` → “What happens next?” with `setBothZero` / `setParenOnly` / `factorMore` | Replaces yes/no “completely factored”; for AB binomial correct = set both = 0 |
-| Info float grows/widens only `:has(.factoring-gcf-next-choices)` | Keep Yes/No box at Chase’s tuned size |
-| Baked layout (restore): info `{39.3, 0, 28.7, 28.8}`, equation `{18.6, 1.4, 44.7, 18.8}` | From Chase’s Copy after tuner fixes |
-| Session placed key `factoring-layout-placed-v6` | Stale drag sessions must not override bake |
+- Problem 1 is pinned: `121x^2 - 25 = 0` (no GCF). Opening question "What should we do first?"
+  (Factor out the GCF / Set up parentheses). Matrix-style **Use answer** cheat sits outside the
+  blue card.
+- Formulas as in the standalone app: inner = signed B × C, outer = A × signed D, for
+  `(Ax + B)(Cx + D)`. Correct = inner + outer equals the middle term **and** B×D equals the last
+  term (and A×C the first).
+- Coefficients accept any pair multiplying to the first term (121 → 11/11, 121/1, …).
+  Constants graded as positive whole numbers multiplying to |c|; signs start `+`.
+- Swap last swaps constants **with** their signs. New last → back to constant entry.
+  New first → back to coefficients.
+- Correct Check → step `factoredDone`: "Factored! Solving comes next." + Next problem button
+  (stub; solving the roots after the bubble is not built).
+- Layout is baked in percentages of `.factoring-gcf-stage` (`factoringPortalEmbedLayout.ts`,
+  info block `xPct` 50.6, storage key `factoring-layout-placed-v10`).
 
-## 4. Rejected / do not redo
+## 4. Rejected directions
 
-- **Giant green “Copy layout for agent” panel** + blue Move handle bar on the card.
-- **URL-only layout mode** without a visible Move box control.
-- Widening baked `infoBlockRectPct` for all steps (made GCF Yes/No box too big) — only expand on next-step choices.
-- Treating tuner `%` as viewport/`fixed` coordinates.
-- Letting equation stay in flex underlay while info floats (equation looked “way off”).
-- “Your factoring so far” caption; `\cdots` inside parens.
+- First skeleton with dashed answer cells — "not it." Restyled to the standalone Bubble look.
+- Cheat button inside the text box / inside the blue card — rejected; it hangs outside the card.
+- Yes/No GCF opener replaced by the two-choice first move.
+- Do not add a parallel mechanism: the bubble extends `practiceSession.ts`; no second session
+  engine.
 
-## 5. Current implementation state
+## 5. Implementation state
 
-### Uncommitted — `School Scrips/Factoring Guided Practice`
+Factoring Guided Practice (`src/`):
+- `engine/doubleBubble.ts` (new, pure): `parseFactoredBubbles`, validators, `computeBubbleProducts`,
+  `bubbleSum`, `isBubbleCorrect`, `problemQuad`.
+- `engine/practiceSession.ts` (483 lines): steps `parenSkeleton → parenConstants → bubbleProducts →
+  factoredDone`; state `bubbleConstants / bubbleSigns / bubbleSignsTouched / bubbleChecked`;
+  transitions `setBubbleActiveBlank`, `submitSkeletonCoeff`, `submitBubbleConstant`,
+  `toggleBubbleSign`, `swapLastNumbers`, `resetLastNumbers`, `resetFirstNumbers`,
+  `checkBubbleAnswer`, `isDoubleBubbleStep`; Use answer covers the new steps.
+  Removed `expectedSkeletonLeadCoeffs` and `matchesSkeletonLeadCoeff`.
+- `app/hooks/useBubbleAnchors.ts` (new): measures A/B/C/D field centers so arrows follow the bubble.
+- `app/components/`: `FactoringParenSkeleton` (enlarged bubble, tappable flashing signs),
+  `FactoringParenSkeletonFloat` (one host: bubble + products + sum + knob),
+  `FactoringBubbleProducts` (arrows, boxes, sum), `FactoringBubbleKnob` (new),
+  `FactoringExpressionBuilder` (new `digits` mode), `FactoringFirstMoveChoices` (empty-paren
+  sublabel), `FactoringUseAnswerButton` (cheat steps), `FactoringStepControls`.
+- `FactoringPracticeView.tsx` is **349 lines** (over the 300 line mark; this change shrank it).
+  Do not grow it — extract instead.
+- Tests: `practiceSession.test.ts`, `doubleBubble.test.ts` → **26 pass** (`npx vitest run`).
+  `npx tsc --noEmit` clean in this package.
 
-- Layout: `factoringPortalEmbedLayout.ts`, `useFloatingRectTuner.ts`, `useFactoringPortalLayout.ts`, `useFactoringExpressionBuilder.ts`
-- UI: `FactoringPracticeView.tsx`, `FactoringGcfInfoBlock.tsx`, `FactoringAnswerCell.tsx`, `FactoringExpressionBuilder.tsx`, `FactoringNextStepChoices.tsx`, `FactoringStepControls.tsx`, `FactoringEquationPanel.tsx`
-- Engine: `practiceSession.ts` (`submitWhatHappensNext`, inner/GCF draft overrides), `buildSet.ts` pin, `config.ts` pin flag, `generators.ts` fixed AB problem, `answerCheck.ts` (− normalize)
-- Tests updated: `buildSet.test.ts`, `practiceSession.test.ts`
-- Deleted: `FactoringLayoutTunerBar.tsx`, `useFactoringGcfBuilder.ts`
+student-portal:
+- `styles/factoring-double-bubble.css` (new, imported in `styles/index.css`); the bubble block was
+  moved out of `factoring-guided-embed.css`. Portal's own `tsc` shows unrelated pre-existing errors
+  in `generic-quiz`; `npx vitest run factoring` passes.
 
-### Uncommitted — `School Scrips/student-portal` (factoring-related only)
+Session scorecard already bumped for this deliverable.
 
-- `FactoringGuidedPracticeEntry.tsx` — Move box + Copy in header; `layoutCopyRef`
-- `useFactoringLayoutTuner.ts` — starts **off** by default
-- `factoring-guided-embed.css` — floating stage, compact builder, partial line, next-choices, grow-on-choices
-- `factoring-guided-practice.d.ts`, `UnguidedPracticeProblemNav.tsx` (totalProblems / endControls)
-- `factoringGuidedPracticeActivity.ts` — enabled flag (verify before prod)
+## 6. Open questions and constraints
 
-**Also dirty in student-portal (unrelated):** logic-homework files — **do not bundle** into a factoring-only commit unless Chase asks for broader sync.
-
-### Verification
-
-- Factoring Guided Practice `npm run build` + vitest practice/buildSet tests — last run green this session.
-- Chase has been reviewing in portal / Teacher Console; latest ask was reverting accidental Yes/No box growth (fixed).
-
-### Git
-
-- **Not committed or pushed** (momentum handoff — no sync).
-
-## 6. Open questions / constraints
-
-- **Solve roots UI** (`solveGcfRoot` / `solveInnerRoot`) still uses `ExpressionKeypad` — not Matrix builder yet; Chase stopped at “get to What happens next.”
-- After correct `setBothZero`, flow goes to `solveGcfRoot` — transition/presentation of “set equal to zero” may still need polish when he continues.
-- `PIN_SOLVABLE_GCF_AS_PROBLEM_1` is temporary — turn off when full randomization wanted.
-- Netlify deploy only if Chase explicitly asks.
-- Never launch GUI / portal window without asking.
+- **Nothing has been viewed on screen.** Geometry is untested visually: outer product box height
+  above the bubble row, `margin-top: 4.6rem` reserved for the inner product box, the arrow
+  depths (`INNER_DEPTH 30`, `OUTER_DEPTH 40`), the knob wrapping to two rows, and the outer box
+  possibly overlapping the equation. Expect tweaks after Chase's look.
+- Never launch a GUI or open a browser without asking (his head-mount mouse + dwell click).
+  Verify headlessly, then state what to run/expect — as a statement, not a question.
+- Modals never dismiss on backdrop click. No ephemeral "Copied!"-style feedback.
+- Never deploy to Netlify unless Chase says so in that message.
+- `+`/`−` stays inside each bubble for now (Chase said he may change that later).
 
 ## 7. Exact next step
 
-1. Confirm GCF Yes/No box is back to the small tuned size after reload.
-2. Continue the AB binomial path past **What happens next? → (1) set both equal to zero**: build the next UI beat (show factors set to zero / root entry) in Matrix-builder style if Chase wants parity with GCF/inner.
-3. Do not commit unrelated logic-homework dirt with factoring work.
+Tell Chase (flat statement): open Factoring Guided Practice in the portal, problem 1, pick
+"Set up parentheses", go through coefficients → constants → watch the arrows → click a flashing
+sign → Check answer; then drag with Move box and paste the tuner JSON. When he sends the JSON,
+bake it into `factoringPortalEmbedLayout.ts` and bump the `factoring-layout-placed-vN` key.
+Fix any visual problems he reports (anchor geometry is in `FactoringBubbleProducts.tsx`; styles
+in `factoring-double-bubble.css`).
