@@ -180,6 +180,16 @@ c^2 = a^2 + b^2); Part 3 (algebra) not built. Subclasses
 
 A 3D scene pins captions with the `caption_ready` hook in `scene_style.py` and skips the flat layout audit — check frames.
 
+## File map (Graphing Rational Functions — M1314 gallery, one clip per entry)
+
+| Layer | Path |
+|---|---|
+| Manim scene | `Manim Trial/rational_function_graph.py` (example 1 done; slant asymptote next, then a hole) |
+| Portal assets | `student-portal/src/assets/video-examples/rational-functions/` |
+| Guide (add each clip as one `examples` entry, labelled "Part N · f(x)") | `student-portal/src/features/video-examples/rationalFunctionsGuide.ts` |
+| Entry (gallery -> player, Auto/Slow) | `RationalFunctionsGuideEntry.tsx` |
+| Access | activity `reference/graphing-rational-functions` (migration `088`, `app = 'reference'` = access OFF until Chase toggles it in Teacher Console), tile gate `transformations`, Macro App `videoSlotCatalog.ts` + `teacherConsoleBuiltInCatalog.ts` |
+
 ## New guide vs one-off clip
 
 | Pattern | When |
