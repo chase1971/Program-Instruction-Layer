@@ -18,6 +18,10 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 # The blurb is a record of what the clip covers -- it is never rendered: Chase wants no
 # text under the player, only the Play/Replay and Previous/Next buttons.
 PAGES = [
+    ('rational_function_graph', 'RationalFunctionGraph', 'rational-function-graph',
+     'Graphing a rational function &mdash; (x + 2) / (x &minus; 3)', 'Rational function graph',
+     'rational_function_graph_marks.json',
+     'Factor, x-intercept, y-intercept, vertical and horizontal asymptotes, holes, then graph.'),
     ('fundamental_theorem_calculus', 'FtcTriangleSquare', 'ftc-triangle-square',
      'FTC &mdash; linear area equals position change', 'FTC: linear area',
      'ftc_triangle_square_marks.json',
@@ -298,6 +302,9 @@ STYLE = (
     'ul{display:inline-block;text-align:left;color:#b2c0d4;font-size:18px}'
 )
 
+# Portrait (4:5) clips get portal_clip_page.py: fits one screen, Auto/Slow/Pause/Back/Next.
+PORTRAIT = {'rational-function-graph'}
+
 SCRIPT = (
     'const movie=document.getElementById("movie");'
     'document.getElementById("play").onclick=()=>'
@@ -323,6 +330,11 @@ def build(folder, klass, slug, heading, tab, marks_file, blurb):
     if not found:
         return f'{slug}: no render found — render the scene first'
     video = pathlib.Path(found[0])
+    if slug in PORTRAIT:
+        from portal_clip_page import build_clip_page
+        steps = marks_file.replace('_marks', '_steps')
+        size = build_clip_page(SCRATCH / f'{slug}.html', heading, tab, video, steps)
+        return f'{slug}: {size}'
     data = base64.b64encode(video.read_bytes()).decode('ascii')
     html = (
         '<!doctype html><html lang="en"><meta charset="utf-8">'

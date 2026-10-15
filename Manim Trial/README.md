@@ -89,6 +89,8 @@ audit that runs at every pause mark, the layout regions, and the contact sheet.
   the same beats with a negative y (`y + 4`, subtract 12) end on `y = -4/3 x` (constants cancel, `p.c == 0`).
   Marks: `equations_of_lines_parallel_marks.json`.
 
+- `rational_function_graph.py`: graphing a rational function, portrait portal clip. Chase's order: factored / anything cancel -> x-intercept (top = 0) -> y-intercept (plug in 0, negative to the top) -> vertical asymptote (bottom = 0) -> horizontal asymptote (equal degrees: divide leading coefficients) -> holes -> graph (dashed asymptotes, points, pick a side and the other goes opposite, curves ride the horizontal asymptote). Example 1 = (x+2)/(x-3). Slant and hole cases not built yet. Portal: instructor-preview tile `Graphing Rational Functions` (`student-portal/.../rationalFunctionsGuide.ts`, assets `video-examples/rational-functions/`).
+
 American spellings on screen — "center", never "centre".
 
 **`PART4_PLAN.md`** is the handoff doc part 4 was built from — verified numbers, the seed

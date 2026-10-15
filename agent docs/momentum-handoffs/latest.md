@@ -1,105 +1,91 @@
-# Momentum handoff — Factoring Guided Practice: double bubble
+# Momentum handoff — Rational function graphing animation (example 1 done)
 
-**Written:** 2026-10-13 (day-valid only)
-**Repos touched:** `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal`
-**Git:** nothing committed or pushed. No GitHub, no end-of-session actions.
-(Logic-homework files in `student-portal` are dirty from a different chat — not this work.)
+**Written:** 2026-10-14 (day-valid only)
+**Repos touched:** `Programs/` (Manim Trial, agent docs), `School Scrips/student-portal`
+**Git:** nothing committed or pushed. No GitHub, no end-of-session, no Netlify deploy.
+(The previous `latest.md` was the Factoring GP handoff; its dated copy
+`2026-10-14_factoring-gp-portal-animations-layout.md` is intact.)
 
 ---
 
 ## 1. Objective and phase
 
-Chase is building out **Factoring Guided Practice**, used in the student portal (`@factoring-guided/`
-alias) and the Macro App preview. The "Double bubble products" plan
-(`C:\Users\chase\.cursor\plans\double_bubble_products_3b7e2795.plan.md` — do **not** edit it) was
-fully implemented this session. **Phase: built and headless-verified, not yet seen by Chase.**
-Next is his visual review: he drags the new layout with Move box and pastes the tuner JSON back.
+Chase is building a **series of Manim animations on graphing rational functions** for the student
+portal. **Example 1, f(x) = (x+2)/(x-3), is finished and approved ("Perfect")**: final render done,
+in the portal, and a review page exists. Next is the next example in the series (Chase has said
+the next ones introduce a **slant asymptote**, then a **hole**; a squared factor is explicitly NOT
+wanted yet).
 
-## 2. Chase's desired feel
+## 2. Chase's desired feel / his teaching method (use his words)
 
-- Mirrors his standalone `factoring-app` "double bubble" (Bubble / ProductArrows): red arrows,
-  inner product below, outer product above. His words: "this will be an animation… it's gonna do
-  what the inner product and the outer product does in the other app."
-- Bigger bubble, "make the parentheses bigger even." Arrows, product boxes and the control row
-  must move **with** the bubble when he uses Move box.
-- Student flow: coefficients (Enter after each) → left constant, right constant (Enter after
-  each) → products animate → the `+` signs **flash** and he clicks them to flip to `−` → products
-  update live → Check answer. **No sum before Check.** Check shows the sum with ✓ / ✗.
-- A "control knob" row directly under the bubble: **Check answer, Swap last, New last, New first.**
-  "Just do the best you can. I just need to see something on there so I can evaluate."
-- "Set up parentheses" choice: only two empty, bigger parentheses plus `= 0`. Nothing inside.
+His order, every problem: **everything must be factored first, check whether anything cancels** ->
+**x-intercept** (set top = 0) -> **y-intercept** (plug in 0) -> **vertical asymptote** (set bottom
+= 0) -> **horizontal asymptote** (compare degrees: equal -> divide leading coefficients; bigger on
+top -> none, but potentially a slant; bottom bigger -> always y = 0) -> **holes** (if something
+cancels) -> graph.
+- Example 1 only says the equal-degree rule. "We'll explain [slant / holes] more when we have one."
+- Graph: "graph all the asymptotes and plot all the points." Then **"look for points where you have to
+  cross to draw the first curve"** (the side with the intercepts); **"since this one's going down,
+  on the opposite side it will be going up"**; then **sketch** the other curve. Curves "want to ride
+  to the horizontal asymptote." The caption says **"sketch"** but the drawn curve is accurate.
+- He does NOT teach the squared-factor case (both sides same direction); don't mention it.
+- Don't mention that a curve can cross the horizontal asymptote.
+- He wanted the graph **zoomed out** so students see the curves settling onto the asymptotes
+  (done: x -12..12, y -8..8).
 
-## 3. Accepted decisions (all implemented)
+## 3. Accepted decisions
 
-- Problem 1 is pinned: `121x^2 - 25 = 0` (no GCF). Opening question "What should we do first?"
-  (Factor out the GCF / Set up parentheses). Matrix-style **Use answer** cheat sits outside the
-  blue card.
-- Formulas as in the standalone app: inner = signed B × C, outer = A × signed D, for
-  `(Ax + B)(Cx + D)`. Correct = inner + outer equals the middle term **and** B×D equals the last
-  term (and A×C the first).
-- Coefficients accept any pair multiplying to the first term (121 → 11/11, 121/1, …).
-  Constants graded as positive whole numbers multiplying to |c|; signs start `+`.
-- Swap last swaps constants **with** their signs. New last → back to constant entry.
-  New first → back to coefficients.
-- Correct Check → step `factoredDone`: "Factored! Solving comes next." + Next problem button
-  (stub; solving the roots after the bubble is not built).
-- Layout is baked in percentages of `.factoring-gcf-stage` (`factoringPortalEmbedLayout.ts`,
-  info block `xPct` 50.6, storage key `factoring-layout-placed-v10`).
+- Scene: `Manim Trial/rational_function_graph.py`, class `RationalFunctionGraph`. Portrait 4:5,
+  house solving style (op under both sides in gold, strike, copy_into), answers collect in a
+  two-column list under the function (x-int, y-int, Holes | V.A., H.A.), graph fills the area below.
+  Negatives use Chase's short dash; y-int shows "negative to the top number" as its own beat.
+- Wired as an **instructor-preview tile** (`sectionGate: 'calculus-instructor'`, copy of the
+  Fundamental Theorem pattern): `student-portal/src/features/video-examples/rationalFunctionsGuide.ts`
+  (+ `RationalFunctionsGuideEntry.tsx`, route `rational-functions`, activity
+  `precalc/rational-functions`, App.tsx / portalHomeApps.ts / MatrixHomeView.tsx / usePortalRoute.ts
+  edits, `src/test/rationalFunctionsGuide.test.ts`). Assets in
+  `src/assets/video-examples/rational-functions/graph-example-1{.mp4,-steps.json}`.
+  Hold = **85.33 s**. Adding example 2 = a new entry in `examples` there + new asset pair + test.
+- Review page for Chase: `http://127.0.0.1:8765/scratch/rational-function-graph.html` built by
+  `Manim Trial/build_page.py` (row in `PAGES`, slug in `PORTRAIT`) -> `portal_clip_page.py`
+  (fits one screen; Auto / Slow / Restart / Pause / Back / Next driven by the steps JSON).
+  Chase said it was "really good" and "perfect". New clips: add a `PAGES` row + `PORTRAIT` slug.
 
 ## 4. Rejected directions
 
-- First skeleton with dashed answer cells — "not it." Restyled to the standalone Bubble look.
-- Cheat button inside the text box / inside the blue card — rejected; it hangs outside the card.
-- Yes/No GCF opener replaced by the two-choice first move.
-- Do not add a parallel mechanism: the bubble extends `practiceSession.ts`; no second session
-  engine.
+- Arrows showing "this side goes down / up" beside the vertical asymptote: removed; after zooming
+  out the gap between curve and asymptote is too thin. The pulse on the drawn curve replaces them.
+- Full-width review page: Chase's monitor could not see it on one screen -> height-fitted.
+- Old explanation "the y-intercept is below the x-axis so it goes down" replaced by Chase's
+  points-you-must-cross reasoning.
 
-## 5. Implementation state
+## 5. Implementation state / verification
 
-Factoring Guided Practice (`src/`):
-- `engine/doubleBubble.ts` (new, pure): `parseFactoredBubbles`, validators, `computeBubbleProducts`,
-  `bubbleSum`, `isBubbleCorrect`, `problemQuad`.
-- `engine/practiceSession.ts` (483 lines): steps `parenSkeleton → parenConstants → bubbleProducts →
-  factoredDone`; state `bubbleConstants / bubbleSigns / bubbleSignsTouched / bubbleChecked`;
-  transitions `setBubbleActiveBlank`, `submitSkeletonCoeff`, `submitBubbleConstant`,
-  `toggleBubbleSign`, `swapLastNumbers`, `resetLastNumbers`, `resetFirstNumbers`,
-  `checkBubbleAnswer`, `isDoubleBubbleStep`; Use answer covers the new steps.
-  Removed `expectedSkeletonLeadCoeffs` and `matchesSkeletonLeadCoeff`.
-- `app/hooks/useBubbleAnchors.ts` (new): measures A/B/C/D field centers so arrows follow the bubble.
-- `app/components/`: `FactoringParenSkeleton` (enlarged bubble, tappable flashing signs),
-  `FactoringParenSkeletonFloat` (one host: bubble + products + sum + knob),
-  `FactoringBubbleProducts` (arrows, boxes, sum), `FactoringBubbleKnob` (new),
-  `FactoringExpressionBuilder` (new `digits` mode), `FactoringFirstMoveChoices` (empty-paren
-  sublabel), `FactoringUseAnswerButton` (cheat steps), `FactoringStepControls`.
-- `FactoringPracticeView.tsx` is **349 lines** (over the 300 line mark; this change shrank it).
-  Do not grow it — extract instead.
-- Tests: `practiceSession.test.ts`, `doubleBubble.test.ts` → **26 pass** (`npx vitest run`).
-  `npx tsc --noEmit` clean in this package.
+- Final render 1080x1350@30, layout audit: all 22 marks clean; contact sheet checked for the
+  graph beats; portal vitest for the new guide passes (2 tests). Page script syntax-checked with
+  `node --check`; **the page's buttons and the portal tile were never opened/clicked** (no browser
+  launch without permission) -- Chase has used the page and approved.
+- `tsc --noEmit` shows pre-existing errors in generic-quiz, guided-practice, logic-homework (not
+  from this work).
+- Uncommitted: all of the above plus Manim Trial README line and the session scorecard bumps.
+- The `700p15` draft folder under `media/videos/rational_function_graph/` is deleted before page
+  builds (build_page.py globs the first mp4 it finds).
 
-student-portal:
-- `styles/factoring-double-bubble.css` (new, imported in `styles/index.css`); the bubble block was
-  moved out of `factoring-guided-embed.css`. Portal's own `tsc` shows unrelated pre-existing errors
-  in `generic-quiz`; `npx vitest run factoring` passes.
+## 6. Open questions / constraints
 
-Session scorecard already bumped for this deliverable.
-
-## 6. Open questions and constraints
-
-- **Nothing has been viewed on screen.** Geometry is untested visually: outer product box height
-  above the bubble row, `margin-top: 4.6rem` reserved for the inner product box, the arrow
-  depths (`INNER_DEPTH 30`, `OUTER_DEPTH 40`), the knob wrapping to two rows, and the outer box
-  possibly overlapping the equation. Expect tweaks after Chase's look.
-- Never launch a GUI or open a browser without asking (his head-mount mouse + dwell click).
-  Verify headlessly, then state what to run/expect — as a statement, not a question.
-- Modals never dismiss on backdrop click. No ephemeral "Copied!"-style feedback.
-- Never deploy to Netlify unless Chase says so in that message.
-- `+`/`−` stays inside each bubble for now (Chase said he may change that later).
+- Not built: slant asymptote, hole (cancelling factor), bottom-degree-bigger case. Each should
+  be its own example clip; extend `rational_function_graph.py` (the scene hard-codes example 1's
+  numbers -- turn `TOP`/`BOTTOM`/answer rows into a small `Problem` record like
+  `parabola_walkthrough.py` when example 2 needs it).
+- Root rules: nothing on Chase's screen unasked; animation "done" = final render + portal assets +
+  hold seconds + test; never Netlify deploy unless he says so; handoff to Chase is a flat
+  statement, never "want me to...".
+- Tile gating is instructor-only; making it student-visible (course bucket, migration) was never
+  discussed.
 
 ## 7. Exact next step
 
-Tell Chase (flat statement): open Factoring Guided Practice in the portal, problem 1, pick
-"Set up parentheses", go through coefficients → constants → watch the arrows → click a flashing
-sign → Check answer; then drag with Move box and paste the tuner JSON. When he sends the JSON,
-bake it into `factoringPortalEmbedLayout.ts` and bump the `factoring-layout-placed-vN` key.
-Fix any visual problems he reports (anchor geometry is in `FactoringBubbleProducts.tsx`; styles
-in `factoring-double-bubble.css`).
+Ask Chase for example 2's function (he said a slant asymptote example is next), then read
+`rational_function_graph.py`, add a `Problem`-style input, add the slant-asymptote beat (long
+division / "how to find the slant" per his method), render, wire as a second `examples` entry,
+rebuild the review page.
