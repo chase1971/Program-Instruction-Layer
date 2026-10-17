@@ -1,91 +1,140 @@
-# Momentum handoff — Rational function graphing animation (example 1 done)
+# Momentum handoff — Factoring GP portal double-bubble control grid
 
-**Written:** 2026-10-14 (day-valid only)
-**Repos touched:** `Programs/` (Manim Trial, agent docs), `School Scrips/student-portal`
-**Git:** nothing committed or pushed. No GitHub, no end-of-session, no Netlify deploy.
-(The previous `latest.md` was the Factoring GP handoff; its dated copy
-`2026-10-14_factoring-gp-portal-animations-layout.md` is intact.)
+**Written:** 2026-10-16 (day-valid only)
+**Repos touched:** `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal`, `Programs/` (agent docs, `scripts/serve-programs-docs.js`)
+**Git:** nothing committed or pushed from this thread. No GitHub, no end-of-session, no Netlify deploy.
 
 ---
 
 ## 1. Objective and phase
 
-Chase is building a **series of Manim animations on graphing rational functions** for the student
-portal. **Example 1, f(x) = (x+2)/(x-3), is finished and approved ("Perfect")**: final render done,
-in the portal, and a review page exists. Next is the next example in the series (Chase has said
-the next ones introduce a **slant asymptote**, then a **hole**; a squared factor is explicitly NOT
-wanted yet).
+Chase is polishing the **student-portal embed** of **Factoring Guided Practice** (double-bubble /
+FOIL step, GCF path, Move box layout tuner with `?factoring-layout=1`).
 
-## 2. Chase's desired feel / his teaching method (use his words)
+**Phase now:** Double-bubble **action buttons** (Swap last terms, Pick new first terms, Clear, Pick
+new last terms) were merged into a **single 2×2 grid** with equal cells. Sizing/padding was wrong
+(tiny then bloated); last turn **restored committed compact styling** from portal CSS. Chase has
+**not yet confirmed** the post-fix look in the portal after that CSS change.
 
-His order, every problem: **everything must be factored first, check whether anything cancels** ->
-**x-intercept** (set top = 0) -> **y-intercept** (plug in 0) -> **vertical asymptote** (set bottom
-= 0) -> **horizontal asymptote** (compare degrees: equal -> divide leading coefficients; bigger on
-top -> none, but potentially a slant; bottom bigger -> always y = 0) -> **holes** (if something
-cancels) -> graph.
-- Example 1 only says the equal-degree rule. "We'll explain [slant / holes] more when we have one."
-- Graph: "graph all the asymptotes and plot all the points." Then **"look for points where you have to
-  cross to draw the first curve"** (the side with the intercepts); **"since this one's going down,
-  on the opposite side it will be going up"**; then **sketch** the other curve. Curves "want to ride
-  to the horizontal asymptote." The caption says **"sketch"** but the drawn curve is accurate.
-- He does NOT teach the squared-factor case (both sides same direction); don't mention it.
-- Don't mention that a curve can cross the horizontal asymptote.
-- He wanted the graph **zoomed out** so students see the curves settling onto the asymptotes
-  (done: x -12..12, y -8..8).
+Earlier in the same uncommitted batch (same repos): GCF keeps step 1 when step 2 bubble shows;
+inner quadratic |c| ≤ 60 after GCF; red Clear + pick-new-first keeps last terms/signs; step number
+“2.)” alignment; layout auto-sync to `agent docs/scratch/factoring-guided-layout-latest.json`;
+problem-1 numeric-GCF trinomial priority.
+
+---
+
+## 2. Chase's desired feel (his words / corrections)
+
+- Four bubble buttons should read as **one packaged 2×2 grid**, **same size**, **lined up** — not
+  four floats that look mismatched.
+- **Clear** should match the other buttons (not a tiny red pill).
+- Size should match what **Pick new … terms** was before (**9.5rem** column width) — not invented
+  percentages that squash labels.
+- **Thin, minimal padding** — do **not** add tall cells (he called out extra padding explicitly).
+- **“Pick new first terms” on one line** (no wrapped/overlapping text).
+- **Do not guess styling** — use what was already in the tree (`factoring-gcf-menu-btn--bubble-action-compact` in `student-portal/src/styles/factoring-guided-embed.css`, last committed spec).
+- Layout tuning: prefers **auto layout file for agents** over Copy/paste when docs server runs.
+- **Do not launch GUI** without asking (dwell/focus). Handoff = statement of what to run, not prompts.
+
+---
 
 ## 3. Accepted decisions
 
-- Scene: `Manim Trial/rational_function_graph.py`, class `RationalFunctionGraph`. Portrait 4:5,
-  house solving style (op under both sides in gold, strike, copy_into), answers collect in a
-  two-column list under the function (x-int, y-int, Holes | V.A., H.A.), graph fills the area below.
-  Negatives use Chase's short dash; y-int shows "negative to the top number" as its own beat.
-- Wired as an **instructor-preview tile** (`sectionGate: 'calculus-instructor'`, copy of the
-  Fundamental Theorem pattern): `student-portal/src/features/video-examples/rationalFunctionsGuide.ts`
-  (+ `RationalFunctionsGuideEntry.tsx`, route `rational-functions`, activity
-  `precalc/rational-functions`, App.tsx / portalHomeApps.ts / MatrixHomeView.tsx / usePortalRoute.ts
-  edits, `src/test/rationalFunctionsGuide.test.ts`). Assets in
-  `src/assets/video-examples/rational-functions/graph-example-1{.mp4,-steps.json}`.
-  Hold = **85.33 s**. Adding example 2 = a new entry in `examples` there + new asset pair + test.
-- Review page for Chase: `http://127.0.0.1:8765/scratch/rational-function-graph.html` built by
-  `Manim Trial/build_page.py` (row in `PAGES`, slug in `PORTRAIT`) -> `portal_clip_page.py`
-  (fits one screen; Auto / Slow / Restart / Pause / Back / Next driven by the steps JSON).
-  Chase said it was "really good" and "perfect". New clips: add a `PAGES` row + `PORTRAIT` slug.
+- **One layout rect:** `bubbleControlsGridRectPct` in `factoringPortalEmbedLayout.ts`; Move box
+  moves/resizes the **whole grid** via `useFloatingRectTuner` (not four `useFactoringBubbleKnobDrag`
+  hooks). Placed layout key **`factoring-layout-placed-v36`**.
+- **Student view positioning:** `FactoringBubbleControlsFloat` uses rect **x/y only**; width comes
+  from CSS `calc(2 * 9.5rem + 0.28rem)` so cells stay 9.5rem. **Move box on** still applies full
+  rect % for resize outline.
+- **Baked grid default:** `{ xPct: 49.2, yPct: 53.5, wPct: 35.5, hPct: 28.5 }` (envelops legacy
+  knob anchor points). Legacy `bubbleKnobPct` / `bubbleNewFirstPct` / etc. remain deprecated in config.
+- **Grid UI:** `FactoringBubbleKnob` `gridFour` order: Swap | Pick new first / Clear | Pick new last.
+- **Engine:** `clearDoubleBubble` (full reset); `resetFirstNumbers` keeps constants + signs, returns
+  to coeffs then `bubbleProducts` when constants already filled.
+- **Export/copy layout:** `formatFactoringLayoutForAgent` exports `bubbleControlsGridRectPct` only
+  (four point keys removed). Diff/sync in `src/app/services/factoringLayoutPlacedDiff.ts`.
+- **Tests:** `npm test` in Factoring GP — **76 passed** after grid + sizing work (last run this session).
+
+---
 
 ## 4. Rejected directions
 
-- Arrows showing "this side goes down / up" beside the vertical asymptote: removed; after zooming
-  out the gap between curve and asymptote is too thin. The pulse on the drawn curve replaces them.
-- Full-width review page: Chase's monitor could not see it on one screen -> height-fitted.
-- Old explanation "the y-intercept is below the x-axis so it goes down" replaced by Chase's
-  points-you-must-cross reasoning.
+- **17.5% × 17.5% grid rect** — crushed buttons; caused overlapping label text.
+- **min-height 2.75rem + height: 100%** on grid cells — “made up” fat buttons; Chase rejected.
+- **`bubble-clear-match` / `--full-width-btn` per-float hacks** removed when grid landed; do not
+  reintroduce parallel sizing mechanisms.
+- Reverting to **four independent Move box knobs** (replaced by one grid tuner).
+
+---
 
 ## 5. Implementation state / verification
 
-- Final render 1080x1350@30, layout audit: all 22 marks clean; contact sheet checked for the
-  graph beats; portal vitest for the new guide passes (2 tests). Page script syntax-checked with
-  `node --check`; **the page's buttons and the portal tile were never opened/clicked** (no browser
-  launch without permission) -- Chase has used the page and approved.
-- `tsc --noEmit` shows pre-existing errors in generic-quiz, guided-practice, logic-homework (not
-  from this work).
-- Uncommitted: all of the above plus Manim Trial README line and the session scorecard bumps.
-- The `700p15` draft folder under `media/videos/rational_function_graph/` is deleted before page
-  builds (build_page.py globs the first mp4 it finds).
+### Bubble grid (most recent edits)
+
+| Area | Files |
+|---|---|
+| Grid component | `FactoringBubbleControlsFloat.tsx`, `FactoringBubbleKnob.tsx`, `FactoringDoubleBubbleStage.tsx`, `FactoringPracticeView.tsx` |
+| Layout hook | `useFactoringPortalLayout.ts` (`bubbleControlsGrid`, v36 storage) |
+| Baked constants | `factoringPortalEmbedLayout.ts` |
+| Portal CSS | `student-portal/src/styles/factoring-guided-embed.css` — grid + **restore compact**: `min-height: 1.35rem`, `padding: 0.1rem 0.4rem`, `font-size: 0.6875rem`, `white-space: nowrap` on `.factoring-bubble-controls-grid .factoring-gcf-menu-btn` |
+| App CSS | `Factoring Guided Practice/src/styles/factoring-double-bubble.css` (mirror grid rules) |
+
+**Reference styling (pre-grid, committed):** `.factoring-gcf-menu-btn--bubble-action-compact` in
+`factoring-guided-embed.css` (padding `0.1rem 0.4rem`, min-height `1.35rem`, was `white-space: normal`
+for multi-line pick buttons in **separate** floats; grid now uses **nowrap** for one line).
+
+**Git show baseline for per-button floats:** commit `7ef363c` in Factoring GP repo
+(`FactoringBubbleControlsFloat.tsx` with `only={which}` per button).
+
+### Broader uncommitted Factoring GP (same working tree)
+
+Engine/layout/session: `practiceSession.ts`, `useFactoringPracticeSession.ts`, `generators.ts`,
+`config.ts`, `partialFactoredDisplay.ts`, `useStepNumAnchorAlign.ts`, layout agent sync services,
+tests (`buildSetProblem1Sweep`, `factoringLayoutPlacedDiff`, etc.).
+
+### Portal / Programs (parallel dirty — not this thread's focus)
+
+`student-portal` also has **rational functions** video assets/guide/css modified. `Programs/` has
+Manim rational-function work and overwritten `latest.md` (this handoff replaces rational-functions
+handoff in `latest.md`; dated copy `2026-10-16_rational-functions-examples-2-3.md` preserved).
+
+### Layout scratch file
+
+`agent docs/scratch/factoring-guided-layout-latest.json` — still `{ layout: null }` unless Chase
+moved floats with docs server running. POST endpoint: `scripts/serve-programs-docs.js` →
+`POST /__layout/factoring-guided-portal`.
+
+---
 
 ## 6. Open questions / constraints
 
-- Not built: slant asymptote, hole (cancelling factor), bottom-degree-bigger case. Each should
-  be its own example clip; extend `rational_function_graph.py` (the scene hard-codes example 1's
-  numbers -- turn `TOP`/`BOTTOM`/answer rows into a small `Problem` record like
-  `parabola_walkthrough.py` when example 2 needs it).
-- Root rules: nothing on Chase's screen unasked; animation "done" = final render + portal assets +
-  hold seconds + test; never Netlify deploy unless he says so; handoff to Chase is a flat
-  statement, never "want me to...".
-- Tile gating is instructor-only; making it student-visible (course bucket, migration) was never
-  discussed.
+- **Visual sign-off pending** on thin + nowrap grid after last CSS fix (Chase should hard-refresh
+  portal embed on double-bubble **products** step).
+- If labels clip at narrow stage widths: prefer **slightly smaller font in grid only** before
+  re-allowing wrap — Chase wanted one line.
+- **Move box** with grid: tuner mode uses full rect %; if outline size fights intrinsic 9.5rem
+  width, may need one more CSS pass (student vs tuner).
+- **Do not deploy Netlify** unless Chase says so in-message.
+- **PowerShell:** no `&&`.
 
-## 7. Exact next step
+---
 
-Ask Chase for example 2's function (he said a slant asymptote example is next), then read
-`rational_function_graph.py`, add a `Problem`-style input, add the slant-asymptote beat (long
-division / "how to find the slant" per his method), render, wire as a second `examples` entry,
-rebuild the review page.
+## 7. Read first (fresh agent)
+
+1. This file (`agent docs/momentum-handoffs/latest.md`).
+2. `School Scrips/Factoring Guided Practice/AGENTS.md` (layout bake + scratch JSON link).
+3. `School Scrips/student-portal/AGENTS.md` if touching embed CSS.
+4. For styling truth: `git show 7ef363c:src/app/components/FactoringBubbleControlsFloat.tsx` and
+   committed `factoring-guided-embed.css` bubble-action-compact block — **extend, don't reinvent**.
+
+---
+
+## 8. Exact next step
+
+**Verify Chase's last request in the portal:** hard-refresh factoring guided practice embed, reach
+**bubbleProducts** (all four binomial numbers filled, FOIL controls visible). Confirm 2×2 grid:
+equal **thin** cells, **one-line** labels, Clear same size as Swap. If wrong, diff grid CSS against
+`.factoring-gcf-menu-btn--bubble-action-compact` and fix only grid-scoped rules — do not re-add
+2.75rem min-heights. If position is off, bake from Move box JSON or
+`agent docs/scratch/factoring-guided-layout-latest.json` into `bubbleControlsGridRectPct` and bump
+placed storage key.

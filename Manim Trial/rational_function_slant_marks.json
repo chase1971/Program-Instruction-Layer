@@ -1,0 +1,138 @@
+[
+  {
+    "name": "problem_start",
+    "time": 3.11
+  },
+  {
+    "name": "problem",
+    "time": 8.44
+  },
+  {
+    "name": "cancel",
+    "time": 10.78
+  },
+  {
+    "name": "xint_a_set",
+    "time": 14.0
+  },
+  {
+    "name": "xint_a_s1",
+    "time": 17.89
+  },
+  {
+    "name": "xint_a_bars",
+    "time": 20.67
+  },
+  {
+    "name": "xint_a_solved",
+    "time": 23.0
+  },
+  {
+    "name": "xint_a",
+    "time": 27.33
+  },
+  {
+    "name": "xint_b_set",
+    "time": 30.56
+  },
+  {
+    "name": "xint_b_solved",
+    "time": 33.72
+  },
+  {
+    "name": "xint_b",
+    "time": 38.06
+  },
+  {
+    "name": "yint_plug",
+    "time": 41.83
+  },
+  {
+    "name": "yint_simplify",
+    "time": 45.06
+  },
+  {
+    "name": "yint_answer",
+    "time": 48.28
+  },
+  {
+    "name": "yint",
+    "time": 52.61
+  },
+  {
+    "name": "va_set",
+    "time": 55.83
+  },
+  {
+    "name": "va_solved",
+    "time": 59.0
+  },
+  {
+    "name": "va",
+    "time": 63.33
+  },
+  {
+    "name": "ha_degrees",
+    "time": 67.33
+  },
+  {
+    "name": "ha",
+    "time": 70.78
+  },
+  {
+    "name": "slant_multiply",
+    "time": 74.56
+  },
+  {
+    "name": "slant_setup",
+    "time": 78.56
+  },
+  {
+    "name": "slant_down",
+    "time": 83.22
+  },
+  {
+    "name": "slant_step_1",
+    "time": 87.67
+  },
+  {
+    "name": "slant_step_2",
+    "time": 92.11
+  },
+  {
+    "name": "slant_quotient",
+    "time": 98.11
+  },
+  {
+    "name": "slant",
+    "time": 102.44
+  },
+  {
+    "name": "holes",
+    "time": 105.89
+  },
+  {
+    "name": "asymptotes",
+    "time": 111.0
+  },
+  {
+    "name": "points",
+    "time": 113.89
+  },
+  {
+    "name": "cross",
+    "time": 117.67
+  },
+  {
+    "name": "left_curve",
+    "time": 122.78
+  },
+  {
+    "name": "opposite",
+    "time": 126.56
+  },
+  {
+    "name": "hold",
+    "time": 131.67
+  }
+]

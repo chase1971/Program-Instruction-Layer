@@ -88,8 +88,12 @@ agent reads directly, so he can annotate a long report instead of re-typing poin
 **The one write the server allows.** `scripts/serve-programs-docs.js` accepts
 `POST /__comments/<page path>` and writes the JSON body to **`<page>.comments.json` beside the
 page** — e.g. `scratch/portal-risk-review.html` → `agent docs/scratch/portal-risk-review.comments.json`.
-Nothing else is writable: non-`.html` targets, pages that don't exist, and path traversal all 404,
-and `GET` on the endpoint is 405. Reading the file back is just the static server (it serves `.json`).
+**Factoring Guided Practice Move box** — `POST /__layout/factoring-guided-portal` writes
+`agent docs/scratch/factoring-guided-layout-latest.json` (debounced from the portal while Move box
+is on and the layout differs from baked). Agents bake from `layout` in that file — no Copy paste.
+
+Other writes are limited the same way: bad paths 404; `GET` on POST-only endpoints is 405. Reading
+back is the static server (it serves `.json`).
 
 **When Chase says "read my comments on X"** → read `<that page>.comments.json`. Shape:
 

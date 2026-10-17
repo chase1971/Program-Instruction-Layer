@@ -18,6 +18,18 @@ SCRATCH = pathlib.Path(r'..\agent docs\scratch')
 # The blurb is a record of what the clip covers -- it is never rendered: Chase wants no
 # text under the player, only the Play/Replay and Previous/Next buttons.
 PAGES = [
+    ('rational_function_slant', 'RationalFunctionSlant', 'rational-function-slant',
+     'Graphing a rational function with a slant asymptote &mdash; (2x &minus; 3)(x + 1) / (x &minus; 1)',
+     'Rational function slant asymptote', 'rational_function_slant_marks.json',
+     'x-intercepts, y-intercept, vertical asymptote, no H.A., slant by synthetic division, graph.'),
+    ('rational_function_no_yint', 'RationalFunctionNoYInt', 'rational-function-no-yint',
+     'Graphing a rational function with no y-intercept &mdash; (2x + 1) / x',
+     'Rational function no y-intercept', 'rational_function_no_yint_marks.json',
+     'x-intercept by solving, y-intercept undefined, asymptotes, graph.'),
+    ('rational_function_hole', 'RationalFunctionHole', 'rational-function-hole',
+     'Graphing a rational function with a hole &mdash; (x + 3) / (x&sup2; &minus; 9)',
+     'Rational function hole', 'rational_function_hole_marks.json',
+     'Factor, cancel, reduced function, none x-intercept, y-intercept, asymptotes, hole, graph.'),
     ('rational_function_graph', 'RationalFunctionGraph', 'rational-function-graph',
      'Graphing a rational function &mdash; (x + 2) / (x &minus; 3)', 'Rational function graph',
      'rational_function_graph_marks.json',
@@ -303,7 +315,8 @@ STYLE = (
 )
 
 # Portrait (4:5) clips get portal_clip_page.py: fits one screen, Auto/Slow/Pause/Back/Next.
-PORTRAIT = {'rational-function-graph'}
+PORTRAIT = {'rational-function-graph', 'rational-function-hole', 'rational-function-no-yint',
+            'rational-function-slant'}
 
 SCRIPT = (
     'const movie=document.getElementById("movie");'

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Factoring GP layout journal</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 1rem 1.25rem;
+        line-height: 1.45;
+        max-width: 52rem;
+      }
+      h1 {
+        font-size: 1.25rem;
+      }
+      .meta {
+        color: #475569;
+        font-size: 0.875rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-size: 0.8125rem;
+      }
+      th,
+      td {
+        border: 1px solid #cbd5e1;
+        padding: 0.35rem 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f1f5f9;
+      }
+      .empty {
+        color: #64748b;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Factoring Guided Practice — layout journal</h1>
+    <p class="meta">
+      Each row is one archived layout (all floats) before a Move box change. Agents revert with
+      <code>entries[n].before</code> — go back one change: last entry’s <code>before</code>.
+    </p>
+    <p class="meta" id="status">Loading…</p>
+    <div id="out"></div>
+    <script>
+      fetch('factoring-guided-layout-journal.json')
+        .then((r) => r.json())
+        .then((doc) => {
+          const status = document.getElementById('status');
+          const out = document.getElementById('out');
+          if (!doc || !Array.isArray(doc.entries)) {
+            status.textContent = 'Journal file missing or invalid.';
+            return;
+          }
+          status.textContent =
+            doc.entries.length +
+            ' entries' +
+            (doc.updatedAt ? ' · updated ' + doc.updatedAt : '');
+          if (doc.entries.length === 0) {
+            out.innerHTML = '<p class="empty">No archives yet. Move something with Move box on (docs server running).</p>';
+            return;
+          }
+          const rows = doc.entries
+            .map(
+              (e) =>
+                '<tr><td>' +
+                e.step +
+                '</td><td>' +
+                (e.at || '') +
+                '</td><td>' +
+                (e.summary || '') +
+                '</td></tr>',
+            )
+            .join('');
+          out.innerHTML =
+            '<table><thead><tr><th>#</th><th>When</th><th>What moved</th></tr></thead><tbody>' +
+            rows +
+            '</tbody></table>';
+        })
+        .catch(() => {
+          document.getElementById('status').textContent =
+            'Could not load journal JSON. Is the docs server running on 8765?';
+        });
+    </script>
+  </body>
+</html>

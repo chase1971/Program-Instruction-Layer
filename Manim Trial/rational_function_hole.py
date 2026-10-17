@@ -25,8 +25,7 @@ from rational_function_graph import (
     COEFF_Y,
     FUNC_SIZE,
     FUNC_Y,
-    GRAPH_X,
-    GRAPH_Y,
+    GRAPH_CENTER_Y,
     LEFT_X,
     LIST_Y,
     RIGHT_X,
@@ -60,6 +59,12 @@ from solve_steps import strike_pair  # noqa: E402
 from vector_projection_shadow import copy_into  # noqa: E402
 
 
+# Zoomed in compared with example 1: the hole (y = -1/6) and the y-intercept (y = -1/3) must read
+# as clearly below the y = 0 line. The scales differ per axis on purpose; this is a sketch.
+GRAPH_X, GRAPH_Y = (-8, 8), (-2.5, 2.5)
+X_UNIT, Y_UNIT = 0.36, 0.72
+
+
 def f(x):
     """The reduced function. The original is the same everywhere except x = -3."""
     return 1 / (x - 3)
@@ -79,6 +84,10 @@ check()
 
 
 class RationalFunctionHole(RationalFunctionGraph):
+    graph_x, graph_y = GRAPH_X, GRAPH_Y
+    x_unit, y_unit = X_UNIT, Y_UNIT
+    graph_step = 1
+
     def construct(self):
         s = FUNC_SIZE
         original = frac_row(s, ('f(x)', '='), tex('x', '+3', size=s), tex('x^2', '-9', size=s), 1)
@@ -94,11 +103,11 @@ class RationalFunctionHole(RationalFunctionGraph):
         xint_item = list_row('x', r'\text{-int: }', r'\text{none}', x=LEFT_X, y=LIST_Y[0])
         yint_item = list_row('y', r'\text{-int: }', '(', '0', ',', hanging_fraction('1', '3'), ')',
                              x=LEFT_X, y=LIST_Y[1])
-        holes_item = list_row(r'\text{Holes: }', '(', NEG + '3', ',', hanging_fraction('1', '6'),
-                              ')', x=LEFT_X, y=LIST_Y[2])
+        holes_item = list_row(r'\text{Hole: }', '(', NEG + '3', ',', hanging_fraction('1', '6'),
+                              ')', x=RIGHT_X, y=0.3)
         va_item = list_row(r'\text{V.A.: }', 'x', '=', '3', x=RIGHT_X, y=LIST_Y[0])
         ha_item = list_row(r'\text{H.A.: }', 'y', '=', '0', x=RIGHT_X, y=LIST_Y[1])
-        canceled_item = list_row(r'\text{Canceled: }', 'x', '+3', x=RIGHT_X, y=LIST_Y[2])
+        canceled_item = list_row(r'\text{Canceled: }', 'x', '+3', x=RIGHT_X, y=0.3)
         canceled = VGroup(canceled_item[1], canceled_item[2])
 
         # ---- the y-intercept rows -----------------------------------------------------------
@@ -128,16 +137,16 @@ class RationalFunctionHole(RationalFunctionGraph):
         ha_line = DashedLine(c2p(GRAPH_X[0], 0), c2p(GRAPH_X[1], 0), color=ASYMPTOTE_COLOR,
                              stroke_width=4, dash_length=0.12)
         va_label = tex('x', '=', '3', size=26).set_color(ASYMPTOTE_COLOR
-                                                         ).next_to(c2p(3, -6.5), RIGHT, buff=0.1)
+                                                         ).next_to(c2p(3, -2.1), RIGHT, buff=0.1)
         ha_label = tex('y', '=', '0', size=26).set_color(ASYMPTOTE_COLOR
-                                                         ).next_to(c2p(-10, 0), UP, buff=0.08)
+                                                         ).next_to(c2p(-7, 0), UP, buff=0.08)
         yint_dot = Dot(c2p(0, Fraction(-1, 3)), color=CURVE_COLOR, radius=0.07)
-        hole_mark = Circle(radius=0.075, color=CURVE_COLOR, stroke_width=4, fill_color=PORTAL_PAGE_WHITE,
+        hole_mark = Circle(radius=0.07, color=CURVE_COLOR, stroke_width=3, fill_color=PORTAL_PAGE_WHITE,
                            fill_opacity=1).move_to(c2p(-3, Fraction(-1, 6)))
-        # Each branch runs to the edge of the window: f = -8 at x = 23/8, f = 8 at x = 25/8.
-        left_curve = plane.plot(f, x_range=[GRAPH_X[0], 23 / 8, 0.02], color=CURVE_COLOR,
+        # Each branch runs to the edge of the window: f = -2.5 at x = 2.6, f = 2.5 at x = 3.4.
+        left_curve = plane.plot(f, x_range=[GRAPH_X[0], 2.6, 0.02], color=CURVE_COLOR,
                                 stroke_width=5)
-        right_curve = plane.plot(f, x_range=[25 / 8, GRAPH_X[1], 0.02], color=CURVE_COLOR,
+        right_curve = plane.plot(f, x_range=[3.4, GRAPH_X[1], 0.02], color=CURVE_COLOR,
                                  stroke_width=5)
 
         # ---- 1. factor the bottom -----------------------------------------------------------
@@ -152,8 +161,7 @@ class RationalFunctionHole(RationalFunctionGraph):
         # ---- 2. cancel -----------------------------------------------------------------------
         self.say('Now check whether anything cancels. The x + 3 on top and bottom cancel.')
         strikes = strike_pair(factor_top, factor_bottom)
-        self.play(Create(strikes[0]), run_time=0.5)
-        self.play(Create(strikes[1]), run_time=0.5)
+        self.play(Create(strikes[0]), Create(strikes[1]), run_time=0.6)
         self.beat('cancel', READ_LONG)
 
         self.say('After canceling, we have the reduced function. '
@@ -178,11 +186,9 @@ class RationalFunctionHole(RationalFunctionGraph):
 
         self.say('Simplify the bottom.')
         self.play(ReplacementTransform(plug, simple), run_time=1.3)
-        self.beat('yint_simplify', READ_SHORT)
-
-        self.say('Move the negative to the top number.')
+        self.wait(READ_SHORT)
         self.play(ReplacementTransform(simple, negative_up), run_time=1.3)
-        self.beat('yint_negative', READ_SHORT)
+        self.beat('yint_simplify', READ_SHORT)
 
         self.say('The y-intercept is (0, −1/3).')
         self.play(FadeIn(VGroup(*[yint_item[i] for i in (0, 1, 2, 3, 4, 6)])),
@@ -216,25 +222,26 @@ class RationalFunctionHole(RationalFunctionGraph):
         # ---- 7. the hole ---------------------------------------------------------------------
         self.say('Now the hole. Bring back the term that canceled, set it equal to zero, '
                  'and solve.')
-        iso = self.solve_for_x(canceled, '+', '3', 'hole')
+        # once the term is brought down, "Canceled" becomes "Hole" with empty parentheses
+        to_hole = [ReplacementTransform(canceled_item[0], holes_item[0]), FadeOut(canceled),
+                   FadeIn(VGroup(holes_item[1], holes_item[3], holes_item[5]))]
+        iso = self.solve_for_x(canceled, '+', '3', 'hole', on_copy=to_hole)
+        self.play(copy_into(iso[2], holes_item[2]), run_time=1.0)
 
-        self.say('Plug that x into the reduced function to find the y.')
+        self.say('Plug it into the reduced function to get the y.')
         self.play(FadeOut(iso), Indicate(f_bottom[0], color=ASYMPTOTE_COLOR, scale_factor=1.6),
                   FadeIn(hole_plug), run_time=1.3)
         self.beat('hole_plug', READ_LONG)
 
         self.say('Simplify the bottom.')
         self.play(ReplacementTransform(hole_plug, hole_simple), run_time=1.3)
+        self.wait(READ_SHORT)
+        self.play(ReplacementTransform(hole_simple, hole_up), run_time=1.3)
         self.beat('hole_simplify', READ_SHORT)
 
-        self.say('Move the negative to the top number.')
-        self.play(ReplacementTransform(hole_simple, hole_up), run_time=1.3)
-        self.beat('hole_negative', READ_SHORT)
-
         self.say('The hole is at (−3, −1/6).')
-        self.play(FadeIn(VGroup(*[holes_item[i] for i in (0, 1, 2, 3, 5)])),
-                  copy_into(hole_up[2], holes_item[4]), run_time=1.3)
-        self.play(FadeOut(hole_up), FadeOut(VGroup(canceled_item[0], canceled)), run_time=0.5)
+        self.play(copy_into(hole_up[2], holes_item[4]), run_time=1.3)
+        self.play(FadeOut(hole_up), run_time=0.5)
         self.beat('holes', READ_LONG)
 
         # ---- 8. the graph --------------------------------------------------------------------
@@ -244,17 +251,17 @@ class RationalFunctionHole(RationalFunctionGraph):
                   run_time=1.5)
         self.beat('asymptotes', READ_LONG)
 
-        self.say('Plot the y-intercept. Mark the hole with an open circle.')
+        self.say('Plot the y-intercept and put an open circle at the hole.')
         self.play(FadeIn(yint_dot, scale=1.6), FadeIn(hole_mark, scale=1.6), run_time=1.0)
         self.beat('points', READ_LONG)
 
-        self.say('There is no x-intercept, but the y-intercept shows where this curve goes. '
-                 'It is below the x-axis, so there is only one place the curve can go.')
+        self.say('No x-intercept, but the y-intercept is below the axis, '
+                 'so there is only one place this curve can go.')
         self.play(Indicate(yint_dot, color=PAPER_GOLD, scale_factor=2.0), run_time=1.3)
         self.beat('cross', READ_LONG)
 
-        self.say('Sketch through the point and the hole. The curve heads down toward the '
-                 'vertical asymptote and levels out along y = 0 on the far left.')
+        self.say('Sketch the curve going right through the y-intercept and the hole, '
+                 'down toward x = 3 and out along y = 0.')
         self.play(Create(left_curve), run_time=2.5)
         self.add(hole_mark)
         self.beat('left_curve', READ_LONG)

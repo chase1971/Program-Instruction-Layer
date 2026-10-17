@@ -1,0 +1,90 @@
+[
+  {
+    "name": "problem",
+    "time": 4.44
+  },
+  {
+    "name": "cancel",
+    "time": 6.78
+  },
+  {
+    "name": "xint_set",
+    "time": 10.0
+  },
+  {
+    "name": "xint_s1",
+    "time": 13.89
+  },
+  {
+    "name": "xint_bars",
+    "time": 16.67
+  },
+  {
+    "name": "xint_solved",
+    "time": 19.0
+  },
+  {
+    "name": "xint",
+    "time": 23.33
+  },
+  {
+    "name": "yint_plug",
+    "time": 27.11
+  },
+  {
+    "name": "yint_simplify",
+    "time": 30.33
+  },
+  {
+    "name": "yint",
+    "time": 35.22
+  },
+  {
+    "name": "va_set",
+    "time": 39.0
+  },
+  {
+    "name": "va",
+    "time": 43.33
+  },
+  {
+    "name": "ha_degrees",
+    "time": 47.33
+  },
+  {
+    "name": "ha_coefficients",
+    "time": 51.0
+  },
+  {
+    "name": "ha",
+    "time": 56.67
+  },
+  {
+    "name": "holes",
+    "time": 60.11
+  },
+  {
+    "name": "asymptotes",
+    "time": 65.22
+  },
+  {
+    "name": "points",
+    "time": 68.11
+  },
+  {
+    "name": "cross",
+    "time": 71.89
+  },
+  {
+    "name": "left_curve",
+    "time": 77.0
+  },
+  {
+    "name": "opposite",
+    "time": 80.78
+  },
+  {
+    "name": "hold",
+    "time": 85.89
+  }
+]

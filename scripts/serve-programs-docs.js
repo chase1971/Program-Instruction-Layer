@@ -7,6 +7,8 @@
  * Writable POST endpoints (agents read the files on disk):
  * - POST /__comments/<page path> → <page>.comments.json beside the page
  * - POST /__registry/sync-pull-registry → agent docs/sync-pull-registry.json
+ * - POST /__layout/factoring-guided-portal → agent docs/scratch/factoring-guided-layout-latest.json
+ * - POST /__layout/factoring-guided-portal/journal → agent docs/scratch/factoring-guided-layout-journal.json
  * Detail: agent docs/rules/html-delivery.md
  */
 'use strict';
@@ -55,8 +57,30 @@ const COMMENTS_PREFIX = '/__comments/';
 const COMMENTS_SUFFIX = '.comments.json';
 const REGISTRY_SAVE_PATH = '/__registry/sync-pull-registry';
 const REGISTRY_FILE = path.join(AGENT_DOCS, 'sync-pull-registry.json');
+const FACTORING_LAYOUT_SAVE_PATH = '/__layout/factoring-guided-portal';
+const FACTORING_LAYOUT_JOURNAL_SAVE_PATH = '/__layout/factoring-guided-portal/journal';
+const FACTORING_LAYOUT_FILE = path.join(
+  AGENT_DOCS,
+  'scratch',
+  'factoring-guided-layout-latest.json',
+);
+const FACTORING_LAYOUT_JOURNAL_FILE = path.join(
+  AGENT_DOCS,
+  'scratch',
+  'factoring-guided-layout-journal.json',
+);
 const MAX_COMMENT_BODY = 512 * 1024;
 const MAX_REGISTRY_BODY = 256 * 1024;
+const MAX_LAYOUT_BODY = 512 * 1024;
+
+function jsonCorsHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
 
 /**
  * Where a page's comments file lives: beside the page, in whichever served root
@@ -166,8 +190,131 @@ function handleSavePullRegistry(req, res) {
   });
 }
 
+function handleSaveFactoringLayoutJournal(req, res) {
+  let body = '';
+  let tooBig = false;
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_LAYOUT_BODY) {
+      tooBig = true;
+      req.destroy();
+    }
+  });
+  req.on('end', () => {
+    if (tooBig) {
+      res.writeHead(413, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"too large"}');
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(body || '{}');
+    } catch {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"bad json"}');
+      return;
+    }
+    if (!parsed || parsed.version !== 1 || !Array.isArray(parsed.entries)) {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"need version 1 and entries[]"}');
+      return;
+    }
+    try {
+      fs.mkdirSync(path.dirname(FACTORING_LAYOUT_JOURNAL_FILE), { recursive: true });
+      parsed.updatedAt = parsed.updatedAt || new Date().toISOString();
+      fs.writeFileSync(
+        FACTORING_LAYOUT_JOURNAL_FILE,
+        JSON.stringify(parsed, null, 2) + '\n',
+        'utf8',
+      );
+      console.log('factoring guided layout journal synced');
+      res.writeHead(200, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: true, entries: parsed.entries.length }));
+    } catch (err) {
+      res.writeHead(500, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+    }
+  });
+}
+
+function handleSaveFactoringLayout(req, res) {
+  let body = '';
+  let tooBig = false;
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_LAYOUT_BODY) {
+      tooBig = true;
+      req.destroy();
+    }
+  });
+  req.on('end', () => {
+    if (tooBig) {
+      res.writeHead(413, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"too large"}');
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(body || '{}');
+    } catch {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"bad json"}');
+      return;
+    }
+    if (!parsed || typeof parsed.updatedAt !== 'string' || !parsed.layout) {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"need updatedAt and layout"}');
+      return;
+    }
+    try {
+      fs.mkdirSync(path.dirname(FACTORING_LAYOUT_FILE), { recursive: true });
+      fs.writeFileSync(
+        FACTORING_LAYOUT_FILE,
+        JSON.stringify(parsed, null, 2) + '\n',
+        'utf8',
+      );
+      console.log('factoring guided layout synced (Move box)');
+      res.writeHead(200, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: true }));
+    } catch (err) {
+      res.writeHead(500, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+    }
+  });
+}
+
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
+
+  if (rel === FACTORING_LAYOUT_JOURNAL_SAVE_PATH) {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, jsonCorsHeaders());
+      res.end();
+      return;
+    }
+    if (req.method !== 'POST') {
+      res.writeHead(405, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"POST only"}');
+      return;
+    }
+    handleSaveFactoringLayoutJournal(req, res);
+    return;
+  }
+
+  if (rel === FACTORING_LAYOUT_SAVE_PATH) {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, jsonCorsHeaders());
+      res.end();
+      return;
+    }
+    if (req.method !== 'POST') {
+      res.writeHead(405, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"POST only"}');
+      return;
+    }
+    handleSaveFactoringLayout(req, res);
+    return;
+  }
 
   if (rel === REGISTRY_SAVE_PATH) {
     if (req.method !== 'POST') {

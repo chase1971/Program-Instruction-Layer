@@ -184,11 +184,18 @@ A 3D scene pins captions with the `caption_ready` hook in `scene_style.py` and s
 
 | Layer | Path |
 |---|---|
-| Manim scene | `Manim Trial/rational_function_graph.py` (example 1 done; slant asymptote next, then a hole) |
+| Manim scene | `Manim Trial/rational_function_graph.py` (example 1 + hole example 2 `rational_function_hole.py`, no-y-intercept example 3 `rational_function_no_yint.py`, slant-asymptote example 4 `rational_function_slant.py` -- all done) |
 | Portal assets | `student-portal/src/assets/video-examples/rational-functions/` |
 | Guide (add each clip as one `examples` entry, labelled "Part N · f(x)") | `student-portal/src/features/video-examples/rationalFunctionsGuide.ts` |
 | Entry (gallery -> player, Auto/Slow) | `RationalFunctionsGuideEntry.tsx` |
 | Access | activity `reference/graphing-rational-functions` (migration `088`, `app = 'reference'` = access OFF until Chase toggles it in Teacher Console), tile gate `transformations`, Macro App `videoSlotCatalog.ts` + `teacherConsoleBuiltInCatalog.ts` |
+
+**Gallery home layout (Chase, 2026-10-15):** every gallery app (Conics, Vectors & Projections,
+Rational Functions, ...) opens with the title, "Tap a clip to watch", and the thumbnails **starting
+at the top** of the screen -- never vertically centered. The one rule is
+`.portal-quiz--vector-projections .video-examples-shell--gallery` in
+`student-portal/src/styles/video-examples.css` (`justify-content: flex-start`); a new gallery
+entry that reuses that class gets it for free. Do not add `justify-content: center` back.
 
 ## New guide vs one-off clip
 

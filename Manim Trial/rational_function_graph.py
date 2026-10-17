@@ -131,22 +131,29 @@ class RationalFunctionGraph(Narrated, Scene):
         self.wait(seconds)
         self.mark(mark)
 
+    # The window the graph shows; subclasses zoom by overriding these (units are frame units
+    # per graph unit, per axis, so a sketch can stretch y to separate points from an asymptote).
+    graph_x, graph_y = GRAPH_X, GRAPH_Y
+    x_unit = y_unit = GRAPH_SCALE
+    graph_step = 2
+    graph_center_y = GRAPH_CENTER_Y
+
     def build_graph(self):
         plane = NumberPlane(
-            x_range=[*GRAPH_X, 2], y_range=[*GRAPH_Y, 2],
-            x_length=GRAPH_SCALE * (GRAPH_X[1] - GRAPH_X[0]),
-            y_length=GRAPH_SCALE * (GRAPH_Y[1] - GRAPH_Y[0]),
+            x_range=[*self.graph_x, self.graph_step], y_range=[*self.graph_y, self.graph_step],
+            x_length=self.x_unit * (self.graph_x[1] - self.graph_x[0]),
+            y_length=self.y_unit * (self.graph_y[1] - self.graph_y[0]),
             axis_config={'color': PAPER_MUTED, 'stroke_width': 2},
             background_line_style={'stroke_color': '#CBD5E1', 'stroke_width': 1,
                                    'stroke_opacity': 1},
             faded_line_ratio=0,
         )
-        return plane.move_to([0, GRAPH_CENTER_Y, 0])
+        return plane.move_to([0, self.graph_center_y, 0])
 
-    def solve_for_x(self, source, bottom_sign, value, ex):
+    def solve_for_x(self, source, bottom_sign, value, ex, on_copy=()):
         """x +/- value = 0 -> x = answer, the house style (rational_domain_range.teach_example).
 
-        `source` is the function's numerator or denominator. Returns the cleaned-up
+        `source` is the function's numerator or denominator; `on_copy` animations play with the copy. Returns the cleaned-up
         `x = answer` row, left sitting at WORK_Y.
         """
         undo = '-' if bottom_sign == '+' else '+'
@@ -155,7 +162,7 @@ class RationalFunctionGraph(Narrated, Scene):
         moved, zero = cond[1], cond[3]
         self.play(Indicate(source, color=ASYMPTOTE_COLOR, scale_factor=1.3),
                   copy_into(source, VGroup(cond[0], cond[1])),
-                  FadeIn(VGroup(cond[2], cond[3])), run_time=1.3)
+                  FadeIn(VGroup(cond[2], cond[3])), *on_copy, run_time=1.3)
         self.beat(f'{ex}_set', READ_SHORT)
 
         op_left = operation(undo, value).next_to(moved, DOWN, buff=0.3)
