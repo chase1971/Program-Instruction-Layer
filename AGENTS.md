@@ -102,6 +102,11 @@ directory, or `;` in one invocation. No `curl` — use `Invoke-WebRequest -UseBa
 5. **Modals never dismiss on backdrop click.** Dwell fires clicks constantly, so a modal that
    closes when he clicks outside it is unusable.
 
+7. **No em dashes, ever.** Not in student-facing text (prompts, hints, labels, error and
+ feedback messages, tutorial copy) and not in docs or messages you write. Use a period, comma,
+ or colon instead. Applies to every app; when you touch a prompt field, scan the text you
+ are editing for the long dash and remove it.
+
 **React apps also:** API calls go through a service layer — never an inline `fetch()` in a
 component; over 5 `useState` or 300 lines → extract a hook.
 

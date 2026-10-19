@@ -1,140 +1,112 @@
-# Momentum handoff — Factoring GP portal double-bubble control grid
+# Momentum handoff — Logic Gates extra credit (Part 2)
 
-**Written:** 2026-10-16 (day-valid only)
-**Repos touched:** `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal`, `Programs/` (agent docs, `scripts/serve-programs-docs.js`)
-**Git:** nothing committed or pushed from this thread. No GitHub, no end-of-session, no Netlify deploy.
-
----
-
-## 1. Objective and phase
-
-Chase is polishing the **student-portal embed** of **Factoring Guided Practice** (double-bubble /
-FOIL step, GCF path, Move box layout tuner with `?factoring-layout=1`).
-
-**Phase now:** Double-bubble **action buttons** (Swap last terms, Pick new first terms, Clear, Pick
-new last terms) were merged into a **single 2×2 grid** with equal cells. Sizing/padding was wrong
-(tiny then bloated); last turn **restored committed compact styling** from portal CSS. Chase has
-**not yet confirmed** the post-fix look in the portal after that CSS change.
-
-Earlier in the same uncommitted batch (same repos): GCF keeps step 1 when step 2 bubble shows;
-inner quadratic |c| ≤ 60 after GCF; red Clear + pick-new-first keeps last terms/signs; step number
-“2.)” alignment; layout auto-sync to `agent docs/scratch/factoring-guided-layout-latest.json`;
-problem-1 numeric-GCF trinomial priority.
+**Written:** 2026-10-18 (day-valid only)
+**Repos touched:** `School Scrips/logic-app` (primary this thread), `School Scrips/student-portal` (embed alias only; may still have older uncommitted portal files from prior sessions)
+**Git:** uncommitted work in logic-app (and likely student-portal from earlier). Nothing committed or pushed from this continuation thread. No Netlify deploy.
 
 ---
 
-## 2. Chase's desired feel (his words / corrections)
+## Read first
 
-- Four bubble buttons should read as **one packaged 2×2 grid**, **same size**, **lined up** — not
-  four floats that look mismatched.
-- **Clear** should match the other buttons (not a tiny red pill).
-- Size should match what **Pick new … terms** was before (**9.5rem** column width) — not invented
-  percentages that squash labels.
-- **Thin, minimal padding** — do **not** add tall cells (he called out extra padding explicitly).
-- **“Pick new first terms” on one line** (no wrapped/overlapping text).
-- **Do not guess styling** — use what was already in the tree (`factoring-gcf-menu-btn--bubble-action-compact` in `student-portal/src/styles/factoring-guided-embed.css`, last committed spec).
-- Layout tuning: prefers **auto layout file for agents** over Copy/paste when docs server runs.
-- **Do not launch GUI** without asking (dwell/focus). Handoff = statement of what to run, not prompts.
+1. This file through **Exact next step**.
+2. `School Scrips/logic-app/src/app/hooks/useCanvasPointer.ts` (wiring + gate drag behavior).
+3. `School Scrips/logic-app/src/app/hooks/useGateTableCheck.ts` (XOR table flow).
+4. `School Scrips/logic-app/src/app/components/gates/GateSandbox.tsx` (orchestrator).
+5. `School Scrips/student-portal/src/features/logic-homework/LogicHomeworkView.tsx` (portal shell).
+6. `School Scrips/student-portal/src/config/portalAccess.ts` (`hasLogicGatesExtraCreditAccess`, `hasAdminCheats`).
+
+Portal shipping: `School Scrips/student-portal/AGENTS.md` § Shipping (deploy only when Chase asks in that message).
+
+---
+
+## 1. Objective and current phase
+
+**Logic Gates Extra Credit (Part 2)** in the student portal: XOR **truth table** (homework-shaped), then **circuit build** with AND/OR/NOT. Cheat-gated preview (`hasLogicGatesExtraCreditAccess` / TC cheat).
+
+**Phase now:** Table UX and circuit interaction were heavily iterated this thread (auto-advance picker, sizing, Example 2, wiring model). **Chase has not confirmed wiring feels right on his device** after the latest `useCanvasPointer` rewrite (drag-only gate move + click/drag wires). **Browser verify in portal** is the gate before ship. Netlify may be stale vs local.
+
+---
+
+## 2. Chase's desired feel
+
+### Truth table (Part 2)
+- Match **Logic 7.1 Homework**: formula row, `TruthTable`, **Check / Undo**, wrong = “Incorrect. Try again.” only, **never reveal answers**.
+- **First column only:** flashing **`?`** + blue side hint; student must click **`?`** once to open **ConnectivePicker**.
+- **After that:** on correct Check (non-final column), **ConnectivePicker opens automatically** for the next column; when **one connective remains**, **auto-fill header** and show **“Complete the final column.”**
+- **Intro modal** like Logic homework (540px, no truth table in popup); **no backdrop dismiss** on gates intro.
+- **Go to circuit** visible, disabled until table verified; **`hasAdminCheats()`** bypasses (banner + in-table button).
+- A/B **input columns 1/0** on table; student columns T/F.
+
+### Circuit
+- **A and B fixed** (stacked vertically, same x, gap between). **OUTPUT draggable**; gates move **only by drag**, not click-then-click placement.
+- **Wiring:** press an **output** (A, B, gate out) → **dashed wire follows pointer**; **release on input** (gate in or OUTPUT in) **or** second **click** on port/gate body/OUTPUT box connects. **Drag** from output to input also works. Same output again or empty canvas **cancels** armed wire.
+- **No** “fill truth table first” under Submit in circuit; match line only after OUTPUT wired + table answers ready.
+- Gates and OUTPUT ~**30% larger** (`gateTypes.ts` scale constants).
+- **Example 2** must **not** be De Morgan **¬(A ∨ B)** (homework later). Current example: **(¬A) ∨ B** (NOT on A, OR with B).
 
 ---
 
 ## 3. Accepted decisions
 
-- **One layout rect:** `bubbleControlsGridRectPct` in `factoringPortalEmbedLayout.ts`; Move box
-  moves/resizes the **whole grid** via `useFloatingRectTuner` (not four `useFactoringBubbleKnobDrag`
-  hooks). Placed layout key **`factoring-layout-placed-v36`**.
-- **Student view positioning:** `FactoringBubbleControlsFloat` uses rect **x/y only**; width comes
-  from CSS `calc(2 * 9.5rem + 0.28rem)` so cells stay 9.5rem. **Move box on** still applies full
-  rect % for resize outline.
-- **Baked grid default:** `{ xPct: 49.2, yPct: 53.5, wPct: 35.5, hPct: 28.5 }` (envelops legacy
-  knob anchor points). Legacy `bubbleKnobPct` / `bubbleNewFirstPct` / etc. remain deprecated in config.
-- **Grid UI:** `FactoringBubbleKnob` `gridFour` order: Swap | Pick new first / Clear | Pick new last.
-- **Engine:** `clearDoubleBubble` (full reset); `resetFirstNumbers` keeps constants + signs, returns
-  to coeffs then `bubbleProducts` when constants already filled.
-- **Export/copy layout:** `formatFactoringLayoutForAgent` exports `bubbleControlsGridRectPct` only
-  (four point keys removed). Diff/sync in `src/app/services/factoringLayoutPlacedDiff.ts`.
-- **Tests:** `npm test` in Factoring GP — **76 passed** after grid + sizing work (last run this session).
+| Topic | Decision |
+|---|---|
+| XOR formula | `(A ∨ B) ∧ ¬(A ∧ B)` |
+| Table hook | `useGateTableCheck.ts` — auto-open picker after first `?`; auto-fill last sub-expression |
+| Portal modes | `gatesMode` `'table' \| 'circuit'`; table overlays circuit |
+| Example 2 | `(¬A) ∨ B` in `gateExamples.ts` (truth 11,10,01,00 → 1,0,1,1) |
+| Terminals | `AB_TERMINALS_LOCKED` — A/B fixed; **OUTPUT movable** |
+| Wiring owner | `useCanvasPointer.ts` — `pendingRef` + rubber band in `WireLayer`; no click-to-carry gates |
+| Bypass | `canBypassTableGate` / `hasAdminCheats()` for table gate |
+| Sidebar | `GateMatchStatus` silent until OUTPUT wired |
 
 ---
 
 ## 4. Rejected directions
 
-- **17.5% × 17.5% grid rect** — crushed buttons; caused overlapping label text.
-- **min-height 2.75rem + height: 100%** on grid cells — “made up” fat buttons; Chase rejected.
-- **`bubble-clear-match` / `--full-width-btn` per-float hacks** removed when grid landed; do not
-  reintroduce parallel sizing mechanisms.
-- Reverting to **four independent Move box knobs** (replaced by one grid tuner).
+- **Click-to-move gates** (pick up on click, drop on next click) — removed; caused gates jumping onto OUTPUT when wiring.
+- **Drag-only wiring without rubber band** — Chase wants **cursor-following wire** plus click-to-complete.
+- **De Morgan Example 2** **¬(A ∨ B)** — wrong for timing vs homework.
+- **“Fill in your truth table first”** under circuit Submit — removed.
+- **A/B horizontal stagger** — replaced with vertical stack.
+- **Netlify deploy** without explicit ask in message.
 
 ---
 
-## 5. Implementation state / verification
+## 5. Implementation state (logic-app, uncommitted)
 
-### Bubble grid (most recent edits)
-
-| Area | Files |
+| Area | Key files |
 |---|---|
-| Grid component | `FactoringBubbleControlsFloat.tsx`, `FactoringBubbleKnob.tsx`, `FactoringDoubleBubbleStage.tsx`, `FactoringPracticeView.tsx` |
-| Layout hook | `useFactoringPortalLayout.ts` (`bubbleControlsGrid`, v36 storage) |
-| Baked constants | `factoringPortalEmbedLayout.ts` |
-| Portal CSS | `student-portal/src/styles/factoring-guided-embed.css` — grid + **restore compact**: `min-height: 1.35rem`, `padding: 0.1rem 0.4rem`, `font-size: 0.6875rem`, `white-space: nowrap` on `.factoring-bubble-controls-grid .factoring-gcf-menu-btn` |
-| App CSS | `Factoring Guided Practice/src/styles/factoring-double-bubble.css` (mirror grid rules) |
+| Wiring / drag | `useCanvasPointer.ts`, `WireLayer.tsx` (pending rubber band), `Port.tsx` (armed ring) |
+| Terminals | `gateTypes.ts` (`AB_TERMINALS_LOCKED`, sizes, default OUT position), `IOTerminal.tsx` |
+| Table | `useGateTableCheck.ts`, `GateTableMode.tsx`, `GateExtraCreditIntroModal.tsx` |
+| Circuit UI | `GateSandbox.tsx`, `GateMatchStatus.tsx`, `GateSubmitPanel.tsx`, `GateShape.tsx` |
+| Examples | `gateExamples.ts`, `gateEval.test.ts` (Example 2 assertion) |
 
-**Reference styling (pre-grid, committed):** `.factoring-gcf-menu-btn--bubble-action-compact` in
-`factoring-guided-embed.css` (padding `0.1rem 0.4rem`, min-height `1.35rem`, was `white-space: normal`
-for multi-line pick buttons in **separate** floats; grid now uses **nowrap** for one line).
+**Tests run this thread:** `gateTableShared` + `gateEval` — passed after changes.
 
-**Git show baseline for per-button floats:** commit `7ef363c` in Factoring GP repo
-(`FactoringBubbleControlsFloat.tsx` with `only={which}` per button).
-
-### Broader uncommitted Factoring GP (same working tree)
-
-Engine/layout/session: `practiceSession.ts`, `useFactoringPracticeSession.ts`, `generators.ts`,
-`config.ts`, `partialFactoredDisplay.ts`, `useStepNumAnchorAlign.ts`, layout agent sync services,
-tests (`buildSetProblem1Sweep`, `factoringLayoutPlacedDiff`, etc.).
-
-### Portal / Programs (parallel dirty — not this thread's focus)
-
-`student-portal` also has **rational functions** video assets/guide/css modified. `Programs/` has
-Manim rational-function work and overwritten `latest.md` (this handoff replaces rational-functions
-handoff in `latest.md`; dated copy `2026-10-16_rational-functions-examples-2-3.md` preserved).
-
-### Layout scratch file
-
-`agent docs/scratch/factoring-guided-layout-latest.json` — still `{ layout: null }` unless Chase
-moved floats with docs server running. POST endpoint: `scripts/serve-programs-docs.js` →
-`POST /__layout/factoring-guided-portal`.
+**Not re-verified:** full logic-app test suite; **no portal browser pass** after final pointer rewrite.
 
 ---
 
 ## 6. Open questions / constraints
 
-- **Visual sign-off pending** on thin + nowrap grid after last CSS fix (Chase should hard-refresh
-  portal embed on double-bubble **products** step).
-- If labels clip at narrow stage widths: prefer **slightly smaller font in grid only** before
-  re-allowing wrap — Chase wanted one line.
-- **Move box** with grid: tuner mode uses full rect %; if outline size fights intrinsic 9.5rem
-  width, may need one more CSS pass (student vs tuner).
-- **Do not deploy Netlify** unless Chase says so in-message.
-- **PowerShell:** no `&&`.
+- **Wiring on phone/dwell:** Chase reported A→gate and gate→OUTPUT still broken before final rewrite; **needs his pass** on latest `useCanvasPointer` build.
+- **Deploy:** local portal embeds logic-app via Vite `@logic/` alias — refresh dev server; prod Netlify only on explicit request.
+- **Student release:** still cheat/admin only until `hasLogicGatesExtraCreditAccess` changes.
+- **Grading/persistence:** extra credit may not be wired to Supabase; confirm if needed.
+- **Modal width:** gates intro 540px (homework exemplar) vs generic max-w-md rule — intentional for Chase.
 
 ---
 
-## 7. Read first (fresh agent)
+## 7. Exact next step
 
-1. This file (`agent docs/momentum-handoffs/latest.md`).
-2. `School Scrips/Factoring Guided Practice/AGENTS.md` (layout bake + scratch JSON link).
-3. `School Scrips/student-portal/AGENTS.md` if touching embed CSS.
-4. For styling truth: `git show 7ef363c:src/app/components/FactoringBubbleControlsFloat.tsx` and
-   committed `factoring-guided-embed.css` bubble-action-compact block — **extend, don't reinvent**.
+**Chase browser check (or agent after explicit GUI permission):** Portal + cheat → Logic Gates extra credit → dismiss intro → truth table through auto-picker / final column → **Go to circuit** → verify **A → gate → gate → OUTPUT** via **drag wire** and via **click output then click target**. Confirm gates **only move when dragged**, not on double-click empty space. If anything fails, fix in **logic-app** first (`useCanvasPointer.ts` / port hit radii / capture order).
+
+If pass and Chase asks to ship: **student-portal** `npm run deploy:prod` only when explicitly requested, then smoke live URL.
 
 ---
 
-## 8. Exact next step
+## Copy-ready repos for end-of-session (when Chase asks)
 
-**Verify Chase's last request in the portal:** hard-refresh factoring guided practice embed, reach
-**bubbleProducts** (all four binomial numbers filled, FOIL controls visible). Confirm 2×2 grid:
-equal **thin** cells, **one-line** labels, Clear same size as Swap. If wrong, diff grid CSS against
-`.factoring-gcf-menu-btn--bubble-action-compact` and fix only grid-scoped rules — do not re-add
-2.75rem min-heights. If position is off, bake from Move box JSON or
-`agent docs/scratch/factoring-guided-layout-latest.json` into `bubbleControlsGridRectPct` and bump
-placed storage key.
+- `School Scrips/logic-app`
+- `School Scrips/student-portal` (if portal-only files changed or deploy)
