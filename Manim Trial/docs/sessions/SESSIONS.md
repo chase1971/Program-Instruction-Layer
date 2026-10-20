@@ -1,3 +1,17 @@
+## 2026-10-19 - FTC series: clip 3 proof reworked, theorem clip rebuilt, squeeze proof moved to clip 4
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
+
+**Files changed:** `Manim Trial/fundamental_theorem_calculus.py` (squeeze proof rebuilt on v=t(10-t): strip beats then squeeze, slowed ending; old position clip removed; ~480 lines), `Manim Trial/ftc_theorem_statement.py` (new, ~265 lines: full Part 1 and Part 2 statements, piece-by-piece breakdown incl. bar notation, then the car solved with F(b)-F(a), summary with shaded graph), `Manim Trial/build_ftc_series_page.py`, portal `fundamentalTheoremGuide.ts` (tabs: 1 Area and position, 2 Riemann sums, 3 The theorem hold 152.39 / 24 steps, 4 Proof hold 44.24 / 10 steps), `src/test/fundamentalTheoremGuide.test.ts`, assets `theorem-statement.*` and `squeeze-proof.*` (position-connection assets deleted).
+
+**What worked:** Chase's four-clip order is now: area = position, Riemann sums to integral, the theorem explained (Part 1, Part 2, shorthand notation, worked car), the squeeze proof. Clip 3 uses his Word-doc wording and small text; the car example is directions only (find F, evaluate with the bar from 0 to 10, plug in) ending on "total distance = area under the curve". Heredoc Python edits mangled backslashes again (`` became backspace); use Edit or chr(92).
+
+**Current state:** Green - all four clips rendered, wired, vitest 3/3, layout audit clean. Chase had not watched the final clip 3 or the slowed squeeze ending in the portal. Not deployed to Netlify.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews tabs 3 and 4. Open questions: trim clip 2's own s(10)-s(0) ending now that clip 3 solves the car; convert clip 4's proof from v/A/t to the f/x/a notation used in clip 3; optionally add the blue-area/orange-strip pictures to clip 3.
+
 ## 2026-10-11 — Definition of an Ellipse (3 parts): foci, a/b/c figure, full derivation
 
 **Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`, `School Scrips/student-session-kit`

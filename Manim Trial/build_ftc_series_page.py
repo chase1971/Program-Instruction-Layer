@@ -12,7 +12,7 @@ OUTPUT = ROOT.parent / 'agent docs' / 'scratch' / 'fundamental-theorem-calculus.
 CLIPS = [
     ('1 · Area and position agree', 'triangle-square.mp4', 'triangle-square-steps.json', 26.25),
     ('2 · Riemann sums to integral', 'added-area.mp4', 'added-area-steps.json', 40.71),
-    ('3 · The theorem', 'theorem-statement.mp4', 'theorem-statement-steps.json', 140.0),
+    ('3 · The theorem', 'theorem-statement.mp4', 'theorem-statement-steps.json', 152.39),
     ('4 · The squeeze proof', 'squeeze-proof.mp4', 'squeeze-proof-steps.json', 44.24),
 ]
 

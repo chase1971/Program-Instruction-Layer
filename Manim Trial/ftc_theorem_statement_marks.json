@@ -1,98 +1,98 @@
 [
   {
     "name": "part_one_full",
-    "time": 8.7
+    "time": 15.98
   },
   {
     "name": "continuous",
-    "time": 14.67
+    "time": 21.96
   },
   {
     "name": "area_function",
-    "time": 20.11
+    "time": 27.39
   },
   {
     "name": "slide_x",
-    "time": 28.15
+    "time": 35.43
   },
   {
     "name": "strip",
-    "time": 33.7
+    "time": 40.98
   },
   {
     "name": "shrink_h",
-    "time": 41.52
+    "time": 48.8
   },
   {
     "name": "slope",
-    "time": 46.63
+    "time": 53.91
   },
   {
     "name": "antiderivative",
-    "time": 52.07
+    "time": 59.35
   },
   {
     "name": "part_two_full",
-    "time": 62.72
+    "time": 70.0
   },
   {
     "name": "limits",
-    "time": 67.61
+    "time": 74.89
   },
   {
     "name": "integrand",
-    "time": 72.5
+    "time": 79.78
   },
   {
     "name": "variable",
-    "time": 77.39
+    "time": 84.67
   },
   {
     "name": "antiderivative",
-    "time": 82.28
+    "time": 89.57
   },
   {
     "name": "top_limit",
-    "time": 87.17
+    "time": 94.46
   },
   {
     "name": "bottom_limit",
-    "time": 92.07
+    "time": 99.35
   },
   {
     "name": "shorthand",
-    "time": 96.96
+    "time": 104.24
   },
   {
     "name": "why",
-    "time": 102.17
+    "time": 109.46
   },
   {
     "name": "cancels",
-    "time": 107.5
+    "time": 114.78
   },
   {
     "name": "example_integral",
-    "time": 113.37
+    "time": 120.65
   },
   {
     "name": "example_antiderivative",
-    "time": 118.48
-  },
-  {
-    "name": "example_check",
-    "time": 123.59
+    "time": 125.98
   },
   {
     "name": "example_bar",
-    "time": 128.7
+    "time": 131.85
   },
   {
     "name": "example_plug",
-    "time": 133.8
+    "time": 137.17
+  },
+  {
+    "name": "example_answer",
+    "time": 143.04
   },
   {
     "name": "hold",
-    "time": 140.0
+    "time": 152.39
   }
 ]

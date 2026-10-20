@@ -31,21 +31,25 @@ class FtcTheoremStatement(FtcScene):
     # ---------------------------------------------------------------- Part 1
     def part_one(self):
         title = heading(r'\text{FUNDAMENTAL THEOREM, PART 1}')
-        cond = tex(r'f\text{ continuous on }[a,b]', size=32).move_to([0, 1.7, 0])
-        area_def = tex('A(x)', '=', r'\int_a^x f(t)\,dt', size=40).move_to([0, .6, 0])
-        slope = tex(r'A^{\prime}(x)', '=', 'f(x)', size=44).move_to([0, -.5, 0])
-        anti = tex(r'A\text{ is an antiderivative of }f', size=32).move_to([0, -1.6, 0])
-        area_def[0].set_color(GOLD)
-        slope[0].set_color(GOLD)
-        slope[2].set_color(BLUE)
-
+        lines = VGroup(
+            tex(r'\text{If }f\text{ is continuous on }[a,b]\text{, then the area function}', size=26),
+            tex('A(x)', '=', r'\int_a^x f(t)\,dt', r'\quad a\le x\le b\text{,}', size=32),
+            tex(r'\text{is continuous on }[a,b]\text{ and differentiable on }(a,b)\text{.}', size=26),
+            tex(r'\text{The area function satisfies }', r'A^{\prime}(x)=f(x)', r'\text{.}', size=28),
+            tex(r'\text{Equivalently, }', r'\frac{d}{dx}\int_a^x f(t)\,dt=f(x)', r'\text{,}', size=28),
+            tex(r'\text{so the area function of }f\text{ is an antiderivative}', size=26),
+            tex(r'\text{of }f\text{ on }[a,b]\text{.}', size=26),
+        ).arrange(DOWN, buff=.26).move_to([0, .05, 0])
+        lines[1][0].set_color(GOLD)
+        lines[3][1].set_color(BLUE)
+        lines[4][1].set_color(BLUE)
+        
         self.say('Here is Part 1 in full. Then we take it apart one piece at a time.')
-        self.play(FadeIn(title), Write(cond), run_time=1.0)
-        self.play(Write(area_def), run_time=1.2)
-        self.play(Write(slope), run_time=1.2)
-        self.play(Write(anti), run_time=1.1)
-        self.hold('part_one_full', 3.5)
-        self.play(FadeOut(VGroup(cond, area_def, slope, anti)), run_time=.8)
+        self.play(FadeIn(title), run_time=.6)
+        for line in lines:
+            self.play(Write(line), run_time=1.3)
+        self.hold('part_one_full', 5.0)
+        self.play(FadeOut(lines), run_time=.8)
 
         f = lambda x: x * (10 - x)
         axes = Axes(
@@ -131,8 +135,8 @@ class FtcTheoremStatement(FtcScene):
     # ---------------------------------------------------------------- Part 2
     def part_two(self):
         title = heading(r'\text{FUNDAMENTAL THEOREM, PART 2}')
-        cond = tex(r'f\text{ continuous on }[a,b]', size=30).move_to([0, 1.8, 0])
-        given = tex(r'F\text{ is any antiderivative of }f', size=30).move_to([0, 1.1, 0])
+        cond = tex(r'\text{If }f\text{ is continuous on }[a,b]\text{ and }F\text{ is any}', size=26).move_to([0, 1.9, 0])
+        given = tex(r'\text{antiderivative of }f\text{ on }[a,b]\text{, then}', size=26).move_to([0, 1.3, 0])
         result = tex(r'\int_a^b', 'f(x)', r'\,dx', '=', 'F(b)', '-', 'F(a)', size=42).move_to([0, .0, 0])
         short = tex('=', r'F(x)\Big|_a^b', size=42).move_to([0, -1.2, 0])
         result[4].set_color(GOLD)
@@ -145,7 +149,7 @@ class FtcTheoremStatement(FtcScene):
         def box(mob):
             return SurroundingRectangle(mob, color=RED, buff=.09, stroke_width=3)
 
-        self.say('Part 2 in full. Take a continuous $f$ and any antiderivative $F$. Then the integral equals $F(b)-F(a)$.')
+        self.say('Part 2 in full: for continuous $f$ with antiderivative $F$, the integral is $F(b)-F(a)$.')
         self.play(FadeIn(title), Write(cond), run_time=1.0)
         self.play(Write(given), run_time=1.1)
         self.play(Write(result), run_time=1.6)
@@ -196,12 +200,12 @@ class FtcTheoremStatement(FtcScene):
     # ---------------------------------------------------------------- example
     def worked_example(self):
         title = heading(r'\text{OUR CAR: }v(t)=t(10-t)')
-        integral = tex(r'\int_0^{10}t(10-t)\,dt', size=42).move_to([0, 1.75, 0])
-        antiderivative = tex('F(t)', '=', r'5t^2-\frac{t^3}{3}', size=38).move_to([0, .6, 0])
-        check = tex(r'F^{\prime}(t)=10t-t^2=t(10-t)', size=32).move_to([0, -.25, 0])
-        bar = tex('=', r'\left(5t^2-\frac{t^3}{3}\right)\Big|_0^{10}', size=38).move_to([0, -1.2, 0])
-        plug = tex('=', 'F(10)', '-', 'F(0)', size=38).move_to([0, -2.1, 0])
-        answer = tex('=', r'\left(500-\tfrac{1000}{3}\right)-0', '=', '166.67', size=36).move_to([0, -3.0, 0])
+        integral = tex(r'\int_0^{10}t(10-t)\,dt', size=42).move_to([0, 1.6, 0])
+        antiderivative = tex('F(t)', '=', r'5t^2-\frac{t^3}{3}', size=38).move_to([0, .35, 0])
+        bar = tex(r'\int_0^{10}t(10-t)\,dt', '=', r'\left(5t^2-\frac{t^3}{3}\right)\Big|_0^{10}', size=36)
+        bar.move_to([0, -.85, 0])
+        plug = tex('=', 'F(10)', '-', 'F(0)', size=38).move_to([0, -1.85, 0])
+        answer = tex('=', r'\left(500-\tfrac{1000}{3}\right)-0', '=', '166.67', size=36).move_to([0, -2.85, 0])
         antiderivative[0].set_color(GOLD)
         plug[1].set_color(GOLD)
         plug[3].set_color(GOLD)
@@ -211,22 +215,41 @@ class FtcTheoremStatement(FtcScene):
         self.play(FadeIn(title), Write(integral), run_time=1.3)
         self.hold('example_integral', HOLD)
 
-        self.say('Step 1: find an antiderivative $F$ of $t(10-t)$.')
+        self.say('Step 1: find an antiderivative $F$ of the integrand.')
         self.play(Write(antiderivative), run_time=1.3)
-        self.hold('example_antiderivative', 2.8)
+        self.hold('example_antiderivative', 3.0)
 
-        self.say('Check it: the derivative of $F$ is $10t-t^2$, which is $v(t)$.')
-        self.play(Write(check), run_time=1.3)
-        self.hold('example_check', 2.8)
+        self.say('Step 2: evaluate it from $0$ to $10$. Draw the bar next to $F$ and put $0$ and $10$ on it.')
+        self.play(Write(bar), run_time=1.6)
+        self.hold('example_bar', 3.2)
 
-        self.say('Step 2: put $F$ on the bar with the limits $0$ and $10$.')
-        self.play(Write(bar), run_time=1.3)
-        self.hold('example_bar', 2.8)
-
-        self.say('Step 3: plug in the top limit, then subtract the bottom limit.')
+        self.say('Plug in the top limit $10$, then subtract what you get from the bottom limit $0$.')
         self.play(Write(plug), run_time=1.3)
-        self.hold('example_plug', 2.8)
+        self.hold('example_plug', 3.0)
 
-        self.say('That is $500-333.33-0=166.67$ meters, the same value the rectangle sums approached.')
+        self.say('Simplify: $500-333.33-0=166.67$.')
         self.play(Write(answer), run_time=1.6)
-        self.hold('hold', 3.5)
+        self.hold('example_answer', 3.2)
+
+        f = lambda x: x * (10 - x)
+        axes = Axes(
+            x_range=[0, 10.5, 2], y_range=[0, 27, 5], x_length=4.6, y_length=2.2,
+            axis_config={'color': INK, 'stroke_width': 2, 'include_ticks': False},
+        ).move_to([0, 1.0, 0])
+        graph = axes.plot(f, x_range=[0, 10], color=BLUE, stroke_width=5)
+        shade = axes.get_area(graph, x_range=[0, 10], color=FILL_BLUE, opacity=.55)
+        t_axis = MathTex('t', color=INK, font_size=26).next_to(axes.x_axis.get_end(), RIGHT, buff=.14)
+        v_axis = MathTex('v', color=INK, font_size=26).next_to(axes.y_axis.get_end(), RIGHT, buff=.06)
+        ten = MathTex('10', color=INK, font_size=26).next_to(axes.c2p(9.2, 0), DOWN, buff=.1)
+        total = tex(r'\int_0^{10}t(10-t)\,dt', '=', '166.67', r'\text{ meters}', size=38).move_to([0, -1.5, 0])
+        total[2].set_color(BLUE)
+        meaning = tex(r'\text{total distance driven = area under the curve}', size=28).move_to([0, -2.6, 0])
+        self.say('Summary: the car drives 166.67 meters in 10 seconds, the area under the curve.')
+        self.play(
+            FadeOut(VGroup(integral, antiderivative, bar, plug, answer)),
+            FadeIn(VGroup(axes, graph, shade, t_axis, v_axis, ten)),
+            run_time=1.4,
+        )
+        self.play(Write(total), run_time=1.3)
+        self.play(Write(meaning), run_time=1.3)
+        self.hold('hold', 4.0)
