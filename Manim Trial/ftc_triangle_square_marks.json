@@ -1,14 +1,26 @@
 [
   {
-    "name": "two_views",
+    "name": "velocity",
     "time": 1.47
   },
   {
-    "name": "general_rule",
-    "time": 5.0
+    "name": "triangle",
+    "time": 4.84
+  },
+  {
+    "name": "integral",
+    "time": 8.26
+  },
+  {
+    "name": "area_formula",
+    "time": 12.88
+  },
+  {
+    "name": "position",
+    "time": 19.67
   },
   {
     "name": "t_10",
-    "time": 8.59
+    "time": 26.25
   }
 ]

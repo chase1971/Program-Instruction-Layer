@@ -1,112 +1,62 @@
-# Momentum handoff — Logic Gates extra credit (Part 2)
+# Momentum handoff: FTC animation series (portal)
 
-**Written:** 2026-10-18 (day-valid only)
-**Repos touched:** `School Scrips/logic-app` (primary this thread), `School Scrips/student-portal` (embed alias only; may still have older uncommitted portal files from prior sessions)
-**Git:** uncommitted work in logic-app (and likely student-portal from earlier). Nothing committed or pushed from this continuation thread. No Netlify deploy.
-
----
+**Written:** 2026-10-19
 
 ## Read first
+- `Manim Trial/fundamental_theorem_calculus.py` (4 scenes: FtcTriangleSquare, FtcAddedArea, FtcSqueezeProof, FtcPositionConnection)
+- `Manim Trial/build_ftc_series_page.py` (builds the review page, see below)
+- `agent docs/recipes/portal-math-video-examples.md` (render + wiring recipe), `Manim Trial/ANIMATION_STYLE_RECIPE.md`
+- Portal: `School Scrips/student-portal/src/features/video-examples/fundamentalTheoremGuide.ts`, test `src/test/fundamentalTheoremGuide.test.ts`
 
-1. This file through **Exact next step**.
-2. `School Scrips/logic-app/src/app/hooks/useCanvasPointer.ts` (wiring + gate drag behavior).
-3. `School Scrips/logic-app/src/app/hooks/useGateTableCheck.ts` (XOR table flow).
-4. `School Scrips/logic-app/src/app/components/gates/GateSandbox.tsx` (orchestrator).
-5. `School Scrips/student-portal/src/features/logic-homework/LogicHomeworkView.tsx` (portal shell).
-6. `School Scrips/student-portal/src/config/portalAccess.ts` (`hasLogicGatesExtraCreditAccess`, `hasAdminCheats`).
+## Objective and phase
+Chase is reworking the four-clip Fundamental Theorem of Calculus animation so the logic builds
+the way he teaches it (his Word-doc narrative: displacement = area under v(t); Riemann sum
+approximates it; limit = definite integral; FTC links integral to antiderivatives).
+**Clips 1 and 2 are done, rendered, wired, tests green. Clips 3 (proof) and 4 are next.**
+Review page: http://127.0.0.1:8765/scratch/fundamental-theorem-calculus.html (also the portal
+tile "Fundamental Theorem of Calculus"). Chase approved clip 1 ("looks good"); clip 2 ending was
+just revised and he has not yet reviewed the final render.
 
-Portal shipping: `School Scrips/student-portal/AGENTS.md` § Shipping (deploy only when Chase asks in that message).
+## Accepted decisions
+- Use **s(t)** for position (not p). Never show the position function/graph before it is derived.
+- Clip 1 (done, approved): v(t)=2t only -> triangle (base T, height 2T) -> A(T)=∫0^T 2t dt ->
+  =½(T)(2T)=T² -> then slide left, draw s(t)=t² graph -> at T=10 both give 100 m. No duplicate
+  area formula on top.
+- Clip 2 (done, awaiting review): v(t)=t(10-t), no geometry formula -> left-Riemann rectangles
+  n=5,10,20,40 with readout (160.00 ... 166.56) -> limit -> ∫0^10 v dt -> "displacement = final
+  position minus initial position" = s(10)-s(0) -> "need s(t)" (s(t)=?) -> antiderivative
+  s'(t)=v(t) -> s(t)=5t²-t³/3, s(10)-s(0)=166.67-0 matches sums. 11 steps, hold 40.71 s.
+- Clip 3 = the proof. Plan (proposal Chase accepted in outline): the strip beats (A(t+h)-A(t) ≈
+  v(t)h, divide by h, A'(t)=v(t)) that were REMOVED from old clip 2 move to the start of clip 3,
+  ahead of the squeeze (lower/upper rectangles). Old strip code is in git history
+  (`git log -p -- "Manim Trial/fundamental_theorem_calculus.py"`, the pre-2026-10-19 FtcAddedArea).
+  Clip 4 ties it together: s and A both have derivative v, differ by a constant, so area = position
+  change; position is an antiderivative of velocity. Chase has NOT yet reviewed/approved the exact
+  clip 3 and 4 content; confirm with him or show the plan before big rewrites.
 
----
+## Rejected
+- Showing the position graph or formula in clip 2 before deriving it ("if you don't know the
+  position function you can't draw it").
+- The "sums approached 166.67 ... why? that is the proof" ending (replaced by displacement/antiderivative).
+- Formulas duplicated in two places on the board (clip 1).
 
-## 1. Objective and current phase
+## Implementation state
+- Both clips rendered (`-r 1080,1350 --fps 30`), MP4 + steps JSON copied to
+  `student-portal/src/assets/video-examples/fundamental-theorem-calculus/`, guide hold constants
+  updated (triangle 26.25, added-area 40.71), clip 2 tab label "2 · Riemann sums to integral",
+  test pause counts [6, 11, 6, 9], vitest 3/3 green. Layout audit clean on both.
+- Scratch page rebuilt via `Manim Trial/.venv/Scripts/python.exe build_ftc_series_page.py`
+  (CLIPS list in that file holds hold seconds + labels; update when clips 3/4 change). A
+  transient write error occurred once; retry fixed it.
+- Nothing committed or pushed. Scorecard bumps logged for both clips.
+- Squeeze and position clips still the old versions (hold 20.27 / 28.48; test counts 6 and 9).
 
-**Logic Gates Extra Credit (Part 2)** in the student portal: XOR **truth table** (homework-shaped), then **circuit build** with AND/OR/NOT. Cheat-gated preview (`hasLogicGatesExtraCreditAccess` / TC cheat).
+## Constraints
+- Done = rendered + copied into portal + guide holds + test passes (no handoff of "go render").
+- No GUI launches, no Netlify deploy, no em dashes, ask-before-assume (one question).
+- Python edits through bash heredocs mangled backslashes (`\D`, `\t`); use the Edit tool or raw strings.
+- Layout audit gotchas: keep tall integral lines separated (~0.8 units), axis label `t` placed RIGHT of axis end.
 
-**Phase now:** Table UX and circuit interaction were heavily iterated this thread (auto-advance picker, sizing, Example 2, wiring model). **Chase has not confirmed wiring feels right on his device** after the latest `useCanvasPointer` rewrite (drag-only gate move + click/drag wires). **Browser verify in portal** is the gate before ship. Netlify may be stale vs local.
-
----
-
-## 2. Chase's desired feel
-
-### Truth table (Part 2)
-- Match **Logic 7.1 Homework**: formula row, `TruthTable`, **Check / Undo**, wrong = “Incorrect. Try again.” only, **never reveal answers**.
-- **First column only:** flashing **`?`** + blue side hint; student must click **`?`** once to open **ConnectivePicker**.
-- **After that:** on correct Check (non-final column), **ConnectivePicker opens automatically** for the next column; when **one connective remains**, **auto-fill header** and show **“Complete the final column.”**
-- **Intro modal** like Logic homework (540px, no truth table in popup); **no backdrop dismiss** on gates intro.
-- **Go to circuit** visible, disabled until table verified; **`hasAdminCheats()`** bypasses (banner + in-table button).
-- A/B **input columns 1/0** on table; student columns T/F.
-
-### Circuit
-- **A and B fixed** (stacked vertically, same x, gap between). **OUTPUT draggable**; gates move **only by drag**, not click-then-click placement.
-- **Wiring:** press an **output** (A, B, gate out) → **dashed wire follows pointer**; **release on input** (gate in or OUTPUT in) **or** second **click** on port/gate body/OUTPUT box connects. **Drag** from output to input also works. Same output again or empty canvas **cancels** armed wire.
-- **No** “fill truth table first” under Submit in circuit; match line only after OUTPUT wired + table answers ready.
-- Gates and OUTPUT ~**30% larger** (`gateTypes.ts` scale constants).
-- **Example 2** must **not** be De Morgan **¬(A ∨ B)** (homework later). Current example: **(¬A) ∨ B** (NOT on A, OR with B).
-
----
-
-## 3. Accepted decisions
-
-| Topic | Decision |
-|---|---|
-| XOR formula | `(A ∨ B) ∧ ¬(A ∧ B)` |
-| Table hook | `useGateTableCheck.ts` — auto-open picker after first `?`; auto-fill last sub-expression |
-| Portal modes | `gatesMode` `'table' \| 'circuit'`; table overlays circuit |
-| Example 2 | `(¬A) ∨ B` in `gateExamples.ts` (truth 11,10,01,00 → 1,0,1,1) |
-| Terminals | `AB_TERMINALS_LOCKED` — A/B fixed; **OUTPUT movable** |
-| Wiring owner | `useCanvasPointer.ts` — `pendingRef` + rubber band in `WireLayer`; no click-to-carry gates |
-| Bypass | `canBypassTableGate` / `hasAdminCheats()` for table gate |
-| Sidebar | `GateMatchStatus` silent until OUTPUT wired |
-
----
-
-## 4. Rejected directions
-
-- **Click-to-move gates** (pick up on click, drop on next click) — removed; caused gates jumping onto OUTPUT when wiring.
-- **Drag-only wiring without rubber band** — Chase wants **cursor-following wire** plus click-to-complete.
-- **De Morgan Example 2** **¬(A ∨ B)** — wrong for timing vs homework.
-- **“Fill in your truth table first”** under circuit Submit — removed.
-- **A/B horizontal stagger** — replaced with vertical stack.
-- **Netlify deploy** without explicit ask in message.
-
----
-
-## 5. Implementation state (logic-app, uncommitted)
-
-| Area | Key files |
-|---|---|
-| Wiring / drag | `useCanvasPointer.ts`, `WireLayer.tsx` (pending rubber band), `Port.tsx` (armed ring) |
-| Terminals | `gateTypes.ts` (`AB_TERMINALS_LOCKED`, sizes, default OUT position), `IOTerminal.tsx` |
-| Table | `useGateTableCheck.ts`, `GateTableMode.tsx`, `GateExtraCreditIntroModal.tsx` |
-| Circuit UI | `GateSandbox.tsx`, `GateMatchStatus.tsx`, `GateSubmitPanel.tsx`, `GateShape.tsx` |
-| Examples | `gateExamples.ts`, `gateEval.test.ts` (Example 2 assertion) |
-
-**Tests run this thread:** `gateTableShared` + `gateEval` — passed after changes.
-
-**Not re-verified:** full logic-app test suite; **no portal browser pass** after final pointer rewrite.
-
----
-
-## 6. Open questions / constraints
-
-- **Wiring on phone/dwell:** Chase reported A→gate and gate→OUTPUT still broken before final rewrite; **needs his pass** on latest `useCanvasPointer` build.
-- **Deploy:** local portal embeds logic-app via Vite `@logic/` alias — refresh dev server; prod Netlify only on explicit request.
-- **Student release:** still cheat/admin only until `hasLogicGatesExtraCreditAccess` changes.
-- **Grading/persistence:** extra credit may not be wired to Supabase; confirm if needed.
-- **Modal width:** gates intro 540px (homework exemplar) vs generic max-w-md rule — intentional for Chase.
-
----
-
-## 7. Exact next step
-
-**Chase browser check (or agent after explicit GUI permission):** Portal + cheat → Logic Gates extra credit → dismiss intro → truth table through auto-picker / final column → **Go to circuit** → verify **A → gate → gate → OUTPUT** via **drag wire** and via **click output then click target**. Confirm gates **only move when dragged**, not on double-click empty space. If anything fails, fix in **logic-app** first (`useCanvasPointer.ts` / port hit radii / capture order).
-
-If pass and Chase asks to ship: **student-portal** `npm run deploy:prod` only when explicitly requested, then smoke live URL.
-
----
-
-## Copy-ready repos for end-of-session (when Chase asks)
-
-- `School Scrips/logic-app`
-- `School Scrips/student-portal` (if portal-only files changed or deploy)
+## Exact next step
+Ask Chase (or propose briefly) whether clip 3 should open with the moved strip beats then the
+squeeze, then rework `FtcSqueezeProof` accordingly (final render, assets, guide hold, test, rebuild page).

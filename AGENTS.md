@@ -114,6 +114,9 @@ component; over 5 `useState` or 300 lines → extract a hook.
    text after actions unless Chase asked. Errors and button loading state are fine.
    Recipe: `agent docs/recipes/no-ephemeral-feedback.md`.
 
+8. **Small buttons by default.** Modal and in-app buttons use minimal padding (label-sized,
+   not touch-target bars). Recipe: `agent docs/recipes/head-mouse-ui-density.md`.
+
 Full standards, and where each of these is spelled out: **`agent docs/recipes/INDEX.md`** —
 a reference, not something to load every turn.
 

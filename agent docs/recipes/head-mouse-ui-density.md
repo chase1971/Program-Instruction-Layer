@@ -7,6 +7,7 @@
 
 - `School Scrips/Macro App/renderer/src/components/LocalVerticalScrollRail.tsx` — large targets **where scroll replaces a tiny scrollbar**
 - `School Scrips/Macro App/renderer/src/styles/buttons-status.css` — standard `da-btn` sizing (use this, don't inflate)
+- `School Scrips/logic-app/src/app/components/gates/gateModalStyles.ts` — **inline React modal buttons**: `padding: 2px 8px`, `fontSize: 12`, `lineHeight: 1.2` (label-sized box, not touch padding)
 - `agent docs/recipes/vertical-scroll-rail.md` — when large hit areas *are* required
 - `agent docs/recipes/canvas-kit-target-size.md` — **canvas-kit only** floor for tiny `rectPct` buttons
 
@@ -36,6 +37,9 @@ actions, scrollbar replacement). Default to **slim, condensed, standard web/desk
 
 - **Default UI density:** normal desktop — tight sections, standard button classes, no
   inflating min-height "because dwell".
+- **Modal / dialog buttons:** minimal padding — roughly label-sized (`2px 8px` to `3px 10px`,
+  `fontSize: 12`). Dwell accuracy does **not** mean tall padded bars; use `gateModalStyles.ts`
+  or match Macro App `da-btn` density, not 48px touch targets.
 - **Do not** scale up an entire settings panel or modal to touch-target guidelines.
 - **Do** add scroll rails when content can overflow and Chase needs to scroll it.
 - **Do** use drag-latch patterns for move/resize instead of click-then-position precision.

@@ -1,34 +1,46 @@
 [
   {
-    "name": "nonlinear_problem",
-    "time": 2.55
+    "name": "problem",
+    "time": 1.47
   },
   {
-    "name": "accumulated_area",
-    "time": 6.03
+    "name": "no_formula",
+    "time": 4.89
   },
   {
-    "name": "added_strip",
-    "time": 9.62
+    "name": "rectangles",
+    "time": 8.53
   },
   {
-    "name": "strip_product",
-    "time": 13.15
+    "name": "one_rectangle",
+    "time": 11.96
   },
   {
-    "name": "quotient",
-    "time": 15.92
+    "name": "shrinking",
+    "time": 18.86
   },
   {
-    "name": "shrunk",
-    "time": 21.41
+    "name": "limit",
+    "time": 22.61
   },
   {
-    "name": "same_derivative",
-    "time": 24.73
+    "name": "integral",
+    "time": 26.03
   },
   {
-    "name": "matching_values",
-    "time": 28.21
+    "name": "displacement",
+    "time": 29.78
+  },
+  {
+    "name": "need_position",
+    "time": 32.99
+  },
+  {
+    "name": "antiderivative",
+    "time": 36.2
+  },
+  {
+    "name": "solution",
+    "time": 40.71
   }
 ]

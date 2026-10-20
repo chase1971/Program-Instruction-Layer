@@ -10,10 +10,10 @@ PORTAL_ASSETS = ROOT.parent / 'School Scrips' / 'student-portal' / 'src' / 'asse
 OUTPUT = ROOT.parent / 'agent docs' / 'scratch' / 'fundamental-theorem-calculus.html'
 
 CLIPS = [
-    ('1 · Area and position agree', 'triangle-square.mp4', 'triangle-square-steps.json', 8.59),
-    ('2 · Nonlinear accumulation', 'added-area.mp4', 'added-area-steps.json', 28.21),
-    ('3 · The squeeze proof', 'squeeze-proof.mp4', 'squeeze-proof-steps.json', 20.27),
-    ('4 · Area becomes position change', 'position-connection.mp4', 'position-connection-steps.json', 28.48),
+    ('1 · Area and position agree', 'triangle-square.mp4', 'triangle-square-steps.json', 26.25),
+    ('2 · Riemann sums to integral', 'added-area.mp4', 'added-area-steps.json', 40.71),
+    ('3 · The theorem', 'theorem-statement.mp4', 'theorem-statement-steps.json', 140.0),
+    ('4 · The squeeze proof', 'squeeze-proof.mp4', 'squeeze-proof-steps.json', 44.24),
 ]
 
 

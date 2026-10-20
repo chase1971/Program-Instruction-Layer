@@ -1,26 +1,42 @@
 [
   {
-    "name": "interval",
-    "time": 1.47
+    "name": "accumulated_area",
+    "time": 2.88
+  },
+  {
+    "name": "added_strip",
+    "time": 6.41
+  },
+  {
+    "name": "strip_product",
+    "time": 9.95
+  },
+  {
+    "name": "quotient",
+    "time": 13.21
   },
   {
     "name": "rectangles",
-    "time": 5.05
+    "time": 17.28
   },
   {
     "name": "area_bounds",
-    "time": 8.53
+    "time": 20.76
   },
   {
     "name": "average_bounds",
-    "time": 11.3
+    "time": 24.02
   },
   {
     "name": "squeeze",
-    "time": 15.98
+    "time": 32.28
+  },
+  {
+    "name": "trapped",
+    "time": 38.37
   },
   {
     "name": "hold",
-    "time": 20.27
+    "time": 44.24
   }
 ]

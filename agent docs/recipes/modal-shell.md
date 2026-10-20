@@ -94,6 +94,31 @@ Macro App's `d2l-picker-actions` column. With a head-mouse, the button nearest t
 the one the cursor reaches first; putting Cancel there makes the destructive-ish choice the
 easy one. Side-by-side footers keep the conventional order.
 
+### Modal action buttons: label width, not full bleed
+
+**Do not** stretch primary/secondary buttons to `width: 100%` or `flex: 1` across the modal
+unless the dialog is a single full-width control (rare). Chase wants **normal button-sized**
+actions: padding tight around the label (`agent docs/recipes/head-mouse-ui-density.md`),
+`flex: none` / `width: auto`.
+
+Placement:
+- **One action** (OK, Exit, Done): usually **centered** under the message.
+- **Back + Next** (wizards): often **right-aligned** as a pair, not edge-to-edge.
+
+Exemplar: `School Scrips/logic-app/src/app/components/gates/gateModalStyles.ts` and
+`GateCircuitCorrectModal.tsx` (centered Exit), `GateDirectionsModal.tsx` (Back/Next on the
+right).
+
+```tsx
+// ✅ CORRECT — button only as wide as the label
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <button type="button" style={{ padding: '5px 8px', flex: 'none' }}>Exit</button>
+</div>
+
+// ❌ WRONG — full-width bar across the modal
+<button style={{ width: '100%', padding: '12px 28px' }}>Exit</button>
+```
+
 ### No overlay / backdrop dismiss (hard rule)
 
 **Never** close a modal when the user clicks outside the dialog (overlay/backdrop). Do not use
