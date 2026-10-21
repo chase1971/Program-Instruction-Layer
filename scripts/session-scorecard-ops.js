@@ -68,8 +68,7 @@ function bumpRunning(delta) {
     note: trackingEntry.chunkNote,
     ...(trackingEntry.indexGaps ? { indexGaps: trackingEntry.indexGaps } : {}),
   });
-  r.agentBumped = true;
-  r.stopBlockCount = 0;
+  if (!delta.auto) r.agentBumped = true;
   writeRunning(r);
   regenerate();
   return r;

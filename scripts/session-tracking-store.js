@@ -19,6 +19,7 @@ const {
   formatDurationMs,
 } = require('./session-tracking-stats');
 const { readTranscriptUsage } = require('./session-token-cost');
+const { readContextJumps } = require('./session-context-jumps');
 const { readChat, transcriptKB } = require('./chat-task');
 
 function trackingDataPath(root) {
@@ -91,14 +92,35 @@ function chatSize(running) {
   return out;
 }
 
+// Cursor and Codex have no usage in the transcript, so the models come from the hook payload
+// carried on each tool call. "default" is Cursor's placeholder for auto mode, not a model.
+const PLACEHOLDER_MODELS = new Set(['', 'default', '<synthetic>']);
+
+function modelTurnsFromTimeline(events) {
+  const counts = {};
+  for (const ev of events || []) {
+    if (ev.model && !PLACEHOLDER_MODELS.has(ev.model)) counts[ev.model] = (counts[ev.model] || 0) + 1;
+  }
+  return counts;
+}
+
+function dominantModel(modelTurns) {
+  const real = Object.entries(modelTurns || {}).filter(([m]) => !PLACEHOLDER_MODELS.has(m));
+  if (!real.length) return '';
+  return real.sort((a, b) => b[1] - a[1])[0][0];
+}
+
 function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()) {
   assertValidBump(delta);
   const sessionId = running.sessionStarted || timestamp;
   const prevAt = running.lastTrackingBumpAt || sessionId;
   const durationMs = durationSince(prevAt, timestamp);
   const activeMs = activeMsInWindow(sliceTimeline(running.toolTimeline, prevAt, timestamp));
+  const window = sliceTimeline(running.toolTimeline, prevAt, timestamp);
   const cost = readTranscriptUsage(running.transcriptPath, prevAt, timestamp) || {};
-  const model = cost.model || delta.model || running.model || '';
+  const jumps = readContextJumps(running.transcriptPath, prevAt, timestamp) || {};
+  const modelTurns = cost.modelTurns || modelTurnsFromTimeline(window);
+  const model = dominantModel(modelTurns) || cost.model || delta.model || running.model || '';
   const indexGaps = bumpGaps(delta);
 
   return {
@@ -111,7 +133,10 @@ function buildTrackingEntry(delta, running, timestamp = new Date().toISOString()
     activeMs,
     activeLabel: formatDurationMs(activeMs),
     ...cost,
+    ...jumps,
     ...(model ? { model } : {}),
+    ...(modelTurns && Object.keys(modelTurns).length ? { modelTurns } : {}),
+    ...(delta.auto ? { autoBump: true } : {}),
     ...chatSize(running),
     ...(indexGaps.length ? { indexGaps } : {}),
   };

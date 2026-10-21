@@ -33,6 +33,7 @@ Guided Practice post-survey, one-question “helpful?” surveys on video galler
 | Transformations identifying | `…/identifyingPostSurvey/identifyingPostSurveyCopy.ts` | `transformations/identifying-post-survey` |
 | Transformations graphing | `…/graphingPostSurvey/graphingPostSurveyCopy.ts` | `transformations/graphing-post-survey` |
 | Guided Practice | `…/guided-practice/guidedPracticePostSurveyCopy.ts` | `matrix/guided-practice-survey` |
+| Gauss-Jordan homework | `…/guided-practice/guidedPracticeHomeworkSurveyCopy.ts` | `matrix/gauss-jordan-homework-survey` |
 | Vector projections helpful | `…/video-examples/VectorProjectionsHelpfulSurvey.tsx` (inline options) | `precalc/vector-projections-helpful-survey` |
 | Conics helpful | `…/ConicsHelpfulSurvey.tsx` | `precalc/conics-helpful-survey` |
 | Domain & range examples helpful | `…/DomainRangeExamplesHelpfulSurvey.tsx` | `reference/domain-range-examples-helpful-survey` |

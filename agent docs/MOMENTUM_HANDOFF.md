@@ -14,16 +14,24 @@
 
 ## What this phrase means
 
-**"Momentum handoff" = continue this work in a fresh Codex task without losing the judgment
-built through the conversation.** It is not the end-of-session protocol.
+**"Momentum handoff" = continue this work in a fresh task, in any tool (Cursor, Claude Code,
+Codex) or on a different model, without losing the judgment built through the conversation.**
+It is not the end-of-session protocol.
 
 - Finish the current coherent deliverable; do not abandon an edit halfway through.
-- Do not commit, push, finalize session metrics, append an end-of-session entry, archive the
+- Do not commit, push, finalize session metrics, run the end-of-session protocol, archive the
   task, or run broad closeout checks unless Chase separately asks.
-- Do not create or switch tasks automatically. Give Chase one copy-ready prompt for the fresh
-  task, then stop.
+- Do not create or switch tasks automatically. Nothing needs to be copied: tell Chase to say
+  *"read the latest momentum handoff"* in the fresh task, then stop.
 - A normal session-tracking bump is still required for any deliverable completed before the
   handoff.
+
+**Handoff versus wrap-up (no overlap).** The wrap-up entry in `SESSIONS.md` is the permanent
+record and carries `Repos touched:` (pull depends on it). The handoff is the continuation state
+(feel, decisions, rejected directions, next step) and is overwritten. A handoff writes **both**
+so Chase says it once: the full handoff to `latest.md`, plus the short `SESSIONS.md` entry
+defined in [WRAP_UP.md](./WRAP_UP.md), whose `Next session:` line just points at `latest.md`.
+Do not repeat the handoff's content in the entry.
 
 ---
 
@@ -51,9 +59,10 @@ dated archives older than **3 days**. Never deletes `latest.md`.
    - Overwrite `agent docs/momentum-handoffs/latest.md` with the full handoff.
    - Write the same content to `agent docs/momentum-handoffs/YYYY-MM-DD_short-slug.md`.
 3. Run `node scripts/prune-momentum-handoffs.js --yes` from Programs root.
-4. Bump session tracking if a deliverable just finished.
-5. Reply to Chase: one sentence (no GitHub / no end-of-session), then a **copy-ready fresh-task
-   prompt** that starts with: *Read `agent docs/momentum-handoffs/latest.md` first, then …*
+4. Append the short wrap-up entry per [WRAP_UP.md](./WRAP_UP.md) step 1, with `Repos touched:`
+   filled in and `Next session: see agent docs/momentum-handoffs/latest.md (<date>)`.
+5. Bump session tracking if a deliverable just finished.
+6. Reply to Chase with the short shape under "Final response shape". No pasted prompt.
 
 ---
 
@@ -96,13 +105,12 @@ proposal rather than turning it into a decision.
 
 ## Final response shape (perform only)
 
-Start with one sentence saying the current deliverable is safely stopped and no GitHub or
-end-of-session actions were performed. Note that **`agent docs/momentum-handoffs/latest.md`**
-was updated. Then provide one fenced text block that Chase can paste as the first message of a
-fresh Codex task. The prompt must instruct the new agent to read `latest.md` first, then the
-applicable repository docs.
+Two sentences at most: the current deliverable is safely stopped and no GitHub or end-of-session
+actions were performed; **`agent docs/momentum-handoffs/latest.md`** and the `SESSIONS.md` entry
+were written. Then: *In the fresh task, say "read the latest momentum handoff."*
 
-End after the block. Do not add a second checklist for Chase.
+No fenced prompt to copy, no checklist. The root `AGENTS.md` trigger loads in every tool, so the
+phrase is enough.
 
 ---
 
@@ -115,3 +123,7 @@ End after the block. Do not add a second checklist for Chase.
 - Telling the new agent only to "continue where we left off" without supplying the state.
 - Handoff only in chat with **no** `latest.md` write — the next agent will not see it.
 - Reading week-old `latest.md` without checking the date.
+- Pasting the handoff's content into `SESSIONS.md` as well. Keep one copy; the entry points.
+- Two handoffs on different topics the same day: `latest.md` is a single slot and the second
+  overwrites the first. If another topic's handoff is still live, say so and name the file by
+  topic instead of overwriting.

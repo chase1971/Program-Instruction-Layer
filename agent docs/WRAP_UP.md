@@ -44,7 +44,8 @@ Night sync or **"put on GitHub"** moves code + these log entries to the other ma
 
    **File size flag:** [files >500 lines or grew >200, else "None"]
 
-   **Next session:** [concrete next action for a future agent]
+   **Next session:** [concrete next action for a future agent. After a momentum handoff, write
+   `see agent docs/momentum-handoffs/latest.md (<date>)` instead of repeating it]
    ```
 
    **`Repos touched:` rules:** list **folder paths that are git repo roots** (see

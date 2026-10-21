@@ -4,10 +4,9 @@
  *          remembering an always-on prose instruction (which was the failure Chase hit —
  *          a whole session with real edits and zero bumps).
  *
- * Two modes, one script so the "is there unbumped work" check has one home:
- *   --stop        Stop hook. Blocks the agent from ending its turn when there's clear
- *                 evidence of unbumped work. Capped at MAX_BLOCKS consecutive blocks,
- *                 then force-allows — this can never trap the session.
+ * Three modes, one script so the "is there unbumped work" check has one home:
+ *   --stop        Stop hook. When there is clear evidence of unbumped work, writes the
+ *                 bump itself (autoBump) instead of blocking the agent.
  *   --context-warning  UserPromptSubmit hook. Counts messages per chat and, once the
  *                 task is heavy (real context size in Claude Code, message count in
  *                 Cursor), injects a reminder to recommend a momentum handoff after
@@ -29,21 +28,23 @@
 
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 const { resolveChat, recordPrompt, updateChat } = require('./chat-task');
 const {
   HEAVY_CONTEXT_TOKENS,
   readLatestContextTokens,
   formatTokens,
 } = require('./session-token-cost');
+const { estimateContextGrowth, HEAVY_GROWTH_TOKENS } = require('./context-growth-estimate');
 
 const ROOT = path.join(__dirname, '..');
 const RUNNING = path.join(ROOT, 'agent docs', '.session-scorecard-running.json');
 
 const MIN_TURNS = 3;
 const MIN_EDITED_FILES = 2;
-const MAX_BLOCKS = 3;
-// Cursor transcripts carry no token usage, so there twelve messages in one chat stands in
-// for "heavy". On every host it is also the minimum gap between repeat warnings.
+// Cursor transcripts carry no token usage, so there the heavy test is the estimate in
+// context-growth-estimate.js. Twelve messages is only the fallback when the transcript
+// is unreadable. On every host it is also the minimum gap between repeat warnings.
 const CONTEXT_WARNING_TURN_INTERVAL = 12;
 
 function readRunning() {
@@ -77,38 +78,28 @@ function printAndExit(obj) {
   process.exit(0);
 }
 
+// Stop hook: never blocks. When the session shows real edits and no bump, write the bump
+// here (flagged autoBump) so the failure this existed for, a whole session of edits with
+// zero rows, is covered without forcing the agent to spend extra turns on it.
 function runStop() {
   const running = readRunning();
   if (!running) {
     return printAndExit();
   }
 
-  const { edited, bumps, turns, looksUnbumped } = unbumpedState(running);
-  const blocks = Number(running.stopBlockCount) || 0;
-  const shouldBlock = looksUnbumped && turns >= MIN_TURNS && blocks < MAX_BLOCKS;
-
-  if (!shouldBlock) {
-    if (blocks > 0) {
-      running.stopBlockCount = 0;
-      writeRunning(running);
-    }
+  const { edited, turns, looksUnbumped } = unbumpedState(running);
+  if (!looksUnbumped || turns < MIN_TURNS) {
     return printAndExit();
   }
 
-  running.stopBlockCount = blocks + 1;
-  writeRunning(running);
-
-  const message =
-    `Session tracking: ${edited} file(s) edited this session, ${bumps} bumps logged. `
-    + 'Before finishing, run node scripts/append-session-scorecard.js --note "<what you finished>" '
-    + '(see agent docs/SESSION_TRACKING.md), then finish your reply normally. '
-    + `(This auto-allows after ${MAX_BLOCKS} reminders regardless, so it can't loop forever.)`;
-
-  printAndExit({
-    decision: 'block',
-    reason: message,
-    followup_message: message,
-  });
+  const names = running.filesEditedList.map((f) => String(f).split(/[\\/]/).pop());
+  const shown = names.slice(0, 5).join(', ') + (names.length > 5 ? `, +${names.length - 5} more` : '');
+  spawnSync(
+    process.execPath,
+    [path.join(__dirname, 'append-session-scorecard.js'), '--auto', '--note', `Auto: ${edited} files edited (${shown})`],
+    { cwd: ROOT, timeout: 8000, stdio: 'ignore' },
+  );
+  return printAndExit();
 }
 
 function runPrecompact() {
@@ -129,7 +120,7 @@ function runPrecompact() {
         'CONTEXT EFFICIENCY WARNING: Compaction is about to summarize this conversation. '
         + 'Tell Chase plainly in your next response that this task has become context-heavy, '
         + 'finish the current deliverable, and recommend that he say "perform a momentum handoff" '
-        + `before starting another major chunk in a fresh Codex task.${trackingReminder}`,
+        + `before starting another major chunk in a fresh task.${trackingReminder}`,
     },
   });
 }
@@ -152,9 +143,14 @@ function runContextWarning() {
 
   const chat = recordPrompt(chatKey);
   const context = readLatestContextTokens(transcriptPath);
+  // No usage in the transcript (Cursor, Codex): estimate growth from tool calls and words
+  // written. Messages alone are the last resort, when the transcript cannot be read.
+  const estimate = context === null ? estimateContextGrowth(transcriptPath) : null;
   const heavy = context !== null
     ? context >= HEAVY_CONTEXT_TOKENS
-    : chat.prompts >= CONTEXT_WARNING_TURN_INTERVAL;
+    : estimate !== null
+      ? estimate.growth >= HEAVY_GROWTH_TOKENS
+      : chat.prompts >= CONTEXT_WARNING_TURN_INTERVAL;
   const warnedRecently = chat.lastWarnedAtPrompt > 0
     && chat.prompts - chat.lastWarnedAtPrompt < CONTEXT_WARNING_TURN_INTERVAL;
   if (!heavy || warnedRecently) return printAndExit();
@@ -163,7 +159,10 @@ function runContextWarning() {
   const measure = context !== null
     ? `Each reply in this task now re-reads about ${formatTokens(context)} tokens of context `
       + '(a fresh task starts near 60k-90k). '
-    : `This task has reached ${chat.prompts} messages from Chase. `;
+    : estimate !== null
+      ? `This task has made about ${estimate.toolCalls} tool calls and its context has grown by an `
+        + `estimated ${formatTokens(estimate.growth)} tokens. `
+      : `This task has reached ${chat.prompts} messages from Chase. `;
   printAndExit({
     hookSpecificOutput: {
       hookEventName: 'UserPromptSubmit',

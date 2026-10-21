@@ -72,6 +72,7 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
   let input = 0;
   let output = 0;
   let model = null;
+  const modelTurns = {};
 
   for (const line of lines) {
     const hit = parseUsageLine(line.trim());
@@ -85,7 +86,10 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
     }
 
     const { usage } = hit;
-    if (hit.model) model = hit.model;
+    if (hit.model) {
+      model = hit.model;
+      modelTurns[hit.model] = (modelTurns[hit.model] || 0) + 1;
+    }
     turns += 1;
     cacheRead += usage.cache_read_input_tokens || 0;
     cacheWrite += usage.cache_creation_input_tokens || 0;
@@ -99,6 +103,7 @@ function readTranscriptUsage(transcriptPath, fromIso, toIso) {
 
   return {
     ...(model ? { model } : {}),
+    ...(Object.keys(modelTurns).length ? { modelTurns } : {}),
     tokenTurns: turns,
     tokensCacheRead: cacheRead,
     tokensCacheWrite: cacheWrite,

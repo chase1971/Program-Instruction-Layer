@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-21 — Fine-tune pipeline plan, handoff and tracking cleanup
+
+**Repos touched:** `Programs/` root (other agents this day also touched `School Scrips/student-portal` and `School Scrips/Macro App` for the Gauss-Jordan homework; see their SESSIONS)
+
+**Files changed:** `Manim Trial/docs/FINE_TUNE_PIPELINE.md` (plan; `FINE_TUNER.md`, `FINE_TUNE_BRIEF.md` and the `.cursor/.claude/.codex` `agents/` stubs were built by Cursor), `agent docs/MOMENTUM_HANDOFF.md`, `WRAP_UP.md`, `SESSION_TRACKING.md`, `SESSION_METRICS.md`, `INDEX.md`, root `AGENTS.md`, `scripts/scorecard-enforce.js`, `scorecard-hook-tally.js`, `session-tracking-store.js`, `session-token-cost.js`, `session-scorecard-ops.js`, `append-session-scorecard.js`; new `scripts/context-growth-estimate.js`, `scripts/session-context-jumps.js`.
+
+**What worked:** Plan for cheap-model build then premium-model fine-tune of Manim clips, with a benchmark that only records what a platform reports. Momentum handoff is tool-neutral, has no pasted prompt, and writes the short wrap-up entry too. Cursor/Codex context warning now estimates growth from tool calls and words written (tool calls explained 87% of context growth across 128 sessions; messages 22%). Tracking now records per-turn models (`modelTurns`), the five biggest context jumps per task (`topJumps`), and the Stop hook writes an `autoBump` row instead of blocking.
+
+**Current state:** Green — scripts syntax-check and the new tracking paths were exercised in a throwaway copy with fake data, not in live Cursor.
+
+**File size flag:** None.
+
+**Next session:** Read-only baseline scan of past Manim transcripts; review the Cursor-built fine-tuner files; test whether Cursor delivers the context warning (`additionalContext`) or ignores it; decide whether to keep `--gap`; write the Cursor usage CSV reader.
+
 ## 2026-10-20 — Build mode Phase 5 recipe and proof save
 
 **Repos touched:** `Programs/` root, `School Scrips/Macro App`, `School Scrips/student-portal`, `School Scrips/canvas-kit`, `School Scrips/Factoring Guided Practice`, `School Scrips/logic-app`

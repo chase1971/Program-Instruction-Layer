@@ -82,7 +82,10 @@ function record(payload) {
   }
 
   const now = new Date().toISOString();
-  pushTimelineEvent(running, { t: now });
+  // One timeline event per tool call is one reply; carrying the model on it records which
+  // model did each turn, which matters in Cursor where Chase switches models mid-chat.
+  const eventModel = typeof payload.model === 'string' ? payload.model.trim() : '';
+  pushTimelineEvent(running, eventModel ? { t: now, model: eventModel } : { t: now });
   if (EDIT_TOOLS.has(toolName)) {
     const filePath = pickPath(payload.tool_input || payload.toolInput || payload.arguments || {});
     if (filePath && !(running.filesEditedList || []).includes(filePath)) {

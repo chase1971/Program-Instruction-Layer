@@ -38,7 +38,9 @@ works. A bump with no note is rejected and logs nothing.
 | Field | Meaning |
 |-------|---------|
 | `billedTokens`, `tokensPerTurn`, `tokenTurns`, `tokensCacheRead`, `tokensOutput` | Real tokens for this task, each reply counted once. **Claude Code only** — Cursor transcripts carry no usage |
-| `model` | From the Claude Code transcript, or the hook payload where the host sends one |
+| `model`, `modelTurns` | Per-turn model counts for the task (`{ "model": turns }`). `model` is the one with most turns. Claude Code: from the transcript. Cursor/Codex: from the hook payload on each tool call; Cursor's `default` placeholder is ignored, so auto-mode rows can stay blank |
+| `topJumps` | The five tool calls that grew the context most in the task, with tokens added (`{ tokens, from }`). Claude Code only; Cursor has no usage to measure |
+| `autoBump` | `true` when the Stop hook wrote the row because the agent never bumped |
 | `chatUserMessages` / `chatTranscriptKB` / `chatId` | Chat size so far — **the only cost signal in Cursor** |
 | `activeMs` | First to last tool call in the task window (excludes idle) |
 | `durationMs` | Wall-clock since previous bump — includes idle; mostly ignore |
@@ -69,7 +71,7 @@ long, not fewer searches.
 Bump with `--note`. **Never read** `session-tracking-log.html` (Chase's dashboard).
 **Archive:** `agent docs/session-tracking.jsonl`.
 
-The Stop hook blocks finishing when ≥2 files were edited with zero bumps — see
+The Stop hook no longer blocks; it writes an `autoBump` row when ≥2 files were edited with zero bumps — see
 [SESSION_METRICS.md](./SESSION_METRICS.md) § Enforcement.
 
 ---

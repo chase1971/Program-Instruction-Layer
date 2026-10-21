@@ -68,13 +68,40 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>183</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">10:37 AM · Wednesday, Oct 21, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>184</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">2:05 PM · Wednesday, Oct 21, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Wednesday, Oct 21, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">2:05 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
+      </div>
+      <div class="model">claude-sonnet-5-5</div>
+    </header>
+    <p class="summary-human">Planned the cheap-build, premium-fine-tune animation pipeline and wrote it up, then audited session tracking and the momentum handoff. Made the handoff tool-neutral with no pasted prompt, replaced the Cursor 12-message warning with a tool-call estimate, and added per-turn model, top context jumps and an auto-written bump in place of the Stop block. Other agents in this session built the Gauss-Jordan homework and the fine-tuner agent stubs.</p>
+    <div class="metric-grid"><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>29</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Chat messages</abbr></dt>
+    <dd>8</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>10</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>10 task(s)</summary>
+    <ul class="task-list"><li>1:01 PM — Reviewed fine-tune animation pipeline and prior trial; assessed token savings hypotheses, quality risks, and benchmark design.</li><li>1:10 PM — Updated fine-tune pipeline plan with a bounded cheap-model visual review, checklist, handoff reporting, and benchmark accounting.</li><li>1:11 PM — Updated fine-tune pipeline plan with one cheap visual review, a concrete checklist, bounded corrections, and premium handoff reporting.</li><li>1:12 PM — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</li><li>1:15 PM — Updated FINE_TUNE_PIPELINE.md: Cursor usage via dashboard CSV, no-parallel-chats rule, cost-weighted comparison, subagent model routing</li><li>1:16 PM — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</li><li>1:23 PM — Built fine-tune pipeline docs: FINE_TUNE_BRIEF.md, FINE_TUNER.md, manim-fine-tuner stubs for Cursor/Claude/Codex, gitignore allowlist, pipeline doc pointers</li><li>1:31 PM — Gauss-Jordan homework: 1 of 4, last check to survey then grade</li><li>1:45 PM — GJ homework: last correct then survey once, retakes keep best run</li><li>1:49 PM — Updated GJ homework survey copy: confidence, MyLab, two comments</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Across 128 Claude Code sessions, tool calls explained 87% of context growth and messages from Chase only 22%. Cursor reports no per-chat tokens; usage comes from the dashboard CSV. The Cursor hook may not deliver additionalContext, so the context warning is unverified there.</div>
+    <p class="next"><strong>Next time:</strong> Run the read-only baseline scan of past Manim transcripts, review the Cursor-built fine-tuner files, test whether Cursor shows the context warning, and decide whether to keep --gap.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">10:37 AM</span>

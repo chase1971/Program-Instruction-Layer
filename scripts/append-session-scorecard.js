@@ -49,6 +49,9 @@ function bumpFromFlags() {
     if (a === '--gap' && argv[i + 1]) gaps.push(parseGapArg(argv[i + 1]));
   });
   if (gaps.length) bump.indexGaps = gaps;
+  // --auto: written by the Stop hook, not the agent. Logged as autoBump and never counts as
+  // the agent having bumped (see bumpRunning).
+  if (argv.includes('--auto')) bump.auto = true;
   return bump;
 }
 
