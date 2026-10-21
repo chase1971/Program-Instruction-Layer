@@ -1,62 +1,88 @@
-# Momentum handoff: FTC animation series (portal)
+# Momentum handoff: Build mode Phase 4 wired, white playground, Phase 5 next
 
-**Written:** 2026-10-19
-
-## Read first
-- `Manim Trial/fundamental_theorem_calculus.py` (4 scenes: FtcTriangleSquare, FtcAddedArea, FtcSqueezeProof, FtcPositionConnection)
-- `Manim Trial/build_ftc_series_page.py` (builds the review page, see below)
-- `agent docs/recipes/portal-math-video-examples.md` (render + wiring recipe), `Manim Trial/ANIMATION_STYLE_RECIPE.md`
-- Portal: `School Scrips/student-portal/src/features/video-examples/fundamentalTheoremGuide.ts`, test `src/test/fundamentalTheoremGuide.test.ts`
+**Written:** 2026-10-20 (night). Valid for today's continuation only.
+**Nothing is committed or pushed.** Repos with Build work: Programs (docs-server route), Macro App, student-portal, canvas-kit, Math App Studio. Commit only on "pull", "put on GitHub", or end of session.
 
 ## Objective and phase
-Chase is reworking the four-clip Fundamental Theorem of Calculus animation so the logic builds
-the way he teaches it (his Word-doc narrative: displacement = area under v(t); Riemann sum
-approximates it; limit = definite integral; FTC links integral to antiderivatives).
-**Clips 1 and 2 are done, rendered, wired, tests green. Clips 3 (proof) and 4 are next.**
-Review page: http://127.0.0.1:8765/scratch/fundamental-theorem-calculus.html (also the portal
-tile "Fundamental Theorem of Calculus"). Chase approved clip 1 ("looks good"); clip 2 ending was
-just revised and he has not yet reviewed the final render.
+
+Chase is building **Build mode** in the Macro App Teacher Console: the local student portal (`127.0.0.1:5340`, Preview source) in an iframe, with a Studio-style move/resize overlay. The layout file `student-portal/src/features/build-playground/buildLayout.json` is source. Moves/resizes edit it. AI is only needed later to flip `planned` to `implemented`.
+
+Plan: `School Scrips/Macro App/docs/plans/BUILD_MODE_LAYOUT_EDITOR_PLAN.md`.
+
+- Phases 1–3: done (uncommitted kit + protocol).
+- Phase 4 overlay: done (uncommitted).
+- **Phase 4 Auto (toggle, panel, docs-server write, screen wiring): done, uncommitted.** Chase has opened Build on the real display twice and we fixed the phone-slot / empty-navy / orientation problems. The playground canvas is now **white**. `buildLayout.json` is at **revision 5** with one planned `text-1` that has been moved, so he did interact after the last visual fixes.
+- **Phase 5 (AI recipe) is NEXT** unless he reports the phone still looks wrong.
+- Phase 6 (formal visible trial, ask before any launch) remains.
+
+## Chase's desired feel
+
+- Head-mounted gyro mouse + dwell click + speech-to-text. Big targets, no hover-only UI, no typing flows. Modals never close on backdrop click. Small label-sized buttons. No ephemeral success feedback. No em dashes.
+- Never show anything on his screen without asking. Permission is per run, not per session.
+- Build must occupy the **same phone slot** as Preview. Same bezel, same landscape spacer, same orientation state. He said they "don't know each other's orientation" and that was a real bug, not a preference.
+- The playground should feel like a **white testing page** he can play on, not a navy/blue dead phone. He asked "can we build an app that it can open" with a white background. That is the existing playground, not a new app.
+- He needs to be able to **do something**: Add text box, move it, Refresh under the phone. He asked about Reset; Preview never had Reset under the phone. Panel Reload is enough. Do not add a Reset unless he asks again.
 
 ## Accepted decisions
-- Use **s(t)** for position (not p). Never show the position function/graph before it is derived.
-- Clip 1 (done, approved): v(t)=2t only -> triangle (base T, height 2T) -> A(T)=∫0^T 2t dt ->
-  =½(T)(2T)=T² -> then slide left, draw s(t)=t² graph -> at T=10 both give 100 m. No duplicate
-  area formula on top.
-- Clip 2 (done, awaiting review): v(t)=t(10-t), no geometry formula -> left-Riemann rectangles
-  n=5,10,20,40 with readout (160.00 ... 166.56) -> limit -> ∫0^10 v dt -> "displacement = final
-  position minus initial position" = s(10)-s(0) -> "need s(t)" (s(t)=?) -> antiderivative
-  s'(t)=v(t) -> s(t)=5t²-t³/3, s(10)-s(0)=166.67-0 matches sums. 11 steps, hold 40.71 s.
-- Clip 3 = the proof. Plan (proposal Chase accepted in outline): the strip beats (A(t+h)-A(t) ≈
-  v(t)h, divide by h, A'(t)=v(t)) that were REMOVED from old clip 2 move to the start of clip 3,
-  ahead of the squeeze (lower/upper rectangles). Old strip code is in git history
-  (`git log -p -- "Manim Trial/fundamental_theorem_calculus.py"`, the pre-2026-10-19 FtcAddedArea).
-  Clip 4 ties it together: s and A both have derivative v, differ by a constant, so area = position
-  change; position is an antiderivative of velocity. Chase has NOT yet reviewed/approved the exact
-  clip 3 and 4 content; confirm with him or show the plan before big rewrites.
 
-## Rejected
-- Showing the position graph or formula in clip 2 before deriving it ("if you don't know the
-  position function you can't draw it").
-- The "sums approached 166.67 ... why? that is the proof" ending (replaced by displacement/antiderivative).
-- Formulas duplicated in two places on the board (clip 1).
+- One shared phone chrome: `TeacherConsolePreviewPhoneChrome.tsx`. Preview embed and Build stage are both children of that bezel. Same CSS vars (`studentPortalPreviewChromeWindow` / `studentPortalPreviewFrameChromeWindow`).
+- Keep the 100px landscape spacer. Hiding it was what put Build in a different screen position than Preview.
+- Build forces landscape on enter and while `inBuild` is true. Portrait is disabled on the controls bar while Build is on. Leaving Build leaves aspect at landscape (synced).
+- Overlay **ghosts draw from the layout file even before the iframe sends a manifest**. `stageLayerStyle` is the manifest stage box, or `{ inset: 0 }` until then. The plan's older "boxes only after the manifest arrives" line is stale.
+- Drag still waits for `canEdit` (bridge live). Add text box and nudges work from the panel without the bridge.
+- `isBuildPlaygroundAvailable()` is Vite DEV and (`isInstructorDevice()` or `isTeacherConsolePreviewUrl()`). The iframe is a separate webContents; instructor localStorage can be empty on first paint.
+- Docs server is the only layout writer: `GET`/`POST /__layout/build/<appId>` in `scripts/serve-programs-docs.js` via `scripts/build-layout-docs-route.js`. Allowlist `build-playground`. Bumps `revision` on every write. Renderer `buildLayoutService.ts` throws if the docs server is down. Never silent.
+- After a write, `useTeacherConsoleBuildMode` replaces `layout` with the server file so drafts can clear.
+- Bounds sync stays `isPreviewActive && !buildMode`, plus `buildModeRef` so a delayed rAF cannot re-attach the native view.
+- Refresh under the phone in Build calls `build.reload`.
+- White playground: `#fff` on html/body/shell/stage/iframe fallback. Ghosts stay light blue dashed. Implemented playground text is dark-on-white.
+- `teacher-console-workspaces.css` is over cap (1149). `teacher-console.css` is 866. Do not add to either. Portal `App.tsx` is over 700; do not touch it further.
 
-## Implementation state
-- Both clips rendered (`-r 1080,1350 --fps 30`), MP4 + steps JSON copied to
-  `student-portal/src/assets/video-examples/fundamental-theorem-calculus/`, guide hold constants
-  updated (triangle 26.25, added-area 40.71), clip 2 tab label "2 · Riemann sums to integral",
-  test pause counts [6, 11, 6, 9], vitest 3/3 green. Layout audit clean on both.
-- Scratch page rebuilt via `Manim Trial/.venv/Scripts/python.exe build_ftc_series_page.py`
-  (CLIPS list in that file holds hold seconds + labels; update when clips 3/4 change). A
-  transient write error occurred once; retry fixed it.
-- Nothing committed or pushed. Scorecard bumps logged for both clips.
-- Squeeze and position clips still the old versions (hold 20.27 / 28.48; test counts 6 and 9).
+## Rejected / corrected (do not rediscover)
 
-## Constraints
-- Done = rendered + copied into portal + guide holds + test passes (no handoff of "go render").
-- No GUI launches, no Netlify deploy, no em dashes, ask-before-assume (one question).
-- Python edits through bash heredocs mangled backslashes (`\D`, `\t`); use the Edit tool or raw strings.
-- Layout audit gotchas: keep tall integral lines separated (~0.8 units), axis label `t` placed RIGHT of axis end.
+- **Do not give Build its own bezel, holder scale, or `--build` class that hides the spacer.** That made a raw rectangle, extra vertical scroll, and a notch "inside the frame." First visual complaint.
+- **Do not treat "build a white testing app" as a new portal tile or desktop app.** The playground is that app. A second implementation is how this tree decays.
+- **Do not restore `buildLayout.json` to empty.** It is his live testing file (revision 5, `text-1` moved). Empty-by-design was only the initial proof seed.
+- **Do not rewire `useBuildStageScale`.** It is leftover and unused after shared chrome. Preview is 1:1 chrome, not a scaled 932×360 stage.
+- Tailwind in Macro: rejected. Handles are plain `ck-editor-` CSS in canvas-kit.
+- "Align overlay with iframe using RectPct alone" was wrong. Manifest `stage` box exists because the portal insets for the landscape notch.
+- Offscreen Electron (`webPreferences.offscreen: true`) is how hidden pointer tests work. Plain `show:false` coalesces events.
+
+## Current implementation state (all uncommitted)
+
+**Programs:** `scripts/build-layout-docs-route.js` + test, `serve-programs-docs.js` GET/POST `/__layout/build/<appId>`, `agent docs/rules/html-delivery.md` note.
+
+**Macro `renderer/src`:**
+- Shared chrome: `components/teacher-console/TeacherConsolePreviewPhoneChrome.tsx` (embed wraps `EmbeddedBrowserPanel` in it; Build wraps `TeacherConsoleBuildStage` in it from `ConsolePreviewWorkspaceScreen.tsx`)
+- Stage: `components/teacher-console/build/` (`TeacherConsoleBuildStage`, `BuildStageElementBox`, `BuildStageStatus`, `TeacherConsoleBuildPanel` lazy)
+- Hooks: `useBuildBridge`, `useBuildNativeDetach`, `useBuildStageEditing`, `useTeacherConsoleBuildMode` (public API `buildMode` / `buildAvailable`; internals `inBuild` / `canBuild` / `layoutLoadKey` for the effect-loop audit)
+- Unused leftover: `useBuildStageScale.ts`
+- Service + file utils: `services/buildLayoutService.ts`, `utils/buildMode/*`
+- Styles: `teacher-console-build-stage.css`, `teacher-console-build-panel.css`
+- Controls: Build button on `TeacherConsolePreviewControlsBar.tsx` (Preview + Admin only)
+- Plan: `docs/plans/BUILD_MODE_LAYOUT_EDITOR_PLAN.md` (Phase 4 overlay result + Auto result, including shared chrome row)
+
+**student-portal:** `src/features/build-playground/` (view, bridge, access, CSS, layout JSON, tests). Access test covers TC preview URL. Route `#/build-playground`. Also earlier Phase 2 edits in `App.tsx` and `usePortalRoute.ts`.
+
+**canvas-kit / Math App Studio:** Phase 3–4 handle CSS and Studio re-exports, still uncommitted.
+
+**Verification already done (headless):**
+- Macro `tsc -p tsconfig.app.json` clean after shared chrome.
+- ESLint clean on the Build wiring (pre-existing `skipGatedTutorials` unused warning on the screen).
+- Macro Build-mode tests 51 passed; portal playground 12 passed (was 8, plus 4 access tests).
+- `check-file-size.js` pass.
+- Docs-server GET/POST was exercised earlier in the Auto chat.
+
+**Not verified on the real display after the last two fixes** (shared chrome + white canvas). Chase has not said "this looks right." He also has not complained again, and the layout file moved, which is evidence he used Add/drag. Formal Phase 6 still needs permission before any agent launch.
+
+## Open questions / constraints
+
+- If the phone still sits wrong or the iframe is still navy, fix the shared-chrome / playground CSS path first. Do not start Phase 5 on top of a dead canvas.
+- Student-portal `npx tsc --noEmit` has many unrelated pre-existing errors (logic, transformations, quiz). Ignore those; playground tests are the check.
+- Macro depends on sibling `canvas-kit` at `../../canvas-kit`. No CI-standalone fallback.
+- Protocol change touched portal and Macro; commit them together when he says so.
+- Visible launch still requires asking first, every time.
 
 ## Exact next step
-Ask Chase (or propose briefly) whether clip 3 should open with the moved strip beats then the
-squeeze, then rework `FtcSqueezeProof` accordingly (final render, assets, guide hold, test, rebuild page).
+
+Start **Phase 5** from the plan: one recipe in `agent docs/recipes/` plus an INDEX row plus a keyword row in Macro and student-portal `AGENTS.md`, so "put this text box in the app" reads `buildLayout.json`, consumes `planned` rects as real elements, flips `status` to `implemented`, runs headless tests, and hands Chase a flat reload-and-expect statement. Never deploy. Never open a window. If Chase's first message in the fresh task is a visual complaint about Build, fix that instead and leave Phase 5.

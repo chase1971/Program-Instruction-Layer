@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-20 — Build mode Phase 5 recipe and proof save
+
+**Repos touched:** `Programs/` root, `School Scrips/Macro App`, `School Scrips/student-portal`, `School Scrips/canvas-kit`, `School Scrips/Factoring Guided Practice`, `School Scrips/logic-app`
+
+**Files changed:** `agent docs/recipes/build-mode-implement-planned.md`, `agent docs/recipes/INDEX.md`, Macro and student-portal `AGENTS.md` keyword rows, `scripts/build-layout-docs-route.js`, `serve-programs-docs.js`. App code saved in those repos (see their SESSIONS).
+
+**What worked:** Phase 5 recipe so "put this text box in the app" reads `buildLayout.json`, consumes `planned` rects, and flips them to `implemented`. Phases 1-4 Build proof (overlay, panel, shared phone chrome, playground, canvas-kit editor) saved the same night.
+
+**Current state:** Green — proof built and uncommitted work is this save. Phase 6 visible trial not started. Chase is not ready to try yet.
+
+**File size flag:** student-portal `App.tsx` is 708. Macro `teacher-console-workspaces.css` and `teacher-console.css` remain over cap (not edited this save).
+
+**Next session:** Phase 6 visible trial when Chase asks: add and place a box in Build, say put this text box in the app, reload, check Preview.
+
 ## 2026-10-13 — Factoring Guided Practice momentum + session finalize
 
 **Repos touched:** `Programs/` root, `School Scrips/Factoring Guided Practice`, `School Scrips/student-portal` (app detail in those SESSIONS)

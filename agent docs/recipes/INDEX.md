@@ -83,6 +83,7 @@ by enough apps that a shared home earns its keep, or hasn't been triaged this wa
 | "assignment isn't available", "deactivated but tile still shows", "error cut off in header", "access off inside quiz", "full page error not overlay" | [portal-assignment-gate.md](./portal-assignment-gate.md) | ✅ | student-portal exit tickets, Matrix tutorial, future portal apps |
 | "instruction box", "tutorial tip", "blue text box", "how to do hints in the portal" | [portal-instruction-box.md](./portal-instruction-box.md) | ✅ | student-portal Logic Homework, Practice intro; Matrix guided practice (Tailwind twin) |
 | **"save progress"**, **"pause resume"**, **"save on every click"**, pick up mid-problem, Start / Resume | [portal-pause-resume.md](./portal-pause-resume.md) | ✅ | All student-portal assignments — exemplar Transformations + Logic embed hooks |
+| **"put this text box in the app"**, "I've made some changes, reload it", implement a Build planned box, flip planned to implemented | [build-mode-implement-planned.md](./build-mode-implement-planned.md) | ✅ | Teacher Console Build mode + student-portal `build-playground`. Not a new portal app |
 
 ## Where everything else went (2026-08-08)
 

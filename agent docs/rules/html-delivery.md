@@ -92,6 +92,11 @@ page** — e.g. `scratch/portal-risk-review.html` → `agent docs/scratch/portal
 `agent docs/scratch/factoring-guided-layout-latest.json` (debounced from the portal while Move box
 is on and the layout differs from baked). Agents bake from `layout` in that file — no Copy paste.
 
+**Teacher Console Build mode** — `GET`/`POST /__layout/build/<appId>` reads and writes that app's
+source `buildLayout.json` (allowlisted in `scripts/build-layout-docs-route.js`). The proof app is
+`build-playground`. Every write bumps `revision`. Failures are visible in the Build panel; do not
+add a second write path.
+
 Other writes are limited the same way: bad paths 404; `GET` on POST-only endpoints is 405. Reading
 back is the static server (it serves `.json`).
 

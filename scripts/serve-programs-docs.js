@@ -9,6 +9,7 @@
  * - POST /__registry/sync-pull-registry → agent docs/sync-pull-registry.json
  * - POST /__layout/factoring-guided-portal → agent docs/scratch/factoring-guided-layout-latest.json
  * - POST /__layout/factoring-guided-portal/journal → agent docs/scratch/factoring-guided-layout-journal.json
+ * - GET/POST /__layout/build/<appId> → that app's source buildLayout.json (allowlisted)
  * Detail: agent docs/rules/html-delivery.md
  */
 'use strict';
@@ -16,6 +17,12 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const {
+  resolveBuildLayoutAppId,
+  resolveBuildLayoutPath,
+  isBuildLayout,
+  layoutForWrite,
+} = require('./build-layout-docs-route');
 
 const PORT = 8765;
 const DOCS = path.join(__dirname, '..', 'docs');
@@ -77,7 +84,7 @@ function jsonCorsHeaders() {
   return {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
 }
@@ -237,6 +244,93 @@ function handleSaveFactoringLayoutJournal(req, res) {
   });
 }
 
+function readJsonBody(req, maxBytes) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    let tooBig = false;
+    req.on('data', (chunk) => {
+      body += chunk;
+      if (body.length > maxBytes) {
+        tooBig = true;
+        req.destroy();
+      }
+    });
+    req.on('end', () => {
+      if (tooBig) {
+        reject(Object.assign(new Error('too large'), { statusCode: 413 }));
+        return;
+      }
+      try {
+        resolve(JSON.parse(body || '{}'));
+      } catch {
+        reject(Object.assign(new Error('bad json'), { statusCode: 400 }));
+      }
+    });
+    req.on('error', (err) => {
+      reject(err);
+    });
+  });
+}
+
+function sendJson(res, statusCode, payload) {
+  res.writeHead(statusCode, jsonCorsHeaders());
+  res.end(JSON.stringify(payload));
+}
+
+function handleBuildLayout(req, res, appId) {
+  const target = resolveBuildLayoutPath(appId);
+  if (!target) {
+    sendJson(res, 404, { ok: false, error: `unknown Build app: ${appId}` });
+    return;
+  }
+
+  if (req.method === 'GET') {
+    let raw;
+    try {
+      raw = fs.readFileSync(target, 'utf8');
+    } catch (err) {
+      sendJson(res, 500, { ok: false, error: String(err.message || err) });
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      sendJson(res, 500, { ok: false, error: 'layout file is not valid json' });
+      return;
+    }
+    if (!isBuildLayout(parsed)) {
+      sendJson(res, 500, { ok: false, error: 'layout file has an invalid shape' });
+      return;
+    }
+    sendJson(res, 200, { ok: true, layout: parsed });
+    return;
+  }
+
+  readJsonBody(req, MAX_LAYOUT_BODY)
+    .then((incoming) => {
+      let current = null;
+      try {
+        current = JSON.parse(fs.readFileSync(target, 'utf8'));
+      } catch (err) {
+        sendJson(res, 500, { ok: false, error: String(err.message || err) });
+        return;
+      }
+      const next = layoutForWrite(current, incoming, appId);
+      if (!next.ok) {
+        sendJson(res, 400, { ok: false, error: next.error });
+        return;
+      }
+      fs.writeFileSync(target, JSON.stringify(next.layout, null, 2) + '\n', 'utf8');
+      console.log(`build layout saved: ${appId} revision ${next.layout.revision}`);
+      sendJson(res, 200, { ok: true, layout: next.layout });
+    })
+    .catch((err) => {
+      const status = err.statusCode || 500;
+      sendJson(res, status, { ok: false, error: String(err.message || err) });
+    });
+}
+
 function handleSaveFactoringLayout(req, res) {
   let body = '';
   let tooBig = false;
@@ -285,6 +379,21 @@ function handleSaveFactoringLayout(req, res) {
 
 const server = http.createServer((req, res) => {
   let rel = decodeURIComponent((req.url || '/').split('?')[0]);
+
+  const buildAppId = resolveBuildLayoutAppId(rel);
+  if (buildAppId) {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, jsonCorsHeaders());
+      res.end();
+      return;
+    }
+    if (req.method !== 'GET' && req.method !== 'POST') {
+      sendJson(res, 405, { ok: false, error: 'GET or POST only' });
+      return;
+    }
+    handleBuildLayout(req, res, buildAppId);
+    return;
+  }
 
   if (rel === FACTORING_LAYOUT_JOURNAL_SAVE_PATH) {
     if (req.method === 'OPTIONS') {
