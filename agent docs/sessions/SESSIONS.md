@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-21 — Fine-tune pipeline docs built (Cursor)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/student-session-kit`, `School Scrips/Macro App`
+
+**Files changed:** `Manim Trial/docs/FINE_TUNE_BRIEF.md`, `FINE_TUNER.md`, updates to `FINE_TUNE_PIPELINE.md` (Cursor CSV usage, cost weighting, pointer-only spec), `.cursor/.claude/.codex` `manim-fine-tuner` stubs, `.gitignore` allowlist for those agent folders, `agent docs/INDEX.md`.
+
+**What worked:** Reviewed the plan from Cursor's side. Local Cursor DB has no token counts; the dashboard `usage-events` CSV is the source, with no chat ID, so benchmark runs cannot overlap other Cursor chats. Built the builder brief, the short fine-tuner spec, and the three tool stubs. Cursor stub pins `claude-opus-5-5[effort=medium]` (exact ID unverified until first run).
+
+**Current state:** Green — docs built, never run on a clip. Same-night save also includes Gauss-Jordan Method Homework in portal, session-kit, and Macro (see those SESSIONS).
+
+**File size flag:** None.
+
+**Next session:** Read-only baseline scan of past Manim transcripts, then one real clip through arm B. First Cursor fine-tune: confirm the subagent card names Opus.
+
 ## 2026-10-21 — Fine-tune pipeline plan, handoff and tracking cleanup
 
 **Repos touched:** `Programs/` root (other agents this day also touched `School Scrips/student-portal` and `School Scrips/Macro App` for the Gauss-Jordan homework; see their SESSIONS)
