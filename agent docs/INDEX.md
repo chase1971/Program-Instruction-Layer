@@ -23,6 +23,8 @@ never touches this file.
 | seating chart save · wipe on reopen · sticky room · attendance save · persistence | [School Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md](../School%20Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md) |
 | seating chart retired course · active courses · "why is it pulling this course" | seating-chart `AGENTS.md` § Macro integration |
 | student portal · student codes · exit tickets · custom quiz · "can students cheat" · Student Progress tab · how an app becomes a grade | [School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md](../School%20Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md) |
+| **credit has not saved** · logic extra credit circuit · wires crossing · A into the bottom · **intro dimming** · left/right of homework not dimmed · navy header still bright | student-portal `AGENTS.md` extra credit + intro dimming rows |
+| **best score** · first attempt · most recent Logic grade · Vivian / retake grade · homework always best | student-portal `AGENTS.md` Logic homework grade row |
 | **deploy the portal** · push to netlify · **update supabase** · push migration · ship student site · netlify credits · deploy budget | pipeline doc § Shipping changes to production · `student-portal/docs/netlify-deploy-counter.json` |
 | building an interaction — drag, dwell, hover, overlay, modal, canvas, animation, toggle, scroll | [recipes/INDEX.md](./recipes/INDEX.md) |
 | **teleport button** · preview shortcut · white space beside a home menu | [recipes/margin-teleport-buttons.md](./recipes/margin-teleport-buttons.md) |

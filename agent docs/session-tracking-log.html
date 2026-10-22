@@ -56,28 +56,136 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1378</dd></div>
-      <div><dt>Tasks today</dt><dd>22</dd></div>
+      <div><dt>Total tasks</dt><dd>1390</dd></div>
+      <div><dt>Tasks today</dt><dd>34</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 171 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>171k</dd></div>
       <div><dt>Total billed</dt><dd>528.4M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">1:49 PM · Wednesday, Oct 21, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:02 PM · Wednesday, Oct 21, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>23</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>2</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>26</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for Gauss-Jordan Method Homework<span class="gap-task">1:16 PM · Wednesday, Oct 21, 2026 — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</span></li><li><code>Manim Trial/docs/FINE_TUNE_PIPELINE.md</code> — Cursor usage row points at cursor-token-scan.py, which now returns zeros; dashboard CSV export is the real source<span class="gap-task">1:12 PM · Wednesday, Oct 21, 2026 — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for You lost me / I don't get it button<span class="gap-task">12:33 PM · Wednesday, Oct 21, 2026 — Gauss-Jordan You lost me button is yellow, not white or navy</span></li><li><code>School Scripts/Macro App/AGENTS.md</code> — no row for category weights<span class="gap-task">8:29 AM · Wednesday, Oct 21, 2026 — Gradebook category weights can be set to 12</span></li><li><code>BUILD_MODE_LAYOUT_EDITOR_PLAN.md</code> — 'RectPct alone' stage-alignment assumption was wrong (portal shell insets the stage); fixed in plan<span class="gap-task">8:08 PM · Tuesday, Oct 20, 2026 — Build mode Phase 4 overlay: plain-CSS shared handles (pixel-identical), canvas-kit wired into Macro, Build stage (iframe + overlay + bridge + native detach) verified headlessly against live portal</span></li><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)<span class="gap-task">8:06 PM · Tuesday, Oct 13, 2026 — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span></li><li><code>agent docs INDEX</code> — no row for Teacher Console preview auto-orientation (portalPreviewRouteAspect.ts) - found by grep<span class="gap-task">7:55 PM · Tuesday, Oct 13, 2026 — Logic Gates: starts on truth table; video panel sets ?view=gates-watch so Teacher Console flips preview to portrait, back to landscape on leaving</span></li><li><code>Macro App AGENTS.md</code> — portal preview frame size / StepNudgeControl not in keyword table<span class="gap-task">7:17 PM · Tuesday, Oct 13, 2026 — Portal preview frame +/- buttons: hover-hold ticks every 500ms (StepNudgeControl)</span></li><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li><li><code>agent docs/recipes/INDEX.md</code> — no row for adding a conics clip (hyperbola); had to read the ellipse scenes and conicsGuide.ts by hand<span class="gap-task">3:15 PM · Sunday, Oct 11, 2026 — Hyperbola: Horizontal clip (Manim hyperbola_horizontal.py) rendered and wired into the Conics portal gallery with parts and tests</span></li><li><code>agent docs/INDEX.md</code> — no row for adding a new portal video tile (routes, first-paint, tile, access map) - had to trace Linear Inequalities guide by grep<span class="gap-task">5:09 PM · Tuesday, Oct 6, 2026 — Composite Examples clip (composite_domain.py) built, rendered 1080x1350, wired into student portal as M1314 tile; Manim set up on this PC</span></li><li><code>renderer/src/__tests__/reactEffectLoopRisk.test.ts</code> — cannot see effects that write state indirectly through an external store, or unstable deps that are not function-named<span class="gap-task">5:37 PM · Monday, Sep 28, 2026 — Found and fixed the Macro App renderer render loop: unstable browser.hide dep + slotSessionStore notifying on no-op patches; also stabilized importContextRefs</span></li><li><code>Macro App docs/LOGGING.md</code> — does not say that main.js's renderer console-message forward is broadcast back into moduleLogStore, which re-prints every line to the console - the round trip is a feedback loop and nothing routed me to it<span class="gap-task">3:12 PM · Monday, Sep 28, 2026 — Macro App: broke main-to-renderer console log feedback loop (one console.error became infinite growing errors); fixed gradebook warmup pool deadlock (serialized activate re-entered its own slot queue); Enter Grades readiness now requires isLoading=false so Pull cannot un-grey mid-load</span></li></ul>
+      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade<span class="gap-task">6:49 PM · Wednesday, Oct 21, 2026 — Documented Logic Homework grades as first completed attempt, not best</span></li><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed<span class="gap-task">6:48 PM · Wednesday, Oct 21, 2026 — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span></li><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row<span class="gap-task">6:27 PM · Wednesday, Oct 21, 2026 — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for Gauss-Jordan Method Homework<span class="gap-task">1:16 PM · Wednesday, Oct 21, 2026 — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</span></li><li><code>Manim Trial/docs/FINE_TUNE_PIPELINE.md</code> — Cursor usage row points at cursor-token-scan.py, which now returns zeros; dashboard CSV export is the real source<span class="gap-task">1:12 PM · Wednesday, Oct 21, 2026 — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for You lost me / I don't get it button<span class="gap-task">12:33 PM · Wednesday, Oct 21, 2026 — Gauss-Jordan You lost me button is yellow, not white or navy</span></li><li><code>School Scripts/Macro App/AGENTS.md</code> — no row for category weights<span class="gap-task">8:29 AM · Wednesday, Oct 21, 2026 — Gradebook category weights can be set to 12</span></li><li><code>BUILD_MODE_LAYOUT_EDITOR_PLAN.md</code> — 'RectPct alone' stage-alignment assumption was wrong (portal shell insets the stage); fixed in plan<span class="gap-task">8:08 PM · Tuesday, Oct 20, 2026 — Build mode Phase 4 overlay: plain-CSS shared handles (pixel-identical), canvas-kit wired into Macro, Build stage (iframe + overlay + bridge + native detach) verified headlessly against live portal</span></li><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)<span class="gap-task">8:06 PM · Tuesday, Oct 13, 2026 — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span></li><li><code>agent docs INDEX</code> — no row for Teacher Console preview auto-orientation (portalPreviewRouteAspect.ts) - found by grep<span class="gap-task">7:55 PM · Tuesday, Oct 13, 2026 — Logic Gates: starts on truth table; video panel sets ?view=gates-watch so Teacher Console flips preview to portrait, back to landscape on leaving</span></li><li><code>Macro App AGENTS.md</code> — portal preview frame size / StepNudgeControl not in keyword table<span class="gap-task">7:17 PM · Tuesday, Oct 13, 2026 — Portal preview frame +/- buttons: hover-hold ticks every 500ms (StepNudgeControl)</span></li><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Wednesday, Oct 21, 2026 <span class="day-count">22 tasks</span></h2>
+      <h2 class="day-title">Wednesday, Oct 21, 2026 <span class="day-count">34 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:02 PM — Gauss-Jordan homework auto-advances after each problem and is now 3 problems</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 13s active tool time<br>3m 20s since previous task (includes idle)<br>Chat so far: 3 message(s), 22 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:58 PM — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span>
+      <span class="pill p0">Chat: 2 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 25s active tool time<br>1m 33s since previous task (includes idle)<br>Chat so far: 2 message(s), 8 KB transcript</p>
+      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:57 PM — Deployed LogicGate extra credit and Logic homework to Netlify</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 14s active tool time<br>5m 19s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:52 PM — Homework grades now keep the best completed run (Logic + other homework)</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 7s active tool time<br>2m 15s since previous task (includes idle)<br>Chat so far: 9 message(s), 167 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:49 PM — Documented Logic Homework grades as first completed attempt, not best</span>
+      <span class="pill p0">Chat: 8 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>50s active tool time<br>55s since previous task (includes idle)<br>Chat so far: 8 message(s), 153 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:48 PM — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span>
+      <span class="pill p0">Chat: 7 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 32s active tool time<br>2m 40s since previous task (includes idle)<br>Chat so far: 7 message(s), 122 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:46 PM — Extra credit correct +2 then enjoy survey (Yes / No / I don't know); migration 094 pushed.</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 58s active tool time<br>4m since previous task (includes idle)<br>Chat so far: 6 message(s), 98 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:42 PM — Extra credit: persist circuit, intro once, skip table after unlock, match Directions color.</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 17s active tool time<br>2m 20s since previous task (includes idle)<br>Chat so far: 5 message(s), 76 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:39 PM — A always wires to the top pin of a 2-input gate, B to the bottom.</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 45s active tool time<br>2m 51s since previous task (includes idle)<br>Chat so far: 4 message(s), 69 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:36 PM — Logic extra credit: new gates spawn clear of others; max two AND / OR / NOT.</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 9s active tool time<br>6m 11s since previous task (includes idle)<br>Chat so far: 3 message(s), 51 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:30 PM — Extra credit save banner no longer returns on refresh from leftover localStorage queue.</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 5s active tool time<br>3m 9s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:27 PM — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4h 20m active tool time<br>4h 20m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row</li></ul>
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">1:49 PM — Updated GJ homework survey copy: confidence, MyLab, two comments</span>
       <span class="pill p0">Chat: 8 msgs</span>

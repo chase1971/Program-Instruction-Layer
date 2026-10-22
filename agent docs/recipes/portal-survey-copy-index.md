@@ -37,6 +37,7 @@ Guided Practice post-survey, one-question “helpful?” surveys on video galler
 | Vector projections helpful | `…/video-examples/VectorProjectionsHelpfulSurvey.tsx` (inline options) | `precalc/vector-projections-helpful-survey` |
 | Conics helpful | `…/ConicsHelpfulSurvey.tsx` | `precalc/conics-helpful-survey` |
 | Domain & range examples helpful | `…/DomainRangeExamplesHelpfulSurvey.tsx` | `reference/domain-range-examples-helpful-survey` |
+| Logic Gates extra credit enjoy | `…/logic-homework/logicGatesEnjoySurveyCopy.ts` | `logic/gates-extra-credit-enjoy-survey` |
 
 To change wording: edit the **copy file**, ship portal (+ kit migration if RPC/options change).
 Macro App statistics for those apps read attempts from Supabase but **labels** often come from
