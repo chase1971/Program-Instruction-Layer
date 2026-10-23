@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynamic animation demo: standard form to y = mx + b</title>
+<style>
+  :root {
+    --ink: #172033; --gold: #A85D00; --blue: #12669A; --red: #C62828;
+    --muted: #475569; --line: #cbd5e1; --panel: #f8fafc; --accent: #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 1rem 1.25rem 3rem; background: #fff; color: var(--ink);
+         font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a.back { display: inline-block; margin-bottom: .5rem; color: var(--accent); font-size: 1.05rem; }
+  h1 { font-size: 1.5rem; margin: .2rem 0 .4rem; }
+  .banner { background: #fef9c3; border: 1px solid #fde047; border-radius: .5rem;
+            padding: .5rem .8rem; font-size: .95rem; margin-bottom: 1rem; max-width: 60rem; }
+  .inputs { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.4rem; margin-bottom: .8rem; }
+  .inputs label { font-size: 1.6rem; font-family: "Latin Modern Math","STIX Two Math","Cambria Math",serif; }
+  .inputs input { width: 6rem; font-size: 1.8rem; padding: .35rem .5rem; margin-left: .4rem;
+                  border: 2px solid var(--line); border-radius: .5rem; text-align: center; }
+  .inputs input:focus { outline: 3px solid #93c5fd; border-color: var(--accent); }
+  .examples { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: 1rem; }
+  .examples span { color: var(--muted); }
+  button { font: inherit; font-size: 1.15rem; padding: .55rem 1.1rem; border-radius: .6rem;
+           border: 2px solid var(--accent); background: #fff; color: var(--accent); cursor: pointer; }
+  button.primary { background: var(--accent); color: #fff; }
+  button:disabled { opacity: .4; cursor: default; }
+  .msg { color: var(--red); min-height: 1.4rem; margin: 0 0 .5rem; font-size: 1.05rem; }
+
+  .stage { border: 2px solid var(--line); border-radius: .8rem; background: #fff;
+           padding: 1rem 1.2rem 1.4rem; min-height: 28rem; max-width: 60rem; }
+  .caption { font-size: 1.25rem; color: #0f172a; min-height: 2.8rem; margin-bottom: 1rem; }
+  .caption.enter { animation: fadein .5s both; }
+  .count { color: var(--muted); font-size: .95rem; float: right; }
+  .controls { display: flex; flex-wrap: wrap; gap: .7rem; margin: .9rem 0 1.2rem; }
+
+  /* the board */
+  .board { font-family: "Latin Modern Math","STIX Two Math","Cambria Math","Times New Roman",serif;
+           font-size: 2.3rem; }
+  .row { display: flex; align-items: flex-start; gap: .35em; margin: .5em 0; min-height: 1.9em; }
+  .row.final { align-items: center; }
+  .row.old { opacity: .5; }
+  .row.dimlater { animation: dim .6s both; }
+  .op, .eqs { min-height: 1.9em; display: flex; align-items: center; padding: 0 .1em; }
+  .cell { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .cell.hasneg { padding-left: .55em; }
+  .core { min-height: 1.9em; display: flex; align-items: center; white-space: nowrap; }
+  .hang { position: absolute; left: .05em; top: .55em; }
+  .hang.onfrac { top: .35em; }
+  .neg { display: inline-block; width: .38em; height: .065em; background: currentColor;
+         vertical-align: .3em; margin-right: .06em; }
+  .fr { display: inline-flex; flex-direction: column; align-items: center; font-size: .8em; line-height: 1.1; }
+  .fr .t { padding: 0 .15em; border-bottom: .06em solid currentColor; }
+  .fr .b { padding: 0 .15em; }
+  .bar { align-self: stretch; height: 0; border-top: .06em solid var(--ink); margin: .1em 0 0; }
+  .div, .under { color: var(--gold); font-size: .8em; min-height: 1.2em; white-space: nowrap; }
+  .under { margin-top: .1em; }
+  .cell.struck::after { content: ""; position: absolute; inset: -2% -8%;
+      background: linear-gradient(to top right, transparent calc(50% - 2.5px), var(--red) calc(50% - 2.5px),
+                                  var(--red) calc(50% + 2.5px), transparent calc(50% + 2.5px)); }
+  .cell.struck.fresh::after { animation: wipe .6s both; }
+  .row.final .tag-m { color: var(--blue); }
+  .row.final .tag-b { color: var(--gold); }
+  .chips { margin-top: 1rem; font-size: 1.7rem; display: flex; flex-wrap: wrap; gap: .8rem 2rem; align-items: center; }
+  .chip { display: inline-flex; align-items: center; gap: .5em; }
+  .chip.m { color: var(--blue); } .chip.b { color: var(--gold); }
+  /* the negative dash hangs off its number, so the number needs to be the positioned parent */
+  .chip .core { position: relative; padding-left: .55em; }
+  .chip .hang { top: .5em; }
+  .chip .hang.onfrac { top: .3em; }
+  .chip small { font-family: system-ui, sans-serif; font-size: .55em; color: var(--muted); }
+
+  .enter { animation: fadein .7s both; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+  @keyframes dim { to { opacity: .5; } }
+
+  details { margin-top: 1.4rem; max-width: 60rem; border: 1px solid var(--line); border-radius: .6rem;
+            padding: .6rem 1rem; background: var(--panel); }
+  summary { cursor: pointer; font-size: 1.15rem; padding: .3rem 0; }
+  pre { background: #0f172a; color: #e2e8f0; padding: .8rem 1rem; border-radius: .5rem; overflow-x: auto;
+        font-size: .95rem; }
+  details p, details li { font-size: 1.02rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+<a class="back" href="/pages.html">&larr; All pages</a>
+<h1>Dynamic animation demo: standard form to y = mx + b</h1>
+<div class="banner">Scratch demo, 2026-10-23. Type any whole numbers for A, B and C and the animation is built from them
+  on the spot. This runs in the browser; it is not a Manim video, and it is not wired into any app.</div>
+
+<div class="inputs">
+  <label>A <input id="inA" type="number" step="1" value="2" inputmode="numeric"></label>
+  <label>B <input id="inB" type="number" step="1" value="3" inputmode="numeric"></label>
+  <label>C <input id="inC" type="number" step="1" value="12" inputmode="numeric"></label>
+  <button class="primary" id="apply">Apply and play</button>
+</div>
+<div class="examples"><span>Try:</span>
+  <button data-ex="2,3,12">2x + 3y = 12</button>
+  <button data-ex="3,-6,12">3x &minus; 6y = 12</button>
+  <button data-ex="-4,2,6">&minus;4x + 2y = 6</button>
+  <button data-ex="5,1,-10">5x + y = &minus;10</button>
+  <button data-ex="0,4,8">4y = 8</button>
+</div>
+<p class="msg" id="msg"></p>
+
+<div class="stage">
+  <span class="count" id="count"></span>
+  <div class="caption" id="caption"></div>
+  <div class="board" id="board"></div>
+</div>
+<div class="controls">
+  <button id="back">Back</button>
+  <button id="next" class="primary">Next</button>
+  <button id="play">Play all</button>
+  <button id="restart">Restart</button>
+</div>
+
+<details id="how" open>
+  <summary>How this works</summary>
+  <p>There is no video file. One function, <code>plan(A, B, C)</code>, looks at the numbers and decides which
+    steps are needed and what each row says. A second function, <code>render(stage)</code>, draws the board for that
+    step. Change a number and the whole animation is rebuilt, including skipping steps that do not apply
+    (no <i>x</i> term when A is 0, nothing to divide when B is 1) and reducing the fractions.</p>
+  <p>What the code decided for the numbers above:</p>
+  <pre id="dump"></pre>
+  <p>The Manim clips look better and are easier to polish, but they are drawn ahead of time, so they can only
+    show the numbers they were rendered with. A page like this can show any numbers, but every animation has to be
+    rebuilt in the browser as code, with its own layout checks.</p>
+</details>
+
+<script>
+(function () {
+  var gcd = function (a, b) { return b ? gcd(b, a % b) : Math.abs(a); };
+  var frac = function (n, d) { if (d < 0) { n = -n; d = -d; } var g = gcd(n, d) || 1; return { n: n / g, d: d / g }; };
+  var MINUS = '−';
+  var NEG = '<span class="neg"></span>';
+  var int = function (n) { return frac(n, 1); };
+
+  /* ---------- text helpers ---------- */
+  function plainCoef(n, v) { var a = Math.abs(n); return (n < 0 ? MINUS : '') + (a === 1 ? '' : a) + v; }
+  function fracText(f) { return f.d === 1 ? (f.n < 0 ? MINUS : '') + Math.abs(f.n) : (f.n < 0 ? MINUS : '') + Math.abs(f.n) + '/' + f.d; }
+
+  /* ---------- the plan: all the decisions come from the numbers ---------- */
+  function plan(A, B, C) {
+    var m = frac(-A, B), b = frac(C, B);
+    var steps = ['problem'];
+    if (A !== 0) steps.push('subtract');
+    if (B !== 1) steps.push('divide');
+    steps.push('result');
+    var finalIsOwnRow = B !== 1;
+    var rows = [];
+    // row 0: the standard form equation
+    rows.push({
+      L: [{ c: int(A), v: 'x' }, { c: int(B), v: 'y' }],
+      R: [{ c: int(C), v: '', tag: (A === 0 && B === 1) ? 'b' : '' }]
+    });
+    // row 1: after subtracting Ax from both sides (only when A is not 0)
+    if (A !== 0) {
+      rows.push({
+        L: [{ c: int(B), v: 'y' }],
+        R: [{ c: int(-A), v: 'x', tag: B === 1 ? 'm' : '' }, { c: int(C), v: '', tag: B === 1 ? 'b' : '' }]
+      });
+    }
+    // final row: y = mx + b, when something had to be divided
+    if (finalIsOwnRow) {
+      rows.push({ L: [{ c: int(1), v: 'y' }], R: [{ c: m, v: 'x', tag: 'm' }, { c: b, v: '', tag: 'b' }] });
+    }
+    return { A: A, B: B, C: C, m: m, b: b, steps: steps, rows: rows, finalIsOwnRow: finalIsOwnRow,
+             baseRow: A !== 0 ? 1 : 0 };
+  }
+
+  /* ---------- HTML pieces ---------- */
+  function body(c, v, lead) {
+    var vv = v ? '<i>' + v + '</i>' : '';
+    var neg = lead && c.n < 0;
+    if (c.d === 1) {
+      var a = Math.abs(c.n);
+      var digits = (v && a === 1) ? '' : a;
+      return '<span class="core">' + (neg ? '<span class="hang">' + NEG + '</span>' : '') + digits + vv + '</span>';
+    }
+    return '<span class="core">' + (neg ? '<span class="hang onfrac">' + NEG + '</span>' : '') +
+      '<span class="fr"><span class="t">' + Math.abs(c.n) + '</span><span class="b">' + c.d + '</span></span>' + vv + '</span>';
+  }
+  function side(terms, prefix) {
+    var list = terms.filter(function (t) { return t.c.n !== 0; });
+    var use = list.length ? list : [{ c: int(0), v: '', tag: '' }];
+    return use.map(function (t, i) {
+      return { key: prefix + i, op: i === 0 ? null : (t.c.n < 0 ? MINUS : '+'),
+               c: i === 0 ? t.c : { n: Math.abs(t.c.n), d: t.c.d }, v: t.v, lead: i === 0, tag: t.tag || '' };
+    });
+  }
+  function rowHTML(spec, ctx) {
+    var cells = side(spec.L, 'L').concat([{ eq: true }], side(spec.R, 'R'));
+    return cells.map(function (c) {
+      if (c.eq) return '<span class="eqs">=</span>';
+      var op = c.op ? '<span class="op">' + c.op + '</span>' : '';
+      var cls = 'cell' + (c.lead && c.c.n < 0 ? ' hasneg' : '') + (c.tag ? ' tag-' + c.tag : '') +
+                ((ctx.cellCls && ctx.cellCls(c.key)) ? ' ' + ctx.cellCls(c.key) : '');
+      var extra = '';
+      if (ctx.bars) {
+        extra += '<span class="bar ' + ctx.bars.barCls + '" style="' + ctx.bars.barStyle + '"></span>' +
+                 '<span class="div ' + ctx.bars.divCls + '" style="' + ctx.bars.divStyle + '">' + ctx.bars.divisor + '</span>';
+      }
+      var under = ctx.under ? ctx.under(c.key) : '';
+      return op + '<span class="' + cls + '">' + body(c.c, c.v, c.lead) + extra + under + '</span>';
+    }).join('');
+  }
+
+  /* ---------- render one stage of the animation ---------- */
+  function captionFor(p, name) {
+    var A = p.A, B = p.B, C = p.C;
+    if (name === 'problem') {
+      var left = (A !== 0 ? plainCoef(A, 'x') : '') + (A !== 0 ? (B < 0 ? ' ' + MINUS + ' ' : ' + ') + plainCoef(Math.abs(B), 'y') : plainCoef(B, 'y'));
+      var t = 'Start with ' + left + ' = ' + (C < 0 ? MINUS + Math.abs(C) : C) + '. We want y by itself.';
+      if (A === 0) t += ' A is 0, so there is no x term to move.';
+      return t;
+    }
+    if (name === 'subtract') return (A > 0 ? 'Subtract ' : 'Add ') + plainCoef(Math.abs(A), 'x') + (A > 0 ? ' from' : ' to') + ' both sides.';
+    if (name === 'divide') return 'Divide every term by ' + (B < 0 ? MINUS : '') + Math.abs(B) + '.';
+    return p.finalIsOwnRow ? 'Simplify. This is y = mx + b, with the slope and the y-intercept.'
+                           : 'y already has a 1 in front, so there is nothing to divide. This is y = mx + b.';
+  }
+
+  function render(p, stage, animate) {
+    var cur = p.steps[stage];
+    var has = function (n) { var i = p.steps.indexOf(n); return i !== -1 && i <= stage; };
+    var fresh = function (n) { return animate && cur === n; };
+    var E = function (n, delay) { return fresh(n) ? ' enter' : ''; };
+    var D = function (n, delay) { return fresh(n) ? 'animation-delay:' + delay + 's;' : ''; };
+
+    var A = p.A;
+    var rowsHTML = [];
+    var lastVisible = 0;
+    var visible = [];
+
+    // row 0
+    var ctx0 = {};
+    if (has('subtract')) {
+      var opTxt = (A > 0 ? MINUS : '+') + (Math.abs(A) === 1 ? '' : Math.abs(A)) + '<i>x</i>';
+      ctx0.under = function (key) {
+        return (key === 'L0' || key === 'R0')
+          ? '<span class="under' + E('subtract') + '" style="' + D('subtract', 0) + '">' + opTxt + '</span>' : '';
+      };
+      ctx0.cellCls = function (key) { return key === 'L0' ? 'struck' + (fresh('subtract') ? ' fresh' : '') : ''; };
+    }
+    var rowDelays = { 1: 1.8 };
+    visible.push({ idx: 0, html: rowHTML(p.rows[0], ctx0), fresh: false, styleDelay: '' });
+
+    // row 1 (after subtracting)
+    if (p.rows.length > 1 && A !== 0 && has('subtract')) {
+      var ctx1 = {};
+      if (has('divide')) {
+        var Bv = p.B;
+        ctx1.bars = { barCls: fresh('divide') ? 'enter' : '', barStyle: D('divide', 0),
+                      divCls: fresh('divide') ? 'enter' : '', divStyle: D('divide', 0.6),
+                      divisor: (Bv < 0 ? NEG : '') + Math.abs(Bv) };
+      }
+      visible.push({ idx: 1, html: rowHTML(p.rows[1], ctx1), fresh: fresh('subtract'), delay: 1.8 });
+    }
+    // divide on row 0 when there was nothing to subtract
+    if (A === 0 && has('divide')) {
+      var Bv0 = p.B;
+      visible[0].html = rowHTML(p.rows[0], { bars: { barCls: fresh('divide') ? 'enter' : '', barStyle: D('divide', 0),
+                      divCls: fresh('divide') ? 'enter' : '', divStyle: D('divide', 0.6),
+                      divisor: (Bv0 < 0 ? NEG : '') + Math.abs(Bv0) } });
+    }
+    // final row (own row when we divided)
+    if (p.finalIsOwnRow && has('result')) {
+      visible.push({ idx: 2, html: rowHTML(p.rows[p.rows.length - 1], {}), fresh: fresh('result'), delay: 0.2 });
+    }
+
+    var finalIndex = (has('result')) ? visible.length - 1 : -1;
+    var out = '';
+    visible.forEach(function (r, i) {
+      var isLast = i === visible.length - 1;
+      var cls = 'row';
+      var style = '';
+      if (!isLast) {
+        // a later row exists; dim this one (gradually if the later row is arriving right now)
+        var laterFresh = visible[i + 1].fresh;
+        cls += laterFresh ? ' dimlater' : ' old';
+        if (laterFresh) style = 'animation-delay:' + (visible[i + 1].delay) + 's;';
+      }
+      if (i === finalIndex) cls += ' final';
+      if (r.fresh) { cls += ' enter'; style += 'animation-delay:' + r.delay + 's;'; }
+      out += '<div class="' + cls + '" style="' + style + '">' + r.html + '</div>';
+    });
+
+    if (has('result')) {
+      var chipDelay = p.finalIsOwnRow ? 0.9 : 0.3;
+      out += '<div class="chips' + E('result') + '" style="' + D('result', chipDelay) + '">' +
+        '<span class="chip m"><small>slope</small> m = ' + body(p.m, '', true).replace('class="core"', 'class="core" style="min-height:0"') + '</span>' +
+        '<span class="chip b"><small>y-intercept</small> b = ' + body(p.b, '', true).replace('class="core"', 'class="core" style="min-height:0"') + '</span></div>';
+    }
+    return out;
+  }
+
+  /* ---------- page wiring ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { p: null, stage: 0, timer: null, playing: false };
+
+  function stopPlay() { if (state.timer) { clearTimeout(state.timer); state.timer = null; } state.playing = false; $('play').textContent = 'Play all'; }
+  function show(stage, animate) {
+    var p = state.p; state.stage = stage;
+    $('board').innerHTML = render(p, stage, animate);
+    var cap = $('caption'); cap.textContent = captionFor(p, p.steps[stage]);
+    cap.className = 'caption' + (animate ? ' enter' : '');
+    $('count').textContent = 'Step ' + (stage + 1) + ' of ' + p.steps.length;
+    $('back').disabled = stage === 0;
+    $('next').disabled = stage === p.steps.length - 1;
+  }
+  function dump() {
+    var p = state.p;
+    $('dump').textContent = JSON.stringify({
+      A: p.A, B: p.B, C: p.C, steps: p.steps,
+      'm = -A/B': fracText(p.m), 'b = C/B': fracText(p.b),
+      skipped: [A0(p) ? 'subtract (A is 0)' : null, p.B === 1 ? 'divide (B is 1)' : null].filter(Boolean)
+    }, null, 2);
+  }
+  function A0(p) { return p.A === 0; }
+
+  function readInputs() {
+    var vals = ['inA', 'inB', 'inC'].map(function (id) { var s = $(id).value.trim(); return /^-?\d+$/.test(s) ? parseInt(s, 10) : NaN; });
+    if (vals.some(isNaN)) return { error: 'Type whole numbers in A, B and C.' };
+    if (vals.some(function (v) { return Math.abs(v) > 999; })) return { error: 'Keep the numbers between -999 and 999.' };
+    if (vals[1] === 0) return { error: 'B cannot be 0. With no y term this is a vertical line, so there is no y to solve for.' };
+    return { A: vals[0], B: vals[1], C: vals[2] };
+  }
+  function autoStep() {
+    if (!state.playing) return;
+    if (state.stage >= state.p.steps.length - 1) { stopPlay(); return; }
+    show(state.stage + 1, true);
+    state.timer = setTimeout(autoStep, 4200);
+  }
+  function startPlay() {
+    stopPlay(); state.playing = true; $('play').textContent = 'Stop';
+    show(0, true);
+    state.timer = setTimeout(autoStep, 3600);
+  }
+  function load(andPlay) {
+    var r = readInputs();
+    $('msg').textContent = r.error || '';
+    if (r.error) return;
+    state.p = plan(r.A, r.B, r.C);
+    dump();
+    if (andPlay) startPlay(); else { stopPlay(); show(0, true); }
+  }
+
+  $('apply').onclick = function () { load(true); };
+  $('next').onclick = function () { stopPlay(); if (state.stage < state.p.steps.length - 1) show(state.stage + 1, true); };
+  $('back').onclick = function () { stopPlay(); if (state.stage > 0) show(state.stage - 1, false); };
+  $('restart').onclick = function () { stopPlay(); show(0, true); };
+  $('play').onclick = function () { if (state.playing) stopPlay(); else startPlay(); };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ex]'), function (b) {
+    b.onclick = function () {
+      var v = b.getAttribute('data-ex').split(',');
+      $('inA').value = v[0]; $('inB').value = v[1]; $('inC').value = v[2];
+      load(true);
+    };
+  });
+  var debounce = null;
+  ['inA', 'inB', 'inC'].forEach(function (id) {
+    $(id).addEventListener('input', function () { clearTimeout(debounce); debounce = setTimeout(function () { load(true); }, 700); });
+    $(id).addEventListener('keydown', function (e) { if (e.key === 'Enter') { clearTimeout(debounce); load(true); } });
+  });
+
+  window.__demo = { plan: plan, render: render, captionFor: captionFor };
+  load(false);
+})();
+</script>
+</body>
+</html>

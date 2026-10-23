@@ -9,6 +9,7 @@
  * - POST /__registry/sync-pull-registry → agent docs/sync-pull-registry.json
  * - POST /__layout/factoring-guided-portal → agent docs/scratch/factoring-guided-layout-latest.json
  * - POST /__layout/factoring-guided-portal/journal → agent docs/scratch/factoring-guided-layout-journal.json
+ * - POST /__layout/gp-correct-check-offsets → agent docs/scratch/gp-correct-check-offsets.json
  * - GET/POST /__layout/build/<appId> → that app's source buildLayout.json (allowlisted)
  * Detail: agent docs/rules/html-delivery.md
  */
@@ -75,6 +76,12 @@ const FACTORING_LAYOUT_JOURNAL_FILE = path.join(
   AGENT_DOCS,
   'scratch',
   'factoring-guided-layout-journal.json',
+);
+const GP_CORRECT_CHECK_SAVE_PATH = '/__layout/gp-correct-check-offsets';
+const GP_CORRECT_CHECK_FILE = path.join(
+  AGENT_DOCS,
+  'scratch',
+  'gp-correct-check-offsets.json',
 );
 const MAX_COMMENT_BODY = 512 * 1024;
 const MAX_REGISTRY_BODY = 256 * 1024;
@@ -331,6 +338,79 @@ function handleBuildLayout(req, res, appId) {
     });
 }
 
+function isGpCheckOffset(value) {
+  return (
+    value &&
+    typeof value === 'object' &&
+    typeof value.x === 'number' &&
+    typeof value.y === 'number' &&
+    Number.isFinite(value.x) &&
+    Number.isFinite(value.y)
+  );
+}
+
+function handleSaveGpCorrectCheckOffsets(req, res) {
+  let body = '';
+  let tooBig = false;
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_LAYOUT_BODY) {
+      tooBig = true;
+      req.destroy();
+    }
+  });
+  req.on('end', () => {
+    if (tooBig) {
+      res.writeHead(413, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"too large"}');
+      return;
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(body || '{}');
+    } catch {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"bad json"}');
+      return;
+    }
+    if (!parsed || typeof parsed.updatedAt !== 'string' || !parsed.offsets) {
+      res.writeHead(400, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"need updatedAt and offsets"}');
+      return;
+    }
+    for (const value of Object.values(parsed.offsets)) {
+      if (!isGpCheckOffset(value)) {
+        res.writeHead(400, jsonCorsHeaders());
+        res.end('{"ok":false,"error":"invalid offset entry"}');
+        return;
+      }
+    }
+    if (parsed.helpTriggerOffsets) {
+      for (const value of Object.values(parsed.helpTriggerOffsets)) {
+        if (!isGpCheckOffset(value)) {
+          res.writeHead(400, jsonCorsHeaders());
+          res.end('{"ok":false,"error":"invalid helpTriggerOffsets entry"}');
+          return;
+        }
+      }
+    }
+    try {
+      fs.mkdirSync(path.dirname(GP_CORRECT_CHECK_FILE), { recursive: true });
+      fs.writeFileSync(
+        GP_CORRECT_CHECK_FILE,
+        JSON.stringify(parsed, null, 2) + '\n',
+        'utf8',
+      );
+      console.log('gp correct-check offsets saved');
+      res.writeHead(200, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: true }));
+    } catch (err) {
+      res.writeHead(500, jsonCorsHeaders());
+      res.end(JSON.stringify({ ok: false, error: String(err.message || err) }));
+    }
+  });
+}
+
 function handleSaveFactoringLayout(req, res) {
   let body = '';
   let tooBig = false;
@@ -422,6 +502,21 @@ const server = http.createServer((req, res) => {
       return;
     }
     handleSaveFactoringLayout(req, res);
+    return;
+  }
+
+  if (rel === GP_CORRECT_CHECK_SAVE_PATH) {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204, jsonCorsHeaders());
+      res.end();
+      return;
+    }
+    if (req.method !== 'POST') {
+      res.writeHead(405, jsonCorsHeaders());
+      res.end('{"ok":false,"error":"POST only"}');
+      return;
+    }
+    handleSaveGpCorrectCheckOffsets(req, res);
     return;
   }
 

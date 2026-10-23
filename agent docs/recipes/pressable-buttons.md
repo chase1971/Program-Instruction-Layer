@@ -2,7 +2,8 @@
 
 > **You might say:** "the buttons don't act like buttons", "no 3D effect", "it doesn't look
 > like I clicked it", "it's just a blue field", "make it look pressable", "raised button",
-> "which one is selected"
+> "which one is selected", "I can't tell if it clicked", "buttons need a click animation",
+> "did that save?"
 > **What it is:** Every clickable button looks raised, lifts on hover, sinks when pressed,
 > and a chosen toggle **stays pushed in**. Flat boxes and plain colored rectangles are not
 > acceptable as buttons.
@@ -63,7 +64,26 @@ picked stays down and the others stay up.
   see [no-ephemeral-feedback.md](./no-ephemeral-feedback.md).
 - A hover-only effect that carries meaning (Chase's pointer hovers everything it passes).
 
+## Dwell-proof press animation (every app, every button)
+
+CSS `:active` never paints on a dwell click (mouse-down and mouse-up land in one frame), so
+**every app also installs one global click animation** that plays its full duration however
+short the press was. Added 2026-10-23 after Layout preview / Save / Reset in the portal looked
+like flat text and Chase could not tell whether Save did anything.
+
+- **The one implementation:** `School Scrips/Matrix app/src/app/utils/buttonClickFeedback.ts`
+  (`installButtonClickFeedback()`; owns the duration constant). Idempotent, so an app embedded
+  in the portal does not double up. Skips disabled buttons. Uses the individual `scale`
+  property so it never clobbers a button's own `transform`.
+- **Install it with one line at the app entry file** (`main.tsx`). Exemplars:
+  `student-portal/src/main.tsx` (imports it via `@matrix/`) and `Matrix app/src/main.tsx`.
+- **Wired so far:** student portal and Matrix app. Any other app: add the one-line install
+  the next time you touch it.
+- **Never write per-button press animations**, and never build a second mechanism.
+- Every button must also **look pressable at rest** (border or fill, bottom shadow, pointer
+  cursor). Exemplar: `.gp-check-layout-banner__btn` in `student-portal/src/styles/guided-practice.css`.
+
 ## Scope
 
-Desktop apps Chase drives (Macro App, electron-toolbar, App Dashboard, Math App Studio).
-The student portal is for students on phones, so normal web buttons are fine there.
+Every app Chase drives, including the instructor controls in the student portal. Plain
+student-facing portal buttons get the global animation but not the full raised-ledge styling.

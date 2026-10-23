@@ -1,76 +1,93 @@
-# Momentum handoff: Gauss-Jordan guided practice / homework polish
+# Momentum handoff: 11.2 Homework Matrix (parametric, 3-var, layout, UI polish)
 
-**Written:** 2026-10-22 (late night). Valid for today's continuation only.
-**Nothing is committed or pushed.** Uncommitted work lives in `School Scrips/Matrix app`, `School Scrips/student-portal`, and a prompt string in `School Scrips/Macro App` (`matrixSlotCatalog.ts`). Handoff + session tracking live in `Programs/` root. Commit only on "pull", "put on GitHub", or end of session.
+**Written:** 2026-10-23. Valid for today's continuation only.
+**Nothing is committed or pushed.** Dirty work spans `School Scrips/Matrix app`, `School Scrips/student-portal`, and `Programs/` (agent docs). Commit only on "pull", "put on GitHub", or end of session.
 
-This overwrites the earlier 2026-10-22 Part 2/3 tutorial handoff. That Part 2/3 work is already in the files. This file is the live continuation: Chase moved on to **guided practice / Gauss-Jordan Method Homework** (tester CHASE1, phone preview) and iterated the yellow `!`, row-scaling help card, row-entry, and the solution pair.
+## Objective and current phase
 
-## Objective and phase
+Chase is polishing **11.2 Homework** in the student portal (Matrix embed): infinite-solution **2-var** parametric recovery, **three-variable** homework problems (RREF → solution type → answer), layout preview for animation/check positions, and button press feedback.
 
-Chase is walking homework as a student (with tester cheats) and fixing feel on each screen: yellow help labels, the row-scaling tutorial card, row-entry (scale then replace), row-notation format errors, and the final ordered-pair step.
-
-Last finished change: solution step (Q17). Pad auto-opens on x. Prompt is only "What is the solution?" with no Submit. First pad button is Next; second is Submit and that grades the pair. He has not confirmed that screen.
+**Phase:** Most recent work is **implemented and headless-green**; Chase has **portal-verified** layout-preview drag and button click feedback, but not re-checked every animation/layout tweak from this long session. No Netlify deploy unless explicitly asked.
 
 ## Chase's desired feel
 
-- Head-mounted gyro mouse + dwell click + speech-to-text. Students tap; he dwells. Small buttons. No em dashes. No ephemeral success toasts. Never put a window on his screen without asking (permission is per run).
-- He reviews **only in the portal**. Handoff is a statement: what to open, what he should see. Never "want me to launch / deploy?"
-- Yellow `!` + "Need help with…?" is one system (`GuidedPracticeHelpTrigger`). Same compact size everywhere. Do not invent a second help widget.
-- "Explanation point" = the yellow `!`. "Text box from the yellow" = the small bordered label beside it. "The matrix that's being typed" = the blank row-entry grid, not the original matrix.
-- Tester Back/Next in the top nav stay for him. Students never see those. Do not put the tutorial title in that nav slot.
-- Incomplete-notation warning belongs on the **pad only**, not in the blue instruction card.
+- Review in **student portal** only for student-facing UI (hard refresh Ctrl+Shift+R after changes).
+- **Plain drag** for layout preview (no dwell hooks). Grab anywhere on the animation block; Save persists offset.
+- Animations match **Factoring Guided Practice** solve-board house style: gold op under both sides, **one red diagonal** cancel through `3t` and `- 3t` (negative slope), answers in **yellow boxes** side by side (`x = …` then `y = t`). **No loop**; Replay only.
+- Buttons must **look clickable** and **animate press** on dwell click (global Web Animations helper).
+- Solution-type MCQ: **Exactly one solution** / **Infinitely many solutions** / **No solution** (not "ordered triple" on the choice row).
+- After correct **RREF** on 3-var homework, keep the **student's reduced matrix** on the left (replaces original system), not augmented initial form.
+- Correct **solution type** choice gets **green check flash** like RREF before advancing.
+- Parametric step prompt: **Enter the solution in parametric form. Let z = t.** (dynamic free variable from answer key; all current 3-var parametric problems use **z = t**).
 
 ## Accepted decisions
 
-- Compact yellow labels are all the wider size (portal compact `max-width: 8.125rem`). Notation, multiplying, adding, reveals, Part 2/3. `wideLabel` defaults true on `GuidedPracticeHelpTrigger`.
-- Row-scaling help card: ~500px, higher on the page (not full-stretch), smaller type, **Row scaling tutorial** centered at the top of the card, **Back to question** inside the card (bottom-left of the actions). In-card Step N of M stays. Top-nav **1 of 3** hides while help is open (`hideLabel={fractionHelpOpen}`). Cheat Back/Next stay.
-- Row-entry (scale and replace): no Use answer, no Submit row in the prompt. Prompt is 50px narrower (idle 200px). Compact `!` sits **under the typed row**, parent-placed, not the old viewport coords. Filling the last cell submits the row.
-- Row-notation format error ("Enter the full row transformation before submitting.") stays on the pad. Blue prompt keeps "Write the row replacement operation."
-- Solution pair: pad opens on x (`use-guided-practice-question-init.ts`). No Submit in the prompt. x pad = Next (advances to y). y pad = Submit (`commitGuidedPracticeBuilder` already returns `submit-solution`). Prompt copy is "What is the solution?"
-- Guided practice cheat Back sits next to cheat Next (`UnguidedPracticeProblemNav`). Students stay gated.
-- Row-notation pad still auto-opens; pad Submit grades the transformation. Compact `!` beside the matrix (`guided-practice-notation-help-trigger.tsx`).
-- Green correct-check flash in guided practice is `translate-y-[30px]` so it clears the `!` label.
+**2-var parametric wrong-answer reveal (`DynamicParametricSolveAnimation.tsx`, `GuidedPracticeParametricSolveReveal.tsx`):**
 
-## Rejected / corrected (do not rediscover)
+- Pacing: `PARAMETRIC_SPEEDUP = 1.15` on step/hold/fade constants.
+- Sequence: equation + `y = t` beside it → y→t swap → gold ops under `3t` and `2` → single measured **CancelLine** → fade ops → `x` answer box, then `y = t` box **beside** x.
+- Layout preview: pointer-capture drag, scale-aware, `PARAMETRIC_REVEAL_LAYOUT_KEY`; Reset via portal banner + `useGuidedPracticeLayoutPreview` `layoutResetToken`.
+- Wrong solution entry **kept** on first wrong (not cleared).
 
-- **Do not** put "Row scaling tutorial" in the top-nav cheat Back/Next slot. That slot is his, not the student's title.
-- **Do not** leave **Back to question** floating at the viewport corner. It lives inside the help card.
-- **Do not** put the multiplying/adding `!` back at the old fixed viewport coords beside the prompt (`fractionHelpButtonPosition` idle numbers). Those stay unused for first-try row-entry. Help goes under the typed row.
-- **Do not** bring Use answer or Submit row back into the instruction card. Last cell / last solution field submits.
-- **Do not** duplicate the format-error banner into the blue prompt. Pad only.
-- **Do not** treat AGENTS.md "step 9 means `step === 8`" as applying to Part 2/3 overlay badges. The badge renders `{step}`.
-- **Do not** add lines to `use-guided-practice-session.ts` (at the 700 cap). Init, submit, and resume hydration live in the extracted hooks.
-- **Do not** add lines to `matrix-solver-part-3.tsx` without extracting first (still near 700).
-- **Do not** launch the portal, Matrix app, or a browser. No Netlify unless he says deploy in the same message.
-- Part 2 step 4: the instruction prompt stays under the row-op buttons. Only the `!` label travels with the `!` in the matrix gap. Do not merge them into one column.
+**Portal / Matrix shared UI:**
+
+- `buttonClickFeedback.ts` installed in `student-portal/src/main.tsx` and `Matrix app/src/main.tsx`. Banner buttons restyled in `guided-practice.css`.
+- `pressable-buttons.md` extended with dwell-proof animation section; recipes INDEX row for Factoring solve-board cancel pattern.
+
+**Three-var homework (`ThreeVarHomeworkSolver`, `use-three-var-homework-session.ts`, `use-homework-matrix-setup.ts`):**
+
+- `onSuccess(matrix)` passes submitted RREF into `displayMatrix`; post-RREF phases show **only** reduced matrix (no duplicate augmented copy).
+- `showTypeCorrectCheck` + `CORRECT_CHECK_MS` delay before solution phase.
+- `parametric3EntryPrompt()` in `parametric.ts` for step-3 overlay text.
+
+**Solution-type labels (`solution-type-labels.ts`):**
+
+- Single source for MCQ copy in `HomeworkThreeVarSolutionTypePanel`, `GuidedPracticeSolutionTypePanel`, and wrong-answer reveal hint in `use-three-var-homework-session`.
+
+## Rejected / do not rediscover
+
+- **Dwell-based drag** for layout preview (Chase wants Word-style pointer drag).
+- **`:active` only** for click feedback (invisible on dwell).
+- **Separate `y = t` row** below equation in parametric animation (must be beside equation, then beside answer boxes).
+- **Two red strikes** for cancel (Chase wanted **one** diagonal through both terms; may still want spacing tweaks).
+- **Auto-loop** on parametric solve animation.
+- **"Saved!"** toast after layout Save (no-ephemeral-feedback still applies).
+- Revert **`GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE`** before student ship when mode-choice thread is done (from earlier homework work).
 
 ## Current implementation state
 
-Key files (uncommitted):
+**Matrix app (high-signal paths):**
 
-- Help labels: `GuidedPracticeHelpTrigger.tsx` (`wideLabel` default true), `guided-practice-notation-help-trigger.tsx` (always wide), portal `guided-practice-fraction-help.css` and Matrix `theme.css` (compact 8.125rem / 8.625rem).
-- Row-scaling / replacement help: `GuidedPracticeRowNotationHelpPanel.tsx` (topic + in-card exit), `GuidedPracticeRowReplacementNotationHelpPanel.tsx` (exit inside card), portal `.gp-row-notation-help-screen*` (smaller type, top-aligned 500px card).
-- Nav: portal `UnguidedPracticeProblemNav.tsx` (`hideLabel`), wired from `GuidedPracticeView.tsx` and `GuidedPracticeHomeworkWorkspace.tsx`.
-- Row-entry / solution: `GuidedPracticeSolver.tsx` (help under typed row, check +30px y, no overlay submit props), `GuidedPracticeOverlay.tsx` (no Use answer / Submit row / solution Submit; no row-notation format banner), `use-guided-practice-question-init.ts` (solution pad on x), `guided-practice-builder-commit.ts` (`submit-matrix-row` on last cell), `use-guided-practice-session-submit.ts`, `guided-practice-wrong-recovery.ts` (`ROW_ENTRY_IDLE_POPOVER_WIDTH_TRIM = 50`), `guided-practice-questions.ts` (solution prompt), `guided-practice-resume-state.ts` (solution-field hydration).
-- Macro catalog prompt sync: `Macro App/renderer/src/utils/matrixReport/matrixSlotCatalog.ts`.
-- Matrix `AGENTS.md` tap-or-click / submit-row / ordered-pair row is the lookup.
+- `DynamicParametricSolveAnimation.tsx` — full solve walkthrough; tests in `guided-practice-infinite-solution.test.tsx`, `parametric-reveal-layout-drag.test.tsx`, `button-click-feedback.test.ts`.
+- `GuidedPracticeParametricSolveReveal.tsx`, `layoutPreviewOffsetGuard.ts`, `helpTriggerLayoutPosition.ts` (`PARAMETRIC_REVEAL_LAYOUT_KEY`).
+- `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver.tsx`, `HomeworkThreeVarSolutionTypePanel.tsx`.
+- `solution-type-labels.ts`, `three-var-homework-questions.ts`, `parametric.ts` (`parametric3EntryPrompt`, `parametric3FreeVariable`).
+- `GuidedPracticeSolver.tsx` still **~793 lines** (cap 800); do not grow without extract.
 
-Tests that passed this continuation (headless): row-notation help panel, builder-commit, wrong-recovery widths, builder-keyboard, resume-state, solution-entry commit, unguided solver, engine. No browser confirmation (do not launch).
+**Student portal:**
+
+- `GuidedPracticeCheckLayoutBannerControls.tsx` (Layout preview / Save / Reset).
+- `GuidedPracticeHomeworkView.tsx` / `GuidedPracticeView.tsx` — `checkResetToken`, layout banner wiring.
+- `main.tsx` — `installButtonClickFeedback()`.
+
+**Verification (agent):** Vitest green on infinite-solution, three-var questions, parametric reveal, layout drag, button feedback, unguided solver. **Not** full portal visual pass on latest cancel-line geometry or 3-var check placement.
 
 ## Open questions and constraints
 
-- He has not confirmed: solution Q17 pad-on-arrival, adding-fractions `!` under the typed row after refresh, or the latest compact label width on every `!`.
-- If he still sees Use answer / Submit row on replace row-entry, that screenshot was from before the overlay removal. Source no longer has those buttons. Ask him to refresh before editing again.
-- Portal Wide is 812×460. Measure before growing anything.
-- Context in the outgoing chat is heavy. This handoff exists so the next task does not drag that transcript.
+- Layout preview **placeholder** box for animation may still be taller than the shortened 3-row animation; shrink preview box if Chase cares.
+- **Check mark** position for 3-var solution-type step is beside matrix (not layout-preview slot yet); may need `GuidedPracticeCorrectCheckSlot` parity with 2-var guided practice.
+- Animation timing still tunable via `PARAMETRIC_SPEEDUP` only.
+- Parallel older handoff topics (mode choice after problem 2, MCQ `y: -12`) may still matter; confirm with Chase which homework path is active (problem 2 infinite vs problem 4+ three-var).
 
 ## Read first
 
-- Matrix `AGENTS.md` (tap-or-click / submit row / ordered pair row, plus cheat-next and part 2 `!` rows).
-- `src/app/hooks/use-guided-practice-question-init.ts`
-- `src/app/components/guided-practice/GuidedPracticeOverlay.tsx`
-- `src/app/components/guided-practice/guided-practice-notation-help-trigger.tsx`
+1. This file.
+2. `School Scrips/Matrix app/src/app/components/guided-practice/DynamicParametricSolveAnimation.tsx` (animation exemplar).
+3. Factoring reference: `School Scrips/Factoring Guided Practice/src/app/hooks/useRootsRevealWalkthrough.ts`, `FactoringSolveBoard.tsx`.
+4. Three-var flow: `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver.tsx`.
+5. Labels: `solution-type-labels.ts`.
+6. Layout preview: `useGuidedPracticeLayoutPreview.ts`, `GuidedPracticeParametricSolveReveal.tsx`.
 
 ## Exact next step
 
-Wait for his next homework screenshot or spoken tweak. If he is still on Q17, the expected screen is: pad already open on the first blank, prompt "What is the solution?" only, Next then Submit. If he names another yellow `!` or a collision, treat it as a 30px / placement edit on the existing trigger, not a new help system.
+Hard refresh portal. On **11.2 Homework problem 4** (three-var): complete RREF, confirm **reduced matrix stays** on step 2, pick **Exactly one solution** / **Infinitely many** / **No solution** and confirm **check flash**, then read parametric prompt (**Let z = t** on parametric problems). Separately on **problem 2** (infinite): wrong parametric twice, confirm animation cancel line and side-by-side yellow answers; use **Layout preview** if animation position still needs Save. Report any misaligned gold ops or cancel line only (numbers for nudge).

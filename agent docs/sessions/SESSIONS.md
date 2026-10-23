@@ -2,6 +2,66 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-23 — Matrix 11.2 homework polish (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`
+
+**What worked:** Parametric solve animation (Factoring-style cancel, layout preview drag, no loop); global button press feedback; 3-var RREF retained + type check flash + dynamic parametric prompt; solution-type MCQ labels ("Exactly one solution").
+
+**Current state:** Green vitest — portal spot-check still open on cancel-line alignment and 3-var flows.
+
+**File size flag:** `GuidedPracticeSolver.tsx` ~793 lines (cap 800).
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
+## 2026-10-23 — Parametric reveal animation + solution-type layout (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`
+
+**What worked:** Parametric second-wrong reveal: no constant-column pulse, problem-driven solve animation with Play/Pause/Replay in movable panel; `getParametricRevealContext` + vitest; floating builders extract from solver. Solution-type MCQ panel raised 40px (`y: -12`).
+
+**Current state:** Green headless tests — Chase has not portal-verified animation placement or MCQ position.
+
+**File size flag:** `GuidedPracticeSolver.tsx` ~785 lines.
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
+## 2026-10-23 — Homework practice mode choice (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`
+
+**What worked:** Mid-homework mode modal (left-aligned copy, tap choice, no Continue); wired **Just right or wrong** to `UnguidedPracticeSolver` on homework; `homeworkSolveMode.ts` + progress `solveModeByProblem`; admin temp preview jumps to problem 3 for practice test (problem 1 is infinite-solution).
+
+**Current state:** Green build/tests — pending Chase portal confirm on unguided problem 3; revert `GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE` before ship.
+
+**File size flag:** `GuidedPracticeSolver.tsx` ~760+ lines (extract before more features).
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
+## 2026-10-23 — 11.2 Homework UX, resume, momentum handoff
+
+**Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`
+
+**What worked:** Solution-type MCQ like Factoring (tap choice, no Submit); parametric help shell; row-entry fraction help in-flow; homework resume saves farthest step (tester Next); row-notation box 50px narrower without moving left; number pad close buttons off.
+
+**Current state:** Green — pending Chase portal pass on fraction help, green check, resume, row-notation width.
+
+**File size flag:** `GuidedPracticeSolver.tsx` ~760+ lines (extract before more features).
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
+## 2026-10-23 — 11.2 Homework layout preview and help triggers (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`, `School Scrips/student-session-kit`, `School Scrips/Macro App`
+
+**What worked:** Homework title **11.2 Homework**; solution-type MCQ in right panel; yellow help viewport-anchored; **Layout preview** for green check + help triggers with Save; fixed `currentSlot` ReferenceError in solver.
+
+**Current state:** Green — pending Chase visual confirm on row-entry fraction help and saved check/help offsets.
+
+**File size flag:** `GuidedPracticeSolver.tsx` ~740 lines (extract before more features).
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
 ## 2026-10-21 — Fine-tune pipeline docs built (Cursor)
 
 **Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/student-session-kit`, `School Scrips/Macro App`

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "matrix_shown",
+    "time": 2.1
+  },
+  {
+    "name": "zero_row_dropped",
+    "time": 6.0
+  },
+  {
+    "name": "equation_written",
+    "time": 9.0
+  },
+  {
+    "name": "free_variable",
+    "time": 11.7
+  },
+  {
+    "name": "substituted",
+    "time": 13.7
+  },
+  {
+    "name": "solved",
+    "time": 19.2
+  },
+  {
+    "name": "hold",
+    "time": 24.3
+  }
+]
