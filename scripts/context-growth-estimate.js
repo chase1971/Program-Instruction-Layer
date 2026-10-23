@@ -23,9 +23,13 @@ const fs = require('fs');
 const INTERCEPT = 25000;
 const PER_TOOL_CALL = 1100;
 const PER_WRITTEN_TOKEN = 1.9;
-// Claude Code warns at 250k of context, which is about 170k above its ~78k starting point.
-// Slightly earlier here because the estimate is looser than a real count.
-const HEAVY_GROWTH_TOKENS = 150000;
+// Claude Code warns at 250k of context, about 170k above its ~78k start. This estimate
+// overcounts Cursor: 1.1k per tool was fit on Claude Code, and Cursor does many small
+// greps and reads. 150k growth fired at ~114 tools (this chat: 149 tools / 213k mid-feature).
+// 300k was still too early (2026-10-22): across 793 Cursor chats it fired in 40% of them,
+// 150k in 63%. 450k fires in about the busiest quarter (roughly 340+ tools). Recalibrate if it
+// still fires mid-task, or against the usage CSV once there is one.
+const HEAVY_GROWTH_TOKENS = 450000;
 
 // Cursor lines: { role, message: { content: [...] } }. Claude Code: { type, message: {...} }.
 function countLine(line, tally) {

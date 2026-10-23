@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-20T22:55:26.725Z",
-  "count": 441,
+  "generatedAt": "2026-10-23T01:42:06.267Z",
+  "count": 446,
   "entries": [
     {
       "id": "guided-parse-row-op-expression-17-u2212",
@@ -30,27 +30,54 @@
       "isTemplate": false
     },
     {
-      "id": "guided-parse-row-op-expression-27-this-notation-has-an-error-check-fractions-arrow",
+      "id": "guided-parse-row-op-expression-24-u200b",
       "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
-      "line": 27,
+      "line": 24,
+      "category": "guided",
+      "text": "\\u200B",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-parse-row-op-expression-30-this-notation-has-an-error-check-fractions-arrow",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 30,
       "category": "guided",
       "text": "This notation has an error. Check fractions, arrows, and row labels.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-parse-row-op-expression-375-label-1-label",
+      "id": "guided-parse-row-op-expression-65-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
-      "line": 375,
+      "line": 65,
+      "category": "guided",
+      "text": "{placeholder}{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-parse-row-op-expression-340-placeholder-placeholder",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 340,
+      "category": "guided",
+      "text": "{placeholder}{placeholder}",
+      "previewKind": "instruction-box",
+      "isTemplate": true
+    },
+    {
+      "id": "guided-parse-row-op-expression-408-label-1-label",
+      "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
+      "line": 408,
       "category": "guided",
       "text": "label >= 1 && label",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-parse-row-op-expression-397-enter-the-full-row-transformation-before-submitt",
+      "id": "guided-parse-row-op-expression-430-enter-the-full-row-transformation-before-submitt",
       "file": "School Scrips/Matrix app/src/app/components/builders/parse-row-op-expression.ts",
-      "line": 397,
+      "line": 430,
       "category": "guided",
       "text": "Enter the full row transformation before submitting.",
       "previewKind": "instruction-box",
@@ -93,378 +120,414 @@
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-164-placeholder-px",
+      "id": "guided-GuidedPracticeOverlay-33-the-answer-is",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 164,
+      "line": 33,
+      "category": "guided",
+      "text": "The answer is",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-189-placeholder-px",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 189,
       "category": "guided",
       "text": "{placeholder}px",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-167-tutorial-step-placeholder",
+      "id": "guided-GuidedPracticeOverlay-192-tutorial-step-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 167,
+      "line": 192,
       "category": "guided",
       "text": "Tutorial step {placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-173-z-100",
+      "id": "guided-GuidedPracticeOverlay-198-z-100",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 173,
+      "line": 198,
       "category": "guided",
       "text": "z-[100]",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-179-relative-placeholder-flex-flex-col-items-stretch",
+      "id": "guided-GuidedPracticeOverlay-204-relative-placeholder-flex-flex-col-items-stretch",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 179,
+      "line": 204,
       "category": "guided",
       "text": "relative {placeholder} flex flex-col items-stretch pointer-events-auto w-full max-w-[28rem]",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-180-absolute-placeholder-flex-flex-col-items-center-",
+      "id": "guided-GuidedPracticeOverlay-205-absolute-placeholder-flex-flex-col-items-center-",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 180,
+      "line": 205,
       "category": "guided",
       "text": "absolute {placeholder} flex flex-col items-center pointer-events-auto",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-186-placeholder-px",
+      "id": "guided-GuidedPracticeOverlay-211-placeholder-px",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 186,
+      "line": 211,
       "category": "guided",
       "text": "{placeholder}px",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-187-placeholder-px",
+      "id": "guided-GuidedPracticeOverlay-212-placeholder-px",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 187,
+      "line": 212,
       "category": "guided",
       "text": "{placeholder}px",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-GuidedPracticeOverlay-193-relative-bg-blue-50-border-2-border-blue-200-rou",
+      "id": "guided-GuidedPracticeOverlay-218-relative-bg-blue-50-border-2-border-blue-200-rou",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 193,
+      "line": 218,
       "category": "guided",
       "text": "relative bg-blue-50 border-2 border-blue-200 rounded-xl shadow-xl w-full min-h-[60px] p-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-198-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
+      "id": "guided-GuidedPracticeOverlay-223-absolute-top-4-left-5-w-8-h-8-rounded-full-bg-bl",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 198,
+      "line": 223,
       "category": "guided",
       "text": "absolute -top-4 -left-5 w-8 h-8 rounded-full bg-blue-600 border-4 border-white flex items-center justify-center text-white font-bold text-sm shadow-md z-10",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-203-text-sm-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-228-text-sm-text-blue-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 203,
+      "line": 228,
       "category": "guided",
       "text": "text-sm text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-206-gp-row-transformation-notation-mb-2-rounded-md-b",
+      "id": "guided-GuidedPracticeOverlay-230-gp-row-transformation-notation-mb-2-font-mono-te",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 206,
+      "line": 230,
+      "category": "guided",
+      "text": "gp-row-transformation-notation mb-2 font-mono text-sm font-medium text-blue-900",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-237-gp-row-transformation-notation-mb-2-rounded-md-b",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 237,
       "category": "guided",
       "text": "gp-row-transformation-notation mb-2 rounded-md border border-red-300 bg-red-50 px-2 py-1.5 text-red-800 font-medium leading-snug",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-214-mb-2-text-amber-800-font-medium",
+      "id": "guided-GuidedPracticeOverlay-245-mb-2-text-amber-800-font-medium",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 214,
+      "line": 245,
       "category": "guided",
       "text": "mb-2 text-amber-800 font-medium",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-216-mb-2-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-247-mb-2-font-medium-text-blue-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 216,
+      "line": 247,
       "category": "guided",
       "text": "mb-2 font-medium text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-221-mb-2-flex-items-center-gap-2",
+      "id": "guided-GuidedPracticeOverlay-252-mb-2-flex-items-center-gap-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 221,
+      "line": 252,
       "category": "guided",
       "text": "mb-2 flex items-center gap-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-222-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-253-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 222,
+      "line": 253,
       "category": "guided",
       "text": "mb-0 flex-1 min-w-0 font-medium text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-223-incorrect",
+      "id": "guided-GuidedPracticeOverlay-254-incorrect",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 223,
+      "line": 254,
       "category": "guided",
       "text": "Incorrect.",
       "previewKind": "instruction-box-wrong",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-228-shrink-0-bg-blue-600-hover-bg-blue-700-text-whit",
+      "id": "guided-GuidedPracticeOverlay-259-shrink-0-bg-blue-600-hover-bg-blue-700-text-whit",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 228,
+      "line": 259,
       "category": "guided",
       "text": "shrink-0 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-235-mb-2-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-266-mb-2-font-medium-text-blue-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 235,
+      "line": 266,
       "category": "guided",
       "text": "mb-2 font-medium text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-254-relative-z-60-mb-2-flex-items-center-gap-2",
+      "id": "guided-GuidedPracticeOverlay-285-relative-z-60-mb-2-flex-items-center-gap-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 254,
+      "line": 285,
       "category": "guided",
       "text": "relative z-[60] mb-2 flex items-center gap-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-255-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-286-mb-0-flex-1-min-w-0-font-medium-text-blue-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 255,
+      "line": 286,
       "category": "guided",
       "text": "mb-0 flex-1 min-w-0 font-medium text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-258-look-at-the-animation-to-see-how-to-do-it",
+      "id": "guided-GuidedPracticeOverlay-289-look-at-the-animation-to-see-how-to-do-it",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 258,
+      "line": 289,
       "category": "guided",
       "text": "Look at the animation to see how to do it.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-264-relative-z-60-shrink-0-bg-blue-600-hover-bg-blue",
+      "id": "guided-GuidedPracticeOverlay-295-relative-z-60-shrink-0-bg-blue-600-hover-bg-blue",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 264,
+      "line": 295,
       "category": "guided",
       "text": "relative z-[60] shrink-0 bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs pointer-events-auto",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-278-mb-2-font-medium-text-amber-800",
+      "id": "guided-GuidedPracticeOverlay-309-mb-2-font-medium-text-amber-800",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 278,
+      "line": 309,
       "category": "guided",
       "text": "mb-2 font-medium text-amber-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-280-mb-2-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-311-mb-2-flex-flex-wrap-items-start-justify-between-",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 280,
+      "line": 311,
       "category": "guided",
-      "text": "mb-2 font-medium text-blue-800",
+      "text": "mb-2 flex flex-wrap items-start justify-between gap-x-2 gap-y-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-286-mb-0-font-medium-text-blue-800",
+      "id": "guided-GuidedPracticeOverlay-312-mb-0-min-w-0-flex-1-1-12rem-font-medium-text-blu",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 286,
+      "line": 312,
+      "category": "guided",
+      "text": "mb-0 min-w-0 flex-[1_1_12rem] font-medium text-blue-800 leading-snug",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-321-shrink-0-self-start-bg-blue-600-hover-bg-blue-70",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 321,
+      "category": "guided",
+      "text": "shrink-0 self-start bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "guided-GuidedPracticeOverlay-329-mb-0-font-medium-text-blue-800",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
+      "line": 329,
       "category": "guided",
       "text": "mb-0 font-medium text-blue-800",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-287-incorrect",
+      "id": "guided-GuidedPracticeOverlay-330-incorrect",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 287,
+      "line": 330,
       "category": "guided",
       "text": "Incorrect.",
       "previewKind": "instruction-box-wrong",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-289-mt-2-flex-w-full-items-center-justify-between-ga",
+      "id": "guided-GuidedPracticeOverlay-332-mt-2-flex-w-full-items-center-justify-between-ga",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 289,
+      "line": 332,
       "category": "guided",
       "text": "mt-2 flex w-full items-center justify-between gap-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-295-h-1-62rem-px-2-5-text-xs-border-blue-300-text-bl",
+      "id": "guided-GuidedPracticeOverlay-338-h-1-62rem-px-2-5-text-xs-border-blue-300-text-bl",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 295,
+      "line": 338,
       "category": "guided",
       "text": "h-[1.62rem] px-2.5 text-xs border-blue-300 text-blue-800 bg-white hover:bg-blue-50",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-306-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "id": "guided-GuidedPracticeOverlay-349-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 306,
+      "line": 349,
       "category": "guided",
       "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-315-text-red-600-font-medium",
+      "id": "guided-GuidedPracticeOverlay-358-text-red-600-font-medium",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 315,
+      "line": 358,
       "category": "guided",
       "text": "text-red-600 font-medium",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-315-incorrect",
+      "id": "guided-GuidedPracticeOverlay-358-incorrect",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 315,
+      "line": 358,
       "category": "guided",
       "text": "Incorrect.",
       "previewKind": "instruction-box-wrong",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-331-bg-red-600-hover-bg-red-700-text-white",
+      "id": "guided-GuidedPracticeOverlay-374-bg-red-600-hover-bg-red-700-text-white",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 331,
+      "line": 374,
       "category": "guided",
       "text": "bg-red-600 hover:bg-red-700 text-white",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-332-bg-blue-600-hover-bg-blue-700-text-white",
+      "id": "guided-GuidedPracticeOverlay-375-bg-blue-600-hover-bg-blue-700-text-white",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 332,
+      "line": 375,
       "category": "guided",
       "text": "bg-blue-600 hover:bg-blue-700 text-white",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-344-flex-items-center-gap-2-flex-wrap",
+      "id": "guided-GuidedPracticeOverlay-387-flex-items-center-gap-2-flex-wrap",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 344,
+      "line": 387,
       "category": "guided",
       "text": "flex items-center gap-2 flex-wrap",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-347-tab-or-click",
+      "id": "guided-GuidedPracticeOverlay-390-tap-or-click",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 347,
+      "line": 390,
       "category": "guided",
-      "text": "Tab or click",
+      "text": "Tap or click",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-350-row-operation",
+      "id": "guided-GuidedPracticeOverlay-393-row-operation",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 350,
+      "line": 393,
       "category": "guided",
       "text": "Row operation",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-357-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "id": "guided-GuidedPracticeOverlay-400-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 357,
+      "line": 400,
       "category": "guided",
       "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-366-flex-flex-wrap-gap-2",
+      "id": "guided-GuidedPracticeOverlay-409-flex-flex-wrap-gap-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 366,
+      "line": 409,
       "category": "guided",
       "text": "flex flex-wrap gap-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-371-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "id": "guided-GuidedPracticeOverlay-414-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 371,
+      "line": 414,
       "category": "guided",
       "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-380-flex-flex-wrap-gap-2",
+      "id": "guided-GuidedPracticeOverlay-423-flex-flex-wrap-gap-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 380,
+      "line": 423,
       "category": "guided",
       "text": "flex flex-wrap gap-2",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-385-bg-emerald-600-hover-bg-emerald-700-text-white-h",
+      "id": "guided-GuidedPracticeOverlay-428-bg-emerald-600-hover-bg-emerald-700-text-white-h",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 385,
+      "line": 428,
       "category": "guided",
       "text": "bg-emerald-600 hover:bg-emerald-700 text-white h-[1.62rem] px-2.5 text-xs",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeOverlay-395-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
+      "id": "guided-GuidedPracticeOverlay-438-bg-blue-600-hover-bg-blue-700-text-white-h-1-62r",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeOverlay.tsx",
-      "line": 395,
+      "line": 438,
       "category": "guided",
       "text": "bg-blue-600 hover:bg-blue-700 text-white h-[1.62rem] px-2.5 text-xs disabled:opacity-50",
       "previewKind": "instruction-box",
@@ -543,11 +606,11 @@
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeRowNotationRecovery-165-tab-or-click",
+      "id": "guided-GuidedPracticeRowNotationRecovery-165-tap-or-click",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
       "line": 165,
       "category": "guided",
-      "text": "Tab or click",
+      "text": "Tap or click",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -561,11 +624,11 @@
       "isTemplate": false
     },
     {
-      "id": "guided-GuidedPracticeRowNotationRecovery-177-tab-or-click",
+      "id": "guided-GuidedPracticeRowNotationRecovery-177-tap-or-click",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowNotationRecovery.tsx",
       "line": 177,
       "category": "guided",
-      "text": "Tab or click",
+      "text": "Tap or click",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -588,11 +651,11 @@
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-questions-17-what-is-the-solution-tab-or-click-on-the-ordered",
+      "id": "guided-guided-practice-questions-17-what-is-the-solution-tap-or-click-on-the-ordered",
       "file": "School Scrips/Matrix app/src/app/engine/guided-practice-questions.ts",
       "line": 17,
       "category": "guided",
-      "text": "What is the solution? Tab or click on the ordered pair to enter your answer.",
+      "text": "What is the solution? Tap or click on the ordered pair to enter your answer.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -624,29 +687,29 @@
       "isTemplate": true
     },
     {
-      "id": "guided-question-script-28-column-1-tab-or-click-where-the-1-needs-to-go",
+      "id": "guided-question-script-28-tap-or-click-the-value-that-will-be-the-pivot-th",
       "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
       "line": 28,
       "category": "guided",
-      "text": "Column 1: tab or click where the 1 needs to go.",
+      "text": "Tap or click the value that will be the pivot. That is the number that needs to become 1 first.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-question-script-31-tab-or-click-where-the-1-needs-to-go",
+      "id": "guided-question-script-31-tap-or-click-the-next-pivot",
       "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
       "line": 31,
       "category": "guided",
-      "text": "Tab or click where the 1 needs to go.",
+      "text": "Tap or click the next pivot.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-question-script-33-tab-or-click-the-first-pivot-value-you-need-to-c",
+      "id": "guided-question-script-33-tap-or-click-the-first-pivot-value-you-need-to-c",
       "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
       "line": 33,
       "category": "guided",
-      "text": "Tab or click the first pivot value you need to change.",
+      "text": "Tap or click the first pivot value you need to change.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -714,11 +777,11 @@
       "isTemplate": false
     },
     {
-      "id": "guided-question-script-91-tab-or-click-the-entry-you-need-to-turn-into-a-0",
+      "id": "guided-question-script-91-tap-or-click-the-entry-you-need-to-turn-into-a-0",
       "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
       "line": 91,
       "category": "guided",
-      "text": "Tab or click the entry you need to turn into a 0.",
+      "text": "Tap or click the entry you need to turn into a 0.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -786,11 +849,11 @@
       "isTemplate": false
     },
     {
-      "id": "guided-question-script-134-tab-or-click-the-pivot-position-that-needs-to-mo",
+      "id": "guided-question-script-134-tap-or-click-the-pivot-position-that-needs-to-mo",
       "file": "School Scrips/Matrix app/src/app/engine/question-script.ts",
       "line": 134,
       "category": "guided",
-      "text": "Tab or click the pivot position that needs to move.",
+      "text": "Tap or click the pivot position that needs to move.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -867,72 +930,72 @@
       "isTemplate": true
     },
     {
-      "id": "guided-guided-practice-builder-commit-89-enter-a-valid-number-or-fraction",
+      "id": "guided-guided-practice-builder-commit-93-enter-a-valid-number-or-fraction",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 89,
+      "line": 93,
       "category": "guided",
       "text": "Enter a valid number or fraction.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-builder-commit-136-enter-a-valid-number-or-fraction",
+      "id": "guided-guided-practice-builder-commit-140-enter-a-valid-number-or-fraction",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 136,
+      "line": 140,
       "category": "guided",
       "text": "Enter a valid number or fraction.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-builder-commit-142-placeholder-placeholder",
+      "id": "guided-guided-practice-builder-commit-146-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 142,
+      "line": 146,
       "category": "guided",
       "text": "{placeholder}/{placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-guided-practice-builder-commit-181-enter-a-valid-number-or-fraction",
+      "id": "guided-guided-practice-builder-commit-190-enter-a-valid-number-or-fraction",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 181,
+      "line": 190,
       "category": "guided",
       "text": "Enter a valid number or fraction.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-builder-commit-187-placeholder-placeholder",
+      "id": "guided-guided-practice-builder-commit-196-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 187,
+      "line": 196,
       "category": "guided",
       "text": "{placeholder}/{placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-guided-practice-builder-commit-206-enter-a-valid-number-or-fraction",
+      "id": "guided-guided-practice-builder-commit-220-enter-a-valid-number-or-fraction",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 206,
+      "line": 220,
       "category": "guided",
       "text": "Enter a valid number or fraction.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-builder-commit-236-empty",
+      "id": "guided-guided-practice-builder-commit-250-empty",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 236,
+      "line": 250,
       "category": "guided",
       "text": "(empty)",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-builder-commit-237-enter-the-full-row-transformation-before-submitt",
+      "id": "guided-guided-practice-builder-commit-251-enter-the-full-row-transformation-before-submitt",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-builder-commit.ts",
-      "line": 237,
+      "line": 251,
       "category": "guided",
       "text": "Enter the full row transformation before submitting.",
       "previewKind": "instruction-box",
@@ -1164,99 +1227,99 @@
       "isTemplate": true
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-182-placeholder-placeholder",
+      "id": "guided-guided-practice-wrong-recovery-189-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 182,
+      "line": 189,
       "category": "guided",
       "text": "{placeholder} {placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-188-we-need-the-indicated-cell-to-be-a-1-click-or-ta",
+      "id": "guided-guided-practice-wrong-recovery-195-we-need-the-indicated-cell-to-be-a-1-tap-or-clic",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 188,
+      "line": 195,
       "category": "guided",
-      "text": "We need the indicated cell to be a 1. Click or tap on it.",
+      "text": "We need the indicated cell to be a 1. Tap or click on it.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-191-we-need-the-indicated-cell-to-be-a-0-click-or-ta",
+      "id": "guided-guided-practice-wrong-recovery-198-we-need-the-indicated-cell-to-be-a-0-tap-or-clic",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 191,
+      "line": 198,
       "category": "guided",
-      "text": "We need the indicated cell to be a 0. Click or tap on it.",
+      "text": "We need the indicated cell to be a 0. Tap or click on it.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-194-click-or-tap-on-the-correct-cell-to-continue",
+      "id": "guided-guided-practice-wrong-recovery-201-tap-or-click-on-the-correct-cell-to-continue",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 194,
+      "line": 201,
       "category": "guided",
-      "text": "Click or tap on the correct cell to continue.",
+      "text": "Tap or click on the correct cell to continue.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-208-row-swap-is-only-used-when-the-bottom-left-entry",
+      "id": "guided-guided-practice-wrong-recovery-215-row-swap-is-only-used-when-the-bottom-left-entry",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 208,
+      "line": 215,
       "category": "guided",
       "text": "Row swap is only used when the bottom-left entry is 1 — this one is not.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-211-row-replacement-is-used-to-turn-entries-into-0",
+      "id": "guided-guided-practice-wrong-recovery-218-row-replacement-is-used-to-turn-entries-into-0",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 211,
+      "line": 218,
       "category": "guided",
       "text": "Row replacement is used to turn entries into 0.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-217-row-swap-moves-entire-rows",
+      "id": "guided-guided-practice-wrong-recovery-224-row-swap-moves-entire-rows",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 217,
+      "line": 224,
       "category": "guided",
       "text": "Row swap moves entire rows.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-220-row-scaling-turns-a-pivot-into-1",
+      "id": "guided-guided-practice-wrong-recovery-227-row-scaling-turns-a-pivot-into-1",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 220,
+      "line": 227,
       "category": "guided",
       "text": "Row scaling turns a pivot into 1.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-226-row-scaling-changes-an-entry-to-1",
+      "id": "guided-guided-practice-wrong-recovery-233-row-scaling-changes-an-entry-to-1",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 226,
+      "line": 233,
       "category": "guided",
       "text": "Row scaling changes an entry to 1.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-229-row-replacement-combines-rows-to-make-0",
+      "id": "guided-guided-practice-wrong-recovery-236-row-replacement-combines-rows-to-make-0",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 229,
+      "line": 236,
       "category": "guided",
       "text": "Row replacement combines rows to make 0.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "guided-guided-practice-wrong-recovery-306-placeholder-px",
+      "id": "guided-guided-practice-wrong-recovery-321-placeholder-px",
       "file": "School Scrips/Matrix app/src/app/hooks/guided-practice-wrong-recovery.ts",
-      "line": 306,
+      "line": 321,
       "category": "guided",
       "text": "{placeholder}px",
       "previewKind": "instruction-box",
@@ -1501,16 +1564,16 @@
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 27,
       "category": "help",
-      "text": "Examples 1 and 2 show you how to multiply a fraction by a whole number. Example 3 shows how to multiply fraction by fraction. Tab or click on the example you wish to see.",
+      "text": "Examples 1 and 2 show you how to multiply a fraction by a whole number. Example 3 shows how to multiply fraction by fraction. Tap or click on the example you wish to see.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-fractionHelpTutorialConfigs-30-tab-or-click-on-an-example-to-begin",
+      "id": "help-fractionHelpTutorialConfigs-30-tap-or-click-on-an-example-to-begin",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 30,
       "category": "help",
-      "text": "Tab or click on an example to begin.",
+      "text": "Tap or click on an example to begin.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -1623,92 +1686,74 @@
       "isTemplate": false
     },
     {
-      "id": "help-fractionHelpTutorialConfigs-73-tab-or-click-next-to-go-to-example-2",
+      "id": "help-fractionHelpTutorialConfigs-73-tap-or-click-next-to-go-to-example-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 73,
       "category": "help",
-      "text": "Tab or click Next to go to example 2.",
+      "text": "Tap or click Next to go to example 2.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-fractionHelpTutorialConfigs-90-tab-or-click-next-to-go-to-example-3",
+      "id": "help-fractionHelpTutorialConfigs-90-tap-or-click-next-to-go-to-example-3",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 90,
       "category": "help",
-      "text": "Tab or click Next to go to example 3.",
+      "text": "Tap or click Next to go to example 3.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-fractionHelpTutorialConfigs-143-tab-or-click-next-to-go-to-example-2",
+      "id": "help-fractionHelpTutorialConfigs-143-tap-or-click-next-to-go-to-example-2",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 143,
       "category": "help",
-      "text": "Tab or click Next to go to example 2.",
+      "text": "Tap or click Next to go to example 2.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-fractionHelpTutorialConfigs-165-tab-or-click-next-to-go-to-example-3",
+      "id": "help-fractionHelpTutorialConfigs-165-tap-or-click-next-to-go-to-example-3",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/fractionHelpTutorialConfigs.ts",
       "line": 165,
       "category": "help",
-      "text": "Tab or click Next to go to example 3.",
+      "text": "Tap or click Next to go to example 3.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-GuidedPracticeFractionHelpFeedbackModal-15-gp-fraction-help-feedback-absolute-inset-0-z-70-",
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-13-did-this-tutorial-help",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
-      "line": 15,
+      "line": 13,
+      "category": "help",
+      "text": "Did this tutorial help?",
+      "previewKind": "instruction-box",
+      "isTemplate": false
+    },
+    {
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-17-gp-fraction-help-feedback-absolute-inset-0-z-70-",
+      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
+      "line": 17,
       "category": "help",
       "text": "gp-fraction-help-feedback absolute inset-0 z-[70] flex items-center justify-center",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-GuidedPracticeFractionHelpFeedbackModal-18-fraction-help-feedback",
+      "id": "help-GuidedPracticeFractionHelpFeedbackModal-20-fraction-help-feedback",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
-      "line": 18,
+      "line": 20,
       "category": "help",
       "text": "Fraction help feedback",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "help-GuidedPracticeFractionHelpFeedbackModal-21-did-this-help-you-understand-multiplying-fractio",
-      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeFractionHelpFeedbackModal.tsx",
-      "line": 21,
-      "category": "help",
-      "text": "Did this help you understand multiplying fractions?",
-      "previewKind": "instruction-box",
-      "isTemplate": false
-    },
-    {
-      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-8-row-scaling",
-      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
-      "line": 8,
-      "category": "help",
-      "text": "row scaling",
-      "previewKind": "instruction-box",
-      "isTemplate": false
-    },
-    {
-      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-8-row-replacement",
-      "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
-      "line": 8,
-      "category": "help",
-      "text": "row replacement",
-      "previewKind": "instruction-box",
-      "isTemplate": false
-    },
-    {
-      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-13-row-scaling",
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-13-was-this-explanation-helpful",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
       "line": 13,
       "category": "help",
-      "text": "row scaling",
+      "text": "Was this explanation helpful?",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -1722,13 +1767,13 @@
       "isTemplate": false
     },
     {
-      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-20-placeholder-help-feedback",
+      "id": "help-GuidedPracticeRowScalingHelpFeedbackModal-20-help-feedback",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/GuidedPracticeRowScalingHelpFeedbackModal.tsx",
       "line": 20,
       "category": "help",
-      "text": "{placeholder} help feedback",
+      "text": "Help feedback",
       "previewKind": "instruction-box",
-      "isTemplate": true
+      "isTemplate": false
     },
     {
       "id": "help-helpTriggerCopy-7-multiplying-fractions",
@@ -1767,11 +1812,11 @@
       "isTemplate": false
     },
     {
-      "id": "help-helpTriggerCopy-16-need-help-with-placeholder",
+      "id": "help-helpTriggerCopy-16-need-help-with-placeholder-tap-or-click-here",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/helpTriggerCopy.ts",
       "line": 16,
       "category": "help",
-      "text": "Need help with {placeholder}?",
+      "text": "Need help with {placeholder}? Tap or click here.",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
@@ -2059,32 +2104,32 @@
       "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
       "line": 29,
       "category": "portal",
-      "text": "If you need to review anything from the tutorial, click Auto Solve. It summarizes every step.",
+      "text": "If you need to review anything from the tutorial, tap or click Auto Solve. It summarizes every step.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "portal-matrixTutorialActivity-69-part-1-completed",
+      "id": "portal-matrixTutorialActivity-72-part-1-completed",
       "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
-      "line": 69,
+      "line": 72,
       "category": "portal",
       "text": "Part 1 completed",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "portal-matrixTutorialActivity-72-part-2-completed",
+      "id": "portal-matrixTutorialActivity-75-part-2-completed",
       "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
-      "line": 72,
+      "line": 75,
       "category": "portal",
       "text": "Part 2 completed",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "portal-matrixTutorialActivity-75-part-3-completed",
+      "id": "portal-matrixTutorialActivity-78-part-3-completed",
       "file": "School Scrips/student-portal/src/features/matrix-tutorial/matrixTutorialActivity.ts",
-      "line": 75,
+      "line": 78,
       "category": "portal",
       "text": "Part 3 completed",
       "previewKind": "instruction-box",
@@ -2626,7 +2671,7 @@
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
       "line": 133,
       "category": "tutorial",
-      "text": "Now we're going to do this whole thing again, but for the next pivot column. Click on the cell that we need to change to a 1.",
+      "text": "Now we're going to do this whole thing again, but for the next pivot column. Tap or click on the cell that we need to change to a 1.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -2739,11 +2784,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-part-3-172-click-on",
+      "id": "tutorial-matrix-tutorial-overlay-part-3-172-tap-or-click-on",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
       "line": 172,
       "category": "tutorial",
-      "text": ". Click on",
+      "text": ". Tap or click on",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -2964,11 +3009,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-part-3-287-click-on-the-cell-that-needs-to-be-0",
+      "id": "tutorial-matrix-tutorial-overlay-part-3-287-tap-or-click-on-the-cell-that-needs-to-be-0",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
       "line": 287,
       "category": "tutorial",
-      "text": "Click on the cell that needs to be 0.",
+      "text": "Tap or click on the cell that needs to be 0.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -3063,11 +3108,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-part-3-315-to-make-zeros-click-on",
+      "id": "tutorial-matrix-tutorial-overlay-part-3-315-to-make-zeros-tap-or-click-on",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay-part-3.tsx",
       "line": 315,
       "category": "tutorial",
-      "text": "to make zeros. Click on",
+      "text": "to make zeros. Tap or click on",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -3396,11 +3441,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-98-first-we-need-to-start-here-click-on-the-indicat",
+      "id": "tutorial-matrix-tutorial-overlay-98-first-we-need-to-start-here-tap-or-click-on-the-",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
       "line": 98,
       "category": "tutorial",
-      "text": "First, we need to start here. Click on the indicated cell.",
+      "text": "First, we need to start here. Tap or click on the indicated cell.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -3513,11 +3558,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-131-click-on-the-row-scaling-button",
+      "id": "tutorial-matrix-tutorial-overlay-131-tap-or-click-on-the-row-scaling-button",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
       "line": 131,
       "category": "tutorial",
-      "text": ". Click on the Row Scaling button.",
+      "text": ". Tap or click on the Row Scaling button.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -3729,11 +3774,11 @@
       "isTemplate": false
     },
     {
-      "id": "tutorial-matrix-tutorial-overlay-208-click-the-button-to-continue",
+      "id": "tutorial-matrix-tutorial-overlay-208-tap-or-click-the-button-to-continue",
       "file": "School Scrips/Matrix app/src/app/components/matrix-tutorial-overlay.tsx",
       "line": 208,
       "category": "tutorial",
-      "text": "Click the button to continue.",
+      "text": "Tap or click the button to continue.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
@@ -3756,216 +3801,216 @@
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-79-read-x-and-y-from-the-reduced-matrix-x-is-the-to",
+      "id": "unguided-UnguidedPracticeSolver-55-read-x-and-y-from-the-reduced-matrix-x-is-the-to",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 79,
+      "line": 55,
       "category": "unguided",
       "text": "Read x and y from the reduced matrix â€” x is the top constant, y is the bottom.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-81-that-s-not-quite-right-try-again",
+      "id": "unguided-UnguidedPracticeSolver-57-that-s-not-quite-right-try-again",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 81,
+      "line": 57,
       "category": "unguided",
       "text": "That's not quite right. Try again.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-83-perfect",
+      "id": "unguided-UnguidedPracticeSolver-59-perfect",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 83,
+      "line": 59,
       "category": "unguided",
       "text": "Perfect!",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-83-great-job",
+      "id": "unguided-UnguidedPracticeSolver-59-great-job",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 83,
+      "line": 59,
       "category": "unguided",
       "text": "Great job!",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-83-you-got-it",
+      "id": "unguided-UnguidedPracticeSolver-59-you-got-it",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 83,
+      "line": 59,
       "category": "unguided",
       "text": "You got it!",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-83-nice-work",
+      "id": "unguided-UnguidedPracticeSolver-59-nice-work",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 83,
+      "line": 59,
       "category": "unguided",
       "text": "Nice work!",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-117-placeholder-placeholder",
+      "id": "unguided-UnguidedPracticeSolver-86-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 117,
+      "line": 86,
       "category": "unguided",
       "text": "{placeholder}/{placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-139-x-y-placeholder-placeholder",
+      "id": "unguided-UnguidedPracticeSolver-102-x-y-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 139,
+      "line": 102,
       "category": "unguided",
       "text": "(x, y) = ({placeholder}, {placeholder})",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-141-the-answer-is-placeholder",
+      "id": "unguided-UnguidedPracticeSolver-104-the-answer-is-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 141,
+      "line": 104,
       "category": "unguided",
       "text": "The answer is {placeholder}.",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-361-enter-a-valid-number-or-fraction-for-x-and-y",
+      "id": "unguided-UnguidedPracticeSolver-262-enter-a-valid-number-or-fraction-for-x-and-y",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 361,
+      "line": 262,
       "category": "unguided",
       "text": "Enter a valid number or fraction for x and y.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-453-enter-a-valid-number-or-fraction",
+      "id": "unguided-UnguidedPracticeSolver-332-enter-a-valid-number-or-fraction",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 453,
+      "line": 332,
       "category": "unguided",
       "text": "Enter a valid number or fraction.",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-523-placeholder",
+      "id": "unguided-UnguidedPracticeSolver-380-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 523,
+      "line": 380,
       "category": "unguided",
       "text": "-{placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-527-placeholder-placeholder",
+      "id": "unguided-UnguidedPracticeSolver-383-placeholder-placeholder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 527,
+      "line": 383,
       "category": "unguided",
       "text": "{placeholder}{placeholder}",
       "previewKind": "instruction-box",
       "isTemplate": true
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-537-submit",
+      "id": "unguided-UnguidedPracticeSolver-389-submit",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 537,
+      "line": 389,
       "category": "unguided",
       "text": "Submit",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-551-guided-practice-solver-w-full-p-8-bg-background-",
+      "id": "unguided-UnguidedPracticeSolver-398-guided-practice-solver-w-full-p-8-bg-background-",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 551,
+      "line": 398,
       "category": "unguided",
       "text": "guided-practice-solver w-full p-8 bg-background text-foreground relative",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-553-relative-flex-items-start-w-full-gap-3",
+      "id": "unguided-UnguidedPracticeSolver-399-relative-flex-items-start-w-full-gap-3",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 553,
+      "line": 399,
       "category": "unguided",
       "text": "relative flex items-start w-full gap-3",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-555-relative-shrink-0-self-start",
+      "id": "unguided-UnguidedPracticeSolver-400-relative-shrink-0-self-start",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 555,
+      "line": 400,
       "category": "unguided",
       "text": "relative shrink-0 self-start",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-571-absolute-left-0-top-full-z-30-mt-1-pointer-event",
+      "id": "unguided-UnguidedPracticeSolver-409-absolute-left-0-top-full-z-30-mt-1-pointer-event",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 571,
+      "line": 409,
       "category": "unguided",
       "text": "absolute left-0 top-full z-30 mt-1 pointer-events-auto",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-611-practice-instructions",
+      "id": "unguided-UnguidedPracticeSolver-430-practice-instructions",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 611,
+      "line": 430,
       "category": "unguided",
       "text": "Practice instructions",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-637-flex-flex-col-items-start-gap-1-5-shrink-0-self-",
+      "id": "unguided-UnguidedPracticeSolver-446-flex-flex-col-items-start-gap-1-5-shrink-0-self-",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 637,
+      "line": 446,
       "category": "unguided",
       "text": "flex flex-col items-start gap-1.5 shrink-0 self-start relative z-20",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-667-number-builder",
+      "id": "unguided-UnguidedPracticeSolver-463-number-builder",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 667,
+      "line": 463,
       "category": "unguided",
       "text": "Number builder",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-689-unguided-practice-celebration-shrink-0-self-cent",
+      "id": "unguided-UnguidedPracticeSolver-475-unguided-practice-celebration-shrink-0-self-cent",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 689,
+      "line": 475,
       "category": "unguided",
       "text": "unguided-practice-celebration shrink-0 self-center relative z-40 flex items-center justify-center min-w-[7rem] min-h-[4.5rem]",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-699-flex-flex-col-items-center-justify-center-gap-2-",
+      "id": "unguided-UnguidedPracticeSolver-480-flex-flex-col-items-center-justify-center-gap-2-",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 699,
+      "line": 480,
       "category": "unguided",
       "text": "flex flex-col items-center justify-center gap-2 pointer-events-none",
       "previewKind": "instruction-box",
       "isTemplate": false
     },
     {
-      "id": "unguided-UnguidedPracticeSolver-701-unguided-practice-celebration-message-m-0-text-c",
+      "id": "unguided-UnguidedPracticeSolver-481-unguided-practice-celebration-message-m-0-text-c",
       "file": "School Scrips/Matrix app/src/app/components/guided-practice/UnguidedPracticeSolver.tsx",
-      "line": 701,
+      "line": 481,
       "category": "unguided",
       "text": "unguided-practice-celebration__message m-0 text-center",
       "previewKind": "instruction-box",

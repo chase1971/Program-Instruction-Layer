@@ -56,26 +56,335 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1390</dd></div>
+      <div><dt>Total tasks</dt><dd>1424</dd></div>
       <div><dt>Tasks today</dt><dd>34</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 171 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>171k</dd></div>
       <div><dt>Total billed</dt><dd>528.4M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">7:02 PM · Wednesday, Oct 21, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">11:29 PM · Thursday, Oct 22, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>26</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>2</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>29</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/EMBEDDED_BROWSER_AND_MODALS.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade<span class="gap-task">6:49 PM · Wednesday, Oct 21, 2026 — Documented Logic Homework grades as first completed attempt, not best</span></li><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed<span class="gap-task">6:48 PM · Wednesday, Oct 21, 2026 — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span></li><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row<span class="gap-task">6:27 PM · Wednesday, Oct 21, 2026 — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for Gauss-Jordan Method Homework<span class="gap-task">1:16 PM · Wednesday, Oct 21, 2026 — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</span></li><li><code>Manim Trial/docs/FINE_TUNE_PIPELINE.md</code> — Cursor usage row points at cursor-token-scan.py, which now returns zeros; dashboard CSV export is the real source<span class="gap-task">1:12 PM · Wednesday, Oct 21, 2026 — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for You lost me / I don't get it button<span class="gap-task">12:33 PM · Wednesday, Oct 21, 2026 — Gauss-Jordan You lost me button is yellow, not white or navy</span></li><li><code>School Scripts/Macro App/AGENTS.md</code> — no row for category weights<span class="gap-task">8:29 AM · Wednesday, Oct 21, 2026 — Gradebook category weights can be set to 12</span></li><li><code>BUILD_MODE_LAYOUT_EDITOR_PLAN.md</code> — 'RectPct alone' stage-alignment assumption was wrong (portal shell insets the stage); fixed in plan<span class="gap-task">8:08 PM · Tuesday, Oct 20, 2026 — Build mode Phase 4 overlay: plain-CSS shared handles (pixel-identical), canvas-kit wired into Macro, Build stage (iframe + overlay + bridge + native detach) verified headlessly against live portal</span></li><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)<span class="gap-task">8:06 PM · Tuesday, Oct 13, 2026 — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span></li><li><code>agent docs INDEX</code> — no row for Teacher Console preview auto-orientation (portalPreviewRouteAspect.ts) - found by grep<span class="gap-task">7:55 PM · Tuesday, Oct 13, 2026 — Logic Gates: starts on truth table; video panel sets ?view=gates-watch so Teacher Console flips preview to portrait, back to landscape on leaving</span></li><li><code>Macro App AGENTS.md</code> — portal preview frame size / StepNudgeControl not in keyword table<span class="gap-task">7:17 PM · Tuesday, Oct 13, 2026 — Portal preview frame +/- buttons: hover-hold ticks every 500ms (StepNudgeControl)</span></li><li><code>agent docs/INDEX.md</code> — Factoring Guided Practice portal embed sizing / matrix-embed button override not indexed<span class="gap-task">3:23 PM · Tuesday, Oct 13, 2026 — Factoring builder: beat matrix-embed 1rem key rule (~half digit size), slightly larger typed expr field; widen incomplete-inner parens around ?</span></li><li><code>logic-app/README.md</code> — no note that the portal embeds logic-app components via @logic/ and has its own home panel (MainMenu unused in portal)<span class="gap-task">1:48 PM · Tuesday, Oct 13, 2026 — Portal: wire Logic Gates Extra Credit into Logic Homework home panel (admin preview only)</span></li><li><code>GRADE_IMPORT_INTEGRATION.md</code> — leftover post-save feedback URL made Save confirm a no-op<span class="gap-task">9:23 AM · Tuesday, Oct 13, 2026 — M1314 push false-success: leftover feedback= URL short-circuited Save confirm; fix clean-grid-before-apply + new-feedback-only confirm; restored 62 pending cells</span></li></ul>
+      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices<span class="gap-task">9:22 PM · Thursday, Oct 22, 2026 — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad<span class="gap-task">9:12 PM · Thursday, Oct 22, 2026 — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span></li><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row<span class="gap-task">9:03 PM · Thursday, Oct 22, 2026 — SE preview hides oversize notch; addition bar stays after the sum</span></li><li><code>agent docs/INDEX.md</code> — no row for context warning too soon<span class="gap-task">8:58 PM · Thursday, Oct 22, 2026 — Raised Cursor context-warning bar from 150k to 300k estimated growth so it does not fire mid-feature</span></li><li><code>agent docs/INDEX.md</code> — no cheat-next / skip-tutorial-clicks row<span class="gap-task">8:54 PM · Thursday, Oct 22, 2026 — Cheat Next skips Gauss-Jordan tutorial interactions and practice questions when Cheat enabled is on</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade<span class="gap-task">6:49 PM · Wednesday, Oct 21, 2026 — Documented Logic Homework grades as first completed attempt, not best</span></li><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed<span class="gap-task">6:48 PM · Wednesday, Oct 21, 2026 — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span></li><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row<span class="gap-task">6:27 PM · Wednesday, Oct 21, 2026 — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for Gauss-Jordan Method Homework<span class="gap-task">1:16 PM · Wednesday, Oct 21, 2026 — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</span></li><li><code>Manim Trial/docs/FINE_TUNE_PIPELINE.md</code> — Cursor usage row points at cursor-token-scan.py, which now returns zeros; dashboard CSV export is the real source<span class="gap-task">1:12 PM · Wednesday, Oct 21, 2026 — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for You lost me / I don't get it button<span class="gap-task">12:33 PM · Wednesday, Oct 21, 2026 — Gauss-Jordan You lost me button is yellow, not white or navy</span></li><li><code>School Scripts/Macro App/AGENTS.md</code> — no row for category weights<span class="gap-task">8:29 AM · Wednesday, Oct 21, 2026 — Gradebook category weights can be set to 12</span></li><li><code>BUILD_MODE_LAYOUT_EDITOR_PLAN.md</code> — 'RectPct alone' stage-alignment assumption was wrong (portal shell insets the stage); fixed in plan<span class="gap-task">8:08 PM · Tuesday, Oct 20, 2026 — Build mode Phase 4 overlay: plain-CSS shared handles (pixel-identical), canvas-kit wired into Macro, Build stage (iframe + overlay + bridge + native detach) verified headlessly against live portal</span></li><li><code>student-portal AGENTS.md</code> — no row noting LogicHomeworkEntry swaps to the rotate gate in portrait (unmounts view state)<span class="gap-task">8:06 PM · Tuesday, Oct 13, 2026 — Logic Gates video: fixed portrait flip unmounting the view (landscape gate in LogicHomeworkEntry now skipped while ?view=gates-watch)</span></li></ul>
     </details>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Thursday, Oct 22, 2026 <span class="day-count">34 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:29 PM — Matrix app: infinite-solution (parametric t) homework problem 2, six systems, solution-type question, t keypad, parametric help trigger stub; tests added</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1h 5m active tool time<br>1h 5m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:23 PM — Solution pair: pad opens on x, no Submit in the prompt, y pad Submit grades the pair</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 26s active tool time<br>2m 29s since previous task (includes idle)<br>Chat so far: 13 message(s), 222 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:21 PM — Widened every compact yellow ! help label by 30px (notation, multiply, add, reveals, Part 2/3)</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>41s active tool time<br>44s since previous task (includes idle)<br>Chat so far: 12 message(s), 218 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:20 PM — Widened row-notation yellow ! label 30px; fraction-help labels unchanged</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 47s active tool time<br>1m 50s since previous task (includes idle)<br>Chat so far: 11 message(s), 214 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:18 PM — Row-notation format error stays on the pad only; adding-fractions row-entry already matches multiplying (compact ! under typed row, no Submit row)</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>42s active tool time<br>49s since previous task (includes idle)<br>Chat so far: 10 message(s), 208 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:18 PM — Row-entry: compact multiplying ! under typed row, prompt -50px without Use answer/Submit row, last cell auto-submits</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 35s active tool time<br>2m 43s since previous task (includes idle)<br>Chat so far: 9 message(s), 180 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:15 PM — Widened row-scaling ! label 30px and dropped the correct check 30px so they no longer overlap</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 23s active tool time<br>2m 33s since previous task (includes idle)<br>Chat so far: 8 message(s), 170 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:12 PM — Row-scaling help: smaller type, card higher, Back to question inside prompt, Row scaling tutorial label, hide 1 of 3 while help is open</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 58s active tool time<br>3m 7s since previous task (includes idle)<br>Chat so far: 7 message(s), 125 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:09 PM — Pad 30px left; row-scaling help is a tall centered 500px prompt with animation inside</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 54s active tool time<br>5m 57s since previous task (includes idle)<br>Chat so far: 6 message(s), 108 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:03 PM — Guided practice: moved row-notation pad right, clear of the prompt</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 48s active tool time<br>1m 51s since previous task (includes idle)<br>Chat so far: 5 message(s), 104 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:01 PM — Guided practice: auto-open row-notation pad, remove Tap-or-click blank, compact ! beside matrix</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 14s active tool time<br>7m 18s since previous task (includes idle)<br>Chat so far: 4 message(s), 48 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:54 PM — Guided practice: Back beside cheat Next in the top nav</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 19s active tool time<br>3m 20s since previous task (includes idle)<br>Chat so far: 3 message(s), 31 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:51 PM — Part 3 step 9: put add-fractions help beside multiply help on one row</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 11s active tool time<br>2m 15s since previous task (includes idle)<br>Chat so far: 2 message(s), 29 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:48 PM — Part 3 step 9: both multiply and add fraction-help tutorials under the row animation</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 2s active tool time<br>6m 4s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:42 PM — Momentum handoff written for Gauss-Jordan Part 2/3 polish</span>
+      <span class="pill p0">Chat: 17 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 38s active tool time<br>1m 39s since previous task (includes idle)<br>Chat so far: 17 message(s), 232 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:41 PM — Part 3 steps 6-7: removed layout projection so the slid-in matrix does not bounce on click</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 46s active tool time<br>2m 46s since previous task (includes idle)<br>Chat so far: 16 message(s), 230 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:38 PM — Part 3 green rules tab 100px left; number pad stayed put</span>
+      <span class="pill p0">Chat: 15 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>29s active tool time<br>33s since previous task (includes idle)<br>Chat so far: 15 message(s), 226 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:37 PM — Part 3 pad and green tab 50px right; expanded rules drawer stacks above the pad</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 52s active tool time<br>4m 57s since previous task (includes idle)<br>Chat so far: 14 message(s), 224 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:32 PM — Help Back/Replay/Next stay on one row; Part 2 step 5 adding-fractions help under Part C callout</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 8s active tool time<br>5m 11s since previous task (includes idle)<br>Chat so far: 13 message(s), 207 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:27 PM — Restored Part 2 step 4 prompt to original overlay; yellow help is a separate overlay</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 16s active tool time<br>1m 19s since previous task (includes idle)<br>Chat so far: 12 message(s), 193 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:26 PM — Part 2 multiply-help label no longer inherits embed 1rem button font; matches value-practice size</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 58s active tool time<br>4m 4s since previous task (includes idle)<br>Chat so far: 11 message(s), 187 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:22 PM — Part 3 green column-rules tab moved 50px left</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>10s active tool time<br>14s since previous task (includes idle)<br>Chat so far: 10 message(s), 184 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:22 PM — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span>
+      <span class="pill p0">Chat: 9 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9m 57s active tool time<br>10m 4s since previous task (includes idle)<br>Chat so far: 9 message(s), 146 KB transcript</p>
+      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:12 PM — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span>
+      <span class="pill p0">Chat: 8 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 36s active tool time<br>6m 40s since previous task (includes idle)<br>Chat so far: 8 message(s), 101 KB transcript</p>
+      <ul class="gap-list"><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:05 PM — SE is the small-phone size preset: keep the notch, scale it, shift content right</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 30s active tool time<br>1m 30s since previous task (includes idle)<br>Chat so far: 7 message(s), 94 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:03 PM — SE preview hides oversize notch; addition bar stays after the sum</span>
+      <span class="pill p0">Chat: 6 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 34s active tool time<br>4m 35s since previous task (includes idle)<br>Chat so far: 6 message(s), 76 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:59 PM — Part 2 steps 2 and 3 prompt boxes +100px wide</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>41s active tool time<br>42s since previous task (includes idle)<br>Chat so far: 5 message(s), 73 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:58 PM — Part 2 step 1 prompt box +100px wide (220 to 320)</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>13s active tool time<br>14s since previous task (includes idle)<br>Chat so far: 4 message(s), 72 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:58 PM — Raised Cursor context-warning bar from 150k to 300k estimated growth so it does not fire mid-feature</span>
+      <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 38s active tool time<br>1m 39s since previous task (includes idle)<br>Chat so far: 3 message(s), 63 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no row for context warning too soon</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:56 PM — Pulsed Part 1 write-this-matrix-down prompt with animate-tutorial-pulse</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 5s active tool time<br>2m 9s since previous task (includes idle)<br>Chat so far: 2 message(s), 60 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:54 PM — Cheat Next skips Gauss-Jordan tutorial interactions and practice questions when Cheat enabled is on</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>11m 51s active tool time<br>11m 51s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — no cheat-next / skip-tutorial-clicks row</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:42 PM — Bolded do not write this down on Gauss-Jordan row-swap orange box</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>16s active tool time<br>20s since previous task (includes idle)<br>Chat so far: 3 message(s), 30 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:42 PM — Gauss-Jordan tutorial and practice copy: click became tap or click</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 7s active tool time<br>6m 11s since previous task (includes idle)<br>Chat so far: 2 message(s), 9 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:36 PM — Pulled Macro App, student-portal, and student-session-kit from GitHub (Probability app + homework unit tags)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>25h 16m active tool time<br>25h 17m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Wednesday, Oct 21, 2026 <span class="day-count">34 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
