@@ -1,93 +1,80 @@
-# Momentum handoff: 11.2 Homework Matrix (parametric, 3-var, layout, UI polish)
+# Momentum handoff — 11.2 Gauss-Jordan homework (three-var + practice retries)
 
-**Written:** 2026-10-23. Valid for today's continuation only.
-**Nothing is committed or pushed.** Dirty work spans `School Scrips/Matrix app`, `School Scrips/student-portal`, and `Programs/` (agent docs). Commit only on "pull", "put on GitHub", or end of session.
+**Written:** 2026-10-23
 
 ## Objective and current phase
 
-Chase is polishing **11.2 Homework** in the student portal (Matrix embed): infinite-solution **2-var** parametric recovery, **three-variable** homework problems (RREF → solution type → answer), layout preview for animation/check positions, and button press feedback.
-
-**Phase:** Most recent work is **implemented and headless-green**; Chase has **portal-verified** layout-preview drag and button click feedback, but not re-checked every animation/layout tweak from this long session. No Netlify deploy unless explicitly asked.
+Chase is shipping **11.2 Homework** in the student portal (Matrix embed): six problems (1–3 guided 2×2, 4–6 three-variable calculator-RREF flow). This chat finished UX, validation, and Pearson-style retries on **practice-style** steps. **Not deployed to Netlify** unless Chase asks. Verify in portal with hard refresh after local Matrix + portal builds.
 
 ## Chase's desired feel
 
-- Review in **student portal** only for student-facing UI (hard refresh Ctrl+Shift+R after changes).
-- **Plain drag** for layout preview (no dwell hooks). Grab anywhere on the animation block; Save persists offset.
-- Animations match **Factoring Guided Practice** solve-board house style: gold op under both sides, **one red diagonal** cancel through `3t` and `- 3t` (negative slope), answers in **yellow boxes** side by side (`x = …` then `y = t`). **No loop**; Replay only.
-- Buttons must **look clickable** and **animate press** on dwell click (global Web Animations helper).
-- Solution-type MCQ: **Exactly one solution** / **Infinitely many solutions** / **No solution** (not "ordered triple" on the choice row).
-- After correct **RREF** on 3-var homework, keep the **student's reduced matrix** on the left (replaces original system), not augmented initial form.
-- Correct **solution type** choice gets **green check flash** like RREF before advancing.
-- Parametric step prompt: **Enter the solution in parametric form. Let z = t.** (dynamic free variable from answer key; all current 3-var parametric problems use **z = t**).
+- Head-mouse / dwell: no mystery dead ends after wrong tries; number pad stays usable.
+- **Calculator RREF** means full reduction on the **whole augmented matrix** (pivot in constant column clears entries above it).
+- **No-solution** systems: no extra "confirm" step; say correct and move on.
+- **Parametric triple:** `t` prefilled in the free variable (usually z); only type x and y; minus appends in parametric mode; Submit on y.
+- Finishing problem 6: **no** "matrix is in RREF" modal; brief hold then survey (once) or grade screen. **Admin:** skip survey entirely.
+- Practice homework steps: **three tries**, then show answer + **Next** (never auto-advance past reveal). Guided problems 1–3 unchanged.
 
 ## Accepted decisions
 
-**2-var parametric wrong-answer reveal (`DynamicParametricSolveAnimation.tsx`, `GuidedPracticeParametricSolveReveal.tsx`):**
+| Area | Decision |
+|---|---|
+| RREF validation | `gauss-jordan.ts` loops all columns including augmented (`colCount`), not `colCount - 1`. Problem 317 expects `[1,0,1,0; 0,1,1,0; 0,0,0,1]`. |
+| First wrong RREF | `use-homework-matrix-setup.ts`: keep draft, focus cell 0, builder open (`reopenMatrixBuilderOnFirstCell`). |
+| None (problem 6) | Choosing **No solution** on type step finishes problem (records solution slot, `THREE_VAR_NONE_TYPE_SUCCESS_PROMPT`). No third confirm button. |
+| Last problem closeout | Removed `GuidedPracticeHomeworkCompleteCard` overlay; `GuidedPracticeHomeworkView` auto `continueFromLastProblem` after hold for all modes. |
+| Parametric minus | `use-three-var-homework-session` uses `appendParametricBuilderToken` (not sign-toggle). |
+| Parametric UX | `initialTripleDraftForSolution` prefills `t`; commit on y submits with free var; `solutionBuilderSubmitLabel` Next on x, Submit on y/z. |
+| Admin nav (3-var) | `adminGoBack` / `adminSubmitCorrectSolution`; workspace wires Back/Next for three-var step index. |
+| Admin survey | `useGuidedPracticeHomeworkCloseout`: `hasAdminCheats()` → `finishHomework()` + result, skip survey. |
+| Practice retries | Shared `homework-practice-retry.ts`: 3 attempts, messages on 1 and 2, reveal on 3. Used in matrix entry, three-var type/solution, unguided 2×2. Overlay `homeworkPracticeReveal` with **Next** in prompt. |
 
-- Pacing: `PARAMETRIC_SPEEDUP = 1.15` on step/hold/fade constants.
-- Sequence: equation + `y = t` beside it → y→t swap → gold ops under `3t` and `2` → single measured **CancelLine** → fade ops → `x` answer box, then `y = t` box **beside** x.
-- Layout preview: pointer-capture drag, scale-aware, `PARAMETRIC_REVEAL_LAYOUT_KEY`; Reset via portal banner + `useGuidedPracticeLayoutPreview` `layoutResetToken`.
-- Wrong solution entry **kept** on first wrong (not cleared).
+## Rejected directions
 
-**Portal / Matrix shared UI:**
+- Treating partial RREF (constants 2,3,1 with `[0,0,0|1]` bottom row) as correct: wrong for calculator RREF on full augmented matrix.
+- Closing builder and clearing focus on first wrong RREF try.
+- Separate "Confirm no solution" step and last-problem Continue modal copy about RREF.
+- Two-try only on practice mode (expanded to three to match Pearson ask).
+- Auto-advancing immediately after answer reveal without **Next**.
 
-- `buttonClickFeedback.ts` installed in `student-portal/src/main.tsx` and `Matrix app/src/main.tsx`. Banner buttons restyled in `guided-practice.css`.
-- `pressable-buttons.md` extended with dwell-proof animation section; recipes INDEX row for Factoring solve-board cancel pattern.
+## Current implementation state (uncommitted)
 
-**Three-var homework (`ThreeVarHomeworkSolver`, `use-three-var-homework-session.ts`, `use-homework-matrix-setup.ts`):**
+**Repos with dirty work:** `School Scrips/Matrix app`, `School Scrips/student-portal`
 
-- `onSuccess(matrix)` passes submitted RREF into `displayMatrix`; post-RREF phases show **only** reduced matrix (no duplicate augmented copy).
-- `showTypeCorrectCheck` + `CORRECT_CHECK_MS` delay before solution phase.
-- `parametric3EntryPrompt()` in `parametric.ts` for step-3 overlay text.
+**Matrix app (high signal paths):**
 
-**Solution-type labels (`solution-type-labels.ts`):**
-
-- Single source for MCQ copy in `HomeworkThreeVarSolutionTypePanel`, `GuidedPracticeSolutionTypePanel`, and wrong-answer reveal hint in `use-three-var-homework-session`.
-
-## Rejected / do not rediscover
-
-- **Dwell-based drag** for layout preview (Chase wants Word-style pointer drag).
-- **`:active` only** for click feedback (invisible on dwell).
-- **Separate `y = t` row** below equation in parametric animation (must be beside equation, then beside answer boxes).
-- **Two red strikes** for cancel (Chase wanted **one** diagonal through both terms; may still want spacing tweaks).
-- **Auto-loop** on parametric solve animation.
-- **"Saved!"** toast after layout Save (no-ephemeral-feedback still applies).
-- Revert **`GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE`** before student ship when mode-choice thread is done (from earlier homework work).
-
-## Current implementation state
-
-**Matrix app (high-signal paths):**
-
-- `DynamicParametricSolveAnimation.tsx` — full solve walkthrough; tests in `guided-practice-infinite-solution.test.tsx`, `parametric-reveal-layout-drag.test.tsx`, `button-click-feedback.test.ts`.
-- `GuidedPracticeParametricSolveReveal.tsx`, `layoutPreviewOffsetGuard.ts`, `helpTriggerLayoutPosition.ts` (`PARAMETRIC_REVEAL_LAYOUT_KEY`).
-- `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver.tsx`, `HomeworkThreeVarSolutionTypePanel.tsx`.
-- `solution-type-labels.ts`, `three-var-homework-questions.ts`, `parametric.ts` (`parametric3EntryPrompt`, `parametric3FreeVariable`).
-- `GuidedPracticeSolver.tsx` still **~793 lines** (cap 800); do not grow without extract.
+- `src/app/engine/gauss-jordan.ts` — full augmented RREF
+- `src/app/engine/homework-practice-retry.ts` — new
+- `src/app/hooks/use-homework-matrix-setup.ts` — 3-try + first-wrong reopen
+- `src/app/hooks/use-three-var-homework-session.ts` — none-on-type, parametric, 3-try reveal, admin skip/back (~600+ lines; watch cap)
+- `src/app/components/guided-practice/ThreeVarHomeworkSolver.tsx`, `GuidedPracticeOverlay.tsx`, `UnguidedPracticeSolver.tsx`
+- Tests: `three-var-homework-*`, `homework-practice-retry`, `three-var-none-flow`, `three-var-parametric-solution-entry`, `append-parametric-builder-token`, `unguided-practice-solver` (updated for 3 tries)
 
 **Student portal:**
 
-- `GuidedPracticeCheckLayoutBannerControls.tsx` (Layout preview / Save / Reset).
-- `GuidedPracticeHomeworkView.tsx` / `GuidedPracticeView.tsx` — `checkResetToken`, layout banner wiring.
-- `main.tsx` — `installButtonClickFeedback()`.
+- `GuidedPracticeHomeworkWorkspace.tsx` — three-var snapshot, no complete card, admin back
+- `GuidedPracticeHomeworkView.tsx` — auto closeout all modes
+- `useGuidedPracticeHomeworkCloseout.ts` — admin skips survey
+- `src/types/matrix-app.d.ts` — `ThreeVarHomeworkSolverHandle` adminBack
 
-**Verification (agent):** Vitest green on infinite-solution, three-var questions, parametric reveal, layout drag, button feedback, unguided solver. **Not** full portal visual pass on latest cancel-line geometry or 3-var check placement.
+**Verification:** Matrix app vitest passed for retry, unguided, three-var tests run in session. No Netlify deploy. Chase should portal-smoke: problem 4 parametric (3 wrong → answer + Next), problem 6 none + full RREF, admin finish without survey.
 
-## Open questions and constraints
+## Open questions / constraints
 
-- Layout preview **placeholder** box for animation may still be taller than the shortened 3-row animation; shrink preview box if Chase cares.
-- **Check mark** position for 3-var solution-type step is beside matrix (not layout-preview slot yet); may need `GuidedPracticeCorrectCheckSlot` parity with 2-var guided practice.
-- Animation timing still tunable via `PARAMETRIC_SPEEDUP` only.
-- Parallel older handoff topics (mode choice after problem 2, MCQ `y: -12`) may still matter; confirm with Chase which homework path is active (problem 2 infinite vs problem 4+ three-var).
+- `ThreeVarHomeworkSolver` `onComplete` in workspace is still `() => undefined`; advancement is **event-driven** via `onSessionEvent` / homework complete slots. OK if last slot gets recorded (including reveal **Next** path which records `correct: true` on solution after reveal for progression).
+- `GuidedPracticeHomeworkCompleteCard.tsx` still exists but is unused in workspace; safe to delete later if desired.
+- `GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE` and related homework mode choice flags from prior sessions: confirm before prod ship.
+- File size: `use-three-var-homework-session.ts` growing; extract if adding more phases.
+- Never deploy Netlify prod unless Chase says so in that message.
 
-## Read first
+## Read first (fresh agent)
 
-1. This file.
-2. `School Scrips/Matrix app/src/app/components/guided-practice/DynamicParametricSolveAnimation.tsx` (animation exemplar).
-3. Factoring reference: `School Scrips/Factoring Guided Practice/src/app/hooks/useRootsRevealWalkthrough.ts`, `FactoringSolveBoard.tsx`.
-4. Three-var flow: `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver.tsx`.
-5. Labels: `solution-type-labels.ts`.
-6. Layout preview: `useGuidedPracticeLayoutPreview.ts`, `GuidedPracticeParametricSolveReveal.tsx`.
+1. This file (date check).
+2. `School Scrips/Matrix app/src/app/hooks/use-three-var-homework-session.ts`
+3. `School Scrips/Matrix app/src/app/engine/homework-practice-retry.ts`
+4. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkView.tsx`
+5. Bank: `School Scrips/Matrix app/src/app/engine/three-var-homework-problems.ts` (ids 301–317)
 
 ## Exact next step
 
-Hard refresh portal. On **11.2 Homework problem 4** (three-var): complete RREF, confirm **reduced matrix stays** on step 2, pick **Exactly one solution** / **Infinitely many** / **No solution** and confirm **check flash**, then read parametric prompt (**Let z = t** on parametric problems). Separately on **problem 2** (infinite): wrong parametric twice, confirm animation cancel line and side-by-side yellow answers; use **Layout preview** if animation position still needs Save. Report any misaligned gold ops or cancel line only (numbers for nudge).
+Hard-refresh portal, run through **problem 4** (parametric: prefilled `t`, 3 wrong submits → answer in blue prompt + **Next** → next phase) and **problem 6** (RREF `[0,0,1]` aug column, **No solution** on type, no survey as admin). If anything fails, fix the specific phase hook before adding features. If all green and Chase wants sync: **put on GitHub** (Matrix app + student-portal repos).

@@ -21,6 +21,7 @@ a rail on the right competes with them.
 | **React (canonical)** | `School Scrips/Macro App/renderer/src/components/LocalVerticalScrollRail.tsx` + `renderer/src/hooks/browser/useViewportSmoothScroll.ts` |
 | React, wrapping a whole scroll region | `School Scrips/Macro App/renderer/src/components/ViewportScrollFrame.tsx` |
 | React, non-Macro-App | `School Scrips/Math App Studio/renderer/src/app/components/LocalVerticalScrollRail.tsx` |
+| React, student portal | `School Scrips/student-portal/src/features/frame-gallery/ViewportScrollFrame.tsx` (+ its `useViewportSmoothScroll.ts`, `scrollSpeed.ts`, `viewport-scroll-frame.css`). A verbatim port of the Macro App one. |
 | Scrolling an Electron `BrowserView` (no DOM to scroll) | `School Scrips/Macro App/renderer/src/components/browser/BrowserVerticalScrollRail.tsx` — same hook, `onScroll` → IPC |
 | **Plain HTML/JS, no framework** | `Guildrun Stats/grstats/render.py` → `RAIL_JS` + `_rail()` |
 | Same shape, zoom instead of scroll | `School Scrips/Macro App/my-calendar/src/components/shared/LocalCalendarZoomRail.tsx` |
@@ -39,6 +40,10 @@ and reused by every consumer. Non-React ports mirror the same shape.
 
 1. **`onMouseEnter` starts continuous scroll. `onMouseLeave` stops. `onClick` nudges once.**
    Hover is the primary gesture — dwell produces a long hover before it produces a click.
+   **Never add `onPointerDown` / `onPointerUp` / `onPointerCancel` handlers** (an attempt to
+   "support touch"). A dwell click is a pointer down and up while already hovering, so
+   `onPointerUp → stop` kills the hover scroll right after the click. Only
+   `onMouseEnter`, `onMouseLeave`, `onClick`.
 2. **Fire once immediately on hover**, then start the interval. Otherwise the first tick of
    delay reads as a dead button.
 3. **Always stop on unmount**, and on `window` blur for a standalone page. A rail that keeps
@@ -50,6 +55,17 @@ and reused by every consumer. Non-React ports mirror the same shape.
    aiming defeats the point.
 6. **Never `pointer-events: none` the rail** while its region is scrollable, and never hide
    it behind a hover reveal. It must be there before the pointer arrives.
+
+## Student portal in the Teacher Console preview: the rail is Macro App's, not the page's
+
+The preview is a native `BrowserView` with **phone emulation** (`browser-slot-phone-emulation.js`):
+mouse becomes touch taps and the page reports `hover: none`. A rail built **inside the portal
+page** can never hover there, and a tap fires an emulated `mouseenter` with no `mouseleave`, so it
+scrolls forever. Don't try to fix that in the page. Put the rail **outside** it, like the Browser
+tab: `BrowserVerticalScrollRail` (IPC `scrollBy`) beside the phone frame, already in
+`Macro App/renderer/src/components/teacher-console/TeacherConsolePreviewPhoneChrome.tsx`. It finds
+the page's inner `overflow-y: auto` container on its own, so a portal view needs no code for it.
+In-page rails stay for real browsers and hide under `@media (hover: none)`.
 
 ## Timing
 

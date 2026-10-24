@@ -2,6 +2,32 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-23 — 11.2 frame gallery + layout editor (momentum handoff)
+
+**Repos touched:** `School Scrips/student-portal`, `School Scrips/Matrix app`, `Programs/` root
+
+**Files changed:** `student-portal/src/features/frame-gallery/*` (new), `GuidedPracticeHomeworkHomePanel.tsx`, `GuidedPracticeCheckLayoutBannerControls.tsx`; Matrix `GuidedPracticeOverlay.tsx`, `usePromptBoxLayoutEditing.ts`, `promptBoxLayoutPosition.ts`, `useGuidedPracticeLayoutPreview.ts`, `helpTriggerContainerContext.ts`
+
+**What worked:** Frame gallery (normal/correct/wrong frames, IDs, Back/Next, scroll rail); draggable and resizable prompt boxes with Show layout / Save / Undo; fixed a resume bug that wiped the operation give-answer screen.
+
+**Current state:** Green on targeted tests; one Matrix test (infinite-solution parametric reveal) fails with or without these changes. Not committed.
+
+**File size flag:** `GuidedPracticeSolver.tsx` was 793, extracted to ~752; `GuidedPracticeOverlay.tsx` ~440.
+
+**Next session:** see agent docs/momentum-handoffs/2026-10-23_frame-gallery-layout-editor.md (2026-10-23)
+
+## 2026-10-23 — 11.2 homework three-var, RREF, Pearson retries (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`
+
+**What worked:** Full augmented RREF validation; three-var none/parametric/closeout UX; three-try practice reveal with Next; admin survey skip; matrix first-wrong recovery.
+
+**Current state:** Green on targeted vitest — portal smoke not logged this chat.
+
+**File size flag:** `use-three-var-homework-session.ts` ~617 lines.
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-10-23)
+
 ## 2026-10-23 — Matrix 11.2 homework polish (momentum handoff)
 
 **Repos touched:** `Programs/` root, `School Scrips/Matrix app`, `School Scrips/student-portal`

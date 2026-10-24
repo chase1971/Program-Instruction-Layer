@@ -68,13 +68,43 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>190</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">4:34 PM · Friday, Oct 23, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>191</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">10:36 PM · Friday, Oct 23, 2026</dd></div>
     </div>
     
     <section class="day-block">
       <h2 class="day-title">Friday, Oct 23, 2026</h2>
       <div class="day-sessions"><article class="session-card">
+    <header class="session-head">
+      <div class="pills">
+        <span class="time">10:36 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span>
+      </div>
+      <div class="model">claude-sonnet-5-5</div>
+    </header>
+    <p class="summary-human">Built layout editing for text boxes, number pads and yellow help labels in the frame gallery, with autosave, undo, edit-text and pins. Refactored the guided practice solver from 795 to 554 lines.</p>
+    <div class="metric-grid"><div class="metric metric-warn">
+    <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
+    <dd>39</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
+    <dd>31.7M</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>203k</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
+    <dd>19</dd>
+  </div><div class="metric">
+    <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
+    <dd>0</dd>
+  </div></div>
+    <details class="file-details"><summary>19 task(s)</summary>
+    <ul class="task-list"><li>4:45 PM — 11.2 Homework: 3eq×3unk bank counts; upgraded 6 two-row bank items; homework 4–6 pick full systems only</li><li>4:48 PM — 11.2 Homework 4–6: one unique/infinite/none each; calculator RREF prompts</li><li>4:53 PM — 11.2 three-var: layout preview green checks + solution-step check flash</li><li>5:13 PM — Three-var homework: pad under triple entry; parametric t/+ keys on builder</li><li>5:29 PM — Matrix homework: first wrong RREF keeps draft, focuses cell 0, opens number pad</li><li>5:38 PM — Matrix gauss-jordan: full RREF includes augmented column; 317 accepts [0,0,1] final column</li><li>6:02 PM — 11.2 homework: no-solution skips confirm; last problem auto closeout no RREF modal</li><li>6:56 PM — Momentum handoff: 11.2 homework three-var + Pearson 3-try retries</li><li>6:58 PM — Homework practice: Incorrect retry copy, no false green check on reveal</li><li>7:03 PM — Solution entry: Submit stays when all cells filled after wrong try</li><li>7:15 PM — Built 11.2 frame gallery dev tool (frame-gallery route, catalog, seeded thumbnails) and fixed give-answer resume reset</li><li>9:02 PM — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</li><li>9:10 PM — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</li><li>9:13 PM — Macro App preview: Open on PC button beside phone frame for dev frame-gallery; shell openExternal IPC</li><li>9:18 PM — Layout preview: draggable and resizable prompt box saved per step; extracted solver notifications hook</li><li>9:24 PM — Fix Open on PC: Build mode passes frame-gallery dev URL; localhost:5340; openExternal error logging</li><li>9:34 PM — Open on PC failures log to Console warnings panel via [PortalPreview] prefix</li><li>9:36 PM — Momentum handoff: frame gallery + layout editor</li><li>10:36 PM — Frame gallery layout/text editing, pins, solver refactor</li></ul>
+  </details>
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Matrix app has no TypeScript, so earlier tsc checks were vacuous until a real one was run late in the session.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> Matrix app: type-check with the portal's typescript and a temp tsconfig (ignoreDeprecations 5.0); npx tsc there is a stub.</div>
+    <p class="next"><strong>Next time:</strong> Extend Edit text to button labels and reveal messages; bake saved layouts before shipping.</p>
+  </article><article class="session-card">
     <header class="session-head">
       <div class="pills">
         <span class="time">4:34 PM</span>
