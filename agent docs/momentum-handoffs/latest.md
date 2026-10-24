@@ -1,80 +1,83 @@
-# Momentum handoff — 11.2 Gauss-Jordan homework (three-var + practice retries)
+# Momentum handoff: 11.2 Homework + frame gallery (Gauss-Jordan)
 
-**Written:** 2026-10-23
+**Written:** 2026-10-24. Valid for today's continuation only.
+**Nothing is committed or pushed** unless Chase says pull / put on GitHub / end of session.
 
 ## Objective and current phase
 
-Chase is shipping **11.2 Homework** in the student portal (Matrix embed): six problems (1–3 guided 2×2, 4–6 three-variable calculator-RREF flow). This chat finished UX, validation, and Pearson-style retries on **practice-style** steps. **Not deployed to Netlify** unless Chase asks. Verify in portal with hard refresh after local Matrix + portal builds.
+Ship **11.2 Homework** and the **frame gallery** dev preview so students get Pearson-style **three tries** on homework practice steps, correct **resume/advance/scoring**, and gallery frames that match what the live app actually shows.
+
+**Phase:** Code and headless tests are largely in place. Chase has **not** done a full portal walkthrough of every fix in this handoff. **Supabase/Netlify deploy** is explicitly out of scope until he asks.
 
 ## Chase's desired feel
 
-- Head-mouse / dwell: no mystery dead ends after wrong tries; number pad stays usable.
-- **Calculator RREF** means full reduction on the **whole augmented matrix** (pivot in constant column clears entries above it).
-- **No-solution** systems: no extra "confirm" step; say correct and move on.
-- **Parametric triple:** `t` prefilled in the free variable (usually z); only type x and y; minus appends in parametric mode; Submit on y.
-- Finishing problem 6: **no** "matrix is in RREF" modal; brief hold then survey (once) or grade screen. **Admin:** skip survey entirely.
-- Practice homework steps: **three tries**, then show answer + **Next** (never auto-advance past reveal). Guided problems 1–3 unchanged.
+- Review in the **student portal** (and frame gallery locally), not raw MP4s or Matrix-only runs unless headless.
+- **Problem 3 mode choice:** after problem 2, **walked-through steps** vs **"Just right or wrong"** — tap choice, no Continue button.
+- **Just right or wrong** is **not** skipping to the pair only. It is the **same three-question shape as homework 4–6** but **2×2**: **augmented matrix → RREF → ordered pair**, each with **three attempts** (soft retry, then "One try left.", then reveal + Next).
+- **Guided problem 3** stays the full Gauss–Jordan step flow; that path was already acceptable.
+- **No-solution 3×3 homework** finishes after **"No solution"** on Q2; there is **no student Q3 screen**. The frame gallery must **not** invent interactive **P313.Q3** frames (that created stuck/impossible previews).
+- Frame gallery: **W1 / W2 (one try left) / W3 (reveal)** for homework-practice question kinds; exit checker must not mark W2 stuck when the student can still retry.
 
 ## Accepted decisions
 
 | Area | Decision |
-|---|---|
-| RREF validation | `gauss-jordan.ts` loops all columns including augmented (`colCount`), not `colCount - 1`. Problem 317 expects `[1,0,1,0; 0,1,1,0; 0,0,0,1]`. |
-| First wrong RREF | `use-homework-matrix-setup.ts`: keep draft, focus cell 0, builder open (`reopenMatrixBuilderOnFirstCell`). |
-| None (problem 6) | Choosing **No solution** on type step finishes problem (records solution slot, `THREE_VAR_NONE_TYPE_SUCCESS_PROMPT`). No third confirm button. |
-| Last problem closeout | Removed `GuidedPracticeHomeworkCompleteCard` overlay; `GuidedPracticeHomeworkView` auto `continueFromLastProblem` after hold for all modes. |
-| Parametric minus | `use-three-var-homework-session` uses `appendParametricBuilderToken` (not sign-toggle). |
-| Parametric UX | `initialTripleDraftForSolution` prefills `t`; commit on y submits with free var; `solutionBuilderSubmitLabel` Next on x, Submit on y/z. |
-| Admin nav (3-var) | `adminGoBack` / `adminSubmitCorrectSolution`; workspace wires Back/Next for three-var step index. |
-| Admin survey | `useGuidedPracticeHomeworkCloseout`: `hasAdminCheats()` → `finishHomework()` + result, skip survey. |
-| Practice retries | Shared `homework-practice-retry.ts`: 3 attempts, messages on 1 and 2, reveal on 3. Used in matrix entry, three-var type/solution, unguided 2×2. Overlay `homeworkPracticeReveal` with **Next** in prompt. |
+|------|----------|
+| Homework retries | `HOMEWORK_PRACTICE_MAX_ATTEMPTS = 3` in `homework-practice-retry.ts`; gallery reveal on **W3** for 3-try kinds, **W2** for 2-try guided kinds (e.g. operation-type). |
+| Frame gallery 3×3 tabs | **P301, P305, P313** (not P101); `ThreeVarHomeworkSolver` in gallery with seed/resume hooks. |
+| P313 Q3 in gallery | **Omit** `solution-none` question frames; catalog comment documents why. |
+| Three-var **resume** | `buildThreeVarHomeworkResumeState` + workspace passes `initialQuestionIndex` / `initialSessionEvents` into `ThreeVarHomeworkSolver`. |
+| Homework attempt **advance** | `advanceToNextProblem` **awaits save** before `applyProgress` updates UI index. |
+| Solution-only **scoring** | Record **wrong** `(x,y)` attempts on `onDraftChange`; first-try credit uses first event per slot. |
+| Solution-only **flow** | `prependSystemSetup` **on**; matrix answers recorded via `onRecordMatrixAnswer` → `onSessionEvent`; `homeworkSolutionOnlySessionResume` for augmented/RREF/solution resume. |
+| Notation help (gallery) | Baked stage coords for row-scaling/replacement help; tests in Matrix app + portal FrameSolver. |
 
-## Rejected directions
+## Rejected directions (do not redo)
 
-- Treating partial RREF (constants 2,3,1 with `[0,0,0|1]` bottom row) as correct: wrong for calculator RREF on full augmented matrix.
-- Closing builder and clearing focus on first wrong RREF try.
-- Separate "Confirm no solution" step and last-problem Continue modal copy about RREF.
-- Two-try only on practice mode (expanded to three to match Pearson ask).
-- Auto-advancing immediately after answer reveal without **Next**.
+- **Skipping** augmented/RREF for "Just right or wrong" (briefly shipped; Chase corrected — restore 3-step flow).
+- **Adding Submit-only Q3** for no-solution 3×3 as a fake student step when live flow completes on Q2.
+- **Keeping P313.Q3 gallery tabs** that nothing in live homework can reach without cheating the flow.
+- Treating frame gallery **W2** as "must have Next" for homework kinds still on soft retry (fixed via `galleryRevealWrongCountForQuestionKind`).
 
-## Current implementation state (uncommitted)
+## Current implementation state
 
-**Repos with dirty work:** `School Scrips/Matrix app`, `School Scrips/student-portal`
+### Student portal (`School Scrips/student-portal`)
 
-**Matrix app (high signal paths):**
+- **Frame gallery:** `frameCatalog.ts`, `frameExits.ts`, `frameGalleryProblemIds.ts`, `FrameSolver.tsx`, tests (exits, transitions, catalog, overlaps/bot if present).
+- **Homework:** `GuidedPracticeHomeworkWorkspace.tsx`, `useGuidedPracticeHomeworkAttempt.ts`, `homeworkSolveMode.ts` (+ `.test.ts`), `guidedPracticeHomeworkActivity.test.ts`.
 
-- `src/app/engine/gauss-jordan.ts` — full augmented RREF
-- `src/app/engine/homework-practice-retry.ts` — new
-- `src/app/hooks/use-homework-matrix-setup.ts` — 3-try + first-wrong reopen
-- `src/app/hooks/use-three-var-homework-session.ts` — none-on-type, parametric, 3-try reveal, admin skip/back (~600+ lines; watch cap)
-- `src/app/components/guided-practice/ThreeVarHomeworkSolver.tsx`, `GuidedPracticeOverlay.tsx`, `UnguidedPracticeSolver.tsx`
-- Tests: `three-var-homework-*`, `homework-practice-retry`, `three-var-none-flow`, `three-var-parametric-solution-entry`, `append-parametric-builder-token`, `unguided-practice-solver` (updated for 3 tries)
+### Matrix app (`School Scrips/Matrix app`)
 
-**Student portal:**
+- `homework-practice-retry.ts` (3-try helpers + gallery reveal count).
+- `three-var-homework-frame-gallery-seed.ts`, `three-var-homework-resume-state.ts` (+ tests).
+- `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver`, `UnguidedPracticeSolver`, `use-homework-matrix-setup.ts` (phases + resume seeds + matrix answer recording).
+- Notation help / help trigger fixes for gallery.
 
-- `GuidedPracticeHomeworkWorkspace.tsx` — three-var snapshot, no complete card, admin back
-- `GuidedPracticeHomeworkView.tsx` — auto closeout all modes
-- `useGuidedPracticeHomeworkCloseout.ts` — admin skips survey
-- `src/types/matrix-app.d.ts` — `ThreeVarHomeworkSolverHandle` adminBack
+### Programs root
 
-**Verification:** Matrix app vitest passed for retry, unguided, three-var tests run in session. No Netlify deploy. Chase should portal-smoke: problem 4 parametric (3 wrong → answer + Next), problem 6 none + full RREF, admin finish without survey.
+- `agent docs/momentum-handoffs/*`, session tracking bumps, possible recipe/scratch files dirty.
 
-## Open questions / constraints
+### Verification (agent-run, not Chase portal)
 
-- `ThreeVarHomeworkSolver` `onComplete` in workspace is still `() => undefined`; advancement is **event-driven** via `onSessionEvent` / homework complete slots. OK if last slot gets recorded (including reveal **Next** path which records `correct: true` on solution after reveal for progression).
-- `GuidedPracticeHomeworkCompleteCard.tsx` still exists but is unused in workspace; safe to delete later if desired.
-- `GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE` and related homework mode choice flags from prior sessions: confirm before prod ship.
-- File size: `use-three-var-homework-session.ts` growing; extract if adding more phases.
-- Never deploy Netlify prod unless Chase says so in that message.
+- `npx vitest run src/features/frame-gallery` — passed (48 tests) after 3-try + P313 omit.
+- Matrix: `three-var-homework-resume-state.test.ts`, `unguided-practice-solver.test.tsx` (incl. homeworkPracticeFlow 3 tries).
+- Portal: `homeworkSolveMode.test.ts`, `guidedPracticeHomeworkActivity.test.ts`.
 
-## Read first (fresh agent)
+## Open questions and constraints
 
-1. This file (date check).
-2. `School Scrips/Matrix app/src/app/hooks/use-three-var-homework-session.ts`
-3. `School Scrips/Matrix app/src/app/engine/homework-practice-retry.ts`
-4. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkView.tsx`
-5. Bank: `School Scrips/Matrix app/src/app/engine/three-var-homework-problems.ts` (ids 301–317)
+1. **`GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE`** — still may be `true` for admin preview on Start; **revert to `false`** before student-facing ship (see `2026-10-23_gj-homework-practice-mode-choice.md`).
+2. **Portal confirm** Chase wanted before students: problem **4–6 resume**, solution-only **first-try credit**, **advance on save failure**, problem **3 right-or-wrong** three steps × three tries, frame gallery stuck badges.
+3. **No Netlify deploy** unless Chase says so in the same message.
+4. **GuidedPracticeSolver.tsx** may still be over 500 lines — extract before large adds (older constraint).
+
+## Read first (fresh task)
+
+1. This file.
+2. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkView.tsx` (mode choice, resume open).
+3. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkWorkspace.tsx` (three branches: guided / solution-only / three-var).
+4. `School Scrips/student-portal/src/features/guided-practice/homeworkSolveMode.ts`.
+5. `School Scrips/Matrix app/src/app/engine/homework-practice-retry.ts`.
+6. Frame gallery: `student-portal/src/features/frame-gallery/frameCatalog.ts`, `frameExits.ts`.
 
 ## Exact next step
 
-Hard-refresh portal, run through **problem 4** (parametric: prefilled `t`, 3 wrong submits → answer in blue prompt + **Next** → next phase) and **problem 6** (RREF `[0,0,1]` aug column, **No solution** on type, no survey as admin). If anything fails, fix the specific phase hook before adding features. If all green and Chase wants sync: **put on GitHub** (Matrix app + student-portal repos).
+In the **student portal** (admin cheats OK): finish **problem 2** guided → mode modal → **Just right or wrong** on **problem 3**. Confirm **augmented → RREF → (x,y)** with **three** wrong submits on each step before reveal. **Resume** mid-RREF and confirm reopen on step 2. Then spot-check **P301** frame gallery for **W2 "one try left"** and no stuck thumbs on homework W2. If anything fails, fix in the listed files and re-run `npx vitest run src/features/frame-gallery` and portal `homeworkSolveMode.test.ts`.

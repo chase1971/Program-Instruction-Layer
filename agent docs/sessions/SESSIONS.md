@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-24 — GJ homework fixes + frame gallery 3-try (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`
+
+**What worked:** Frame gallery W1/W2/W3 for Pearson homework steps; P313 no Q3 frames; three-var resume wiring; homework advance-after-save; solution-only wrong-attempt scoring; solution-only augmented→RREF→pair with resume and matrix event recording.
+
+**Current state:** Green on targeted vitest (frame gallery, homeworkSolveMode, Matrix resume/unguided). Portal walkthrough not logged this chat.
+
+**File size flag:** None flagged this handoff.
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-10-24)
+
 ## 2026-10-23 — 11.2 frame gallery + layout editor (momentum handoff)
 
 **Repos touched:** `School Scrips/student-portal`, `School Scrips/Matrix app`, `Programs/` root

@@ -54,6 +54,7 @@ into new code.
 | **let's make an animation** · portal math video · Auto Slow steps · wire Manim into student portal · composite-style video guide | [portal-math-video-examples.md](./portal-math-video-examples.md) + [Manim Trial/ANIMATION_STYLE_RECIPE.md](../../Manim%20Trial/ANIMATION_STYLE_RECIPE.md) |
 | manim · math explainer animation · "animate solving an equation" · any math animation · how I write negatives · dividing by a negative · fraction bar too long | [Manim Trial/ANIMATION_STYLE_RECIPE.md](../../Manim%20Trial/ANIMATION_STYLE_RECIPE.md) — portal delivery in [portal-math-video-examples.md](./portal-math-video-examples.md) |
 | "things don't align" · "things are intersecting other things" · animation frames overlap · have a cheaper model build the clip · check the frames before the final render | [Manim Trial/docs/LAYOUT_GUARDRAILS.md](../../Manim%20Trial/docs/LAYOUT_GUARDRAILS.md) |
+| **stuck screen** · "can they get stuck" · dead end · does Next actually work · test every path through the homework · a bot that plays the problem · transition testing · frame gallery exit badges · "do this for another app" | [transition-testing-bot.md](./transition-testing-bot.md) (exemplar `student-portal/src/features/frame-gallery/frameBot.tsx`) |
 | just finished a refactor or hotfix · "write up what we learned" · integration doc | [CODING_STANDARDS.md](./CODING_STANDARDS.md) § Document the Lesson — exemplar `Macro App/docs/BROWSER_TAB_INTEGRATION.md` |
 | apps.json registry · dev ports · Toolbar Shift+F5 | `School Scrips/App Dashboard/docs/LAUNCHER.md` |
 
