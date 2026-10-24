@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-24 — GJ homework ship (GitHub + Supabase + Netlify)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`, `School Scrips/student-session-kit` (remote db only)
+
+**What worked:** End-of-session sync and production deploy 28 for 11.2 homework UX (intro, strip, directions, frame gallery cheats). Supabase applied migration 100 on remote.
+
+**Current state:** Green — https://mathappsclass.netlify.app
+
+**File size flag:** None at root.
+
+**Next session:** Portal QA on live; 70% gate and 17-point grading still open in code.
+
 ## 2026-10-24 — GJ homework fixes + frame gallery 3-try (momentum handoff)
 
 **Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`
