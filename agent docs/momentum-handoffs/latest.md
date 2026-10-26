@@ -1,83 +1,79 @@
-# Momentum handoff: 11.2 Homework + frame gallery (Gauss-Jordan)
+# Momentum handoff: 11.2 homework redo, 17-point scoring, grade screen, test buttons, solved recap
 
-**Written:** 2026-10-24. Valid for today's continuation only.
-**Nothing is committed or pushed** unless Chase says pull / put on GitHub / end of session.
+**Written:** 2026-10-25 (evening). Valid for today's continuation only.
+**Nothing is committed or pushed.** No Netlify deploy was run. Chase has **not** yet walked through any of this in the live portal; everything below is headless-verified only.
+
+Still live from the earlier same-day handoff (`2026-10-25_homework-gallery-finish-flow.md`): the frame gallery overlap work and notation help anchor. This handoff covers only the homework behavior changes made after it.
 
 ## Objective and current phase
 
-Ship **11.2 Homework** and the **frame gallery** dev preview so students get Pearson-style **three tries** on homework practice steps, correct **resume/advance/scoring**, and gallery frames that match what the live app actually shows.
-
-**Phase:** Code and headless tests are largely in place. Chase has **not** done a full portal walkthrough of every fix in this handoff. **Supabase/Netlify deploy** is explicitly out of scope until he asks.
+Polishing **11.2 Homework** (Gauss-Jordan method, six problems) in the student portal (`School Scrips/student-portal`) and the Matrix app solvers it imports (`School Scrips/Matrix app`, alias `@matrix/app/...`). Phase: all requested changes are coded and unit-tested; waiting on Chase to click through them.
 
 ## Chase's desired feel
 
-- Review in the **student portal** (and frame gallery locally), not raw MP4s or Matrix-only runs unless headless.
-- **Problem 3 mode choice:** after problem 2, **walked-through steps** vs **"Just right or wrong"** — tap choice, no Continue button.
-- **Just right or wrong** is **not** skipping to the pair only. It is the **same three-question shape as homework 4–6** but **2×2**: **augmented matrix → RREF → ordered pair**, each with **three attempts** (soft retry, then "One try left.", then reveal + Next).
-- **Guided problem 3** stays the full Gauss–Jordan step flow; that path was already acceptable.
-- **No-solution 3×3 homework** finishes after **"No solution"** on Q2; there is **no student Q3 screen**. The frame gallery must **not** invent interactive **P313.Q3** frames (that created stuck/impossible previews).
-- Frame gallery: **W1 / W2 (one try left) / W3 (reveal)** for homework-practice question kinds; exit checker must not mark W2 stuck when the student can still retry.
+- A student must never be stuck on a screen with no way out. After any wrong answer there is always a clear next step.
+- Redoing a problem means a **different problem of the same solution type** (exactly one, infinitely many, none). Never the same problem, never a stale answer pre-selected.
+- Strip colours must be truthful: green full credit, yellow partial, red none.
+- Grading is **17 points**: problems 1-3 are 3 points each (all or nothing at 70% first-try), problems 4-6 are 1 point per scored step (3, or 2 for the no-solution problem). "Full credit" wording only at 17/17.
+- Grade screen copy is plain: no "Keep practicing!", no "you missed N", just the score and percent.
+- "Give answer" (tester cheat) should be a one-button way to keep moving: first click shows and types the answer, second click presses Enter/Next/Submit.
+- Small buttons for cheats (like the Logic app's margin teleports). Head-mouse user: no typing flows, no tiny targets, modals never close on backdrop click.
+- Problem 3 (practice mode, ordered pair only): out of tries means redo via guided practice, no bypass.
+- Row notation: a wrong first try keeps what was typed on the number pad.
+- Reopening a problem with full credit shows a recap, not the solver.
 
-## Accepted decisions
+## Accepted decisions (all built)
 
-| Area | Decision |
-|------|----------|
-| Homework retries | `HOMEWORK_PRACTICE_MAX_ATTEMPTS = 3` in `homework-practice-retry.ts`; gallery reveal on **W3** for 3-try kinds, **W2** for 2-try guided kinds (e.g. operation-type). |
-| Frame gallery 3×3 tabs | **P301, P305, P313** (not P101); `ThreeVarHomeworkSolver` in gallery with seed/resume hooks. |
-| P313 Q3 in gallery | **Omit** `solution-none` question frames; catalog comment documents why. |
-| Three-var **resume** | `buildThreeVarHomeworkResumeState` + workspace passes `initialQuestionIndex` / `initialSessionEvents` into `ThreeVarHomeworkSolver`. |
-| Homework attempt **advance** | `advanceToNextProblem` **awaits save** before `applyProgress` updates UI index. |
-| Solution-only **scoring** | Record **wrong** `(x,y)` attempts on `onDraftChange`; first-try credit uses first event per slot. |
-| Solution-only **flow** | `prependSystemSetup` **on**; matrix answers recorded via `onRecordMatrixAnswer` → `onSessionEvent`; `homeworkSolutionOnlySessionResume` for augmented/RREF/solution resume. |
-| Notation help (gallery) | Baked stage coords for row-scaling/replacement help; tests in Matrix app + portal FrameSolver. |
+**Finish flow, problems 4-6** (`useHomeworkThreeVarFinish.ts`, `HomeworkThreeVarFinishModal.tsx`)
+- Modal buttons: "Try a similar problem" and "Come back later" (becomes "Continue" when no open problems remain, leading to survey then grade). "Redo this problem" was removed.
+- Completion is deferred with a pending-state plus effect, because `onComplete` fires in the same tick as the last `recordEvent` (stale-closure race that caused the earlier stuck screen). Green advances immediately (no hold lag).
+- `replaceHomeworkProblemWithSimilar` swaps the id for a same-kind id, excluding ids already in the attempt, and deletes that problem's events/step index/solve mode.
+- `wrongTypeChoice` restore only when the type is still unanswered (Matrix `three-var-homework-resume-state.ts`).
 
-## Rejected directions (do not redo)
+**Scoring** (`guidedPracticeHomeworkActivity.ts`): `homeworkProblemPoints`, `scoreHomeworkProblems`, `HOMEWORK_GUIDED_BLOCK_POINTS = 3`; `homeworkScoringSlots` drops the automatic `solution` slot on no-solution 3x3 problems. Tests assert perfect 17/17 passed, one miss 16, 94%, not passed.
 
-- **Skipping** augmented/RREF for "Just right or wrong" (briefly shipped; Chase corrected — restore 3-step flow).
-- **Adding Submit-only Q3** for no-solution 3×3 as a fake student step when live flow completes on Q2.
-- **Keeping P313.Q3 gallery tabs** that nothing in live homework can reach without cheating the flow.
-- Treating frame gallery **W2** as "must have Next" for homework kinds still on soft retry (fixed via `galleryRevealWrongCountForQuestionKind`).
+**Redo missed problems from grade screen**: `homeworkRedoMissed.ts` (`missedThreeVarIndexes`, `buildRedoMissedProgress`), `startRedoMissedHomework` in the attempt hook (new attempt row, kept problems keep events). Button "Redo missed problems" via `extraActionLabel`/`onExtraAction` on `TransformationsResult`. `advanceToNextProblem` skips complete problems. Only problems 4-6 can be redone this way.
+
+**Give answer, two stage**: `use-guided-practice-admin-give-answer.ts` (new), `use-homework-matrix-setup.ts`, `use-three-var-homework-session.ts`, `UnguidedPracticeSolver.tsx`, wired through `use-guided-practice-session.ts`.
+
+**Grade screen copy** (`guidedPracticeHomeworkResultCopy.ts`, `GuidedPracticeHomeworkResult.tsx`, `TransformationsResult.tsx`): `heading={null}` hides the tier title; `scoreLine` = "You got 16 out of 17 correct (94%)."; message when not perfect = "You may keep this score, or redo the missed problems to earn a higher grade." Perfect keeps the full credit message. Confetti tier logic untouched (confetti at 70%+, storm and rain below 70).
+
+**Home page test buttons** (`homeworkGuidedPctTest.ts`, `useHomeworkGuidedPctTest.ts`, `GuidedPracticeHomeworkHomePanel.tsx`): two margin buttons "Guided <70%" and "Guided 73%", only when `hasAdminCheats()`. Each starts a fresh homework and opens problem 1 with every step answered except the last, scored so the final correct answer lands just under or over 70%. Chase said he would do the problem 3 case himself.
+
+**Problem 3 practice-mode miss** (`homeworkSolveMode.ts`, `HomeworkGuidedRetryModal.tsx`, attempt hook `restartHomeworkProblemGuided`): `homeworkProblemFinishedForAdvance` now means a correct last step only (a wrong answer no longer auto-advances). `homeworkSolutionOnlyExhausted` (three wrong on the last slot, no correct) shows a no-backdrop modal "Try number N again through the guided practice process." with one Okay button. Okay swaps problem 3 for a **different unique-solution problem** (random from the bank, excluding ids in the attempt), clears its events, switches it to guided, and opens it.
+
+**Row notation pad** (`use-guided-practice-row-notation-recovery.ts`): first wrong submit reopens the pad with `setBuilderExpression(trimmed)` instead of clearing it. Matrix row-entry cells already kept their draft.
+
+**Solved recap** (`HomeworkSolvedReview.tsx`, `homeworkSolvedSummary.ts`, `useHomeworkStripState.ts`, workspace `reviewMode`): clicking a **green** problem on the strip shows Original system, an arrow, Row reduced, an arrow, then the solution (pair, parametric pair, triple, three parametric lines, or "No solution"). Strip stays visible. Yellow/red problems and the Resume button still open the solver. `reviewProblemId` state in the View is cleared by `openProblem`. Problems 1-3 count as green at 70%+, not only perfect.
+
+**Strip colours**: three-class `:disabled` overrides in `guided-practice.css` so `--active/--green/--yellow/--red` keep colour on disabled buttons; removed the stale `initialEvents` merge in the strip memo.
+
+## Rejected directions
+
+- "Redo this problem" (same problem, same type pre-selected): rejected, you cannot redo a problem; redo means a similar one.
+- Old per-step score ("36 out of 39", "full credit" for anything): replaced by the 17-point scheme.
+- Auto-advance after any answer on the practice-mode last step: rejected, it advanced on wrong answers and skipped the guided-retry requirement.
+- Same problem 3 on the guided retry: rejected, must be a different problem.
+- New `.cursor/rules/*.mdc` or new pattern docs: retired / not wanted.
 
 ## Current implementation state
 
-### Student portal (`School Scrips/student-portal`)
+Uncommitted in **student-portal** (all under `src/features/guided-practice/` unless noted): `GuidedPracticeHomeworkHomePanel`, `GuidedPracticeHomeworkResult`, `GuidedPracticeHomeworkView`, `GuidedPracticeHomeworkWorkspace`, `guidedPracticeHomeworkActivity(.test)`, `guidedPracticeHomeworkResultCopy`, `homeworkSolveMode`, `useGuidedPracticeHomeworkAttempt`, `useHomeworkAutoAdvance`, `homeworkProblemNavStatus(.test)`, `../transformations/TransformationsResult.tsx`, `../../styles/guided-practice.css`, `../../types/matrix-app.d.ts`; new files `HomeworkGuidedRetryModal.tsx`, `HomeworkSolvedReview.tsx`, `HomeworkThreeVarFinishModal.tsx`, `homeworkGuidedPctTest(.test).ts`, `homeworkProgress.ts`, `homeworkRedoMissed(.test).ts`, `homeworkSolvedSummary(.test).ts`, `useHomeworkGuidedPctTest.ts`, `useHomeworkStripState.ts`, `useHomeworkThreeVarFinish(.test).ts`. Plus frame-gallery files from the earlier handoff.
 
-- **Frame gallery:** `frameCatalog.ts`, `frameExits.ts`, `frameGalleryProblemIds.ts`, `FrameSolver.tsx`, tests (exits, transitions, catalog, overlaps/bot if present).
-- **Homework:** `GuidedPracticeHomeworkWorkspace.tsx`, `useGuidedPracticeHomeworkAttempt.ts`, `homeworkSolveMode.ts` (+ `.test.ts`), `guidedPracticeHomeworkActivity.test.ts`.
+Uncommitted in **Matrix app**: `use-guided-practice-row-notation-recovery.ts`, `use-homework-matrix-setup.ts`, `use-three-var-homework-session.ts`, `use-guided-practice-session.ts`, `UnguidedPracticeSolver.tsx`, `three-var-homework-resume-state.ts`, new `use-guided-practice-admin-give-answer.ts`, plus earlier-handoff files.
 
-### Matrix app (`School Scrips/Matrix app`)
+Verification: portal `npx vitest run src/features/guided-practice src/features/frame-gallery src/features/transformations` green (last full guided-practice run 13 files, 49 tests); Matrix `npx vitest run` 53 files, 265 tests green (run after the notation-pad change). Portal `tsc` still reports **pre-existing** noise: missing `@matrix/app/...` module stubs in `src/types/matrix-app.d.ts`, `solutionOnlyActive` unused and an arg-count error in `GuidedPracticeHomeworkView.tsx`, `Workspace` unused vars. None were introduced by this work; Vitest resolves the alias fine.
 
-- `homework-practice-retry.ts` (3-try helpers + gallery reveal count).
-- `three-var-homework-frame-gallery-seed.ts`, `three-var-homework-resume-state.ts` (+ tests).
-- `use-three-var-homework-session.ts`, `ThreeVarHomeworkSolver`, `UnguidedPracticeSolver`, `use-homework-matrix-setup.ts` (phases + resume seeds + matrix answer recording).
-- Notation help / help trigger fixes for gallery.
-
-### Programs root
-
-- `agent docs/momentum-handoffs/*`, session tracking bumps, possible recipe/scratch files dirty.
-
-### Verification (agent-run, not Chase portal)
-
-- `npx vitest run src/features/frame-gallery` — passed (48 tests) after 3-try + P313 omit.
-- Matrix: `three-var-homework-resume-state.test.ts`, `unguided-practice-solver.test.tsx` (incl. homeworkPracticeFlow 3 tries).
-- Portal: `homeworkSolveMode.test.ts`, `guidedPracticeHomeworkActivity.test.ts`.
+File sizes: `GuidedPracticeHomeworkView.tsx` is **702** lines (over the 700 extract mark, under the 800 cap); `useGuidedPracticeHomeworkAttempt.ts` 639; Matrix `use-guided-practice-session.ts` about **748** (over 700, only minimal wiring added). Extract before adding to any of these.
 
 ## Open questions and constraints
 
-1. **`GJ_HOMEWORK_MODE_CHOICE_TEMP_PREVIEW_IMMEDIATE`** — still may be `true` for admin preview on Start; **revert to `false`** before student-facing ship (see `2026-10-23_gj-homework-practice-mode-choice.md`).
-2. **Portal confirm** Chase wanted before students: problem **4–6 resume**, solution-only **first-try credit**, **advance on save failure**, problem **3 right-or-wrong** three steps × three tries, frame gallery stuck badges.
-3. **No Netlify deploy** unless Chase says so in the same message.
-4. **GuidedPracticeSolver.tsx** may still be over 500 lines — extract before large adds (older constraint).
-
-## Read first (fresh task)
-
-1. This file.
-2. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkView.tsx` (mode choice, resume open).
-3. `School Scrips/student-portal/src/features/guided-practice/GuidedPracticeHomeworkWorkspace.tsx` (three branches: guided / solution-only / three-var).
-4. `School Scrips/student-portal/src/features/guided-practice/homeworkSolveMode.ts`.
-5. `School Scrips/Matrix app/src/app/engine/homework-practice-retry.ts`.
-6. Frame gallery: `student-portal/src/features/frame-gallery/frameCatalog.ts`, `frameExits.ts`.
+- Should clicking a **yellow or red** problem on the strip re-offer the finish modal ("Try a similar problem")? Today "Come back later" then clicking N reopens the old finished state with no way to ask for a similar problem. Redo missed problems on the grade screen is the clean path. Proposal only, not approved.
+- Confetti below 70% still shows storm and rain; Chase has not said whether to remove it.
+- Recap threshold for problems 1-3 is 70%+; Chase may prefer perfect-only.
+- The give-answer and test-button behavior depends on `hasAdminCheats()`; verify with the CHASE1 cheat account.
+- Root rules: never launch a GUI or open a browser without asking; handoffs to Chase are statements, not prompts; no em dashes; modals never dismiss on backdrop; small buttons; no commit/push/deploy unless he says so.
 
 ## Exact next step
 
-In the **student portal** (admin cheats OK): finish **problem 2** guided → mode modal → **Just right or wrong** on **problem 3**. Confirm **augmented → RREF → (x,y)** with **three** wrong submits on each step before reveal. **Resume** mid-RREF and confirm reopen on step 2. Then spot-check **P301** frame gallery for **W2 "one try left"** and no stuck thumbs on homework W2. If anything fails, fix in the listed files and re-run `npx vitest run src/features/frame-gallery` and portal `homeworkSolveMode.test.ts`.
+Hand Chase a short live test list as a statement (do not launch anything): (1) home page "Guided <70%" and "Guided 73%" buttons, then click Give answer on the last step and confirm red/locked vs green/advance; (2) finish 4-6 with a miss, press Redo missed problems on the grade screen, confirm similar problems and kept greens; (3) problem 3 practice mode, miss three times, confirm the guided-retry popup and a different problem; (4) click a green problem on the strip and confirm the three-part recap; (5) wrong row notation keeps text on the pad. Then fix whatever he reports, starting with the open strip-click question if he wants it.

@@ -396,6 +396,33 @@ function handleSaveGpCorrectCheckOffsets(req, res) {
     }
     try {
       fs.mkdirSync(path.dirname(GP_CORRECT_CHECK_FILE), { recursive: true });
+      // The saved layout is what ships to students (bake-gp-layout.mjs). A browser with empty
+      // or old storage must not wipe it: refuse a save that would lose most of what is there,
+      // and keep the file it replaces so a bad save can always be undone.
+      if (fs.existsSync(GP_CORRECT_CHECK_FILE)) {
+        const previousText = fs.readFileSync(GP_CORRECT_CHECK_FILE, 'utf8');
+        const countEntries = (layout) =>
+          ['offsets', 'helpTriggerOffsets', 'promptBoxLayouts'].reduce(
+            (sum, key) => sum + Object.keys((layout && layout[key]) || {}).length,
+            0,
+          );
+        let before = 0;
+        try {
+          before = countEntries(JSON.parse(previousText));
+        } catch {
+          before = 0;
+        }
+        const after = countEntries(parsed);
+        if (before >= 10 && after < before / 2) {
+          console.log(`gp layout save refused: ${after} entries would replace ${before}`);
+          res.writeHead(409, jsonCorsHeaders());
+          res.end(
+            JSON.stringify({ ok: false, error: 'would replace most of the saved layout' }),
+          );
+          return;
+        }
+        fs.writeFileSync(`${GP_CORRECT_CHECK_FILE}.prev`, previousText, 'utf8');
+      }
       fs.writeFileSync(
         GP_CORRECT_CHECK_FILE,
         JSON.stringify(parsed, null, 2) + '\n',

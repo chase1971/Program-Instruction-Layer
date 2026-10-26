@@ -1,9 +1,56 @@
 {
-  "updatedAt": "2026-10-24T03:35:35.585Z",
-  "offsets": {},
-  "helpTriggerOffsets": {},
-  "promptBoxLayouts": {},
+  "updatedAt": "2026-10-26T01:30:00.515Z",
+  "offsets": {
+    "op1-row-notation": { "x": -4, "y": 51 },
+    "op1-row-entry": { "x": 0, "y": 30 },
+    "solution": { "x": 1, "y": -32 },
+    "setup-rref-matrix": { "x": -29, "y": 98 },
+    "solution-type-homework": { "x": 0, "y": 30 },
+    "setup-augmented-matrix": { "x": -55, "y": 65 },
+    "op1-pick-cell": { "x": 0, "y": 30 },
+    "op1-operation-type": { "x": 0, "y": 30 },
+    "op2-pick-cell": { "x": 0, "y": 30 },
+    "op2-operation-type": { "x": 0, "y": 30 },
+    "op2-row-notation": { "x": -18, "y": 57 },
+    "op2-row-entry": { "x": 0, "y": 30 },
+    "op3-pick-cell": { "x": 0, "y": 30 },
+    "op3-operation-type": { "x": 0, "y": 30 },
+    "op3-row-notation": { "x": -13, "y": 53 },
+    "op3-row-entry": { "x": 0, "y": 30 },
+    "op4-pick-cell": { "x": 0, "y": 30 },
+    "op4-operation-type": { "x": 0, "y": 30 },
+    "op4-row-notation": { "x": -7, "y": 49 },
+    "op4-row-entry": { "x": 0, "y": 30 },
+    "_default": { "x": 0, "y": 30 },
+    "solution-type": { "x": 0, "y": 30 }
+  },
+  "helpTriggerOffsets": {
+    "reveal:parametric-solve": { "x": 69, "y": -91 },
+    "notation:scale": { "x": -135.4285888671875, "y": -161.71431732177734 },
+    "fraction:op1-row-entry": { "x": 0, "y": 0 },
+    "notation:replace": { "x": -99.42861938476562, "y": -172.00008392333984 },
+    "fraction:op2-row-entry": { "x": 0, "y": 0 },
+    "fraction:op3-row-entry": { "x": 0, "y": 0 },
+    "fraction:op4-row-entry": { "x": 0, "y": 0 },
+    "notation:scale:v2": { "x": -48.000244140625, "y": -83.99996948242188 },
+    "notation:replace:v2": { "x": 17.7144775390625, "y": -4 },
+    "notation:scale:v2:op1-row-notation": { "x": -13.714599609375, "y": -10.85711669921875 },
+    "notation:scale:v2:op3-row-notation": { "x": -17.143218994140625, "y": -8 }
+  },
+  "promptBoxLayouts": {
+    "setup-augmented-matrix": { "x": -14, "y": -69, "width": 318, "height": 126 },
+    "prompt#o6dfc0": { "x": -9, "y": -69, "width": 354, "height": 113 },
+    "prompt#qczik6": { "x": 0, "y": 0, "width": 240, "height": 87 },
+    "prompt#3nka1b": { "x": 0, "y": 0, "width": 539, "height": 87 },
+    "prompt#xzkgoo": { "x": 0, "y": 0, "width": 225, "height": 77 },
+    "pad#o81zpa": { "x": -23, "y": -10 },
+    "help#pd4jx0": { "x": 0, "y": 0, "width": 108, "height": 24 },
+    "help#gki27y": { "x": -37, "y": -60, "width": 80, "height": 30 },
+    "help#h9b0wp": { "x": 0, "y": 0, "width": 80, "height": 30 },
+    "help#1y3qae5": { "x": 0, "y": 0, "width": 80, "height": 40 },
+    "prompt#rz25k6": { "x": 0, "y": 0, "width": 335, "height": 75 }
+  },
   "textOverrides": {
-    "prompt@op1-pick-cell": "New wording"
+    "prompt@setup-augmented-matrix": "Write this system as an augmented matrix."
   }
 }

@@ -2,6 +2,18 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-10-25 — Frame gallery + homework 4–6 finish (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`
+
+**What worked:** Gallery overlap/cut-off detection, red boxes, problems-only filter, notch offset, notation help anchored to matrix; bold "Use a calculator"; solution-type two tries; homework finish modal, redo, strip click without auto-advance, prompt-flash race fix.
+
+**Current state:** Green on headless tests (portal guided-practice 37, frame-gallery 54; Matrix 264 last full run). Chase has not QA'd finish modal or nav in live portal after last edits.
+
+**File size flag:** `GuidedPracticeHomeworkView.tsx` ~660 lines (watch if growing).
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-10-25)
+
 ## 2026-10-24 — GJ homework ship (GitHub + Supabase + Netlify)
 
 **Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`, `School Scrips/student-session-kit` (remote db only)

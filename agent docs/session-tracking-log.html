@@ -56,13 +56,13 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1502</dd></div>
-      <div><dt>Tasks today</dt><dd>18</dd></div>
+      <div><dt>Total tasks</dt><dd>1535</dd></div>
+      <div><dt>Tasks today</dt><dd>33</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 173 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>171k</dd></div>
       <div><dt>Total billed</dt><dd>560.1M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">2:50 PM · Saturday, Oct 24, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:28 PM · Sunday, Oct 25, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
@@ -72,10 +72,310 @@
       <tr><td><code>agent docs/INDEX.md</code></td><td>29</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>School Scrips/student-portal/AGENTS.md</code> — Added 11.2 Homework lookup and corrected outdated three-problem routing.<span class="gap-task">1:21 PM · Saturday, Oct 24, 2026 — Reviewed 11.2 homework readiness. All 75 existing scoped tests passed; three temporary headless audit probes reproduced missing three-variable resume inputs, solution-only first-try grading error, and problem-index advancement on failed save. Removed audit probes after verification; no runtime fixes or deployment.</span></li><li><code>vertical-scroll-rail.md</code> — did not say portal preview is phone-emulated so in-page rail cannot hover<span class="gap-task">9:10 PM · Friday, Oct 23, 2026 — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</span></li><li><code>student-portal/AGENTS.md</code> — no scroll rail keyword row, agent never found vertical-scroll-rail.md<span class="gap-task">9:02 PM · Friday, Oct 23, 2026 — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</span></li><li><code>recipes/INDEX.md</code> — no row routing to the Factoring solve-board cancel animation (added)<span class="gap-task">4:03 PM · Friday, Oct 23, 2026 — Parametric solve animation: factoring house style (gold ops, red strikes), y box, no loop</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices<span class="gap-task">9:22 PM · Thursday, Oct 22, 2026 — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad<span class="gap-task">9:12 PM · Thursday, Oct 22, 2026 — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span></li><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row<span class="gap-task">9:03 PM · Thursday, Oct 22, 2026 — SE preview hides oversize notch; addition bar stays after the sum</span></li><li><code>agent docs/INDEX.md</code> — no row for context warning too soon<span class="gap-task">8:58 PM · Thursday, Oct 22, 2026 — Raised Cursor context-warning bar from 150k to 300k estimated growth so it does not fire mid-feature</span></li><li><code>agent docs/INDEX.md</code> — no cheat-next / skip-tutorial-clicks row<span class="gap-task">8:54 PM · Thursday, Oct 22, 2026 — Cheat Next skips Gauss-Jordan tutorial interactions and practice questions when Cheat enabled is on</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade<span class="gap-task">6:49 PM · Wednesday, Oct 21, 2026 — Documented Logic Homework grades as first completed attempt, not best</span></li><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed<span class="gap-task">6:48 PM · Wednesday, Oct 21, 2026 — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span></li><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row<span class="gap-task">6:27 PM · Wednesday, Oct 21, 2026 — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — no row for Gauss-Jordan Method Homework<span class="gap-task">1:16 PM · Wednesday, Oct 21, 2026 — Built Gauss-Jordan Method Homework for M2412: 4 problems, first-try slots, 70% full credit. M1324 practice unchanged.</span></li><li><code>Manim Trial/docs/FINE_TUNE_PIPELINE.md</code> — Cursor usage row points at cursor-token-scan.py, which now returns zeros; dashboard CSV export is the real source<span class="gap-task">1:12 PM · Wednesday, Oct 21, 2026 — Reviewed Manim fine-tune pipeline plan; confirmed Cursor local DB has no token counts, dashboard usage CSV is the data source</span></li></ul>
+      <ul class="gap-list"><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)<span class="gap-task">8:52 PM · Sunday, Oct 25, 2026 — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span></li><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser<span class="gap-task">2:44 PM · Sunday, Oct 25, 2026 — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — Added 11.2 Homework lookup and corrected outdated three-problem routing.<span class="gap-task">1:21 PM · Saturday, Oct 24, 2026 — Reviewed 11.2 homework readiness. All 75 existing scoped tests passed; three temporary headless audit probes reproduced missing three-variable resume inputs, solution-only first-try grading error, and problem-index advancement on failed save. Removed audit probes after verification; no runtime fixes or deployment.</span></li><li><code>vertical-scroll-rail.md</code> — did not say portal preview is phone-emulated so in-page rail cannot hover<span class="gap-task">9:10 PM · Friday, Oct 23, 2026 — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</span></li><li><code>student-portal/AGENTS.md</code> — no scroll rail keyword row, agent never found vertical-scroll-rail.md<span class="gap-task">9:02 PM · Friday, Oct 23, 2026 — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</span></li><li><code>recipes/INDEX.md</code> — no row routing to the Factoring solve-board cancel animation (added)<span class="gap-task">4:03 PM · Friday, Oct 23, 2026 — Parametric solve animation: factoring house style (gold ops, red strikes), y box, no loop</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices<span class="gap-task">9:22 PM · Thursday, Oct 22, 2026 — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad<span class="gap-task">9:12 PM · Thursday, Oct 22, 2026 — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span></li><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row<span class="gap-task">9:03 PM · Thursday, Oct 22, 2026 — SE preview hides oversize notch; addition bar stays after the sum</span></li><li><code>agent docs/INDEX.md</code> — no row for context warning too soon<span class="gap-task">8:58 PM · Thursday, Oct 22, 2026 — Raised Cursor context-warning bar from 150k to 300k estimated growth so it does not fire mid-feature</span></li><li><code>agent docs/INDEX.md</code> — no cheat-next / skip-tutorial-clicks row<span class="gap-task">8:54 PM · Thursday, Oct 22, 2026 — Cheat Next skips Gauss-Jordan tutorial interactions and practice questions when Cheat enabled is on</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li><li><code>agent docs/INDEX.md</code> — no keyword for Logic best vs first attempt grade<span class="gap-task">6:49 PM · Wednesday, Oct 21, 2026 — Documented Logic Homework grades as first completed attempt, not best</span></li><li><code>agent docs/INDEX.md</code> — no keyword for intro dimming / left-right of homework not dimmed<span class="gap-task">6:48 PM · Wednesday, Oct 21, 2026 — Logic 7.1 intro dimming now covers the full portal frame (fixed overlay, no backdrop dismiss)</span></li><li><code>agent docs/INDEX.md</code> — extra credit circuit wires / credit-has-not-saved now routes to portal AGENTS extra credit row<span class="gap-task">6:27 PM · Wednesday, Oct 21, 2026 — Logic extra credit: hide stuck save banner unless credit still queued; wire 2-input pins by source height (higher → top).</span></li></ul>
     </details>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Sunday, Oct 25, 2026 <span class="day-count">33 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:28 PM — Notation help trigger uses one base spot in every phase (W2 and recovery frames no longer differ), so one saved offset moves all frames of a question</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>8m 13s active tool time<br>8m 20s since previous task (includes idle)<br>Chat so far: 8 message(s), 213 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:20 PM — Real homework help triggers now render inside the scaled inset (same as frame gallery), fixing phone overlap with the Row transformation keypad</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1m 45s active tool time<br>2m 23s since previous task (includes idle)<br>Chat so far: 7 message(s), 164 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:18 PM — Inspected 11.2 homework gallery versus live phone layout. Found help alert container/scaling mismatch and fixed gallery viewport presets. Reported likely causes without changing app code.</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>14m 3s active tool time<br>14m 7s since previous task (includes idle)<br>Chat so far: 7 message(s), 164 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:03 PM — Layout bake guards: docs server refuses wipe saves and keeps .prev; bake refuses empty-over-filled</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>6m active tool time<br>6m 3s since previous task (includes idle)<br>Chat so far: 6 message(s), 151 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:57 PM — deploy:prod now bakes saved gp layout automatically; stopped Matrix tests from overwriting the layout scratch file; restored it</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 36s active tool time<br>5m 43s since previous task (includes idle)<br>Chat so far: 4 message(s), 125 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:52 PM — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span>
+      <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>16m 23s active tool time<br>16m 23s since previous task (includes idle)<br>Chat so far: 3 message(s), 78 KB transcript</p>
+      <ul class="gap-list"><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:35 PM — Frame gallery: phone size picker (SE to Pro Max, real fit-scale math) and Details panel with copyable stuck/overlap lists</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 13s active tool time<br>7m 17s since previous task (includes idle)<br>Chat so far: 2 message(s), 26 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:28 PM — Fixed row-notation help ! sharing one layout offset across all steps (now per step slot, falls back to old kind-wide offset)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>17m 16s active tool time<br>17m 19s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:11 PM — Matrix tutorial + 11.2 homework: landscape gate aligned with other apps (no cheat bypass)</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>2h 59m active tool time<br>2h 59m since previous task (includes idle)<br>Chat so far: 9 message(s), 146 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:11 PM — 11.2 homework: grade screen Exit replaces Try again; Start while in progress asks Resume or Start over</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>12m 46s active tool time<br>13m 6s since previous task (includes idle)<br>Chat so far: 5 message(s), 117 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:58 PM — 11.2 homework: Give answer moved right of strip; added Get right / Get wrong tester buttons</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>4m 23s active tool time<br>4m 30s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:54 PM — 11.2 homework: problems 1-3 under 70% now force a 'try a similar problem' modal</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 49s active tool time<br>2m 57s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:51 PM — Momentum handoff written for 11.2 homework session</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1m 46s active tool time<br>1m 49s since previous task (includes idle)<br>Chat so far: 12 message(s), 274 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:49 PM — Homework grade screen copy: no Keep practicing heading, score line with percent, redo-missed message</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>46s active tool time<br>1m 2s since previous task (includes idle)<br>Chat so far: 11 message(s), 266 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:48 PM — Homework: reopening a fully-correct problem shows original system, row reduced, and solution; row-notation pad keeps wrong entry</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 27s active tool time<br>7m 47s since previous task (includes idle)<br>Chat so far: 10 message(s), 237 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:40 PM — Homework problem 3: practice-mode miss now shows guided-retry popup, no auto-advance on wrong</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 25s active tool time<br>2m 29s since previous task (includes idle)<br>Chat so far: 7 message(s), 197 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:38 PM — Homework home: Guided &lt;70% and Guided 73% margin test buttons (admin cheats)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 24s active tool time<br>5m 28s since previous task (includes idle)<br>Chat so far: 6 message(s), 167 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:32 PM — 11.2 homework: Redo missed problems from grade screen, two-stage Give answer (reveal then advance) in all solvers, 17-point scoring, strip colors</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>8m 18s active tool time<br>8m 37s since previous task (includes idle)<br>Chat so far: 5 message(s), 86 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:24 PM — Homework: 17-point scoring (3/3/3, 3-var 3 or 2), full credit only at 100%, strip shows yellow/red on current problem, no green-hold lag</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>9m 48s active tool time<br>9m 56s since previous task (includes idle)<br>Chat so far: 3 message(s), 48 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:14 PM — Fixed homework 4-6 stuck screen after show-answer Next: finish modal now grades after last answer event arrives</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 19s active tool time<br>5m 26s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:08 PM — Homework 4-6 finish modal: Try a similar problem (same-kind swap) + Come back later; fixed stale wrong solution-type choice on resume</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 54s active tool time<br>8m 23s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:00 PM — Homework 4-6 finish modal, nav/auto-advance fixes, prompt flash race fix</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>6m 18s active tool time<br>6m 24s since previous task (includes idle)<br>Chat so far: 13 message(s), 263 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:53 PM — Bold 'Use a calculator' in 3-var RREF prompt; solution-type pick limited to 2 tries</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>17m 30s active tool time<br>17m 35s since previous task (includes idle)<br>Chat so far: 12 message(s), 243 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:36 PM — Frame gallery: all frames checked upfront (staggered mount), checking progress in banner, show-only-problems filter</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 15s active tool time<br>5m 30s since previous task (includes idle)<br>Chat so far: 8 message(s), 161 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:30 PM — Notation help trigger anchored to matrix (gallery matches app), v2 layout keys, gallery cut-off flag</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>30m 52s active tool time<br>31m 2s since previous task (includes idle)<br>Chat so far: 6 message(s), 78 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:59 PM — Frame gallery thumbs re-read layout and re-measure overlaps on close/step/storage change and every 1.5s</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>6m 9s active tool time<br>6m 16s since previous task (includes idle)<br>Chat so far: 3 message(s), 36 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:53 PM — Frame gallery: ignore sr-only text in overlap check, draw red boxes on overlaps (thumbs + live)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>9m 24s active tool time<br>9m 30s since previous task (includes idle)<br>Chat so far: 2 message(s), 16 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:44 PM — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span>
+      <span class="pill p0">Chat: 8 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>5m 31s active tool time<br>5m 37s since previous task (includes idle)<br>Chat so far: 8 message(s), 200 KB transcript</p>
+      <ul class="gap-list"><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:38 PM — Frame gallery: thumbnail and live share one app-matching stage (FrameStage)</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1h 21m active tool time<br>1h 21m since previous task (includes idle)<br>Chat so far: 7 message(s), 168 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:16 PM — Fix homework nav clicks (pointer-events) and active problem # for Give answer</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>48m 7s active tool time<br>48m 12s since previous task (includes idle)<br>Chat so far: 4 message(s), 134 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:28 PM — Homework nav: Give answer beside active problem #; admin can jump any problem</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>4m 5s active tool time<br>4m 7s since previous task (includes idle)<br>Chat so far: 3 message(s), 95 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:24 PM — TC preview white screen: bounds recovery, blank URL logging, refresh when not ready</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>12m 15s active tool time<br>12m 17s since previous task (includes idle)<br>Chat so far: 2 message(s), 54 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:11 PM — 11.2 homework admin Give answer beside step badge</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: composer-2.5<br>21h 21m active tool time<br>21h 21m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Saturday, Oct 24, 2026 <span class="day-count">18 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">
