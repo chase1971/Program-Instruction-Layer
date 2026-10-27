@@ -184,8 +184,8 @@ A 3D scene pins captions with the `caption_ready` hook in `scene_style.py` and s
 
 | Layer | Path |
 |---|---|
-| Manim scene | `Manim Trial/rational_function_graph.py` (example 1 + hole example 2 `rational_function_hole.py`, no-y-intercept example 3 `rational_function_no_yint.py`, slant-asymptote example 4 `rational_function_slant.py` -- all done) |
-| Portal assets | `student-portal/src/assets/video-examples/rational-functions/` |
+| Manim scene | `Manim Trial/rational_function_graph.py` (example 1 + hole example 2 `rational_function_hole.py`, no-y-intercept example 3 `rational_function_no_yint.py`, slant-asymptote example 4 `rational_function_slant.py`, factor-out-a-GCF example 5 `rational_function_factor_gcf.py` -- all done; example 6 `rational_function_gcf_hole.py` (GCF + cancel + hole, 3/x); example 7 `rational_function_x_hole.py` (hole on the y-axis, no y-int); the whole practice sheet is done) |
+| Portal assets | `student-portal/src/assets/video-examples/rational-functions/` | -- gallery order (2026-10-26): Parts 1-3 are the 3.5 notes clips (assets `graph-example-5..7`) under the heading "From 3.5 Notes", Parts 4-7 (assets 1..4) under "Other examples"; sections come from the optional `section` field on a clip (`VideoExamplesGallery` groups consecutive clips).
 | Guide (add each clip as one `examples` entry, labelled "Part N · f(x)") | `student-portal/src/features/video-examples/rationalFunctionsGuide.ts` |
 | Entry (gallery -> player, Auto/Slow) | `RationalFunctionsGuideEntry.tsx` |
 | Access | activity `reference/graphing-rational-functions` (migration `088`, `app = 'reference'` = access OFF until Chase toggles it in Teacher Console), tile gate `transformations`, Macro App `videoSlotCatalog.ts` + `teacherConsoleBuiltInCatalog.ts` |
