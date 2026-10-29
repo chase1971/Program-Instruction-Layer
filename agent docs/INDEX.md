@@ -40,6 +40,7 @@ never touches this file.
 | "do this from my phone" · send a task from my phone · my PC isn't showing up · desktop missing from the machine list | [PHONE_AGENT_ACCESS.md](./PHONE_AGENT_ACCESS.md) |
 | **Mechabellum Panel** · mechabellum units · bot unit list · what's on the board in Mechabellum | [Mechabellum Panel/AGENTS.md](../Mechabellum%20Panel/AGENTS.md) · live page `http://127.0.0.1:8765/scratch/mechabellum-panel.html` |
 | **Build Mode Layout Editor Plan** · Teacher Console Build mode · integrate Math App Studio | [School Scrips/Macro App/AGENTS.md](../School%20Scrips/Macro%20App/AGENTS.md) |
+| **11.2 homework statistics** · most missed guided · right or wrong homework · homework survey tab | [School Scrips/Macro App/AGENTS.md](../School%20Scrips/Macro%20App/AGENTS.md) 11.2 Homework statistics row |
 
 ## The detail behind an always-on rule
 
