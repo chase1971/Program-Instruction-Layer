@@ -1,0 +1,58 @@
+[
+  {
+    "name": "part_one_full",
+    "time": 15.98
+  },
+  {
+    "name": "continuous",
+    "time": 21.96
+  },
+  {
+    "name": "area_function",
+    "time": 27.39
+  },
+  {
+    "name": "slide_x",
+    "time": 35.43
+  },
+  {
+    "name": "strip",
+    "time": 40.98
+  },
+  {
+    "name": "shrink_h",
+    "time": 48.8
+  },
+  {
+    "name": "limit",
+    "time": 54.46
+  },
+  {
+    "name": "slope",
+    "time": 59.89
+  },
+  {
+    "name": "antiderivative",
+    "time": 65.33
+  },
+  {
+    "name": "derivative_form",
+    "time": 70.33
+  },
+  {
+    "name": "move_integral",
+    "time": 75.43
+  },
+  {
+    "name": "move_derivative",
+    "time": 83.8
+  },
+  {
+    "name": "rate_is_height",
+    "time": 89.02
+  },
+  {
+    "name": "undo",
+    "time": 94.46
+  }
+]

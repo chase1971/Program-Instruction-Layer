@@ -1,0 +1,66 @@
+[
+  {
+    "name": "part_two_full",
+    "time": 9.02
+  },
+  {
+    "name": "limits",
+    "time": 13.91
+  },
+  {
+    "name": "integrand",
+    "time": 18.8
+  },
+  {
+    "name": "variable",
+    "time": 23.7
+  },
+  {
+    "name": "antiderivative",
+    "time": 28.59
+  },
+  {
+    "name": "top_limit",
+    "time": 33.48
+  },
+  {
+    "name": "bottom_limit",
+    "time": 38.37
+  },
+  {
+    "name": "shorthand",
+    "time": 43.26
+  },
+  {
+    "name": "why",
+    "time": 48.48
+  },
+  {
+    "name": "cancels",
+    "time": 53.8
+  },
+  {
+    "name": "example_integral",
+    "time": 59.67
+  },
+  {
+    "name": "example_antiderivative",
+    "time": 65.0
+  },
+  {
+    "name": "example_bar",
+    "time": 70.87
+  },
+  {
+    "name": "example_plug",
+    "time": 76.2
+  },
+  {
+    "name": "example_answer",
+    "time": 82.07
+  },
+  {
+    "name": "hold",
+    "time": 91.41
+  }
+]

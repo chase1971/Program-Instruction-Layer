@@ -8,7 +8,7 @@ from fundamental_theorem_calculus import (
     BLUE, FILL_BLUE, FILL_GOLD, GOLD, INK, READ_LONG, RED, FtcScene, tex,
 )
 from manim import (
-    Axes, FadeIn, FadeOut, Line, MathTex, ReplacementTransform, RIGHT, DOWN,
+    Axes, FadeIn, FadeOut, LEFT, Line, MathTex, ReplacementTransform, RIGHT, DOWN,
     SurroundingRectangle, UR, ValueTracker, VGroup, Write, always_redraw, linear,
 )
 
@@ -20,13 +20,24 @@ def heading(text):
 
 
 class FtcTheoremStatement(FtcScene):
-    """Part 1 and Part 2 of the Fundamental Theorem, explained, then the nonlinear car."""
+    """Parts 1 and 2 of the Fundamental Theorem, explained piece by piece, then the nonlinear car.
+
+    Two portal tabs: FtcTheoremPart1 (3a) and FtcTheoremPart2 (3b) each render one half.
+    """
 
     def construct(self):
         self.part_one()
         self.part_two()
         self.worked_example()
         self.write_marks('ftc_theorem_statement_marks.json')
+
+    def caption_step_times(self):
+        """Pause on the finished board, before any board-clearing FadeOut that precedes the next say()."""
+        marks = [m['time'] for m in self.marks or []]
+        return [
+            round(min([s] + [m - .04 for m in marks if s - 1.5 < m - .04 < s]), 2)
+            for s in super().caption_step_times()
+        ]
 
     # ---------------------------------------------------------------- Part 1
     def part_one(self):
@@ -116,11 +127,21 @@ class FtcTheoremStatement(FtcScene):
         self.play(h.animate.set_value(.15), run_time=3.0, rate_func=linear)
         self.hold('shrink_h', HOLD)
 
+        limit_piece = piece(r'\lim_{h\to 0}', r'\frac{A(x+h)-A(x)}{h}', '=', 'f(x)', size=38)
+        limit_piece[3].set_color(BLUE)
+        self.say('Let $h$ go to 0 and the approximation becomes exact: the limit equals $f(x)$.')
+        self.play(
+            ReplacementTransform(quotient, limit_piece),
+            h.animate.set_value(.04),
+            run_time=2.0, rate_func=linear,
+        )
+        self.hold('limit', HOLD)
+
         slope_piece = piece(r'A^{\prime}(x)', '=', 'f(x)', size=44)
         slope_piece[0].set_color(GOLD)
         slope_piece[2].set_color(BLUE)
         self.say('That exact rate is the derivative: $A^{\\prime}(x)=f(x)$. The next clip proves it.')
-        self.play(ReplacementTransform(quotient, slope_piece), run_time=1.1)
+        self.play(ReplacementTransform(limit_piece, slope_piece), run_time=1.4)
         self.hold('slope', 3.0)
 
         anti_note = tex(r'\text{so }A\text{ is an antiderivative of }f', size=30).move_to([0, -3.2, 0])
@@ -128,8 +149,69 @@ class FtcTheoremStatement(FtcScene):
         self.play(Write(anti_note), run_time=1.2)
         self.hold('antiderivative', 3.2)
 
+        # ---- the "d/dx of the integral" form, read in two moves
+        expr = tex(r'\frac{d}{dx}', r'\int_a^x f(t)\,dt', '=', 'f(x)', size=38).move_to([0, 1.75, 0])
+        expr[1].set_color(GOLD)
+        expr[3].set_color(BLUE)
+
+        def side_note(text):
+            return tex(r'\text{' + text + '}', size=28).move_to([0, -2.4, 0])
+
+        def red_box(mob):
+            return SurroundingRectangle(mob, color=RED, buff=.14, stroke_width=3)
+
+        self.say('Part 1 has one more form, shown above. Read it as two moves: the integral first, then the derivative.')
+        self.play(
+            FadeOut(VGroup(strip, width, h_label, slope_piece, anti_note)),
+            base.animate.shift(DOWN * .9),
+            FadeIn(expr),
+            run_time=1.4,
+        )
+        self.hold('derivative_form', HOLD)
+
+        box = red_box(expr[1])
+        note = side_note('integral: the area so far, A(x)')
+        self.say('Move 1, the integral: collect all the area under $f$ from $a$ up to $x$. That is $A(x)$.')
+        self.play(FadeIn(box), Write(note), run_time=1.1)
+        self.hold('move_integral', 3.0)
+
+        grow = always_redraw(lambda: axes.get_area(
+            graph, x_range=[x.get_value(), x.get_value() + .3], color=FILL_GOLD, opacity=.85,
+        ))
+        box_d = red_box(expr[0])
+        note_d = side_note('d/dx: how fast that area grows')
+        self.say('Move 2, the derivative: ask how fast that area grows as $x$ moves to the right.')
+        self.play(ReplacementTransform(box, box_d), ReplacementTransform(note, note_d), FadeIn(grow), run_time=1.1)
+        self.play(x.animate.set_value(7.5), run_time=2.0, rate_func=linear)
+        self.play(x.animate.set_value(6), run_time=1.4, rate_func=linear)
+        self.hold('move_derivative', HOLD)
+
+        height = always_redraw(lambda: Line(
+            axes.c2p(x.get_value(), 0), axes.c2p(x.get_value(), f(x.get_value())),
+            color=RED, stroke_width=5,
+        ))
+        height_label = always_redraw(lambda: MathTex('f(x)', color=BLUE, font_size=28).next_to(
+            height, LEFT, buff=.08,
+        ))
+        box_f = red_box(expr[3])
+        note_f = side_note('growth rate = height of the curve = f(x)')
+        self.say('The growth rate at $x$ is the height of the curve at $x$, which is $f(x)$. That is why the right side is $f(x)$.')
+        self.play(
+            ReplacementTransform(box_d, box_f), ReplacementTransform(note_d, note_f),
+            FadeOut(grow), FadeIn(height), FadeIn(height_label), run_time=1.2,
+        )
+        self.hold('rate_is_height', 3.0)
+
+        undo = tex('f', r'\xrightarrow{\ \int\ }', 'A', r'\xrightarrow{\ d/dx\ }', 'f', size=34).move_to([0, -2.4, 0])
+        undo[0].set_color(BLUE)
+        undo[2].set_color(GOLD)
+        undo[4].set_color(BLUE)
+        self.say('So integrating and then differentiating undoes itself: you land back on $f$.')
+        self.play(FadeOut(box_f), ReplacementTransform(note_f, undo), run_time=1.2)
+        self.hold('undo', 3.2)
+
         self.play(FadeOut(VGroup(
-            base, area, x_label, strip, width, h_label, slope_piece, anti_note, title,
+            base, area, x_label, expr, height, height_label, undo, title,
         )), run_time=.9)
 
     # ---------------------------------------------------------------- Part 2
@@ -253,3 +335,20 @@ class FtcTheoremStatement(FtcScene):
         self.play(Write(total), run_time=1.3)
         self.play(Write(meaning), run_time=1.3)
         self.hold('hold', 4.0)
+
+
+class FtcTheoremPart1(FtcTheoremStatement):
+    """Portal tab 3a: Part 1 piece by piece, ending on the d/dx-of-the-integral form."""
+
+    def construct(self):
+        self.part_one()
+        self.write_marks('ftc_theorem_part1_marks.json')
+
+
+class FtcTheoremPart2(FtcTheoremStatement):
+    """Portal tab 3b: Part 2 piece by piece, then the nonlinear car."""
+
+    def construct(self):
+        self.part_two()
+        self.worked_example()
+        self.write_marks('ftc_theorem_part2_marks.json')

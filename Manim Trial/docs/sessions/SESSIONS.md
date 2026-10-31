@@ -1,3 +1,17 @@
+## 2026-10-30 - FTC theorem tab: Slow-mode pause fix, limit step, split into 3a/3b, d/dx explanation
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
+
+**Files changed:** `Manim Trial/ftc_theorem_statement.py` (~354 lines: `caption_step_times` override pauses before board-clearing fades; new `limit` step with lim h->0 and `=`; new d/dx-of-the-integral section; `FtcTheoremPart1` / `FtcTheoremPart2` scenes), `Manim Trial/build_ftc_series_page.py` (4 tabs, wider page, one-row tabs), portal `fundamentalTheoremGuide.ts` + test (tabs 1, 2, 3a hold 94.46 / 14 steps, 3b hold 91.41 / 16 steps; squeeze proof removed from the guide), assets `theorem-part1.*` and `theorem-part2.*` replace `theorem-statement.*`.
+
+**What worked:** Steps that landed after a FadeOut now pause on the finished text. Part 1 ends with a two-move reading of d/dx of the integral (area so far, growth rate, height f(x), integrate-then-differentiate undoes). Captions must not contain long inline math (rendered as a stray duplicate at the top). Heredoc Python edits mangled backslashes again; use Edit or chr(92).
+
+**Current state:** Green - both clips rendered and wired, vitest 3/3, layout audit clean. Chase had not watched 3a/3b in the portal. Squeeze proof files remain on disk, unused. Not deployed to Netlify.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews 3a and 3b in the portal.
+
 ## 2026-10-19 - FTC series: clip 3 proof reworked, theorem clip rebuilt, squeeze proof moved to clip 4
 
 **Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`

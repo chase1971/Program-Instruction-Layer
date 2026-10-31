@@ -12,8 +12,8 @@ OUTPUT = ROOT.parent / 'agent docs' / 'scratch' / 'fundamental-theorem-calculus.
 CLIPS = [
     ('1 · Area and position agree', 'triangle-square.mp4', 'triangle-square-steps.json', 26.25),
     ('2 · Riemann sums to integral', 'added-area.mp4', 'added-area-steps.json', 40.71),
-    ('3 · The theorem', 'theorem-statement.mp4', 'theorem-statement-steps.json', 152.39),
-    ('4 · The squeeze proof', 'squeeze-proof.mp4', 'squeeze-proof-steps.json', 44.24),
+    ('3a · Theorem, Part 1', 'theorem-part1.mp4', 'theorem-part1-steps.json', 94.46),
+    ('3b · Theorem, Part 2', 'theorem-part2.mp4', 'theorem-part2-steps.json', 91.41),
 ]
 
 
@@ -46,7 +46,7 @@ def build() -> Path:
   :root {{ color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; background:#07152b; color:#fff; }}
   * {{ box-sizing:border-box; }}
   body {{ margin:0; min-height:100vh; background:radial-gradient(circle at top,#183861 0,#0b2140 42%,#07152b 100%); }}
-  main {{ width:min(100%,960px); margin:0 auto; padding:18px 16px 30px; }}
+  main {{ width:min(100%,1200px); margin:0 auto; padding:18px 16px 30px; }}
   .top {{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:12px; }}
   .back {{ color:#dbeafe; font-weight:700; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; }}
   .stamp {{ color:#a8c5ea; font-size:.82rem; text-align:right; }}
@@ -56,7 +56,8 @@ def build() -> Path:
   button {{ min-height:48px; padding:10px 16px; border-radius:12px; border:2px solid rgba(255,255,255,.42); background:#193b68; color:#fff; font:700 1rem/1.15 "Segoe UI",sans-serif; cursor:pointer; touch-action:manipulation; }}
   button.active {{ background:#fff; color:#102b50; border-color:#fff; }}
   button:disabled {{ opacity:.42; cursor:default; }}
-  .parts button {{ flex:1 1 200px; }}
+  .parts {{ flex-wrap:nowrap; }}
+  .parts button {{ flex:1 1 0; min-width:0; }}
   .clip-title {{ text-align:center; font-size:1.08rem; font-weight:750; margin:12px 0 8px; min-height:1.4em; }}
   .video-wrap {{ width:min(100%,540px); margin:0 auto; background:#fff; border-radius:14px; overflow:hidden; border:2px solid rgba(255,255,255,.5); }}
   video {{ display:block; width:100%; aspect-ratio:1080/1350; object-fit:contain; background:#fff; }}
@@ -73,7 +74,7 @@ def build() -> Path:
   .motion.complete .motion-dot {{ background:#86efac; box-shadow:0 0 0 4px rgba(134,239,172,.18); }}
   .hint {{ text-align:center; color:#bfd4ef; margin:9px 0 0; font-size:.9rem; }}
   @media (prefers-reduced-motion:reduce) {{ button.pulse {{ animation:none; box-shadow:0 0 0 5px rgba(250,204,21,.95); }} .motion.playing .motion-dot {{ animation:none; }} }}
-  @media (max-width:560px) {{ main {{ padding:10px 8px 20px; }} .card {{ padding:8px; border-radius:12px; }} button {{ min-height:50px; }} .parts button {{ flex-basis:46%; font-size:.88rem; padding:8px; }} }}
+  @media (max-width:560px) {{ main {{ padding:10px 8px 20px; }} .card {{ padding:8px; border-radius:12px; }} button {{ min-height:50px; }} .parts button {{ font-size:.78rem; padding:6px 4px; }} }}
 </style>
 </head>
 <body>
