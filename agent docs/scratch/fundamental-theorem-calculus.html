@@ -7,36 +7,39 @@
 <style>
   :root { color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; background:#07152b; color:#fff; }
   * { box-sizing:border-box; }
-  body { margin:0; min-height:100vh; background:radial-gradient(circle at top,#183861 0,#0b2140 42%,#07152b 100%); }
-  main { width:min(100%,1200px); margin:0 auto; padding:18px 16px 30px; }
-  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:12px; }
-  .back { color:#dbeafe; font-weight:700; text-decoration:none; min-height:44px; display:inline-flex; align-items:center; }
-  .stamp { color:#a8c5ea; font-size:.82rem; text-align:right; }
-  h1 { font-size:clamp(1.25rem,4vw,2rem); text-align:center; margin:4px 0 14px; }
-  .card { background:#102b50; border:1px solid rgba(255,255,255,.2); border-radius:18px; padding:12px; box-shadow:0 18px 50px rgba(0,0,0,.3); }
+  html, body { height:100%; }
+  body { margin:0; height:100vh; height:100dvh; overflow:hidden; background:radial-gradient(circle at top,#183861 0,#0b2140 42%,#07152b 100%); }
+  main { height:100%; width:min(100%,1200px); margin:0 auto; padding:8px 12px 10px; display:flex; flex-direction:column; min-height:0; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:4px; flex:none; }
+  .back { color:#dbeafe; font-weight:700; text-decoration:none; min-height:32px; display:inline-flex; align-items:center; }
+  .stamp { color:#a8c5ea; font-size:.78rem; text-align:right; }
+  h1 { font-size:1.15rem; text-align:center; margin:0 0 8px; flex:none; }
+  .card { background:#102b50; border:1px solid rgba(255,255,255,.2); border-radius:18px; padding:10px; box-shadow:0 18px 50px rgba(0,0,0,.3); flex:1 1 auto; min-height:0; display:flex; flex-direction:column; overflow:hidden; }
   .parts,.modes,.steps { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
   button { min-height:48px; padding:10px 16px; border-radius:12px; border:2px solid rgba(255,255,255,.42); background:#193b68; color:#fff; font:700 1rem/1.15 "Segoe UI",sans-serif; cursor:pointer; touch-action:manipulation; }
   button.active { background:#fff; color:#102b50; border-color:#fff; }
   button:disabled { opacity:.42; cursor:default; }
-  .parts { flex-wrap:nowrap; }
+  .parts { flex:none; flex-wrap:nowrap; }
   .parts button { flex:1 1 0; min-width:0; }
-  .clip-title { text-align:center; font-size:1.08rem; font-weight:750; margin:12px 0 8px; min-height:1.4em; }
-  .video-wrap { width:min(100%,540px); margin:0 auto; background:#fff; border-radius:14px; overflow:hidden; border:2px solid rgba(255,255,255,.5); }
-  video { display:block; width:100%; aspect-ratio:1080/1350; object-fit:contain; background:#fff; }
-  .controls { display:grid; gap:10px; margin-top:12px; }
-  .modes button { min-width:120px; }
-  .steps button { min-width:130px; }
+  .clip-title { text-align:center; font-size:1.05rem; font-weight:750; margin:8px 0 6px; min-height:1.3em; flex:none; }
+  .stage { flex:1 1 auto; min-height:0; display:flex; gap:12px; align-items:stretch; }
+  .video-wrap { flex:1 1 auto; min-width:0; min-height:0; width:auto; max-width:none; margin:0; background:transparent; border:none; border-radius:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  video { display:block; width:auto; height:100%; max-width:100%; max-height:100%; min-height:0; aspect-ratio:1080/1350; object-fit:contain; background:#fff; border-radius:14px; border:2px solid rgba(255,255,255,.5); }
+  .dock { flex:0 0 280px; width:280px; min-height:0; display:flex; flex-direction:column; justify-content:safe center; gap:10px; }
+  .controls { display:grid; gap:8px; margin-top:0; }
+  .modes, .steps { flex-direction:column; align-items:stretch; }
+  .modes button, .steps button { width:100%; min-width:0; }
   @keyframes next-pulse { 0%,100% { box-shadow:0 0 0 2px rgba(250,204,21,.5); } 50% { box-shadow:0 0 0 7px rgba(250,204,21,.98); } }
   @keyframes watch-pulse { 0%,100% { transform:scale(.82); opacity:.65; } 50% { transform:scale(1.18); opacity:1; } }
   button.pulse { animation:next-pulse 1s ease-in-out infinite; border-color:#facc15; }
-  .motion { width:min(100%,540px); margin:10px auto 0; min-height:50px; display:flex; align-items:center; justify-content:center; gap:10px; border-radius:12px; background:rgba(255,255,255,.1); color:#dbeafe; font-weight:750; text-align:center; padding:9px 14px; }
+  .motion { width:100%; margin:0; min-height:42px; display:flex; align-items:center; justify-content:center; gap:10px; border-radius:12px; background:rgba(255,255,255,.1); color:#dbeafe; font-weight:750; text-align:center; padding:6px 12px; }
   .motion-dot { width:14px; height:14px; border-radius:50%; background:#93c5fd; box-shadow:0 0 0 4px rgba(147,197,253,.18); flex:0 0 auto; }
   .motion.playing { background:rgba(250,204,21,.13); color:#fff4b5; }
   .motion.playing .motion-dot { background:#facc15; box-shadow:0 0 0 5px rgba(250,204,21,.2); animation:watch-pulse .8s ease-in-out infinite; }
   .motion.complete .motion-dot { background:#86efac; box-shadow:0 0 0 4px rgba(134,239,172,.18); }
-  .hint { text-align:center; color:#bfd4ef; margin:9px 0 0; font-size:.9rem; }
+  .hint { text-align:center; color:#bfd4ef; margin:0; font-size:.85rem; }
   @media (prefers-reduced-motion:reduce) { button.pulse { animation:none; box-shadow:0 0 0 5px rgba(250,204,21,.95); } .motion.playing .motion-dot { animation:none; } }
-  @media (max-width:560px) { main { padding:10px 8px 20px; } .card { padding:8px; border-radius:12px; } button { min-height:50px; } .parts button { font-size:.78rem; padding:6px 4px; } }
+  @media (max-width:720px) { .dock { flex-basis:210px; width:210px; } button { font-size:.92rem; padding:8px; } .stamp { display:none; } .hint { font-size:.78rem; } }
 </style>
 </head>
 <body>
@@ -46,7 +49,9 @@
   <section class="card" aria-label="Animation player">
     <div class="parts" id="parts" role="tablist" aria-label="Lesson parts"></div>
     <div class="clip-title" id="title"></div>
+    <div class="stage">
     <div class="video-wrap"><video id="video" playsinline preload="auto" aria-label="Fundamental Theorem animation"></video></div>
+    <div class="dock">
     <div class="motion" id="motion" role="status" aria-live="polite"><span class="motion-dot"></span><span id="motionText"></span></div>
     <div class="controls">
       <div class="modes" aria-label="Playback mode">
@@ -60,6 +65,8 @@
       </div>
     </div>
     <p class="hint">Slow mode: each press of Next plays one explanation step. Tap the animation to pause or continue.</p>
+    </div>
+    </div>
   </section>
 </main>
 <script>
