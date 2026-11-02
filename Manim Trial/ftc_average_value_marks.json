@@ -1,0 +1,54 @@
+[
+  {
+    "name": "finite_average",
+    "time": 5.33
+  },
+  {
+    "name": "definition",
+    "time": 11.63
+  },
+  {
+    "name": "problem",
+    "time": 18.37
+  },
+  {
+    "name": "graph",
+    "time": 24.24
+  },
+  {
+    "name": "net_area",
+    "time": 30.22
+  },
+  {
+    "name": "rectangle",
+    "time": 36.09
+  },
+  {
+    "name": "match",
+    "time": 45.0
+  },
+  {
+    "name": "balance",
+    "time": 50.87
+  },
+  {
+    "name": "relationship",
+    "time": 57.5
+  },
+  {
+    "name": "set_up",
+    "time": 64.67
+  },
+  {
+    "name": "antiderivative",
+    "time": 71.63
+  },
+  {
+    "name": "answer",
+    "time": 77.72
+  },
+  {
+    "name": "hold",
+    "time": 85.76
+  }
+]

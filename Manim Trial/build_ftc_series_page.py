@@ -1,4 +1,4 @@
-"""Build the self-contained served HTML player for the four FTC portal clips."""
+"""Build the self-contained served HTML player for the seven FTC portal clips."""
 
 import base64
 import json
@@ -14,6 +14,8 @@ CLIPS = [
     ('2 · Riemann sums to integral', 'added-area.mp4', 'added-area-steps.json', 40.71),
     ('3a · Theorem, Part 1', 'theorem-part1.mp4', 'theorem-part1-steps.json', 94.46),
     ('3b · Theorem, Part 2', 'theorem-part2.mp4', 'theorem-part2-steps.json', 91.41),
+    ('4 · Moving endpoint (problem 10)', 'moving-endpoint.mp4', 'moving-endpoint-steps.json', 93.26),
+    ('5 · Side by side: x vs x²', 'endpoint-compare.mp4', 'endpoint-compare-steps.json', 62.61),
 ]
 
 

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "problem",
+    "time": 5.22
+  },
+  {
+    "name": "part_one_case",
+    "time": 11.3
+  },
+  {
+    "name": "why_more",
+    "time": 17.07
+  },
+  {
+    "name": "integrand",
+    "time": 23.7
+  },
+  {
+    "name": "total",
+    "time": 29.13
+  },
+  {
+    "name": "wire",
+    "time": 37.39
+  },
+  {
+    "name": "question",
+    "time": 42.39
+  },
+  {
+    "name": "factor_height",
+    "time": 47.93
+  },
+  {
+    "name": "factor_speed",
+    "time": 56.96
+  },
+  {
+    "name": "multiply",
+    "time": 62.72
+  },
+  {
+    "name": "answer",
+    "time": 68.48
+  },
+  {
+    "name": "numbers",
+    "time": 75.11
+  },
+  {
+    "name": "fifty_two",
+    "time": 80.54
+  },
+  {
+    "name": "rule",
+    "time": 86.52
+  },
+  {
+    "name": "hold",
+    "time": 93.26
+  }
+]

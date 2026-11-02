@@ -1,3 +1,17 @@
+## 2026-11-01 - FTC clip 6: average value of a function (hiking trail)
+
+**Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
+
+**Files changed:** `Manim Trial/ftc_average_value.py` (new, ~170 lines, scene `FtcAverageValue`: finite average, definition, trail f(x)=60x^3-650x^2+1200x+4500 on [0,5], rectangle height slides to the area-matching average, (b-a)f-bar = integral, FTC calculation to 3958 1/3), `Manim Trial/build_ftc_series_page.py` (7 tabs), portal `fundamentalTheoremGuide.ts` + test (tab 6 hold 85.76 / 13 steps), assets `average-value.mp4` and `average-value-steps.json`. HTML page copied to `My Drive/M2413/Unit 4 Integration`.
+
+**What worked:** Layout audit clean after shortening one caption and moving the summary line. Heredoc Python mangled backslashes again (\f, \b, \r); write LaTeX via the Write tool.
+
+**Current state:** Green - rendered 1080x1350, wired, vitest 3/3. Not deployed to Netlify.
+
+**File size flag:** None.
+
+**Next session:** Chase reviews tab 6 in the portal.
+
 ## 2026-10-30 - FTC theorem tab: Slow-mode pause fix, limit step, split into 3a/3b, d/dx explanation
 
 **Repos touched:** `Programs/` root (Manim Trial, agent docs), `School Scrips/student-portal`
