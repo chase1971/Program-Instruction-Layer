@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Agent Designs</title>
+<style>
+  body { margin: 0; background: #1d1f27; color: #eee; font-family: system-ui, sans-serif; }
+  .banner { background: #3a3a1d; color: #f5e6a0; padding: 8px 16px; font-size: 14px; }
+  header { padding: 16px 24px 0; }
+  header a { color: #8ab4ff; font-size: 16px; }
+  h1 { margin: 12px 0 4px; font-size: 28px; }
+  p.sub { margin: 0 0 16px; color: #aab; font-size: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 0 24px 32px; }
+  .card { background: #2a2d3a; border-radius: 14px; padding: 20px; text-align: center; }
+  .num { font-size: 44px; font-weight: 700; color: #ffd84a; line-height: 1; }
+  .name { font-size: 22px; margin: 6px 0 14px; }
+  .stage { background: #6b4a30; border-radius: 10px; padding: 18px 0 10px; position: relative; }
+  canvas { image-rendering: pixelated; width: 144px; height: 192px; }
+  .bubble { background: #fff; color: #222; font-family: monospace; font-size: 15px; display: inline-block;
+            padding: 4px 10px; border-radius: 8px; margin-bottom: 6px; }
+  .row { margin-top: 14px; display: flex; justify-content: center; gap: 6px; }
+  .row canvas { width: 48px; height: 64px; }
+  .note { color: #aab; font-size: 14px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="banner">One-off preview, 2026-11-05. Assume it goes stale.</div>
+<header>
+  <a href="/pages.html">&larr; All pages</a>
+  <h1>Pixel agent designs</h1>
+  <p class="sub">Each one is idling at a desk. Tell me the number you like, or mix and match.</p>
+</header>
+<div class="grid" id="grid"></div>
+
+<script>
+// Each sprite is 12 wide x 16 tall. '.' is transparent. Letters map to the palette.
+const SPRITES = [
+  { name: 'Office worker', say: 'On it.', note: 'Closest to the Facebook office. Change the shirt color per role.',
+    pal: { H:'#3b2a20', S:'#f1c27d', E:'#222', T:'#4a90e2', P:'#33415c', B:'#222' },
+    rows: [
+      '...HHHHHH...','..HHHHHHHH..','..HSSSSSSH..','..SSESSESS..','..SSSSSSSS..','...SSSSSS...','....SSSS....',
+      '..TTTTTTTT..','.STTTTTTTTS.','.STTTTTTTTS.','.STTTTTTTTS.','..TTTTTTTT..',
+      '..PPPPPPPP..','..PPP..PPP..','..PPP..PPP..','..BBB..BBB..'],
+    legsB: { 13:'..PPP..PP...', 14:'..PPP...PP..', 15:'..BBB...BB..' } },
+  { name: 'Robot', say: 'Running tests.', note: 'Reads as "AI" instantly. Easy to recolor.',
+    pal: { M:'#9aa7b5', D:'#5b6773', V:'#111', L:'#5ef0ff', R:'#ff5a5a' },
+    rows: [
+      '.....RR.....','.....DD.....','..MMMMMMMM..','..MVVVVVVM..','..MVLVVLVM..','..MVVVVVVM..','..MMMMMMMM..',
+      '...DDDDDD...','.MMMMMMMMMM.','DMMMLLLLMMMD','DMMMMMMMMMMD','.MMMMMMMMMM.',
+      '..DDDDDDDD..','..DDD..DDD..','..DDD..DDD..','..MMM..MMM..'],
+    legsB: { 13:'..DDD...DD..', 14:'..DDD...DD..', 15:'..MMM...MM..' } },
+  { name: 'Office cat', say: 'Meow. Done.', note: 'Friendliest. Good mascot for the chief of staff.',
+    pal: { O:'#f0932b', W:'#fff3d6', K:'#222', P:'#ff8fa3' },
+    rows: [
+      '............','............','..O......O..','.OOO....OOO.','.OPOOOOOOPO.','.OOOOOOOOOO.',
+      '.OKKOOOOKKO.','.OOOOPPOOOO.','..OOOWWOOO..','...OOOOOO...','..OOOOOOOO..','.OOWWWWWWOO.',
+      '.OOWWWWWWOO.','.OOOWWWWOOO.','..OO....OO..','..WW....WW..'],
+    legsB: null },
+  { name: 'Little alien', say: 'Beep. Working.', note: 'Most unusual. Big eyes read well from the back of a room.',
+    pal: { G:'#7bd88f', g:'#2f9e55', K:'#111', U:'#7a5cff' },
+    rows: [
+      '............','...GGGGGG...','.GGGGGGGGGG.','.GGGGGGGGGG.','GGKKKGGKKKGG','GGKKKGGKKKGG',
+      '.GGKKGGKKGG.','.GGGGGGGGGG.','..GGGGGGGG..','....gggg....','..UUUUUUUU..','.UUUUUUUUUU.',
+      '.UUUUUUUUUU.','..UUUUUUUU..','..UU....UU..','..GG....GG..'],
+    legsB: { 14:'..UU...UU...', 15:'..GG...GG...' } },
+  { name: 'Wizard', say: 'Casting it now.', note: 'Fun for a "magic of AI" talk. Less serious.',
+    pal: { C:'#5b3fd0', Y:'#ffd84a', S:'#f1c27d', E:'#222', W:'#eeeeee', B:'#4a3320' },
+    rows: [
+      '.....CC.....','....CCCC....','...CCYCCC...','..CCCCCCCC..','.CCCCCCCCCC.','CCCCCCCCCCCC',
+      '..SSSSSSSS..','..SSESSESS..','..WWWWWWWW..','..WWWWWWWW..','...WWWWWW...','..CCCCCCCC..',
+      '.CCCCYYCCCC.','.CCCCCCCCCC.','.CCCCCCCCCC.','..BB....BB..'],
+    legsB: null }
+];
+
+function draw(canvas, sprite, frame) {
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, 12, 16);
+  const rows = sprite.rows.slice();
+  const bob = frame ? 0 : 1;           // frame 0 sits 1px lower, frame 1 lifts
+  if (frame && sprite.legsB) for (const k in sprite.legsB) rows[k] = sprite.legsB[k];
+  rows.forEach((r, y) => {
+    for (let x = 0; x < 12; x++) {
+      const c = r[x];
+      if (c === '.' || !sprite.pal[c]) continue;
+      ctx.fillStyle = sprite.pal[c];
+      const yy = y - 1 + bob;
+      if (yy >= 0 && yy < 16) ctx.fillRect(x, yy, 1, 1);
+    }
+  });
+}
+
+const grid = document.getElementById('grid');
+const canvases = [];
+SPRITES.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML =
+    '<div class="num">' + (i + 1) + '</div><div class="name">' + s.name + '</div>' +
+    '<div class="stage"><div class="bubble">' + s.say + '</div><br><canvas width="12" height="16"></canvas></div>' +
+    '<div class="row"></div><div class="note">' + s.note + '</div>';
+  const row = card.querySelector('.row');
+  for (let k = 0; k < 4; k++) {
+    const c = document.createElement('canvas'); c.width = 12; c.height = 16; row.appendChild(c); canvases.push([c, s, k]);
+  }
+  canvases.push([card.querySelector('.stage canvas'), s, 0]);
+  grid.appendChild(card);
+});
+
+let frame = 0;
+function tick() {
+  frame = 1 - frame;
+  canvases.forEach(([c, s, k]) => draw(c, s, (frame + k) % 2));
+}
+tick();
+setInterval(tick, 450);
+</script>
+</body>
+</html>

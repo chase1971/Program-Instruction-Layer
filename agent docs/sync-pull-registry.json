@@ -9,6 +9,12 @@
       "pull": true
     },
     {
+      "path": "AI presentations",
+      "label": "AI presentations - VP pitch site and artifact",
+      "group": "core",
+      "pull": true
+    },
+    {
       "path": "android-auto-scroll",
       "label": "android-auto-scroll",
       "group": "other",

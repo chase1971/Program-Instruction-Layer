@@ -2,6 +2,104 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-08 (later): AI presentation research section, background pages, notes page, no-agent-voice rule
+
+**Repos touched:** `AI presentations`, `Programs/` root
+
+**Files changed:** `AI presentations/site/shared/content.js`, `engine.js`, `base.css`, `notes.js` (new), `site/notes.html` (new), `AGENTS.md` + `CLAUDE.md` (new), `README.md`, `removed-stop-notes.md` (new), `site/demos/`, `site/media/`.
+
+**What worked:** Research section rebuilt as sources-first slides (13 Current Research: VanLehn + Kulik and Fletcher; 14 Ma meta-analysis; 15 Looking Forward; 16 Harvard; 17 Design Matters with Bastani + Bowen), each source linking a Library background page (VanLehn, Kulik, Ma, two Harvard pages). New `studies` and `finding` block types. ASSISTments and Andes tried and cut (answer-level feedback; paper unreadable). All stop notes cleared from the deck (they draw on screen); printable `site/notes.html` holds speaker notes instead. `AI presentations/AGENTS.md` bans agent-voice text in the deck. Track is 26 stops.
+
+**Current state:** Green for content (loads, all stops resolve, no em dashes). New slides and layouts never viewed in a browser. A likely placeholder student quote remains on `gj-adapt` ("The animations went too fast...", flagged in `content.js` as PLACEHOLDER), awaiting Chase's real wording or a cut.
+
+**File size flag:** None over 500 lines in new code; `site/demos/conics-animations/` is 66 MB, committed at Chase's request so he can work from another machine.
+
+**Next session:** Open the deck at `#t=vp&s=12` and review slides 13 to 17 for text size and fit; resolve the gj-adapt placeholder quote; decide where `ai-tutor-questions` and the unrevised `the-ask` belong; add the Wednesday guided-practice homework results to `gj-homework`.
+
+## 2026-11-08: AI presentation second half, research and AI tutoring slides; Matrix tutorial layout fixes (momentum handoff)
+
+**Repos touched:** `Programs/` root, `AI presentations`, `School Scrips/Matrix app`, `School Scrips/student-portal`, `School Scrips/student-session-kit`
+
+**Files changed:** `AI presentations/site/shared/content.js`, `engine.js`, `base.css`, `site/media/*`, `site/demos/conics-animations/`; `scripts/serve-programs-docs.js` (new `/ai-presentations/` mount); Matrix app `matrix-auto-solver.tsx`, `row-multiply-then-add-animation.tsx`, `part-2-step-4-multiply-help.tsx`, `GuidedPracticeHelpTrigger.tsx`, `useViewportAnchorPosition.ts`; student-portal `portal-base.css`.
+
+**What worked:** Deck moved to its own repo and served at `/ai-presentations/`; video controls, roster and embed blocks; VP track extended to 22 stops with research, AI tutor, colleges list, Bowen, Skills Hub with D2L mockup, live conics page; Part 2 and Auto Solve layout fixes written.
+
+**Current state:** Green for content (loads, all stops resolve); Matrix and new-slide visuals not checked in a browser. Uncommitted.
+
+**File size flag:** None over 500 lines. `site/demos/conics-animations/` is 66 MB, ask before committing.
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-11-08)
+
+## 2026-11-07: AI presentation VP track through slide 11; Math Portal rename (momentum handoff)
+
+**Repos touched:** `Programs/` root, `School Scrips/student-portal`
+
+**Files changed:** `agent docs/scratch/presentation-skeletons/shared/content.js`, `media/gj-tutorial-home.webp`; student-portal `portalBranding.ts` + header/intro/title wiring.
+
+**What worked:** Full VP slide-by-slide polish through `gj-data`; track truncated to 11 stops; CHASE1 live tutorial screenshot on setup; survey Ns verified and fractions dropped; student-facing Math Portal rename (not deployed).
+
+**Current state:** Green — uncommitted presentation scratch + portal branding; later pitch pages still in library only.
+
+**File size flag:** None.
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-11-07)
+
+## 2026-11-07: AI presentation site, opening slides and customization polish (momentum handoff)
+
+**Repos touched:** `Programs/` root
+
+**Files changed:** `agent docs/scratch/presentation-skeletons/shared/content.js`, `shared/engine.js`, `shared/base.css`, `v2-stage.html`, new `media/math-portal-teacher-console.webp`.
+
+**What worked:** Welcome trimmed; new Math Portal slide with teacher console screenshot; slide 3 rewritten (phone first, supplement); placeholder pause/replay quote; callouts as plain text; publisher vs apps as its own slide with contrasting pairs; image block that scales with text size; title case headings. Headless Edge screenshots fit at 1366 and 1920.
+
+**Current state:** Green: uncommitted scratch site; one placeholder quote and later placeholder sections remain.
+
+**File size flag:** None.
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-11-07)
+
+## 2026-11-07: AI presentation site, Gauss-Jordan section with real data (momentum handoff)
+
+**Repos touched:** `Programs/` root
+
+**Files changed:** `agent docs/scratch/presentation-skeletons/shared/content.js`, `shared/engine.js`, `shared/base.css`, `v2-stage.html`.
+
+**What worked:** Real Gauss-Jordan experiment data on nine VP slides (why, setup, tutorial, results donut, before-class framing, readiness rings and quotes, customization feedback-to-fix, anonymized data views, homework placeholder); static vs dynamic retitle; board layout, donut/rings, points, fixes, chips blocks; text size control; slide-skip buttons. Headless jsdom and headless Edge screenshots clean at 1920 and 1366.
+
+**Current state:** Green: uncommitted scratch site, placeholders remain after the GJ section.
+
+**File size flag:** None (largest `content.js` ~355 lines).
+
+**Next session:** see `agent docs/momentum-handoffs/latest.md` (2026-11-07)
+
+## 2026-11-07: AI presentation site, Stage layout with Lone Star brand (momentum handoff)
+
+**Repos touched:** `Programs/` root
+
+**Files changed:** `agent docs/scratch/presentation-skeletons/` (new: shared content, engine, base CSS, five layout variants, chooser, LSC logo assets); `agent docs/INDEX.md` row.
+
+**What worked:** Wiki-style site with presentation tracks, step builds, glossary hover popovers. Chase chose Stage; restyled to LSC brand, full-window, laptop sizing, up = next clicker keys, edge arrows, Home and Restart.
+
+**Current state:** Green on headless jsdom step-through; layout fit on his laptop not machine-verified. Content is placeholder. Nothing committed.
+
+**File size flag:** None.
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-07)
+
+## 2026-11-05 — Pixel-office explainer animations (momentum handoff)
+
+**Repos touched:** `Programs/` root
+
+**Files changed:** `agent docs/scratch/pixel-agents.html`, `macro-app-offices.html`, `documentation-office.html`, `docs-vs-no-docs.html` (new); one private Claude artifact published (Macro App assembly line).
+
+**What worked:** Animated pixel-office scenes for presentations: Macro App office, documentation walkthrough, and a split-screen docs vs no-docs race with token bars, thought bubbles, and a commentary box. Headless render-checked.
+
+**Current state:** Green. Pages serve on 8765; nothing committed.
+
+**File size flag:** None.
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-05)
+
 ## 2026-10-25 — Frame gallery + homework 4–6 finish (momentum handoff)
 
 **Repos touched:** `Programs/` root, `School Scrips/student-portal`, `School Scrips/Matrix app`

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation Office</title>
+<style>
+  body { margin: 0; background: #1d1f27; color: #eee; font-family: system-ui, sans-serif; }
+  .banner { background: #3a3a1d; color: #f5e6a0; padding: 8px 16px; font-size: 14px; }
+  header, .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  header { padding-top: 16px; }
+  header a { color: #8ab4ff; font-size: 16px; }
+  h1 { margin: 12px 0 4px; font-size: 28px; }
+  p.sub { margin: 0 0 12px; color: #aab; font-size: 16px; }
+  .card { background: #262936; border-radius: 14px; padding: 18px 20px 22px; margin: 24px 0; }
+  .head { display: flex; align-items: baseline; gap: 14px; }
+  .num { font-size: 44px; font-weight: 700; color: #ffd84a; line-height: 1; }
+  .name { font-size: 24px; font-weight: 600; }
+  .desc { color: #bbc; font-size: 16px; margin: 6px 0 14px; max-width: 900px; }
+  .best { color: #9fd3a8; font-size: 15px; margin-top: 12px; }
+  .plan { position: relative; width: 100%; container-type: inline-size; line-height: 0; }
+  .plan canvas { width: 100%; height: auto; image-rendering: pixelated; display: block; border-radius: 6px; }
+  .lab { position: absolute; transform: translateX(-50%); white-space: nowrap; line-height: 1.2;
+         font-family: Consolas, "Courier New", monospace; font-weight: 700; color: #f2e9d0;
+         background: rgba(20,22,30,.88); padding: .15em .5em; border-radius: 2px; }
+  .lab.board { background: #f4ead0; color: #2b2118; border: 2px solid #6a5438; font-size: 1.2em; padding: .2em .8em; }
+  .lab.plaque { background: #3b2f22; color: #ffd84a; }
+  .lab.screen { background: transparent; color: #fff; font-size: 1.25em; }
+
+  .bubble{position:absolute;white-space:normal;width:max-content;max-width:34cqw;background:#fff;color:#222;font-family:Consolas,monospace;font-weight:700;padding:.35em .7em;border-radius:6px;line-height:1.3;box-shadow:0 1px 0 #0006}
+  .key{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+  .key div{background:#1d2030;border-radius:8px;padding:10px 14px;font-size:15px;line-height:1.35;color:#ccd}
+  .key b{display:block;color:#ffd84a;margin-bottom:2px}
+  .meter{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:center;font-size:16px;margin-top:12px;color:#cfe}
+  .meter .t{font-size:22px;font-weight:700;color:#ffd84a;font-variant-numeric:tabular-nums}
+  .barwrap{flex:1;min-width:220px}.bartrack{height:14px;background:#1d2030;border-radius:7px;overflow:hidden;border:1px solid #444a60}
+  #bar{height:100%;background:#3fbf7f;width:0.4%}
+  .small{font-size:13px;color:#99a;margin-top:4px}</style>
+</head>
+<body>
+<div class="banner">One-off preview, 2026-11-05. Assume it goes stale. Built from the root AGENTS.md, agent docs/INDEX.md, and the Macro App AGENTS.md. The route, the thoughts, and the token numbers are illustrations.</div>
+<header>
+  <a href="/pages.html">&larr; All pages</a>
+  <h1>How my documentation works</h1>
+  <p class="sub">The gold robot is an AI agent starting a task. The speech bubble is what it is thinking at each stop. Watch which files it reads, why it goes where it goes, and how little it uses.</p>
+</header>
+<div class="wrap"><div class="card"><div class="plan" id="plan"></div>
+<div class="meter"><div>Tokens this task: <span class="t" id="tok">0</span></div><div>Files read: <b id="count">0 files</b></div><div class="barwrap"><div class="bartrack"><div id="bar"></div></div><div class="small">Bar = share of a 200,000 token context window. Numbers are approximate, for illustration.</div></div></div>
+<div class="key">
+<div><b>AGENTS.md (root)</b>The only file loaded every session. Short, and holds only rules that must always fire.</div>
+<div><b>INDEX.md</b>Pointers only, never rules. Match what Chase said to a row, then read that one file.</div>
+<div><b>RECIPES and RULES</b>About 30 how-we-built-it recipes, and the detail behind each always-on rule.</div>
+<div><b>App AGENTS.md</b>One per app. A keyword table: when Chase says this, read that doc.</div>
+<div><b>docs/ cabinets</b>Deep docs for one subsystem. Read only when the task needs them.</div>
+<div><b>Back office</b>SESSIONS.md log, scorecard, momentum handoff, and the capture ladder for new lessons.</div>
+</div></div></div>
+<script>
+
+const G = { d2l:'#4a90e2', pearson:'#f0932b', grades:'#3fbf7f', tc:'#9b6bff', portal:'#ff6fa5', misc:'#3ab8c4', shell:'#9aa7b5', db:'#c9a227' };
+const DK = {
+  browser:['BROWSER','d2l'], aa:['ASSISTANT','pearson'], pearson:['PEARSON','pearson'], makeup:['MAKEUP EXAM','pearson'],
+  builder:['BUILDER','d2l'], dates:['DATES','d2l'], handout:['HANDOUT','d2l'], grades:['GRADEBOOK','grades'],
+  history:['HISTORY','grades'], roster:['ROSTER','grades'], progress:['PROGRESS','grades'], tc:['T. CONSOLE','tc'],
+  settings:['SETTINGS','misc'], shell:['DASH SHELL','shell'], math:['MATH APPS','portal'], exit:['EXIT TICKETS','portal'], hw:['HOMEWORK','portal']
+};
+const BR = '#8a3b2e', MORT = '#6e2d23', FL = '#7c5638', FLM = '#6a4a31', CARPET = '#33405c';
+
+// ---------- drawing helpers ----------
+const R = (c, col, x, y, w, h) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), w, h); };
+function bricks(c, x, y, w, h, base, mort, bw, bh) {
+  R(c, base, x, y, w, h);
+  for (let r = 0; r * bh < h; r++) {
+    R(c, mort, x, y + r * bh, w, 1);
+    const off = (r % 2) * (bw / 2);
+    for (let vx = x - bw + off; vx < x + w; vx += bw) if (vx >= x) R(c, mort, vx, y + r * bh, 1, Math.min(bh, h - r * bh));
+  }
+}
+const wall = (c, x, y, w, h) => bricks(c, x, y, w, h, BR, MORT, 8, 4);
+const floor = (c, x, y, w, h) => bricks(c, x, y, w, h, FL, FLM, 12, 6);
+function carpet(c, x, y, w, h, col) {
+  R(c, col || CARPET, x, y, w, h);
+  for (let yy = y; yy < y + h; yy += 4) for (let xx = x + ((yy - y) / 4 % 2) * 4; xx < x + w; xx += 8) R(c, 'rgba(255,255,255,0.05)', xx, yy, 4, 2);
+}
+function planks(c, x, y, w, h) { R(c, '#a8743f', x, y, w, h); for (let xx = x; xx < x + w; xx += 6) R(c, '#8c5d30', xx, y, 1, h); }
+function lights(c, x, y, w) {
+  for (let xx = x; xx < x + w; xx += 2) R(c, '#2a1d17', xx, y + Math.round(2 * Math.sin((xx - x) / w * Math.PI * (w / 70))), 1, 1);
+  for (let xx = x + 6; xx < x + w; xx += 14) { const yy = y + Math.round(2 * Math.sin((xx - x) / w * Math.PI * (w / 70))); R(c, '#ffd84a', xx, yy + 1, 2, 3); }
+}
+function partition(c, x, y1, y2, gap) {      // low brick wall, optional gap [g1,g2]
+  const seg = (a, b) => { if (b > a) { bricks(c, x, a, 4, b - a, BR, MORT, 4, 4); R(c, '#b05a45', x, a, 4, 1); } };
+  if (gap) { seg(y1, gap[0]); seg(gap[1], y2); } else seg(y1, y2);
+}
+function deskBody(c, x, y) {
+  R(c, '#c98f4e', x + 4, y + 14, 36, 11); R(c, '#e0a862', x + 4, y + 14, 36, 2); R(c, '#8f5f2f', x + 4, y + 25, 36, 3);
+  R(c, '#222633', x + 30, y + 17, 3, 3);
+}
+function monitor(c, x, y, col, f, i) {
+  R(c, '#262a37', x, y, 16, 11); R(c, '#10151e', x + 1, y + 1, 14, 8); R(c, '#262a37', x + 6, y + 11, 4, 2);
+  for (let k = 0; k < 3; k++) R(c, col, x + 2, y + 2 + k * 2, 2 + ((f * 3 + k * 4 + i * 2) % 9), 1);
+}
+const SPR = {
+  pal: { M:'#9aa7b5', D:'#5b6773', V:'#111', L:'#5ef0ff', R:'#ff5a5a' },
+  rows: ['.....RR.....','.....DD.....','..MMMMMMMM..','..MVVVVVVM..','..MVLVVLVM..','..MVVVVVVM..','..MMMMMMMM..','...DDDDDD...','.MMMMMMMMMM.','DMMMLLLLMMMD','DMMMMMMMMMMD','.MMMMMMMMMM.','..DDDDDDDD..','..DDD..DDD..','..DDD..DDD..','..MMM..MMM..'],
+  legsB: { 13:'..DDD...DD..', 14:'..DDD...DD..', 15:'..MMM...MM..' }
+};
+function robot(c, x, y, col, walk) {
+  const rows = SPR.rows.slice(); if (walk) for (const k in SPR.legsB) rows[k] = SPR.legsB[k];
+  const pal = Object.assign({}, SPR.pal, { M: col });
+  rows.forEach((r, yy) => { for (let xx = 0; xx < 12; xx++) { const ch = r[xx]; if (ch !== '.') R(c, pal[ch], x + xx, y + yy, 1, 1); } });
+}
+function plant(c, x, y) { R(c, '#b5651d', x + 2, y + 8, 6, 5); R(c, '#3c8f4a', x, y + 2, 10, 7); R(c, '#57b665', x + 2, y, 6, 4); }
+function coffee(c, x, y) { R(c, '#3a3f4d', x, y, 14, 20); R(c, '#e8e8e8', x + 2, y + 3, 10, 6); R(c, '#8b5a2b', x + 4, y + 12, 6, 6); }
+function rackBody(c, x, y) { R(c, '#6b7283', x - 1, y - 1, 20, 34); R(c, '#1d2230', x, y, 18, 32); for (let k = 0; k < 5; k++) R(c, '#2b3245', x + 1, y + 2 + k * 6, 16, 4); }
+function rackLive(c, x, y, f) { for (let k = 0; k < 5; k++) R(c, (f + k) % 2 ? '#5ef08a' : '#f0c05e', x + 3, y + 3 + k * 6, 3, 2); }
+function tableBody(c, x, y, w, h) { R(c, '#c98f4e', x, y + 9, w, h); R(c, '#e0a862', x, y + 9, w, 2); R(c, '#8f5f2f', x, y + 9 + h - 3, w, 3); }
+function bridgeRail(c, x, y, w) { R(c, '#d9d2c0', x, y, w, 2); for (let xx = x; xx < x + w; xx += 8) R(c, '#d9d2c0', xx, y, 1, 6); }
+function ellipse(c, col, cx, cy, rx, ry) { c.fillStyle = col; c.beginPath(); c.ellipse(Math.round(cx), Math.round(cy), rx, ry, 0, 0, 6.2832); c.fill(); }
+function patrol(c, wk, t, col) {
+  const dx = wk.x2 - wk.x1, dy = wk.y2 - wk.y1, d = Math.hypot(dx, dy), sp = wk.s || 0.025;
+  const p = ((t * sp / d) + (wk.ph || 0)) % 2, u = p < 1 ? p : 2 - p;
+  robot(c, wk.x1 + dx * u, wk.y1 + dy * u, col || wk.c || '#ffa8a8', Math.floor(t / 180) % 2);
+}
+function arrows(c, x1, x2, y, t) { for (let xx = x1 + ((t / 60) % 14); xx < x2; xx += 14) { R(c, '#ffd84a', xx, y, 2, 7); R(c, '#ffd84a', xx + 2, y + 1, 2, 5); R(c, '#ffd84a', xx + 4, y + 2, 2, 3); R(c, '#ffd84a', xx + 6, y + 3, 1, 1); } }
+function conveyor(c, x, y, w, t, boxes) {
+  R(c, '#3a3f4d', x, y, w, 8); R(c, '#6b7283', x, y, w, 1); R(c, '#6b7283', x, y + 7, w, 1);
+  for (let xx = x + ((t / 40) % 12); xx < x + w; xx += 12) R(c, '#555c70', xx, y + 3, 5, 2);
+  for (let i = 0; i < boxes; i++) { const bx = x + ((t * 0.03 + i * (w / boxes)) % (w - 8)); R(c, '#d9a066', bx, y - 4, 8, 7); R(c, '#a8723f', bx, y - 4, 8, 1); R(c, '#fff', bx + 3, y - 2, 2, 3); }
+}
+
+// ---------- plan builder ----------
+function Plan(W, H) {
+  return { W, H, desks: [], decor: [], racks: [], labels: [], wk: [], bg: null, fg: null,
+    d(id, x, y) { this.desks.push({ id, x, y }); }, lab(x, y, text, cls) { this.labels.push({ x, y, text, cls: cls || '' }); } };
+}
+function deskLabels(P) {
+  P.desks.forEach(d => { if (d.type === 'table') P.lab(d.x + d.w / 2, d.y - 14, DK[d.id][0]); else P.lab(d.x + 22, d.y - 2, DK[d.id][0]); });
+  P.racks.forEach(r => P.lab(r.x + 9, r.y - 10, 'SUPABASE'));
+}
+function sceneBg(c, P) {
+  P.bg(c);
+  P.desks.forEach(d => { if (d.type === 'table') tableBody(c, d.x, d.y, d.w, d.h); else deskBody(c, d.x, d.y); });
+  P.decor.forEach(d => d.t === 'plant' ? plant(c, d.x, d.y) : coffee(c, d.x, d.y));
+  P.racks.forEach(r => rackBody(c, r.x, r.y));
+}
+function sceneFg(c, P, t) {
+  const f = Math.floor(t / 450) % 2;
+  P.desks.forEach((d, i) => {
+    const col = G[DK[d.id][1]];
+    if (d.type === 'table') {
+      const n = 3, gap = (d.w - n * 16) / (n + 1);
+      for (let k = 0; k < n; k++) monitor(c, d.x + gap + k * (16 + gap), d.y - 4, col, f, i + k);
+      robot(c, d.x + d.w / 2 - 6, d.y + 9 + d.h - 4, col, false);
+    } else { monitor(c, d.x + 14, d.y + 8, col, f, i); robot(c, d.x + 16, d.y + 25, col, false); }
+  });
+  P.racks.forEach(r => rackLive(c, r.x, r.y, f));
+  P.wk.forEach(w => patrol(c, w, t));
+  if (P.fg) P.fg(c, t, f);
+}
+
+
+// ---------- documentation office ----------
+Object.assign(G, { root:'#ff5a5a', idx:'#4a90e2', rec:'#3fbf7f', rule:'#ff6fa5', app:'#f0932b', log:'#3ab8c4', chase:'#e8e8e8' });
+Object.assign(DK, { chase:['CHASE','chase'], root:['AGENTS.MD','root'], index:['INDEX.MD','idx'], recipes:['RECIPES','rec'], rules:['RULES','rule'],
+  mac:['MACRO','app'], por:['PORTAL','app'], man:['MANIM','app'], sess:['SESSIONS.MD','log'], score:['SCORECARD','log'], hand:['HANDOFF','log'], cap:['CAPTURE','log'] });
+
+function cabinet(c, x, y) {
+  R(c, '#4d5462', x - 1, y - 1, 18, 28); R(c, '#7a8190', x, y, 16, 26);
+  for (let k = 0; k < 3; k++) { R(c, '#5c6373', x + 1, y + 2 + k * 8, 14, 6); R(c, '#d9d2c0', x + 6, y + 4 + k * 8, 4, 1); }
+}
+const CAB = { m1:[278,100,'GRADE_IMPORT'], m2:[346,100,'PEARSON_AUTO'], p1:[402,100,'PROGRESS_PIPE'], p2:[470,100,'DEPLOY'], n1:[526,100,'ANIM_STYLE'], n2:[594,100,'LAYOUT_RULES'] };
+const box = (x, y, w, h) => ({ x, y, w, h });
+const HL = { chase: box(10,34,44,42), root: box(64,34,44,42), index: box(114,34,44,42), recipes: box(164,34,44,42), rules: box(214,34,44,42),
+  mac: box(274,34,44,42), sess: box(64,170,44,42), m1: box(277,99,18,28), n1: box(525,99,18,28) };
+
+function p6() {
+  const P = Plan(640, 236);
+  P.d('chase', 10, 34); P.d('root', 64, 34); P.d('index', 114, 34); P.d('recipes', 164, 34); P.d('rules', 214, 34);
+  P.d('mac', 274, 34); P.d('por', 398, 34); P.d('man', 522, 34);
+  P.d('sess', 64, 170); P.d('score', 114, 170); P.d('hand', 164, 170); P.d('cap', 214, 170);
+  P.decor.push({ t: 'plant', x: 12, y: 110 }, { t: 'coffee', x: 20, y: 180 }, { t: 'plant', x: 250, y: 212 }, { t: 'plant', x: 620, y: 200 }, { t: 'plant', x: 372, y: 190 });
+  P.bg = c => {
+    floor(c, 0, 30, 640, 206); carpet(c, 266, 30, 120, 110, '#33405c'); carpet(c, 390, 30, 120, 110, '#4a2f4a'); carpet(c, 514, 30, 126, 110, '#2f4a3a');
+    carpet(c, 0, 142, 260, 94, '#2c3a3a'); wall(c, 0, 0, 640, 30); lights(c, 4, 6, 630);
+    [262, 386, 510].forEach(x => partition(c, x, 30, 140, [70, 100]));
+    Object.values(CAB).forEach(a => cabinet(c, a[0], a[1]));
+  };
+  Object.values(CAB).forEach(a => P.lab(a[0] + 8, a[1] - 11, a[2]));
+  [['MACRO APP', 332], ['STUDENT PORTAL', 456], ['MANIM TRIAL', 580]].forEach(([t, x]) => P.lab(x, 8, t, 'board'));
+  P.lab(136, 226, 'BACK OFFICE: LOG, HANDOFF, CAPTURE', 'plaque');
+  P.lab(432, 160, 'docs/ folders: read one, only when needed', 'plaque');
+  return P;
+}
+
+// ---- the agent's route ----
+const AG = '#ffd84a';
+// S(x, y, thought, highlight, counts as a file read, fake tokens used here)
+const S = (x, y, say, hl, read, tok) => ({ x, y, say, hl, read, tok: tok || 0 });
+const GO = (x, y) => ({ x, y });
+const TASKS = [
+  { ask: 'Fix the gradebook import', route: [
+    S(26,78,'Chase wants the gradebook import fixed. Before I touch any code, which rules apply?',HL.chase,0,250),
+    S(80,78,'Root AGENTS.md loads every session. It says: ask before assuming, no duplicate mechanisms, keep files under 800 lines.',HL.root,1,4500),
+    S(130,78,'INDEX.md only points. The word gradebook maps to the Macro App, so that is where I go next.',HL.index,1,3200),
+    S(290,78,'Macro AGENTS.md has a keyword table. Grades push and import route me to exactly one doc.',HL.mac,1,6000),
+    GO(312,78), GO(312,106),
+    S(298,106,'GRADE_IMPORT covers this symptom. I read only this one doc and skip the rest of docs/.',HL.m1,1,3500),
+    GO(312,106), GO(312,150),
+    S(80,150,'Fix is done. I log it in SESSIONS.md so the next agent knows what changed and where.',HL.sess,0,400), GO(56,150), GO(56,78)] },
+  { ask: 'Make a new animation', route: [
+    S(26,78,'Chase wants a new animation. I check the rules before I write any code.',HL.chase,0,250),
+    S(80,78,'Root rules again. One matters here: an animation is only done when it is rendered and playing in the portal.',HL.root,1,4500),
+    S(130,78,'INDEX has an animation row. It points to a recipe and one style doc.',HL.index,1,3200),
+    S(180,78,'The recipe tells me how we build these clips, so I follow it instead of inventing a new way.',HL.recipes,1,2500),
+    GO(546,78), GO(546,106),
+    S(546,106,'The style recipe already decides negatives and fraction bars. I do not have to guess.',HL.n1,1,3500),
+    GO(568,106), GO(568,150),
+    S(80,150,'Rendered and wired in. I log it in SESSIONS.md.',HL.sess,0,400), GO(56,150), GO(56,78)] }
+];
+const STOP = 3400;
+function timeline() {
+  const tl = []; let t = 0, prev = TASKS[0].route[0];
+  TASKS.forEach((task, ti) => { let tokens = 0; task.route.forEach((p, i) => {
+    if (i > 0 || ti > 0) { const d = Math.hypot(p.x - prev.x, p.y - prev.y), dur = d / 0.07; if (dur > 0) { tl.push({ t0: t, t1: t + dur, a: prev, b: p, ti, kind: 'move', tok0: tokens }); t += dur; } }
+    if (p.say) { tl.push({ t0: t, t1: t + STOP, p, ti, kind: 'stop', tok0: tokens }); tokens += p.tok; t += STOP; }
+    prev = p;
+  }); });
+  return { tl, total: t };
+}
+const TL = timeline();
+
+// ---- render ----
+const UI = { bubble: null, board: null, count: null, tok: null, bar: null, last: '' };
+const MAXCTX = 200000, fmt = n => Math.round(n).toLocaleString('en-US');
+function agentFg(c, t) {
+  const T = t % TL.total, seg = TL.tl.find(s => T >= s.t0 && T < s.t1) || TL.tl[0];
+  let x, y, say = '', hl = null, walking = false, tokens = seg.tok0;
+  if (seg.kind === 'move') { const u = (T - seg.t0) / (seg.t1 - seg.t0); x = seg.a.x + (seg.b.x - seg.a.x) * u; y = seg.a.y + (seg.b.y - seg.a.y) * u; walking = true; }
+  else { x = seg.p.x; y = seg.p.y; say = seg.p.say; hl = seg.p.hl; tokens += seg.p.tok * Math.min(1, (T - seg.t0) / 1400); }
+  let reads = 0;
+  for (const s of TL.tl) { if (s.ti !== seg.ti) continue; if (s.t0 > T) break; if (s.kind === 'stop' && s.p.read && (s.t1 <= T || s === seg)) reads++; }
+  if (hl) { c.strokeStyle = '#ffd84a'; c.lineWidth = 1; c.strokeRect(hl.x + .5, hl.y + .5, hl.w, hl.h); }
+  for (let i = 0; i < reads; i++) { R(c, '#f4ead0', x + 14, y + 13 - i * 3, 6, 2); R(c, '#b9a77a', x + 14, y + 14 - i * 3, 6, 1); }
+  robot(c, x, y, AG, walking ? Math.floor(T / 150) % 2 : 0);
+  const key = say + '|' + seg.ti + '|' + reads + '|' + Math.round(x) + '|' + Math.round(y);
+  if (key !== UI.last) {
+    UI.last = key;
+    const half = UI.W * 0.17, cx = Math.min(Math.max(x + 6, half), UI.W - half), above = y >= 140;
+    UI.bubble.style.cssText = 'left:' + cx / UI.W * 100 + '%;top:' + (above ? y - 4 : y + 19) / UI.H * 100 + '%;font-size:' + UI.fs + 'cqw;transform:translate(-50%,' + (above ? '-100%' : '0') + ');' + (say ? '' : 'display:none;');
+    UI.bubble.textContent = say;
+    UI.board.textContent = 'CHASE SAYS: ' + TASKS[seg.ti].ask;
+    UI.count.textContent = reads + (reads === 1 ? ' file' : ' files');
+  }
+  UI.tok.textContent = fmt(tokens); UI.bar.style.width = Math.max(0.4, tokens / MAXCTX * 100) + '%';
+}
+function start() {
+  const P = p6(); deskLabels(P); P.fg = agentFg;
+  const box = document.getElementById('plan'), cv = document.createElement('canvas'); cv.width = P.W; cv.height = P.H; box.appendChild(cv);
+  UI.W = P.W; UI.H = P.H; UI.fs = 100 * 6.2 / P.W;
+  P.labels.forEach(l => { const e = document.createElement('div'); e.className = 'lab ' + l.cls; e.textContent = l.text;
+    e.style.cssText = 'left:' + (l.x / P.W * 100) + '%;top:' + (l.y / P.H * 100) + '%;font-size:' + UI.fs + 'cqw;'; box.appendChild(e); });
+  UI.board = document.createElement('div'); UI.board.className = 'lab board';
+  UI.board.style.cssText = 'left:' + (150 / P.W * 100) + '%;top:' + (8 / P.H * 100) + '%;font-size:' + UI.fs + 'cqw;'; box.appendChild(UI.board);
+  UI.bubble = document.createElement('div'); UI.bubble.className = 'bubble'; box.appendChild(UI.bubble);
+  UI.count = document.getElementById('count'); UI.tok = document.getElementById('tok'); UI.bar = document.getElementById('bar');
+  const bgc = document.createElement('canvas'); bgc.width = P.W; bgc.height = P.H; sceneBg(bgc.getContext('2d'), P);
+  const c = cv.getContext('2d');
+  function frame(t) { c.drawImage(bgc, 0, 0); sceneFg(c, P, t); requestAnimationFrame(frame); }
+  requestAnimationFrame(frame);
+}
+start();
+
+</script>
+</body>
+</html>

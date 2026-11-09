@@ -47,8 +47,19 @@ const MIME = {
   '.mp4': 'video/mp4',
 };
 
+// The pitch deck lives outside the served roots: /ai-presentations/<file> -> AI presentations/site/<file>
+const AI_PRESENTATIONS_PREFIX = 'ai-presentations/';
+const AI_PRESENTATIONS_SITE = path.join(__dirname, '..', 'AI presentations', 'site');
+
 function resolveFile(rel) {
   const clean = rel.replace(/^\//, '');
+  if (clean.startsWith(AI_PRESENTATIONS_PREFIX)) {
+    const file = path.normalize(path.join(AI_PRESENTATIONS_SITE, clean.slice(AI_PRESENTATIONS_PREFIX.length)));
+    if (file.startsWith(AI_PRESENTATIONS_SITE) && fs.existsSync(file) && fs.statSync(file).isFile()) {
+      return file;
+    }
+    return null;
+  }
   for (const root of SERVE_ROOTS) {
     const file = path.normalize(path.join(root, clean));
     if (!file.startsWith(root)) {

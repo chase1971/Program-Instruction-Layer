@@ -56,28 +56,559 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1598</dd></div>
-      <div><dt>Tasks today</dt><dd>5</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 183 costed)</dd></div>
-      <div><dt>Context per turn (median)</dt><dd>169k</dd></div>
-      <div><dt>Total billed</dt><dd>587.3M</dd></div>
+      <div><dt>Total tasks</dt><dd>1656</dd></div>
+      <div><dt>Tasks today</dt><dd>2</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 206 costed)</dd></div>
+      <div><dt>Context per turn (median)</dt><dd>171k</dd></div>
+      <div><dt>Total billed</dt><dd>699.8M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:21 AM · Thursday, Nov 5, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">6:44 PM · Sunday, Nov 8, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>31</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr><tr><td><code>School Scrips/Macro App/docs/Automations/D2L_GRADES_AUTOMATION.md</code></td><td>2</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>33</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro App AGENTS.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>student-portal AGENTS.md</code> — logic homework Next hidden until classification is checked, and that check is not in the resume snapshot<span class="gap-task">11:42 AM · Tuesday, Nov 3, 2026 — Explained why Logic homework problem 1 can finish with no Next button</span></li><li><code>agent docs/INDEX.md</code> — no row for FTC animation files (ftc_theorem_statement.py, fundamentalTheoremGuide.ts)<span class="gap-task">11:43 AM · Saturday, Oct 31, 2026 — FTC clip 4: problem 10 moving endpoint (d/dx of integral 2 to x^2 of 3p+1), rendered, wired as portal tab 4, test green</span></li><li><code>agent docs/INDEX.md</code> — no 11.2 homework statistics row<span class="gap-task">8:20 PM · Wednesday, Oct 28, 2026 — Built 11.2 Homework Teacher Console statistics: guided misses, right-or-wrong, survey, time</span></li><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)<span class="gap-task">8:52 PM · Sunday, Oct 25, 2026 — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span></li><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser<span class="gap-task">2:44 PM · Sunday, Oct 25, 2026 — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — Added 11.2 Homework lookup and corrected outdated three-problem routing.<span class="gap-task">1:21 PM · Saturday, Oct 24, 2026 — Reviewed 11.2 homework readiness. All 75 existing scoped tests passed; three temporary headless audit probes reproduced missing three-variable resume inputs, solution-only first-try grading error, and problem-index advancement on failed save. Removed audit probes after verification; no runtime fixes or deployment.</span></li><li><code>vertical-scroll-rail.md</code> — did not say portal preview is phone-emulated so in-page rail cannot hover<span class="gap-task">9:10 PM · Friday, Oct 23, 2026 — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</span></li><li><code>student-portal/AGENTS.md</code> — no scroll rail keyword row, agent never found vertical-scroll-rail.md<span class="gap-task">9:02 PM · Friday, Oct 23, 2026 — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</span></li><li><code>recipes/INDEX.md</code> — no row routing to the Factoring solve-board cancel animation (added)<span class="gap-task">4:03 PM · Friday, Oct 23, 2026 — Parametric solve animation: factoring house style (gold ops, red strikes), y box, no loop</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices<span class="gap-task">9:22 PM · Thursday, Oct 22, 2026 — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad<span class="gap-task">9:12 PM · Thursday, Oct 22, 2026 — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span></li><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row<span class="gap-task">9:03 PM · Thursday, Oct 22, 2026 — SE preview hides oversize notch; addition bar stays after the sum</span></li><li><code>agent docs/INDEX.md</code> — no row for context warning too soon<span class="gap-task">8:58 PM · Thursday, Oct 22, 2026 — Raised Cursor context-warning bar from 150k to 300k estimated growth so it does not fire mid-feature</span></li><li><code>agent docs/INDEX.md</code> — no cheat-next / skip-tutorial-clicks row<span class="gap-task">8:54 PM · Thursday, Oct 22, 2026 — Cheat Next skips Gauss-Jordan tutorial interactions and practice questions when Cheat enabled is on</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for notation help exclamation point position<span class="gap-task">6:58 PM · Wednesday, Oct 21, 2026 — Moved Gauss-Jordan row-scaling and row-replacement notation help ! 30px right</span></li></ul>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Chase admin Reset / tutorial complete after reset → student-portal MATRIX_TUTORIAL_SAVING.md<span class="gap-task">10:56 AM · Saturday, Nov 7, 2026 — Gauss-Jordan Chase admin Reset: skip-gated no longer fakes Tutorial complete</span></li><li><code>Macro App AGENTS.md</code> — no row for gradebook view-tuning font clamp / grade font stepper<span class="gap-task">1:37 PM · Friday, Nov 6, 2026 — Gradebook grade-font decrease was stuck: 0.5 step + integer Math.round canceled every minus click</span></li><li><code>agent docs/INDEX.md</code> — Final Exam Review bank / final-exam-review-map routing<span class="gap-task">1:01 PM · Friday, Nov 6, 2026 — Final Review bank: click-to-add pools, skill/pool/flat sorts, LaTeX stems exams 1-3</span></li><li><code>student-portal AGENTS.md</code> — logic homework Next hidden until classification is checked, and that check is not in the resume snapshot<span class="gap-task">11:42 AM · Tuesday, Nov 3, 2026 — Explained why Logic homework problem 1 can finish with no Next button</span></li><li><code>agent docs/INDEX.md</code> — no row for FTC animation files (ftc_theorem_statement.py, fundamentalTheoremGuide.ts)<span class="gap-task">11:43 AM · Saturday, Oct 31, 2026 — FTC clip 4: problem 10 moving endpoint (d/dx of integral 2 to x^2 of 3p+1), rendered, wired as portal tab 4, test green</span></li><li><code>agent docs/INDEX.md</code> — no 11.2 homework statistics row<span class="gap-task">8:20 PM · Wednesday, Oct 28, 2026 — Built 11.2 Homework Teacher Console statistics: guided misses, right-or-wrong, survey, time</span></li><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)<span class="gap-task">8:52 PM · Sunday, Oct 25, 2026 — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span></li><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser<span class="gap-task">2:44 PM · Sunday, Oct 25, 2026 — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — Added 11.2 Homework lookup and corrected outdated three-problem routing.<span class="gap-task">1:21 PM · Saturday, Oct 24, 2026 — Reviewed 11.2 homework readiness. All 75 existing scoped tests passed; three temporary headless audit probes reproduced missing three-variable resume inputs, solution-only first-try grading error, and problem-index advancement on failed save. Removed audit probes after verification; no runtime fixes or deployment.</span></li><li><code>vertical-scroll-rail.md</code> — did not say portal preview is phone-emulated so in-page rail cannot hover<span class="gap-task">9:10 PM · Friday, Oct 23, 2026 — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</span></li><li><code>student-portal/AGENTS.md</code> — no scroll rail keyword row, agent never found vertical-scroll-rail.md<span class="gap-task">9:02 PM · Friday, Oct 23, 2026 — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</span></li><li><code>recipes/INDEX.md</code> — no row routing to the Factoring solve-board cancel animation (added)<span class="gap-task">4:03 PM · Friday, Oct 23, 2026 — Parametric solve animation: factoring house style (gold ops, red strikes), y box, no loop</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — exclamation-point row did not name Part 2 step 4 multiply help between the matrices<span class="gap-task">9:22 PM · Thursday, Oct 22, 2026 — Part 2 step 4: yellow multiply-fraction help and prompt sit between the two matrices</span></li><li><code>School Scrips/Matrix app/AGENTS.md</code> — no row for Part 3 scale-factor number pad<span class="gap-task">9:12 PM · Thursday, Oct 22, 2026 — Part 2 boxes 5-6 +100px; Part 3 step 3 uses guided-practice value pad under the green drawer</span></li><li><code>agent docs/INDEX.md</code> — no SE notch / preview island row<span class="gap-task">9:03 PM · Thursday, Oct 22, 2026 — SE preview hides oversize notch; addition bar stays after the sum</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Thursday, Nov 5, 2026 <span class="day-count">5 tasks</span></h2>
+      <h2 class="day-title">Sunday, Nov 8, 2026 <span class="day-count">2 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:44 PM — AI presentation research section: sources-first slides, background pages, notes page, no-agent-voice rule</span>
+      <span class="pill p0">19.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>4h active tool time<br>4h since previous task (includes idle)<br>19.1M tokens over 114 turn(s) · 168k/turn · 18.8M cache read · 95k output<br>Chat so far: 3 message(s), 2650 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:44 PM — AI presentation second half: research, AI tutor, colleges list, Bowen, Skills Hub, D2L demo; Matrix tutorial layout fixes</span>
+      <span class="pill p0">37.9M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>24h 4m active tool time<br>24h 4m since previous task (includes idle)<br>37.9M tokens over 188 turn(s) · 201k/turn · 37.4M cache read · 117k output<br>Chat so far: 11 message(s), 9763 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Saturday, Nov 7, 2026 <span class="day-count">28 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:39 PM — Momentum handoff: VP track ends at slide 11 (gj-data); Math Portal rename noted</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>18m 59s active tool time<br>19m 2s since previous task (includes idle)<br>Chat so far: 14 message(s), 93 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:20 PM — GJ setup slide: CHASE1 live tutorial screenshot (no TC chrome)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9m 36s active tool time<br>9m 37s since previous task (includes idle)<br>Chat so far: 6 message(s), 60 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:11 PM — Presentation slides 4-10: GJ setup/tutorial wording, strip survey Ns, custom compare pair rewrite</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>19m 37s active tool time<br>19m 44s since previous task (includes idle)<br>Chat so far: 3 message(s), 17 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:51 PM — Presentation slide 3 points rewritten: guided interactive idea, phone first, goal, question, supplement</span>
+      <span class="pill p0">1.7M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>3m 3s active tool time<br>3m 7s since previous task (includes idle)<br>1.7M tokens over 8 turn(s) · 211k/turn · 1.7M cache read · 3k output<br>Chat so far: 16 message(s), 10819 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:48 PM — Presentation: slide, section, and column titles converted to title case</span>
+      <span class="pill p0">3.0M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>12m 8s active tool time<br>12m 24s since previous task (includes idle)<br>3.0M tokens over 15 turn(s) · 200k/turn · 3.0M cache read · 7k output<br>Chat so far: 15 message(s), 10511 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:35 PM — Presentation Math Portal: console screenshot only, points above</span>
+      <span class="pill p0">1.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 30s active tool time<br>2m 34s since previous task (includes idle)<br>1.1M tokens over 6 turn(s) · 186k/turn · 1.1M cache read · 3k output<br>Chat so far: 12 message(s), 8830 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:33 PM — Presentation: screenshots sized in em so text size control scales them; teacher console shrunk</span>
+      <span class="pill p0">3.0M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 35s active tool time<br>2m 39s since previous task (includes idle)<br>3.0M tokens over 17 turn(s) · 176k/turn · 3.0M cache read · 6k output<br>Chat so far: 11 message(s), 7719 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:30 PM — Presentation: removed presenter-facing text (welcome how-to line, draft label)</span>
+      <span class="pill p0">1.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 7s active tool time<br>2m 9s since previous task (includes idle)<br>1.6M tokens over 10 turn(s) · 164k/turn · 1.6M cache read · 4k output<br>Chat so far: 8 message(s), 6295 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:28 PM — Presentation: welcome placeholder stats removed, new Math Portal slide with student and teacher console screenshots</span>
+      <span class="pill p0">1.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4m 37s active tool time<br>4m 44s since previous task (includes idle)<br>1.2M tokens over 8 turn(s) · 154k/turn · 1.2M cache read · 5k output<br>Chat so far: 7 message(s), 5767 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:23 PM — Student-facing portal name: Math Portal (header, tab title, welcome copy); repo stays student-portal</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 38s active tool time<br>8m 39s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:15 PM — Presentation gj-custom: contrasting publisher/app pairs, alternating builds, new title style</span>
+      <span class="pill p0">1.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>10m 40s active tool time<br>10m 42s since previous task (includes idle)<br>1.3M tokens over 10 turn(s) · 128k/turn · 1.2M cache read · 10k output<br>Chat so far: 5 message(s), 4133 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:04 PM — Presentation: publisher vs apps table replaced by new gj-custom slide, one point per press</span>
+      <span class="pill p0">770k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>6m 51s active tool time<br>6m 55s since previous task (includes idle)<br>770k tokens over 7 turn(s) · 110k/turn · 752k cache read · 6k output<br>Chat so far: 3 message(s), 3271 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:57 PM — Presentation Stage layout: callouts restyled from boxed footnote to plain statement text</span>
+      <span class="pill p0">866k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 11s active tool time<br>1m 14s since previous task (includes idle)<br>866k tokens over 9 turn(s) · 96k/turn · 851k cache read · 3k output<br>Chat so far: 2 message(s), 2150 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:56 PM — Presentation gj-adapt: placeholder student quote for pause/play/replay fix</span>
+      <span class="pill p0">867k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>5m 23s active tool time<br>5m 25s since previous task (includes idle)<br>867k tokens over 10 turn(s) · 87k/turn · 829k cache read · 3k output<br>Chat so far: 1 message(s), 967 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:50 PM — MyLab LTI 400: also keep tpi.bb.pearsoncmg.com popup; never merge off-campus D2L popups</span>
+      <span class="pill p0">2.1M tokens</span><span class="pill p2">Heavy context — 262k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4m 58s active tool time<br>5m 9s since previous task (includes idle)<br>2.1M tokens over 8 turn(s) · 262k/turn · 2.1M cache read · 5k output<br>Chat so far: 12 message(s), 9291 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:45 PM — AI presentation site: Slide skip buttons in HUD (back to slide start / next slide, skipping builds)</span>
+      <span class="pill p0">1.8M tokens</span><span class="pill p2">Heavy context — 255k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>6m 21s active tool time<br>6m 32s since previous task (includes idle)<br>1.8M tokens over 7 turn(s) · 255k/turn · 1.8M cache read · 4k output<br>Chat so far: 11 message(s), 9132 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:39 PM — AI presentation site: customization slide (feedback to fix pairs, AI philosophy, publisher table), data slide (anonymized per-student and class views), homework placeholder, static vs dynamic retitle, aligned bars</span>
+      <span class="pill p0">2.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>14m 50s active tool time<br>15m 59s since previous task (includes idle)<br>2.6M tokens over 11 turn(s) · 240k/turn · 2.6M cache read · 13k output<br>Chat so far: 10 message(s), 9037 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:23 PM — AI presentation site: new 'Learning before the lesson' slide (supplement, not replacement) and rewritten readiness closing line</span>
+      <span class="pill p0">2.4M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4m 13s active tool time<br>4m 35s since previous task (includes idle)<br>2.4M tokens over 11 turn(s) · 216k/turn · 2.4M cache read · 6k output<br>Chat so far: 9 message(s), 7110 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:18 PM — AI presentation site: text size control (A-, %, A+ top-left, plus/minus keys, remembered per computer)</span>
+      <span class="pill p0">2.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>1m 58s active tool time<br>2m 2s since previous task (includes idle)<br>2.1M tokens over 10 turn(s) · 206k/turn · 2.0M cache read · 6k output<br>Chat so far: 7 message(s), 6399 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:16 PM — AI presentation site: tutorial slide rewritten (click data, You lost me, autosolve, privacy), bar charts replaced with donut and before/after rings, more student quotes, count-up negative-number fix</span>
+      <span class="pill p0">3.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>19m 6s active tool time<br>19m 32s since previous task (includes idle)<br>3.6M tokens over 21 turn(s) · 170k/turn · 3.5M cache read · 25k output<br>Chat so far: 6 message(s), 6046 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:56 AM — AI presentation site: Gauss-Jordan section rebuilt as six slides (why, setup, app, results board, readiness board, built to change); new points block and board layout</span>
+      <span class="pill p0">1.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>11m 16s active tool time<br>11m 19s since previous task (includes idle)<br>1.2M tokens over 9 turn(s) · 132k/turn · 1.1M cache read · 15k output<br>Chat so far: 4 message(s), 1336 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:45 AM — AI presentation site: real Gauss-Jordan data on two Stage slides (gj-tutorial, gj-ready), both tracks updated</span>
+      <span class="pill p0">757k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>2m 31s active tool time<br>2m 36s since previous task (includes idle)<br>757k tokens over 7 turn(s) · 108k/turn · 736k cache read · 6k output<br>Chat so far: 3 message(s), 988 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:42 AM — Fixed D2L MyLab SOCKET_LS_50: keep interop/socket LTI popup (not merge into slot)</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 40s active tool time<br>6m 47s since previous task (includes idle)<br>Chat so far: 4 message(s), 60 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:36 AM — Exported M1324 Logic Homework post-survey (21) + gates enjoy (6) to My Drive/M1324</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 22s active tool time<br>4m 24s since previous task (includes idle)<br>Chat so far: 2 message(s), 32 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:31 AM — Presentation site: Stage chosen; LSC brand, full-window laptop sizing, up=next keys, edge arrows, Home/Restart, hover glossary; momentum handoff written</span>
+      <span class="pill p0">10.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>9m 31s active tool time<br>29m 56s since previous task (includes idle)<br>10.1M tokens over 48 turn(s) · 211k/turn · 10.0M cache read · 42k output<br>Chat so far: 9 message(s), 3029 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:01 AM — AACU conference transcript summaries page (18 sessions, evidence list for AI proposal)</span>
+      <span class="pill p0">3.2M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-opus-5-5<br>4m 47s active tool time<br>4m 51s since previous task (includes idle)<br>3.2M tokens over 15 turn(s) · 213k/turn · 3.0M cache read · 31k output<br>Chat so far: 2 message(s), 8480 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:56 AM — Gauss-Jordan Chase admin Reset: skip-gated no longer fakes Tutorial complete</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 52s active tool time<br>2m 54s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Chase admin Reset / tutorial complete after reset → student-portal MATRIX_TUTORIAL_SAVING.md</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:54 AM — Presentation site: five layout skeletons (Field Guide, Stage, Studio, Story, Atlas) sharing one content file and engine with tracks, builds, glossary popovers</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>12h 41m active tool time<br>12h 48m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Friday, Nov 6, 2026 <span class="day-count">21 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">10:05 PM — Auto: 5 files edited (SESSIONS.md, f2f61e33-7201-4729-85aa-479b47079a04.txt, 0a9bfeea-30bc-43e3-9095-02c3d064c9d4.txt, main.lua, README.txt)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5h 11m active tool time<br>5h 11m since previous task (includes idle)<br>Chat so far: 6 message(s), 36 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:52 PM — Copy Page Text: Open transcript button + compact three-button redesign</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 27s active tool time<br>6m 31s since previous task (includes idle)<br>Chat so far: 10 message(s), 60 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:45 PM — Copy Page Text: blank overlay until Saved; dedupe Creativity AACU md</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 13s active tool time<br>3m 22s since previous task (includes idle)<br>Chat so far: 5 message(s), 37 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:42 PM — Copy Page Text: fix 64-bit clipboard read crash so AACU save works</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 9s active tool time<br>2m 15s since previous task (includes idle)<br>Chat so far: 4 message(s), 31 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:40 PM — Copy Page Text: two-step Console then Copy, unstick busy state</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 1s active tool time<br>8m 12s since previous task (includes idle)<br>Chat so far: 3 message(s), 22 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:31 PM — Copy Page Text: auto-save AACU .md from Firefox tab title</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1h 48m active tool time<br>1h 48m since previous task (includes idle)<br>Chat so far: 2 message(s), 8 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:43 PM — Gradebook view tuning: missing roster size uses closest saved student-count default (27 covers 26)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 18s active tool time<br>6m 22s since previous task (includes idle)<br>Chat so far: 2 message(s), 16 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:37 PM — Gradebook grade-font decrease was stuck: 0.5 step + integer Math.round canceled every minus click</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>26m 54s active tool time<br>26m 59s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>Macro App AGENTS.md</code> — no row for gradebook view-tuning font clamp / grade font stepper</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:10 PM — Question IDs tab (Final Review + Final Exam ID lists) on final-exam-review-map</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 20s active tool time<br>2m 28s since previous task (includes idle)<br>Chat so far: 8 message(s), 113 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:07 PM — Final Exam tab (flat, picked from Final Review) with 20 problems</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m 28s active tool time<br>3m 36s since previous task (includes idle)<br>Chat so far: 5 message(s), 93 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:03 PM — Built 30-problem starting Final Review (7/7/8/8 across Exams 1-4)</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 12s active tool time<br>2m 15s since previous task (includes idle)<br>Chat so far: 4 message(s), 85 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:01 PM — Final Review bank: click-to-add pools, skill/pool/flat sorts, LaTeX stems exams 1-3</span>
+      <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5-high<br>9m 44s active tool time<br>9m 52s since previous task (includes idle)<br>Chat so far: 3 message(s), 36 KB transcript</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — Final Exam Review bank / final-exam-review-map routing</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:51 PM — Exam 4 Final Review bank from review map examGroups (37 Q / 25 pools)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 32s active tool time<br>6m 36s since previous task (includes idle)<br>Chat so far: 2 message(s), 28 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:45 PM — Exam 3 editor harvest: 27 Q / 15 pools into Final Review bank</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 9s active tool time<br>4m 20s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:40 PM — Momentum handoff: Final Exam Review bank (Exams 1-2 done, 3-4 next)</span>
+      <span class="pill p0">Chat: 22 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 20s active tool time<br>1m 26s since previous task (includes idle)<br>Chat so far: 22 message(s), 361 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:39 PM — Final review bank: Exam 2 editor harvest 34 Q / 20 pools wired into map</span>
+      <span class="pill p0">Chat: 21 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 57s active tool time<br>8m 2s since previous task (includes idle)<br>Chat so far: 21 message(s), 319 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:31 PM — Final review bank: Exam 1 editor harvest 39/39 from traditional copy, map page ready</span>
+      <span class="pill p0">Chat: 20 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>41m 24s active tool time<br>41m 28s since previous task (includes idle)<br>Chat so far: 20 message(s), 286 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:49 AM — Exam 4: reviewed pools, wrote re-pooled proposal to exam4-review-map-state.json (backup before-repool)</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>22m 4s active tool time<br>22m 8s since previous task (includes idle)<br>Chat so far: 14 message(s), 218 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:27 AM — Exam 4 tab shows question counts by section 4.9-5.5</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9m 11s active tool time<br>9m 12s since previous task (includes idle)<br>Chat so far: 10 message(s), 178 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:18 AM — Exam 4 Add to Pool / Add here / Split out for combining exam pools</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>18m active tool time<br>18m 4s since previous task (includes idle)<br>Chat so far: 9 message(s), 156 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:00 AM — Exam 4 Add to Exam from review/skills with pool state sync</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>15h 25m active tool time<br>15h 25m since previous task (includes idle)<br>Chat so far: 8 message(s), 120 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
+      <h2 class="day-title">Thursday, Nov 5, 2026 <span class="day-count">12 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:34 PM — Copy Page Text: wait 1s after opening Firefox console before typing so DevTools can finish loading</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1h 33m active tool time<br>1h 33m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:00 PM — Pixel-office explainer pages: Macro App office, documentation office, docs vs no docs race with commentary panel</span>
+      <span class="pill p0">10.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2h 52m active tool time<br>2h 52m since previous task (includes idle)<br>10.3M tokens over 48 turn(s) · 215k/turn · 9.7M cache read · 150k output<br>Chat so far: 6 message(s), 6120 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:08 PM — Exam 4 By skill tab: antiderivative types + separate 5.5 u-sub subtypes</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 7s active tool time<br>8m 8s since previous task (includes idle)<br>Chat so far: 7 message(s), 89 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:59 PM — Exam IV Review stems polished to LaTeX; Exam 4 map renders with local KaTeX</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 53s active tool time<br>8m 55s since previous task (includes idle)<br>Chat so far: 6 message(s), 57 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:51 PM — Harvested Exam IV Review (42 Q) via Macro App print recipe; wired into exam4 map</span>
+      <span class="pill p0">Chat: 4 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>12m 42s active tool time<br>12m 47s since previous task (includes idle)<br>Chat so far: 4 message(s), 17 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:38 PM — Located Pearson calculus exam/review map HTMLs in School documents (exam2, exam3, exam4 hub)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>24m 35s active tool time<br>24m 39s since previous task (includes idle)<br>Chat so far: 2 message(s), 9 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:13 PM — Full GitHub sync: pulled Macro App (4), student-session-kit (1), Programs root (2); pushed searchable notes brief</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>123h 30m active tool time<br>123h 30m since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">11:21 AM — Listed Logic Homework statistics feedback comments for Chase.</span>
       

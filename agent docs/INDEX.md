@@ -23,6 +23,7 @@ never touches this file.
 | seating chart save · wipe on reopen · sticky room · attendance save · persistence | [School Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md](../School%20Scrips/Seating-Chart/docs/PERSISTENCE_INTEGRATION.md) |
 | seating chart retired course · active courses · "why is it pulling this course" | seating-chart `AGENTS.md` § Macro integration |
 | student portal · student codes · exit tickets · custom quiz · "can students cheat" · Student Progress tab · how an app becomes a grade | [School Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md](../School%20Scrips/student-session-kit/docs/STUDENT_PROGRESS_PIPELINE.md) |
+| **Chase admin Reset** · Gauss-Jordan still Tutorial complete · reset doesn't clear tutorial | student-portal `AGENTS.md` · [`MATRIX_TUTORIAL_SAVING.md`](../School%20Scrips/student-portal/docs/MATRIX_TUTORIAL_SAVING.md) |
 | **credit has not saved** · logic extra credit circuit · wires crossing · A into the bottom · **intro dimming** · left/right of homework not dimmed · navy header still bright | student-portal `AGENTS.md` extra credit + intro dimming rows |
 | **best score** · first attempt · most recent Logic grade · Vivian / retake grade · homework always best | student-portal `AGENTS.md` Logic homework grade row |
 | **deploy the portal** · push to netlify · **update supabase** · push migration · ship student site · netlify credits · deploy budget | pipeline doc § Shipping changes to production · `student-portal/docs/netlify-deploy-counter.json` |
@@ -36,7 +37,7 @@ never touches this file.
 | hand it to the fine-tuner · write the fine-tune brief | [Manim Trial/docs/FINE_TUNE_BRIEF.md](../Manim%20Trial/docs/FINE_TUNE_BRIEF.md) |
 | reuse animation · animation list · division/fraction animation examples · build five animations · animation batch · refresh animation patterns | [Manim Trial/docs/ANIMATION_REUSE.md](../Manim%20Trial/docs/ANIMATION_REUSE.md) |
 | how code should look — standards, naming, refactor, React, file headers, "initialize a new app" | [recipes/INDEX.md](./recipes/INDEX.md) |
-| school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" | [School Scrips/School documents/](../School%20Scrips/School%20documents/) |
+| school HTML — exam maps, review maps, teaching documents · factoring pdf · factoring handout · "pull School documents" · **Final Exam Review bank** · final review map · pick problems into a final | [School Scrips/School documents/](../School%20Scrips/School%20documents/) · page `final-exam-review-map.html` · tab contract [School Scrips/School documents/docs/school-exam-map-html.md](../School%20Scrips/School%20documents/docs/school-exam-map-html.md) |
 | "do this from my phone" · send a task from my phone · my PC isn't showing up · desktop missing from the machine list | [PHONE_AGENT_ACCESS.md](./PHONE_AGENT_ACCESS.md) |
 | **Mechabellum Panel** · mechabellum units · bot unit list · what's on the board in Mechabellum | [Mechabellum Panel/AGENTS.md](../Mechabellum%20Panel/AGENTS.md) · live page `http://127.0.0.1:8765/scratch/mechabellum-panel.html` |
 | **Build Mode Layout Editor Plan** · Teacher Console Build mode · integrate Math App Studio | [School Scrips/Macro App/AGENTS.md](../School%20Scrips/Macro%20App/AGENTS.md) |
@@ -69,6 +70,7 @@ never touches this file.
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
 | "log the task" · bump session tracking · index gap | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
 | finalize session metrics · grep/file counts · hook enforcement · **context warning too soon** · handoff warning fires early | [SESSION_METRICS.md](./SESSION_METRICS.md) · threshold in `scripts/context-growth-estimate.js` |
+| **AI presentation site** · VP of Instruction pitch · LinkedIn wiki · presentation skeletons · tracks / glossary popovers | `AI presentations/` (own repo; README there). Site in `site/` (content `site/shared/content.js`, engine `site/shared/engine.js`), Claude artifact build in `artifact/`. Moved out of `scratch/presentation-skeletons/` 2026-11-07, so the old docs-server URL no longer works. |
 | Macro App browser residency plan · browser memory plan | [scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md) · [review](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN_REVIEW.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |
 | where should this rule go · which rung · is this always-on or on-demand | [AGENTS.md](../AGENTS.md) § Capture ladder |

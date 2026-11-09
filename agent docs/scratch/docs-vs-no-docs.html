@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs vs No Docs</title>
+<style>
+  body { margin: 0; background: #1d1f27; color: #eee; font-family: system-ui, sans-serif; }
+  .banner { background: #3a3a1d; color: #f5e6a0; padding: 8px 16px; font-size: 14px; }
+  header, .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  header { padding-top: 16px; }
+  header a { color: #8ab4ff; font-size: 16px; }
+  h1 { margin: 12px 0 4px; font-size: 28px; }
+  p.sub { margin: 0 0 12px; color: #aab; font-size: 16px; }
+  .card { background: #262936; border-radius: 14px; padding: 18px 20px 22px; margin: 24px 0; }
+  .head { display: flex; align-items: baseline; gap: 14px; }
+  .num { font-size: 44px; font-weight: 700; color: #ffd84a; line-height: 1; }
+  .name { font-size: 24px; font-weight: 600; }
+  .desc { color: #bbc; font-size: 16px; margin: 6px 0 14px; max-width: 900px; }
+  .best { color: #9fd3a8; font-size: 15px; margin-top: 12px; }
+  .plan { position: relative; width: 100%; container-type: inline-size; line-height: 0; }
+  .plan canvas { width: 100%; height: auto; image-rendering: pixelated; display: block; border-radius: 6px; }
+  .lab { position: absolute; transform: translateX(-50%); white-space: nowrap; line-height: 1.2;
+         font-family: Consolas, "Courier New", monospace; font-weight: 700; color: #f2e9d0;
+         background: rgba(20,22,30,.88); padding: .15em .5em; border-radius: 2px; }
+  .lab.board { background: #f4ead0; color: #2b2118; border: 2px solid #6a5438; font-size: 1.2em; padding: .2em .8em; }
+  .lab.plaque { background: #3b2f22; color: #ffd84a; }
+  .lab.screen { background: transparent; color: #fff; font-size: 1.25em; }
+
+  .lab.warn{background:#7a1f1f;color:#ffd6d6}
+  .bubble{position:absolute;white-space:normal;width:max-content;max-width:34cqw;background:#fff;color:#222;font-family:Consolas,monospace;font-weight:700;padding:.35em .7em;border-radius:6px;line-height:1.3;box-shadow:0 1px 0 #0006}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px}
+  .controls button{font:inherit;font-size:16px;padding:8px 16px;border-radius:8px;border:1px solid #4a4f66;background:#2a2e42;color:#eee;cursor:pointer}
+  .controls button.on{background:#ffd84a;color:#222;border-color:#ffd84a;font-weight:700}
+  .frame{background:#262936;border:1px solid #3a3f56;border-radius:10px;overflow:hidden;margin-bottom:24px}
+  .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;padding:6px 10px;background:#1d2030}
+  .bar.bot{border-bottom:1px solid #3a3f56}
+  .bar button{font:inherit;font-size:14px;line-height:1.2;padding:5px 12px;border-radius:6px;border:1px solid #4a4f66;background:#2a2e42;color:#eee;cursor:pointer}
+  .tabs{display:flex;gap:4px;min-width:0}.tabs button{border-radius:6px 6px 0 0!important;border-bottom:none!important;padding:5px 12px!important}
+  .seg{display:flex}.bar .seg button{padding:5px 10px}.seg button{border-radius:0!important;margin-left:-1px}.seg button:first-child{border-radius:6px 0 0 6px!important;margin:0}.seg button:last-child{border-radius:0 6px 6px 0!important}
+  .bar button.on{background:#ffd84a;color:#222;border-color:#ffd84a;font-weight:700}
+  .bar button.big{background:#3fbf7f;color:#06301a;border-color:#3fbf7f;font-weight:800;padding:5px 20px}
+  .bar button:disabled{opacity:.4;cursor:default}
+  .grp{display:flex;gap:6px}
+  #stepno{font-size:14px;color:#cfd3e6}
+  #sides{padding:10px 10px 0}
+  header,.wrap{min-width:0;overflow-wrap:anywhere}
+  .controls button.big{background:#3fbf7f;color:#082;border-color:#3fbf7f;font-weight:800;font-size:20px;padding:12px 30px}
+  .controls button:disabled{opacity:.45;cursor:default}
+  .side{margin-bottom:12px}
+  #sides.tab-good .badside{display:none}#sides.tab-bad .good{display:none}
+  .sh{display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;font-size:17px;margin-bottom:8px}
+  .sh b{font-size:24px;font-variant-numeric:tabular-nums;color:#ffd84a}
+  .badge{font-weight:800;letter-spacing:.06em;padding:4px 12px;border-radius:6px;font-size:16px}
+  .good .badge{background:#1f6b45;color:#d6ffe8}.badside .badge{background:#7a1f1f;color:#ffd6d6}
+  .stat{margin-left:auto;font-weight:800;font-size:16px;color:#aab}.stat.ok{color:#5ef08a}.stat.bad{color:#ff7a7a}
+  .bartrack{height:16px;background:#1d2030;border-radius:8px;overflow:hidden;border:1px solid #444a60;margin-bottom:10px}
+  .bartrack i{display:block;height:100%;width:.5%;background:#3fbf7f}
+  .cap{font-size:16px;color:#cfd3e6;margin-top:10px;min-height:1.4em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;min-height:30px}
+  .chips span{background:#7a1f1f;color:#ffd6d6;padding:4px 10px;border-radius:14px;font-size:14px;font-weight:700}
+  .panel{position:absolute;box-sizing:border-box;background:rgba(20,22,30,.93);border:2px solid #3fbf7f;border-radius:6px;padding:.5cqw .8cqw;color:#f2e9d0;font-family:Consolas,"Courier New",monospace;line-height:1.3;overflow:hidden;display:flex;flex-direction:column;gap:.3cqw}
+  .panel.badp{border-color:#e5484d}
+  .panel .ph{font-size:.85em;letter-spacing:.12em;color:#ffd84a;font-weight:700}
+  .panel .pb{flex:1;overflow:hidden}
+  .panel .pt{font-weight:700;color:#8fd3ff;border-top:1px solid #444a60;padding-top:.3cqw}
+  .panel .err{background:#e5484d;color:#fff;padding:0 .4em;border-radius:3px;font-weight:700}</style>
+</head>
+<body>
+<div class="banner">One-off preview, 2026-11-05. Assume it goes stale. The routes, the thoughts, and the token numbers are illustrations of how an agent behaves, not a recording.</div>
+<header>
+  <a href="/pages.html">&larr; All pages</a>
+  <h1>Same four tasks, with docs and without</h1>
+  <p class="sub">Both gold robots get the same requests from Chase at the same moment. Watch the token bars. The bar is the share of a 200,000 token context window used on that task. The commentary box in the lower right explains each step.</p>
+</header>
+<div class="wrap">
+<div class="frame">
+  <div class="bar bot"><span class="grp"><button id="bk">Back</button><button id="pl" class="big">&#9654; Play</button><button id="nx">Next</button></span><span id="stepno"></span><span class="grp"><span class="seg" id="md"><button data-mode="free">Free play</button><button data-mode="slow">Slow</button></span><button id="sp">1x</button></span></div>
+  <div class="bar"><div class="tabs" id="tasks"></div><div class="seg" id="tabs"><button data-tab="both">Both</button><button data-tab="good">Docs</button><button data-tab="bad">No docs</button></div></div>
+  <div id="sides" class="tab-both"></div>
+</div>
+</div>
+<script>
+
+const G = { d2l:'#4a90e2', pearson:'#f0932b', grades:'#3fbf7f', tc:'#9b6bff', portal:'#ff6fa5', misc:'#3ab8c4', shell:'#9aa7b5', db:'#c9a227' };
+const DK = {
+  browser:['BROWSER','d2l'], aa:['ASSISTANT','pearson'], pearson:['PEARSON','pearson'], makeup:['MAKEUP EXAM','pearson'],
+  builder:['BUILDER','d2l'], dates:['DATES','d2l'], handout:['HANDOUT','d2l'], grades:['GRADEBOOK','grades'],
+  history:['HISTORY','grades'], roster:['ROSTER','grades'], progress:['PROGRESS','grades'], tc:['T. CONSOLE','tc'],
+  settings:['SETTINGS','misc'], shell:['DASH SHELL','shell'], math:['MATH APPS','portal'], exit:['EXIT TICKETS','portal'], hw:['HOMEWORK','portal']
+};
+const BR = '#8a3b2e', MORT = '#6e2d23', FL = '#7c5638', FLM = '#6a4a31', CARPET = '#33405c';
+
+// ---------- drawing helpers ----------
+const R = (c, col, x, y, w, h) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), w, h); };
+function bricks(c, x, y, w, h, base, mort, bw, bh) {
+  R(c, base, x, y, w, h);
+  for (let r = 0; r * bh < h; r++) {
+    R(c, mort, x, y + r * bh, w, 1);
+    const off = (r % 2) * (bw / 2);
+    for (let vx = x - bw + off; vx < x + w; vx += bw) if (vx >= x) R(c, mort, vx, y + r * bh, 1, Math.min(bh, h - r * bh));
+  }
+}
+const wall = (c, x, y, w, h) => bricks(c, x, y, w, h, BR, MORT, 8, 4);
+const floor = (c, x, y, w, h) => bricks(c, x, y, w, h, FL, FLM, 12, 6);
+function carpet(c, x, y, w, h, col) {
+  R(c, col || CARPET, x, y, w, h);
+  for (let yy = y; yy < y + h; yy += 4) for (let xx = x + ((yy - y) / 4 % 2) * 4; xx < x + w; xx += 8) R(c, 'rgba(255,255,255,0.05)', xx, yy, 4, 2);
+}
+function planks(c, x, y, w, h) { R(c, '#a8743f', x, y, w, h); for (let xx = x; xx < x + w; xx += 6) R(c, '#8c5d30', xx, y, 1, h); }
+function lights(c, x, y, w) {
+  for (let xx = x; xx < x + w; xx += 2) R(c, '#2a1d17', xx, y + Math.round(2 * Math.sin((xx - x) / w * Math.PI * (w / 70))), 1, 1);
+  for (let xx = x + 6; xx < x + w; xx += 14) { const yy = y + Math.round(2 * Math.sin((xx - x) / w * Math.PI * (w / 70))); R(c, '#ffd84a', xx, yy + 1, 2, 3); }
+}
+function partition(c, x, y1, y2, gap) {      // low brick wall, optional gap [g1,g2]
+  const seg = (a, b) => { if (b > a) { bricks(c, x, a, 4, b - a, BR, MORT, 4, 4); R(c, '#b05a45', x, a, 4, 1); } };
+  if (gap) { seg(y1, gap[0]); seg(gap[1], y2); } else seg(y1, y2);
+}
+function deskBody(c, x, y) {
+  R(c, '#c98f4e', x + 4, y + 14, 36, 11); R(c, '#e0a862', x + 4, y + 14, 36, 2); R(c, '#8f5f2f', x + 4, y + 25, 36, 3);
+  R(c, '#222633', x + 30, y + 17, 3, 3);
+}
+function monitor(c, x, y, col, f, i) {
+  R(c, '#262a37', x, y, 16, 11); R(c, '#10151e', x + 1, y + 1, 14, 8); R(c, '#262a37', x + 6, y + 11, 4, 2);
+  for (let k = 0; k < 3; k++) R(c, col, x + 2, y + 2 + k * 2, 2 + ((f * 3 + k * 4 + i * 2) % 9), 1);
+}
+const SPR = {
+  pal: { M:'#9aa7b5', D:'#5b6773', V:'#111', L:'#5ef0ff', R:'#ff5a5a' },
+  rows: ['.....RR.....','.....DD.....','..MMMMMMMM..','..MVVVVVVM..','..MVLVVLVM..','..MVVVVVVM..','..MMMMMMMM..','...DDDDDD...','.MMMMMMMMMM.','DMMMLLLLMMMD','DMMMMMMMMMMD','.MMMMMMMMMM.','..DDDDDDDD..','..DDD..DDD..','..DDD..DDD..','..MMM..MMM..'],
+  legsB: { 13:'..DDD...DD..', 14:'..DDD...DD..', 15:'..MMM...MM..' }
+};
+function robot(c, x, y, col, walk) {
+  const rows = SPR.rows.slice(); if (walk) for (const k in SPR.legsB) rows[k] = SPR.legsB[k];
+  const pal = Object.assign({}, SPR.pal, { M: col });
+  rows.forEach((r, yy) => { for (let xx = 0; xx < 12; xx++) { const ch = r[xx]; if (ch !== '.') R(c, pal[ch], x + xx, y + yy, 1, 1); } });
+}
+function plant(c, x, y) { R(c, '#b5651d', x + 2, y + 8, 6, 5); R(c, '#3c8f4a', x, y + 2, 10, 7); R(c, '#57b665', x + 2, y, 6, 4); }
+function coffee(c, x, y) { R(c, '#3a3f4d', x, y, 14, 20); R(c, '#e8e8e8', x + 2, y + 3, 10, 6); R(c, '#8b5a2b', x + 4, y + 12, 6, 6); }
+function rackBody(c, x, y) { R(c, '#6b7283', x - 1, y - 1, 20, 34); R(c, '#1d2230', x, y, 18, 32); for (let k = 0; k < 5; k++) R(c, '#2b3245', x + 1, y + 2 + k * 6, 16, 4); }
+function rackLive(c, x, y, f) { for (let k = 0; k < 5; k++) R(c, (f + k) % 2 ? '#5ef08a' : '#f0c05e', x + 3, y + 3 + k * 6, 3, 2); }
+function tableBody(c, x, y, w, h) { R(c, '#c98f4e', x, y + 9, w, h); R(c, '#e0a862', x, y + 9, w, 2); R(c, '#8f5f2f', x, y + 9 + h - 3, w, 3); }
+function bridgeRail(c, x, y, w) { R(c, '#d9d2c0', x, y, w, 2); for (let xx = x; xx < x + w; xx += 8) R(c, '#d9d2c0', xx, y, 1, 6); }
+function ellipse(c, col, cx, cy, rx, ry) { c.fillStyle = col; c.beginPath(); c.ellipse(Math.round(cx), Math.round(cy), rx, ry, 0, 0, 6.2832); c.fill(); }
+function patrol(c, wk, t, col) {
+  const dx = wk.x2 - wk.x1, dy = wk.y2 - wk.y1, d = Math.hypot(dx, dy), sp = wk.s || 0.025;
+  const p = ((t * sp / d) + (wk.ph || 0)) % 2, u = p < 1 ? p : 2 - p;
+  robot(c, wk.x1 + dx * u, wk.y1 + dy * u, col || wk.c || '#ffa8a8', Math.floor(t / 180) % 2);
+}
+function arrows(c, x1, x2, y, t) { for (let xx = x1 + ((t / 60) % 14); xx < x2; xx += 14) { R(c, '#ffd84a', xx, y, 2, 7); R(c, '#ffd84a', xx + 2, y + 1, 2, 5); R(c, '#ffd84a', xx + 4, y + 2, 2, 3); R(c, '#ffd84a', xx + 6, y + 3, 1, 1); } }
+function conveyor(c, x, y, w, t, boxes) {
+  R(c, '#3a3f4d', x, y, w, 8); R(c, '#6b7283', x, y, w, 1); R(c, '#6b7283', x, y + 7, w, 1);
+  for (let xx = x + ((t / 40) % 12); xx < x + w; xx += 12) R(c, '#555c70', xx, y + 3, 5, 2);
+  for (let i = 0; i < boxes; i++) { const bx = x + ((t * 0.03 + i * (w / boxes)) % (w - 8)); R(c, '#d9a066', bx, y - 4, 8, 7); R(c, '#a8723f', bx, y - 4, 8, 1); R(c, '#fff', bx + 3, y - 2, 2, 3); }
+}
+
+// ---------- plan builder ----------
+function Plan(W, H) {
+  return { W, H, desks: [], decor: [], racks: [], labels: [], wk: [], bg: null, fg: null,
+    d(id, x, y) { this.desks.push({ id, x, y }); }, lab(x, y, text, cls) { this.labels.push({ x, y, text, cls: cls || '' }); } };
+}
+function deskLabels(P) {
+  P.desks.forEach(d => { if (d.type === 'table') P.lab(d.x + d.w / 2, d.y - 14, DK[d.id][0]); else P.lab(d.x + 22, d.y - 2, DK[d.id][0]); });
+  P.racks.forEach(r => P.lab(r.x + 9, r.y - 10, 'SUPABASE'));
+}
+function sceneBg(c, P) {
+  P.bg(c);
+  P.desks.forEach(d => { if (d.type === 'table') tableBody(c, d.x, d.y, d.w, d.h); else deskBody(c, d.x, d.y); });
+  P.decor.forEach(d => d.t === 'plant' ? plant(c, d.x, d.y) : coffee(c, d.x, d.y));
+  P.racks.forEach(r => rackBody(c, r.x, r.y));
+}
+function sceneFg(c, P, t) {
+  const f = Math.floor(t / 450) % 2;
+  P.desks.forEach((d, i) => {
+    if (d.id === 'none') return; const col = (P.mcolor && P.mcolor(d, i)) || G[DK[d.id][1]];
+    if (d.type === 'table') {
+      const n = 3, gap = (d.w - n * 16) / (n + 1);
+      for (let k = 0; k < n; k++) monitor(c, d.x + gap + k * (16 + gap), d.y - 4, col, f, i + k);
+      robot(c, d.x + d.w / 2 - 6, d.y + 9 + d.h - 4, col, false);
+    } else { monitor(c, d.x + 14, d.y + 8, col, f, i); robot(c, d.x + 16, d.y + 25, col, false); }
+  });
+  P.racks.forEach(r => rackLive(c, r.x, r.y, f));
+  P.wk.forEach(w => patrol(c, w, t));
+  if (P.fg) P.fg(c, t, f);
+}
+
+
+// ---------- docs vs no docs race ----------
+Object.assign(G, { root:'#ff5a5a', idx:'#4a90e2', rec:'#3fbf7f', rule:'#ff6fa5', app:'#f0932b', log:'#3ab8c4', chase:'#e8e8e8' });
+Object.assign(DK, { chase:['CHASE','chase'], root:['AGENTS.MD','root'], index:['INDEX.MD','idx'], recipes:['RECIPES','rec'], rules:['RULES','rule'],
+  mac:['MACRO','app'], por:['PORTAL','app'], man:['MANIM','app'], sess:['SESSIONS.MD','log'], score:['SCORECARD','log'], hand:['HANDOFF','log'], cap:['CAPTURE','log'],
+  none:['NO FILE','shell'], badmac:['GRADEBOOK','app'], badpor:['PORTAL','app'], badman:['ANIMATIONS','app'], god:['MAIN.PY','misc'] });
+
+function cabinet(c, x, y) {
+  R(c, '#4d5462', x - 1, y - 1, 18, 28); R(c, '#7a8190', x, y, 16, 26);
+  for (let k = 0; k < 3; k++) { R(c, '#5c6373', x + 1, y + 2 + k * 8, 14, 6); R(c, '#d9d2c0', x + 6, y + 4 + k * 8, 4, 1); }
+}
+const CAB = { m1:[278,100,'GRADE_IMPORT'], m2:[346,100,'PEARSON_AUTO'], p1:[402,100,'PROGRESS_PIPE'], p2:[470,100,'DEPLOY'], n1:[526,100,'ANIM_STYLE'], n2:[594,100,'LAYOUT_RULES'] };
+const box = (x, y, w, h) => ({ x, y, w, h });
+const HL = { chase: box(10,34,44,42), root: box(64,34,44,42), index: box(114,34,44,42), recipes: box(164,34,44,42), rules: box(214,34,44,42),
+  mac: box(274,34,44,42), por: box(398,34,44,42), sess: box(64,170,44,42),
+  m1: box(277,99,18,28), m2: box(345,99,18,28), p1: box(401,99,18,28), p2: box(469,99,18,28), n1: box(525,99,18,28), n2: box(593,99,18,28) };
+
+function officeBg(c) {
+  floor(c, 0, 30, 640, 206); carpet(c, 266, 30, 120, 110, '#33405c'); carpet(c, 390, 30, 120, 110, '#4a2f4a'); carpet(c, 514, 30, 126, 110, '#2f4a3a');
+  carpet(c, 0, 142, 260, 94, '#2c3a3a'); wall(c, 0, 0, 640, 30); lights(c, 4, 6, 630);
+  [262, 386, 510].forEach(x => partition(c, x, 30, 140, [70, 100]));
+  Object.values(CAB).forEach(a => cabinet(c, a[0], a[1]));
+}
+function pGood() {
+  const P = Plan(640, 236);
+  P.d('chase', 10, 34); P.d('root', 64, 34); P.d('index', 114, 34); P.d('recipes', 164, 34); P.d('rules', 214, 34);
+  P.d('mac', 274, 34); P.d('por', 398, 34); P.d('man', 522, 34);
+  P.d('sess', 64, 170); P.d('score', 114, 170); P.d('hand', 164, 170); P.d('cap', 214, 170);
+  P.decor.push({ t: 'plant', x: 12, y: 110 }, { t: 'coffee', x: 20, y: 180 }, { t: 'plant', x: 250, y: 212 });
+  P.bg = officeBg;
+  Object.values(CAB).forEach(a => P.lab(a[0] + 8, a[1] - 11, a[2]));
+  [['MACRO APP', 332], ['STUDENT PORTAL', 456], ['MANIM TRIAL', 580]].forEach(([t, x]) => P.lab(x, 8, t, 'board'));
+  P.lab(136, 226, 'BACK OFFICE: LOG, HANDOFF, CAPTURE', 'plaque');
+  return P;
+}
+function pBad() {
+  const P = Plan(640, 236);
+  P.d('chase', 10, 34); [64, 114, 164, 214].forEach(x => P.d('none', x, 34));
+  P.d('badmac', 274, 34); P.d('badpor', 398, 34); P.d('badman', 522, 34); P.d('god', 64, 170);
+  P.decor.push({ t: 'plant', x: 12, y: 110 }, { t: 'coffee', x: 20, y: 180 }, { t: 'plant', x: 250, y: 212 });
+  P.bg = officeBg;
+  Object.values(CAB).forEach(a => P.lab(a[0] + 8, a[1] - 11, '?'));
+  [['MACRO APP', 332], ['STUDENT PORTAL', 456], ['MANIM TRIAL', 580]].forEach(([t, x]) => P.lab(x, 8, t, 'board'));
+  P.lab(136, 112, 'NO DOCS: the agent has to guess', 'warn');
+  P.lab(160, 226, 'NO LOG. NO HANDOFF. NO RULES.', 'warn');
+  P.lab(313, 164, 'ANIM_HELPER');
+  P.dyn = [{ key: 'h2', x: 349, y: 164, text: 'ANIM_HELPER2', cls: 'warn' }, { key: 'h3', x: 385, y: 164, text: 'PEARSON_V2', cls: 'warn' },
+           { key: 'dep', x: 520, y: 124, text: 'DEPLOYED TO PRODUCTION: nobody asked', cls: 'warn' },
+           { key: 'full', x: 330, y: 122, text: 'CONTEXT FULL: earlier rules forgotten', cls: 'warn' }];
+  return P;
+}
+
+// ---------- the agent's routes ----------
+const S = (x, y, say, hl, read, tok, extra) => Object.assign({ x, y, say, hl, read, tok: tok || 0 }, extra || {});
+const GO = (x, y) => ({ x, y });
+const N = note => ({ note });
+const NAMES = ['Fix the gradebook import', 'Make a new animation', 'Add a Pearson automation step', 'Add a student portal feature'];
+const GOOD = [
+  { end: 'Finished. 4 files read, rules followed, work logged.', endNote: 'Total: about 18,000 tokens, under 10% of the context window. Nothing was guessed and nothing was redone.', status: 'DONE', cap: 'It reads the rules, the index, one keyword row, and one doc. Every step has a reason.', route: [
+    S(26,78,'Chase wants the gradebook import fixed. Which rules apply?',HL.chase,0,250,N('Reading the request costs almost nothing: about 250 tokens.')),
+    S(80,78,'Root AGENTS.md: ask before assuming, no duplicate mechanisms, files under 800 lines.',HL.root,1,4500,N('About 4,500 tokens to load the always-on rules. Every session pays this, so the file stays short.')),
+    S(130,78,'INDEX.md only points. Gradebook maps to the Macro App.',HL.index,1,3200,N('3,200 tokens. The index only points, so the agent learns where to go without reading the whole tree.')),
+    S(290,78,'Macro AGENTS.md keyword table: grades import routes to one doc.',HL.mac,1,6000,N('6,000 tokens for the keyword table. One lookup replaces a search of the whole app.')), GO(312,78), GO(312,106),
+    S(298,106,'GRADE_IMPORT covers this symptom. I read only this doc.',HL.m1,1,3500,N('3,500 tokens for the single doc that matters. The other docs stay closed.')), GO(312,106), GO(312,150),
+    S(80,150,'Fixed. Logged in SESSIONS.md for the next agent.',HL.sess,0,400,N('400 tokens to log the work. The next agent starts with context instead of guessing.')), GO(56,150), GO(56,78)] },
+  { end: 'Finished. Rendered, wired into the portal, logged.', endNote: 'Total: about 14,000 tokens. The style was never in doubt, so no clip had to be redone.', status: 'DONE', cap: 'The recipe and style doc already answer how clips should look, so it does not guess.', route: [
+    S(26,78,'Chase wants a new animation. Rules first.',HL.chase,0,250,N('A fresh chat starts with no memory. The docs are what carry knowledge between tasks.')),
+    S(80,78,'Root rules: an animation is done only when it plays in the portal.',HL.root,1,4500,N('The same 4,500 tokens of rules. This one rule prevents the unfinished clip the other side ships.')),
+    S(130,78,'INDEX has an animation row pointing to a recipe and a style doc.',HL.index,1,3200,N('The animation row names two docs. The agent skips the other 28 recipes.')),
+    S(180,78,'The recipe says how we build clips. I follow it.',HL.recipes,1,2500,N('2,500 tokens for the recipe. Following it now prevents a rewrite later.')), GO(546,78), GO(546,106),
+    S(546,106,'The style doc already decides negatives and fraction bars.',HL.n1,1,3500,N('3,500 tokens. The style decisions are already made, so nothing gets redone.')), GO(568,106), GO(568,150),
+    S(80,150,'Rendered and wired in. Logged.',HL.sess,0,400,N('Done means rendered and playing in the portal. The log records that it was.')), GO(56,150), GO(56,78)] },
+  { end: 'Finished. Existing code extended, nothing broken, logged.', endNote: 'Total: about 18,000 tokens. The existing Pearson code was extended, not replaced.', status: 'DONE', cap: 'The keyword row names the one doc that says which code is shared, so it edits safely.', route: [
+    S(26,78,'Chase wants a Pearson step added. Rules first.',HL.chase,0,250,N('Third task, still the same cost to start: about 250 tokens.')),
+    S(80,78,'Root rules: preserve existing behavior, extend before building new.',HL.root,1,4500,N('The rule "preserve existing behavior" is what stops the rewrite the other side commits.')),
+    S(130,78,'INDEX: Pearson belongs to the Macro App.',HL.index,1,3200,N('3,200 tokens to find the right app without searching.')),
+    S(290,78,'Macro AGENTS.md row: Pearson tasks go to one automation doc.',HL.mac,1,6000,N('6,000 tokens. The keyword table names the one doc for Pearson.')), GO(312,78), GO(312,106),
+    S(330,106,'The doc lists the steps that exist. I add one and touch nothing else.',HL.m2,1,3500,N('The doc lists existing steps and what shares code, so the agent can add one safely.')), GO(312,106), GO(312,150),
+    S(80,150,'Added the step. Logged.',HL.sess,0,400,N('Logged. The gradebook still works because nothing shared was changed.')), GO(56,150), GO(56,78)] },
+  { end: 'Finished. Followed the portal pipeline, logged.', endNote: 'Total: about 18,000 tokens. Four tasks done, no rework, no surprise deploys.', status: 'DONE', cap: 'The portal row points at the pipeline doc, so the feature lands in the right place.', route: [
+    S(26,78,'Chase wants a portal feature. Rules first.',HL.chase,0,250,N('Fourth task. The agent still starts with a fresh, clean window.')),
+    S(80,78,'Root rules: never deploy unless Chase says so in that message.',HL.root,1,4500,N('The never-deploy rule is loaded first, so it cannot be forgotten later in the task.')),
+    S(130,78,'INDEX: student portal points to the portal AGENTS.md.',HL.index,1,3200,N('3,200 tokens. The portal row points to its own AGENTS.md.')),
+    S(414,78,'Portal AGENTS.md row: read the progress pipeline doc first.',HL.por,1,6000,N('6,000 tokens for the portal keyword table.')), GO(440,78), GO(440,106),
+    S(422,106,'The pipeline doc shows the whole chain. I build inside it.',HL.p1,1,3500,N('The pipeline doc shows how everything connects, so the feature lands in the right place.')), GO(440,106), GO(440,150),
+    S(80,150,'Built and logged. No deploy, because Chase did not ask.',HL.sess,0,400,N('No deploy. The rule was in context the whole time.')), GO(56,150), GO(56,78)] }
+];
+const BAD = [
+  { end: 'Pasted a fix. Nobody checked it follows any rules.', endNote: 'Total: about 97,000 tokens for a job the docs version did in about 18,000. That is five times the cost, and nothing was logged.', status: 'DONE?', cap: 'With no map, it opens every cabinet until it finds the right one. Most of the tokens were wasted.', route: [
+    S(26,78,'Chase wants the gradebook import fixed. There is no AGENTS.md and no index.',HL.chase,0,300,N('With no docs the agent starts blind. Everything after this is guessing.')),
+    S(80,78,'No rules file in the root. I do not know what I am not allowed to do.',HL.root,1,2000,N('Nothing here. With no rules, the agent can break any of them without knowing.')),
+    S(130,78,'No map of the project either. I will open everything.',HL.index,1,1500,N('No index. Every search from here on costs tokens.')), GO(312,78), GO(312,106),
+    S(298,106,'Cabinet 1. Is this the gradebook? I read all of it.',HL.m1,1,16000,N('16,000 tokens. This was the right cabinet, but the agent cannot know that without reading it all.')),
+    S(330,106,'Not this one. I read cabinet 2 too, just in case.',HL.m2,1,15000,N('15,000 more tokens, spent on the wrong cabinet.')), GO(312,106), GO(312,78), GO(440,78), GO(440,106),
+    S(422,106,'Maybe it is in the portal. Reading that too.',HL.p1,1,18000, { prob: 'Read 6 cabinets to find 1', note: 'ERROR: wandering. 18,000 tokens spent in the portal for a Macro App bug. This is what a missing index costs.' }),
+    S(452,106,'Still not here. Thousands more lines read.',HL.p2,1,16000,N('16,000 more. About 80% of the tokens so far are wasted.')), GO(440,106), GO(440,78), GO(568,78), GO(568,106),
+    S(546,106,'Animation code. Not it. I keep reading anyway.',HL.n1,1,14000,N('14,000 more tokens. The fix was never here.')), GO(568,106), GO(568,78), GO(312,78), GO(312,106),
+    S(298,106,'It was cabinet 1 all along. I guess the fix and hope it is right.',HL.m1,1,12000,N('12,000 tokens to re-read the first cabinet. It had to read it twice.')), GO(312,106), GO(312,150),
+    S(80,150,'Pasting the fix into MAIN.PY. There is no log to write.',HL.sess,0,2000, { fx: 'pile', note: 'The fix is pasted into one big file. With no log, the next agent will never know it happened.' }), GO(56,150), GO(56,78)] },
+  { end: 'Rendered a clip in its own style. Never wired into the portal.', endNote: 'Total: about 53,000 tokens, and the job is not finished. The docs version spent 14,000 and finished.', status: 'NOT FINISHED', cap: 'No recipe, so it invents a style, builds a second helper, and forgets to finish the job.', route: [
+    S(26,78,'A new animation. I do not remember the last task, so I start from zero.',HL.chase,0,300,N('A new chat has no memory of the earlier task. Without docs, nothing carries over.')),
+    S(80,78,'No recipe and no style guide. I will guess how clips should look.',HL.root,0,1500,N('No recipe. The agent will invent its own style, and the next clip will look different.')), GO(546,78), GO(546,106),
+    S(546,106,'Reading old animation code to copy from.',HL.n1,1,22000,N('22,000 tokens reading old clips to copy from. A recipe would have cost about 3,000.')), S(578,106,'This one uses a different style. Which is right? I pick one.',HL.n2,1,20000,N('A second clip uses a different style. With no style doc, the agent picks one at random.')),
+    GO(568,106), GO(568,78), GO(440,78), GO(440,106),
+    S(422,106,'Maybe the portal has a helper for this. Reading it too.',HL.p1,1,18000,N('18,000 tokens searching the portal for a helper that already exists.')), GO(440,106), GO(440,150), GO(300,150),
+    S(300,150,'I cannot find the helper that already exists, so I write a second one.',null,0,6000, { fx: 'dupe', prob: 'Built a duplicate helper', note: 'ERROR: duplicate helper. Two versions of the same thing now exist, and fixing one will not fix the other.' }),
+    GO(80,150), S(80,150,'Rendered it. I never wired it into the portal, so it is not really done.',HL.sess,0,3000, { fx: 'pile', prob: 'Never finished: not in the portal', note: 'ERROR: never finished. A rule says a clip is done only when it plays in the portal, but the agent never read that rule.' }), GO(56,150), GO(56,78)] },
+  { end: 'Rewrote working code and broke the gradebook.', endNote: 'Total: about 78,000 tokens, and the gradebook now needs fixing too. Docs would have prevented both.', status: 'BROKE THINGS', cap: 'It cannot tell what the old code does, so it rewrites it and breaks something that worked.', route: [
+    S(26,78,'A Pearson step. I do not remember the earlier tasks.',HL.chase,0,300,N('Third task, and the agent has learned nothing from the first two.')), GO(312,78), GO(312,106),
+    S(330,106,'I cannot tell how the existing Pearson code works. Rewriting is faster than reading.',HL.m2,1,24000,N('24,000 tokens reading code that the agent then decides to throw away.')), GO(312,106), GO(312,78),
+    S(312,78,'Deleting the working code and writing a new version.',HL.mac,0,14000, { fx: 'rewrite', prob: 'Rewrote working code', note: 'ERROR: rewrote working code. Nothing said not to, and nothing said what depends on it.' }),
+    S(312,78,'My version breaks the gradebook. I did not know they share this code.',HL.mac,0,18000, { prob: 'Broke the gradebook', note: 'ERROR: broke the gradebook. It shares code with Pearson, which only a doc would have told the agent.' }), GO(312,106),
+    S(298,106,'Reading the gradebook code to fix my own mess.',HL.m1,1,20000,N('20,000 tokens spent repairing damage the agent caused.')), GO(312,106), GO(312,150),
+    S(80,150,'Pasting more into MAIN.PY. It is getting long.',HL.sess,0,2000, { fx: 'pile', note: 'The big file keeps growing. Every fix gets pasted into it.' }), GO(56,150), GO(56,78)] },
+  { end: 'Deployed a broken portal to production and lost its own instructions.', endNote: 'The work was paid for twice: once to do it badly, and again when Chase starts a new chat and explains everything.', status: 'FAILED', cap: 'Everything lives in one giant file. It cannot hold it all, forgets the rules, and keeps going anyway.', route: [
+    S(26,78,'A portal feature. There is no portal doc, so I use the file where everything is.',HL.chase,0,300,N('No portal doc exists, so everything goes into the one file that holds everything.')), GO(56,78), GO(56,150),
+    S(80,150,'Reading MAIN.PY. All 2,400 lines of it, because nothing tells me where to look.',HL.sess,1,80000, { fx: 'pile', prob: 'God file: 2,400 lines', note: 'ERROR: god file. With no portal doc, everything lives in one 2,400 line file. Reading it alone costs 80,000 tokens.' }),
+    S(80,150,'The file is too long to hold in my head. I am starting to forget the rules.',HL.sess,0,60000, { fx: 'pile', note: '60,000 more tokens. A model gets worse as the window fills, and the earliest instructions fade first.' }),
+    S(80,150,'CONTEXT FULL. Earlier instructions fall out. I keep going anyway.',HL.sess,0,59700, { fx: 'collapse', prob: 'Context full: rules forgotten', note: 'ERROR: context full. At 200,000 tokens the agent drops its earliest instructions, which were the rules.' }),
+    GO(56,150), GO(56,78),
+    S(26,78,'The chat is compacted into a summary. I keep the gist and lose the details. What was I building?',HL.chase,0,-140000, { fx: 'compact', note: 'The chat is compacted into a short summary. The tokens drop, but the details, and the rules, are gone.' }),
+    GO(414,78),
+    S(414,78,'The summary says the portal feature is finished, so I deploy it to production.',HL.por,0,30000, { fx: 'deploy', prob: 'Deployed to production unasked', note: 'ERROR: deployed to production. The never-deploy rule was in the lost context. This is the real cost of a poor setup.' }),
+    GO(26,78),
+    S(26,78,'Chase sees the broken site. He starts a new chat and explains everything again.',HL.chase,0,20000,N('Chase starts over and re-explains everything. All of this was paid for twice.'))] }
+];
+
+// ---------- timeline ----------
+const SPEED = 0.08, STOP = 3200, HOLD = 2200, MAXCTX = 200000;
+function build(tasks) {
+  return tasks.map(task => {
+    let t = 0, tokens = 0, reads = 0, prev = null, note = ''; const tl = [];
+    task.route.forEach(p => {
+      if (prev) { const dur = Math.hypot(p.x - prev.x, p.y - prev.y) / SPEED; if (dur > 0) { tl.push({ k: 'm', t0: t, t1: t + dur, a: prev, b: p, tok: tokens, reads, note }); t += dur; } }
+      if (p.say) { tl.push({ k: 's', t0: t, t1: t + STOP, p, tok: tokens, reads, note: p.note || '' }); note = p.note || ''; tokens += p.tok; reads += p.read ? 1 : 0; t += STOP; }
+      prev = p;
+    });
+    return { task, tl, dur: t, tokens, reads, last: prev };
+  });
+}
+const GS = build(GOOD), BS = build(BAD);
+const starts = []; let TOTAL = 0;
+GS.forEach((g, i) => { starts.push(TOTAL); TOTAL += Math.max(g.dur, BS[i].dur) + HOLD; });
+const EVENTS = [];
+BS.forEach((b, i) => b.tl.forEach(s => { if (s.k === 's' && (s.p.fx || s.p.prob)) EVENTS.push({ at: starts[i] + s.t0 + 500, fx: s.p.fx, prob: s.p.prob }); }));
+
+function evalSide(S, T) {
+  let ti = 0; while (ti + 1 < starts.length && T >= starts[ti + 1]) ti++;
+  const lt = T - starts[ti], s = S[ti];
+  if (lt >= s.dur) return { ti, lt, done: true, x: s.last.x, y: s.last.y, say: s.task.end, tokens: s.tokens, reads: s.reads, hl: null, walk: false, status: s.task.status, secs: Math.round(s.dur / 1000), note: s.task.endNote };
+  const seg = s.tl.find(q => lt >= q.t0 && lt < q.t1) || s.tl[0];
+  if (seg.k === 'm') { const u = (lt - seg.t0) / (seg.t1 - seg.t0);
+    return { ti, lt, x: seg.a.x + (seg.b.x - seg.a.x) * u, y: seg.a.y + (seg.b.y - seg.a.y) * u, say: '', tokens: seg.tok, reads: seg.reads, hl: null, walk: true, status: 'working', note: seg.note }; }
+  const el = lt - seg.t0;
+  return { ti, lt, x: seg.p.x, y: seg.p.y, say: seg.p.say, tokens: seg.tok + seg.p.tok * Math.min(1, el / 1400), reads: seg.reads + (seg.p.read && el > 1000 ? 1 : 0), hl: seg.p.hl, walk: false, status: 'working', note: seg.p.note || '' };
+}
+
+// ---------- extra drawing for the bad office ----------
+function terminal(c, x, y, col, f) { R(c, '#4d5462', x, y, 26, 18); R(c, '#10151e', x + 2, y + 2, 22, 10); R(c, col, x + 4, y + 4, 4 + f * 4, 1); R(c, col, x + 4, y + 7, 9, 1); }
+function badFx(c, t, fx, f) {
+  terminal(c, 300, 176, '#5ef08a', f);
+  if (fx.dupe) terminal(c, 336, 176, '#ffb86b', f);
+  if (fx.rewrite) terminal(c, 372, 176, '#ff8c8c', f);
+  const pile = fx.pile * 4;
+  if (fx.collapse) {
+    for (let k = 0; k < pile; k++) R(c, k % 2 ? '#f4ead0' : '#e8dcc0', 40 + ((k * 37) % 150), 150 + ((k * 23) % 60), 8, 3);
+  } else for (let k = 0; k < pile; k++) R(c, k % 2 ? '#f4ead0' : '#e8dcc0', 72 + (k % 3), 174 - k * 3, 30, 3);
+  if (fx.rewrite) { for (let k = 0; k < 14; k++) { R(c, '#ff5a5a', 280 + k, 38 + k, 2, 2); R(c, '#ff5a5a', 293 - k, 38 + k, 2, 2); } }
+}
+function bubblePos(P, x, y) { const half = P.W * 0.17, cx = Math.min(Math.max(x + 6, half), P.W - half), above = y >= 140;
+  return 'left:' + cx / P.W * 100 + '%;top:' + (above ? y - 4 : y + 19) / P.H * 100 + '%;transform:translate(-50%,' + (above ? '-100%' : '0') + ');'; }
+
+// ---------- page ----------
+let sim = 0, playing = true, speed = 1, curT = 0, curFx = { pile: 0 };
+const sides = [];
+function fxAt(T) { const fx = { pile: 0, dupe: 0, rewrite: 0, collapse: 0, compact: 0, deploy: 0 }; EVENTS.forEach(e => { if (e.at <= T && e.fx) fx[e.fx]++; }); return fx; }
+function probsAt(T) { return EVENTS.filter(e => e.at <= T && e.prob).map(e => e.prob); }
+
+function makeSide(id, title, cls, P, S, isBad) {
+  const root = document.createElement('section'); root.className = 'side ' + cls;
+  root.innerHTML = '<div class="sh"><span class="badge">' + title + '</span><span>Tokens <b class="t">0</b></span><span>Files read <b class="f">0</b></span><span class="stat"></span></div>' +
+    '<div class="bartrack"><i></i></div><div class="plan"></div><div class="cap"></div>' + (isBad ? '<div class="chips"></div>' : '');
+  document.getElementById('sides').appendChild(root);
+  const plan = root.querySelector('.plan'), cv = document.createElement('canvas'); cv.width = P.W; cv.height = P.H; plan.appendChild(cv);
+  deskLabels(P); const fs = 100 * 6.2 / P.W;
+  const mk = (l, extra) => { const e = document.createElement('div'); e.className = 'lab ' + (l.cls || ''); e.textContent = l.text;
+    e.style.cssText = 'left:' + l.x / P.W * 100 + '%;top:' + l.y / P.H * 100 + '%;font-size:' + fs + 'cqw;' + (extra || ''); plan.appendChild(e); return e; };
+  P.labels.forEach(l => mk(l));
+  const dyn = {}; (P.dyn || []).forEach(l => { dyn[l.key] = mk(l, 'display:none;'); });
+  const board = mk({ x: 150, y: 8, text: '', cls: 'board' });
+  const panel = document.createElement('div'); panel.className = 'panel' + (isBad ? ' badp' : '');
+  panel.style.cssText = 'left:' + 412 / P.W * 100 + '%;top:' + 146 / P.H * 100 + '%;width:' + 224 / P.W * 100 + '%;height:' + 86 / P.H * 100 + '%;font-size:' + 100 * 8.4 / P.W + 'cqw;';
+  panel.innerHTML = '<div class="ph">COMMENTARY</div><div class="pb"></div><div class="pt"></div>'; plan.appendChild(panel);
+  const bubble = document.createElement('div'); bubble.className = 'bubble'; bubble.style.fontSize = fs + 'cqw'; plan.appendChild(bubble);
+  const bgc = document.createElement('canvas'); bgc.width = P.W; bgc.height = P.H; sceneBg(bgc.getContext('2d'), P);
+  const side = { root, P, S, isBad, pb: panel.querySelector('.pb'), pt: panel.querySelector('.pt'), lastNote: null, cv: cv.getContext('2d'), bgc, dyn, board, bubble, last: '',
+    t: root.querySelector('.t'), f: root.querySelector('.f'), stat: root.querySelector('.stat'), bar: root.querySelector('.bartrack i'), cap: root.querySelector('.cap'), chips: root.querySelector('.chips') };
+  P.mcolor = (d, i) => {
+    if (!isBad) return null;
+    if (curFx.collapse) return curFx.compact ? '#8a2a2a' : (Math.floor(sim / 160) % 2 ? '#ff5a5a' : '#8a2a2a');
+    if (curFx.rewrite && d.id === 'badmac') return '#ff5a5a';
+    return null;
+  };
+  P.fg = (c, t) => drawSide(side, c, t);
+  sides.push(side); return side;
+}
+function drawSide(sd, c, t) {
+  const st = evalSide(sd.S, curT), f = Math.floor(t / 450) % 2;
+  if (sd.isBad) { badFx(c, t, curFx, f); if (curFx.collapse && !curFx.compact && Math.floor(sim / 200) % 2) { c.fillStyle = 'rgba(255,0,0,0.13)'; c.fillRect(0, 0, sd.P.W, sd.P.H); } }
+  if (st.hl) { c.strokeStyle = '#ffd84a'; c.lineWidth = 1; c.strokeRect(st.hl.x + .5, st.hl.y + .5, st.hl.w, st.hl.h); }
+  for (let i = 0; i < st.reads; i++) { R(c, '#f4ead0', st.x + 14, st.y + 13 - i * 3, 6, 2); R(c, '#b9a77a', st.x + 14, st.y + 14 - i * 3, 6, 1); }
+  robot(c, st.x, st.y, '#ffd84a', st.walk ? Math.floor(t / 150) % 2 : 0);
+  const key = st.say + '|' + st.ti + '|' + Math.round(st.x) + '|' + Math.round(st.y);
+  if (key !== sd.last) {
+    sd.last = key; sd.bubble.textContent = st.say; sd.bubble.style.cssText = 'font-size:' + 100 * 6.2 / sd.P.W + 'cqw;' + bubblePos(sd.P, st.x, st.y) + (st.say ? '' : 'display:none;');
+    sd.board.textContent = 'CHASE SAYS: ' + NAMES[st.ti]; sd.cap.textContent = sd.S[st.ti].task.cap; }
+  if (st.note !== sd.lastNote) { sd.lastNote = st.note; sd.pb.textContent = ''; if (/^ERROR: /.test(st.note || '')) { const e = document.createElement('span'); e.className = 'err'; e.textContent = 'ERROR'; sd.pb.appendChild(e); sd.pb.appendChild(document.createTextNode(' ' + st.note.slice(7))); } else sd.pb.textContent = st.note || 'Waiting for the next step.'; }
+  sd.pt.textContent = 'Used ' + Math.round(st.tokens).toLocaleString('en-US') + ' tokens (' + Math.round(Math.min(100, st.tokens / MAXCTX * 100)) + '% of the window)';
+  sd.t.textContent = Math.round(st.tokens).toLocaleString('en-US'); sd.f.textContent = st.reads;
+  const pct = Math.min(100, st.tokens / MAXCTX * 100); sd.bar.style.width = Math.max(0.5, pct) + '%';
+  sd.bar.style.background = pct >= 80 ? '#e5484d' : pct >= 40 ? '#f0932b' : '#3fbf7f';
+  sd.stat.textContent = st.done ? (st.status + (sd.isBad ? '' : ' in ' + st.secs + 's')) : 'working';
+  sd.stat.className = 'stat ' + (st.done ? (st.status.startsWith('DONE') && !sd.isBad ? 'ok' : 'bad') : '');
+  if (sd.isBad) {
+    sd.dyn.h2.style.display = curFx.dupe ? '' : 'none'; sd.dyn.h3.style.display = curFx.rewrite ? '' : 'none'; sd.dyn.full.style.display = curFx.collapse ? '' : 'none'; sd.dyn.dep.style.display = curFx.deploy ? '' : 'none';
+    const probs = probsAt(curT).join('|'); if (probs !== sd.pl) { sd.pl = probs; sd.chips.innerHTML = probs ? probs.split('|').map(p => '<span>' + p + '</span>').join('') : ''; }
+  }
+}
+function setTab(tab) { document.getElementById('sides').className = 'tab-' + tab; [...document.querySelectorAll('#tabs button')].forEach(b => b.className = b.dataset.tab === tab ? 'on' : ''); }
+function start() {
+  document.querySelectorAll('#tabs button').forEach(b => { b.onclick = () => setTab(b.dataset.tab); }); setTab('both');
+  makeSide('good', 'WITH DOCS', 'good', pGood(), GS, false);
+  makeSide('bad', 'NO DOCS', 'badside', pBad(), BS, true);
+  const SHORT = ['Gradebook', 'Animation', 'Pearson', 'Portal'];
+  const tb = document.getElementById('tasks');
+  NAMES.forEach((n, i) => { const b = document.createElement('button'); b.textContent = (i + 1) + ' ' + SHORT[i]; b.title = n; b.onclick = () => gotoTask(i); tb.appendChild(b); });
+  const stopsOf = (S, ti) => S[ti].tl.filter(q => q.k === 's').map(q => q.t0 + 1500).concat([S[ti].dur]);
+  const stops = [GS, BS].map(S => NAMES.map((n, ti) => stopsOf(S, ti)));
+  const nSteps = ti => Math.max(stops[0][ti].length, stops[1][ti].length);
+  const targetOf = (si, ti, k) => k === 0 ? 0 : stops[si][ti][Math.min(k - 1, stops[si][ti].length - 1)];
+  let task = 0, step = 0, auto = false, running = false, idleFor = 0; const lts = [0, 0];
+  function gotoTask(i) { task = i; step = 0; lts[0] = lts[1] = 0; idleFor = 0; render(); }
+  function render() {
+    [...tb.children].forEach((b, i) => b.className = i === task ? 'on' : '');
+    document.getElementById('stepno').textContent = step + ' / ' + (nSteps(task) - 1);
+    const end = step >= nSteps(task) - 1 && task >= NAMES.length - 1;
+    document.getElementById('pl').innerHTML = running ? '&#10074;&#10074; Pause' : '&#9654; Play';
+    document.getElementById('pl').disabled = end && !running;
+    document.getElementById('nx').disabled = end;
+    document.getElementById('bk').disabled = step === 0;
+    [...document.querySelectorAll('#md button')].forEach(b => b.className = (b.dataset.mode === 'free') === auto ? 'on' : '');
+  }
+  function next() { if (step < nSteps(task) - 1) { step++; render(); } else if (task < NAMES.length - 1) gotoTask(task + 1); }
+  document.getElementById('nx').onclick = next;
+  document.getElementById('pl').onclick = () => {
+    if (auto) { running = !running; idleFor = 0; if (running && step === 0) next(); render(); }
+    else if (step === 0) next();
+    else { lts[0] = targetOf(0, task, step - 1); lts[1] = targetOf(1, task, step - 1); }
+  };
+  document.getElementById('bk').onclick = () => { if (step > 0) { step--; lts[0] = targetOf(0, task, step); lts[1] = targetOf(1, task, step); render(); } };
+  document.querySelectorAll('#md button').forEach(b => { b.onclick = () => { auto = b.dataset.mode === 'free'; running = false; render(); }; });
+  document.getElementById('sp').onclick = e => { speed = speed === 1 ? 2 : 1; e.target.textContent = speed + 'x'; e.target.className = speed === 2 ? 'on' : ''; };
+  render();
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(100, now - last); last = now; sim += dt;
+    let moving = false;
+    sides.forEach((sd, si) => {
+      const tg = targetOf(si, task, step);
+      if (lts[si] > tg) lts[si] = tg; else if (lts[si] < tg) { lts[si] = Math.min(tg, lts[si] + dt * speed); moving = true; }
+      curT = starts[task] + lts[si]; curFx = fxAt(curT);
+      sd.cv.drawImage(sd.bgc, 0, 0); sceneFg(sd.cv, sd.P, sim);
+    });
+    if (running && !moving) { idleFor += dt; if (idleFor > 900) { idleFor = 0; if (step >= nSteps(task) - 1 && task >= NAMES.length - 1) { running = false; render(); } else next(); } } else if (!running) idleFor = 0; else idleFor = 0;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+start();
+
+</script>
+</body>
+</html>
