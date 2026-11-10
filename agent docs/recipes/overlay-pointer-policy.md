@@ -9,8 +9,9 @@
 - `electron-toolbar/electron-app/src/window-helpers.js` — `createOverlayBlockGate`
 - `electron-toolbar/overlay-creator/frontend/key-overlay-host-runtime.js`
 - `electron-toolbar/electron-app/src/tabletop-overlay-runtime.js`
+- Joystick settings (same `through` / `block` values): `electron-toolbar/electron-app/src/window-managers/joystick-manager.js` (`syncJoystickClickThrough`) · `joystick-settings.html` Pointer section
 
-Cross-link: scroll zones use a **different** mechanism — [scroll-zone-click-block.md](./scroll-zone-click-block.md).
+Cross-link: scroll zones use a **different** mechanism — [scroll-zone-click-block.md](./scroll-zone-click-block.md). The joystick's own scroll capsules follow the joystick Pointer setting via `joystick-scroll-zones.js` `syncClickAbsorb`.
 
 ---
 

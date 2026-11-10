@@ -1,0 +1,184 @@
+:root {
+    --bg: #0f1a24;
+    --panel: #162636;
+    --panel-2: #1c3144;
+    --ink: #e8eef4;
+    --muted: #9bb0c3;
+    --accent: #d4a017;
+    --accent-ink: #1a1405;
+    --good: #6fbf8a;
+    --line: #2a4258;
+    --card: #20384d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 18px/1.45 "Segoe UI", sans-serif;
+    background: linear-gradient(160deg, #0c1620 0%, #132536 45%, #0f1a24 100%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  a.back {
+    display: inline-block;
+    margin: 12px 16px 0;
+    color: #86c8ff;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 12px;
+  }
+  header {
+    padding: 8px 20px 16px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .banner {
+    background: #3a2a12;
+    color: #f0d9a0;
+    border: 1px solid #6a5420;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+  h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .episode-nav, .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px 12px;
+  }
+  .episode-nav { padding-bottom: 6px; }
+  .episode-nav button, .section-nav button, .bottom-nav button {
+    font: inherit;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    min-height: 52px;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--ink);
+  }
+  .episode-nav button.on {
+    background: #3d6f9a;
+    color: #fff;
+    font-weight: 700;
+  }
+  .section-nav button.on {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
+  }
+  .bottom-nav button { background: #2a4a66; }
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+  .episode { display: none; }
+  .episode.on { display: block; }
+  section {
+    display: none;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px 26px;
+  }
+  section.on { display: block; }
+  h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  h3 {
+    margin: 18px 0 8px;
+    font-size: 17px;
+    color: #c9daf0;
+  }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 1.25em; }
+  li { margin: 0 0 8px; }
+  .lead {
+    font-size: 19px;
+    line-height: 1.5;
+    color: #f2f6fa;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .card {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--accent);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td:first-child { width: 38%; color: #c5d7e8; }
+  .check {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .check li {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+  }
+  .check li::before {
+    content: "• ";
+    color: var(--good);
+    font-weight: 700;
+  }
+  .note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: #12283a;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .bottom-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }

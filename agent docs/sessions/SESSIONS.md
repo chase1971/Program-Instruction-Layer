@@ -2,6 +2,48 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-09 (night): AI presentation, one college slide with tags, frameworks and campus photos; logos; Part 3 and Part 4
+
+**Repos touched:** `AI presentations`, `Programs/` root
+
+**Files changed:** `AI presentations/site/shared/content.js`, `engine.js`, `colleges.js`, `notes.js`, `base.css`, `site/v2-stage.html`, `site/logo-options.html` (new), `site/learning-graphics.html` (new), `site/media/` (campus photos, Claude/Cursor/OpenAI logos, AAC&U artwork, app graphics).
+
+**What worked:** Looking Forward became a "Part 3: Bringing AI into Learning" divider plus an AAC&U conference slide. The nine college slides are one slide that swaps card pairs (swipe left), with colored tags, named frameworks (Harford, Ferris State, Texas, SUNY, Kean/Middlesex, FGCU), red names for colleges to look up, the security link on the Alabama State card, and a dimmed campus photo behind every pair. New block types `collegeswap` and `toollogos`; image option `bare`; compare option `together`. How I Got Here shows ChatGPT, Claude and Cursor stacked; Learning from an App and the AAC&U slide have graphics; Math Portal and Skills Hub use the right-column image layout; Part 4 divider added.
+
+**Current state:** Green in code (28 stops resolve); verified only with headless screenshots. Chase has not seen the live swap transition after the last fix.
+
+**File size flag:** `content.js` is 715 lines (over the 700 extract threshold, under the 800 cap); extract before adding more.
+
+**Next session:** Chase to react to the college slide and new graphics; Part 4 has no slides of its own yet; other empty slides may want graphics.
+
+## 2026-11-09 (later): AI presentation animations wall, college section, References panel (momentum handoff)
+
+**Repos touched:** `AI presentations`
+
+**Files changed:** `AI presentations/site/shared/content.js`, `engine.js`, `notes.js`, `colleges.js` (new), `security.js` (new), `sessions.js` (new), `site/v2-stage.html`, `site/media/` (animation clips).
+
+**What worked:** Animation Tutorials is a 10-clip auto-playing wall (related rates plays as a playlist); research slides cut to References; Looking Forward rewritten; nine college slides (two per slide) from the AACU summaries; security incidents page linked from the last college slide; Library split from a new References panel with 22 generated session pages; zoom now scales videos and screenshots; Macro App slides share one layout.
+
+**Current state:** Green in code (all 34 stops resolve); verified only by headless screenshots, Chase has not reacted to the new slides. Uncommitted.
+
+**File size flag:** None over 800 (`content.js` ~700).
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-09)
+
+## 2026-11-09: AI presentation opening (title, background, Macro App, Part 2 divider) (momentum handoff)
+
+**Repos touched:** `AI presentations`
+
+**Files changed:** `AI presentations/site/shared/content.js`, `engine.js`, `notes.js`, `site/v2-stage.html`, `site/media/` (Macro App images, processed makeup exam video).
+
+**What worked:** Home is a presentation launcher; real title slide "Time to Pilot AI"; background and four-tool Macro App slides; Part 2 divider before the Math Portal; click-to-zoom images; video options; slide polish on the tutorial and adapt slides; makeup exam video re-encoded with student names blurred.
+
+**Current state:** Green for content (loads, stops resolve); Chase viewed the Macro App slides and approved them. Uncommitted. ChatGPT logo not added (awaiting download permission).
+
+**File size flag:** None.
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-09)
+
 ## 2026-11-08 (later): AI presentation research section, background pages, notes page, no-agent-voice rule
 
 **Repos touched:** `AI presentations`, `Programs/` root

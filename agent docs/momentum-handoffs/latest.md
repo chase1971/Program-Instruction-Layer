@@ -1,151 +1,119 @@
-# Momentum handoff: AI presentation second half (research, AI tutoring, colleges, Skills Hub); Matrix app layout fixes
+# Momentum handoff: AI presentation, animations wall, college section, References
 
-**Written:** 2026-11-08 (replaces the 2026-11-07 "VP track through slide 11" handoff).
-Valid for today's continuation only.
-**Nothing is committed or pushed.** No Netlify. Docs server on `http://127.0.0.1:8765/` (restarted today).
-
-**The deck moved.** It is no longer under `agent docs/scratch/presentation-skeletons/` (older
-handoffs and `SESSIONS.md` entries still say that path). It lives in its own git repo:
-**`AI presentations/`** (see its `README.md`).
-- Open it: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=0`
-- I added a mount to `scripts/serve-programs-docs.js`: `/ai-presentations/<file>` serves
-  `AI presentations/site/<file>`. Without it the deck 404s (that folder is not a served root).
-- Content `site/shared/content.js`, engine `site/shared/engine.js`, styles `site/shared/base.css`.
-- The Claude artifact copy (`artifact/build.js`, then republish) is **stale**. Chase asked for the
-  HTML, not the artifact. Do not rebuild or republish unless he asks.
+**Written:** 2026-11-09 (replaces the earlier 2026-11-09 "intro and Macro App" handoff; that content is
+archived in `2026-11-09_ai-presentation-intro-macro-app.md`). Valid for today's continuation only.
+**Nothing is committed or pushed.** No Netlify. Docs server `http://127.0.0.1:8765/` (it was found off once
+today; restart with `node scripts/serve-programs-docs.js` from Programs root, no browser).
+Deck: `http://127.0.0.1:8765/ai-presentations/v2-stage.html` (repo `AI presentations/`, read its `AGENTS.md`).
+Give Chase the deck link as a clickable markdown link every time you change the deck.
 
 ## Objective and current phase
 
-Chase is preparing a talk of **no more than 20 minutes** for Lone Star College's Vice President
-of Instruction (plus a public version). The first half (Gauss-Jordan tutorial evidence, 11 stops)
-was about 10 minutes and is considered done. Today the **second half was built**: research,
-AI tutoring, other colleges, Bowen, the Skills Hub, and the ask. He said plainly: "just put stuff
-there and then I'll work out how I want it to be actually displayed later." Content and order are
-drafts; he wants to look at them and react.
+A 30-minute talk for the VP of Instruction (a wake-up call: Lone Star is behind; ask for a pilot, looser
+restrictions, support, and end on the Skills Hub). Today: the **Animation Tutorials** wall, a rebuilt
+**colleges section** (the "we are behind" part), a security reference, a **References** panel separate from
+the Library, scaling fixes, and a consistent Macro App layout. The second half (Skills Hub, other apps, the
+ask) is untouched today. `the-ask` still reflects the old Copilot and risk-tier framing; check with him
+before rewriting.
 
-Chase is waiting until **Wednesday** for guided-practice homework results, so `gj-homework`
-("Coming soon.") stays a placeholder.
+### VP track now: 34 stops
 
-### VP track now: 22 stops
+title, how-i-got-here, macro-app, macro-calendar, macro-handout, macro-gradebook, macro-makeup, welcome
+(the "Part 2" divider), math-portal, gj-why, gj-setup, gj-tutorial, gj-results, gj-before-class, gj-ready,
+gj-adapt, gj-custom, gj-data, gj-homework, **animations (slide 20)**, **ai-tutor-next (Looking Forward,
+21)**, **colleges-1 to colleges-9 (22 to 30)**, skills-hub, other-apps, hub-first-build, the-ask.
+The Public Overview track is unchanged.
 
-welcome, math-portal, gj-why, gj-setup, gj-tutorial, gj-results, gj-before-class, gj-ready,
-gj-adapt, gj-custom, gj-data, **gj-homework, tutoring-research, ai-tutor-next,
-ai-tutors-colleges, peer-colleges, bowen, skills-hub, other-apps, animations, hub-first-build,
-the-ask.** (Stops 12 to 22 are new or rebuilt today; `#t=vp&s=11` is the first of them.)
+## Chase's desired feel
 
-Cut from the track (pages still in the library, nothing deleted): `side-by-side`,
-`five-years`, `copilot-vs-agent`, `legal-tiers`, `how-i-build`. The public track is unchanged.
+- Slides must **fit the theme** (yellow kicker line above the title, same type), never bare or temporary.
+  He called out a slide built "as if you don't know what the slides look like."
+- **Do not go ahead of him.** He said "you went way too far ahead in the slides." Do what was asked.
+- Animation tutorials: just show what animation can do, small clips, auto-playing, no controls, 2x speed.
+- Colleges: list breadth. "Here's a college, a field of study, how they use AI, explain the pilot."
+  Two colleges per slide, all text on screen at once, one press moves to the next pair. More colleges may
+  follow when he gets more transcripts. Purpose: convince them Lone Star is behind and these schools are
+  trying things "that couldn't be done before. That's where you find innovation."
+- Security argument (his, label it his): breaches happen everywhere, including Lone Star (and with or
+  without AI), so security is a reason to get involved with AI and test on purpose, not a reason to stay
+  away. He is **not** claiming to do that security work. Available as a tangent, not a slide.
+- Alabama State is a highlight (low-income school, no-code staff built advising tools, security cautious).
+- The References panel is for tangents that support arguments but are not in the presentation.
 
-## Chase's desired feel (his words where they carry meaning)
+## Accepted decisions
 
-- Wants to **see** things, then decide: "I just want to see what it looks like." "I'm probably
-  going to change it."
-- **List it off.** For other colleges: "I want a literal list of different colleges, just list it
-  off, different programs, majors, areas of discipline from those transcripts." The point is
-  breadth: "seeing a whole bunch of these colleges and all these different disciplines should make
-  it be like, oh wow, this is actually accelerating more than maybe they know."
-- Subtitle lines under titles look like **tags**; he prefers **regular white text** (lead blocks).
-- Bowen thread (his own argument, label it his): AI companions get better every year, so what is
-  the teacher's role, "otherwise we will be replaced." He is unsure whether it belongs before the
-  Hub or at the end.
-- Wants the Hub to start with **animations** (cheaper than apps), shown as a live D2L-style page.
-- Standing rules still apply: no em dashes, title case headings, no boxed footnote-style text,
-  no on-screen text aimed at him, never put anything on his screen without asking.
+- **Animation Tutorials** (`animations`, kicker "Also Built", title "Animation Tutorials"): a video "wall"
+  of 10 clips from the portal and Manim files, two rows, auto-play, loop, muted, **2x**. Row 1 (portrait):
+  rational function ex 1, conics parabola opens up, equations of lines problem 1, FTC part 1, composite
+  ex 1, quadratic domain/range. Row 2 (wide): linear inequality ex 1, work wagon, related rates, parametric
+  form. The **related rates tile is a playlist** of six clips (ladder, cone, drain, lighthouse, rocket,
+  square) that play back to back. Block type `wall` (`clips:` of `[src or [srcs], aspectRatio]`, `rate`, `h`).
+  The first screen recording was dropped; the portal files are used.
+- **Looking Forward** (`ai-tutor-next`): no pills, no numbers; three stepped bullets: homework that checks
+  the answer; guided practice; "Bringing AI into learning" (he used AI to build tools but nothing the
+  students interact with is AI; next is how to incorporate AI into learning). AI tutor talk is saved for
+  later, not here.
+- **Cut from the track, kept in References:** tutoring-research, tutoring-homework, tutoring-ai,
+  tutoring-caution (2011 VanLehn is old; the research is for a proposal), the five background pages, the old
+  ai-tutors-colleges, ai-tutor-questions, peer-colleges, bowen, next-steps-thoughts.
+- **College slides:** `site/shared/colleges.js` (block type `colleges`, 18 cards in nine pairs). Order:
+  Harford + Ferris State; Texas university + Maryville; SUNY + Kean/Middlesex; UW Stevens Point (media) +
+  (graphic design); FGCU + the sustainability game course; Santa Monica + LaGuardia; UTSA + Alabama State;
+  Agnes Scott + Clark Atlanta; Northern Arizona (policy study) + Georgetown. Title "Colleges Trying New
+  Things With AI". The last slide has a link line to the security page.
+- **Georgetown card** says "An enterprise Gemini license, built into email and documents, and a staff
+  position for AI and digital learning." Whether students have licenses is unknown (speaker note only).
+- **Library vs References:** Library = presentation pages only (40, sections story, evidence, field, path,
+  reference/glossary). **References** is a new button (home screen and bottom bar) opening four groups:
+  Research on Tutoring and AI Tutors (9), Security (1), AACU Session Summaries (22, generated), Earlier
+  Slides and Thoughts (5). Sections with `ref: true` in `content.js` are excluded from Library.
+- **Security reference:** `site/shared/security.js`, page `security-incidents` (about 40 sourced rows,
+  tracking params stripped). Speaker note holds his argument.
+- **Session summaries:** `site/shared/sessions.js`, generated from
+  `School Scrips/School documents/aacu-session-summaries.html` by a script (not saved in the repo; it lived
+  in the scratchpad; regenerate from the HTML if the summaries change). "For the pitch" lines dropped.
+- **Scaling:** the A-/A+ zoom (`--zoom`) now scales videos, the wall, hero images, and all screenshots
+  (width no longer capped at the column). At large zoom the slide scrolls.
+- **Macro App slides:** all five use image on the right (`side: true, nochip: true`), text on the left, same
+  width and place; makeup video `big: true`. Macro App and Gradebook slides have no left-column text yet.
 
-## Accepted decisions (Chase confirmed)
+## Rejected directions and corrections
 
-- Tutorial **video** embedded with custom controls: Back 5s, Play/Pause, Next 5s, 1x/2x/4x/8x.
-  File moved (not copied) to `site/media/gj-tutorial.mp4`; original removed from his Videos folder.
-- Home-screen screenshot replaced with his new one; all four corners made transparent and edge
-  strips cleaned (`site/media/gj-tutorial-home.webp` and `.png`). Original in the old session's
-  scratchpad only.
-- `gj-adapt`: "What I changed" label larger; closing line now "Because I build these apps with AI,
-  making changes is quick and simple. I can adapt it to student feedback or make improvements
-  based on the data."
-- `gj-data`: subtitle removed; opens with the paragraph "I can review an individual student...";
-  card title "Example Student".
-- `gj-homework` stays; side-by-side, five years, Copilot, risk tiers cut.
-- Other apps slide: no graphic, no placeholder numbers, no glossary link; Logic homework tagged
-  **Finite Math** (his words), Transformations, Probability, Factoring.
-- Animation tutorials slide (rational functions, linear inequalities, conics, calculus and
-  vectors): "they take less time than apps, so they are where I would start for the Skills Hub."
-- `peer-colleges` rewritten as a three-column list (community colleges and systems, by discipline,
-  campus-wide) from `School Scrips/School documents/aacu-session-summaries.html`.
-- New `bowen` slide: 72% (teens have **tried** an AI companion, Common Sense Media 2025),
-  27% (**graduates** who strongly agreed professors cared, Gallup-Purdue 2014), $699 (Harvard
-  Business School program with AI professor avatars).
-- `skills-hub` uses his D2L mockup image (`site/media/skills-hub-mockup.webp`, small, 584px wide).
-- `hub-first-build` embeds his live sandbox page: copied from
-  `My Drive/M2412/Unit 3 (10.2 - 10.7)/Conics/animations/` into `site/demos/conics-animations/`.
+- A bare, full-screen, toolbar-less video slide (it broke out of the presentation); a separate "Math
+  Animations" divider. Screen recording instead of the original Manim/portal files.
+- Research slides on this talk. The agent-voiced "For the pitch" and "Files" commentary on session pages.
+- Putting caveats or agent commentary on slides (see the deck AGENTS.md). Em dashes.
+- Bug to remember: a block property named `rows` collides with the engine's grid-row style; use another name.
 
-## Proposals Chase has not confirmed
+## Current implementation state (all uncommitted, AI presentations repo)
 
-- **Order:** Bowen placed before the Skills Hub as the "why now"; `other-apps` and `animations`
-  moved after the Hub as "what I have to start with." He said he would work out placement.
-- **AI facilitator role as "where this leads," not an ask today.** I asked; he did not answer.
-- `ai-tutor-next` points (policy, student data/FERPA, accuracy, support and cost) are **my
-  placeholder questions**, not his stated list. Marked as draft in the speaker note.
-- Adding Equations of Lines and Domain/Range apps to `other-apps` (they exist in the portal).
-
-## Rejected directions and corrections (do not rediscover)
-
-- **There is no New York Times study.** Chase said he "made up" the NYT. The study is
-  **Harvard** (Kestin et al., Scientific Reports, June 2025, physics, 194 students). Scott
-  D'Amico cited it without naming it; the second study he cited is Bastani et al., PNAS 2025
-  (Turkey, ~1,000 high school math students). Matching D'Amico's unnamed studies to these papers
-  is an inference noted in the summaries page.
-- Chase misremembered the Bowen stats slightly: **tried**, not "created," a companion; the 27% is
-  **graduates**, not students. Speaker note on `bowen` says so.
-- **Do not state VanLehn 2011 numbers on a slide.** Abstract-level only: about 0.76 for computer
-  tutors that respond at each step vs 0.79 for human tutors, but I could not confirm which
-  category 0.76 belongs to. The speaker note says to check the paper.
-- The Harvard trial is one course at one school with short-term tests; Harford's results are
-  student perceptions with no sample size. Do not overclaim.
-- Portal "white corners" were first misread as a live-app CSS bug. The white was in the
-  **screenshot image**. Two CSS edits I made in `student-portal/src/styles/portal-base.css`
-  (a navy strip on `.portal-content-panel:has(.portal-quiz)`, header/footer radius left as
-  originally rounded) did not change what he saw ("no change at all") and are probably
-  unnecessary. They are uncommitted; consider reverting after telling him.
-
-## Current implementation state (all uncommitted)
-
-**AI presentations** (own repo): `site/shared/content.js` (pages, track), `site/shared/engine.js`
-(custom video controls, new `embed` and `roster` block types), `site/shared/base.css`,
-`site/media/` (gj-tutorial.mp4 7 MB, home and Skills Hub images), `site/demos/conics-animations/`
-(**66 MB**, nine mp4 files). Ask Chase before committing; the demo folder is large.
-
-**Programs root:** `scripts/serve-programs-docs.js` (the `/ai-presentations/` mount).
-
-**School Scrips/Matrix app** (Part 2 tutorial and Auto Solve layout, **not viewed in the app**):
-- `guided-practice/GuidedPracticeHelpTrigger.tsx`: optional `labelMaxWidthPx`.
-- `part-2-step-4-multiply-help.tsx`: step 4 multiply help label capped at 84px (about 55px
-  narrower); step 5 add-help anchored left, under the "Write the sum out in Part C" box.
-- `guided-practice/useViewportAnchorPosition.ts`: new `alignLeft` option.
-- `matrix-auto-solver.tsx`: explanation box max width 400px (was 672px); row replacement gets
-  `minContentHeightPx` 160 (**an estimate**; adjust one constant,
-  `AUTO_SOLVE_ROW_REPLACEMENT_MIN_HEIGHT_PX`, if the Play/Pause bar sits too high or low).
-- `row-multiply-then-add-animation.tsx`: new optional `minContentHeightPx` prop.
-
-**student-portal:** `src/styles/portal-base.css` (see Rejected directions).
-
-**Verification done:** the content file loads in node, all 22 track stops resolve to pages, no
-em dashes, deck files return 200 from the server. **Not done:** no browser check of the new
-slides (conics iframe is set to 4:3 and untested; roster columns and the image size untested),
-no check of the Matrix app edits, no type-check of the Matrix edits.
+Modified: `site/shared/content.js`, `engine.js`, `notes.js`, `site/v2-stage.html`, `notes.html`, `v1`-`v5`
+html (script tags). New: `site/shared/colleges.js`, `security.js`, `sessions.js`; `site/media/anim-*.mp4`
+(9), `rr-1..6-*.mp4`, plus the earlier Macro App media. Syntax checks pass; all 34 stops resolve. Verified
+with headless Chrome screenshots only (no window): wall, colleges 1/7/9, security page, a session page, the
+Macro App slides, zoom at 1.4x. **Not verified:** the References panel click, the related rates playlist
+advancing, the A-/A+ buttons themselves, the makeup video width after `big: true`, colleges 2 to 6 and 8,
+Looking Forward. The Claude artifact (`artifact/vp-presentation.html`) is **stale** and its build does not
+include the new files; do not rebuild unless asked.
 
 ## Open questions and constraints
 
-- Which stops are too long? Time budget target about 20 minutes; roughly 10 were built before
-  today. Chase has not yet seen the new slides.
-- `the-ask` (Tools, Time, Pilot, Vision) was **not touched** and still refers to "one review of a
-  defined tool set," while the Copilot and risk-tier slides were cut. It may need to change.
-- More conference videos coming: the peer lists should grow; more rows go in `content.js`.
-- D2L widget access and what is allowed in D2L are unresolved (Chase's own question for IT).
-- Never open the browser, launch a GUI, or change display config without asking first.
+- **University of South Dakota Sanford School of Medicine** (Paula Hawks, self-directed learning and AI):
+  Chase will get the transcript; then add a college card and session page. Only the abstract exists now.
+- Whether to move the Northern Arizona policy card to the first college slide (strongest "associate's
+  colleges are behind" point); it is on slide 30 now.
+- The **D2L row on the security page quotes Lone Star's own help page** (confirmed verbatim). He chose to
+  keep it unless told otherwise; mention if he asks about audience reaction.
+- Two security rows lack links (St. Thomas Houston, GAO). The list is his pasted research, mostly unchecked.
+- ChatGPT logo on How I Got Here: never resolved. A "Part 1" divider: not built. `gj-adapt` still has a
+  placeholder student quote. Only Chase's words go on slides.
+- He has about 30 more conference videos; he may send transcripts to extract which sessions have AI use in
+  the classroom, then expand the colleges section.
+- Never open a browser or launch a GUI without asking (headless Chrome screenshots are fine). Never commit
+  or push mid-session. FERPA: keep the blurs on the makeup exam video. Windows PowerShell rules apply.
 
 ## Exact next step
 
-Chase reviews stops 12 to 22 at `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=11`
-and says what to rework. Start from his reaction; do not rebuild the artifact. If he wants a
-visual check first, ask permission once to open the deck in the browser pane, then check the
-conics iframe shape, the roster columns, and the Skills Hub image.
+Ask Chase what he wants next in the deck. Likely candidates: view slides 20 to 30 and react; text for the
+empty left column of the Macro App and Gradebook slides; moving the Northern Arizona card; adding the
+University of South Dakota card when the transcript arrives. Then give him the deck link.
