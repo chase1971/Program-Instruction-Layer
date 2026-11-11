@@ -1,0 +1,513 @@
+{
+  "good_id": "lumber",
+  "save_date": "1340.5.19",
+  "playthrough": "Portugal #905552cd",
+  "country_id": 1259,
+  "country_tag": "POR",
+  "capital_location": 2781,
+  "market_id": 33,
+  "market_center": 2781,
+  "market_members": 90,
+  "price": 1.35816,
+  "base_price": 1.5,
+  "supply": 20.01333,
+  "demand": 17.95632,
+  "stockpile": 82.13256,
+  "supplied_breakdown": {
+    "Production": 20.01333
+  },
+  "demanded_breakdown": {
+    "Pops": 0.00017,
+    "Building": 17.60617,
+    "Units": 0.04998,
+    "Consumption": 0.3
+  },
+  "taken_breakdown": {
+    "Pops": 0.00017,
+    "Building": 17.60617,
+    "Units": 0.04998,
+    "Consumption": 0.3
+  },
+  "price_history": [
+    1.48472,
+    1.1943,
+    1.20753,
+    1.22286,
+    1.50889,
+    1.5081,
+    1.50403,
+    1.49842,
+    1.49211,
+    1.48402,
+    1.47523,
+    1.46552,
+    1.45624,
+    1.44739,
+    1.44055,
+    1.43664,
+    1.43306,
+    1.43104,
+    1.42895,
+    1.43347,
+    1.43681,
+    1.43927,
+    1.44039,
+    1.4368,
+    1.43001,
+    1.42129,
+    1.41311,
+    1.40478,
+    1.39675,
+    1.38906,
+    1.38298,
+    1.37733,
+    1.36959,
+    1.36201,
+    1.35635,
+    1.35226,
+    1.35037,
+    1.35236,
+    1.35429,
+    1.35586,
+    1.35708,
+    1.35816
+  ],
+  "market_rgo_locations": 9,
+  "country_last_month_produced": 13.00959,
+  "country_rgo_locations": [
+    {
+      "location_id": 2724,
+      "market": 33,
+      "market_access": 0.74333,
+      "development": 18.04182,
+      "control": 0.19695
+    },
+    {
+      "location_id": 2725,
+      "market": 33,
+      "market_access": 0.77078,
+      "development": 19.04874,
+      "control": 0.20468
+    },
+    {
+      "location_id": 2730,
+      "market": 33,
+      "market_access": 0.75623,
+      "development": 15.02266,
+      "control": 0.14395
+    },
+    {
+      "location_id": 2743,
+      "market": 33,
+      "market_access": 0.8947,
+      "development": 19.05239,
+      "control": 0.47664
+    },
+    {
+      "location_id": 2746,
+      "market": 33,
+      "market_access": 0.72303,
+      "development": 16.03708,
+      "control": 0.35204
+    },
+    {
+      "location_id": 2753,
+      "market": 33,
+      "market_access": 0.62003,
+      "development": 16.02567,
+      "control": 0.1402
+    },
+    {
+      "location_id": 2755,
+      "market": 33,
+      "market_access": 0.65916,
+      "development": 19.03613,
+      "control": 0.1216
+    },
+    {
+      "location_id": 2791,
+      "market": 33,
+      "market_access": 0.91612,
+      "development": 21.03967,
+      "control": 0.71215
+    }
+  ],
+  "related_building_counts": {
+    "furniture_guild": 1,
+    "paper_guild": 7,
+    "naval_supplies_guild": 1,
+    "lumber_mill": 1,
+    "tar_kiln": 1
+  },
+  "related_building_levels": {
+    "furniture_guild": 1,
+    "paper_guild": 7,
+    "naval_supplies_guild": 1,
+    "lumber_mill": 1,
+    "tar_kiln": 4
+  },
+  "related_building_profit": {
+    "furniture_guild": -0.03668,
+    "paper_guild": 1.3521899999999998,
+    "lumber_mill": 0.06514,
+    "tar_kiln": 2.15721
+  },
+  "related_buildings": [
+    {
+      "type": "tar_kiln",
+      "location": 2739,
+      "level": 4,
+      "last_months_profit": 2.15721,
+      "employed": 1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2786,
+      "level": 1,
+      "last_months_profit": 0.29564,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2781,
+      "level": 1,
+      "last_months_profit": 0.19988,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2744,
+      "level": 1,
+      "last_months_profit": 0.19347,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2738,
+      "level": 1,
+      "last_months_profit": 0.19283,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2724,
+      "level": 1,
+      "last_months_profit": 0.17953,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2760,
+      "level": 1,
+      "last_months_profit": 0.15738,
+      "employed": 0.1
+    },
+    {
+      "type": "paper_guild",
+      "location": 2763,
+      "level": 1,
+      "last_months_profit": 0.13346,
+      "employed": 0.1
+    },
+    {
+      "type": "lumber_mill",
+      "location": 2750,
+      "level": 1,
+      "last_months_profit": 0.06514,
+      "employed": 0.36132
+    },
+    {
+      "type": "furniture_guild",
+      "location": 2781,
+      "level": 1,
+      "last_months_profit": -0.03668,
+      "employed": 0.06
+    }
+  ],
+  "balance": 2.0570099999999982,
+  "demand_filled": 17.956319999999998,
+  "dossier": {
+    "good_id": "lumber",
+    "base_price": 1.5,
+    "category": "raw_material",
+    "method": "forestry",
+    "producers": [
+      {
+        "building": "tar_kiln",
+        "file": "common_buildings.txt",
+        "raw_material": true,
+        "produced": false
+      },
+      {
+        "building": "lumber_mill",
+        "file": "common_buildings.txt",
+        "raw_material": true,
+        "produced": true
+      },
+      {
+        "building": "sawmill",
+        "file": "rural_buildings.txt",
+        "raw_material": true,
+        "produced": false
+      }
+    ],
+    "top_consumers": [
+      {
+        "building": "dyes_mill",
+        "amount": 7.184,
+        "file": "production_dyes.txt"
+      },
+      {
+        "building": "dyesworks",
+        "amount": 3.4403,
+        "file": "production_dyes.txt"
+      },
+      {
+        "building": "naval_base",
+        "amount": 3.0,
+        "file": "port_buildings.txt"
+      },
+      {
+        "building": "lacquerware_manufactory",
+        "amount": 2.2625,
+        "file": "production_lacquerware.txt"
+      },
+      {
+        "building": "grand_shipyard",
+        "amount": 1.6,
+        "file": "port_buildings.txt"
+      },
+      {
+        "building": "improved_charcoal_maker",
+        "amount": 1.3333,
+        "file": "rural_buildings.txt"
+      },
+      {
+        "building": "tar_kiln",
+        "amount": 1.1111,
+        "file": "common_buildings.txt"
+      },
+      {
+        "building": "woodhenge_of_cahokia",
+        "amount": 1.0,
+        "file": "event_only_buildings.txt"
+      },
+      {
+        "building": "venetian_arsenal",
+        "amount": 1.0,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "copenhagen_dockyard",
+        "amount": 1.0,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "north_sea_shipyards",
+        "amount": 1.0,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "porto_pisano",
+        "amount": 1.0,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "printing_mill",
+        "amount": 0.9054,
+        "file": "production_books.txt"
+      },
+      {
+        "building": "charcoal_maker",
+        "amount": 0.8889,
+        "file": "rural_buildings.txt"
+      },
+      {
+        "building": "naval_supplies_manufactory",
+        "amount": 0.8791,
+        "file": "production_naval_supplies.txt"
+      },
+      {
+        "building": "shipyard",
+        "amount": 0.8,
+        "file": "port_buildings.txt"
+      },
+      {
+        "building": "schwaz_mine",
+        "amount": 0.7935,
+        "file": "event_only_buildings.txt"
+      },
+      {
+        "building": "dyes_workshop",
+        "amount": 0.7305,
+        "file": "production_dyes.txt"
+      },
+      {
+        "building": "trans_saharan_trade_outposts",
+        "amount": 0.5,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "sheep_farms",
+        "amount": 0.496,
+        "file": "rural_buildings.txt"
+      },
+      {
+        "building": "weapon_factory",
+        "amount": 0.4413,
+        "file": "production_weapons.txt"
+      },
+      {
+        "building": "printing_manufactory",
+        "amount": 0.4269,
+        "file": "production_books.txt"
+      },
+      {
+        "building": "imperial_halic_shipyards",
+        "amount": 0.4,
+        "file": "event_only_buildings.txt"
+      },
+      {
+        "building": "dry_dock",
+        "amount": 0.4,
+        "file": "port_buildings.txt"
+      },
+      {
+        "building": "barcelona_royal_shipyard",
+        "amount": 0.4,
+        "file": "unique_buildings.txt"
+      }
+    ],
+    "top_maintenance": [
+      {
+        "building": "paper_mill",
+        "amount": 4.4444,
+        "file": "production_paper.txt"
+      },
+      {
+        "building": "furniture_mill",
+        "amount": 3.8377,
+        "file": "production_furniture.txt"
+      },
+      {
+        "building": "furniture_manufactory",
+        "amount": 2.0272,
+        "file": "production_furniture.txt"
+      },
+      {
+        "building": "naval_supplies_mill",
+        "amount": 1.8236,
+        "file": "production_naval_supplies.txt"
+      },
+      {
+        "building": "furniture_workshop",
+        "amount": 1.1271,
+        "file": "production_furniture.txt"
+      },
+      {
+        "building": "furniture_guild",
+        "amount": 0.9817,
+        "file": "production_furniture.txt"
+      },
+      {
+        "building": "weapon_manufactory",
+        "amount": 0.5565,
+        "file": "production_weapons.txt"
+      },
+      {
+        "building": "glass_mill",
+        "amount": 0.5556,
+        "file": "production_glass.txt"
+      },
+      {
+        "building": "brewery_mill",
+        "amount": 0.5038,
+        "file": "production_beer.txt"
+      },
+      {
+        "building": "glassworks",
+        "amount": 0.4039,
+        "file": "production_glass.txt"
+      },
+      {
+        "building": "winery_manufactory",
+        "amount": 0.3975,
+        "file": "production_wine.txt"
+      },
+      {
+        "building": "winery_manufactory",
+        "amount": 0.3975,
+        "file": "production_wine.txt"
+      },
+      {
+        "building": "winery_manufactory",
+        "amount": 0.3843,
+        "file": "production_wine.txt"
+      },
+      {
+        "building": "firearms_manufactory",
+        "amount": 0.342,
+        "file": "production_firearms.txt"
+      },
+      {
+        "building": "glass_workshop",
+        "amount": 0.3365,
+        "file": "production_glass.txt"
+      },
+      {
+        "building": "weapon_workshop",
+        "amount": 0.3302,
+        "file": "production_weapons.txt"
+      },
+      {
+        "building": "glass_guild",
+        "amount": 0.3126,
+        "file": "production_glass.txt"
+      },
+      {
+        "building": "shoen",
+        "amount": 0.304,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "chieftain_hall",
+        "amount": 0.3,
+        "file": "capital_buildings.txt"
+      },
+      {
+        "building": "ostrog",
+        "amount": 0.3,
+        "file": "unique_buildings.txt"
+      },
+      {
+        "building": "stone_quarry",
+        "amount": 0.278,
+        "file": "common_buildings.txt"
+      },
+      {
+        "building": "beer_workshop",
+        "amount": 0.2625,
+        "file": "production_beer.txt"
+      },
+      {
+        "building": "beer_workshop",
+        "amount": 0.2625,
+        "file": "production_beer.txt"
+      },
+      {
+        "building": "beer_workshop",
+        "amount": 0.2625,
+        "file": "production_beer.txt"
+      },
+      {
+        "building": "shoen",
+        "amount": 0.262,
+        "file": "unique_buildings.txt"
+      }
+    ],
+    "consumer_count": 53,
+    "maintenance_count": 36
+  },
+  "save_path": "C:\\Users\\chase\\Documents\\Paradox Interactive\\Europa Universalis V\\save games\\autosave_3f0f212a-a31b-4f57-b2cb-9fc5427f241d.eu5",
+  "save_mtime": 1794278523.9925098
+}

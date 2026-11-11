@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EU5 lumber tracker</title>
+  <style>
+    :root {
+      --bg: #1b2420;
+      --panel: #24302a;
+      --ink: #e8f0ea;
+      --muted: #9bb0a3;
+      --accent: #c4a35a;
+      --line: #3a4a42;
+    }
+    body {
+      margin: 0; font-family: "Segoe UI", Tahoma, sans-serif;
+      background: radial-gradient(circle at top left, #2c3b33, var(--bg));
+      color: var(--ink); line-height: 1.45;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 24px 18px 64px; }
+    a { color: var(--accent); }
+    h1 { font-size: 2rem; margin: 0 0 0.25rem; }
+    h2 { margin-top: 1.8rem; font-size: 1.25rem; color: var(--accent); }
+    .muted { color: var(--muted); }
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin: 16px 0 8px;
+    }
+    .card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 8px; padding: 12px 12px 10px;
+    }
+    .card .label { color: var(--muted); font-size: 0.8rem; }
+    .card .value { font-size: 1.35rem; font-weight: 650; margin-top: 4px; }
+    table {
+      width: 100%; border-collapse: collapse; background: var(--panel);
+      border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
+    .spark {
+      display: flex; align-items: flex-end; gap: 2px; height: 84px;
+      padding: 8px; background: var(--panel); border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .spark span {
+      width: 8px; background: linear-gradient(180deg, #dfc27a, #8d6b2f);
+      display: inline-block; border-radius: 2px 2px 0 0;
+    }
+    .panel {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 8px; padding: 12px 14px; margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="http://127.0.0.1:8775/">← Pick another save</a></p>
+  <p class="muted">Scratch copy also at /scratch/eu5-commodity-tracker.html on :8765</p>
+  <h1>lumber market tracker</h1>
+  <p class="muted">
+    Portugal #905552cd · POR ·
+    date 1340.5.19 · market 33
+  </p>
+
+  <div class="cards">
+    <div class="card"><div class="label">Price</div><div class="value">1.358</div></div>
+    <div class="card"><div class="label">Base</div><div class="value">1.500</div></div>
+    <div class="card"><div class="label">Supply</div><div class="value">20.013</div></div>
+    <div class="card"><div class="label">Demand</div><div class="value">17.956</div></div>
+    <div class="card"><div class="label">Balance</div><div class="value">2.057</div></div>
+    <div class="card"><div class="label">Stockpile</div><div class="value">82.133</div></div>
+    <div class="card"><div class="label">Your last-month output</div><div class="value">13.010</div></div>
+    <div class="card"><div class="label">Your RGO sites</div><div class="value">8</div></div>
+  </div>
+
+  <h2>What to care about for lumber</h2>
+  <div class="panel"><ul><li><strong>Price</strong> in your market: are you cheap or expensive vs base 1.500?</li><li><strong>Supply vs demand</strong>: surplus grows stockpile and softens price; shortage does the opposite.</li><li><strong>Who buys it</strong>: Building / Construction / Units / Pops breakdown shows why demand exists.</li><li><strong>Your production</strong>: RGO locations + last-month produced.</li><li><strong>Related buildings</strong>: mills and guilds that make money from, or spend money on, this good.</li></ul></div>
+
+  <h2>Price history (from this save)</h2>
+  <div class="spark" aria-label="price history">
+<span title="1.4847" style="height:74px"></span>
+<span title="1.1943" style="height:8px"></span>
+<span title="1.2075" style="height:11px"></span>
+<span title="1.2229" style="height:14px"></span>
+<span title="1.5089" style="height:80px"></span>
+<span title="1.5081" style="height:79px"></span>
+<span title="1.5040" style="height:78px"></span>
+<span title="1.4984" style="height:77px"></span>
+<span title="1.4921" style="height:76px"></span>
+<span title="1.4840" style="height:74px"></span>
+<span title="1.4752" style="height:72px"></span>
+<span title="1.4655" style="height:70px"></span>
+<span title="1.4562" style="height:67px"></span>
+<span title="1.4474" style="height:65px"></span>
+<span title="1.4405" style="height:64px"></span>
+<span title="1.4366" style="height:63px"></span>
+<span title="1.4331" style="height:62px"></span>
+<span title="1.4310" style="height:62px"></span>
+<span title="1.4289" style="height:61px"></span>
+<span title="1.4335" style="height:62px"></span>
+<span title="1.4368" style="height:63px"></span>
+<span title="1.4393" style="height:64px"></span>
+<span title="1.4404" style="height:64px"></span>
+<span title="1.4368" style="height:63px"></span>
+<span title="1.4300" style="height:61px"></span>
+<span title="1.4213" style="height:59px"></span>
+<span title="1.4131" style="height:58px"></span>
+<span title="1.4048" style="height:56px"></span>
+<span title="1.3967" style="height:54px"></span>
+<span title="1.3891" style="height:52px"></span>
+<span title="1.3830" style="height:51px"></span>
+<span title="1.3773" style="height:49px"></span>
+<span title="1.3696" style="height:48px"></span>
+<span title="1.3620" style="height:46px"></span>
+<span title="1.3563" style="height:45px"></span>
+<span title="1.3523" style="height:44px"></span>
+<span title="1.3504" style="height:43px"></span>
+<span title="1.3524" style="height:44px"></span>
+<span title="1.3543" style="height:44px"></span>
+<span title="1.3559" style="height:44px"></span>
+<span title="1.3571" style="height:45px"></span>
+<span title="1.3582" style="height:45px"></span>
+</div>
+<p class="muted">History window: 1.194 to 1.509 (42 months in save)</p>
+
+  <h2>Demand breakdown (who wants it)</h2><table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td>Building</td><td>17.606</td></tr><tr><td>Consumption</td><td>0.300</td></tr><tr><td>Units</td><td>0.050</td></tr><tr><td>Pops</td><td>0.000</td></tr></tbody></table>
+  <h2>Supply breakdown</h2><table><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody><tr><td>Production</td><td>20.013</td></tr></tbody></table>
+
+  <h2>Your lumber RGO locations</h2>
+  <table>
+    <thead><tr><th>Location</th><th>Market access</th><th>Control</th><th>Development</th></tr></thead>
+    <tbody><tr><td>2724</td><td>0.743</td><td>0.197</td><td>18.042</td></tr><tr><td>2725</td><td>0.771</td><td>0.205</td><td>19.049</td></tr><tr><td>2730</td><td>0.756</td><td>0.144</td><td>15.023</td></tr><tr><td>2743</td><td>0.895</td><td>0.477</td><td>19.052</td></tr><tr><td>2746</td><td>0.723</td><td>0.352</td><td>16.037</td></tr><tr><td>2753</td><td>0.620</td><td>0.140</td><td>16.026</td></tr><tr><td>2755</td><td>0.659</td><td>0.122</td><td>19.036</td></tr><tr><td>2791</td><td>0.916</td><td>0.712</td><td>21.040</td></tr></tbody>
+  </table>
+
+  <h2>Related buildings you own</h2>
+  <table>
+    <thead><tr><th>Building</th><th>Level</th><th>Last month profit</th><th>Location</th></tr></thead>
+    <tbody><tr><td>tar_kiln</td><td>4</td><td>2.157</td><td>2739</td></tr><tr><td>paper_guild</td><td>1</td><td>0.296</td><td>2786</td></tr><tr><td>paper_guild</td><td>1</td><td>0.200</td><td>2781</td></tr><tr><td>paper_guild</td><td>1</td><td>0.193</td><td>2744</td></tr><tr><td>paper_guild</td><td>1</td><td>0.193</td><td>2738</td></tr><tr><td>paper_guild</td><td>1</td><td>0.180</td><td>2724</td></tr><tr><td>paper_guild</td><td>1</td><td>0.157</td><td>2760</td></tr><tr><td>paper_guild</td><td>1</td><td>0.133</td><td>2763</td></tr><tr><td>lumber_mill</td><td>1</td><td>0.065</td><td>2750</td></tr><tr><td>furniture_guild</td><td>1</td><td>-0.037</td><td>2781</td></tr></tbody>
+  </table>
+
+  <h2>Definition: who produces lumber</h2>
+  <table>
+    <thead><tr><th>Building / RGO</th><th>Role</th></tr></thead>
+    <tbody><tr><td>tar_kiln</td><td>RGO</td></tr><tr><td>lumber_mill</td><td>RGO output</td></tr><tr><td>sawmill</td><td>RGO</td></tr></tbody>
+  </table>
+
+  <h2>Definition: top input users</h2>
+  <table>
+    <thead><tr><th>Building</th><th>Input amount</th></tr></thead>
+    <tbody><tr><td>dyes_mill</td><td>7.184</td></tr><tr><td>dyesworks</td><td>3.440</td></tr><tr><td>naval_base</td><td>3.000</td></tr><tr><td>lacquerware_manufactory</td><td>2.263</td></tr><tr><td>grand_shipyard</td><td>1.600</td></tr><tr><td>improved_charcoal_maker</td><td>1.333</td></tr><tr><td>tar_kiln</td><td>1.111</td></tr><tr><td>woodhenge_of_cahokia</td><td>1.000</td></tr><tr><td>venetian_arsenal</td><td>1.000</td></tr><tr><td>copenhagen_dockyard</td><td>1.000</td></tr><tr><td>north_sea_shipyards</td><td>1.000</td></tr><tr><td>porto_pisano</td><td>1.000</td></tr><tr><td>printing_mill</td><td>0.905</td></tr><tr><td>charcoal_maker</td><td>0.889</td></tr><tr><td>naval_supplies_manufactory</td><td>0.879</td></tr></tbody>
+  </table>
+
+  <p class="muted">Generated from save snapshot. Recording across multiple autosaves comes next.</p>
+</main>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const EPISODE_IDS = ["ep1", "ep2", "ep3", "ep4", "ep5", "ep6"];
+const EPISODE_IDS = ["ep1", "ep2", "ep3", "ep4", "ep5", "ep6", "trader"];
 
 const SECTION_LABELS_BY_EP = {
   ep1: {
@@ -42,6 +42,15 @@ const SECTION_LABELS_BY_EP = {
     decisions: "Decisions",
     prep: "Actions",
     next: "Where it leaves off",
+  },
+  trader: {
+    overview: "Overview",
+    opening: "Opening economy",
+    morocco: "Morocco wars",
+    growth: "Growth and Africa",
+    india: "India route",
+    colonies: "Colonization machine",
+    takeaways: "Strategy cards",
   },
 };
 
