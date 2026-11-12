@@ -56,26 +56,353 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1693</dd></div>
-      <div><dt>Tasks today</dt><dd>10</dd></div>
+      <div><dt>Total tasks</dt><dd>1729</dd></div>
+      <div><dt>Tasks today</dt><dd>36</dd></div>
       <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 210 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>172k</dd></div>
       <div><dt>Total billed</dt><dd>796.1M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">9:20 PM · Tuesday, Nov 10, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">7:19 PM · Wednesday, Nov 11, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>36</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro App AGENTS.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>39</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro App AGENTS.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — EU5 commodity tracker / lumber goods tracking from saves<span class="gap-task">7:17 PM · Tuesday, Nov 10, 2026 — EU5 commodity tracker: lumber snapshot + HTML from Portugal saves</span></li><li><code>agent docs/INDEX.md</code> — EU5 in-game scrollbar track-click / UI modding<span class="gap-task">8:21 PM · Sunday, Nov 8, 2026 — Checked EU5 desktop install scrollbar GUI: no jump-to-click mod; track click is engine page/step</span></li><li><code>agent docs/INDEX.md</code> — EU5 / AACU YouTube transcripts had no routing row<span class="gap-task">7:14 PM · Sunday, Nov 8, 2026 — Located 8 EU5 YouTube transcripts in My Drive/AACU/YouTube; added INDEX row</span></li><li><code>agent docs/INDEX.md</code> — Chase admin Reset / tutorial complete after reset → student-portal MATRIX_TUTORIAL_SAVING.md<span class="gap-task">10:56 AM · Saturday, Nov 7, 2026 — Gauss-Jordan Chase admin Reset: skip-gated no longer fakes Tutorial complete</span></li><li><code>Macro App AGENTS.md</code> — no row for gradebook view-tuning font clamp / grade font stepper<span class="gap-task">1:37 PM · Friday, Nov 6, 2026 — Gradebook grade-font decrease was stuck: 0.5 step + integer Math.round canceled every minus click</span></li><li><code>agent docs/INDEX.md</code> — Final Exam Review bank / final-exam-review-map routing<span class="gap-task">1:01 PM · Friday, Nov 6, 2026 — Final Review bank: click-to-add pools, skill/pool/flat sorts, LaTeX stems exams 1-3</span></li><li><code>student-portal AGENTS.md</code> — logic homework Next hidden until classification is checked, and that check is not in the resume snapshot<span class="gap-task">11:42 AM · Tuesday, Nov 3, 2026 — Explained why Logic homework problem 1 can finish with no Next button</span></li><li><code>agent docs/INDEX.md</code> — no row for FTC animation files (ftc_theorem_statement.py, fundamentalTheoremGuide.ts)<span class="gap-task">11:43 AM · Saturday, Oct 31, 2026 — FTC clip 4: problem 10 moving endpoint (d/dx of integral 2 to x^2 of 3p+1), rendered, wired as portal tab 4, test green</span></li><li><code>agent docs/INDEX.md</code> — no 11.2 homework statistics row<span class="gap-task">8:20 PM · Wednesday, Oct 28, 2026 — Built 11.2 Homework Teacher Console statistics: guided misses, right-or-wrong, survey, time</span></li><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)<span class="gap-task">8:52 PM · Sunday, Oct 25, 2026 — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span></li><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser<span class="gap-task">2:44 PM · Sunday, Oct 25, 2026 — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span></li><li><code>School Scrips/student-portal/AGENTS.md</code> — Added 11.2 Homework lookup and corrected outdated three-problem routing.<span class="gap-task">1:21 PM · Saturday, Oct 24, 2026 — Reviewed 11.2 homework readiness. All 75 existing scoped tests passed; three temporary headless audit probes reproduced missing three-variable resume inputs, solution-only first-try grading error, and problem-index advancement on failed save. Removed audit probes after verification; no runtime fixes or deployment.</span></li><li><code>vertical-scroll-rail.md</code> — did not say portal preview is phone-emulated so in-page rail cannot hover<span class="gap-task">9:10 PM · Friday, Oct 23, 2026 — Teacher Console preview: added Macro App BrowserVerticalScrollRail beside phone frame (IPC scroll); hid in-page frame gallery rail under hover:none; recipe + portal AGENTS updated</span></li><li><code>student-portal/AGENTS.md</code> — no scroll rail keyword row, agent never found vertical-scroll-rail.md<span class="gap-task">9:02 PM · Friday, Oct 23, 2026 — Frame gallery scroll rail: removed pointer handlers to match Macro App exemplar; routed student-portal AGENTS.md to vertical-scroll-rail recipe</span></li><li><code>recipes/INDEX.md</code> — no row routing to the Factoring solve-board cancel animation (added)<span class="gap-task">4:03 PM · Friday, Oct 23, 2026 — Parametric solve animation: factoring house style (gold ops, red strikes), y box, no loop</span></li></ul>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — record graphing / transformations wall clip row<span class="gap-task">7:10 PM · Wednesday, Nov 11, 2026 — Recorded Graphing Transformations wall clip (record:graphing + Other Math Apps)</span></li><li><code>agent docs/INDEX.md</code> — record logic gates / XOR extra credit demo had no row<span class="gap-task">5:50 PM · Wednesday, Nov 11, 2026 — Logic Gates Extra Credit XOR recording automation (npm run record:gates)</span></li><li><code>agent docs/INDEX.md</code> — AI presentations row lacked Day 1 thumbs-review URL (added)<span class="gap-task">1:56 PM · Wednesday, Nov 11, 2026 — AACU Day 1 review queue: 15 candidate panels + thumbs up/down UI at ai-presentations/aacu-day1-review.html</span></li><li><code>INDEX.md</code> — AACU transcript checklist overlay (added)<span class="gap-task">11:41 AM · Wednesday, Nov 11, 2026 — AACU transcript checklist overlay (Need fix + Verify tabs); Launcher Panel tile</span></li><li><code>agent docs/INDEX.md</code> — EU5 commodity tracker / lumber goods tracking from saves<span class="gap-task">7:17 PM · Tuesday, Nov 10, 2026 — EU5 commodity tracker: lumber snapshot + HTML from Portugal saves</span></li><li><code>agent docs/INDEX.md</code> — EU5 in-game scrollbar track-click / UI modding<span class="gap-task">8:21 PM · Sunday, Nov 8, 2026 — Checked EU5 desktop install scrollbar GUI: no jump-to-click mod; track click is engine page/step</span></li><li><code>agent docs/INDEX.md</code> — EU5 / AACU YouTube transcripts had no routing row<span class="gap-task">7:14 PM · Sunday, Nov 8, 2026 — Located 8 EU5 YouTube transcripts in My Drive/AACU/YouTube; added INDEX row</span></li><li><code>agent docs/INDEX.md</code> — Chase admin Reset / tutorial complete after reset → student-portal MATRIX_TUTORIAL_SAVING.md<span class="gap-task">10:56 AM · Saturday, Nov 7, 2026 — Gauss-Jordan Chase admin Reset: skip-gated no longer fakes Tutorial complete</span></li><li><code>Macro App AGENTS.md</code> — no row for gradebook view-tuning font clamp / grade font stepper<span class="gap-task">1:37 PM · Friday, Nov 6, 2026 — Gradebook grade-font decrease was stuck: 0.5 step + integer Math.round canceled every minus click</span></li><li><code>agent docs/INDEX.md</code> — Final Exam Review bank / final-exam-review-map routing<span class="gap-task">1:01 PM · Friday, Nov 6, 2026 — Final Review bank: click-to-add pools, skill/pool/flat sorts, LaTeX stems exams 1-3</span></li><li><code>student-portal AGENTS.md</code> — logic homework Next hidden until classification is checked, and that check is not in the resume snapshot<span class="gap-task">11:42 AM · Tuesday, Nov 3, 2026 — Explained why Logic homework problem 1 can finish with no Next button</span></li><li><code>agent docs/INDEX.md</code> — no row for FTC animation files (ftc_theorem_statement.py, fundamentalTheoremGuide.ts)<span class="gap-task">11:43 AM · Saturday, Oct 31, 2026 — FTC clip 4: problem 10 moving endpoint (d/dx of integral 2 to x^2 of 3p+1), rendered, wired as portal tab 4, test green</span></li><li><code>agent docs/INDEX.md</code> — no 11.2 homework statistics row<span class="gap-task">8:20 PM · Wednesday, Oct 28, 2026 — Built 11.2 Homework Teacher Console statistics: guided misses, right-or-wrong, survey, time</span></li><li><code>Matrix app AGENTS.md</code> — no row for baking saved layout before deploy (added)<span class="gap-task">8:52 PM · Sunday, Oct 25, 2026 — Found why phone/desktop showed 22 overlaps: Edit layout lived only in TC localStorage, baked tables were empty. Added bake-gp-layout.mjs + gpLayoutBaked.json; fresh-profile gallery now 0 overlaps at all sizes</span></li><li><code>frame-gallery</code> — no doc explained check offset is relative to flow base; had to measure in browser<span class="gap-task">2:44 PM · Sunday, Oct 25, 2026 — Frame gallery check mark: keypad out of flow so check base matches app (measured live)</span></li></ul>
     </details>
   </section>
     <section class="day-block">
+      <h2 class="day-title">Wednesday, Nov 11, 2026 <span class="day-count">36 tasks</span></h2>
+      <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:19 PM — Graphing wall clip: looser top crop (1040x580)</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 48s active tool time<br>2m since previous task (includes idle)<br>Chat so far: 3 message(s), 68 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:17 PM — Gates wall clip: circuit-only after Directions, 1x (~23.5s)</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 28s active tool time<br>6m 37s since previous task (includes idle)<br>Chat so far: 2 message(s), 53 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:10 PM — Recorded Graphing Transformations wall clip (record:graphing + Other Math Apps)</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 45s active tool time<br>7m 46s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — record graphing / transformations wall clip row</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">7:02 PM — Momentum handoff: Logic Gates Extra Credit wall clip</span>
+      <span class="pill p0">Chat: 17 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 11s active tool time<br>3m 15s since previous task (includes idle)<br>Chat so far: 17 message(s), 215 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:59 PM — Gates wall clip: whole video 2x (no split); crop kept; record:gates bakes 2x</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 46s active tool time<br>2m 54s since previous task (includes idle)<br>Chat so far: 16 message(s), 207 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:56 PM — Other Math Apps: gates-only wall clip; circuit half at 2x</span>
+      <span class="pill p0">Chat: 15 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 11s active tool time<br>2m 18s since previous task (includes idle)<br>Chat so far: 15 message(s), 189 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:54 PM — Cropped gates wall clip + smaller Other Math Apps wall height</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m active tool time<br>4m 7s since previous task (includes idle)<br>Chat so far: 14 message(s), 180 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:50 PM — Wired Logic Gates XOR demo onto Other Math Apps wall next to logic homework</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 36s active tool time<br>2m 39s since previous task (includes idle)<br>Chat so far: 13 message(s), 174 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:47 PM — Re-recorded Logic Gates XOR demo with smaller desktop gates/labels</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>35m 59s active tool time<br>36m 6s since previous task (includes idle)<br>Chat so far: 12 message(s), 170 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:11 PM — Logic gates: admin cheat bypasses table (portal hasAdminCheats + standalone ?cheat)</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 6s active tool time<br>2m 13s since previous task (includes idle)<br>Chat so far: 6 message(s), 148 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:09 PM — Logic gates desktop-only view scale 0.7 (phone fit unchanged)</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>18m 42s active tool time<br>18m 43s since previous task (includes idle)<br>Chat so far: 5 message(s), 144 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:50 PM — Logic Gates Extra Credit XOR recording automation (npm run record:gates)</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>21m 52s active tool time<br>21m 53s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — record logic gates / XOR extra credit demo had no row</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:28 PM — Momentum handoff: gj-homework deck (builds, miss chart, typography doc)</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 39s active tool time<br>2m 44s since previous task (includes idle)<br>Chat so far: 14 message(s), 160 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:25 PM — AI presentations: left-col bar chart text 0.92em to 1.15em; documented Stage typography in AGENTS.md</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 12s active tool time<br>6m 19s since previous task (includes idle)<br>Chat so far: 13 message(s), 154 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:19 PM — gj-homework: setup bullets with P3 choice 9 right-or-wrong / 5 guided before survey stats</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1h 12m active tool time<br>1h 12m since previous task (includes idle)<br>Chat so far: 10 message(s), 105 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:07 PM — gj-homework slide: 4x video, survey stats first then feedback replaces them</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>13m 19s active tool time<br>13m 20s since previous task (includes idle)<br>Chat so far: 2 message(s), 61 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:53 PM — 11.2 homework demo re-recorded with human keypad typing and selecting instead of auto-fill</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>10m 17s active tool time<br>10m 19s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:43 PM — Momentum handoff for 11.2 gj-homework recording (topic file; AACU latest left intact)</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>27m 15s active tool time<br>27m 19s since previous task (includes idle)<br>Chat so far: 14 message(s), 222 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:16 PM — AACU Day 3 unwatched review queue: 18 panels at ai-presentations/aacu-day3-review.html</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5-high<br>48m 53s active tool time<br>49m 2s since previous task (includes idle)<br>Chat so far: 5 message(s), 129 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:27 PM — AACU Day 2 unwatched review queue: 11 panels at ai-presentations/aacu-day2-review.html</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5-high<br>30m 15s active tool time<br>30m 21s since previous task (includes idle)<br>Chat so far: 3 message(s), 81 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:56 PM — AACU Day 1 review queue: 15 candidate panels + thumbs up/down UI at ai-presentations/aacu-day1-review.html</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5-high<br>7m 59s active tool time<br>8m 2s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>agent docs/INDEX.md</code> — AI presentations row lacked Day 1 thumbs-review URL (added)</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:48 PM — Momentum handoff: AACU Day 1 extract panels with thumbs up/down next</span>
+      <span class="pill p0">Chat: 19 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>32m 11s active tool time<br>32m 12s since previous task (includes idle)<br>Chat so far: 19 message(s), 246 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:16 PM — Day 3 AACU unwatched: 18 Zoom transcripts saved muted to AACU/unwatched; 6 Day 3 checklist sessions not on Zoom</span>
+      <span class="pill p0">Chat: 17 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>31m 8s active tool time<br>31m 18s since previous task (includes idle)<br>Chat so far: 17 message(s), 222 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:45 PM — Day 2 AACU unwatched: 11 Zoom transcripts saved muted to AACU/unwatched; 22 Day 2 checklist sessions not on Zoom recordings list</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 21s active tool time<br>8m 26s since previous task (includes idle)<br>Chat so far: 16 message(s), 200 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:36 PM — Recorded one full 11.2 guided homework problem and wired gj-homework-demo.mp4 into the presentation slide</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 24s active tool time<br>5m 29s since previous task (includes idle)<br>Chat so far: 12 message(s), 153 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:31 PM — AACU unwatched folder; muted Day 1 transcript captures via Zoom API</span>
+      <span class="pill p0">Chat: 15 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>10m 51s active tool time<br>10m 56s since previous task (includes idle)<br>Chat so far: 15 message(s), 133 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:20 PM — Captured URI Campus AI Strategy transcript via Agent Browser + Zoom transcript API</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 13s active tool time<br>1m 15s since previous task (includes idle)<br>Chat so far: 14 message(s), 112 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:19 PM — Extracted GJ evidence pages from content.js into gj-evidence.js (554 lines)</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 7s active tool time<br>5m 12s since previous task (includes idle)<br>Chat so far: 11 message(s), 139 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:14 PM — Agent Browser address bar with Paste and Go</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 27s active tool time<br>2m 35s since previous task (includes idle)<br>Chat so far: 13 message(s), 98 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:11 PM — Alamo Colleges District filled in for A.S.K.E.D. / D'Amico across deck and summaries</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 33s active tool time<br>2m 37s since previous task (includes idle)<br>Chat so far: 12 message(s), 92 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:08 PM — Checked new AACU downloads: AI-Ready, Hawks, Bowen plenary in; Opening Plenary still summary-only; D'Amico=Alamo</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>17m 5s active tool time<br>17m 6s since previous task (includes idle)<br>Chat so far: 10 message(s), 81 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:51 AM — Other Math Apps wall before animations; cropped looping Logic homework clip</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>52s active tool time<br>56s since previous task (includes idle)<br>Chat so far: 10 message(s), 127 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:50 AM — AACU checklist reordered to conference Day 1-3 site order; filled missing presenter names from schedule</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>9m 11s active tool time<br>9m 14s since previous task (includes idle)<br>Chat so far: 6 message(s), 42 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:41 AM — AACU transcript checklist overlay (Need fix + Verify tabs); Launcher Panel tile</span>
+      <span class="pill p0">Chat: 3 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 19s active tool time<br>8m 27s since previous task (includes idle)<br>Chat so far: 3 message(s), 11 KB transcript</p>
+      <ul class="gap-list"><li><code>INDEX.md</code> — AACU transcript checklist overlay (added)</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:33 AM — Listed AI presentation speaker/college lookup gaps (Patricia Kio confirmed UF games; remaining unknowns)</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 59s active tool time<br>3m 14s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">11:29 AM — Logic homework headless Playwright recorder + demo MP4</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>14h 9m active tool time<br>14h 9m since previous task (includes idle)<br>Chat so far: 7 message(s), 47 KB transcript</p>
+      
+    </div>
+  </details></div>
+    </section><section class="day-block">
       <h2 class="day-title">Tuesday, Nov 10, 2026 <span class="day-count">10 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
     <summary class="track-summary">

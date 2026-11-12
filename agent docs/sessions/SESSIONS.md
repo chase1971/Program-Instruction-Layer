@@ -2,6 +2,76 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-11 — Graphing wall clip + gates circuit-only re-cut
+
+**Repos touched:** `School Scrips/transformations-app`, `School Scrips/logic-app`, `AI presentations`, `Programs/` root
+
+**Files changed:** transformations `record:graphing` stack + `app-graphing-transformations.mp4` (looser top crop); logic-app gates clip re-cut after Directions at 1x; Other Math Apps wall both clips; `agent docs/INDEX.md` record-graphing row
+
+**What worked:** Headless Graphing Transformations playthrough on the wall beside gates; Extra Credit starts on empty circuit after Directions, normal speed; graphing crop shows title chrome
+
+**Current state:** Green — Other Math Apps ready for Chase review
+
+**File size flag:** None (GraphingTransformationsView still over 800; record bridge kept out of it)
+
+**Next session:** Chase reviews Other Math Apps pacing/crop; apply only what he names
+
+## 2026-11-11 — Logic Gates Extra Credit wall clip (momentum handoff)
+
+**Repos touched:** `School Scrips/logic-app`, `AI presentations`, `School Scrips/student-portal`, `Programs/` root
+
+**Files changed:** logic-app record:gates stack + gateTypes phone boost / desktop shrink; `app-logic-gates.mp4` crop+whole 2x; Other Math Apps gates-only wall; portal LogicHomeworkView admin bypass
+
+**What worked:** Human XOR table→circuit recording; desktop smaller without hurting phone; homework clip dropped from wall; entire gates clip 2x (no split)
+
+**Current state:** Green — wall clip ready for Chase pacing/crop review
+
+**File size flag:** None
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-11)
+
+## 2026-11-11 — gj-homework slide builds + chart size (momentum handoff)
+
+**Repos touched:** `AI presentations`, `Programs/` root
+
+**Files changed:** `gj-evidence.js` (bullets → miss chart → survey → quotes); `v2-stage.html` (textcol chart 1.15em, collapse, split fr); `engine.js` (textcol / only); `notes.js`; `AGENTS.md` Stage typography
+
+**What worked:** Dropped problems 4–6 bullet; build 2 most-missed guided skills chart for MyLab-contrast talk; chart text bumped and documented.
+
+**Current state:** Green — slide sequence ready; Chase may still tweak chart size after looking
+
+**File size flag:** None
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-11)
+
+## 2026-11-11 — 11.2 homework recording wired to gj-homework (momentum handoff)
+
+**Repos touched:** `School Scrips/student-portal`, `AI presentations`, `Programs/` root
+
+**Files changed:** portal `?record-gp=1` mount + `scripts/record-gp-homework.mjs`; `AI presentations/site/media/gj-homework-demo.mp4`; `gj-evidence.js` / `notes.js` homework video block
+
+**What worked:** One full guided-practice homework problem recorded headless and placed on Guided Practice as Homework (VP stop 18). Corrected link (track stop, not page index).
+
+**Current state:** Green — clip on slide; Chase review of pacing/look pending
+
+**File size flag:** None for new portal files
+
+**Next session:** see agent docs/momentum-handoffs/2026-11-11_gj-homework-recording.md (2026-11-11) — do not overwrite AACU latest.md
+
+## 2026-11-11 — AACU unwatched captures + Day 1 extract panels handoff
+
+**Repos touched:** `Programs/` root, `Agent Browser`, `electron-toolbar`, `AI presentations`
+
+**Files changed:** `Agent Browser/scripts/capture-aacu-unwatched.mjs`; `agent docs/INDEX.md`; `agent docs/momentum-handoffs/latest.md`; AACU transcripts under `My Drive/AACU/unwatched/` (outside git)
+
+**What worked:** Day 1–3 Zoom unwatched transcripts captured muted into `AACU\unwatched\` (checklist unmarked). Communities of Practice discussed for faculty-conditions extract. Momentum handoff written for Day 1 candidate panels with thumbs up/down.
+
+**Current state:** Green — captures done; approve/disapprove panel UI not started
+
+**File size flag:** `AI presentations/site/shared/content.js` ~715 (extract before large adds)
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-11)
+
 ## 2026-11-09 (night): AI presentation, one college slide with tags, frameworks and campus photos; logos; Part 3 and Part 4
 
 **Repos touched:** `AI presentations`, `Programs/` root

@@ -42,12 +42,16 @@ never touches this file.
 | **Mechabellum Panel** · mechabellum units · bot unit list · what's on the board in Mechabellum | [Mechabellum Panel/AGENTS.md](../Mechabellum%20Panel/AGENTS.md) · live page `http://127.0.0.1:8765/scratch/mechabellum-panel.html` |
 | **EU5 YouTube transcripts** · Europa Universalis V video transcripts · Portugal Rio Salado series · AACU YouTube folder | `C:\Users\chase\My Drive\AACU\YouTube\` (saved by Copy Page Text; not in Programs git) |
 | **EU5 Portugal setup checklist** · Quill18 day-one overlay · fort demolish checklist · setup tasks overlay | `electron-toolbar/apps/eu5-setup-checklist/` · Scripts panel tile **EU5 Portugal Setup Checklist** · guide `http://127.0.0.1:8765/scratch/eu5-portugal-ep1-guide.html` |
+| **AACU transcript checklist** · conference session transcripts to verify · need-fix names/colleges · Santa Monica summary only | `electron-toolbar/apps/aacu-transcript-checklist/` · Launcher Panel tile **AACU Transcript Checklist** · watched: `C:\Users\chase\My Drive\AACU\` · auto-captured unwatched: `C:\Users\chase\My Drive\AACU\unwatched\` |
+| **Agent Browser** · address bar · Paste URL · CDP 9227 · agent-driven pages | `Agent Browser/` · Launcher Panel tile **Agent Browser** or **Shift+F20** · docs `Agent Browser/AGENTS.md` |
 | **EU5 trader run** · Lookas et bella · ignore Europe richest trader · Portugal trade colonies guide | same guide page · **Trader run** tab · transcript `C:\Users\chase\My Drive\AACU\YouTube\I Ignored Europe to Become the Richest Trader in EU5 1.4 (2).md` |
 | **EU5 commodity tracker** · track lumber/stone/tools · baseline vs current · Norway shortage experiment · pick which save | `EU5 Commodity Tracker/` · board `http://127.0.0.1:8775/` · scratch report `http://127.0.0.1:8765/scratch/eu5-commodity-tracker.html` |
 | **duplicate scroll bar** · tiny scroll bar · Shift+F13 · fixed scroll instance | `electron-toolbar/modules/scroll/scrollbar2/` · README § Tiny duplicates · hotkey **Shift+F13** |
 | **Build Mode Layout Editor Plan** · Teacher Console Build mode · integrate Math App Studio | [School Scrips/Macro App/AGENTS.md](../School%20Scrips/Macro%20App/AGENTS.md) |
 | **searchable notes project** · find in notes · notes search · "which page is this problem from" · index cards for the notes · D2L chatbot idea · students don't print notes | [SEARCHABLE_NOTES_PROJECT.md](./SEARCHABLE_NOTES_PROJECT.md) |
 | **11.2 homework statistics** · most missed guided · right or wrong homework · homework survey tab | [School Scrips/Macro App/AGENTS.md](../School%20Scrips/Macro%20App/AGENTS.md) 11.2 Homework statistics row |
+| **record logic gates** · XOR extra credit demo · automate Logic Gates Extra Credit · gates walkthrough video | `School Scrips/logic-app/docs/RECORD_GATES.md` (`npm run record:gates`) · homework tables: `docs/RECORD_HOMEWORK.md` |
+| **record graphing** · Graphing Transformations demo · transformations wall clip · automate graphing walkthrough | `School Scrips/transformations-app/docs/RECORD_GRAPHING.md` (`npm run record:graphing`) |
 
 ## The detail behind an always-on rule
 
@@ -75,7 +79,7 @@ never touches this file.
 | "where did we leave off" · what's the state · what did we do last time | [sessions/SESSIONS.md](./sessions/SESSIONS.md) — or that app's `docs/sessions/SESSIONS.md` |
 | "log the task" · bump session tracking · index gap | [SESSION_TRACKING.md](./SESSION_TRACKING.md) |
 | finalize session metrics · grep/file counts · hook enforcement · **context warning too soon** · handoff warning fires early | [SESSION_METRICS.md](./SESSION_METRICS.md) · threshold in `scripts/context-growth-estimate.js` |
-| **AI presentation site** · VP of Instruction pitch · LinkedIn wiki · presentation skeletons · tracks / glossary popovers | `AI presentations/` (own repo; README there). Site in `site/` (content `site/shared/content.js`, engine `site/shared/engine.js`), Claude artifact build in `artifact/`. Moved out of `scratch/presentation-skeletons/` 2026-11-07, so the old docs-server URL no longer works. |
+| **AI presentation site** · VP of Instruction pitch · LinkedIn wiki · presentation skeletons · tracks / glossary popovers · **AACU Day 1 / Day 2 / Day 3 thumbs review** · approve/disapprove candidate panels | `AI presentations/` (own repo; README + AGENTS there). Stage: `http://127.0.0.1:8765/ai-presentations/v2-stage.html`. Day 1: `http://127.0.0.1:8765/ai-presentations/aacu-day1-review.html`. Day 2: `http://127.0.0.1:8765/ai-presentations/aacu-day2-review.html`. Day 3: `http://127.0.0.1:8765/ai-presentations/aacu-day3-review.html`. Claude artifact build in `artifact/`. |
 | Macro App browser residency plan · browser memory plan | [scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN.md) · [review](./scratch/MACRO_APP_BROWSER_RESIDENCY_PHASE_PLAN_REVIEW.md) |
 | "remember: …" · "capture that" · "that's the third time" · "always/never do X" | [.claude/skills/capture/SKILL.md](../.claude/skills/capture/SKILL.md) |
 | where should this rule go · which rung · is this always-on or on-demand | [AGENTS.md](../AGENTS.md) § Capture ladder |
