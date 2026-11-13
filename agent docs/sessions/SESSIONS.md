@@ -2,6 +2,34 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-12 — Factoring tutorial on Other Math Apps wall
+
+**Repos touched:** `School Scrips/factoring-app`, `AI presentations`, `Programs/` root
+
+**Files changed:** factoring-app `record:factoring` stack + demo mp4; `AI presentations/site/media/app-factoring-tutorial.mp4` + `content.js` wall row; `agent docs/INDEX.md` record-factoring row
+
+**What worked:** Full Factoring App tutorial recorded headless and placed beside logic gates and graphing on the wall
+
+**Current state:** Green — three Other Math Apps clips ready
+
+**File size flag:** None
+
+**Next session:** Chase reviews wall; adjust crop/speed only if named
+
+## 2026-11-12 — AACU panel clarifications + summary expansions (momentum handoff)
+
+**Repos touched:** `AI presentations`, `Programs/` root
+
+**Files changed:** `AI presentations/site/shared/day2-candidates.js` (`who-policy-protects`, `barking-right-tree`); `agent docs/momentum-handoffs/latest.md`
+
+**What worked:** Clarified When AI Interprets visuals + Seeklight; expanded Norton Student A/B case and Texas Tech Retriever/NewsHound workflows into panel copy
+
+**Current state:** Green — combined review data updated; Chase mid panel walkthrough
+
+**File size flag:** None
+
+**Next session:** see agent docs/momentum-handoffs/latest.md (2026-11-12)
+
 ## 2026-11-11 — Graphing wall clip + gates circuit-only re-cut
 
 **Repos touched:** `School Scrips/transformations-app`, `School Scrips/logic-app`, `AI presentations`, `Programs/` root
