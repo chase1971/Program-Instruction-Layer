@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-12 — AACU buckets + summary trim (end of session)
+
+**Repos touched:** `AI presentations`, `Programs/` root
+
+**Files changed:** AI presentations bucket/trim HTML stack + `panel-*.js`; `agent docs/INDEX.md`; `AI presentations/AGENTS.md`; session metrics finalize
+
+**What worked:** Category buckets with stars and Purpose for References; long-vs-short trim drafts for Govern / Class / Admin / Miscellaneous; SWOT expansion rule captured
+
+**Current state:** Green — ready for draft review and References wiring next session
+
+**File size flag:** `aacu-bucket-review.html` ~757
+
+**Next session:** Revise short drafts; link buckets page into Stage References
+
 ## 2026-11-12 — Factoring tutorial on Other Math Apps wall
 
 **Repos touched:** `School Scrips/factoring-app`, `AI presentations`, `Programs/` root
