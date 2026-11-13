@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-13 — Fractions wall clip + Other Math Apps 2x2 polish
+
+**Repos touched:** `School Scrips/Fractions-App`, `School Scrips/logic-app`, `AI presentations`, `Programs/` root
+
+**Files changed:** Fractions `record:fractions` stack + demo mp4; gates re-crop + full Extra Credit clip; deck `app-fractions-add-sub.mp4` / `app-logic-gates.mp4`; Other Math Apps 2x2 titled wall (`content.js`, `engine.js`, `v2-stage.html`); `agent docs/INDEX.md` record-fractions row
+
+**What worked:** Headless Adding + Subtracting tutorial on the wall; gates matched to 1040×580 and restored table+Directions+circuit; titles and spacing iterated with Chase
+
+**Current state:** Green — Other Math Apps 2x2 with titles ready
+
+**File size flag:** None
+
+**Next session:** Only if Chase names a title, crop, or spacing change
+
 ## 2026-11-12 — AACU buckets + summary trim (end of session)
 
 **Repos touched:** `AI presentations`, `Programs/` root
