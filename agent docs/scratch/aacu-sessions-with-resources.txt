@@ -1,0 +1,125 @@
+Checked 64 presentations. 31 have Resources.
+
+1. Coordinating AI Strategy Across the URI Campus: A Multi-Domain Approach
+   - University of Rhode Island Academic Affairs AI Task Force Report 2026.pdf
+   - AACU Conference Final for AACU.pdf
+
+2. From Players to Designers: Students Building AI-Assisted Sustainability Games
+   - From Players to Designers Students Building AI-Assisted Sustainability Gamesh.pdf
+
+3. Our Co-Evolution with AI: How the Big Picture Can Help Shape Student Engagement & Agency
+   - Our_Co-Evolution_with_AI.pptx
+
+4. Building an AI-Ready Faculty: A Scalable Model for Institutional Transformation
+   - SLIDES.pdf
+
+5. From AI Policing to Learning Design: A UDL + AI Studio for Rethinking Student Reading
+   - AACU_UDL_AI_Design_Studio_Updated_Final.pptx
+
+6. From AI Misuse to AI Literacy: Redesigning Business Courses for an AI-Infused Learning Environment
+   - AACU_2026_Shensi Wang.pptx
+
+7. Roundtable Discussions
+   - Roundtable 1: Teaching Students to Think With AI, Not Around It  .pptx
+
+8. Beyond Compliance: Reading AI Governance as a Signal of Institutional Digital Maturity
+   - AACU_beyond-compliance_ACCESSIBLE.pdf
+   - beyond-compliance_self-assessment.pdf
+
+9. The AI Detection Fallacy: How AI Integrity Tools Fail, Who Pays the Price, and What Better Assessment Design Does Instead
+   - AI Detection Fallacy_CAIHE.pdf
+
+10. Who Gets to Decide? Embedding AI Discourse into Social Studies Methods as Democratic Practice
+   - Who_Gets_to_Decide_AACU2026_Rudnick_Sell.pptx
+
+11. Fruit from a Poisoned Tree? AI as a Tool of Empowerment or Disenfranchisement for Marginalized Students
+   - AACU_Fruit_from_a_Poisoned_Tree.pptx
+
+12. Leading Teams Through AI Adoption
+   - Leading Communications Teams Slides (1).pptx
+
+13. Reclaim Your Time, Reclaim Your Agency: AI as Productivity Infrastructure for the Professoriate
+   - AACU_reclaim-your-time_ACCESSIBLE.pdf
+
+14. Who Does Your AI Policy Protect, and Who Pays for Its Errors? An Intersectional Audit Framework for Higher Education Governance
+   - AACU2026 Annotated Reading List.pdf
+   - AACU2026 Audit Worksheet.pdf
+   - AACU2026 Facilitator Guide.pdf
+
+15. 14 Day AI Challenge: Fast, Fun, Low-Stakes Way to Boost Faculty Confidence
+   - 14-Day_AI_Challenge_AACU.pptx
+
+16. Poster Session
+   - Poster 8: What Are You Going to Do with That? Reimagining the Humanities and the Future of Work in the Age of AI.pdf
+   - Poster 5: Students in the Loop.pdf
+   - Poster 18: Planning AI Conversations.pptx
+   - Poster 17: Configuring Resistance-Designing AI for Feminist Pedagogy.pdf
+   - Poster 15: Generative Artificial Intelligence and Higher Education Personal and Professional Perceptions Framing Pedagogica.pptx
+   - Poster 10: More Posts, Less Dialogue.png
+   - AACU_From_Innovation_to_Evidence_Participant_Packet_Melby_PosterSession.pdf
+   - Poster 13: AI Perceptions and Usage on a College Campus - Online Poster.pdf
+   - Poster 7: Preparing Whole Programs for AI-Readines.pptx
+   - Poster 19: Student AI Use in Academic Writing.pdf
+   - Poster 16: From Innovation to Evidence Melby.pdf
+   - Poster 9 - AI Augmented Professor Poster.pptx
+   - Poster 4: AI Thinking.pptx
+   - Poster 3: Moving Beyond Reactive AI  .pdf
+   - Poster 11 - Understanding our Journey Handout.pdf
+   - Poster 6_Cultivating AI Literacy in Higher Education Virtual Poster.pdf
+   - Poster 17 - Configuring Resistance-Designing AI for Feminist Pedagogy_Moura-Kocoglu.pdf
+
+17. Infusing GenAI Across Disciplines: Lessons from a Multi-Institutional Initiative
+   - Infusing GenAI Across Disciplines_AACU Conference on AI and HE_Oct 29 2026.pdf
+
+18. Rewriting the Syllabus for the AI Era: A Blueprint for AI Pedagogy with Perspectives from Developmental Science, Educational Science, and Academic Leadership
+   - 01_Syllabus Element Checklist 1 for AI-era.pdf
+   - 02_Syllabus Checklist 2 for (AI-era) Best Practices .pdf
+   - CAIH_10.29.2026_Yuksel+Zapparrata+Aydin (1).pdf
+
+19. Starting with Why: Values-Driven AI Governance at a Liberal Arts College
+   - Starting with Why Values-Driven AI Governance at a Liberal Arts College - Gareth Barkin - University of Puget Sound.pdf
+
+20. From AI Experimentation to Institutional Coherence: A People-First Framework for Responsible Adoption
+   - Pritts - Diagnostic AACU 1026.pdf
+
+21. Optimizing and Modernizing Student Success through AI
+   - AI_NoCode_Student_Success_ASU_FINAL.pptx
+
+22. Reimagining Student Success: AI, Self-Directed Learning, and the Co-curriculum
+   - Pillar 1 ILP template CO2030.pdf
+
+23. TAKE AI.M: Preserving Engineering Judgement in AI-Assisted Learning Environments
+   - TAKE Ai.M + the ACT-SET Board of Experts.pptx
+   - TAKE Ai.M_Teaching Infographic.png
+   - TAKE Ai.M_Board Infographic.png
+   - TAKE A‫i.M.png
+   - TAKE-AiM-Workbench-Educator-log-2026-10-11.pdf
+   - TAKE-AiM-Workbench-Student-log-2026-10-11.pdf
+   - TAKE_AiM_Educator_Guide.pdf
+
+24. Roundtable Discussions
+   - Roundtable 2: AI as the Learner.pdf
+   - AACU AI Conference Presentation Final.pptx
+   - Roundtable 2.pptx
+
+25. Utilizing a Networked Approach for Institutional AI Transformation
+   - AAC&U Presentation.pdf
+
+26. Closing the Gap Between Classroom and Career: Scaling Authentic Professional Practice with AI
+   - Sim Studios Build Your Own Simulation.pdf
+
+27. Preparing Students for Real Conversations: Responsible AI Simulations for Interviewing and Stakeholder Engagement
+   - AACU_SES_Presentation_10.29.2026.pptx
+
+28. From Policing to Purpose: Reclaiming the "Why" and Re-designing Assessment in the Age of AI
+   - From_Policing_to_Purpose_AACU_2026_Attendee_No_Notes.pdf
+   - Copy of ParticipantWorkbook.pdf
+
+29. Three Pathways, One Foundation: Faculty Champions Supporting AI Integration
+   - Three_Pathways_One_Foundation_Conference_Campus_Planning_Guide_Updated.pdf
+
+30. Collaboratively Harnessing AI for Nursing: Building Institutional Supports for Team Lifting
+   - CHAIN_CAIHE2026_ (2).pdf
+
+31. AI Where the Work Happens: Co-Designing Supervisor-Focused AI Training for Institutional Operations
+   - AACandU Slides-official-compressed.pptx

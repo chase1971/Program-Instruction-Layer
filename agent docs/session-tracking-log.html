@@ -56,28 +56,550 @@
     <h1>Session tracking</h1>
     <p class="subtitle">One row per completed task: what was done, what it cost, and any doc that failed to route. Data in <code>session-tracking.jsonl</code>.</p>
     <div class="summary-bar">
-      <div><dt>Total tasks</dt><dd>1775</dd></div>
-      <div><dt>Tasks today</dt><dd>16</dd></div>
-      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.8M (of 210 costed)</dd></div>
+      <div><dt>Total tasks</dt><dd>1833</dd></div>
+      <div><dt>Tasks today</dt><dd>74</dd></div>
+      <div><dt>Tokens per task (median)</dt><dd style="font-size:1rem">1.9M (of 222 costed)</dd></div>
       <div><dt>Context per turn (median)</dt><dd>172k</dd></div>
-      <div><dt>Total billed</dt><dd>796.1M</dd></div>
+      <div><dt>Total billed</dt><dd>838.0M</dd></div>
       <div><dt>Share that is cache re-reads</dt><dd>98%</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">11:59 AM · Friday, Nov 13, 2026</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:18 PM · Friday, Nov 13, 2026</dd></div>
     </div>
     <section class="gaps-block">
     <h2 class="day-title">Docs that failed to route</h2>
     <p class="muted-inline">The agent opened the doc and still had to grep the tree for the answer.
     Most-failing docs first — each is a missing index row or a doc worth fixing.</p>
     <table class="gap-table"><thead><tr><th>Doc</th><th>Times</th></tr></thead><tbody>
-      <tr><td><code>agent docs/INDEX.md</code></td><td>43</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro App AGENTS.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr><tr><td><code>Monitor Configuration App/docs/sessions/SESSIONS.md</code></td><td>2</td></tr>
+      <tr><td><code>agent docs/INDEX.md</code></td><td>43</td></tr><tr><td><code>agent docs/recipes/INDEX.md</code></td><td>14</td></tr><tr><td><code>APP_LOCATIONS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/AGENTS.md</code></td><td>8</td></tr><tr><td><code>School Scrips/Macro App/docs/BROWSER_TAB_INTEGRATION.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Macro App/docs/SLIM_DISTRIBUTION_BUILD.md</code></td><td>3</td></tr><tr><td><code>School Scrips/Matrix app/AGENTS.md</code></td><td>3</td></tr><tr><td><code>School Scrips/student-portal/AGENTS.md</code></td><td>3</td></tr><tr><td><code>AI presentations/AGENTS.md</code></td><td>2</td></tr><tr><td><code>docs/GRADE_IMPORT_INTEGRATION.md</code></td><td>2</td></tr><tr><td><code>Macro App AGENTS.md</code></td><td>2</td></tr><tr><td><code>Macro-App/AGENTS.md</code></td><td>2</td></tr>
     </tbody></table>
     <details class="recent-gaps"><summary>Most recent 15</summary>
-      <ul class="gap-list"><li><code>agent docs/INDEX.md + AI presentations/AGENTS.md</code> — frameworks catalog URL<span class="gap-task">11:08 AM · Friday, Nov 13, 2026 — AACU frameworks catalog page: 25 named cycles/scales/checklists with kind filters</span></li><li><code>agent docs/INDEX.md</code> — record fractions / Fractions App wall clip row<span class="gap-task">10:50 AM · Friday, Nov 13, 2026 — Recorded Fractions Adding+Subtracting tutorial and wired app-fractions-add-sub.mp4 into Other Math Apps wall</span></li><li><code>AI presentations/AGENTS.md</code> — AACU panel acronym expansion (SWOT) was missing until this session<span class="gap-task">9:51 PM · Thursday, Nov 12, 2026 — Expanded all SWOT mentions in AACU panel notes; captured always-expand-acronyms rule in AI presentations AGENTS.md</span></li><li><code>agent docs/INDEX.md</code> — record factoring / Factoring App wall clip row<span class="gap-task">9:01 PM · Thursday, Nov 12, 2026 — Recorded Factoring App tutorial and wired app-factoring-tutorial.mp4 into Other Math Apps wall</span></li><li><code>agent docs/INDEX.md</code> — combined tagged panels URL (added)<span class="gap-task">6:21 PM · Thursday, Nov 12, 2026 — AACU combined review page: watched + approved day1/2/3 with first-pass tags, ~10 per tab</span></li><li><code>agent docs/INDEX.md</code> — watched panels URL (added)<span class="gap-task">5:24 PM · Thursday, Nov 12, 2026 — AACU watched panels HTML: 21 day3-style long summaries at aacu-watched-review.html</span></li><li><code>agent docs/INDEX.md</code> — record graphing / transformations wall clip row<span class="gap-task">7:10 PM · Wednesday, Nov 11, 2026 — Recorded Graphing Transformations wall clip (record:graphing + Other Math Apps)</span></li><li><code>agent docs/INDEX.md</code> — record logic gates / XOR extra credit demo had no row<span class="gap-task">5:50 PM · Wednesday, Nov 11, 2026 — Logic Gates Extra Credit XOR recording automation (npm run record:gates)</span></li><li><code>agent docs/INDEX.md</code> — AI presentations row lacked Day 1 thumbs-review URL (added)<span class="gap-task">1:56 PM · Wednesday, Nov 11, 2026 — AACU Day 1 review queue: 15 candidate panels + thumbs up/down UI at ai-presentations/aacu-day1-review.html</span></li><li><code>INDEX.md</code> — AACU transcript checklist overlay (added)<span class="gap-task">11:41 AM · Wednesday, Nov 11, 2026 — AACU transcript checklist overlay (Need fix + Verify tabs); Launcher Panel tile</span></li><li><code>agent docs/INDEX.md</code> — EU5 commodity tracker / lumber goods tracking from saves<span class="gap-task">7:17 PM · Tuesday, Nov 10, 2026 — EU5 commodity tracker: lumber snapshot + HTML from Portugal saves</span></li><li><code>agent docs/INDEX.md</code> — EU5 in-game scrollbar track-click / UI modding<span class="gap-task">8:21 PM · Sunday, Nov 8, 2026 — Checked EU5 desktop install scrollbar GUI: no jump-to-click mod; track click is engine page/step</span></li><li><code>agent docs/INDEX.md</code> — EU5 / AACU YouTube transcripts had no routing row<span class="gap-task">7:14 PM · Sunday, Nov 8, 2026 — Located 8 EU5 YouTube transcripts in My Drive/AACU/YouTube; added INDEX row</span></li><li><code>agent docs/INDEX.md</code> — Chase admin Reset / tutorial complete after reset → student-portal MATRIX_TUTORIAL_SAVING.md<span class="gap-task">10:56 AM · Saturday, Nov 7, 2026 — Gauss-Jordan Chase admin Reset: skip-gated no longer fakes Tutorial complete</span></li><li><code>Macro App AGENTS.md</code> — no row for gradebook view-tuning font clamp / grade font stepper<span class="gap-task">1:37 PM · Friday, Nov 6, 2026 — Gradebook grade-font decrease was stuck: 0.5 step + integer Math.round canceled every minus click</span></li></ul>
+      <ul class="gap-list"><li><code>AI presentations/AGENTS.md</code> — speakable talk-notes rule was missing; added keyword row + section<span class="gap-task">5:31 PM · Friday, Nov 13, 2026 — Boise overview: short summary + briefs-only last bullet; 14-day slide/notes speakable rewrite from transcript; AGENTS talk-notes rule</span></li><li><code>AI presentations notes</code> — speakable aloud sentences, no stage directions or label-colon dumps<span class="gap-task">5:20 PM · Friday, Nov 13, 2026 — Boise notes rewritten as speakable sentences only</span></li><li><code>AI presentations campus readiness</code> — needed story-shape rule for admin slides<span class="gap-task">12:46 PM · Friday, Nov 13, 2026 — URI campus slide rewritten as change story; detail page added; captured campus-readiness-story.md extraction rule</span></li><li><code>agent docs/INDEX.md + AI presentations/AGENTS.md</code> — frameworks catalog URL<span class="gap-task">11:08 AM · Friday, Nov 13, 2026 — AACU frameworks catalog page: 25 named cycles/scales/checklists with kind filters</span></li><li><code>agent docs/INDEX.md</code> — record fractions / Fractions App wall clip row<span class="gap-task">10:50 AM · Friday, Nov 13, 2026 — Recorded Fractions Adding+Subtracting tutorial and wired app-fractions-add-sub.mp4 into Other Math Apps wall</span></li><li><code>AI presentations/AGENTS.md</code> — AACU panel acronym expansion (SWOT) was missing until this session<span class="gap-task">9:51 PM · Thursday, Nov 12, 2026 — Expanded all SWOT mentions in AACU panel notes; captured always-expand-acronyms rule in AI presentations AGENTS.md</span></li><li><code>agent docs/INDEX.md</code> — record factoring / Factoring App wall clip row<span class="gap-task">9:01 PM · Thursday, Nov 12, 2026 — Recorded Factoring App tutorial and wired app-factoring-tutorial.mp4 into Other Math Apps wall</span></li><li><code>agent docs/INDEX.md</code> — combined tagged panels URL (added)<span class="gap-task">6:21 PM · Thursday, Nov 12, 2026 — AACU combined review page: watched + approved day1/2/3 with first-pass tags, ~10 per tab</span></li><li><code>agent docs/INDEX.md</code> — watched panels URL (added)<span class="gap-task">5:24 PM · Thursday, Nov 12, 2026 — AACU watched panels HTML: 21 day3-style long summaries at aacu-watched-review.html</span></li><li><code>agent docs/INDEX.md</code> — record graphing / transformations wall clip row<span class="gap-task">7:10 PM · Wednesday, Nov 11, 2026 — Recorded Graphing Transformations wall clip (record:graphing + Other Math Apps)</span></li><li><code>agent docs/INDEX.md</code> — record logic gates / XOR extra credit demo had no row<span class="gap-task">5:50 PM · Wednesday, Nov 11, 2026 — Logic Gates Extra Credit XOR recording automation (npm run record:gates)</span></li><li><code>agent docs/INDEX.md</code> — AI presentations row lacked Day 1 thumbs-review URL (added)<span class="gap-task">1:56 PM · Wednesday, Nov 11, 2026 — AACU Day 1 review queue: 15 candidate panels + thumbs up/down UI at ai-presentations/aacu-day1-review.html</span></li><li><code>INDEX.md</code> — AACU transcript checklist overlay (added)<span class="gap-task">11:41 AM · Wednesday, Nov 11, 2026 — AACU transcript checklist overlay (Need fix + Verify tabs); Launcher Panel tile</span></li><li><code>agent docs/INDEX.md</code> — EU5 commodity tracker / lumber goods tracking from saves<span class="gap-task">7:17 PM · Tuesday, Nov 10, 2026 — EU5 commodity tracker: lumber snapshot + HTML from Portugal saves</span></li><li><code>agent docs/INDEX.md</code> — EU5 in-game scrollbar track-click / UI modding<span class="gap-task">8:21 PM · Sunday, Nov 8, 2026 — Checked EU5 desktop install scrollbar GUI: no jump-to-click mod; track click is engine page/step</span></li></ul>
     </details>
   </section>
     <section class="day-block">
-      <h2 class="day-title">Friday, Nov 13, 2026 <span class="day-count">16 tasks</span></h2>
+      <h2 class="day-title">Friday, Nov 13, 2026 <span class="day-count">74 tasks</span></h2>
       <div class="day-tasks"><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">9:18 PM — Summarized final AACU packs: TAKE Ai.M and Boise State networked approach</span>
+      <span class="pill p0">Chat: 18 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>25m 10s active tool time<br>25m 19s since previous task (includes idle)<br>Chat so far: 18 message(s), 76 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:52 PM — Summarized AACU packs 7-9: Players to Designers, ASU student success, Reclaim Your Time</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 51s active tool time<br>5m 3s since previous task (includes idle)<br>Chat so far: 13 message(s), 71 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:47 PM — 14-day: wired session PDF + day examples; misuse tax question ref; Three Pathways planning guide PDF</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 56s active tool time<br>2m 1s since previous task (includes idle)<br>Chat so far: 16 message(s), 132 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:45 PM — Gave path to 14-Day AI Challenge pptx</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>48s active tool time<br>5m 54s since previous task (includes idle)<br>Chat so far: 11 message(s), 69 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">8:39 PM — Summarized 3 more AACU session packs (URI, 14-Day Challenge, Pritts diagnostic)</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2h 23m active tool time<br>2h 24m since previous task (includes idle)<br>Chat so far: 9 message(s), 65 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">6:15 PM — Downloaded 19 resource files from 11 AACU Zoom sessions into My Drive/AACU/documents</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>32m 11s active tool time<br>32m 18s since previous task (includes idle)<br>Chat so far: 2 message(s), 34 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:43 PM — Scanned AACU Zoom sessions for Resources: 31 of 64 have downloadable files</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>11m 41s active tool time<br>11m 46s since previous task (includes idle)<br>Chat so far: 3 message(s), 33 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:31 PM — Boise overview: short summary + briefs-only last bullet; 14-day slide/notes speakable rewrite from transcript; AGENTS talk-notes rule</span>
+      <span class="pill p0">Chat: 1 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>10m 13s active tool time<br>10m 27s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      <ul class="gap-list"><li><code>AI presentations/AGENTS.md</code> — speakable talk-notes rule was missing; added keyword row + section</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:21 PM — Momentum handoff: campus notes through Boise</span>
+      <span class="pill p0">Chat: 34 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>51s active tool time<br>59s since previous task (includes idle)<br>Chat so far: 34 message(s), 344 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:20 PM — Boise notes rewritten as speakable sentences only</span>
+      <span class="pill p0">Chat: 33 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 31s active tool time<br>4m 39s since previous task (includes idle)<br>Chat so far: 33 message(s), 338 KB transcript</p>
+      <ul class="gap-list"><li><code>AI presentations notes</code> — speakable aloud sentences, no stage directions or label-colon dumps</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:15 PM — Boise summary/notes: situation not session-meta, plain policy and Institute</span>
+      <span class="pill p0">Chat: 32 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 16s active tool time<br>7m 22s since previous task (includes idle)<br>Chat so far: 32 message(s), 324 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:08 PM — Trimmed Boise notes: crosswalks, Institute, briefs, homegrown AI</span>
+      <span class="pill p0">Chat: 31 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 52s active tool time<br>8m 2s since previous task (includes idle)<br>Chat so far: 31 message(s), 313 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">5:00 PM — Plain-language Daphne time-log example in Three Pathways notes</span>
+      <span class="pill p0">Chat: 29 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 17s active tool time<br>2m 22s since previous task (includes idle)<br>Chat so far: 29 message(s), 305 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:57 PM — Three Pathways notes: Mousel D2L parallel, clarified hackathons vs JIT</span>
+      <span class="pill p0">Chat: 28 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 56s active tool time<br>3m 3s since previous task (includes idle)<br>Chat so far: 28 message(s), 298 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:54 PM — Clarified Three Pathways question-shift as chatbot-easy assignments</span>
+      <span class="pill p0">Chat: 27 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>29s active tool time<br>34s since previous task (includes idle)<br>Chat so far: 27 message(s), 294 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:54 PM — Three Pathways notes: technologist build, literacy vs resilient, plain examples</span>
+      <span class="pill p0">Chat: 26 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 53s active tool time<br>5m since previous task (includes idle)<br>Chat so far: 26 message(s), 287 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:49 PM — Slimmed Three Pathways notes to framing only</span>
+      <span class="pill p0">Chat: 25 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 31s active tool time<br>3m 40s since previous task (includes idle)<br>Chat so far: 25 message(s), 276 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:45 PM — Three Pathways notes: question-shift quote, Future Learning Lab, pathway detail</span>
+      <span class="pill p0">Chat: 23 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 3s active tool time<br>2m 12s since previous task (includes idle)<br>Chat so far: 23 message(s), 264 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:43 PM — URI notes: ATL workshop titles and faculty consultation</span>
+      <span class="pill p0">Chat: 22 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 29s active tool time<br>2m 37s since previous task (includes idle)<br>Chat so far: 22 message(s), 250 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:40 PM — URI credit names on slide; notes trimmed to how-it-should-be-done</span>
+      <span class="pill p0">Chat: 20 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 10s active tool time<br>6m 16s since previous task (includes idle)<br>Chat so far: 20 message(s), 237 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:34 PM — URI slide rewritten as readable sentences; how/why in notes</span>
+      <span class="pill p0">Chat: 19 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>58s active tool time<br>1m 7s since previous task (includes idle)<br>Chat so far: 19 message(s), 227 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:33 PM — Fixed Fractions-App TS7 baseUrl + type errors so tsc --noEmit is clean</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 31s active tool time<br>3m 31s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:29 PM — URI overview restored; PDF analysis kept in notes only</span>
+      <span class="pill p0">Chat: 17 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>37s active tool time<br>43s since previous task (includes idle)<br>Chat so far: 17 message(s), 212 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:29 PM — URI PDF detail: compact head, fill height, FitH zoom</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 21s active tool time<br>4m 29s since previous task (includes idle)<br>Chat so far: 16 message(s), 199 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:24 PM — URI PDF detail panel; other-campuses and URI talk notes simplified</span>
+      <span class="pill p0">Chat: 15 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>11m 27s active tool time<br>11m 35s since previous task (includes idle)<br>Chat so far: 15 message(s), 177 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:12 PM — Added Readiness at Other Campuses divider after Lone Star</span>
+      <span class="pill p0">Chat: 14 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>25s active tool time<br>32s since previous task (includes idle)<br>Chat so far: 14 message(s), 170 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:12 PM — Brazelton side graphics; strip LSC reportcard chrome; Mousel OGC note</span>
+      <span class="pill p0">Chat: 13 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 30s active tool time<br>4m 34s since previous task (includes idle)<br>Chat so far: 13 message(s), 153 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:07 PM — Lone Star matchup report-card graphic for six lenses</span>
+      <span class="pill p0">Chat: 12 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 28s active tool time<br>2m 34s since previous task (includes idle)<br>Chat so far: 12 message(s), 137 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">4:05 PM — Slim Brazelton slides; clarify lenses notes; shorten Lone Star talk notes</span>
+      <span class="pill p0">Chat: 11 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>11m 10s active tool time<br>11m 15s since previous task (includes idle)<br>Chat so far: 11 message(s), 108 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:53 PM — Conference + campus readiness talk notes and four-group order on slides</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 21s active tool time<br>4m 30s since previous task (includes idle)<br>Chat so far: 10 message(s), 96 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:49 PM — Boise networked slide: problem-first order per SWOT transcript timing</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>5m 13s active tool time<br>5m 22s since previous task (includes idle)<br>Chat so far: 9 message(s), 71 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:44 PM — Stage down-arrow talk notes for conference slides aacu through prod-reclaim</span>
+      <span class="pill p0">Chat: 8 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>8m 48s active tool time<br>8m 54s since previous task (includes idle)<br>Chat so far: 8 message(s), 50 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:35 PM — Lone Star AI pages back to up-arrow detail off main track</span>
+      <span class="pill p0">Chat: 6 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 24s active tool time<br>2m 32s since previous task (includes idle)<br>Chat so far: 6 message(s), 41 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:32 PM — Moved Lone Star AI pages into VP track sequence after guidelines</span>
+      <span class="pill p0">Chat: 5 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 43s active tool time<br>3m 49s since previous task (includes idle)<br>Chat so far: 5 message(s), 35 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:28 PM — Lone Star AI pages reference slide; verified no classroom allow rules</span>
+      <span class="pill p0">Chat: 3 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 7s active tool time<br>6m 18s since previous task (includes idle)<br>Chat so far: 3 message(s), 10 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:22 PM — Lone Star Support notes: Udemy paths confirmed business/general, not teaching</span>
+      <span class="pill p0">Chat: 2 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>13m 45s active tool time<br>13m 50s since previous task (includes idle)<br>Chat so far: 2 message(s), 3 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">3:08 PM — Momentum handoff written: classroom, productivity, Lone Star comparison</span>
+      <span class="pill p0">10.9M tokens</span><span class="pill p2">Heavy context — 259k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>20m 13s active tool time<br>20m 53s since previous task (includes idle)<br>10.9M tokens over 42 turn(s) · 259k/turn · 10.8M cache read · 26k output<br>Chat so far: 14 message(s), 2896 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:47 PM — Added Brazelton indicators slide and Lone Star guidelines comparison slide</span>
+      <span class="pill p0">5.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>10m 26s active tool time<br>11m 26s since previous task (includes idle)<br>5.1M tokens over 24 turn(s) · 212k/turn · 5.0M cache read · 18k output<br>Chat so far: 9 message(s), 2263 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:36 PM — Moved classroom examples after frameworks; added AI and Campus Productivity section (ASU, Reclaim Your Time)</span>
+      <span class="pill p0">2.4M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>20m 34s active tool time<br>22m 22s since previous task (includes idle)<br>2.4M tokens over 14 turn(s) · 172k/turn · 2.4M cache read · 15k output<br>Chat so far: 6 message(s), 1916 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:13 PM — Added When AI Interprets classroom slide, detail, notes, VP stop; Players to Designers fixes</span>
+      <span class="pill p0">3.3M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>1m 45s active tool time<br>9m 45s since previous task (includes idle)<br>3.3M tokens over 24 turn(s) · 138k/turn · 3.3M cache read · 14k output<br>Chat so far: 4 message(s), 1546 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:04 PM — Added Players to Designers classroom slide, detail, notes, VP stop</span>
+      <span class="pill p0">1.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m 4s active tool time<br>3m 44s since previous task (includes idle)<br>1.1M tokens over 9 turn(s) · 121k/turn · 1.1M cache read · 6k output<br>Chat so far: 3 message(s), 1208 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">2:00 PM — Added Pixels to Parameters classroom slide, detail, notes, VP stop</span>
+      <span class="pill p0">1.4M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>3m 8s active tool time<br>3m 11s since previous task (includes idle)<br>1.4M tokens over 14 turn(s) · 102k/turn · 1.4M cache read · 9k output<br>Chat so far: 1 message(s), 1037 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:57 PM — Momentum handoff written for VP campus and classroom examples</span>
+      <span class="pill p0">1.8M tokens</span><span class="pill p2">Heavy context — 264k/turn</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 39s active tool time<br>2m 46s since previous task (includes idle)<br>1.8M tokens over 7 turn(s) · 264k/turn · 1.8M cache read · 6k output<br>Chat so far: 8 message(s), 7990 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:54 PM — Added Lyon College From AI Misuse to AI Literacy classroom slide</span>
+      <span class="pill p0">6.7M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>10m 14s active tool time<br>10m 22s since previous task (includes idle)<br>6.7M tokens over 29 turn(s) · 230k/turn · 6.6M cache read · 19k output<br>Chat so far: 6 message(s), 7851 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:44 PM — Added classroom examples divider and Texas Tech Barking Up the Right Tree slide (content-classroom.js)</span>
+      <span class="pill p0">3.6M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>7m 25s active tool time<br>8m 26s since previous task (includes idle)<br>3.6M tokens over 19 turn(s) · 191k/turn · 3.6M cache read · 17k output<br>Chat so far: 5 message(s), 2272 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:35 PM — Added Brazelton digital maturity slide as first Campus Readiness slide</span>
+      <span class="pill p0">2.8M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>18m 48s active tool time<br>19m 41s since previous task (includes idle)<br>2.8M tokens over 19 turn(s) · 146k/turn · 2.7M cache read · 12k output<br>Chat so far: 4 message(s), 1796 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:15 PM — Added Touro 14 Day Challenge, Austin CC Aligning Values, UAGC Institutional Coherence campus slides</span>
+      <span class="pill p0">2.1M tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 43s active tool time<br>10m 59s since previous task (includes idle)<br>2.1M tokens over 18 turn(s) · 116k/turn · 2.0M cache read · 19k output<br>Chat so far: 3 message(s), 1371 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:04 PM — Added Boise State Networked Approach campus slide (medium overview, long detail, notes, medium trim)</span>
+      <span class="pill p0">663k tokens</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: claude-sonnet-5-5<br>2m 56s active tool time<br>3m 8s since previous task (includes idle)<br>663k tokens over 7 turn(s) · 95k/turn · 595k cache read · 6k output<br>Chat so far: 1 message(s), 943 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">1:01 PM — Momentum handoff: campus readiness + frameworks stretch state for next agent</span>
+      <span class="pill p0">Chat: 17 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 2s active tool time<br>4m 6s since previous task (includes idle)<br>Chat so far: 17 message(s), 189 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:57 PM — Campus readiness: Three Pathways One Foundation (Indiana Wesleyan) medium overview + long detail; summary-trim expanded</span>
+      <span class="pill p0">Chat: 16 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>11m 5s active tool time<br>11m 15s since previous task (includes idle)<br>Chat so far: 16 message(s), 174 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:46 PM — URI campus slide rewritten as change story; detail page added; captured campus-readiness-story.md extraction rule</span>
+      <span class="pill p0">Chat: 11 msgs</span><span class="pill p3">1 index gap</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 59s active tool time<br>7m 4s since previous task (includes idle)<br>Chat so far: 11 message(s), 113 KB transcript</p>
+      <ul class="gap-list"><li><code>AI presentations campus readiness</code> — needed story-shape rule for admin slides</li></ul>
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:39 PM — Campus Readiness divider before classroom frameworks; URI Coordinating AI Strategy medium stage slide + medium summary-trim draft</span>
+      <span class="pill p0">Chat: 10 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>7m 31s active tool time<br>7m 38s since previous task (includes idle)<br>Chat so far: 10 message(s), 94 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:31 PM — VP frameworks: Six Essential Pedagogical Moves overview (six names) + full detail/notes; breadth slide after Teaching with AI</span>
+      <span class="pill p0">Chat: 9 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>6m 24s active tool time<br>6m 30s since previous task (includes idle)<br>Chat so far: 9 message(s), 78 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:25 PM — VP frameworks: Teaching with AI (FGCU seven pillars) overview+detail+dense notes+graphic; SIAC stayed review-only; Flipping Pyramid overview trimmed</span>
+      <span class="pill p0">Chat: 7 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>10m 19s active tool time<br>10m 28s since previous task (includes idle)<br>Chat so far: 7 message(s), 52 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:14 PM — VP frameworks: added Flipping the Pyramid (John Jay flipped Bloom) overview+detail, dense notes, graphic, track stop after Cognitive Pyramid</span>
+      <span class="pill p0">Chat: 1 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>4m 9s active tool time<br>4m 18s since previous task (includes idle)<br>Chat so far: 1 message(s)</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:10 PM — Momentum handoff: VP classroom frameworks stretch</span>
+      <span class="pill p0">Chat: 23 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>1m 16s active tool time<br>1m 22s since previous task (includes idle)<br>Chat so far: 23 message(s), 323 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:09 PM — Split field (gold) vs tag (light blue) pills; AI Tutor as tag on Five Pillars</span>
+      <span class="pill p0">Chat: 22 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>2m 59s active tool time<br>3m 1s since previous task (includes idle)<br>Chat so far: 22 message(s), 316 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
+    <summary class="track-summary">
+      <span class="track-title">12:06 PM — Cognitive Pyramid slide + AI Tutor pill on Five Pillars; framework slides extracted to content-frameworks.js</span>
+      <span class="pill p0">Chat: 21 msgs</span>
+    </summary>
+    <div class="track-panel">
+      <p class="track-meta muted-inline">Model: default<br>3m 4s active tool time<br>3m 5s since previous task (includes idle)<br>Chat so far: 21 message(s), 277 KB transcript</p>
+      
+    </div>
+  </details><details class="track-entry">
     <summary class="track-summary">
       <span class="track-title">11:59 AM — Five Pillars of Logic VP slide: expanded teaching rules, overview+detail, notes, graphic</span>
       <span class="pill p0">Chat: 20 msgs</span>
