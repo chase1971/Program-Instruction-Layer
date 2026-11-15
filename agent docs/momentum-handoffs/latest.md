@@ -1,121 +1,93 @@
-# Momentum handoff — VP deck: campus notes pass (URI, Indiana Wesleyan, Boise)
+# Momentum handoff — VP Stage: Final Thoughts + Lone Star next
 
-**Written:** 2026-11-13  
+**Written:** 2026-11-14  
 **App / area:** `AI presentations` (VP stage track)  
-**Phase:** Campus Readiness talk-notes pass through Boise (`campus-networked`). URI and Three Pathways (Indiana Wesleyan) notes/slides refined earlier in this chat. Boise overview summary + overview bullets + notes rewritten. Next stop in the pass: `campus-14day` (Touro).
+**Phase:** Final Thoughts stretch is in place through Bowen care + a closing Lone Star slide. Graphic attempts for that closing slide were rejected and removed. Sharing-the-deck-as-a-URL was discussed but not built.
 
 ---
 
 ## Objective and current phase
 
-Chase is building the VP of Instruction presentation after AAC&U. Campus readiness slides already exist; this stretch is making each stop speakable: overview bullets in his voice, and especially **talk notes he can glance at and say out loud** without decoding fragments.
+Chase is finishing the Lone Star College VP of Instruction Stage deck after AAC&U. Classroom examples, productivity, Building This Presentation, Starred Panels, and Final Thoughts (Bowen) are largely done. Last work in this chat was the closing slide **My Thoughts on What Lone Star Should Do** (`final-lone-star-next`), then engine default so bullet points appear all at once, then failed graphic attempts that Chase told us to strip out.
 
-**Where we stopped:** Boise State (`campus-networked`) notes were just rewritten as speakable sentences. Chase approved the *shape* of that writing for notes going forward. He has not asked to continue into Touro yet.
-
-**VP track order (recompute from `tracks` stops after any edit, never guess `s=`):**  
-`aacu-conference` 22 · `campus-readiness` 23 · `campus-maturity` 24 · `campus-maturity-indicators` 25 · `campus-lsc-guidelines` 26 · `campus-other-campuses` 27 · `campus-uri` 28 · `campus-three-pathways` 29 · `campus-networked` 30 · `campus-14day` 31 · `campus-aligning-values` 32 · `campus-coherence` 33 · then frameworks / classroom / productivity / `future-ideas`.
-
-Handy stage links (local server assumed):  
-- Three Pathways: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=29&b=0`  
-- Boise: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=30&b=0`  
-- Next (Touro 14 Day): `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=31&b=0`
+**Where we stopped:** Graphics removed from `final-lone-star-next`. Slide is text-only (four short overview bullets + full wording in notes). No commit/push.
 
 ---
 
-## Chase's desired feel (critical — notes)
+## Chase's desired feel
 
-**Talk notes must be sentences he would speak aloud** that make the campus move understandable. That is the main correction of this chat.
-
-Do:
-- Complete sentences in his presentation voice.
-- Explain what the thing *is* and what people *did*, so a glance makes the story clear.
-- Expand jargon into what it means in the same sentence (policy guidance, briefs, LMS live-build, etc.).
-- Keep notes short enough to scan; cut staffing counts, name laundry lists, and numbers he said he does not care about unless he asks.
-
-Do not:
-- Label-colon dumps (`Hackathons: …`, `Homegrown Boise State AI: …`).
-- Stage directions (`bring this up`, `skip unless asked`, `talk point:`, `gist:`, `optional if you want`).
-- Meta about the session (`they opened the presentation with…`). Say the campus situation, not how the AAC&U panel was structured.
-- Cryptic summary phrases that only make sense after reading the transcript (`turned a seven-day time log into an AI analysis partner`, `de-identified log` without saying strip the name and paste into AI).
-- Agent-voiced asides, verification hedges on the slide, or notes that explain the notes to Chase.
-
-**Slide text** stays his voice too (existing `AGENTS.md` spoken-bullets rule). Summary under the title = campus situation / what they built, not “opened with a SWOT.”
-
-**Transcript fidelity:** when he asks what someone meant, go back to the AACU transcript under `C:\Users\chase\My Drive\AACU\unwatched\` and answer plainly, then put the clear version in notes. Do not invent beyond the source.
-
-**Head-mouse:** never open stage/GUI without asking. Hand him `http://127.0.0.1:8765/...` links. No em dashes. No Netlify.
+- **Overview bullets** are short scan lines. **Down-arrow notes** hold the full speakable sentences.
+- **No agent voice** anywhere on screen. His wording, his stakes.
+- **No random decorative graphics.** He rejected AI-generated square illustrations and also rejected a hand-made floating SVG of book / neural net / silhouettes. Do not invent another graphic for this slide unless he asks with a clear reference or meaning.
+- **Speakable notes** stay complete sentences he can say aloud (existing AGENTS talk-notes rule).
+- Gallup care slide: use the **poll's exact wording** on the Stage question; keep Bowen's oral paraphrase in notes only.
 
 ---
 
-## Accepted decisions (this stretch)
+## Accepted decisions
 
-| Decision | Why |
-|---|---|
-| URI ATL workshop titles + faculty consultation live in **notes only** | He named A.I. and Writing, AI in the Classroom, Navigating AI…, consultation; not more slide lists |
-| Indiana Wesleyan question-shift on slide/notes = old assignments easy for a chatbot, what do I do | Tiffany’s wording is “weren’t designed with AI in mind”; Chase’s clearer practical meaning |
-| Course Refresh talk point = technologist beside faculty building live into Brightspace | What he wants to bring up; not turn-taking |
-| AI literacy vs resilient = use AI on purpose vs redesign so a chatbot cannot finish alone | Verified in transcript |
-| Soft Lone Star parallel: Timothy Mousel / D2L session mentioned in Three Pathways notes | Live-in-LMS help has happened at LSC; he is unsure if it was activities |
-| Hackathons ≠ fix-one-assignment workshop; that is just-in-time / Institute hour | Tiffany: half-day for one program goal (e.g. set AI level from their scale) |
-| Boise overview summary/bullets: situation + builds, not “they opened with…” | Meta about panel structure does not belong on the slide |
-| Boise notes: speakable rewrite; drop nursing/grant unless he asks later | He named what he cares about: split, informal→committee, non-binding briefs, Institute purpose, homegrown LLM + FERPA/HR |
-| Briefs = suggestions on contentious topics (tutoring, detection, grading, proctoring), not binding policy | “No formal policy stakes” = nobody had to follow them; something written so meetings could move on |
+1. **Final Thoughts track:** divider → Bowen bio → 72% AI companion (question then answer) → AI professor avatars + HBS Foundry → 27% care (question then answer, then closing bullets) → **My Thoughts on What Lone Star Should Do** → sources page stays in References (`final-bowen-sources`).
+2. **Gallup-Purdue 2014:** Stage title uses strongly agreed that their professors cared about them as a person. Answer **27%**. Bowen said it more like "one professor who cared"; notes explain both.
+3. **Lone Star next overview (current):**
+   - More faculty awareness of why we need to be prepared, and of what other colleges are already doing.
+   - Faculty will need to be trained to bring AI into the classroom, not just a policy that says what is allowed.
+   - A timeline with dates for where we want to be.
+   - A D2L community AI group so people using AI in interesting ways can find each other and learn together.
+4. **Course release / wanting to be more involved:** overview line removed; lives in **notes only**. Task-force disclaimer also notes-only (not under the title, not as first bullet).
+5. **Bullet builds:** `engine.js` `points` now show **all bullets at once** by default. Opt back into one-by-one with `stepped: true`. **Stats** that step one-by-one stay as they are.
+6. **Title spacing:** `.slide-title + .cols { margin-top: .85em; }` in `v2-stage.html` when there is no summary under the title.
+7. **Starred Panels** presenter page: `aacu-buckets-present.html` (not the editing review tools). Earlier: Misc renamed **AI and Campus Productivity**; VP slides other-apps / hub-first-build / the-ask removed from track.
 
 ---
 
-## Rejected directions / do not rediscover
+## Rejected directions (do not rediscover)
 
-- Wall-of-text notes with student counts, every speaker role, and “herself + one FT + one PT.”
-- Reading the question-shift as “how do I put AI in all my assignments.”
-- Calling hackathons drop-in assignment help workshops.
-- Explaining jargon *to* Chase in the notes (“Crosswalks (plain English): …”) instead of writing the speakable sentence.
-- Keeping “next topics: course materials, agentic AI” when the transcript only named titles with no content.
-- Putting “bring this up / skip nursing” style directions in notes.
-- Treating detail-page cryptic example blurbs as enough; when he uses an example, spell the assignment redesign in plain language (Daphne spiritual-formation time log is the exemplar).
+- **Decorative graphics on Lone Star next:** generated square/portrait scenes (timeline icons, teacher-student path + neural net compositions) and a transparent SVG of floating symbols. Chase: "random pictures," get rid of all of them. Leave the slide text-only until he asks for a specific visual.
+- Do not put the task-force disclaimer back under the title or as overview bullet 1 (duplication he hated).
+- Do not put course-release back on the overview.
+- Do not re-add VP slides 54–56 style endings (other-apps, hub-first-build, the-ask) unless he asks.
+- Em dashes: never.
+- Do not launch Stage/GUI without asking.
 
 ---
 
 ## Current implementation state
 
-**Repo:** `AI presentations` (also Programs root for agent docs / handoff). Nothing committed/pushed this chat.
+**Repo:** `AI presentations` (own git root). Dirty vs `origin/main`; nothing committed this chat for the handoff.
 
-**Touched this stretch:**
-- `AI presentations/site/shared/notes.js` — `campus-uri` ATL lines earlier; `campus-three-pathways` rewritten several times then stabilized; `campus-networked` just rewritten speakable.
-- `AI presentations/site/shared/content-campus.js` — Three Pathways question-shift + example bullets; Boise overview `summary` + overview `blocks` (briefs replaced nursing/grant on overview).
-- `AI presentations/site/shared/panel-summary-trims.js` — matching question-shift / Boise summary lines.
-- URI PDF detail and earlier URI slide work from prior turns in same day still in tree.
+**Key files:**
+- `site/shared/content-final.js` — Final Thoughts pages including `final-lone-star-next` (**no image block**)
+- `site/shared/content.js` — VP `stops` end with `final-lone-star-next` (index **58**)
+- `site/shared/notes.js` — notes through `final-lone-star-next`; talk-note registration end page is `final-lone-star-next`
+- `site/shared/engine.js` — points default all-at-once
+- `site/v2-stage.html` — title→cols spacing; question-slide / prior Stage UX
+- `AGENTS.md` — Final thoughts keyword row mentions Lone Star next
+- Media kept for Bowen: `site/media/bowen-ai-professors.png`
+- Media removed for Lone Star next: `lone-star-next.jpg` / `.svg` deleted
 
-**Sources:**  
-`C:\Users\chase\My Drive\AACU\unwatched\Three Pathways One Foundation.md`  
-`C:\Users\chase\My Drive\AACU\unwatched\Utilizing a Networked Approach.md`
+**Also uncommitted from earlier in the broader Stage pass (same repo):** productivity / classroom / Building This Presentation / buckets-present / notes / artifact churn. Treat as part of the live VP deck work, not as separate failed experiments.
 
-**File size:** `notes.js` ~365 lines; `content-campus.js` ~325. Under caps.
+**Stage links (recompute `s` if stops change):**
+- Lone Star next: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=58&b=0`
+- Bowen care: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=57&b=0`
+- Stage root: `http://127.0.0.1:8765/ai-presentations/v2-stage.html#t=vp&s=0&b=0`
 
-**Verification:** content edits only; stage not opened this stretch. Chase views stage himself.
-
-**Still open from older campus work:** Brazelton self-assessment webform TODO (red) in maturity-indicators notes, if still present.
+**Sharing as a public URL (discussed, not done):** `127.0.0.1:8765` is local-only. Full `site/` can host on Netlify/Cloudflare (~46 MB MP4s are fine). Caveat: Starred Panels stars live in *his* localStorage. Claude artifact path in README is stale relative to current Stage. He had not chosen lasting host vs temporary tunnel yet.
 
 ---
 
 ## Open questions and constraints
 
-- Capture the speakable-notes rule into `AI presentations/AGENTS.md` (gap logged on scorecard this session). Do that early in the fresh task if continuing notes work.
-- Chase may still want Boise detail page (`campus-networked-detail`) aligned to the same speakable / non-meta standard; overview was the focus.
-- Do not launch GUI / stage without asking.
-- Mid-session: no commit/push unless he says pull / put on GitHub / end of session.
+- Does he want a real hosted link next, and if so Netlify/Cloudflare vs a short-lived tunnel?
+- Any further polish on Lone Star next wording, or leave text-only as-is?
+- When he says put on GitHub / end of session: commit `AI presentations` (and Programs root if agent-docs handoff files belong there).
+
+**Rules that still bind:** never display without permission; no Netlify portal deploy from this; file-size caps; talk-notes speakable; after Stage edits always link with recomputed `s`.
 
 ---
 
 ## Exact next step
 
-1. If continuing the campus notes pass: open Touro `campus-14day` at `s=31`, read current overview + `notes.js` + `C:\Users\chase\My Drive\AACU\unwatched\` 14 Day transcript/summary, then rewrite notes (and fix overview phrasing if it is session-meta or cryptic) as **speakable aloud sentences only**, matching the Boise notes voice.
-2. Before editing notes elsewhere, add a short keyword row / section in `AI presentations/AGENTS.md` for talk notes: speakable sentences, no stage directions, no label-colon dumps.
+Open `final-lone-star-next` on Stage and confirm the four overview bullets + notes feel right with **no graphic**. From there, either polish that slide's wording if he asks, or pick up the deferred **shareable website link** question (host `site/` vs tunnel) if he wants that instead.
 
-**Read first:** `AI presentations/AGENTS.md` (spoken-bullets + talk notes) → `site/shared/notes.js` keys `campus-networked` (exemplar) and `campus-14day` → matching `content-campus.js` pages → AACU unwatched transcript for that panel.
-
----
-
-## Repos touched
-
-- `AI presentations`
-- `Programs/` root (`agent docs/momentum-handoffs/`, session tracking)
+**Read first:** `AI presentations/AGENTS.md` (Final thoughts + talk-notes + after-Stage-change link rule), then `site/shared/content-final.js` and the `final-lone-star-next` / `final-bowen-*` keys in `notes.js`.
