@@ -2,6 +2,20 @@
 
 Instruction-layer and cross-app work at `Programs/` root (not inside a single School Scrips app).
 
+## 2026-11-16 — Fast Click browser test pad
+
+**Repos touched:** `Programs/` root
+
+**Files changed:** `agent docs/instructional-layer-htmls/fastclick-click-test.html` (dual counter: glass CLICKS SENT vs page receives clicks)
+
+**What worked:** Dwell-friendly test page for Fast Click verification at `instructional-layer-htmls/fastclick-click-test.html`
+
+**Current state:** Green
+
+**File size flag:** None
+
+**Next session:** Optional page-manifest row if Chase wants it on pages.html pins
+
 ## 2026-11-13 — Fractions wall clip + Other Math Apps 2x2 polish
 
 **Repos touched:** `School Scrips/Fractions-App`, `School Scrips/logic-app`, `AI presentations`, `Programs/` root

@@ -68,41 +68,44 @@
     <ul><li><strong>Your messages:</strong> How many messages you sent in this session.</li><li><strong>Tokens:</strong> Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.</li><li><strong>Peak context/turn:</strong> The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.</li><li><strong>You corrected me:</strong> Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.</li><li><strong>Agent suggests capturing:</strong> The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.</li></ul>
   </details>
     <div class="summary-bar">
-      <div><dt>Total sessions</dt><dd>211</dd></div>
-      <div><dt>Latest</dt><dd style="font-size:1rem">8:58 PM · Saturday, Nov 14, 2026</dd></div>
+      <div><dt>Total sessions</dt><dd>212</dd></div>
+      <div><dt>Latest</dt><dd style="font-size:1rem">9:31 PM · Monday, Nov 16, 2026</dd></div>
     </div>
+    
     <section class="day-block">
-      <h2 class="day-title">Current session (live tally)</h2>
-      <div class="day-sessions"><article class="session-card in-progress">
+      <h2 class="day-title">Monday, Nov 16, 2026</h2>
+      <div class="day-sessions"><article class="session-card">
     <header class="session-head">
       <div class="pills">
-        <span class="time">8:58 PM</span>
-        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p0" title="Updates after each completed task.">In progress</span>
+        <span class="time">9:31 PM</span>
+        <span class="pill p0" title="Category for comparing similar sessions: coding, Q&amp;A, mixed, etc.">mixed</span><span class="pill p1" title="Done = finished the goal. Partial = some progress. Abandoned = stopped early.">Finished</span><span class="pill p2" title="The chat was compressed mid-session; early detail may be missing from the notes.">Summarized</span>
       </div>
-      <div class="model">claude-sonnet-5-5</div>
+      <div class="model">composer-2.5</div>
     </header>
-    <p class="summary-human">Session in progress…</p>
+    <p class="summary-human">Chase dictated his whole VP talk slide by slide and I logged each take cleaned up, flagged mismatches against the conference transcripts, and edited the stage deck to match (merges, moves, removals, new pictures and buttons, a branch track, a scroll video of the Rhode Island report, a Starred Panels rating demo). I also built phone swipe notes as Claude artifacts, a stripped version and a full speech version, plus Drive PDFs.</p>
     <div class="metric-grid"><div class="metric">
     <dt><abbr class="tip" title="How many messages you sent in this session.">Your messages</abbr></dt>
-    <dd>4</dd>
+    <dd>24</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Tokens billed across the session's logged tasks (Claude Code only — Cursor records none). Mostly cache re-reads, so it grows with session length.">Tokens</abbr></dt>
-    <dd>—</dd>
+    <dd>88.2M</dd>
+  </div><div class="metric metric-warn">
+    <dt><abbr class="tip" title="The most context one reply re-read. Above ~250k, a fresh task via momentum handoff is cheaper.">Peak context/turn</abbr></dt>
+    <dd>251k</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Task bumps logged this session.">Tasks logged</abbr></dt>
-    <dd>2</dd>
+    <dd>4</dd>
   </div><div class="metric">
     <dt><abbr class="tip" title="Times you pushed back: &quot;no&quot;, &quot;wrong&quot;, &quot;again&quot;. High means the agent drifted or misunderstood.">You corrected me</abbr></dt>
     <dd>0</dd>
   </div></div>
-    <details class="file-details"><summary>2 task(s)</summary>
-    <ul class="task-list"><li>10:07 PM — Version A/B short tracks, new slides, artifact and phone notes</li><li>12:01 PM — Version B polish: logo build fix, slide 14 fit, zoom buttons, conference and Bowen slides, Gallup 32 percent, phone notes</li></ul>
+    <details class="file-details"><summary>4 task(s)</summary>
+    <ul class="task-list"><li>10:07 PM — Version A/B short tracks, new slides, artifact and phone notes</li><li>12:01 PM — Version B polish: logo build fix, slide 14 fit, zoom buttons, conference and Bowen slides, Gallup 32 percent, phone notes</li><li>8:55 PM — Fast Click overlay: favorites tile C, scroll-bar layout, speed popup</li><li>9:07 PM — Fast Click: 20% default, cursor clicks, pause over UI, speed cell + right-click off</li></ul>
   </details>
-    
-    
+    <div class="note-box"><strong><abbr class="tip" title="Something unusual about this session worth a glance — not necessarily a problem.">Worth noting</abbr>:</strong> Very long session (hundreds of turns). Several edits to the same notes files were done through ad hoc Python heredocs, and two of them failed on quoting before I moved to writing one-off script files. The harness's 'file changed on disk' notice fired on my own command-line edits and I wrongly told Chase it might be his; I corrected that with a git diff.</div><div class="capture-box"><strong><abbr class="tip" title="The agent's idea for a future rule or doc. Not a list of what you already asked to build unless you did.">Agent suggests capturing</abbr>:</strong> When a long Python or shell heredoc contains quotes or apostrophes, write a one-off script file with the Write tool and run it, instead of a heredoc.</div>
+    <p class="next"><strong>Next time:</strong> Timed run-through, then cuts; rebuild Drive PDFs and republish the full-deck artifact.</p>
   </article></div>
-    </section>
-    <section class="day-block">
+    </section><section class="day-block">
       <h2 class="day-title">Saturday, Nov 14, 2026</h2>
       <div class="day-sessions"><article class="session-card">
     <header class="session-head">

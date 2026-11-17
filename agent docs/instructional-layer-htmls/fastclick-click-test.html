@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Click test pad</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 32px 40px 48px;
+        }
+        a.back {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: #1e293b;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h1 { margin: 0 0 16px; font-size: 28px; }
+        .steps {
+            max-width: 560px;
+            line-height: 1.55;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+        .steps li { margin-bottom: 10px; }
+        .pad-wrap {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .test-pad {
+            width: 300px;
+            height: 300px;
+            border: 4px dashed #94a3b8;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #334155;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.05s;
+        }
+        .test-pad.flash { background: #64748b; }
+        .test-pad .num {
+            font-size: 72px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .test-pad .lbl {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+        .legend {
+            max-width: 360px;
+            font-size: 15px;
+            line-height: 1.5;
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+        .legend strong { color: #86efac; }
+        .legend .warn { color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <a class="back" href="/pages.html">← All pages</a>
+    <h1>Fast Click test pad</h1>
+    <ol class="steps">
+        <li>Open this page in your browser (link from chat).</li>
+        <li>Show Fast Click from the toolbar and drag the glass box over the dashed square below.</li>
+        <li>Turn Fast Click <strong>ON</strong>. Set speed above 0% (try 20%).</li>
+        <li>Move your cursor <strong>inside</strong> the glass panel (not only the dashed pad).</li>
+    </ol>
+    <div class="pad-wrap">
+        <div class="test-pad" id="pad" tabindex="0">
+            <div class="num" id="num">0</div>
+            <div class="lbl">page clicks received</div>
+        </div>
+        <div class="legend">
+            <p><strong>Glass panel</strong> shows <strong>CLICKS SENT</strong> (Electron loop) and <strong>CLICKING</strong> when armed.</p>
+            <p><strong>This number</strong> should rise too if real left-clicks reach the page under the glass.</p>
+            <p class="warn">If SENT rises but this stays at 0, the Python click path may be blocked (focus, coordinates, or overlay on top).</p>
+        </div>
+    </div>
+    <script>
+        let n = 0;
+        const pad = document.getElementById('pad');
+        const num = document.getElementById('num');
+        function bump() {
+            n += 1;
+            num.textContent = String(n);
+            pad.classList.add('flash');
+            setTimeout(() => pad.classList.remove('flash'), 80);
+        }
+        pad.addEventListener('click', bump);
+        pad.addEventListener('mousedown', () => pad.classList.add('flash'));
+        pad.addEventListener('mouseup', () => pad.classList.remove('flash'));
+    </script>
+</body>
+</html>
